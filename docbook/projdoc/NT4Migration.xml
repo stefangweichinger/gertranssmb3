@@ -309,87 +309,87 @@ Organisationen, die von MS Windows NT4-Domänen-Verwaltung auf eine Samba-basiere
 wollen, fallen generell in drei grundlegende Kategorien. <link linkend="majtypes"/> zeigt die Möglichkeiten.
 </para>
 
-<table frame="all" id="majtypes"><title>The Three Major Site Types</title>
+<table frame="all" id="majtypes"><title>Die drei Haupt-Typen von Installationen</title>
 <tgroup cols="2">
 	<colspec align="left"/>
 	<colspec align="justify" colspec="1*"/>
 	<thead>
-	<row><entry>Number of Users</entry><entry>Description</entry></row>
+	<row><entry>Anzahl der Benutzer</entry><entry>Beschreibung</entry></row>
 	</thead>
 	<tbody>
-	<row><entry>&lt; 50</entry><entry><para>Want simple conversion with no pain.</para></entry></row>
-	<row><entry>50 - 250</entry><entry><para>Want new features, can manage some in-house complexity.</para></entry></row>
-	<row><entry>&gt; 250</entry><entry><para>Solution/Implementation must scale well, complex needs. Cross-departmental decision process. Local expertise in most areas.</para></entry></row>
+	<row><entry>&lt; 50</entry><entry><para>Wollen eine einfache Umstellung ohne Probleme.</para></entry></row>
+	<row><entry>50 - 250</entry><entry><para>Wollen neue Funktionen, wollen manche interne Komplexität besser managen.</para></entry></row>
+	<row><entry>&gt; 250</entry><entry><para>Lösung/Implementation muß gut skalieren, komplexe Anforderungen.
+Abteilungs-übergreifender Entscheidungs-Prozeß. Lokale Experisen in den meisten Bereichen.</para></entry></row>
 	</tbody>
 </tgroup>
 </table>
 
 <sect2>
-<title>Planning for Success</title>
+<title>Für den Erfolg planen</title>
 
 <para>
-There are three basic choices for sites that intend to migrate from MS Windows NT4
-to Samba-3:
+Es gibt drei grundlegende Wahlmöglichkeiten für Sites, die von MS Windows NT4
+auf Samba-3 migrieren wollen.
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	Simple conversion (total replacement).
+	Einfache Konvertierung (komplettes Ersetzen).
 	</para></listitem>
 
 	<listitem><para>
-	Upgraded conversion (could be one of integration).
+	Erweiterte Konvertierung (könnte ein Weg der Integration sein).
 	</para></listitem>
 
 	<listitem><para>
-	Complete redesign (completely new solution).
+	Komplettes Redesign (komplett neue Lösung).
 	</para></listitem>
 </itemizedlist>
 
 <para>
-Minimize down-stream problems by:
+Minimieren Sie nachfolgende Probleme durch:
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	Taking sufficient time.
+	Nehmen Sie sich ausreichend Zeit.
 	</para></listitem>
 
 	<listitem><para>
-	Avoiding Panic.
+	Vermeiden Sie Panik.	
 	</para></listitem>
 
 	<listitem><para>
-	Testing all assumptions.
+	Überprüfen Sie alle Annahmen.	
 	</para></listitem>
 
 	<listitem><para>
-	Testing the full roll-out program, including workstation deployment.
+	Testen Sie das volle Einführungs-Programm, einschließlich Workstations.
 	</para></listitem>
 </itemizedlist>
 
-<para><link linkend="natconchoices"/> lists the conversion choices given the type of migration
-being contemplated.
+<para><link linkend="natconchoices"/> listet die Konversions-Möglichkeiten je nach angestrebtem Migrations-Typus.
 </para>
 
-<table frame="all" id="natconchoices"><title>Nature of the Conversion Choices</title>
+<table frame="all" id="natconchoices"><title>Eigenschaften der Konversions-Möglichkeiten</title>
 <tgroup cols="3">
 	<colspec align="justify" colwidth="1*"/>
 	<colspec align="justify" colwidth="1*"/>
 	<colspec align="justify" colwidth="1*"/>
 	<thead>
-	<row><entry>Simple</entry><entry>Upgraded</entry><entry>Redesign</entry></row>
+	<row><entry>Einfach</entry><entry>Erweitert</entry><entry>Redesign</entry></row>
 	</thead>
 	<tbody>
 	<row>
-	<entry><para>Make use of minimal OS specific features.</para></entry>
-	<entry><para>Translate NT4 features to new host OS features.</para></entry>
-	<entry><para>Decide:</para></entry>
+	<entry><para>Anwendung der minimalen Features des OS.</para></entry>
+	<entry><para>Übersetzen der NT4-features auf die features des neuen OS.</para></entry>
+	<entry><para>Entscheide:</para></entry>
 	</row>
 	<row>
-	<entry><para>Move all accounts from NT4 into Samba-3</para></entry>
-	<entry><para>Copy and improve</para></entry>
-	<entry><para>Authentication regime (database location and access)</para></entry>
+	<entry><para>Bewegen aller Konten von NT4 auf Samba-3</para></entry>
+	<entry><para>Kopieren und verbessern</para></entry>
+	<entry><para>Authentifikations-Regime (Datenbank-Plazierung und -Zugriff)</para></entry>
 	</row>
 	<row>
 	<entry><para>Make least number of operational changes</para></entry>
