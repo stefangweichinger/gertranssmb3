@@ -190,18 +190,17 @@ dem <emphasis>Session Setup</emphasis> geregelt werden.
 </para>
 
 <para>
-
-It is also possible for a client to send multiple <emphasis>session setup</emphasis>
-requests. When the server responds, it gives the client a <emphasis>uid</emphasis> to use
-as an authentication tag for that username/password. The client can maintain multiple
-authentication contexts in this way (WinDD is an example of an application that does this).
+Es ist ebenfalls möglich, dass ein Client verschiedene <emphasis>session setup</emphasis> Anfragen,
+sendet. Wenn der Server darauf antwortet vergibt er dem Client eine <emphasis>uid</emphasis>
+als Authentifizierungs-Etikett. Der Client kann somit verschiedene Authentifizierungs Kontexte
+aufrecherhalten (WinDD ,als Beispiel, ist eine Applikation die diese Verfahrensweise nutzt).
 </para>
 
 <sect3>
-<title>Example Configuration</title>
+<title>Beispiel Konfiguration</title>
 
 <para>
-The &smb.conf; parameter that sets user level security is:
+Die &smb.conf; Parameter die die Sicherheitsstufe auf security setzt lautet:
 </para>
 
 <para><smbconfblock>
@@ -209,48 +208,48 @@ The &smb.conf; parameter that sets user level security is:
 </smbconfblock></para>
 
 <para>
-This is the default setting since Samba-2.2.x.
+Dies ist die Standard Einstellung seit Samba-2.2.x.
 </para>
 
 </sect3>
 
 </sect2>
 <sect2>
-<title>Share Level Security</title>
+<title>Share Level Sicherheit</title>
 
 <para>
-In Share Level security, the client authenticates
-itself separately for each share. It sends a password along with each
-tree connection (share mount). It does not explicitly send a
-username with this operation. The client expects a password to be associated
-with each share, independent of the user. This means that Samba has to work out what
-username the client probably wants to use. It is never explicitly sent the username.
-Some commercial SMB servers such as NT actually associate passwords directly with
-shares in Share Level security, but Samba always uses the UNIX authentication scheme
-where it is a username/password pair that is authenticated, not a share/password pair.
+Bei der Share Level Sicherheit authentifiziert sich der Client selbst bei jedem
+Aufruf einer Freigabe mit einem Passwort. Es wird nicht explizit ein Benutzername
+vom Client zum Server gesendet. Der Client erwartet ein Passwort welches mit jeder
+Freigabe verbunden wird, somit hat Samba die Aufgabe heraus zu finden welchen
+Benuternamen der Client verwenden möchte. Einige kommerzielle SMB Server wie NT
+assoziieren Passwörter direkt mit Freigaben bei der Share Level Sicherheit, Samba
+im Gegensatz arbeitet mit dem UNIX Authentifizierung Schema welches ein Benutzer/Passwort
+Paar statt einem Share/Passwort Paar erwartet.
 </para>
 
 <para>
-To understand the MS Windows networking parallels, one should think
-in terms of MS Windows 9x/Me where one can create a shared folder that provides read-only
-or full access, with or without a password.
+Um die MS Windows Netzwerkparallele zu verstehen hier ein wichtiger Gedanke für die Bedingung
+von Windows 9x/Me wo jemand einen Ordner Freigeben kann welcher Nur-Lese oder Vollzugriff mit
+oder ohne Passwort haben kann.
 </para>
 
 <para>
-Many clients send a session setup even if the server is in Share Level security. They
-normally send a valid username but no password. Samba records this username in a list
-of possible usernames. When the client then does a tree connection it also adds to this list the name
-of the share they try to connect to (useful for home directories) and any users
-listed in the <smbconfoption><name>user</name></smbconfoption> parameter in the &smb.conf; file.
-The password is then checked in turn against these possible usernames. If a match is found
-then the client is authenticated as that user.
+Viele Clients senden ein Session Setup auch dann wenn der Server als Share Level Sicherheit läuft.
+Sie übergeben normalerweise einen gültigen Benutzernamen den sich Samba in einer Liste der
+möglichen Benutzernamen merkt. Wenn nun der Client eine Tree-connection macht nimmt der Samba Server
+den Namen der Freigabe in seine Liste auf (nützlich für Freigaben des Heimatverzeichnisses) und jeder
+Benutzer in des <smbconfoption><name>user</name></smbconfoption> Parameters in der &smb.conf; wird
+mit dem gesendeten Passworts überprüft. Wenn nun durch den anfänglich gesendeten Benutzernamen
+und dem für das Share gesendete Passwort eine übereinstimmung gefunden wird ist der Client
+berechtigt auf dieses Share zu zugreifen.
 </para>
 
 <sect3>
-<title>Example Configuration</title>
+<title>Beispiel Konfiguration</title>
 
 <para>
-The &smb.conf; parameter that sets Share Level security is:
+Der &smb.conf; Parameter der die Sicherheitsstufe auf Share Level Sicherheit setzt:
 </para>
 
 <para><smbconfblock>
@@ -258,15 +257,15 @@ The &smb.conf; parameter that sets Share Level security is:
 </smbconfblock></para>
 
 <para>
-There are reports that recent MS Windows clients do not like to work
-with share mode security servers. You are strongly discouraged from using Share Level security.
+Es gibt Berichte, dass neue MS Windows Clients nicht mit Servern die im Share Level Sicherheitsmodus
+arbeiten nicht arbeiten möchten. Wir möchten verstärkt davor warnen im Share Level Modus zu arbeiten.
 </para>
 
 </sect3>
 </sect2>
 
 <sect2>
-<title>Domain Security Mode (User Level Security)</title>
+<title>Domänen Sicherheitsmodus (User Level Security)</title>
 
 <para>
 <indexterm><primary>Domain Member</primary></indexterm>
