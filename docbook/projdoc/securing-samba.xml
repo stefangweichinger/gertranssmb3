@@ -19,47 +19,50 @@ für Samba-Installationen.
 
 <blockquote>
 <para>
-A new apprentice reported for duty to the chief engineer of a boiler house. He said, <quote>Here I am,
-if you will show me the boiler I'll start working on it.</quote> Then engineer replied, <quote>You're leaning
-on it!</quote>
+Ein neuer Lehrling meldete sich beim Chef-Ingenieur eines Kesselhauses zur Arbeit. Er sagte:
+<quote>Hier bin ich, wenn Sie mir den Boiler zeigen, werde ich daran zu arbeiten beginnen.</quote>
+Der Ingenieur antwortete:<quote>Du lehnst daran!</quote>
 </para>
 </blockquote>
 
 <para>
-Security concerns are just like that. You need to know a little about the subject to appreciate
-how obvious most of it really is. The challenge for most of us is to discover that first morsel
-of knowledge with which we may unlock the secrets of the masters.
+Sicherheits-Bedenken sind genau so. Sie müssen ein wenig über das Thema wissen, um anzuerkennen, wie
+offensichtlich das meiste davon ist. Die Herausforderung für die meisten von uns ist, den ersten
+Brocken des Wissens zu entdecken, mit dem wir die Geheimnisse der Meister für uns eröffnen könnten.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Vorzüge</title>
 
 <para>
-There are three levels at which security principals must be observed in order to render a site
-at least moderately secure. They are the perimeter firewall, the configuration of the host
-server that is running Samba and Samba itself.
+Es gibt drei Ebenen, auf denen Sicherheits-Prinzipien beachtet werden müssen, um eine Installation
+zumindest einigermassen sicher zu gestalten. Diese sind die umgebende Firewall, die Konfiguration
+des Host-Servers, der Samba ausführt, und Samba selbst.
 </para>
 
 <para>
-Samba permits a most flexible approach to network security. As far as possible Samba implements
-the latest protocols to permit more secure MS Windows file and print operations.
+Samba erlaubt einen höchst flexiblen Ansatz zur Netzwerk-Sicherheit. Samba implementiert so weit 
+wie möglich die neuesten Protokolle, um sicherere MS-Windows-Datei- und Druck-Operationen zu
+ermöglichen.
 </para>
 
 <para>
-Samba may be secured from connections that originate from outside the local network. This may be
-done using <emphasis>host-based protection</emphasis> (using samba's implementation of a technology
-known as <quote>tcpwrappers,</quote> or it may be done be using <emphasis>interface-based exclusion</emphasis>
-so &smbd; will bind only to specifically permitted interfaces. It is also
-possible to set specific share or resource-based exclusions, for example on the <smbconfsection>[IPC$]</smbconfsection>
-auto-share. The <smbconfsection>[IPC$]</smbconfsection> share is used for browsing purposes as well as to establish
-TCP/IP connections.
+Samba kann gegenüber Verbindungen abgesichert werden, die von außerhalb des LAN herrühren.
+Dies kann durch die Verwendung von <emphasis>host-based protection</emphasis> geschehen,
+(unter Verwendung der Samba-Implementation einer Technologie namens <quote>tcpwrappers</quote>),
+oder durch die Verwendung von <emphasis>interface-based exclusion</emphasis>, sodaß &smbd; sich
+nur an bestimmte erlaubte Netz-Interfaces bindet. Es ist auch möglich, Ausschliessungen spezifisch
+für Freigaben oder Ressourcen zu setzen, zum Beispiel auf die automatische Freigabe
+<smbconfsection>[IPC$]</smbconfsection>. Diese Freigabe wird für Browsing-Zwecke ebenso verwendet, wie
+zur Herstellung von TCP/IP-Verbindungen.
 </para>
 
 <para>
-Another method by which Samba may be secured is by setting Access Control Entries (ACEs) in an Access 
-Control List (ACL) on the shares themselves. This is discussed in <link linkend="AccessControls"/>.
+Eine andere Methode, um Samba abzusichern, ist das Setzen von "Access Control Entries" (ACEs) in einer
+Zugriffs-Kontroll-Liste (ACL) auf den Freigaben selbst. Dies wird in <link linkend="AccessControls"/>
+diskutiert.
 </para>
 
 </sect1>
