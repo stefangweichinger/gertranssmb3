@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="msdfs">
-
 <chapterinfo>
 	<author>
 		<firstname>Shirish</firstname><surname>Kalele</surname>
@@ -13,6 +13,7 @@
 	&author.jht;
 	
 	<pubdate>12 Jul 2000</pubdate>
+<author>&person.flex;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Betreiben eines Microsoft Distributed File System Baumes</title>
