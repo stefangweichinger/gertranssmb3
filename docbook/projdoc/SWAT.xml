@@ -53,89 +53,88 @@ Nicht-Standardwerten bereinigt ist.
 </sect1>
 
 <sect1>
-<title>Guidelines and Technical Tips</title>
+<title>Grundlagen und technische Hilfen</title>
 
 <para>
-This section aims to unlock the dark secrets behind how SWAT may be made to work,
-may be made more secure, and how to solve Internationalization support problems.
+Dieser Abschnitt erklärt wie man SWAT aktiviert, wie man es sicherer macht
+und wie man Probleme bei der internationalen Unterstützung löst.
 </para>
 
 <sect2>
-<title>Validate SWAT Installation</title>
+<title>Überprüfen der SWAT Installation</title>
 
 <para>
-The very first step that should be taken before attempting to configure a host
-system for SWAT operation is to check that it is installed. This may seem a trivial
-point to some, however several Linux distributions do not install SWAT by default,
-even though they do ship an installable binary support package containing SWAT
-on the distribution media.
+Bevor man einen Rechner beginnt für SWAT zu konfigurieren, ist zu überprüfen, ob es
+überhaupt installiert ist. Dies mag einigen trivial erscheinen, dennoch installieren
+einige Distributionen SWAT nicht standardmäßig, obwohl es auf den Medien des
+Distributors vorhanden ist.
 </para>
 
 <para>
-When you have configrmed that SWAT is installed it is necessary to validate
-that the installation includes the binary <command>swat</command> file as well
-as all the supporting text and Web files. A number of operating system distributions
-in the past have failed to include the necessary support files, evne though the
-<command>swat</command> binary executable file was installed. 
+Ist man sich sicher, dass SWAT installiert ist, ist es notwendig zu überprüfen,
+dass die Installation das <command>swat</command> Binary wie auch alle
+unterstützenden Text- und Webseiten enthält. Bei einer Reihe von Linux-Distributoren
+fehlten diese vollständig, obwohl das <command>swat</command> Binary installiert war.
 </para>
 
 <para>
-Finally, when you are sure that SWAT has been fully installed, please check the SWAT
-has been enebled in the control file for the internetworking super-daemon (inetd or xinetd)
-that is used on your operating system platform. 
+Nachdem man sich sicher ist, dass wirklich alles installiert ist, stellt man sicher,
+dass SWAT in der Kontrolldatei von inetd oder xinetd aktiviert ist, je nachdem, welches
+von beiden vom Betriebsystem verwendet wird.
 </para>
 
 <sect3>
-<title>Locating the <command>swat</command> File</title>
+<title>Lokalisieren der <command>swat</command> Datei</title>
 
 <para>
-To validate that SWAT is installed, first locate the <command>swat</command> binary
-file on the system. It may be found under the following directories:
+Um sicher zu stellen, dass SWAT installiert ist, lokalisiert man das <command>swat</command>
+Binary im System. Es könnte in folgenden Verzeichnissen liegen:
 <simplelist>
-	<member><filename>/usr/local/samba/bin</filename> &smbmdash; the default Samba location.</member>
-	<member><filename>/usr/sbin</filename> &smbmdash; the default location on most Linux systems.</member>
+	<member><filename>/usr/local/samba/bin</filename> &smbmdash; der standardmäßige swat Pfad.</member>
+	<member><filename>/usr/sbin</filename> &smbmdash; der Standardort vieler Linux-Systeme.</member>
 	<member><filename>/opt/samba/bin</filename></member>
 </simplelist>
 </para>
 
 <para>
-The actual location is much dependant on the choice of the operating system vendor, or as determined
-by the administrator who compiled and installed Samba.
+Der aktuelle Ort ist abhängig von der Wahl des Distributors oder des vom Administrator gewählten
+Installationspfades.
 </para>
 
 <para>
-There are a number methods that may be used to locate the <command>swat</command> binary file.
-The following methods may be helpful:
+Es gibt eine Anzahl verschiedener Methoden den Ort der Installation des <command>swat</command>
+Binaries festzustellen. Die folgenden Methoden können hilfreich sein:
 </para>
 
 <para>
-If <command>swat</command> is in your current operating system search path it will be easy to 
-find it. You can ask what are the command-line options for <command>swat</command> as shown here:
+Wenn <command>swat</command> sich im aktuellen Suchpfad des Betriebssystems befindet, ist es
+einfach zu finden. Man kann sich die Kommandoparameter von <command>swat</command> wie folgt
+anzeigen lassen:
 <screen>
 frodo:~ # swat -?
 Usage: swat [OPTION...]
-  -a, --disable-authentication         Disable authentication (demo mode)
+  -a, --disable-authentication         Authentifizierung abschalten (demo mode)
 
 Help options:
-  -?, --help                           Show this help message
-  --usage                              Display brief usage message
+  -?, --help                           Zeigt diese Hilfe an
+  --usage                              Zeigt eine kurze Benutzerhilfe an
 
 Common samba options:
-  -d, --debuglevel=DEBUGLEVEL          Set debug level
-  -s, --configfile=CONFIGFILE          Use alternative configuration file
-  -l, --log-basename=LOGFILEBASE       Basename for log/debug files
-  -V, --version                        Print version
+  -d, --debuglevel=DEBUGLEVEL          Setzt debug level
+  -s, --configfile=CONFIGFILE          Benutze alternative Konfigurationsdatei
+  -l, --log-basename=LOGFILEBASE       Basisname für log/debug Dateien
+  -V, --version                        Gibt die Version aus
 </screen>
 </para>
 
 </sect3>
 
 <sect3>
-<title>Locating the SWAT Support Files</title>
+<title>Lokalisieren der SWAT Hilfedateien</title>
 
 <para>
-Now that you have found that <command>swat</command> is in the search path, it is easy
-to identify where the file is located. Here is another simple way this may be done:
+Da man nun herausgefunden hat, dass <command>swat</command> im Suchpfad ist, ist es einfach,
+es im System zu identifizieren. Hier ist ein anderer einfacher Weg dies zu bewerkstelligen:
 <screen>
 frodo:~ # whereis swat
 swat: /usr/sbin/swat /usr/share/man/man8/swat.8.gz
@@ -143,8 +142,8 @@ swat: /usr/sbin/swat /usr/share/man/man8/swat.8.gz
 </para>
 
 <para>
-If the above measures fail to locate the <command>swat</command> binary, another approach
-is needed. The following may be used:
+Wenn dieser Versuch das <command>swat</command> Binary zu finden mislingt, ist ein weiterer
+Versuch notwendig:
 <screen>
 frodo:/ # find / -name swat -print
 /etc/xinetd.d/swat
@@ -155,15 +154,14 @@ frodo:/ #
 </para>
 
 <para>
-This list shows that there is a control file for <command>xinetd</command>, the internetwork
-super-daemon that is installed on this server. The location of the SWAT binary file is
-<filename>/usr/sbin/swat</filename>, and the support files for it are located under the
-directory <filename>/usr/share/samba/swat</filename>.
+Die Ausgabe zeigt, dass sich eine Kontrolldatei für <command>xinetd</command> auf der Maschine
+vorhanden ist. Der Ort der SWAT Binarydatei ist <filename>/usr/sbin/swat</filename> und die
+Hilfedateien befinden sich im Verzeichnis <filename>/usr/share/samba/swat</filename>.
 </para>
 
 <para>
-We must now check where <command>swat</command> expects to find its support files. This can
-be done as follows:
+Folgend muss überprüft werden, wo <command>swat</command> annimmt das seine Hilfedateien liegen.
+Dies kann wie folgt geschehen:
 <screen>
 frodo:/ # strings /usr/sbin/swat | grep "/swat"
 /swat/
@@ -174,9 +172,9 @@ frodo:/ #
 </para>
 
 <para>
-The <filename>/usr/share/samba/swat/</filename> entry shown in this listing is the location of the
-support files. You should verify that the support files exist under this directory. A sample
-list is as shown:
+Der <filename>/usr/share/samba/swat/</filename> Eintrag ist der Ort, in dem sich die von SWAT
+benötigten Dateien befinden. Um sicherzustellen, dass alle Dateien in diesem Verzeichnis vorhanden
+sind, gibt man folgendes ein:
 <screen>
 jht@frodo:/> find /usr/share/samba/swat -print
 /usr/share/samba/swat
@@ -212,31 +210,29 @@ jht@frodo:/>
 </para>
 
 <para>
-If the files needed are not available it will be necessary to obtain and install them
-before SWAT can be used.
+Wenn die oben aufgelisteten Dateien nicht vorhanden sind, ist es notwendig, diese zu
+installieren, da sich SWAT sonst nicht verwenden lässt.
 </para>
 
 </sect3>
 </sect2>
 
 <sect2 id="xinetd">
-<title>Enabling SWAT for Use</title>
+<title>SWAT aktivieren</title>
 
 <para>
-SWAT should be installed to run via the network super-daemon. Depending on which system
-your UNIX/Linux system has, you will have either an <command>inetd</command>- or
-<command>xinetd</command>-based system.
+SWAT sollte installiert werden, um es via inetd oder xinetd starten zu können. Abhängig vom
+UNIX/Linux-System ist dies entweder <command>inetd</command> oder <command>xinetd</command>. 
 </para>
 
 <para>
-The nature and location of the network super-daemon varies with the operating system
-implementation. The control file (or files) can be located in the file 
-<filename>/etc/inetd.conf</filename> or in the directory <filename>/etc/[x]inet[d].d</filename>
-or similar.
+Die Handhabung und der Ort variiert hierbei vom verwendeten Betriebssystem. Die Kontrolldatei
+(oder Dateien) findet man im Allg. unter <filename>/etc/inetd.conf</filename> oder (für xinetd)
+im Verzeichnis <filename>/etc/[x]inet[d].d</filename>.
 </para>
 
 <para>
-The control entry for the older style file might be:
+Der Eintrag für den älteren Typ der Kontrolldatei kann sein:
 <indexterm><primary>swat</primary><secondary>enable</secondary></indexterm>
 </para>
 
@@ -247,7 +243,7 @@ The control entry for the older style file might be:
 </programlisting></para>
 
 <para>
-A control file for the newer style xinetd could be:
+Ein Eintrag für die neuere Variante der Kontrolldatei in xinetd könnte sein:
 </para>
 
 <para>
@@ -272,12 +268,12 @@ service swat
 </para>
 
 <para>
-Both of the above examples assume that the <command>swat</command> binary has been
-located in the <filename>/usr/sbin</filename> directory. In addition to the above,
-SWAT will use a directory access point from which it will load its Help files
-as well as other control information. The default location for this on most Linux
-systems is in the directory <filename>/usr/share/samba/swat</filename>. The default
-location using Samba defaults will be <filename>/usr/local/samba/swat</filename>.
+Beide der oben angegebenen Beispiele bedingen, dass <command>swat</command> im
+<filename>/usr/sbin</filename> Verzeichnis liegt. Zusätzlich benötigt SWAT ein
+Verzeichnis in dem es die Hilfedateien wie auch die Kontrollinformationen findet.
+Der Standardpfad für diese auf den meisten Linux-Systemen ist
+<filename>/usr/share/samba/swat</filename>. Der Pfad für die Samba-Standards
+ist <filename>/usr/local/samba/swat</filename>.
 </para>
 
 <para>
