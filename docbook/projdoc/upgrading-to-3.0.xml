@@ -1,12 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="upgrading-to-3.0">
 <chapterinfo>
 	&author.jelmer;
 	&author.jht;
 	&author.jerry;
 	<pubdate>June 30, 2003</pubdate>
+        <author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
-<title>Upgrading from Samba-2.x to Samba-3.0.0</title>
+<title>Upgrade von Samba-2.x auf Samba-3.0.0</title>
 
 <para>
 This chapter deals exclusively with the differences between Samba-3.0.0 and Samba-2.2.8a.
