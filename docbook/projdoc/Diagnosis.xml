@@ -1,17 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="diagnosis">
 <chapterinfo>
 	&author.tridge;
 	&author.jelmer;
 	&author.danshearer;
 	<pubdate>Wed Jan 15</pubdate>
+	 <author>&person.reiss;<contrib>German Translator</contrib></author>
 </chapterinfo>
 
-<title>The Samba Checklist</title>
+<title>Die Samba Checkliste</title>
 
 <sect1>
-<title>Introduction</title>
+<title>Einleitung</title>
 
 <para>
+Diese Datei beinhaltet eine Reihe von Tests zum Überprüfen deines
+Sambaservers.
+
 This file contains a list of tests you can perform to validate your
 Samba server. It also tells you what the likely cause of the problem
 is if it fails any one of these steps. If it passes all these tests,
