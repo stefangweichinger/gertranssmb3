@@ -1,0 +1,541 @@
+<itemizedlist>
+<listitem><para><link linkend="ABORTSHUTDOWNSCRIPT"><parameter moreinfo="none">abort shutdown script</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="ADDGROUPSCRIPT"><parameter moreinfo="none">add group script</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ADDMACHINESCRIPT"><parameter moreinfo="none">add machine script</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ADDPRINTERCOMMAND"><parameter moreinfo="none">addprinter command</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ADDSHARECOMMAND"><parameter moreinfo="none">add share command</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ADDUSERSCRIPT"><parameter moreinfo="none">add user script</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ADDUSERTOGROUPSCRIPT"><parameter moreinfo="none">add user to group script</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="AFSUSERNAMEMAP"><parameter moreinfo="none">afs username map</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ALGORITHMICRIDBASE"><parameter moreinfo="none">algorithmic rid base</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="ALLOWTRUSTEDDOMAINS"><parameter moreinfo="none">allow trusted domains</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ANNOUNCEAS"><parameter moreinfo="none">announce as</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ANNOUNCEVERSION"><parameter moreinfo="none">announce version</parameter></link></para></listitem>
+
+<listitem><para><link linkend="AUTHMETHODS"><parameter moreinfo="none">auth methods</parameter></link></para></listitem>
+
+<listitem><para><link linkend="AUTOSERVICES"><parameter moreinfo="none">auto services</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="BINDINTERFACESONLY"><parameter moreinfo="none">bind interfaces only</parameter></link></para></listitem>
+
+
+
+
+
+<listitem><para><link linkend="BROWSELIST"><parameter moreinfo="none">browse list</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="CHANGENOTIFYTIMEOUT"><parameter moreinfo="none">change notify timeout</parameter></link></para></listitem>
+
+<listitem><para><link linkend="CHANGESHARECOMMAND"><parameter moreinfo="none">change share command</parameter></link></para></listitem>
+
+<listitem><para><link linkend="CLIENTLANMANAUTH"><parameter moreinfo="none">client lanman auth</parameter></link></para></listitem>
+
+<listitem><para><link linkend="CLIENTNTLMV2AUTH"><parameter moreinfo="none">client ntlmv2 auth</parameter></link></para></listitem>
+
+<listitem><para><link linkend="CLIENTPLAINTEXTAUTH"><parameter moreinfo="none">client plaintext auth</parameter></link></para></listitem>
+
+<listitem><para><link linkend="CLIENTSCHANNEL"><parameter moreinfo="none">client schannel</parameter></link></para></listitem>
+
+<listitem><para><link linkend="CLIENTSIGNING"><parameter moreinfo="none">client signing</parameter></link></para></listitem>
+
+<listitem><para><link linkend="CLIENTUSESPNEGO"><parameter moreinfo="none">client use spnego</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="CONFIGFILE"><parameter moreinfo="none">config file</parameter></link></para></listitem>
+
+
+
+
+
+<listitem><para><link linkend="DEADTIME"><parameter moreinfo="none">deadtime</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DEBUGHIRESTIMESTAMP"><parameter moreinfo="none">debug hires timestamp</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DEBUGLEVEL"><parameter moreinfo="none">debuglevel</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DEBUGPID"><parameter moreinfo="none">debug pid</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DEBUGTIMESTAMP"><parameter moreinfo="none">debug timestamp</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DEBUGUID"><parameter moreinfo="none">debug uid</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DEFAULT"><parameter moreinfo="none">default</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="DEFAULTSERVICE"><parameter moreinfo="none">default service</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DELETEGROUPSCRIPT"><parameter moreinfo="none">delete group script</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DELETEPRINTERCOMMAND"><parameter moreinfo="none">deleteprinter command</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="DELETESHARECOMMAND"><parameter moreinfo="none">delete share command</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DELETEUSERFROMGROUPSCRIPT"><parameter moreinfo="none">delete user from group script</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DELETEUSERSCRIPT"><parameter moreinfo="none">delete user script</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="DFREECOMMAND"><parameter moreinfo="none">dfree command</parameter></link></para></listitem>
+
+
+
+
+
+<listitem><para><link linkend="DISABLENETBIOS"><parameter moreinfo="none">disable netbios</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DISABLESPOOLSS"><parameter moreinfo="none">disable spoolss</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DISPLAYCHARSET"><parameter moreinfo="none">display charset</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DNSPROXY"><parameter moreinfo="none">dns proxy</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DOMAINLOGONS"><parameter moreinfo="none">domain logons</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DOMAINMASTER"><parameter moreinfo="none">domain master</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="DOSCHARSET"><parameter moreinfo="none">dos charset</parameter></link></para></listitem>
+
+
+
+
+<listitem><para><link linkend="ENABLERIDALGORITHM"><parameter moreinfo="none">enable rid algorithm</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ENCRYPTPASSWORDS"><parameter moreinfo="none">encrypt passwords</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ENHANCEDBROWSING"><parameter moreinfo="none">enhanced browsing</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ENUMPORTSCOMMAND"><parameter moreinfo="none">enumports command</parameter></link></para></listitem>
+
+
+
+
+
+
+
+
+
+
+
+
+<listitem><para><link linkend="GETQUOTACOMMAND"><parameter moreinfo="none">get quota command</parameter></link></para></listitem>
+
+<listitem><para><link linkend="GETWDCACHE"><parameter moreinfo="none">getwd cache</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="GUESTACCOUNT"><parameter moreinfo="none">guest account</parameter></link></para></listitem>
+
+
+
+
+
+<listitem><para><link linkend="HIDELOCALUSERS"><parameter moreinfo="none">hide local users</parameter></link></para></listitem>
+
+
+
+
+<listitem><para><link linkend="HOMEDIRMAP"><parameter moreinfo="none">homedir map</parameter></link></para></listitem>
+
+<listitem><para><link linkend="HOSTMSDFS"><parameter moreinfo="none">host msdfs</parameter></link></para></listitem>
+
+<listitem><para><link linkend="HOSTNAMELOOKUPS"><parameter moreinfo="none">hostname lookups</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="HOSTSEQUIV"><parameter moreinfo="none">hosts equiv</parameter></link></para></listitem>
+
+<listitem><para><link linkend="IDMAPBACKEND"><parameter moreinfo="none">idmap backend</parameter></link></para></listitem>
+
+<listitem><para><link linkend="IDMAPGID"><parameter moreinfo="none">idmap gid</parameter></link></para></listitem>
+
+<listitem><para><link linkend="IDMAPUID"><parameter moreinfo="none">idmap uid</parameter></link></para></listitem>
+
+<listitem><para><link linkend="INCLUDE"><parameter moreinfo="none">include</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="INTERFACES"><parameter moreinfo="none">interfaces</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="KEEPALIVE"><parameter moreinfo="none">keepalive</parameter></link></para></listitem>
+
+<listitem><para><link linkend="KERNELCHANGENOTIFY"><parameter moreinfo="none">kernel change notify</parameter></link></para></listitem>
+
+<listitem><para><link linkend="KERNELOPLOCKS"><parameter moreinfo="none">kernel oplocks</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LANMANAUTH"><parameter moreinfo="none">lanman auth</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LARGEREADWRITE"><parameter moreinfo="none">large readwrite</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LDAPADMINDN"><parameter moreinfo="none">ldap admin dn</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LDAPDELETEDN"><parameter moreinfo="none">ldap delete dn</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LDAPFILTER"><parameter moreinfo="none">ldap filter</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LDAPGROUPSUFFIX"><parameter moreinfo="none">ldap group suffix</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LDAPIDMAPSUFFIX"><parameter moreinfo="none">ldap idmap suffix</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LDAPMACHINESUFFIX"><parameter moreinfo="none">ldap machine suffix</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LDAPPASSWDSYNC"><parameter moreinfo="none">ldap passwd sync</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LDAPPORT"><parameter moreinfo="none">ldap port</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LDAPSERVER"><parameter moreinfo="none">ldap server</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LDAPSSL"><parameter moreinfo="none">ldap ssl</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LDAPSUFFIX"><parameter moreinfo="none">ldap suffix</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LDAPUSERSUFFIX"><parameter moreinfo="none">ldap user suffix</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="LMANNOUNCE"><parameter moreinfo="none">lm announce</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LMINTERVAL"><parameter moreinfo="none">lm interval</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LOADPRINTERS"><parameter moreinfo="none">load printers</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LOCALMASTER"><parameter moreinfo="none">local master</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LOCKDIR"><parameter moreinfo="none">lock dir</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LOCKDIRECTORY"><parameter moreinfo="none">lock directory</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="LOCKSPINCOUNT"><parameter moreinfo="none">lock spin count</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LOCKSPINTIME"><parameter moreinfo="none">lock spin time</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LOGFILE"><parameter moreinfo="none">log file</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LOGLEVEL"><parameter moreinfo="none">log level</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LOGONDRIVE"><parameter moreinfo="none">logon drive</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LOGONHOME"><parameter moreinfo="none">logon home</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LOGONPATH"><parameter moreinfo="none">logon path</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LOGONSCRIPT"><parameter moreinfo="none">logon script</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="LPQCACHETIME"><parameter moreinfo="none">lpq cache time</parameter></link></para></listitem>
+
+
+
+
+<listitem><para><link linkend="MACHINEPASSWORDTIMEOUT"><parameter moreinfo="none">machine password timeout</parameter></link></para></listitem>
+
+
+
+
+
+
+<listitem><para><link linkend="MANGLEDSTACK"><parameter moreinfo="none">mangled stack</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MANGLEPREFIX"><parameter moreinfo="none">mangle prefix</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="MANGLINGMETHOD"><parameter moreinfo="none">mangling method</parameter></link></para></listitem>
+
+
+
+
+
+<listitem><para><link linkend="MAPTOGUEST"><parameter moreinfo="none">map to guest</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="MAXDISKSIZE"><parameter moreinfo="none">max disk size</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MAXLOGSIZE"><parameter moreinfo="none">max log size</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MAXMUX"><parameter moreinfo="none">max mux</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MAXOPENFILES"><parameter moreinfo="none">max open files</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="MAXPROTOCOL"><parameter moreinfo="none">max protocol</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="MAXSMBDPROCESSES"><parameter moreinfo="none">max smbd processes</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MAXTTL"><parameter moreinfo="none">max ttl</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MAXWINSTTL"><parameter moreinfo="none">max wins ttl</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MAXXMIT"><parameter moreinfo="none">max xmit</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MESSAGECOMMAND"><parameter moreinfo="none">message command</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MINPASSWDLENGTH"><parameter moreinfo="none">min passwd length</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MINPASSWORDLENGTH"><parameter moreinfo="none">min password length</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="MINPROTOCOL"><parameter moreinfo="none">min protocol</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MINWINSTTL"><parameter moreinfo="none">min wins ttl</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="NAMECACHETIMEOUT"><parameter moreinfo="none">name cache timeout</parameter></link></para></listitem>
+
+<listitem><para><link linkend="NAMERESOLVEORDER"><parameter moreinfo="none">name resolve order</parameter></link></para></listitem>
+
+<listitem><para><link linkend="NETBIOSALIASES"><parameter moreinfo="none">netbios aliases</parameter></link></para></listitem>
+
+<listitem><para><link linkend="NETBIOSNAME"><parameter moreinfo="none">netbios name</parameter></link></para></listitem>
+
+<listitem><para><link linkend="NETBIOSSCOPE"><parameter moreinfo="none">netbios scope</parameter></link></para></listitem>
+
+<listitem><para><link linkend="NISHOMEDIR"><parameter moreinfo="none">nis homedir</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="NTLMAUTH"><parameter moreinfo="none">ntlm auth</parameter></link></para></listitem>
+
+<listitem><para><link linkend="NTPIPESUPPORT"><parameter moreinfo="none">nt pipe support</parameter></link></para></listitem>
+
+<listitem><para><link linkend="NTSTATUSSUPPORT"><parameter moreinfo="none">nt status support</parameter></link></para></listitem>
+
+<listitem><para><link linkend="NULLPASSWORDS"><parameter moreinfo="none">null passwords</parameter></link></para></listitem>
+
+<listitem><para><link linkend="OBEYPAMRESTRICTIONS"><parameter moreinfo="none">obey pam restrictions</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="OPLOCKBREAKWAITTIME"><parameter moreinfo="none">oplock break wait time</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="OS2DRIVERMAP"><parameter moreinfo="none">os2 driver map</parameter></link></para></listitem>
+
+<listitem><para><link linkend="OSLEVEL"><parameter moreinfo="none">os level</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PAMPASSWORDCHANGE"><parameter moreinfo="none">pam password change</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PANICACTION"><parameter moreinfo="none">panic action</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PARANOIDSERVERSECURITY"><parameter moreinfo="none">paranoid server security</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PASSDBBACKEND"><parameter moreinfo="none">passdb backend</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PASSWDCHAT"><parameter moreinfo="none">passwd chat</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PASSWDCHATDEBUG"><parameter moreinfo="none">passwd chat debug</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PASSWDPROGRAM"><parameter moreinfo="none">passwd program</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PASSWORDLEVEL"><parameter moreinfo="none">password level</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PASSWORDSERVER"><parameter moreinfo="none">password server</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="PIDDIRECTORY"><parameter moreinfo="none">pid directory</parameter></link></para></listitem>
+
+
+
+
+
+<listitem><para><link linkend="PREFEREDMASTER"><parameter moreinfo="none">prefered master</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PREFERREDMASTER"><parameter moreinfo="none">preferred master</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PRELOAD"><parameter moreinfo="none">preload</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PRELOADMODULES"><parameter moreinfo="none">preload modules</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="PRINTCAP"><parameter moreinfo="none">printcap</parameter></link></para></listitem>
+
+
+
+
+
+
+
+
+<listitem><para><link linkend="PRIVATEDIR"><parameter moreinfo="none">private dir</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="PROTOCOL"><parameter moreinfo="none">protocol</parameter></link></para></listitem>
+
+
+
+
+<listitem><para><link linkend="READBMPX"><parameter moreinfo="none">read bmpx</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="READRAW"><parameter moreinfo="none">read raw</parameter></link></para></listitem>
+
+<listitem><para><link linkend="READSIZE"><parameter moreinfo="none">read size</parameter></link></para></listitem>
+
+<listitem><para><link linkend="REALM"><parameter moreinfo="none">realm</parameter></link></para></listitem>
+
+<listitem><para><link linkend="REMOTEANNOUNCE"><parameter moreinfo="none">remote announce</parameter></link></para></listitem>
+
+<listitem><para><link linkend="REMOTEBROWSESYNC"><parameter moreinfo="none">remote browse sync</parameter></link></para></listitem>
+
+<listitem><para><link linkend="RESTRICTANONYMOUS"><parameter moreinfo="none">restrict anonymous</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ROOT"><parameter moreinfo="none">root</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ROOTDIR"><parameter moreinfo="none">root dir</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ROOTDIRECTORY"><parameter moreinfo="none">root directory</parameter></link></para></listitem>
+
+
+
+
+<listitem><para><link linkend="SECURITY"><parameter moreinfo="none">security</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="SERVERSCHANNEL"><parameter moreinfo="none">server schannel</parameter></link></para></listitem>
+
+<listitem><para><link linkend="SERVERSIGNING"><parameter moreinfo="none">server signing</parameter></link></para></listitem>
+
+<listitem><para><link linkend="SERVERSTRING"><parameter moreinfo="none">server string</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="SETPRIMARYGROUPSCRIPT"><parameter moreinfo="none">set primary group script</parameter></link></para></listitem>
+
+<listitem><para><link linkend="SETQUOTACOMMAND"><parameter moreinfo="none">set quota command</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="SHOWADDPRINTERWIZARD"><parameter moreinfo="none">show add printer wizard</parameter></link></para></listitem>
+
+<listitem><para><link linkend="SHUTDOWNSCRIPT"><parameter moreinfo="none">shutdown script</parameter></link></para></listitem>
+
+<listitem><para><link linkend="SMBPASSWDFILE"><parameter moreinfo="none">smb passwd file</parameter></link></para></listitem>
+
+<listitem><para><link linkend="SMBPORTS"><parameter moreinfo="none">smb ports</parameter></link></para></listitem>
+
+<listitem><para><link linkend="SOCKETADDRESS"><parameter moreinfo="none">socket address</parameter></link></para></listitem>
+
+<listitem><para><link linkend="SOCKETOPTIONS"><parameter moreinfo="none">socket options</parameter></link></para></listitem>
+
+<listitem><para><link linkend="SOURCEENVIRONMENT"><parameter moreinfo="none">source environment</parameter></link></para></listitem>
+
+<listitem><para><link linkend="STATCACHE"><parameter moreinfo="none">stat cache</parameter></link></para></listitem>
+
+
+
+
+
+<listitem><para><link linkend="SYSLOG"><parameter moreinfo="none">syslog</parameter></link></para></listitem>
+
+<listitem><para><link linkend="SYSLOGONLY"><parameter moreinfo="none">syslog only</parameter></link></para></listitem>
+
+<listitem><para><link linkend="TEMPLATEHOMEDIR"><parameter moreinfo="none">template homedir</parameter></link></para></listitem>
+
+<listitem><para><link linkend="TEMPLATEPRIMARYGROUP"><parameter moreinfo="none">template primary group</parameter></link></para></listitem>
+
+<listitem><para><link linkend="TEMPLATESHELL"><parameter moreinfo="none">template shell</parameter></link></para></listitem>
+
+<listitem><para><link linkend="TIMEOFFSET"><parameter moreinfo="none">time offset</parameter></link></para></listitem>
+
+<listitem><para><link linkend="TIMESERVER"><parameter moreinfo="none">time server</parameter></link></para></listitem>
+
+<listitem><para><link linkend="TIMESTAMPLOGS"><parameter moreinfo="none">timestamp logs</parameter></link></para></listitem>
+
+<listitem><para><link linkend="UNICODE"><parameter moreinfo="none">unicode</parameter></link></para></listitem>
+
+<listitem><para><link linkend="UNIXCHARSET"><parameter moreinfo="none">unix charset</parameter></link></para></listitem>
+
+<listitem><para><link linkend="UNIXEXTENSIONS"><parameter moreinfo="none">unix extensions</parameter></link></para></listitem>
+
+<listitem><para><link linkend="UNIXPASSWORDSYNC"><parameter moreinfo="none">unix password sync</parameter></link></para></listitem>
+
+<listitem><para><link linkend="UPDATEENCRYPTED"><parameter moreinfo="none">update encrypted</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="USEMMAP"><parameter moreinfo="none">use mmap</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="USERNAMELEVEL"><parameter moreinfo="none">username level</parameter></link></para></listitem>
+
+<listitem><para><link linkend="USERNAMEMAP"><parameter moreinfo="none">username map</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="USESPNEGO"><parameter moreinfo="none">use spnego</parameter></link></para></listitem>
+
+<listitem><para><link linkend="UTMP"><parameter moreinfo="none">utmp</parameter></link></para></listitem>
+
+<listitem><para><link linkend="UTMPDIRECTORY"><parameter moreinfo="none">utmp directory</parameter></link></para></listitem>
+
+
+
+
+
+
+
+
+
+<listitem><para><link linkend="WINBINDCACHETIME"><parameter moreinfo="none">winbind cache time</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WINBINDENABLELOCALACCOUNTS"><parameter moreinfo="none">winbind enable local accounts</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WINBINDENUMGROUPS"><parameter moreinfo="none">winbind enum groups</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WINBINDENUMUSERS"><parameter moreinfo="none">winbind enum users</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WINBINDGID"><parameter moreinfo="none">winbind gid</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WINBINDSEPARATOR"><parameter moreinfo="none">winbind separator</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WINBINDTRUSTEDDOMAINSONLY"><parameter moreinfo="none">winbind trusted domains only</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WINBINDUID"><parameter moreinfo="none">winbind uid</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WINBINDUSEDEFAULTDOMAIN"><parameter moreinfo="none">winbind use default domain</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WINSHOOK"><parameter moreinfo="none">wins hook</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WINSPARTNERS"><parameter moreinfo="none">wins partners</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WINSPROXY"><parameter moreinfo="none">wins proxy</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WINSSERVER"><parameter moreinfo="none">wins server</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WINSSUPPORT"><parameter moreinfo="none">wins support</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WORKGROUP"><parameter moreinfo="none">workgroup</parameter></link></para></listitem>
+
+
+
+
+
+
+<listitem><para><link linkend="WRITERAW"><parameter moreinfo="none">write raw</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WTMPDIRECTORY"><parameter moreinfo="none">wtmp directory</parameter></link></para></listitem>
+
+</itemizedlist>

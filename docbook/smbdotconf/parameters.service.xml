@@ -1,0 +1,466 @@
+<itemizedlist>
+
+<listitem><para><link linkend="ACLCOMPATIBILITY"><parameter moreinfo="none">acl compatibility</parameter></link></para></listitem>
+
+
+
+
+
+
+
+<listitem><para><link linkend="ADMINUSERS"><parameter moreinfo="none">admin users</parameter></link></para></listitem>
+
+<listitem><para><link linkend="AFSSHARE"><parameter moreinfo="none">afs share</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="ALLOWHOSTS"><parameter moreinfo="none">allow hosts</parameter></link></para></listitem>
+
+
+
+
+
+
+<listitem><para><link linkend="AVAILABLE"><parameter moreinfo="none">available</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="BLOCKINGLOCKS"><parameter moreinfo="none">blocking locks</parameter></link></para></listitem>
+
+<listitem><para><link linkend="BLOCKSIZE"><parameter moreinfo="none">block size</parameter></link></para></listitem>
+
+<listitem><para><link linkend="BROWSABLE"><parameter moreinfo="none">browsable</parameter></link></para></listitem>
+
+<listitem><para><link linkend="BROWSEABLE"><parameter moreinfo="none">browseable</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="CASESENSITIVE"><parameter moreinfo="none">case sensitive</parameter></link></para></listitem>
+
+<listitem><para><link linkend="CASESIGNAMES"><parameter moreinfo="none">casesignames</parameter></link></para></listitem>
+
+
+
+
+
+
+
+
+
+<listitem><para><link linkend="COMMENT"><parameter moreinfo="none">comment</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="COPY"><parameter moreinfo="none">copy</parameter></link></para></listitem>
+
+<listitem><para><link linkend="CREATEMASK"><parameter moreinfo="none">create mask</parameter></link></para></listitem>
+
+<listitem><para><link linkend="CREATEMODE"><parameter moreinfo="none">create mode</parameter></link></para></listitem>
+
+<listitem><para><link linkend="CSCPOLICY"><parameter moreinfo="none">csc policy</parameter></link></para></listitem>
+
+
+
+
+
+
+
+
+<listitem><para><link linkend="DEFAULTCASE"><parameter moreinfo="none">default case</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DEFAULTDEVMODE"><parameter moreinfo="none">default devmode</parameter></link></para></listitem>
+
+
+
+
+<listitem><para><link linkend="DELETEREADONLY"><parameter moreinfo="none">delete readonly</parameter></link></para></listitem>
+
+
+
+
+<listitem><para><link linkend="DELETEVETOFILES"><parameter moreinfo="none">delete veto files</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DENYHOSTS"><parameter moreinfo="none">deny hosts</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="DIRECTORY"><parameter moreinfo="none">directory</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DIRECTORYMASK"><parameter moreinfo="none">directory mask</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DIRECTORYMODE"><parameter moreinfo="none">directory mode</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DIRECTORYSECURITYMASK"><parameter moreinfo="none">directory security mask</parameter></link></para></listitem>
+
+
+
+
+
+
+
+<listitem><para><link linkend="DONTDESCEND"><parameter moreinfo="none">dont descend</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="DOSFILEMODE"><parameter moreinfo="none">dos filemode</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DOSFILETIMERESOLUTION"><parameter moreinfo="none">dos filetime resolution</parameter></link></para></listitem>
+
+<listitem><para><link linkend="DOSFILETIMES"><parameter moreinfo="none">dos filetimes</parameter></link></para></listitem>
+
+
+
+
+
+<listitem><para><link linkend="EXEC"><parameter moreinfo="none">exec</parameter></link></para></listitem>
+
+<listitem><para><link linkend="FAKEDIRECTORYCREATETIMES"><parameter moreinfo="none">fake directory create times</parameter></link></para></listitem>
+
+<listitem><para><link linkend="FAKEOPLOCKS"><parameter moreinfo="none">fake oplocks</parameter></link></para></listitem>
+
+<listitem><para><link linkend="FOLLOWSYMLINKS"><parameter moreinfo="none">follow symlinks</parameter></link></para></listitem>
+
+<listitem><para><link linkend="FORCECREATEMODE"><parameter moreinfo="none">force create mode</parameter></link></para></listitem>
+
+<listitem><para><link linkend="FORCEDIRECTORYMODE"><parameter moreinfo="none">force directory mode</parameter></link></para></listitem>
+
+<listitem><para><link linkend="FORCEDIRECTORYSECURITYMODE"><parameter moreinfo="none">force directory security mode</parameter></link></para></listitem>
+
+<listitem><para><link linkend="FORCEGROUP"><parameter moreinfo="none">force group</parameter></link></para></listitem>
+
+<listitem><para><link linkend="FORCESECURITYMODE"><parameter moreinfo="none">force security mode</parameter></link></para></listitem>
+
+<listitem><para><link linkend="FORCEUSER"><parameter moreinfo="none">force user</parameter></link></para></listitem>
+
+<listitem><para><link linkend="FSTYPE"><parameter moreinfo="none">fstype</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="GROUP"><parameter moreinfo="none">group</parameter></link></para></listitem>
+
+<listitem><para><link linkend="GUESTACCOUNT"><parameter moreinfo="none">guest account</parameter></link></para></listitem>
+
+<listitem><para><link linkend="GUESTOK"><parameter moreinfo="none">guest ok</parameter></link></para></listitem>
+
+<listitem><para><link linkend="GUESTONLY"><parameter moreinfo="none">guest only</parameter></link></para></listitem>
+
+<listitem><para><link linkend="HIDEDOTFILES"><parameter moreinfo="none">hide dot files</parameter></link></para></listitem>
+
+<listitem><para><link linkend="HIDEFILES"><parameter moreinfo="none">hide files</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="HIDESPECIALFILES"><parameter moreinfo="none">hide special files</parameter></link></para></listitem>
+
+<listitem><para><link linkend="HIDEUNREADABLE"><parameter moreinfo="none">hide unreadable</parameter></link></para></listitem>
+
+<listitem><para><link linkend="HIDEUNWRITEABLEFILES"><parameter moreinfo="none">hide unwriteable files</parameter></link></para></listitem>
+
+
+
+
+<listitem><para><link linkend="HOSTSALLOW"><parameter moreinfo="none">hosts allow</parameter></link></para></listitem>
+
+<listitem><para><link linkend="HOSTSDENY"><parameter moreinfo="none">hosts deny</parameter></link></para></listitem>
+
+
+
+
+
+
+<listitem><para><link linkend="INHERITACLS"><parameter moreinfo="none">inherit acls</parameter></link></para></listitem>
+
+<listitem><para><link linkend="INHERITPERMISSIONS"><parameter moreinfo="none">inherit permissions</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="INVALIDUSERS"><parameter moreinfo="none">invalid users</parameter></link></para></listitem>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<listitem><para><link linkend="LEVEL2OPLOCKS"><parameter moreinfo="none">level2 oplocks</parameter></link></para></listitem>
+
+
+
+
+
+
+
+<listitem><para><link linkend="LOCKING"><parameter moreinfo="none">locking</parameter></link></para></listitem>
+
+
+
+
+
+
+
+
+
+<listitem><para><link linkend="LPPAUSECOMMAND"><parameter moreinfo="none">lppause command</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="LPQCOMMAND"><parameter moreinfo="none">lpq command</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LPRESUMECOMMAND"><parameter moreinfo="none">lpresume command</parameter></link></para></listitem>
+
+<listitem><para><link linkend="LPRMCOMMAND"><parameter moreinfo="none">lprm command</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="MAGICOUTPUT"><parameter moreinfo="none">magic output</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MAGICSCRIPT"><parameter moreinfo="none">magic script</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MANGLECASE"><parameter moreinfo="none">mangle case</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MANGLEDMAP"><parameter moreinfo="none">mangled map</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MANGLEDNAMES"><parameter moreinfo="none">mangled names</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="MANGLINGCHAR"><parameter moreinfo="none">mangling char</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="MAPACLINHERIT"><parameter moreinfo="none">map acl inherit</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MAPARCHIVE"><parameter moreinfo="none">map archive</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MAPHIDDEN"><parameter moreinfo="none">map hidden</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MAPSYSTEM"><parameter moreinfo="none">map system</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="MAXCONNECTIONS"><parameter moreinfo="none">max connections</parameter></link></para></listitem>
+
+
+
+
+
+<listitem><para><link linkend="MAXPRINTJOBS"><parameter moreinfo="none">max print jobs</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="MAXREPORTEDPRINTJOBS"><parameter moreinfo="none">max reported print jobs</parameter></link></para></listitem>
+
+
+
+
+
+
+
+
+<listitem><para><link linkend="MINPRINTSPACE"><parameter moreinfo="none">min print space</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="MSDFSPROXY"><parameter moreinfo="none">msdfs proxy</parameter></link></para></listitem>
+
+<listitem><para><link linkend="MSDFSROOT"><parameter moreinfo="none">msdfs root</parameter></link></para></listitem>
+
+
+
+
+
+
+
+<listitem><para><link linkend="NTACLSUPPORT"><parameter moreinfo="none">nt acl support</parameter></link></para></listitem>
+
+
+
+
+
+
+<listitem><para><link linkend="ONLYGUEST"><parameter moreinfo="none">only guest</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ONLYUSER"><parameter moreinfo="none">only user</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="OPLOCKCONTENTIONLIMIT"><parameter moreinfo="none">oplock contention limit</parameter></link></para></listitem>
+
+<listitem><para><link linkend="OPLOCKS"><parameter moreinfo="none">oplocks</parameter></link></para></listitem>
+
+
+
+
+
+
+
+
+
+
+
+
+<listitem><para><link linkend="PATH"><parameter moreinfo="none">path</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="POSIXLOCKING"><parameter moreinfo="none">posix locking</parameter></link></para></listitem>
+
+<listitem><para><link linkend="POSTEXEC"><parameter moreinfo="none">postexec</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PREEXEC"><parameter moreinfo="none">preexec</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PREEXECCLOSE"><parameter moreinfo="none">preexec close</parameter></link></para></listitem>
+
+
+
+
+
+<listitem><para><link linkend="PRESERVECASE"><parameter moreinfo="none">preserve case</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PRINTABLE"><parameter moreinfo="none">printable</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="PRINTCAPNAME"><parameter moreinfo="none">printcap name</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PRINTCOMMAND"><parameter moreinfo="none">print command</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PRINTER"><parameter moreinfo="none">printer</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PRINTERADMIN"><parameter moreinfo="none">printer admin</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PRINTERNAME"><parameter moreinfo="none">printer name</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PRINTING"><parameter moreinfo="none">printing</parameter></link></para></listitem>
+
+<listitem><para><link linkend="PRINTOK"><parameter moreinfo="none">print ok</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="PROFILEACLS"><parameter moreinfo="none">profile acls</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="PUBLIC"><parameter moreinfo="none">public</parameter></link></para></listitem>
+
+<listitem><para><link linkend="QUEUEPAUSECOMMAND"><parameter moreinfo="none">queuepause command</parameter></link></para></listitem>
+
+<listitem><para><link linkend="QUEUERESUMECOMMAND"><parameter moreinfo="none">queueresume command</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="READLIST"><parameter moreinfo="none">read list</parameter></link></para></listitem>
+
+<listitem><para><link linkend="READONLY"><parameter moreinfo="none">read only</parameter></link></para></listitem>
+
+
+
+
+
+
+
+
+
+
+<listitem><para><link linkend="ROOTPOSTEXEC"><parameter moreinfo="none">root postexec</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ROOTPREEXEC"><parameter moreinfo="none">root preexec</parameter></link></para></listitem>
+
+<listitem><para><link linkend="ROOTPREEXECCLOSE"><parameter moreinfo="none">root preexec close</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="SECURITYMASK"><parameter moreinfo="none">security mask</parameter></link></para></listitem>
+
+
+
+
+<listitem><para><link linkend="SETDIRECTORY"><parameter moreinfo="none">set directory</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="SHAREMODES"><parameter moreinfo="none">share modes</parameter></link></para></listitem>
+
+<listitem><para><link linkend="SHORTPRESERVECASE"><parameter moreinfo="none">short preserve case</parameter></link></para></listitem>
+
+
+
+
+
+
+
+
+
+<listitem><para><link linkend="STRICTALLOCATE"><parameter moreinfo="none">strict allocate</parameter></link></para></listitem>
+
+<listitem><para><link linkend="STRICTLOCKING"><parameter moreinfo="none">strict locking</parameter></link></para></listitem>
+
+<listitem><para><link linkend="STRICTSYNC"><parameter moreinfo="none">strict sync</parameter></link></para></listitem>
+
+<listitem><para><link linkend="SYNCALWAYS"><parameter moreinfo="none">sync always</parameter></link></para></listitem>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<listitem><para><link linkend="USECLIENTDRIVER"><parameter moreinfo="none">use client driver</parameter></link></para></listitem>
+
+
+<listitem><para><link linkend="USER"><parameter moreinfo="none">user</parameter></link></para></listitem>
+
+<listitem><para><link linkend="USERNAME"><parameter moreinfo="none">username</parameter></link></para></listitem>
+
+
+
+<listitem><para><link linkend="USERS"><parameter moreinfo="none">users</parameter></link></para></listitem>
+
+<listitem><para><link linkend="USESENDFILE"><parameter moreinfo="none">use sendfile</parameter></link></para></listitem>
+
+
+
+
+<listitem><para><link linkend="-VALID"><parameter moreinfo="none">-valid</parameter></link></para></listitem>
+
+<listitem><para><link linkend="VALIDUSERS"><parameter moreinfo="none">valid users</parameter></link></para></listitem>
+
+<listitem><para><link linkend="VETOFILES"><parameter moreinfo="none">veto files</parameter></link></para></listitem>
+
+<listitem><para><link linkend="VETOOPLOCKFILES"><parameter moreinfo="none">veto oplock files</parameter></link></para></listitem>
+
+<listitem><para><link linkend="VFSOBJECT"><parameter moreinfo="none">vfs object</parameter></link></para></listitem>
+
+<listitem><para><link linkend="VFSOBJECTS"><parameter moreinfo="none">vfs objects</parameter></link></para></listitem>
+
+<listitem><para><link linkend="VOLUME"><parameter moreinfo="none">volume</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WIDELINKS"><parameter moreinfo="none">wide links</parameter></link></para></listitem>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<listitem><para><link linkend="WRITABLE"><parameter moreinfo="none">writable</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WRITEABLE"><parameter moreinfo="none">writeable</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WRITECACHESIZE"><parameter moreinfo="none">write cache size</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WRITELIST"><parameter moreinfo="none">write list</parameter></link></para></listitem>
+
+<listitem><para><link linkend="WRITEOK"><parameter moreinfo="none">write ok</parameter></link></para></listitem>
+
+
+
+</itemizedlist>
