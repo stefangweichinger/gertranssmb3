@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="bugreport">
 
 <chapterinfo>
@@ -5,41 +6,36 @@
 	&author.jelmer;
 	&author.tridge;
 	<pubdate> 27 June 1997 </pubdate>
+	<author>&person.hba;<contrib>German Translator</contrib></author>
 </chapterinfo>
 
 <title>Reporting Bugs</title>
 
 <sect1>
-<title>Introduction</title>
+<title>Einführung</title>
 
-<para>Please report bugs using Samba's
-<ulink url="https://bugzilla.samba.org/">Bugzilla</ulink> facilities and
-take the time to read this file before you submit a bug
-report. Also, check to see if it has changed between releases, as we
-may be changing the bug reporting mechanism at some point.
+<para>Bitte verwenden Sie <ulink url="https://bugzilla.samba.org/">Bugzilla</ulink>
+um Bugs zu melden und lesen Sie es zunächst, bevor Sie einen Bug melden. Bitte prüfen 
+Sie gleichfalls ob sich der Zustand nach einem Releasewechsel geändert hat, da wir 
+an einigen Punkten den Mechanismus zum Thema Bug Report ändern.
 </para>
 
 <para>
-Please do as much as you can yourself to help track down the
-bug. Samba is maintained by a dedicated group of people who volunteer
-their time, skills and efforts. We receive far more mail than
-we can possibly answer, so you have a much higher chance of a response
-and a fix if you send us a <quote>developer friendly</quote> bug report that lets
-us fix it fast. 
+Bitte geben Sie so viele Informationen in dem Bug Report an wie Sie können. Wir 
+bekommen täglich mehr Mails als wir beantworten können, also helfen Sie uns bitte 
+indem Sie ihren Bug so <quote>Entwickler freundlich</quote> wie nur eben möglich gestalten.
 </para>
 
 <para>
-Do not assume that if you post the bug to the comp.protocols.smb
-newsgroup or the mailing list that we will read it. If you suspect that your 
-problem is not a bug but a configuration problem, it is better to send 
-it to the Samba mailing list, as there are thousands of other users on
-that list who may be able to help you.
+Bitte gehen Sie nicht davon aus, wenn Sie einen Bug in der Newsgroup comp.protocols.smb posten, 
+dass wir dies lesen. Wenn Sie vermuten, dass es weniger ein Bug als ein Konfigurationsproblem ist, 
+wenden Sie sich bitte an die Samba Mailing Liste da dort tausende von anderen Benutzern evtl. in der 
+Lage sind ihnen zu helfen.
 </para>
 
 <para>
-You may also like to look though the recent mailing list archives,
-which are conveniently accessible on the Samba Web pages
-at <ulink noescape="1" url="http://samba.org/samba/">http://samba.org/samba/</ulink>.
+Ebenfalls hilfreich ist ein durchsuchen der Mailing list Archive die über die Samba Webseite 
+<ulink noescape="1" url="http://samba.org/samba/">http://samba.org/samba/</ulink> zu erreichen ist.
 </para>
 
 </sect1>
@@ -48,20 +44,20 @@ at <ulink noescape="1" url="http://samba.org/samba/">http://samba.org/samba/</ul
 <title>General Information</title>
 
 <para>
-Before submitting a bug report, check your config for silly
-errors. Look in your log files for obvious messages that tell
-you've misconfigured something. Run testparm to check your config
-file for correct syntax.
+Bevor Sie einen Bug Report senden, prüfen Sie bitte ihre Konfiguration auf Tippfehler.
+Betrachten Sie auch ihre Log-Dateien ob diese ggf. eine Nachricht hervorbringen, dass 
+etwas falsch konfiguriert worden ist. Um die Syntax Ihrer Konfiguration zu prüfen führen 
+Sie bitte testparm aus.
 </para>
 
 <para>
-Have you looked through <link linkend="diagnosis"/>? This is extremely important.
+Haben Sie in <link linkend="diagnosis"/> nachgeschaut? Dies ist von bedeutender Wichtigkeit!
 </para>
 
 <para>
-If you include part of a log file with your bug report, then be sure to
-annotate it with exactly what you were doing on the client at the
-time and exactly what the results were.
+Wenn Sie Teile ihrer Log Dateien mit dem Report senden, stellen Sie sicher, dass 
+Sie es entsprechend ihrer Tätigkeit am Client kommentieren und bekanntgeben wie 
+das Resultat sich darstellt.
 </para>
 
 </sect1>
@@ -70,18 +66,18 @@ time and exactly what the results were.
 <title>Debug Levels</title>
 
 <para>
-If the bug has anything to do with Samba behaving incorrectly as a
-server (like refusing to open a file), then the log files will probably
-be quite useful. Depending on the problem, a log level of between 3 and
-10 showing the problem may be appropriate. A higher level gives more
-detail, but may use too much disk space.
+Wenn der Bug etwas damit zu tun hat, dass sich Samba als Server inkorrekt verhält (etwa 
+es abzulehnen eine Datei zu öffnen), sind die Log Dateien sehr nützlich. Im Verhältnis 
+zu dem Problem ist ein Log Level zwischen 3 und 10 sehr hilfreich das Problem zu analysieren, 
+ein höherer Log Level verspricht mehr Detail Informationen benötigt allerdings auch mehr 
+Speicherkapazität.
 </para>
 
 <para>
-To set the debug level, use the <smbconfoption><name>log level</name></smbconfoption> in your 
-&smb.conf;. You may also find it useful to set the log 
-level higher for just one machine and keep separate logs for each machine. 
-To do this, add the following lines to your main &smb.conf; file:
+Um den Debug Level einzustellen verwenden Sie die Option <smbconfoption><name>log level</name></smbconfoption> 
+in ihrer &smb.conf;. Sie könnten es nützlich finden für jede Maschine eine eigene Log Datei zu verwenden, 
+und nur für eine Maschine den Log Level höher einzustellen. Wenn Sie dies machen möchten fügen Sie
+bitte folgende Zeilen ihrer &smb.conf; hinzu:
 </para>
 
 <para><smbconfblock>
@@ -91,61 +87,55 @@ To do this, add the following lines to your main &smb.conf; file:
 </smbconfblock></para>
 
 <para>
-and create a file <filename>/usr/local/samba/lib/smb.conf.<replaceable>machine</replaceable></filename> where
-<replaceable>machine</replaceable> is the name of the client you wish to debug. In that file
-put any &smb.conf; commands you want, for example 
-<smbconfoption><name>log level</name></smbconfoption> may be useful. This also allows you to 
-experiment with different security systems, protocol levels and so on, on just 
-one machine.
+und erstellen eine Datei <filename>/usr/local/samba/lib/smb.conf.<replaceable>machine</replaceable></filename>
+wobei <replaceable>machine</replaceable> der Name des Clients ist den Sie debuggen wollen.
+In dieser Datei können Sie jegliche &smb.conf; optionen einbringen, zum Beispiel:
+
+<smbconfoption><name>log level</name></smbconfoption> ist nützlich. Dies erlaubt es ihnen ebenfalls 
+mit verschiedenes Sicherheitsoptionen zu experementieren.
 </para>
 
 <para>
-The &smb.conf; entry <smbconfoption><name>log level</name></smbconfoption> 
-is synonymous with the parameter <smbconfoption><name>debuglevel</name></smbconfoption> that has
-been used in older versions of Samba and is being retained for backward 
-compatibility of &smb.conf; files.
+Der &smb.conf; Eintrag <smbconfoption><name>log level</name></smbconfoption> ist ein Synonym für 
+<smbconfoption><name>debuglevel</name></smbconfoption> welches in älteren Versionen von Samba verwendet wurde 
+und zur Abwärtskompatibilität zu älteren &smb.conf; Dateien dient.
 </para>
 
 <para>
-As the <smbconfoption><name>log level</name></smbconfoption> value is increased, you will record 
-a significantly greater level of debugging information. For most 
-debugging operations, you may not need a setting higher than 
-<constant>3</constant>. Nearly 
-all bugs can be tracked at a setting of <constant>10</constant>, but be 
-prepared for a large volume of log data.
+Sobald der Wert für das <smbconfoption><name>log level</name></smbconfoption> erhöht worden und Samba neu 
+gestartet worden ist werden Sie ein signifikant höheres Level an Debug Informationen erhalten. Für 
+gewöhnlich werden Sie kein Level höher als <constant>3</constant> benötigen. Nahezu jeder Bug kann mit einem 
+Log Level von <constant>10</constant> festgestellt werden aber machen Sie sich auf ein großes 
+Datenvolumen an Log Dateien gefasst.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Internal Errors</title>
+<title>Interne Fehler</title>
 
 <para>
-If you get the message <quote><errorname>INTERNAL ERROR</errorname></quote> in your log files, 
-it means that Samba got an unexpected signal while running. It is probably a
-segmentation fault and almost certainly means a bug in Samba (unless
-you have faulty hardware or system software).
+Wenn Sie einen <quote><errorname>INTERNAL ERROR</errorname></quote> in ihren Log Dateien bemerken sollten, 
+bedeutet dies das Samba ein nicht erwartetes Signal bekommen hat. Eventuell ein <quote>segmentation fault</quote>
+und bedeutet meistens einen Bug in Samba (vorrausgesetzt ihre Hardware oder Systemsoftware funktioniert einwandfrei).
 </para>
 
 <para>
-If the message came from smbd, it will probably be accompanied by
-a message that details the last SMB message received by smbd. This
-information is often useful in tracking down the problem so please
-include it in your bug report.
+Sollte die Nachricht vom smbd ist es meistens so, dass vor dieser Nachricht das Log noch die letzte SMB Meldung enthält, 
+die der smbd erhalten hat. Diese Information ist oft sehr nützlich das Problem zu lokalisieren, bitte fügen Sie 
+diese Meldung ihrem Bug Report zu.
 </para>
 
 <para>
-You should also detail how to reproduce the problem, if
-possible. Please make this reasonably detailed.
+Wenn möglich sollten Sie, so detailliert wie möglich, erklären können wie das Problem reproduziert werden kann.
 </para>
 
 
 <para>
-<indexterm><primary>core files</primary></indexterm>
-You may also find that a core file appeared in a <filename>corefiles</filename>
-subdirectory of the directory where you keep your Samba log
-files. This file is the most useful tool for tracking down the bug. To
-use it, you do this:
+<indexterm><primary>core Dateien</primary></indexterm>
+Sie werden ebenfalls ein sogenanntes core file in einem <filename>corefiles</filename> 
+Unterverzeichnis im Verzeichnis wo sich ihre Log Dateien befinden, entdecken. 
+Dies Datei ist am nütlichsten um einen Bug zu ermitteln, um es zu verwenden machen Sie folgendes:
 <indexterm><primary>gdb</primary></indexterm>
 <indexterm><primary>debug</primary></indexterm>
 </para>
@@ -156,35 +146,34 @@ use it, you do this:
 </screen>
 
 <para>
-adding appropriate paths to smbd and core so gdb can find them. If you
-do not have gdb, try <userinput>dbx</userinput>. Then within the debugger,
-use the command <command>where</command> to give a stack trace of where the
-problem occurred. Include this in your report.
+fügen Sie die passende Pfade zu smbd und dem core file zu gdb hinzu damit es sie finden kann.
+Wenn Sie gdb nicht haben sollten versuchen Sie es mit <userinput>dbx</userinput>.
+Anschließend innerhalb des debuggers verwenden Sie das Kommando <command>where</command> um 
+eine stack Verfolgung zu beginnen wo das Problem auftrat. Fügen Sie diese Information der Bug Meldung hinzu.
 </para>
 
 <para>
-If you know any assembly language, do a <command>disass</command> of the routine
-where the problem occurred (if its in a library routine, then
-disassemble the routine that called it) and try to work out exactly
-where the problem is by looking at the surrounding code. Even if you
-do not know assembly, including this information in the bug report can be
-useful. 
+Wenn Sie Kenntnisse in einer Assembler Sprache haben, führen Sie ein <command>disass</command>
+Kommando zu der Routine hinzu in der das Problem auftrat (wenn es in einer Library Routine war 
+disassemblieren Sie die Routine die sie aufgerufen hat) und versuchen Sie auszuarbeiten an welcher 
+Stelle das Problem liegt in dem Sie sich den Code ansehen. Selbst wenn Sie keine Kenntnisse in 
+Assembler Programmierung haben fügen Sie diese Information dem Report zu, dies kann sehr hilfreich sein.
 </para>
 </sect1>
 
 <sect1>
-<title>Attaching to a Running Process</title>
+<title>Einklicken in einen laufenden Prozess</title>
 
 <para>
-Unfortunately, some UNIXes (in particular some recent Linux kernels)
-refuse to dump a core file if the task has changed uid (which smbd
-does often). To debug with this sort of system, you could try to attach
-to the running process using
-<userinput>gdb smbd <replaceable>PID</replaceable></userinput> where you get
-<replaceable>PID</replaceable> from <application>smbstatus</application>.
-Then use <command>c</command> to continue and try to cause the core dump
-using the client. The debugger should catch the fault and tell you
-where it occurred.
+Leider lassen es einige UNIX's (zum Teil auch einige Linux Kernel) es nicht zu 
+einen Core Dump zu erstellen wenn der Prozess die UID ändert (was smbd oft tut).
+Um dies dennoch debuggen zu können Sie versuchen sich in den laufenden Prozess 
+einzuklinken indem Sie <userinput>gdb smbd <replaceable>PID</replaceable></userinput>
+ausführen wobei Sie die <replaceable>PID</replaceable> aus dem <application>smbstatus</application> 
+entnehmen können.
+Anschließend verwenden Sie das <command>c</command> Kommando um fortzufahren und um zu versuchen 
+den Core Dump mittels des Clients zu erzeugen. Der Debugger sollte den Fehler erfassen und ihnen 
+mitteilen wo er auftrat.
 </para>
 
 </sect1>
@@ -196,11 +185,11 @@ where it occurred.
 <para>
 <indexterm><primary>diff</primary></indexterm>
 <indexterm><primary>patch</primary></indexterm>
-The best sort of bug report is one that includes a fix! If you send us
-patches, please use <userinput>diff -u</userinput> format if your version of 
-diff supports it, otherwise use <userinput>diff -c4</userinput>. Make sure 
-you do the diff against a clean version of the source and let me know 
-exactly what version you used. 
+Die beste Art von Bug Reports sind die die bereits einen Fix beinhalten! Wenn Sie uns patches 
+schicken verwenden Sie bitte das <userinput>diff -u</userinput> Format wenn ihre Version von diff 
+dies bereitstellt, ansonsten verwenden Sie bitte <userinput>diff -c4</userinput>.
+Stellen Sie sicher dass Sie ihr diff gegen eine saubere Version des Source Codes machen 
+und lassen Sie uns exakt wissen welche Version Sie verwenden.
 </para>
 
 </sect1>
