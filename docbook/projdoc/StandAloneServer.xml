@@ -159,29 +159,30 @@ System haben.
 </orderedlist>
 
 <para>
-In this example our print server will spool all incoming print jobs to
-<filename>/var/spool/samba</filename> until the job is ready to be submitted by
-Samba to the CUPS print processor. Since all incoming connections will be as
-the anonymous (guest) user, two things will be required:
+In diesem Beispiel wird unser Druck-Server alle hereinkommenden Druckaufträge in der Datei
+<filename>/var/spool/samba</filename> spoolen, bis der Job von Samba an den CUPS-Druck-Prozessor
+weitergegeben werden kann. Da alle hereinkommenden Verbindungen unter dem anonymen (Gast-) Benutzer
+laufen werden, sind zwei Dinge erforderlich:
 </para>
 
 <itemizedlist>
-<title>Enabling Anonymous Printing</title>
+<title>Anonymes Drucken aktivieren</title>
 	<listitem><para>
-	The UNIX/Linux system must have a <command>guest</command> account.
-	The default for this is usually the account <command>nobody</command>.
-	To find the correct name to use for your version of Samba, do the 
-	following:
+	Das UNIX/Linux-System muß ein <command>guest</command>-Konto haben.
+	Der Standard hiefür ist üblicherweise das Konto <command>nobody</command>.
+	Um den korrekten Namen zu finden, der für Ihr System zu verwenden ist,
+	führen Sie folgendes aus:	
 <screen>
 &prompt;<userinput>testparm -s -v | grep "guest account"</userinput>
 </screen>
-	Make sure that this account exists in your system password
-	database (<filename>/etc/passwd</filename>).
+	Stellen Sie sicher, daß dieses Konto in Ihrer System-Passwort-Datenbank
+	existiert (<filename>/etc/passwd</filename>).
 	</para></listitem>
 
 	<listitem><para>
-	The directory into which Samba will spool the file must have write
-	access for the guest account. The following commands will ensure that
+	Das Verzeichnis, in welches Samba die Datei spoolen wird, muß
+	Schreibrechte für das Gast-Konto aufweisen. Die folgenden Befehle stellen
+	sicher, daß dieses Verzeichnis benutzbar wird:
 	this directory is available for use:
 <screen>
 &rootprompt;<userinput>mkdir /var/spool/samba</userinput>
@@ -192,7 +193,7 @@ the anonymous (guest) user, two things will be required:
 </itemizedlist>
 
 <para>
-The contents of the &smb.conf; file is shown in <link linkend="AnonPtrSvr"/>.
+Der Inhalt von &smb.conf; wird in <link linkend="AnonPtrSvr"/> gezeigt.
 </para>
 
 <para>
@@ -222,11 +223,11 @@ The contents of the &smb.conf; file is shown in <link linkend="AnonPtrSvr"/>.
 <note><para>
 <indexterm><primary>MIME</primary><secondary>raw</secondary></indexterm>
 <indexterm><primary>raw printing</primary></indexterm>
-On CUPS-enabled systems there is a facility to pass raw data directly to the printer without
-intermediate processing via CUPS print filters. Where use of this mode of operation is desired,
-it is necessary to configure a raw printing device. It is also necessary to enable the raw mime
-handler in the <filename>/etc/mime.conv</filename> and <filename>/etc/mime.types</filename>
-files. Refer to <link linkend="cups-raw"></link>.
+Auf CUPS-Systemen gibt es eine Funktionalität, um "raw"-Daten direkt an den Drucker weiterzugeben,
+ohne zwischenzeitliches Verarbeiten durch CUPS-Druck-Filter. Wo die Verwendung dieses Modus gewünscht
+ist, ist es notwendig, ein raw-Druck-Device zu konfigurieren. Es ist weiters notwendig, den 
+raw mime handler in den Dateien <filename>/etc/mime.conv</filename> und <filename>/etc/mime.types</filename>
+zu aktivieren. Sehen Sie dazu auch <link linkend="cups-raw"></link>.
 </para></note>
 
 </sect2>
@@ -234,11 +235,11 @@ files. Refer to <link linkend="cups-raw"></link>.
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Gängige Fehler</title>
 
 <para>
-The greatest mistake so often made is to make a network configuration too complex.
-It pays to use the simplest solution that will meet the needs of the moment.
+Der größte Fehler ist meist, die Netzwerk-Konfiguration zu komplex zu gestalten.
+Es bewährt sich, die einfachste Lösung zu wählen, die die momentanen Anforderungen erfüllt.
 </para>
 
 </sect1>
