@@ -1,52 +1,53 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 37. Portability</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="Appendixes.html" title="Part VI. Anhang"><link rel="previous" href="compiling.html" title="Chapter 36. Wie man Samba kompiliert"><link rel="next" href="Other-Clients.html" title="Chapter 38. Samba and Other CIFS Clients"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 37. Portability</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="compiling.html">Prev</a> </td><th width="60%" align="center">Part VI. Anhang</th><td width="20%" align="right"> <a accesskey="n" href="Other-Clients.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="Portability"></a>Chapter 37. Portability</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Jelmer</span> <span class="othername">R.</span> <span class="surname">Vernooij</span></h3><div class="affiliation"><span class="orgname">The Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jelmer@samba.org">jelmer@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="Portability.html#id2979282">HPUX</a></dt><dt><a href="Portability.html#id2979370">SCO UNIX</a></dt><dt><a href="Portability.html#id2979413">DNIX</a></dt><dt><a href="Portability.html#id2979584">Red Hat Linux</a></dt><dt><a href="Portability.html#id2979628">AIX</a></dt><dd><dl><dt><a href="Portability.html#id2979635">Sequential Read Ahead</a></dt></dl></dd><dt><a href="Portability.html#id2979661">Solaris</a></dt><dd><dl><dt><a href="Portability.html#id2979668">Locking Improvements</a></dt><dt><a href="Portability.html#winbind-solaris9">Winbind on Solaris 9</a></dt></dl></dd></dl></div><p>Samba works on a wide range of platforms but the interface all the 
-platforms provide is not always compatible. This chapter contains 
-platform-specific information about compiling and using Samba.</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2979282"></a>HPUX</h2></div></div><div></div></div><p>
-HP's implementation of supplementary groups is non-standard (for
-historical reasons). There are two group files, <tt class="filename">/etc/group</tt> and
-<tt class="filename">/etc/logingroup</tt>; the system maps UIDs to numbers using the former, but
-initgroups() reads the latter. Most system admins who know the ropes
-symlink <tt class="filename">/etc/group</tt> to <tt class="filename">/etc/logingroup</tt>
-(hard link does not work for reasons too obtuse to go into here). initgroups() will complain if one of the
-groups you're in in <tt class="filename">/etc/logingroup</tt> has what it considers to be an invalid
-ID, which means outside the range <tt class="constant">[0..UID_MAX]</tt>, where <tt class="constant">UID_MAX</tt> is (I think)
-60000 currently on HP-UX. This precludes -2 and 65534, the usual <tt class="constant">nobody</tt>
-GIDs.
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 37. Portabilität</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="Appendixes.html" title="Part VI. Anhang"><link rel="previous" href="compiling.html" title="Chapter 36. Wie man Samba kompiliert"><link rel="next" href="Other-Clients.html" title="Chapter 38. Samba and Other CIFS Clients"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 37. Portabilität</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="compiling.html">Prev</a> </td><th width="60%" align="center">Part VI. Anhang</th><td width="20%" align="right"> <a accesskey="n" href="Other-Clients.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="Portability"></a>Chapter 37. Portabilität</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Jelmer</span> <span class="othername">R.</span> <span class="surname">Vernooij</span></h3><div class="affiliation"><span class="orgname">The Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jelmer@samba.org">jelmer@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Stefan</span> <span class="othername">G.</span> <span class="surname">Weichinger</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:monitor@oops.co.at">monitor@oops.co.at</a>&gt;</tt></p></div></div></div></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="Portability.html#id2978240">HPUX</a></dt><dt><a href="Portability.html#id2978349">SCO UNIX</a></dt><dt><a href="Portability.html#id2978413">DNIX</a></dt><dt><a href="Portability.html#id2978595">Red Hat Linux</a></dt><dt><a href="Portability.html#id2978651">AIX</a></dt><dd><dl><dt><a href="Portability.html#id2978658">Sequenzieller Read Ahead</a></dt></dl></dd><dt><a href="Portability.html#id2978684">Solaris</a></dt><dd><dl><dt><a href="Portability.html#id2978691">Verbesserungen beim Locking</a></dt><dt><a href="Portability.html#winbind-solaris9">Winbind auf Solaris 9</a></dt></dl></dd></dl></div><p>Samba arbeitet auf einer Vielzahl von Plattformen, aber das Interface, das
+diese Plattformen bereitstellen, ist nicht immer kompatibel. Dieses Kapitel enthält
+Plattform-spezifische Information über das Kompilieren und die Verwendung von Samba.</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2978240"></a>HPUX</h2></div></div><div></div></div><p>
+HP's Implementation von unterstützenden Gruppen ist nicht standard-konform (aus
+historischen Gründen). Es gibt zwei Gruppen-Dateien, <tt class="filename">/etc/group</tt> und
+<tt class="filename">/etc/logingroup</tt>; das System mapped UIDs auf Nummern unter Verwendung
+der ersten Datei, aber initgroups() liest letztere. Die meisten System-Admins, die die
+Regeln kennen, linken <tt class="filename">/etc/group</tt> auf <tt class="filename">/etc/logingroup</tt>
+mittels Symlink (hard links funktionieren hier nicht, aus Gründen, die hier zu weit führen würden).
+nitgroups() wird sich beschweren, wenn eine der Gruppen, zu denen Sie gehören, in 
+<tt class="filename">/etc/logingroup</tt> eine ID hat, die es für ungültig hält, was bedeutet, daß sie
+außerhalb des Bereichs <tt class="constant">[0..UID_MAX]</tt> liegt, wobei <tt class="constant">UID_MAX</tt>
+momentan (glaube ich) 60000 unter HP-UX beträgt. Dies schließt -2 und 65534 aus, die üblichen GIDs
+für <tt class="constant">nobody</tt>.
 </p><p>
-If you encounter this problem, make sure the programs that are failing 
-to initgroups() are run as users, not in any groups with GIDs outside the 
-allowed range.
-</p><p>This is documented in the HP manual pages under setgroups(2) and passwd(4).
+Wenn Ihnen dieses Problem begegnet, stellen Sie sicher, daß die Programme, die beim Aufruf von
+initgroups() scheitern, als Benutzer ausgeführt werden, nicht in Gruppen, deren GIDs außerhalb
+des erlaubten Bereichs liegen.
+</p><p>Dies ist in den HP-manpages von setgroups(2) und passwd(4) dokumentiert.
 </p><p>
-On HP-UX you must use gcc or the HP ANSI compiler. The free compiler
-that comes with HP-UX is not ANSI compliant and cannot compile Samba.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2979370"></a>SCO UNIX</h2></div></div><div></div></div><p> 
-If you run an old version of SCO UNIX, you may need to get important 
-TCP/IP patches for Samba to work correctly. Without the patch, you may 
-encounter corrupt data transfers using Samba.
+Unter HP-UX müssen Sie gcc oder den HP ANSI-compiler verwenden. Der freie Compiler, der HP-UX
+beiliegt, entspricht nicht ANSI und kann Samba nicht kompilieren.
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2978349"></a>SCO UNIX</h2></div></div><div></div></div><p> 
+Wenn Sie eine alte Version von SCO UNIX verwenden, kann es sein, daß Sie wichtige
+TCP/IP-Patches brauchen, damit Samba korrekt arbeitet. Ohne die Patches können
+korrupte Daten-Transfers mit Samba auftreten.
 </p><p>
-The patch you need is UOD385 Connection Drivers SLS. It is available from
-SCO (<a href="ftp://ftp.sco.com/" target="_top">ftp.sco.com</a>, directory SLS,
-files uod385a.Z and uod385a.ltr.Z).
+Der Patch, den Sie brauchen, ist "UOD385 Connection Drivers SLS". Er ist verfügbar bei
+SCO (<a href="ftp://ftp.sco.com/" target="_top">ftp.sco.com</a>, Verzeichnis SLS,
+Dateien uod385a.Z und uod385a.ltr.Z).
 </p><p>
-The information provided here refers to an old version of SCO UNIX. If you require
-binaries for more recent SCO UNIX products, please contact SCO to obtain packages that are
-ready to install. You should also verify with SCO that your platform is up-to-date for the
-binary packages you will install. This is important if you wish to avoid data corruption
-problems with your installation. To build Samba for SCO UNIX products  may
-require significant patching of Samba source code. It is much easier to obtain binary
-packages directly from SCO.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2979413"></a>DNIX</h2></div></div><div></div></div><p>
-DNIX has a problem with seteuid() and setegid(). These routines are
-needed for Samba to work correctly, but they were left out of the DNIX
-C library for some reason.
+Die hier gegebene Information bezieht sich auf eine alte Version von SCO UNIX.
+Wenn Sie binaries für neuere SCO UNIX-Produkte brauchen, kontaktieren Sie bitte SCO, um
+installationsfähige Pakete zu beziehen. Sie sollten weiters mit SCO prüfen, ob Ihre
+Plattform up-to-date für die Pakete ist, die Sie installieren wollen. Dies ist wichtig,
+um Beschädigung von Daten durch die Installation zu vermeiden. Um Samba für 
+SCO UNIX-Produkte zu kompilieren, kann es notwendig sein, Samba maßgeblich zu patchen.
+Es ist deutlich einfacher, fertige binary-Pakete direkt von SCO zu beziehen.
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2978413"></a>DNIX</h2></div></div><div></div></div><p>
+DNIX hat ein Problem mit seteuid() und setegid(). Diese Routinen werden für korrekten
+Betrieb von Samba gebraucht, wurden aber in der DNIX-C-Library aus irgendeinem Grund
+weggelassen.
 </p><p>
-For this reason Samba by default defines the macro NO_EID in the DNIX
-section of includes.h. This works around the problem in a limited way,
-but it is far from ideal, and some things still will not work right.
+Aus diesem Grund definiert Samba per default das Macro NO_EID im DNIX-Abschnitt von
+includes.h. Dies umgeht das Problem in eingeschränkter Weise, ist aber bei weitem nicht
+ideal, und einige Dinge werden nach wie vor nicht richtig arbeiten.
 </p><p> 
-To fix the problem properly, you need to assemble the following two
-functions and then either add them to your C library or link them into
-Samba. Put the following in the file <tt class="filename">setegid.s</tt>:
+Um das Problem sauber zu lösen, müssen Sie die folgenden zwei Funktionen zusammenbauen,
+und sie dann entweder Ihrer C-Library hinzufügen, oder sie in Samba linken.
+Schreiben Sie folgendes in die Datei <tt class="filename">setegid.s</tt>:
 </p><pre class="programlisting">
         .globl  _setegid
 _setegid:
@@ -61,7 +62,7 @@ _setegid:
         clrl    d0
         rts
 </pre><p>
-Put this in the file <tt class="filename">seteuid.s</tt>:
+Schreiben Sie folgendes in die Datei <tt class="filename">seteuid.s</tt>:
 </p><pre class="programlisting">
         .globl  _seteuid
 _seteuid:
@@ -76,57 +77,59 @@ _seteuid:
         clrl    d0
         rts
 </pre><p>
-After creating the above files, you then assemble them using
+Nach dem Anlegen obiger Dateien, bauen Sie sie mittels
 </p><pre class="screen">
 <tt class="prompt">$ </tt><b class="userinput"><tt>as seteuid.s</tt></b>
 <tt class="prompt">$ </tt><b class="userinput"><tt>as setegid.s</tt></b>
 </pre><p>
-that should produce the files <tt class="filename">seteuid.o</tt> and 
-<tt class="filename">setegid.o</tt>
+zusammen, was die Dateien <tt class="filename">seteuid.o</tt> und 
+<tt class="filename">setegid.o</tt> anlegt.
 </p><p>
-Then you need to add these to the LIBSM line in the DNIX section of
-the Samba Makefile. Your LIBSM line will then look something like this:
+Dann müssen Sie diese zur LIBSM-Zeile im DNIX-Abschnitt des Samba-Makefiles
+hinzufügen. Ihre LIBSM-Zeile wird dann ungefähr so aussehen:
 </p><pre class="programlisting">
 LIBSM = setegid.o seteuid.o -ln
 </pre><p> 
-You should then remove the line:
+Sie sollten dann diese Zeile 
 </p><pre class="programlisting">
 #define NO_EID
-</pre><p>from the DNIX section of <tt class="filename">includes.h</tt>.</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2979584"></a>Red Hat Linux</h2></div></div><div></div></div><p>
-By default during installation, some versions of Red Hat Linux add an
-entry to <tt class="filename">/etc/hosts</tt> as follows:
+</pre><p>aus dem DNIX-Abschnitt von <tt class="filename">includes.h</tt> entfernen.</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2978595"></a>Red Hat Linux</h2></div></div><div></div></div><p>
+Per Standard fügen manche Versionen von Red Hat Linux bei der Installation einen
+Eintrag zu <tt class="filename">/etc/hosts</tt> hinzu, wie folgt:
 </p><pre class="programlisting">
 	127.0.0.1 loopback "hostname"."domainname"
 </pre><p>
 </p><p>
-This causes Samba to loop back onto the loopback interface.
-The result is that Samba fails to communicate correctly with
-the world and therefore may fail to correctly negotiate who
-is the master browse list holder and who is the master browser.
+Dies veranlaßt Samba, auf das loopback-Interface zurück zu "loopen".
+Das Ergebnis ist, daß Samba nicht mehr korrekt kommuniziert, und dadurch daran
+scheitern kann, den Master Browser und den Verwalter der Master Browse List zu
+bestimmen.
 </p><p>
-Corrective Action: Delete the entry after the word "loopback"
-in the line starting 127.0.0.1.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2979628"></a>AIX</h2></div></div><div></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2979635"></a>Sequential Read Ahead</h3></div></div><div></div></div><p>
-Disabling Sequential Read Ahead using <b class="userinput"><tt>vmtune -r 0</tt></b> improves 
-Samba performance significantly.
-</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2979661"></a>Solaris</h2></div></div><div></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2979668"></a>Locking Improvements</h3></div></div><div></div></div><p>Some people have been experiencing problems with F_SETLKW64/fcntl 
-when running Samba on Solaris. The built-in file locking mechanism was
-not scalable. Performance would degrade to the point where processes would
-get into loops of trying to lock a file. It would try a lock, then fail,
-then try again. The lock attempt was failing before the grant was
-occurring. So the visible manifestation of this would be a handful of
-processes stealing all of the CPU, and when they were trussed they would
-be stuck if F_SETLKW64 loops.
+Korrektur-Maßnahme: Löschen Sie den Eintrag nach dem Wort "loopback" in der Zeile,
+die mit 127.0.0.1 beginnt.
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2978651"></a>AIX</h2></div></div><div></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2978658"></a>Sequenzieller Read Ahead</h3></div></div><div></div></div><p>
+Das Deaktivieren von "Sequential Read Ahead" mit <b class="userinput"><tt>vmtune -r 0</tt></b>
+steigert die Performance von Samba deutlich.
+</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2978684"></a>Solaris</h2></div></div><div></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2978691"></a>Verbesserungen beim Locking</h3></div></div><div></div></div><p>
+Manche haben Probleme mit F_SETLKW64/fcntl erlebt, wenn sie Samba unter Solaris
+betrieben haben. Der eingebaute Datei-Sperr-Mechanismus war nicht skalierbar.
+Die Performance ging runter bis zum dem Punkt, an dem Prozesse beim Versuch,
+eine Datei zu sperren, in Loops gerieten. Der Prozess versuchte zu sperren,
+scheiterte, versuchte es wieder. Der Sperr-Versuch scheiterte, bevor die Sperre
+erlaubt wurde. Die sichtbare Manifestation dessen waren ein paar Prozesse, die
+die CPU in Beschlag nahmen, und wenn diese gebunden wurden, blieben sie stecken,
+wenn F_SETLKW64 loopte.
 </p><p>
-Sun released patches for Solaris 2.6, 8, and 9. The patch for Solaris 7
-has not been released yet.
+Sun hat Patches für Solaris 2.6, 8, und 9 veröffentlicht. Der Patch für Solaris 7
+wurde noch nicht veröffentlicht.
 </p><p>
-The patch revision for 2.6 is 105181-34, for 8 is 108528-19 and for 9 is 112233-04.
+Die Patch-Revision für 2.6 ist 105181-34, für 8 ist sie 108528-19 und für 9 ist sie
+112233-04.
 </p><p>
-After the install of these patches, it is recommended to reconfigure
-and rebuild Samba.
-</p><p>Thanks to Joe Meslovich for reporting this.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="winbind-solaris9"></a>Winbind on Solaris 9</h3></div></div><div></div></div><p>
-Nsswitch on Solaris 9 refuses to use the Winbind NSS module. This behavior
-is fixed by Sun in patch 113476-05, which as of March 2003, is not in any
-roll-up packages.
+Nach der Installation dieser Patches ist es zu empfehlen, Samba zu rekonfigurieren und
+zu rekompilieren.
+</p><p>Dank an Joe Meslovich für den Hinweis auf diese Patches.</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="winbind-solaris9"></a>Winbind auf Solaris 9</h3></div></div><div></div></div><p>
+Nsswitch in Solaris 9 verweigert die Benutzung des Winbind-NSS-Moduls. Dieses
+Verhalten wurde von Sun im Patch 113476-05 bereinigt, welcher, da er vom März 2003
+stammt, in keinen Roll-up-Paketen enthalten ist.
 </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="compiling.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="Appendixes.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="Other-Clients.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 36. Wie man Samba kompiliert </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 38. Samba and Other CIFS Clients</td></tr></table></div></body></html>
