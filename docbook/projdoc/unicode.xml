@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
 <chapter id="unicode">
 <chapterinfo>
 	&author.jelmer;
@@ -9,57 +11,63 @@
 		</affiliation>
 		<contrib>Japanese character support</contrib>
 	</author>
-	<pubdate>25 March 2003</pubdate>
+	<pubdate>25 March 2003</pubdate>i
+	<author>&person.hba;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Unicode/Charsets</title>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Features und Benefits</title>
 
 <para>
-Every industry eventually matures. One of the great areas of maturation is in
-the focus that has been given over the past decade to make it possible for anyone
-anywhere to use a computer. It has not always been that way, in fact, not so long
-ago it was common for software to be written for exclusive use in the country of
-origin.
+Wahrscheinlich wird jede Industrie erwachsen. Eine der Größten Gebiete dieses 
+Erwachsenwerdens im Fokus der letzten Dekade ist die Möglichkeit, dass jeder 
+einen Computer bedienen kann. Das war nicht immer so, tatsächlich, vor gar nicht 
+so langer Zeit war es für Software üblich, dass Sie exklusiv für das Land 
+geschrieben wurde in dem Sie verwendet werden sollte.
 </para>
 
 <para>
-Of all the effort that has been brought to bear on providing native
-language support for all computer users, the efforts of the
-<ulink url="http://www.openi18n.org/">Openi18n organization</ulink>
-is deserving of special mention.
+Anstrengungen 
+Aus all den Anstrengungen heraus die aufzuwenden waren die native Sprachunterstütung 
+für alle Computer-Nutzer bereit zustellen sind die Anstrengungen der 
+<ulink url="http://www.openi18n.org/">Openi18n Organisation</ulink>
+besondere Beachtung zu schenken.
 </para>
 
 <para>
-Samba-2.x supported a single locale through a mechanism called 
-<emphasis>codepages</emphasis>. Samba-3 is destined to become a truly trans-global
-file and printer-sharing platform.
+Samba-2.x stellte seinen Platz durch einen Mechanismuss genannt 
+<emphasis>codepages</emphasis> zur Verfügung. Samba-3 zielt 
+darauf ein echtes Trans-Globale Datei- und Druckerfreigabe Plattform 
+zu werden.
 </para>
 
 </sect1>
 
 <sect1>
-<title>What Are Charsets and Unicode?</title>
+<title>Was sind Charsets und Unicode?</title>
 
 <para>
-Computers communicate in numbers. In texts, each number will be 
-translated to a corresponding letter. The meaning that will be assigned 
-to a certain number depends on the <emphasis>character set (charset)
-</emphasis> that is used. 
+Computer kommunizieren in Nummern. Jede Nummer wird zu einem korrespondierenden 
+Buchstaben übersetzt. Die Bedeutung die einer entsprechenden Zahl zu geordnet wird 
+ist abhängig vom genutztem <emphasis>character set (charset)
+</emphasis>.
 </para>
 
 <para>
-A charset can be seen as a table that is used to translate numbers to 
-letters. Not all computers use the same charset (there are charsets 
-with German umlauts, Japanese characters, and so on). The American Standard Code
-for Information Interchange (ASCII) encoding system has been the normative character
-encoding scheme used by computers to date. This employes a charset that contains 
-256 characters. Using this mode of encoding each character takes exactly one byte.
+Ein charset kann als Tabelle angesehen werden die dazu verwendet wird die Nummern 
+in entsprechende Buchstaben zu wandeln (Es gibt unterschiedliche Charsets mit 
+deutschen Umlauten, Japanischen Zeichen usw.). Der <quote>American 
+Standard Code for Information Interchange</quote> (ASCII) war bis heute das 
+normale Buchstaben-Schema welches von Computern verwendet wurde. Dies ist ein 
+Charset der 256 Buchstaben darstellen kann. Unter verwendung dieser 
+Kodierung bedeutet, dass jeder Buchstabe genau ein Byte groß ist.
 </para>
 
 <para>
+<!-- Hendriks workmark -->
+
 There are also charsets that support extended characters, but those need at least
 twice as much storage space as does ASCII encoding. Such charsets can contain
 <command>256 * 256 = 65536</command> characters, which is more than all possible
