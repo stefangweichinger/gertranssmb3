@@ -13,8 +13,8 @@
 
 <para>
 Samba ist ein Datei- und Druckserver fuer auf Windows basierende Clients die TCP/IP als transport Protokol nutzen.
-Tatsächlich kann es jeden SMB/CIFS-aktiven Client unterstuetzen. Eine von Samba's grossen Staerken ist, dass Sie in der
-Lage sind ihre Windows und Linux Maschienen zusammen zu mixen ohne einen separaten Windows NT/2000/2003 Server zu benötigen.
+Tatsaechlich kann es jeden SMB/CIFS-aktiven Client unterstuetzen. Eine von Samba's grossen Staerken ist, dass Sie in der
+Lage sind ihre Windows und Linux Maschienen zusammen zu mixen ohne einen separaten Windows NT/2000/2003 Server zu benaetigen.
 Samba wird derzeit von einem 30 Kopfigen Team von Programmieren entwickelt und wurde urspruenglich von Andrew Tridgell entwickelt.
 </para>
 
@@ -22,42 +22,39 @@ Samba wird derzeit von einem 30 Kopfigen Team von Programmieren entwickelt und w
 <title>Hintergrund</title>
 
 <para>
-Vor langer Zeit gab es ein Schlüsselwort welches auf DCE/RPC referenzierte. Dies stand fuer
-Computing Environment/Remote Procedure Calls and war vom Konzept her eine gute Idee. Ursprünglich
-wurde es von Apollo/HP als NCA1.0 (Network Computing Architecture entwickelt und konnte nur über
-UDP benutzt werden. Als es nötig wurde das ganze über TCP zu betreiben um die Kompatibilität zu
-DECnet3.0 gewährleisten zu können, wurde es neu entworfen, zur Organisation The Open Group gesandt
-und wurde offiziell als DCE/RPC bekannt. Microsoft kam daher und entschied mehr als $20 für eine
+Vor langer Zeit gab es ein Schluesselwort welches auf DCE/RPC referenzierte. Dies stand fuer
+Computing Environment/Remote Procedure Calls and war vom Konzept her eine gute Idee. Urspruenglich
+wurde es von Apollo/HP als NCA1.0 (Network Computing Architecture entwickelt und konnte nur ueber
+UDP benutzt werden. Als es naetig wurde das ganze ueber TCP zu betreiben um die Kompatibilitaet zu
+DECnet3.0 gewaehrleisten zu kaennen, wurde es neu entworfen, zur Organisation The Open Group gesandt
+und wurde offiziell als DCE/RPC bekannt. Microsoft kam daher und entschied mehr als $20 fuer eine
 Arbeitsplatz Lizens haben zu wollen und es als eigenes MSRPC verkaufen zu wollen. Von diesem Punkt
 an wurde das Konzept in Form von SMB (Server Message Block, als "was") unter Benutzung von
-NetBIOS (Network Basic Input/Output System, als "wie") als Komatibilitäts-Schicht weiter geführt.
+NetBIOS (Network Basic Input/Output System, als "wie") als Komatibilitaets-Schicht weiter gefuehrt.
+Sie kaennen SMB ueber viele verschieden Protokolle nutzen, sprich transportieren; viele verschiedene
+Implementationen fuehren zu einem Ergebnis, einschließlich NBIPX (NetBIOS ueber IPX, NwLnkNb, oder NWNBLink)
+und NBT (NetBIOS ueber TCP/IP, oder NetBT). ueber die Jahre hinweg wurde NBT die meist genutzte Form der
+Implementationen bis zum Fortschritt des "Direct-Hosted TCP" -- der Microsoft Marketing Formulierung zur
+vollstaendigen Eleminierung von NetBIOS und der Maeglichkeit SMB direkt ueber den TCP port 445 laufen zu lassen.
 
-
-Once long ago, there was a buzzword referred to as DCE/RPC. This stood for Distributed
-Computing Environment/Remote Procedure Calls and conceptually was a good idea. It was
-originally developed by Apollo/HP as NCA 1.0 (Network Computing Architecture) and only
-ran over UDP. When there was a need to run it over TCP so that it would be compatible
-with DECnet 3.0, it was redesigned, submitted to The Open Group, and officially became
-known as DCE/RPC. Microsoft came along and decided, rather than pay $20 per seat to
-license this technology, to reimplement DCE/RPC themselves as MSRPC.
-
-From this, the
-concept continued in the form of SMB (Server Message Block, or the "what") using the
-NetBIOS (Network Basic Input/Output System, or the "how") compatibility layer. You can
-run SMB (i.e., transport) over several different protocols; many different implementations
-arose as a result, including NBIPX (NetBIOS over IPX, NwLnkNb, or NWNBLink) and NBT
-(NetBIOS over TCP/IP, or NetBT). As the years passed, NBT became the most common form
-of implementation until the advance of "Direct-Hosted TCP" -- the Microsoft marketing
-term for eliminating NetBIOS entirely and running SMB by itself across TCP port 445
-only. As of yet, direct-hosted TCP has yet to catch on.
+As of yet, direct-hosted TCP has yet to catch on.
 </para>
 
 <para>
+Es ist maeglich, dass der bisher beste Artikel ueber den Ursprung von SMB im Jahre 1997 in einem Artikel
+mit dem Titel: CIFS: Common Insecurities Fail Scrutiny erschienen ist.
+
 Perhaps the best summary of the origins of SMB are voiced in the 1997 article titled, CIFS:
 Common Insecurities Fail Scrutiny:
 </para>
 
 <para><emphasis>
+Mehrere Megabytes aus NT-Security Archiven, ziellosen whitepapern, RFCs, der CIFS Spezifikation,
+das Samba Zeug, ein paar MS Knowledge Base Artikeln, Zeichenketten aus Binaerdateien und Packet-Abbildungen
+haben pflichtbewußt den Weg durch die Phasen der Informationssammlung dieses Projektes durch schritten und es
+fehlen immer noch einige Stuecke... Oftmals mueßig wurde der Weg unordentlich gemacht durch "Hand vor die Stirn schlagen" und murmeln
+"Mein Gott, was haben die sich dabei gedacht?"
+Hier das Original:
 Several megabytes of NT-security archives, random whitepapers, RFCs, the CIFS spec, the Samba
 stuff, a few MS knowledge-base articles, strings extracted from binaries, and packet dumps have
 been dutifully waded through during the information-gathering stages of this project, and there
@@ -69,37 +66,38 @@ thinking?
 </sect1>
 
 <sect1>
-<title>Terminology</title>
+<title>Fachsprache</title>
 
 <itemizedlist>
 
 	<listitem><para>
-	SMB: Acronym for "Server Message Block". This is Microsoft's file and printer sharing protocol.
+	SMB: Akronym fuer "Server Message Block". Dies ist Microsoft's Datei- und Druckerfreigabe Protokol.
 	</para></listitem>
 
 	<listitem><para>
-	CIFS: Acronym for "Common Internet File System". Around 1996, Microsoft apparently
-	decided that SMB needed the word "Internet" in it, so they changed it to CIFS.
+	CIFS: Akronym fuer "Common Internet File System". Um 1996 entschied Microsoft das SMB das Wort
+	"Internet" im Namen braeuchte und sie aenderten den Namen in CIFS.
 	</para></listitem>
 
 	<listitem><para>
-	Direct-Hosted: A method of providing file/printer sharing services over port 445/tcp
-	only using DNS for name resolution instead of WINS.
+	Direct-Hosted: Eine Methode Datei/Drucker Freigabedienste ueber port 445/tcp zur Verfuegung zu stellen,
+	Hierbei wurde nur DNS statt WINS zur Auflaesung der Namen in IP-Adressen benutzt
 	</para></listitem>
 
 	<listitem><para>
-	IPC: Acronym for "Inter-Process Communication". A method to communicate specific
-	information between programs.
+	IPC: Akronym fuer "Inter-Process Communication". Eine Methode spezielle Informationen zwischen Programmen
+	zu verbreiten.
 	</para></listitem>
 
 	<listitem><para>
-	Marshalling: - A method of serializing (i.e., sequential ordering of) variable data
-	suitable for transmission via a network connection or storing in a file. The source
-	data can be re-created using a similar process called unmarshalling.
+	Marshalling: - Eine Methode zur sequentiellen Sortierung von variablen Daten,
+	passend zur Uebertragung ueber eine Netzwerkverbindung bzw. Speicherung in eine Datei.
+	Die Quelldateien koennen mittels eines aehnlichen Prozesses namens unmarschalling
+	wiederhergestellt werden.
 	</para></listitem>
 
 	<listitem><para>
-	NetBIOS: Acronym for "Network Basic Input/Output System". This is not a protocol;
+	NetBIOS: Akronym for "Network Basic Input/Output System". This is not a protocol;
 	it is a method of communication across an existing protocol. This is a standard which
 	was originally developed for IBM by Sytek in 1983. To exaggerate the analogy a bit,
 	it can help to think of this in comparison your computer's BIOS -- it controls the
@@ -112,7 +110,7 @@ thinking?
 	</para></listitem>
 
 	<listitem><para>
-	NetBEUI: Acronym for the "NetBIOS Extended User Interface". Unlike NetBIOS, NetBEUI
+	NetBEUI: Akronym for the "NetBIOS Extended User Interface". Unlike NetBIOS, NetBEUI
 	is a protocol, not a standard. It is also not routable, so traffic on one side of a
 	router will be unable to communicate with the other side. Understanding NetBEUI is
 	not essential to deciphering SMB; however it helps to point out that it is not the
@@ -122,7 +120,7 @@ thinking?
 	</para></listitem>
 
 	<listitem><para>
-	NBT: Acronym for "NetBIOS over TCP"; also known as "NetBT". Allows the continued use
+	NBT: Akronym for "NetBIOS over TCP"; also known as "NetBT". Allows the continued use
 	of NetBIOS traffic proxied over TCP/IP. As a result, NetBIOS names are made
 	to IP addresses and NetBIOS name types are conceptually equivalent to TCP/IP ports.
 	This is how file and printer sharing are accomplished in Windows 95/98/ME. They
@@ -134,11 +132,11 @@ thinking?
 	</para></listitem>
 
 	<listitem><para>
-	W2K: Acronym for Windows 2000 Professional or Server
+	W2K: Akronym for Windows 2000 Professional or Server
 	</para></listitem>
 
 	<listitem><para>
-	W3K: Acronym for Windows 2003 Server
+	W3K: Akronym for Windows 2003 Server
 	</para></listitem>
 
 </itemizedlist>
