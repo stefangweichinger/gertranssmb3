@@ -1,15 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="AdvancedNetworkManagement">
 <chapterinfo>
 	&author.jht;
     <pubdate>April 3 2003</pubdate>
+        <author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
-<title>Advanced Network Management</title>
+<title>Fortgeschrittenes Netzwerk-Management</title>
 
 <para>
-This section documents peripheral issues that are of great importance to network
-administrators who want to improve network resource access control, to automate the user
-environment and to make their lives a little easier.
+Dieser Abschnitt dokumentiert Randthemen, die sehr wichtig für Netzwerkadministratoren sind,
+die die Zugriffskontrolle auf Netzwerk-Ressourcen verbessern wollen, die Benutzerumgebung
+automatisieren, und ihr Leben ein wenig erleichtern wollen.
 </para>
 
 <sect1>
