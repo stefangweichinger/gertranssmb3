@@ -10,7 +10,7 @@
 	</author>
 	&author.jelmer;
 	&author.jht;
-	&author.sgw;
+	<author>&person.sgw;<contrib>German Translator</contrib></author>
 </chapterinfo>
 
 <title>Samba Performance Tuning</title>
