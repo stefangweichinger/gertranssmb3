@@ -53,9 +53,9 @@ man die einzelnen Dateien die in <filename>/etc/pam.d</filename> aufgelistet sin
 </para>
 
 <para>
-Auf PAM-fähigen UNIX/Linux Systemen ist es ein einfaches Unterfangen irgend ein Authentifizierungs BACKEND
+Auf PAM-fähigen UNIX/Linux Systemen ist es ein einfaches Unterfangen irgend ein Authentifizierungs Backend
 zu konfigurieren solange die entsprechenden dynamisch ladbaren Modul Bibliotheken vorhanden sind.
-Das BACKEND kann auf dem lokalen System vorhanden sein oder, zentralisiert, auf einem entfernten Server.
+Das Backend kann auf dem lokalen System vorhanden sein oder, zentralisiert, auf einem entfernten Server.
 </para>
 
 <para>
@@ -82,14 +82,14 @@ PAM unterstützte Module sind vorhanden für:
 	<varlistentry><term>LDAP</term><listitem>
 		<para>
 		Das <filename>pam_ldap.so</filename> Modul erlaubt die Benutzung von jedem LDAP v2 oder v3 kompatiblem
-		BACKEND server. Weit verbreitete LDAP BACKEND Server sind z.B. OpenLDAP v2.0 und v2.1,
+		Backend server. Weit verbreitete LDAP Backend Server sind z.B. OpenLDAP v2.0 und v2.1,
 		Sun ONE iDentity Server, Novell eDirectory Server, Microsoft Active Directory. 
 		</para>
 	</listitem></varlistentry>
 
 	<varlistentry><term>NetWare Bindery</term><listitem>
 		<para>
-		Das <filename>pam_ncp_auth.so</filename> Modul erlaubt die Authentifizierung auf jedem bindery
+		Das <filename>pam_ncp_auth.so</filename> Modul erlaubt die Authentifizierung auf jedem Bindery
 		fähigem NetWare Core Protokoll basiertem Server.
 		</para>
 	</listitem></varlistentry>
@@ -156,7 +156,7 @@ die von PAM überwacht wird ist in einem dieser zwei Orte: Entweder in der einzel
 
 <para>
 In diesem Kapitel sehen wir uns die richtige Syntax und die verschiedenen Optionen der Einträge in diesen
-Dateien an. Bei PAM spezifische Zeichen ist die Gross- und Kleinschreibung egal. Die Modul Pfade hingegen 
+Dateien an. Bei PAM spezifischen Zeichen ist die Gross- und Kleinschreibung egal. Die Modul Pfade hingegen 
 sind empfindlich gegenüber der Gross- und Kleinschreibung, da sie auf Dateinamen
 verweisen und diese die Schreibweise des Dateisystems wiedergeben. 
 Die Empfindlichkeit der Argumente der einzelnen Module gegenüber der Gross- und Kleinschreibung wird für jedes Modul
@@ -164,22 +164,22 @@ eigens festgelegt.
 </para>
 
 <para>
-Zusätzlich zu den unten beschriebenen Zeilen gibt es noch zwei zusätzliche Zeichen die dem Systemadministrator
+Zusätzlich zu den unten beschriebenen Zeilen, gibt es noch zwei zusätzliche Zeichen die dem Systemadministrator
 die Arbeit erleichtern: Auszukommentierende Zeilen werden mit einem <quote>#</quote> eingeleitet, welches 
 in der nächsten Zeile die Gültigkeit verliert; Um Zeilen in einer Modulbeschreibung über dem Zeilenumbruch zu verlängern
 kann ein <quote>\</quote> Zeichen verwendet werden.
 </para>
 
 <para>
-Befindet sich das PAM authentifizierungs Modul (ladbare link bibliotheks Datei)
+Befindet sich das PAM authentifizierungs Modul (dynamisch ladbare Programmbibliothek)
 im Standardpfad so ist es nicht nötig den Pfad nochmal anzugeben. Befindet sich das
-Modul ausserhalb dieses Pfades (unter Linux <filename>/lib/security</filename>) muss der
+Modul ausserhalb dieses Pfades (unter Linux <filename>/lib/security</filename>), muss
 dieser wie folgt angegeben werden:
 </para>
 
 <para>
 <programlisting>
-auth  required  /anderer_pfad/pam_fremdes_module.so
+auth  required  /anderer_pfad/pam_fremdes_modul.so
 </programlisting>
 </para>
 
@@ -204,7 +204,7 @@ Service-name	Modul-type	control-flag	Modul-path	Args.
 <para>
 Hier beschreiben wir die Bedeutung dieser einzelnen Zeichen. Die zweite (und öfters angewendete)
 Methode der Konfiguration von Linux-PAM ist durch Änderung des Inhalts des <filename>/etc/pam.d/</filename>
-Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf diese Methode eingehen.
+Ordners. Nachdem wir die obigen Zeichen erklärt haben, werden wir näher auf diese Methode eingehen.
 </para>
 
 <variablelist>
@@ -236,9 +236,7 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 			Erstens wird festgestellt, dass der Benutzer der ist der er angibt zu sein, indem er von 
 			der Applikation aufgefordert wird ein Password anzugeben oder sich sonst irgendwie zu authentifizieren.
 			Zweitens kann dieses Modul Gruppenzugehörigkeiten erlauben (unabhängig vom Inhalt von <filename>/etc/groups
-			</filename> welche oben behandelt wurde) oder andere Privilegien durch seine CREDENTIAL GRANTING PROPERTIES:
-
-			above) or other privileges through its credential granting properties.
+			</filename> welche oben behandelt wurde) oder andere Privilegien da es befähigt ist diese zu vergeben.
 			</para></listitem>
 
 			<listitem><para>
@@ -255,8 +253,8 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>password:</parameter> Dieser letzte Modultyp wird gebraucht FOR UPDATING THE AUTHENTICATION
-			TOKEN ASSOCIATED WITH THE USER. Normalerweise ist immer ein Modul für einen <quote>challenge/response</quote>
+			<parameter>password:</parameter> Dieser letzte Modultyp wird gebraucht um das mit dem Benutzer verbundene
+			Authenitsierungstoken zu aktualisieren. Normalerweise ist immer ein Modul für jeden <quote>challenge/response</quote>
 			-basierten authentifizierungs <parameter>(auth)</parameter> Modul Typen.
 			</para></listitem>
 		</itemizedlist>
@@ -266,12 +264,12 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 	<varlistentry><term>control-flag</term><listitem>
                 <para>
 		Die control-flag wird bentutzt um festzulegen wie die PAM Bibliothek auf einen Erfolg oder Misserfolg
-		des mit ihr verbundenen Moduls reagiert. Seit Module gestockt werden können (Module des gleichen Typs 
+		des mit ihr verbundenen Moduls reagiert. Seit Module gestapelt werden können (Module des gleichen Typs 
 		nacheinander geschaltet so, dass eins nach dem anderen ausgeführt wird), legen die control-flags auch die
 		relative Wichtigkeit dieser fest. Der Applikation wird nicht der Erfolg oder Misserfolg jedes Moduls in der 
 		<filename>/etc/pam.conf</filename> Datei mitgeteilt, sondern sie erhält eine Zusammenfassung des Erfolgs
 		oder Misserfolgs von der Linux-PAM Bibliothek. Die Reihenfolge in der diese Module ausgeführt werden ist
-		die der Einträge in der <filename>/etc/pam.conf</filename>; Der Erste Eintrag wird als erstes ausgeführt und
+		die der Einträge in <filename>/etc/pam.conf</filename>; Der Erste Eintrag wird als erstes ausgeführt und
 		der Letzte zum Schluss. Ab Linux-PAM v0.60, kann diese control-flag mit einer von zwei Syntaxes angegeben
 		werden.
 		</para>
@@ -297,18 +295,18 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 			<listitem><para>
 			<parameter>requisite:</parameter> Gleich wie required, nur dass es im Falle eines Misserfolges die
 			Kontrolle direkt an die Applikation zurückgegeben wird. Der Rückgabewert ist der gleiche wie bei einem
-			Misserforlg des ersten Moduls. Diese Flag kann gesetzt werden um dem Benutzer die Möglichkeit zu nehmen
+			Misserfolg des ersten Moduls. Diese Flag kann gesetzt werden um dem Benutzer die Möglichkeit zu nehmen
 			über ein unsicheres Medium das Passwort einzugeben. Es wäre möglich dass dies einem Angreifer Informationen
 			über Benutzernamen geben könnte. Dieser Möglichkeit sollte aber entgegengehalten werden dass sonst eventuell
-			Passwörter durch eine feindliche Umgebung gehen könnten.
+			Passwörter durch eine unsichere Umgebung gehen könnten.
 			</para></listitem>
 
                         <listitem><para>
                         <parameter>sufficient:</parameter> Der Erfolg dieses Moduls genügt damit die Linux-PAM Bibliothek ausgibt dass
 			dieses Modul erfolgreich in seinem Zweck war. Im Fall, dass kein vorhergehendes wichtiges (<parameter> required</parameter>)
 			Modul Misserfolg zurückgab, wird kein weiteres <quote>gestapeltes</quote> Modul ausgeführt (in diesem Fall werden auch keine
-			weiteren wichtigen Module mehr ausgeführt). A failure of this module is not deemed
-			as fatal to satisfying the application that this module-type has succeeded.
+			weiteren wichtigen Module mehr ausgeführt). Ein Fehlschlagen dieses Moduls allein genügt nicht für das Fehlschlagen des
+			Stapels.
 			</para></listitem>
 
                         <listitem><para>
@@ -346,15 +344,15 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 
 		<para>
 		Der letzte dieser <parameter>(default)</parameter> kann dafür benutzt 
-		werden die ACTION für Rückgabwerte festzulegen für die dies nicht explizit angegeben wurde.
+		werden die Aktion für Rückgabewerte festzulegen für die dies nicht explizit angegeben wurde.
 		</para>
 
 		<para>
 		Der <parameter>action1</parameter> kann ein positiver Integer sein oder eines der folgenden Zeichen:
 		<parameter>ignore; ok; done; bad; die;</parameter> und <parameter>reset</parameter>. Ein positiver Integer,
-		J, WHEN SPECIFIED AS ACTION, kann benutzt werden um anzugeben dass die nächsten J Module vom momentanen Modul-Stapel
+		J, wenn als Aktion fesgelegt, kann benutzt werden um anzugeben dass die nächsten J Module vom momentanen Modul-Stapel
 		übersprungen werden. Wird dies richtig angewendet kann der Administrator einen hoch entwickelten Modul-Stapel mit
-		mehrer Ausführungsmöglichkeiten bauen. Welche Möglichkeit schlussendlich genommen wird, kann mit der Reaktion der
+		mehreren Ausführungsmöglichkeiten bauen. Welche Möglichkeit schlussendlich genommen wird, kann mit der Reaktion der
 		einzelnen Module bestimmt werden.
 		</para>
 
@@ -371,7 +369,7 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 			</para></listitem>
 
                         <listitem><para>
-                        <parameter>die:</parameter> Gleich wie <parameter>bad</parameter> nur mit dem Effekt dass der Modul-Stabel und PAM sofort abgebrochen
+                        <parameter>die:</parameter> Gleich wie <parameter>bad</parameter> nur mit dem Effekt dass der Modul-Stapel und PAM sofort abgebrochen
 			werden und zur Anwendung zurückgekehrt wird.
 			</para></listitem>
 
@@ -431,7 +429,7 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 
 	<varlistentry><term>module-path</term><listitem>
 		<para>
-		Der Pfadname der dynamisch ladbareen Objekt Datei; das Plug-in Modul selbst. Ist das erste Zeichen des Modulpfades ein
+		Der Pfadname der dynamisch ladbaren Objekt Datei; das Plug-in Modul selbst. Ist das erste Zeichen des Modulpfades ein
 		<quote>/</quote>, wird davon ausgegangen dass es ein absoluter Pfad ist. Ist dies nicht der Fall, wird der angegebene Pfad
 		an den standart Modul Pfad angehängt: <filename>/lib/security</filename> (siehe oben).
 		</para>
@@ -465,7 +463,7 @@ user_name=<quote>%u</quote> and password=PASSWORD(<quote>%p</quote>) and service
 
 		<para>
 		Jede Zeile in einer der Konfigurations Dateien die nicht richtig formatiert ist, wird sehr wahrscheinlich dazu führen
-		dass der Authentifizierungsprozess fehlschlägt. Ein dementsprechender Fehler wird in den System Log Dateien geschrieben
+		dass der Authentifizierungsprozess fehlschlägt. Ein dementsprechender Fehler wird in den System Log Dateien geschrieben,
 		mit einem Aufruf in der Syslog(3).
 		</para>
 		</listitem>
@@ -640,10 +638,10 @@ Passwort Verschlüsselung verwendet wird.
 <title>Entfernte CIFS Authentifizierung mit<filename>winbindd.so</filename></title>
 
 <para>
-All operating systems depend on the provision of users credentials acceptable to the platform.
-??Alle Betriebssysteme hängen von einer Bestimmung des Benutzers zu der jeweiligen Plattform ab.??
+#All operating systems depend on the provision of users credentials acceptable to the platform.
+#??Alle Betriebssysteme hängen von einer Bestimmung des Benutzers zu der jeweiligen Plattform ab.??
 UNIX benutzt dazu die Übergabe eines "User Identifier" (UID) sowie eines "Group Identifier" (GID).
-Dies sind beides Nummern vom Typ Integer die von einem Password BACKEND wie <filename>/etc/passwd</filename>
+Dies sind beides Nummern vom Typ Integer die von einem Password Backend wie <filename>/etc/passwd</filename>
 erhalten werden.
 </para>
 
@@ -658,14 +656,14 @@ Benutzer und Gruppen IDs. Dies ist eine der Aufgaben die Winbind ausführt.
 Sowie Winbind Benutzer und Gruppen von einem Server aufgelöst werden, werden Benutzer
 und Gruppen IDs aus einer bestimmten Gruppe von Zahlen ermittelt. Diese werden auf einer
 "wer zuerst kommt, kriegt zuerst" Basis verteilt, auch wenn alle bestehenden Benutzer und
-Gruppen WILL BE MAPPED sobald ein Client einen Befehl zur Auflistung der Benutzer und 
+Gruppen gemappt werden sobald ein Client einen Befehl zur Auflistung der Benutzer und 
 Gruppen gibt. Die zugeteilten UNIX IDs werden in einer Datenbank Datei im Samba Lock Verzeichniss
-gespeichert um sie nachher wiederverwenden können.
+gespeichert um sie nachher wiederverwenden zu können.
 
-This is done on a first come, first served basis, although all
-existing users and groups will be mapped as soon as a client performs a user or  group 
-enumeration command. The allocated UNIX IDs are stored in a database file under the Samba
-lock directory and will be remembered.
+#This is done on a first come, first served basis, although all
+#existing users and groups will be mapped as soon as a client performs a user or  group 
+#enumeration command. The allocated UNIX IDs are stored in a database file under the Samba
+#lock directory and will be remembered.
 </para>
 
 <para>
@@ -678,7 +676,7 @@ den Authentifizierungs Verkehr in grossen Netzwerken reduziert.
 </para>
 
 <warning><para>
-Die RID zu UNIX ID Datenbank ist der einzige Ort wo die Benutzer und Gruppen ??Umwandlung?? von 
+Die RID zu UNIX ID Datenbank ist der einzige Ort wo die Benutzer und Gruppen Umwandlung von 
 <command>winbindd</command> gespeichert wird. Wenn diese Datei gelöscht oder kompromittiert wird gibt
 es keinen Weg für <command>winbindd</command> herauszufinden welche Benutzer und Gruppen ID zu welcher Windows NT
 Benutzer oder Gruppe RID gehört.
@@ -793,7 +791,7 @@ session    required    pam_unix.so
 
 <para>
 Eine Beispiel Konfiguration für eine ausgereifte <filename>smbpasswd</filename> Installation.
-<filename>private/smbpasswd</filename> ist FULLY POPULATED und wir betrachten es als Fehler
+<filename>private/smbpasswd</filename> ist mit Benutzern "gefüllt" und wir betrachten es als Fehler
 wenn kein SMB Passwort vorhanden ist oder wenn es nicht mit dem UNIX Passwort übereinstimmt.
 </para>
 
@@ -874,14 +872,12 @@ password required /lib/security/pam_stack.so service=system-auth
 
 	<para>
 	Wenn ich mit [ctrl][alt][F1] eine neue Konsole aufmache kann ich nicht mit meinem <quote>pitie</quote> Benutzer 
-	einsteigen. ich habe es auch mit dem Benutzer
-	When I open a new console with [ctrl][alt][F1], I can't log in with my user <quote>pitie</quote>.
-	I have tried with user <quote>scienceu+pitie</quote> also.
+	einsteigen. Ich habe es auch mit dem Benutzer <quote>scienceu+pitie</quote> versucht.
 	</para>
 
 	<para>
 	<emphasis>Antwort:</emphasis> Das Problem könnte bei der Einbindung von <parameter>pam_stack.so
-	service=system-auth</parameter>liegen. Diese Datei enthält oft eine Menge Zeug
+	service=system-auth</parameter>liegen. Diese Datei enthält oft eine Menge Zeilen
 	die Sachen doppelt machen die man eigentlich schon macht. Versuch die <parameter>pam_stack</parameter>
 	Zeilen für <parameter>auth</parameter> und <parameter>account</parameter> auszukommentieren, und probiers
 	dann nochmal. Falls es so funktioniert, sieh dir die <filename>/etc/pam.d/system-auth</filename> Datei an
