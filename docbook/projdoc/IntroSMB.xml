@@ -32,7 +32,7 @@ DECnet3.0 gewährleisten zu können, wurde es neu entworfen, zur Organisation "The
 und offiziell als DCE/RPC bekannt. Microsoft kam allerdings daher und entschied, mehr als $20 für eine
 Arbeitsplatz-Lizenz haben zu wollen, und es als eigenes MSRPC verkaufen zu wollen. Von diesem Punkt
 an wurde das Konzept in Form von SMB (Server Message Block, das "was") unter Benutzung von
-NetBIOS (Network Basic Input/Output System, das "wie") als Komatibilitäts-Schicht weiter geführt.
+NetBIOS (Network Basic Input/Output System, das "wie") als Kompatibilitäts-Schicht weiter geführt.
 Sie können SMB über viele verschiedene Protokolle nutzen, sprich transportieren; viele verschiedene
 Implementationen führen zu einem Ergebnis, einschließlich NBIPX (NetBIOS über IPX, NwLnkNb, oder NWNBLink)
 und NBT (NetBIOS über TCP/IP, oder NetBT). Über die Jahre hinweg wurde NBT zur meist genutzten Form der
