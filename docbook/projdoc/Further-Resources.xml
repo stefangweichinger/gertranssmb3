@@ -1,13 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="Further-Resources">
 <chapterinfo>
 	&author.jelmer;
+	<author>&person.hba;<contrib>German Translator</contrib></author>
 	<pubdate>May 1, 2003</pubdate>
 </chapterinfo>
 
-<title>Further Resources</title>
+<title>Weitere Hilfsquellen</title>
 
 <sect1>
-	<title>Websites</title>
+	<title>Webseiten</title>
 
 <itemizedlist>
 
@@ -91,15 +93,15 @@
 
 	<listitem><para>
 	<ulink url="http://www.atmarkit.co.jp/flinux/special/samba3/samba3a.html">
-	<emphasis>Introduction to Samba-3.0</emphasis> by Motonobu Takahashi 
+	<emphasis>Introduction to Samba-3.0</emphasis> by Motonobu Takahashi
 	(written in Japanese). </ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://www.linux-mag.com/2001-05/smb_01.html">
 	<emphasis>Understanding the Network Neighborhood</emphasis>, by team member
-	Chris Hertel. This article appeared in the May 2001 issue of 
-	Linux Magazine. 
+	Chris Hertel. This article appeared in the May 2001 issue of
+	Linux Magazine.
 	</ulink>
 	</para></listitem>
 
@@ -145,12 +147,12 @@
 </sect1>
 
 <sect1>
-	<title>Related updates from Microsoft</title>
+	<title>Verwandte Updates von Microsoft</title>
 
 <itemizedlist>
 	<listitem><para>
 	<ulink url="http://support.microsoft.com/support/kb/articles/q92/5/88.asp">
-		<emphasis>Enhanced Encryption for Windows 95 Password Cache</emphasis> 
+		<emphasis>Enhanced Encryption for Windows 95 Password Cache</emphasis>
 	</ulink>
 	</para></listitem>
 
