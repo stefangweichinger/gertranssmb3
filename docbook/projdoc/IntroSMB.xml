@@ -32,7 +32,7 @@ Arbeitsplatz Lizens haben zu wollen und es als eigenes MSRPC verkaufen zu wollen
 an wurde das Konzept in Form von SMB (Server Message Block, als "was") unter Benutzung von
 NetBIOS (Network Basic Input/Output System, als "wie") als Komatibilitaets-Schicht weiter gefuehrt.
 Sie kaennen SMB ueber viele verschieden Protokolle nutzen, sprich transportieren; viele verschiedene
-Implementationen fuehren zu einem Ergebnis, einschlieﬂlich NBIPX (NetBIOS ueber IPX, NwLnkNb, oder NWNBLink)
+Implementationen fuehren zu einem Ergebnis, einschlie&szlig;lich NBIPX (NetBIOS ueber IPX, NwLnkNb, oder NWNBLink)
 und NBT (NetBIOS ueber TCP/IP, oder NetBT). ueber die Jahre hinweg wurde NBT die meist genutzte Form der
 Implementationen bis zum Fortschritt des "Direct-Hosted TCP" -- der Microsoft Marketing Formulierung zur
 vollstaendigen Eleminierung von NetBIOS und der Maeglichkeit SMB direkt ueber den TCP port 445 laufen zu lassen.
@@ -51,8 +51,8 @@ Common Insecurities Fail Scrutiny:
 <para><emphasis>
 Mehrere Megabytes aus NT-Security Archiven, ziellosen whitepapern, RFCs, der CIFS Spezifikation,
 das Samba Zeug, ein paar MS Knowledge Base Artikeln, Zeichenketten aus Binaerdateien und Packet-Abbildungen
-haben pflichtbewuﬂt den Weg durch die Phasen der Informationssammlung dieses Projektes durch schritten und es
-fehlen immer noch einige Stuecke... Oftmals mueﬂig wurde der Weg unordentlich gemacht durch "Hand vor die Stirn schlagen" und murmeln
+haben pflichtbewu&szlig;t den Weg durch die Phasen der Informationssammlung dieses Projektes durch schritten und es
+fehlen immer noch einige Stuecke... Oftmals mue&szlig;ig wurde der Weg unordentlich gemacht durch "Hand vor die Stirn schlagen" und murmeln
 "Mein Gott, was haben die sich dabei gedacht?"
 Hier das Original:
 Several megabytes of NT-security archives, random whitepapers, RFCs, the CIFS spec, the Samba
