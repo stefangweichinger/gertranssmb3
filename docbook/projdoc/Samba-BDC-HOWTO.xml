@@ -50,76 +50,78 @@ BDC zum Master erlauben. Nur LDAP kann dies zum gegenwärtigen Zeitpunkt.
 
 <para>
 <indexterm><primary>SAM backend</primary><secondary>non-LDAP</secondary></indexterm>
-The use of a non-LDAP backend SAM database is particularly problematic because Domain Member
-servers and workstations periodically change the Machine Trust Account password. The new
-password is then stored only locally. This means that in the absence of a centrally stored
-accounts database (such as that provided with an LDAP-based solution) if Samba-3 is running
-as a BDC, the BDC instance of the Domain Member trust account password will not reach the
-PDC (master) copy of the SAM. If the PDC SAM is then replicated to BDCs, this results in 
-overwriting the SAM that contains the updated (changed) trust account password with resulting
-breakage of the domain trust.
+Die Verwendung einer Nicht-LDAP-backend SAM-Datenbank ist teilweise problematisch, weil 
+Domänen-Mitglieds-Server und -Workstations regelmässig das Passwort ihres Maschinen-Vertrauens-Kontos
+ändern. Das neue Passwort wird dann nur lokal gespeichert. Das bedeutet, daß bei Fehlen einer 
+zentral gespeicherten Konten-Datenbank (wie sie mit einer LDAP-basierten Lösung zur Verfügung steht)
+und BDC-Betrieb von Samba-3 der BDC-Anteil des Konten-Passworts nicht
+in die SAM des PDCs gelangen kann. Wenn dann die SAM des PDCs auf die BDCs repliziert wird, resultiert
+dies in dem Überschreiben der SAM, die das veränderte Passwort enthält, was das Domänen-Vertrauensverhältnis
+beschädigt.
 </para>
 
 <para>
-Considering the number of comments and questions raised concerning how to configure a BDC,
-let's consider each possible option and look at the pros and cons for each possible solution.
-<link linkend="pdc-bdc-table"/> lists possible design configurations for a PDC/BDC infrastructure.
+Wenn man die Anzahl der Kommentare und Fragen bedenkt, die sich um die Konfiguration eines BDCs erheben,
+macht es Sinn, jede mögliche Option zu bedenken und deren Vor- und Nachteile abzuwägen.
+<link linkend="pdc-bdc-table"/> listet mögliche Konfigurationen für eine PDC/BDC Infrastruktur.
 <indexterm><primary>net</primary><secondary>rpc</secondary></indexterm>
 <indexterm><primary>SAM backend</primary><secondary>ldapsam</secondary></indexterm>
 <indexterm><primary>SAM backend</primary><secondary>tdbsam</secondary></indexterm>
 <indexterm><primary>replication</primary><secondary>SAM</secondary></indexterm>
 </para>
 
-<table frame="all" id="pdc-bdc-table"><title>Domain Backend Account Distribution Options</title>
+<table frame="all" id="pdc-bdc-table"><title>Optionen zur Verteilung der Domänen-Konten-Datenbank</title>
 <tgroup cols="3">
         <colspec align="center" colwidth="1*"/>
         <colspec align="center" colwidth="1*"/>
         <colspec align="left" colwidth="3*"/>
 
         <thead>
-        <row><entry>PDC Backend</entry><entry>BDC Backend</entry><entry>Notes/Discussion</entry></row>
+        <row><entry>PDC Backend</entry><entry>BDC Backend</entry><entry>Anmerkungen/Diskussion</entry></row>
         </thead>
         <tbody>
         <row>
         <entry><para>Master LDAP Server</para></entry>
         <entry><para>Slave LDAP Server</para></entry>
-        <entry><para>The optimal solution that provides high integrity. The SAM will be
-		replicated to a common master LDAP server.</para></entry>
+        <entry><para>Die optimale Lösung, die hohe Integrität gewährleistet. Die SAM wird auf einen
+		üblichen LDAP-Master-Server repliziert.</para></entry>
         </row>
         <row>
         <entry><para>Single Central LDAP Server</para></entry>
         <entry><para>Single Central LDAP Server</para></entry>
 	<entry><para>
-	A workable solution without fail-over ability. This is a useable solution, but not optimal. 
+	Eine funktionierende Lösung ohne Failover-Fähigkeiten. Dies ist eine brauchbare Lösung, jedoch nicht optimal.
 	</para></entry>
         </row>
         <row>
         <entry><para>tdbsam</para></entry>
         <entry><para>tdbsam + <command>net rpc vampire</command></para></entry>
         <entry><para>
-	Does not work with Samba-3.0.0; may be implemented in a later release. The downside of this solution
-	is that an external process will control account database integrity. This solution may appeal to sites
-	that wish to avoid the complexity of LDAP. The <command>net rpc vampire</command> is used to
-	synchronize domain accounts from the PDC to the BDC.
+	Funktioniert NICHT mit Samba-3.0.0; könnte in einer späteren Release implementiert werden. Der Nachteil dieser
+	Lösung ist, daß ein externer Prozess die Integrität der Konten-DB überwacht. Diese Lösung erscheint für
+	Sites interessant, die die Komplexität von LDAP vermeiden wollen. Der Befehl <command>net rpc vampire</command> 
+	wird verwendet, um die Domänen-Konten des PDCs auf den BDC zu synchronisieren.	
 	</para></entry>
         </row>
         <row>
         <entry><para>tdbsam</para></entry>
         <entry><para>tdbsam + <command>rsync</command></para></entry>
         <entry><para>
-	Do not use this configuration.
-	Does not work because the TDB files are live and data may not have been flushed to disk.
-	Use <command>rsync</command> to synchronize the TDB database files from the PDC to the BDC.
+	Verwenden Sie diese Konfiguration NICHT.
+	Sie funktioniert nicht, weil die tdb-files geöffnet sind und deren Daten noch nicht auf die Platte
+	geschrieben worden sein könnten.
+	Verwenden Sie <command>rsync</command>, um die tdb-files vom PDC auf den BDC zu synchronisieren.	
 	</para></entry>
         </row>
         <row>
         <entry><para>smbpasswd file</para></entry>
         <entry><para>smbpasswd file</para></entry>
         <entry><para>
-	Do not use this configuration.
-	Not an elegant solution due to the delays in synchronization.
-	Use <command>rsync</command> to synchronize the TDB database files from the PDC to the BDC.
-	Can be made to work using a <command>cron</command> job to synchronize data from the PDC to the BDC.
+	Verwenden Sie diese Konfiguration NICHT.
+	Dies ist keine elegante Lösung, wegen der Verzögerungen bei der Synchronisation.
+	Verwenden Sie <command>rsync</command>, um die tdb-files vom PDC auf den BDC zu synchronisieren.
+	Kann zum Funktionieren gebracht werden, mittels Verwendung eines <command>cron</command> job zur
+	Synchronisation.
 	</para></entry>
         </row>
         </tbody>
@@ -129,7 +131,7 @@ let's consider each possible option and look at the pros and cons for each possi
 </sect1>
 
 <sect1>
-<title>Essential Background Information</title>
+<title>Essentielle Hintergrund-Informationen</title>
 
 <para>
 A Domain Controller is a machine that is able to answer logon requests from network
