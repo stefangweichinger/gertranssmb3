@@ -19,16 +19,29 @@ Samba wird derzeit von einem 30 Kopfigen Team von Programmieren entwickelt und w
 </para>
 
 <sect1>
-<title>Background</title>
+<title>Hintergrund</title>
 
 <para>
+Vor langer Zeit gab es ein Schlüsselwort welches auf DCE/RPC referenzierte. Dies stand fuer
+Computing Environment/Remote Procedure Calls and war vom Konzept her eine gute Idee. Ursprünglich
+wurde es von Apollo/HP als NCA1.0 (Network Computing Architecture entwickelt und konnte nur über
+UDP benutzt werden. Als es nötig wurde das ganze über TCP zu betreiben um die Kompatibilität zu
+DECnet3.0 gewährleisten zu können, wurde es neu entworfen, zur Organisation The Open Group gesandt
+und wurde offiziell als DCE/RPC bekannt. Microsoft kam daher und entschied mehr als $20 für eine
+Arbeitsplatz Lizens haben zu wollen und es als eigenes MSRPC verkaufen zu wollen. Von diesem Punkt
+an wurde das Konzept in Form von SMB (Server Message Block, als "was") unter Benutzung von
+NetBIOS (Network Basic Input/Output System, als "wie") als Komatibilitäts-Schicht weiter geführt.
+
+
 Once long ago, there was a buzzword referred to as DCE/RPC. This stood for Distributed
 Computing Environment/Remote Procedure Calls and conceptually was a good idea. It was
 originally developed by Apollo/HP as NCA 1.0 (Network Computing Architecture) and only
 ran over UDP. When there was a need to run it over TCP so that it would be compatible
 with DECnet 3.0, it was redesigned, submitted to The Open Group, and officially became
 known as DCE/RPC. Microsoft came along and decided, rather than pay $20 per seat to
-license this technology, to reimplement DCE/RPC themselves as MSRPC. From this, the
+license this technology, to reimplement DCE/RPC themselves as MSRPC.
+
+From this, the
 concept continued in the form of SMB (Server Message Block, or the "what") using the
 NetBIOS (Network Basic Input/Output System, or the "how") compatibility layer. You can
 run SMB (i.e., transport) over several different protocols; many different implementations
