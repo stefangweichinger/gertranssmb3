@@ -1,10 +1,10 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 8. Stand-alone-Server</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="type.html" title="Part II. Basiswissen zur Server Konfiguration"><link rel="previous" href="domain-member.html" title="Chapter 7. Domain Membership"><link rel="next" href="ClientConfig.html" title="Chapter 9. MS Windows Netzwerk Konfigurationsanleitung"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 8. Stand-alone-Server</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="domain-member.html">Prev</a> </td><th width="60%" align="center">Part II. Basiswissen zur Server Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="ClientConfig.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="StandAloneServer"></a>Chapter 8. Stand-alone-Server</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Stefan</span> <span class="othername">G.</span> <span class="surname">Weichinger</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:monitor@oops.co.at">monitor@oops.co.at</a>&gt;</tt></p></div></div></div></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="StandAloneServer.html#id2900101">Eigenschaften und Vorteile</a></dt><dt><a href="StandAloneServer.html#id2900147">Hintergrund</a></dt><dt><a href="StandAloneServer.html#id2900243">Beispiel-Konfiguration</a></dt><dd><dl><dt><a href="StandAloneServer.html#RefDocServer">Referenz-Dokumentations-Server</a></dt><dt><a href="StandAloneServer.html#SimplePrintServer">Central Print Serving</a></dt></dl></dd><dt><a href="StandAloneServer.html#id2900875">Common Errors</a></dt></dl></div><p>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 8. Stand-alone-Server</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="type.html" title="Part II. Basiswissen zur Server Konfiguration"><link rel="previous" href="domain-member.html" title="Chapter 7. Domain Membership"><link rel="next" href="ClientConfig.html" title="Chapter 9. MS Windows Netzwerk Konfigurationsanleitung"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 8. Stand-alone-Server</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="domain-member.html">Prev</a> </td><th width="60%" align="center">Part II. Basiswissen zur Server Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="ClientConfig.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="StandAloneServer"></a>Chapter 8. Stand-alone-Server</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Stefan</span> <span class="othername">G.</span> <span class="surname">Weichinger</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:monitor@oops.co.at">monitor@oops.co.at</a>&gt;</tt></p></div></div></div></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="StandAloneServer.html#id2900086">Eigenschaften und Vorteile</a></dt><dt><a href="StandAloneServer.html#id2900131">Hintergrund</a></dt><dt><a href="StandAloneServer.html#id2900227">Beispiel-Konfiguration</a></dt><dd><dl><dt><a href="StandAloneServer.html#RefDocServer">Referenz-Dokumentations-Server</a></dt><dt><a href="StandAloneServer.html#SimplePrintServer">Zentrales Druck-Serving</a></dt></dl></dd><dt><a href="StandAloneServer.html#id2900903">Gängige Fehler</a></dt></dl></div><p>
 Stand-alone-Server sind im Netzwerk unabhängig von Domänen-Controllern.
 Sie sind keine Domänen-Mitglieder und funktionieren eher wie
 Arbeitsgruppen-Server. In vielen Fällen wird ein Stand-alone-Server mit einem
 Minimum an Sicherheits-Kontrolle konfiguriert, mit der Absicht, daß alle Daten
 für alle Benutzer frei zugänglich sein sollen.
-</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2900101"></a>Eigenschaften und Vorteile</h2></div></div><div></div></div><p>
+</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2900086"></a>Eigenschaften und Vorteile</h2></div></div><div></div></div><p>
 Stand-alone-Server können so sicher oder so unsicher gemacht werden, wie es die
 Anforderungen vorgeben. Sie können simple oder komplexe Konfigurationen haben.
 Generell, trotz all dem Trara um Domänen-Sicherheit, bleiben sie eine sehr gängige
@@ -22,7 +22,7 @@ die von einem einzelnen zentralen Server angesteuert werden. Jeder muß auf die D
 drucken können, es gibt keinen Grund, irgendwelche Zugriffskontrolle einzusetzen,
 und keine Dateien werden vom Druckserver bereitgestellt. Wieder ist ein Stand-alone-Server
 im Freigaben-Modus (share) eine großartige Lösung.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2900147"></a>Hintergrund</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2900131"></a>Hintergrund</h2></div></div><div></div></div><p>
 Der Begriff <span class="emphasis"><em>Stand-alone-Server</em></span> bedeutet, daß er
 lokale Authentifikation und Zugriffs-Kontrolle für alle Ressourcen, die über ihn 
 zugänglich sind, anbietet. Allgemein bedeutet das, daß es eine lokale Benutzer-Datenbank
@@ -48,54 +48,57 @@ auf einem anderen Server liegen. Wir würden dies den Authentifikations-Server ne
 Das bedeutet, daß der Samba-Server die lokale UNIX/Linux-Passwort-DB verwenden kann
 (<tt class="filename">/etc/passwd</tt> oder <tt class="filename">/etc/shadow</tt>), die lokale Datei
 smbpasswd, oder ein LDAP-Backend, oder sogar via PAM und Winbind einen anderen CIFS/SMB-Server.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2900243"></a>Beispiel-Konfiguration</h2></div></div><div></div></div><p>
-Die Beispiele, <a href="StandAloneServer.html#simplynice" title="Example 8.1. smb.conf for Reference Documentation Server">???</a>, and link linkend="SimplePrintServer"/&gt;,
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2900227"></a>Beispiel-Konfiguration</h2></div></div><div></div></div><p>
+Die Beispiele, <a href="StandAloneServer.html#simplynice" title="Example 8.1. smb.conf für den Referenz-Dokumentations-Server">???</a>, and link linkend="SimplePrintServer"/&gt;,
 wurden entworfen, um Einfachheit zu inspirieren. Es ist oft gar zu leicht, einen hohen
 Grad an Kreativität anzustreben, und damit zu viel Komplexität ins Design von Server und
 Netzwerk zu bringen.
 </p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="RefDocServer"></a>Referenz-Dokumentations-Server</h3></div></div><div></div></div><p>
-Configuration of a read-only data server that everyone can access is very simple.
-<a href="StandAloneServer.html#simplynice" title="Example 8.1. smb.conf for Reference Documentation Server">???</a> is the <tt class="filename">smb.conf</tt> file that will do this. Assume that all the reference documents
-are stored in the directory <tt class="filename">/export</tt>, and the documents are owned by a user other than
-nobody. No home directories are shared, and there are no users in the <tt class="filename">/etc/passwd</tt>
-UNIX system database. This is a simple system to administer.
-</p><div class="example"><a name="simplynice"></a><p class="title"><b>Example 8.1. smb.conf for Reference Documentation Server</b></p><table class="simplelist" border="0" summary="Simple list"><tr><td>#  Global parameters</td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[global]</tt></i></td></tr><tr><td><i class="parameter"><tt>workgroup = MIDEARTH</tt></i></td></tr><tr><td><i class="parameter"><tt>netbios name = GANDALF</tt></i></td></tr><tr><td><i class="parameter"><tt>security = SHARE</tt></i></td></tr><tr><td><i class="parameter"><tt>passdb backend = guest</tt></i></td></tr><tr><td><i class="parameter"><tt>wins server = 192.168.1.1</tt></i></td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[data]</tt></i></td></tr><tr><td><i class="parameter"><tt>comment = Data</tt></i></td></tr><tr><td><i class="parameter"><tt>path = /export</tt></i></td></tr><tr><td><i class="parameter"><tt>guest only = Yes</tt></i></td></tr></table></div><p>
-In <a href="StandAloneServer.html#simplynice" title="Example 8.1. smb.conf for Reference Documentation Server">???</a> above, the machine name is set to GANDALF, the workgroup is set to the name
-of the local workgroup (MIDEARTH) so the machine will appear together with systems with
-which users are familiar. The only password backend required is the &#8220;<span class="quote">guest</span>&#8221; backend to allow default
-unprivileged account names to be used. As there is a WINS server on this networki, we of obviously make use of it.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="SimplePrintServer"></a>Central Print Serving</h3></div></div><div></div></div><p>
-Configuration of a simple print server is easy if you have all the right tools
-on your system.
-</p><div class="orderedlist"><p class="title"><b> Assumptions:</b></p><ol type="1"><li><p>
-	The print server must require no administration.
+Die Konfiguration eines Read-Only Datenservers, auf den jeder zugreifen kann, ist sehr einfach.
+<a href="StandAloneServer.html#simplynice" title="Example 8.1. smb.conf für den Referenz-Dokumentations-Server">???</a> ist die <tt class="filename">smb.conf</tt>-Datei, die dies tut. Nehmen wir an, daß all die
+Referenz-Dokumente im Verzeichnis <tt class="filename">/export</tt> gespeichert werden, und daß die
+Dokumente einem anderen User als nobody gehören. Keine home-Verzeichnisse werden freigegeben, und es
+gibt keine Benutzer in der <tt class="filename">/etc/passwd</tt> UNIX-System-Datenbank. Dies ist einfach
+zu administrierendes System.
+</p><div class="example"><a name="simplynice"></a><p class="title"><b>Example 8.1. smb.conf für den Referenz-Dokumentations-Server</b></p><table class="simplelist" border="0" summary="Simple list"><tr><td>#  Global parameters</td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[global]</tt></i></td></tr><tr><td><i class="parameter"><tt>workgroup = MIDEARTH</tt></i></td></tr><tr><td><i class="parameter"><tt>netbios name = GANDALF</tt></i></td></tr><tr><td><i class="parameter"><tt>security = SHARE</tt></i></td></tr><tr><td><i class="parameter"><tt>passdb backend = guest</tt></i></td></tr><tr><td><i class="parameter"><tt>wins server = 192.168.1.1</tt></i></td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[data]</tt></i></td></tr><tr><td><i class="parameter"><tt>comment = Data</tt></i></td></tr><tr><td><i class="parameter"><tt>path = /export</tt></i></td></tr><tr><td><i class="parameter"><tt>guest only = Yes</tt></i></td></tr></table></div><p>
+In obigem Beispiel <a href="StandAloneServer.html#simplynice" title="Example 8.1. smb.conf für den Referenz-Dokumentations-Server">???</a> ist der Hostname auf GANDALF gesetzt,
+die Arbeitsgruppe auf den Namen der lokalen Arbeitsgruppe (MIDEARTH), so daß die Maschine
+gemeinsam mit Maschinen aufscheint, die den Benutzern vertraut sind. Das einzige Passwort-Backend, das
+benötigt wird, ist das &#8220;<span class="quote">guest</span>&#8221;-Backend, um die Verwendung von standardmässigen unprivilegierten
+Benutzernamen zu erlauben. Da es einen WINS-Server im Netz gibt, machen wir natürlich Gebrauch davon.
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="SimplePrintServer"></a>Zentrales Druck-Serving</h3></div></div><div></div></div><p>
+Die Konfiguration eines einfachen Druckservers ist einfach, wenn Sie die richtigen Tools auf Ihrem
+System haben.
+</p><div class="orderedlist"><p class="title"><b> Annahmen:</b></p><ol type="1"><li><p>
+	Der Druck-Server darf keine Administration erfordern.
 	</p></li><li><p>
-	The print spooling and processing system on our print server will be CUPS.
-	(Please refer to <a href="CUPS-printing.html" title="Chapter 19. CUPS Printing Support">???</a> for more information).
+	Das Druck-Spooling- und Verarbeitungs-System auf unserem Druck-Server wird CUPS sein.
+	(Siehe <a href="CUPS-printing.html" title="Chapter 19. CUPS Printing Support">???</a> für mehr Informationen).
 	</p></li><li><p>
-	The print server will service only network printers. The network administrator
-	will correctly configure the CUPS environment to support the printers.
+	Der Druck-Server wird nur Netzwerk-Drucker bedienen. Der Netzwerk-Administrator wird
+	die CUPS-Umgebung korrekt für die Unterstützung der Drucker konfigurieren.
 	</p></li><li><p>
-	All workstations will use only postscript drivers. The printer driver
-	of choice is the one shipped with the Windows OS for the Apple Color LaserWriter.
+	Alle Workstations werden nur Postscript-Treiber verwenden. Der gewählte Druckertreiber
+	ist der mit MS Windows mitgelieferte Treiber für den Apple Color LaserWriter.	
 	</p></li></ol></div><p>
-In this example our print server will spool all incoming print jobs to
-<tt class="filename">/var/spool/samba</tt> until the job is ready to be submitted by
-Samba to the CUPS print processor. Since all incoming connections will be as
-the anonymous (guest) user, two things will be required:
-</p><div class="itemizedlist"><p class="title"><b>Enabling Anonymous Printing</b></p><ul type="disc"><li><p>
-	The UNIX/Linux system must have a <b class="command">guest</b> account.
-	The default for this is usually the account <b class="command">nobody</b>.
-	To find the correct name to use for your version of Samba, do the 
-	following:
+In diesem Beispiel wird unser Druck-Server alle hereinkommenden Druckaufträge in der Datei
+<tt class="filename">/var/spool/samba</tt> spoolen, bis der Job von Samba an den CUPS-Druck-Prozessor
+weitergegeben werden kann. Da alle hereinkommenden Verbindungen unter dem anonymen (Gast-) Benutzer
+laufen werden, sind zwei Dinge erforderlich:
+</p><div class="itemizedlist"><p class="title"><b>Anonymes Drucken aktivieren</b></p><ul type="disc"><li><p>
+	Das UNIX/Linux-System muß ein <b class="command">guest</b>-Konto haben.
+	Der Standard hiefür ist üblicherweise das Konto <b class="command">nobody</b>.
+	Um den korrekten Namen zu finden, der für Ihr System zu verwenden ist,
+	führen Sie folgendes aus:	
 </p><pre class="screen">
 <tt class="prompt">$ </tt><b class="userinput"><tt>testparm -s -v | grep "guest account"</tt></b>
 </pre><p>
-	Make sure that this account exists in your system password
-	database (<tt class="filename">/etc/passwd</tt>).
+	Stellen Sie sicher, daß dieses Konto in Ihrer System-Passwort-Datenbank
+	existiert (<tt class="filename">/etc/passwd</tt>).
 	</p></li><li><p>
-	The directory into which Samba will spool the file must have write
-	access for the guest account. The following commands will ensure that
+	Das Verzeichnis, in welches Samba die Datei spoolen wird, muß
+	Schreibrechte für das Gast-Konto aufweisen. Die folgenden Befehle stellen
+	sicher, daß dieses Verzeichnis benutzbar wird:
 	this directory is available for use:
 </p><pre class="screen">
 <tt class="prompt">root# </tt><b class="userinput"><tt>mkdir /var/spool/samba</tt></b>
@@ -103,18 +106,18 @@ the anonymous (guest) user, two things will be required:
 <tt class="prompt">root# </tt><b class="userinput"><tt>chmod a+rwt /var/spool/samba</tt></b>
 </pre><p>
 	</p></li></ul></div><p>
-The contents of the <tt class="filename">smb.conf</tt> file is shown in <a href="StandAloneServer.html#AnonPtrSvr" title="Example 8.2. smb.conf for Anonymous Printing">???</a>.
+Der Inhalt von <tt class="filename">smb.conf</tt> wird in <a href="StandAloneServer.html#AnonPtrSvr" title="Example 8.2. smb.conf for Anonymous Printing">???</a> gezeigt.
 </p><p>
 </p><div class="example"><a name="AnonPtrSvr"></a><p class="title"><b>Example 8.2. smb.conf for Anonymous Printing</b></p><table class="simplelist" border="0" summary="Simple list"><tr><td>#  Global parameters</td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[global]</tt></i></td></tr><tr><td><i class="parameter"><tt>workgroup = MIDEARTH</tt></i></td></tr><tr><td><i class="parameter"><tt>netbios name = GANDALF</tt></i></td></tr><tr><td><i class="parameter"><tt>security = SHARE</tt></i></td></tr><tr><td><i class="parameter"><tt>passdb backend = guest</tt></i></td></tr><tr><td><i class="parameter"><tt>printing = cups</tt></i></td></tr><tr><td><i class="parameter"><tt>printcap name = cups</tt></i></td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[printers]</tt></i></td></tr><tr><td><i class="parameter"><tt>comment = All Printers</tt></i></td></tr><tr><td><i class="parameter"><tt>path = /var/spool/samba</tt></i></td></tr><tr><td><i class="parameter"><tt>printer admin = root</tt></i></td></tr><tr><td><i class="parameter"><tt>guest ok = Yes</tt></i></td></tr><tr><td><i class="parameter"><tt>printable = Yes</tt></i></td></tr><tr><td><i class="parameter"><tt>use client driver = Yes</tt></i></td></tr><tr><td><i class="parameter"><tt>browseable = No</tt></i></td></tr></table></div><p>
 </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
-<a class="indexterm" name="id2900825"></a>
-<a class="indexterm" name="id2900836"></a>
-On CUPS-enabled systems there is a facility to pass raw data directly to the printer without
-intermediate processing via CUPS print filters. Where use of this mode of operation is desired,
-it is necessary to configure a raw printing device. It is also necessary to enable the raw mime
-handler in the <tt class="filename">/etc/mime.conv</tt> and <tt class="filename">/etc/mime.types</tt>
-files. Refer to <a href="CUPS-printing.html#cups-raw" title="Explicitly Enable raw Printing for application/octet-stream">???</a>.
-</p></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2900875"></a>Common Errors</h2></div></div><div></div></div><p>
-The greatest mistake so often made is to make a network configuration too complex.
-It pays to use the simplest solution that will meet the needs of the moment.
+<a class="indexterm" name="id2900849"></a>
+<a class="indexterm" name="id2900860"></a>
+Auf CUPS-Systemen gibt es eine Funktionalität, um "raw"-Daten direkt an den Drucker weiterzugeben,
+ohne zwischenzeitliches Verarbeiten durch CUPS-Druck-Filter. Wo die Verwendung dieses Modus gewünscht
+ist, ist es notwendig, ein raw-Druck-Device zu konfigurieren. Es ist weiters notwendig, den 
+raw mime handler in den Dateien <tt class="filename">/etc/mime.conv</tt> und <tt class="filename">/etc/mime.types</tt>
+zu aktivieren. Sehen Sie dazu auch <a href="CUPS-printing.html#cups-raw" title="Explicitly Enable raw Printing for application/octet-stream">???</a>.
+</p></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2900903"></a>Gängige Fehler</h2></div></div><div></div></div><p>
+Der größte Fehler ist meist, die Netzwerk-Konfiguration zu komplex zu gestalten.
+Es bewährt sich, die einfachste Lösung zu wählen, die die momentanen Anforderungen erfüllt.
 </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="domain-member.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="type.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ClientConfig.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 7. Domain Membership </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 9. MS Windows Netzwerk Konfigurationsanleitung</td></tr></table></div></body></html>
