@@ -382,123 +382,76 @@ an alle gefundenen IP-Adressen verschickt. Je nachdem, welche Maschine
 zuerst antwortet, führt diese dann den Logon Prozess zu Ende.
 </para>
 
---workmark
-
-
 <para>
 Die Bezeichnung <quote>Arbeitsgruppe</quote> oder <quote>Domain</quote>
-kann sehr verwirrend sein seit diese eine höhere Bedeutung für die
-Beschreibung der Sicherheitsarchitektur in MS Windows Netzwerken haben.
+kann sehr verwirrend sein, seit diese eine höhere Bedeutung für die
+Beschreibung der Sicherheitsarchitektur in MS Windows Netzwerken hat.
 Der Ausdruck <quote>Arbeitsgruppe</quote> bezeichnet eine
-Netzwerkumgebung welche primär im Peer-to-Peer Design aufgebaut ist. In
+Netzwerkumgebung, welche primär im Peer-to-Peer Design aufgebaut ist. In
 einer Arbeitsgruppe sind alle Maschinen für ihre eigene Sicherheit
 selbst zuständig und diese Sicherheit ist nur durch ein Passwort
 gewährleistet (auch als Share Level Security bekannt). In den meisten
-Peer-to-Peer Netzwerken in denen die Benutzer Ihre eigenen Computer
-verwalten wird keinerlei Sicherheit genutzt. Es ist in einer
-Arbeitsgruppen Umgebung möglich das User Level Security einzusetzen,
-dazu muss aber ein Benutzername und ein dazugehörendes Passwort
+Peer-to-Peer-Netzwerken, in denen die Benutzer Ihre eigenen Computer
+verwalten, wird keinerlei Sicherheit genutzt. Es ist in einer
+Arbeitsgruppen-Umgebung möglich, die User Level Security einzusetzen,
+dazu muss aber ein Benutzername und ein zugehöriges Passwort
 verwendet werden.
-#
-The name <quote>workgroup</quote> or <quote>domain</quote> really can be confusing since these 
-have the added significance of indicating what is the security 
-architecture of the MS Windows network. The term <quote>workgroup</quote> indicates 
-that the primary nature of the network environment is that of a 
-peer-to-peer design. In a WORKGROUP, all machines are responsible for 
-their own security, and generally such security is limited to the use of 
-just a password (known as Share Level security). In most situations 
-with peer-to-peer networking, the users who control their own machines 
-will simply opt to have no security at all. It is possible to have 
-User Level Security in a WORKGROUP environment, thus requiring the use 
-of a user name and a matching password.
 </para>
 
 <para>
-In MS Windows Netzwerken ist festgelegt für alle lokalen und Remote
-Conmputer Message Verarbeitung Computername zu verwenden. Das verwendete
+In MS-Windows-Netzwerken ist es festgelegt, für die Verarbeitung der 
+messages aller lokalen und fernen Computer
+Computernamen zu verwenden. Das verwendete
 Protokoll wird Server Message Block (SMB) genannt und diese
 Implementierung verwendet das NetBIOS Protokoll (Network Basic Input
 Output System). NetBIOS kann im LLC (Logical Link Control) Protokoll
 verpackt sein &smbmdash;, in diesem Fall wird das daraus resultierende
 Protokoll NetBEUI (Network Basic Extended User Interface) genannt.
 NetBIOS kann auch über IPX (Internetworking Packet Exchange), wie es
-Novell Netware benutzt, oder über das TCP/IP Protokoll verwendet werden.
+Novell Netware benutzt, oder über das TCP/IP-Protokoll verwendet werden.
 Im letzten Fall wird das daraus resultierende Protokoll NBT oder NetBT
 genannt, das NetBIOS über TCPIP.
-#
-MS Windows networking is thus predetermined to use machine names 
-for all local and remote machine message passing. The protocol used is 
-called Server Message Block (SMB) and this is implemented using 
-the NetBIOS protocol (Network Basic Input Output System). NetBIOS can 
-be encapsulated using LLC (Logical Link Control) protocol &smbmdash; in which case 
-the resulting protocol is called NetBEUI (Network Basic Extended User 
-Interface). NetBIOS can also be run over IPX (Internetworking Packet 
-Exchange) protocol as used by Novell NetWare, and it can be run 
-over TCP/IP protocols &smbmdash; in which case the resulting protocol is called 
-NBT or NetBT, the NetBIOS over TCP/IP.
 </para>
 
 <para>
 MS Windows Computer verwenden eine Reihe von komplexen Mechanismen zur
 Namensauflösung. Da wir es primär mit TCP/IP zu tun haben, werden wir
 uns in dieser Dokumentation nur um diesen Bereich kümmern.
-#
-MS Windows machines use a complex array of name resolution mechanisms. 
-Since we are primarily concerned with TCP/IP, this demonstration is 
-limited to this area.
 </para>
 
 <sect2>
 <title>The NetBIOS Name Cache</title>
 
 <para>
-Alle MS Windows Maschinen besitzen einen Speicherbereich in welchen sie
-die NetBIOS Namen und IP Adressen aller Maschinen speichern mit denen 
-sie in den letzten 10-15 Minuten Kontakt hatten. Es ist am
-effizientesten bei einer Suche einer IP Adresse zu einem Computer diese
+Alle MS Windows Maschinen besitzen einen Speicherbereich, in welchen sie
+die NetBIOS-Namen und IP-Adressen aller Maschinen speichern, mit denen 
+sie in den letzten 10-15 Minuten Kontakt hatten. Es ist
+effizienter, bei einer Suche einer IP-Adresse zu einem Computer diese
 Information aus dem lokalen Cache zu erhalten als durch alle konfigurierten Namens
 Auflösungs Mechanismen durchzugehen.
-#
-All MS Windows machines employ an in-memory buffer in which is 
-stored the NetBIOS names and IP addresses for all external 
-machines that machine has communicated with over the 
-past 10-15 minutes. It is more efficient to obtain an IP address 
-for a machine from the local cache than it is to go through all the 
-configured name resolution mechanisms.
 </para>
 
 <para>
-Ist eine Maschine deren Name im lokalen Cache liegt beendet bevor der
+Wird eine Maschine, deren Name im lokalen Cache liegt, abgeschaltet, bevor der
 Eintrag ungültig und bereinigt wurde, unterliegt jeder Verbindungsversuch 
 einer Time-Out Verzögerung.
-Ist der Name im Cache wird die Namensauflösung korrekt durchgeführt aber
-die Maschine kann nicht antworten. Das kann die Bentutzer frustrieren
-ist aber leider charakteristisch für diese Protokoll.
-#
-If a machine whose name is in the local name cache has been shut 
-down before the name had been expired and flushed from the cache, then 
-an attempt to exchange a message with that machine will be subject 
-to time-out delays. Its name is in the cache, so a name resolution 
-lookup will succeed, but the machine cannot respond. This can be 
-frustrating for users but is a characteristic of the protocol.
+Ist der Name im Cache, wird die Namensauflösung korrekt durchgeführt, aber
+die Maschine kann nicht antworten. Das kann die Bentutzer frustrieren,
+ist aber leider charakteristisch für dieses Protokoll.
 </para>
 
 <para>
 <indexterm><primary>nbtstat</primary></indexterm>
 <indexterm><primary>nmblookup</primary></indexterm>
-Das MS Windows Utility welches es ermöglicht den NetBIOS Cache zu
-überprüfen wird <quote>nbtstat</quote> genannt.
-Das Samba Gegenstück wird <command>nmblookup</command> genannt.
-#
-The MS Windows utility that allows examination of the NetBIOS 
-name cache is called <quote>nbtstat</quote>. The Samba equivalent of this 
-is called <command>nmblookup</command>.
+Das MS-Windows-Utility, welches es ermöglicht, den NetBIOS-Cache zu
+überprüfen, wird <quote>nbtstat</quote> genannt.
+Das Samba-Gegenstück wird <command>nmblookup</command> genannt.
 </para>
 
 </sect2>
 
 <sect2>
-<title>The LMHOSTS File</title>
+<title>Die Datei LMHOSTS</title>
 
 <para>
 <indexterm><primary>LMHOSTS</primary></indexterm>
