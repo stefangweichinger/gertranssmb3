@@ -110,17 +110,15 @@ moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 </sect1>
 
 <sect1>
-<title>File System Access Controls</title>
+<title>Datei System Zugriffs Kontrollen</title>
 
 <para>
-Perhaps the most important recognition to be made is the simple fact that MS Windows NT4/200x/XP
-implement a totally divergent file system technology from what is provided in the UNIX operating system
-environment. First we consider what the most significant differences are, then we look
-at how Samba helps to bridge the differences.
+Es ist wichtig festzustellen dass MS Windows ein voellig anderes Dateizugriffssystem benutzt als UNIXsysteme. Wir werden 
+erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbrücken.
 </para>
 
 	<sect2>
-	<title>MS Windows NTFS Comparison with UNIX File Systems</title>
+	<title>Vergleich zwischen NTFS und dem UNIX Datei System</title>
 
 	<para>
 <indexterm><primary>NTFS</primary></indexterm>
@@ -128,59 +126,51 @@ at how Samba helps to bridge the differences.
 <indexterm><primary>File System</primary><secondary>UNIX</secondary></indexterm>
 <indexterm><primary>File System</primary><secondary>Windows</secondary></indexterm>
 
-	Samba operates on top of the UNIX file system. This means it is subject to UNIX file system conventions
-	and permissions. It also means that if the MS Windows networking environment requires file system
-	behavior that differs from UNIX file system behavior then somehow Samba is responsible for emulating
-	that in a transparent and consistent manner.
+	Samba benutzt das UNIX Dateisystem. d h. Samba verhaelt sich innerhalb der Moeglichkeiten des UNIX Dateisystems. 
+	Aber Samba ist auch verantwortlich das Verhalten des Windows Dateisystems nachzustellen.
 	</para>
 
 	<para>
-	It is good news that Samba does this to a large extent and on top of that provides a high degree
-	of optional configuration to override the default behavior. We look at some of these over-rides,
-	but for the greater part we will stay within the bounds of default behavior. Those wishing to explore
-	the depths of control ability should review the &smb.conf; man page.
+	Gluecklicherweise bietet Samba eine Reihe von Konfigurationsmoeglichkeiten um die Unterschiede zu 
+	ueberbrücken.Wir werden einige dieser Einstellungsmöglichkeiten betrachten, jedoch nicht alle. Wer mehr wissen moechte sollte die 
+	Beschreibung ( man = manual Datei ) der smb.conf lesen.  
 	</para>
 
-	<para>The following compares file system features for UNIX with those of Microsoft Windows NT/200x:
+	<para>Im folgenden ein Vergleich von UNIX und Windows Dateisystem NT/200x:
 	<indexterm><primary>File System</primary><secondary>feature comparison</secondary></indexterm>
 	
 	</para>
 
 	<variablelist>
 		<varlistentry>
-			<term>Name Space</term>
+			<term>Namens Raum</term>
 			<listitem>
 		<para>
-		MS Windows NT4/200x/XP files names may be up to 254 characters long, and UNIX file names
-		may be 1023 characters long. In MS Windows, file extensions indicate particular file types,
-		in UNIX this is not so rigorously observed as all names are considered arbitrary. 
+		Windows Dateinamen können 254 Zeichen lang sein, UNIX beherrscht bis zu 1023 Zeichen. Die 
+		Dateierweiterung beschreibt in Windows einen bestimmten Dateityp, in UNIXsystemen ist das nicht zwingend so.
 		</para>
 		<para>
-		What MS Windows calls a folder, UNIX calls a directory.
+		Was unter Windows ein Ordner ist , heisst in UNIX Verzeichnis. 
 		</para>
 			</listitem>
 		</varlistentry>
 
 		<varlistentry>
-			<term>Case Sensitivity</term>
+			<term>Gross-Kleinschreibung</term>
 			<listitem>
 		<para>
 		<indexterm><primary>8.3 file names</primary></indexterm>
 		<indexterm><primary>File System</primary><secondary>case sensitivity</secondary></indexterm>
-		MS Windows file names are generally upper case if made up of 8.3 (8 character file name
-		and 3 character extension. File names that are longer than 8.3 are case preserving and case
-		insensitive.
+		Im Allgemeinen sind Dateinamen unter Windows 8+3 Zeichen lang und werden Gross erstellt. Dateinamen die 
+		laenger sind, sind in ihrer Schreibweise insensitiv ( d. h. ob gross oder klein geschrieben spielt keine Rolle )
 		</para>
 
 		<para>
-		UNIX file and directory names are case sensitive and case preserving. Samba implements the
-		MS Windows file name behavior, but it does so as a user application. The UNIX file system
-		provides no mechanism to perform case insensitive file name lookups. MS Windows does this
-		by default. This means that Samba has to carry the processing overhead to provide features
-		that are not native to the UNIX operating system environment.
+		Unter UNIX sind alle Dateien und Verzeichnisse Schreibweisen sensitiv ( es spielt sehr wohl eine Rolle 
+		ob eine Datei gross oder klein geschrieben wird.
 		</para>
 		<para>
-		Consider the following. All are unique UNIX names but one single MS Windows file name:
+		Im unteren Beispiel würden die Dateinamen von Windows voellig gleich interpretiert werden , fuer UNIX waeren es drei verschiedene Dateien. 
 		<screen>
 				MYFILE.TXT
 				MyFile.txt
