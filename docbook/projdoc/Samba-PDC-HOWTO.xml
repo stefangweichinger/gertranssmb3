@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <chapter id="samba-pdc">
 
@@ -7,7 +7,7 @@
 	&author.jerry;
 	&author.dbannon;
 	<author>&person.gd; <contrib>LDAP updates</contrib></author>
-        &author.sgw;<contrib>German Translator</contrib>
+	<author>&person.sgw;<contrib>German Translator</contrib></author>
 </chapterinfo>
 
 <title>Die Kontrolle über eine Domäne</title>
@@ -90,96 +90,71 @@ Netzwerk-Clients einer MS-Windows-Sicherheits-Domänen-Umgebung müssen Domänen-Mi
 Die folgenden Funktionalitäten sind in der Release Samba 3 neu:
 </para>
 
-<para>
-#### bookmark weichinger.
-</para>
-
 <itemizedlist>
 	<listitem><para>
-	Windows NT4 domain trusts.
+	Windows NT4 Vertrauens-Domänen.
 	</para></listitem>
 	
 	<listitem><para>
 	<indexterm><primary>Nexus.exe</primary></indexterm>
-	Adding users via the User Manager for Domains. This can be done on any MS Windows
-	client using the <filename>Nexus.exe</filename> toolkit for Windows 9x/Me, or using
-	the SRVTOOLS.EXE package for MS Windows NT4/200x/XP platforms. These packages are
-	available from Microsoft's Web site.
+	Das Hinzufügen von Benutzern via "User Manager for Domains". Dies kann von jedem MS-Windows-Client mittels dem <filename>Nexus.exe</filename> toolkit für Windows 9x/Me, oder mittels dem SRVTOOLS.EXE-Paket für MS Windows NT4/200x/XP-Plattformen durchgeführt werden. Diese Pakete sind auf der Microsoft-Website verfügbar.
 	</para></listitem>
 
 	<listitem><para>
-	Introduces replaceable and multiple user account (authentication)
-	backends. In the case where the backend is placed in an LDAP database,
-	Samba-3 confers the benefits of a backend that can be distributed, replicated
-	and is highly scalable.
+	Die Einführung mehrerer austauschbarer Benutzer-Konten-Backends (Authentifizierungs-Backends).
+	Im Falle der Verwendung von LDAP als Backend profitiert Samba-3 von den Vorzügen eines Backends, das verteilt und repliziert werden kann, sowie hochgradig skalierbar ist.
 	</para></listitem>
 
 	<listitem><para>
-	Implements full Unicode support. This simplifies cross locale internationalization
-	support. It also opens up the use of protocols that Samba-2.2.x had but could not use due
-	to the need to fully support Unicode.
+	Die Einführung voller Unicode-Unterstützung.
+	Dies vereinfacht die Unterstützung internationaler locales. Es eröffnet weiters die Verwendung von Protokollen, die Samba-2.2.x bereits unterstützte, jedoch mangels voller Unicode-Unterstützung nicht verwenden konnte.
 	</para></listitem>
 </itemizedlist>
 
 <para>
-The following functionalities are not provided by Samba-3:
+Die folgenden Funktionalitäten werden von Samba-3 NICHT zur Verfügung gestellt:
 </para>
 <itemizedlist>
 	<listitem><para>
 <indexterm><primary>SAM</primary></indexterm>
-<indexterm><primary>replication</primary></indexterm>
-	SAM replication with Windows NT4 Domain Controllers
-	(i.e., a Samba PDC and a Windows NT BDC or vice versa). This means Samba 
-	cannot operate as a BDC when the PDC is Microsoft-based or 
-	replicate account data to Windows BDCs.
+<indexterm><primary>Replikation</primary></indexterm>
+	SAM-Replikation mit MS-Windows-NT4-Domänen-Controllern
+	(z.B., ein Samba PDC und ein Windows NT BDC oder vice versa). 
+
+	Dies bedeutet, daß Samba NICHT als BDC arbeiten kann, wenn der PDC Microsoft-basiert ist.
+	Weiters bedeutet es, daß Samba Kontodaten NICHT auf MS-BDCs replizieren.
 	</para></listitem>
 	
 	<listitem><para>
-	Acting as a Windows 2000 Domain Controller (i.e., Kerberos and 
-	Active Directory). In point of fact, Samba-3 does have some
-	Active Directory Domain Control ability that is at this time
-	purely experimental that is certain to change as it becomes a
-	fully supported feature some time during the Samba-3 (or later)
-	life cycle. However, Active Directory is more then just SMB &smbmdash;
-	it's also LDAP, Kerberos, DHCP, and other protocols (with proprietary
-	extensions, of course).
+	Das Arbeiten als Windows 2000 Domain Controller 
+	(z.B., Kerberos und Active Directory).
+
+	Tatsächlich hat Samba-3 einige AD-Domänen-Kontroll-Fähigkeiten, die zum jetzigen Zeitpunkt rein experimenteller Natur sind. Diese werden sicherlich zu voll unterstützten Features ausgebaut, sei es während der Existenz von Samba-3 oder zu einem späteren Zeitpunkt. Wie dem auch sei, Active Directory ist mehr als nur SMB &smbmdash;, es ist weiters LDAP, Kerberos, DHCP, und andere Protokolle (selbstverständlich mit proprietären Erweiterungen).
 	</para></listitem>
 
 	<listitem><para>
-	The Windows 200x/XP MMC (Computer Management) Console can not be used
-	to manage a Samba-3 server. For this you can use only the MS Windows NT4
-	Domain Server manager and the MS Windows NT4 Domain User Manager. Both are
-	part of the SVRTOOLS.EXE package mentioned later.
+	Die Windows 200x/XP MMC (Computer Management) Console kann NICHT zum Betrieb eines Samba-3 Servers verwendet werden.
+	Dazu können nur der MS Windows NT4 Domain Server Manager und der MS Windows NT4 Domain User Manager verwendet werden. Beide sind Bestandteil des später erwähnten SVRTOOLS.EXE-Pakets.
 	</para></listitem>
 </itemizedlist>
 
 <para>
-Windows 9x/Me/XP Home clients are not true members of a domain for reasons outlined
-in this chapter. The protocol for support of Windows 9x/Me style network (domain) logons
-is completely different from NT4/Windows 200x type domain logons and has been officially supported
-for some time. These clients use the old LanMan Network Logon facilities that are supported
-in Samba since approximately the Samba-1.9.15 series.
+Windows 9x/Me/XP Home-Clients sind keine vollwertigen Domänen-Mitglieder, aus den hier erwähnten Gründen. Das Protokoll zur Unterstützung von Windows 9x/Me-Netzwerk(-Domänen)-logons unterscheidet sich völlig von dem zur Unterstützung von NT4/Windows 200x-Netzwerk(-Domänen)-logons und wurde einige Zeit offiziell unterstützt. Diese Clients verwenden die alten LanMan-Netzwerk-Logon-Mechanismen, die in Samba ungefähr seit Serie Samba-1.9.15 unterstützt werden.
 </para>
 
 <para>
-Samba-3 implements group mapping between Windows NT groups
-and UNIX groups (this is really quite complicated to explain in a short space). This is 
-discussed more fully in <link linkend="groupmapping"></link>.
+Samba-3 implementiert die Zuweisung von Gruppen zwischen Windows-NT-Gruppen und UNIX-Gruppen (dies ist wirklich sehr schwierig in kurzen Worten zu erklären). Dies wird umfassender in <link linkend="groupmapping"></link> behandelt.
 </para>
 
 <para>
-<indexterm><primary>Machine Trust Accounts</primary></indexterm>
-Samba-3, like an MS Windows NT4 PDC or a Windows 200x Active Directory, needs to store
-user and Machine Trust Account information in a suitable backend datastore. 
-Refer to <link linkend="machine-trust-accounts"></link>. With Samba-3 there can be multiple
-backends for this. A complete discussion of account database backends can be found in
-<link linkend="passdb"></link>.
+<indexterm><primary>Maschinen-Vertrauens-Konten</primary></indexterm>
+Samba-3 muß (wie ein MS Windows NT4 PDC oder ein Windows 200x AD) Benutzer- und Maschinen-Vertrauens-Konten in einem passenden Daten-Backend ablegen. Siehe <link linkend="machine-trust-accounts"></link>. Mit Samba-3 können dazu mehrere Backends verwendet werden. Eine vollständige Diskussion von Konten-Datenbank-Backends finden Sie in <link linkend="passdb"></link>.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Basics of Domain Control</title>
+<title>Grundlagen der Domänen-Verwaltung</title>
 
 <para>
 Over the years, public perceptions of what Domain Control really is has taken on an
