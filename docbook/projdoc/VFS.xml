@@ -51,7 +51,7 @@ Dateien zu loggen und gelöschte Dateien in einen Recycle-Bin zu werfen, wäre <li
 </para>
 
 <para>
-Die Module werden in der Reihenfole benutzt, in der sie angegeben sind. Nehmen wir an,
+Die Module werden in der Reihenfolge benutzt, in der sie angegeben sind. Nehmen wir an,
 Sie möchten ein Virus-Scanner-Modul und ein Recycle-Bin-Modul haben. Es wäre schlauer,
 das Viren Scanner Modul als erstes Modul festzulegen, sodass es eventuelle Viren sofort 
 entdeckt, bevor die Datei von jemand anderem benutzt wird.
