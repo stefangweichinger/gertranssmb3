@@ -186,37 +186,34 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 	zu öffnen bzw. zu blockieren sind. Samba benutzt die folgenden Ports:	
 	</para>
 
-
----sgw
-
 	<simplelist>
-		<member>UDP/137 - used by nmbd</member>
-		<member>UDP/138 - used by nmbd</member>
-		<member>TCP/139 - used by smbd</member>
-		<member>TCP/445 - used by smbd</member>
+		<member>UDP/137 - verwendet von nmbd</member>
+		<member>UDP/138 - verwendet von nmbd</member>
+		<member>TCP/139 - verwendet von smbd</member>
+		<member>TCP/445 - verwendet von smbd</member>
 	</simplelist>
 
 	<para>
-	The last one is important as many older firewall setups may not be
-	aware of it, given that this port was only added to the protocol in
-	recent years. 
+	Der letzte Port ist wichtig, da ihn viele ältere Firewall-Setups möglicherweise
+	nicht berücksichtigen, weil dieser Port erst in den letzten Jahren zum Protokoll
+	hinzugefügt wurde.	
 	</para>
 
 	</sect2>
 
 	<sect2>
-	<title>Using IPC$ Share-Based Denials </title>
+	<title>Verwenden von IPC$-Freigaben-basierenden Ablehnungen</title>
 
 	<para>
-	If the above methods are not suitable, then you could also place a
-	more specific deny on the IPC$ share that is used in the recently
-	discovered security hole. This allows you to offer access to other
-	shares while denying access to IPC$ from potentially untrustworthy
-	hosts.
+	Wenn die obigen Methoden nicht anwendbar sind, könnten Sie auch eine mehr
+	spezifische Ablehnung auf der IPC$-Freigabe setzen, die in einer kürzlich
+	entdeckten Sicherheitslücke verwendet wird. Dies erlaubt Ihnen, Zugriff auf
+	andere Freigaben anzubieten, während Sie den Zugriff von potentiell
+	nicht vertrauenswürdigen Hosts auf IPC$ ablehnen.
 	</para>
 
 	<para>
-	To do this you could use:
+	Um dies zu tun, könnten Sie folgendes verwenden:	
 	</para>
 
 	<para><smbconfblock>
@@ -226,28 +223,30 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 	</smbconfblock></para>
 
 	<para>
-	This instructs Samba that IPC$ connections are not allowed from
-	anywhere except from the two listed network addresses (localhost and the 192.168.115
-	subnet). Connections to other shares are still allowed. As the
-	IPC$ share is the only share that is always accessible anonymously,
-	this provides some level of protection against attackers that do not
-	know a valid username/password for your host.
+	Dies weist Samba an, daß IPC$-Verbindungen nicht erlaubt sind, außer von den zwei
+	angeführten Netzwerk-Adressen (localhost und das Subnetz 192.168.115).
+	Verbindungen zu anderen Freigaben sind weiter erlaubt. Da die IPC$-Freigabe die 
+	einzige Freigabe ist, auf die anonym zugegriffen werden kann, schafft dies einen
+	gewisse Schutz gegen Angreifer, die keine gültige Benutzernamen/Paßwort-Kombination
+	für Ihren Server kennen.
 	</para>
 
 	<para>
-	If you use this method, then clients will be given an <errorname>`access denied'</errorname>
-	reply when they try to access the IPC$ share. Those clients will not be able to
-	browse shares, and may also be unable to access some other resources.  This is not
-	recommended unless you cannot use one of the other methods listed above for some reason.
+	Wenn Sie diese Methode anwenden, werden Clients eine <errorname>`access denied'</errorname>-Meldung
+	erhalten, wenn Sie sich mit der IPC$-Freigabe zu verbinden versuchen. Diese Clients
+	werden keine Freigaben durchsuchen können, und sie können auch manche andere Dienste
+	nicht benutzen können. Diese Methode wird nicht empfohlen, außer Sie können aus einem
+	bestimmten Grund keine der anderen oben beschriebenen Methoden anwenden.
 	</para>
 
 	</sect2>
 
 	<sect2>
-	<title>NTLMv2 Security</title>
+	<title>NTLMv2-Sicherheit</title>
 
 	<para>
-	To configure NTLMv2 authentication, the following registry keys are worth knowing about:
+	Um NTLMv2-Authentifizierung zu konfigurieren, sind die folgenden Registrierungs-Schlüssel
+	wichtig:
 	</para>
 
 	<para>
@@ -258,9 +257,9 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 	</para>
 
 	<para>
-	The value 0x00000003 means send NTLMv2 response only. Clients will use NTLMv2 authentication,
-	use NTLMv2 session security if the server supports it. Domain Controllers accept LM,
-	NTLM and NTLMv2 authentication.
+	Der Wert 0x00000003 bedeutet, daß nur NTLMv2-Antworten gesendet werden.
+	Clients werden NTLMv2-Authentifizierung verwenden, und NTLMv2-Session-Security, wenn
+	es der Server unterstützt. Domänen-Controller akzeptieren LM, NTLM, und NTLMv2-Authentifizierung.
 	</para>
 
 	<para>
@@ -271,21 +270,22 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 	</para>
 
 	<para>
-	The value 0x00080000 means permit only NTLMv2 session security. If either NtlmMinClientSec or
-	NtlmMinServerSec is set to 0x00080000, the connection will fail if NTLMv2
-	session security is not negotiated.
+	Der Wert 0x00080000 bedeutet, daß nur NTLMv2-Session-Security akzeptiert wird.
+	Wenn entweder NtlmMinClientSec oder NtlmMinServerSec auf 0x00080000 gesetzt ist, wird
+	die Verbindung fehlschlagen, wenn NTLMv2-Session-Security nicht verhandelt wird.
 	</para>
 	</sect2>
 </sect1>
 
 <sect1>
-<title>Upgrading Samba</title>
+<title>Upgrade von Samba</title>
 
 <para>
-Please check regularly on <ulink noescape="1" url="http://www.samba.org/">http://www.samba.org/</ulink> for updates and
-important announcements. Occasionally security releases are made and 
-it is highly recommended to upgrade Samba when a security vulnerability
-is discovered. Check with your OS vendor for OS specific upgrades.
+Bitte überprüfen Sie regelmässig <ulink noescape="1" url="http://www.samba.org/">http://www.samba.org/</ulink>
+für Updates und wichtige Verlautbarungen. Gelegentlich werden Sicherheits-Releases herausgegeben, und es
+ist wärmstens empfohlen, ein Upgrade von Samba durchzuführen, wenn eine Sicherheits-Lücke entdeckt wird.
+Prüfen Sie auch die Seiten des Lieferanten Ihres Betriebssystems auf Upgrades, die spezifisch für Ihr
+Betriebssystem sind. 
 </para>
 
 </sect1>
