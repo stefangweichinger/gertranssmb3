@@ -134,100 +134,107 @@ macht es Sinn, jede mögliche Option zu bedenken und deren Vor- und Nachteile abz
 <title>Essentielle Hintergrund-Informationen</title>
 
 <para>
-A Domain Controller is a machine that is able to answer logon requests from network
-workstations. Microsoft LanManager and IBM LanServer were two early products that
-provided this capability. The technology has become known as the LanMan Netlogon service.
+Ein Domänen-Controller ist eine Maschine, die imstande ist, Anmeldeanforderungen von
+Netzwerk-Workstations zu beantworten.  Microsoft LanManager und IBM LanServer waren zwei
+frühe Produkte, die diese Fähigkeit zur Verfügung stellten. Diese Technologie wurde als
+das LanMan Netlogon-Service bekannt.
 </para>
 
 <para>
-When MS Windows NT3.10 was first released, it supported a new style of Domain Control
-and with it a new form of the network logon service that has extended functionality.
-This service became known as the NT NetLogon Service. The nature of this service has
-changed with the evolution of MS Windows NT and today provides a complex array of
-services that are implemented over an intricate spectrum of technologies.
+Als MS Windows NT3.10 veröffentlicht wurde, unterstützte es eine neue Art der Domänen-Verwaltung
+und damit eine neue Form von Netzwerk-Anmelde-Dienst, die erweiterte Funktionalität hat.
+Dieser Dienst wurde als NT-NetLogon-Service bekannt. Die Natur dieses Dienstes hat sich im Laufe
+der Evolution von MS Windows NT verändert und bietet heute ein komplexes Feld von Diensten, die 
+über ein kompliziertes Spektrum von Technologien reichen.
 </para>
 
 <sect2>
-<title>MS Windows NT4-style Domain Control</title>
+<title>MS Windows NT4-style Domänen-Verwaltung</title>
 
 <para>
-Whenever a user logs into a Windows NT4/200x/XP Professional Workstation,
-the workstation connects to a Domain Controller (authentication server) to validate that
-the username and password the user entered are valid. If the information entered
-does not match account information that has been stored in the Domain
-Control database (the SAM, or Security Account Manager database), a set of error
-codes is returned to the workstation that has made the authentication request.
+Wenn immer sich ein Benutzer an einer Windows NT4/200x/XP Professional Workstation anmeldet,
+verbindet sich die Workstation mit einem Domänen-Controller (Authentifikations-Server), um
+zu prüfen, ob der Benutzername und das Passwort, die vom Benutzer eingegeben wurden, gültig sind.
+Wenn die eingegebene Information nicht mit der Konto-Information übereinstimmt, die in der
+Domänen-Verwaltungs-Datenbank (die SAM, oder Security Account Manager Datenbank) abgelegt ist,
+wird ein Satz von Fehler-Codes an die Workstation retourniert, die die Anmelde-Anfrage gestellt hat.
 </para>
 
 <para>
-When the username/password pair has been validated, the Domain Controller
-(authentication server) will respond with full enumeration of the account information
-that has been stored regarding that user in the User and Machine Accounts database
-for that Domain. This information contains a complete network access profile for
-the user but excludes any information that is particular to the user's desktop profile,
-or for that matter it excludes all desktop profiles for groups that the user may
-belong to. It does include password time limits, password uniqueness controls,
-network access time limits, account validity information, machine names from which the
-user may access the network, and much more. All this information was stored in the SAM
-in all versions of MS Windows NT (3.10, 3.50, 3.51, 4.0).
+Wenn das Benutzername/Passwort-Paar überprüft wurde, antwortet der Domänen-Controller 
+(Authentifikations-Server) mit einer vollständigen Aufzählung von der Konto-Information, die
+bezüglich des Benutzers in der Benutzer- und Maschinen-Konten-DB für diese Domäne gespeichert ist.
+Diese Information enthält ein komplettes Netzwerk-Zugriffs-Profil für den Benutzer, aber schließt
+jegliche Information aus, die spezifisch für das Desktop-Profil des Benutzers ist, oder schließt zu
+Zweck alle Desktop-Profile für jene Gruppen aus, denen der Benutzer angehört. Die Information
+enthält Passwort-Zeit-Limits, Passwort-Einzigartigkeits-Überprüfungen, Netzwerk-Zugriffs-Zeit-Limits,
+Konten-Gültigkeits-Information, Maschinen-Namen, von welchen aus der Benutzer auf das Netzwerk
+zugreifen kann, und vieles mehr. All diese Information wurde von allen Versionen von MS Windows NT 
+(3.10, 3.50, 3.51, 4.0) in der SAM gespeichert.
 </para>
 
 <para>
-<indexterm><primary>replication</primary><secondary>SAM</secondary></indexterm>
-The account information (user and machine) on Domain Controllers is stored in two files,
-one containing the Security information and the other the SAM. These are stored in files
-by the same name in the <filename>C:\Windows NT\System32\config</filename> directory. These
-are the files that are involved in replication of the SAM database where Backup Domain
-Controllers are present on the network.
+<indexterm><primary>Replikation</primary><secondary>SAM</secondary></indexterm>
+Die Konten-Information (Benutzer und Maschine) wird auf Domänen-Controllern in 2 Dateien
+gespeichert, eine enthält die Sicherheits-Information, die andere die SAM. Diese werden in 
+gleichnamigen Dateien im Verzeichnis <filename>C:\Windows NT\System32\config</filename> gespeichert.
+Dies sind die Dateien, die in die Replikation der SAM involviert sind, wenn Backup-Domänen-Controller
+im Netzwerk vorhanden sind.
 </para>
 
 <para>
-There are two situations in which it is desirable to install Backup Domain Controllers:
+Es gibt 2 Situationen in welchen es wünschenswert ist, Backup-Domänen-Controller zu installieren:
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	On the local network that the Primary Domain Controller is on, if there are many
-	workstations and/or where the PDC is generally very busy. In this case the BDCs
-	will pick up network logon requests and help to add robustness to network services.
+	Im lokalen Netzwerk des PDCs, wenn es viele Workstations gibt, und/oder wenn
+	der PDC generell sehr stark ausgelastet ist. In diesem Fall werden die BDCs 
+	Anmelde-Anforderungen übernehmen und mithelfen, die Robustheit des Netzes zu erhöhen.
 	</para></listitem>
 
 	<listitem><para>
-	At each remote site, to reduce wide area network traffic and to add stability to
-	remote network operations. The design of the network, the strategic placement of
-	Backup Domain Controllers, together with an implementation that localizes as much
-	of network to client interchange as possible will help to minimize wide area network
-	bandwidth needs (and thus costs).
+	In jeder entfernten Filiale/Abteilung/Installation, um WAN-Verkehr zu reduzieren, und um
+	die Stabilität der Netzwerk-Operationen zu erhöhen. Das Design des Netzwerks, das strategische
+	Platzieren von BDCs, gemeinsam mit einer Implementierung, die den Client-Netzwerk-Austausch
+	möglichst lokal hält, wird den Bedarf an WAN-Bandbreite minimieren helfen (und damit auch
+	deren Kosten).
 	</para></listitem>
 </itemizedlist>
 
 <para>
-The inter-operation of a PDC and its BDCs in a true Windows NT4 environemt is worth
-mentioning here. The PDC contains the master copy of the SAM. In the event that an
-administrator makes a change to the user account database while physically present
-on the local network that has the PDC, the change will likely be made directly to
-the PDC instance of the master copy of the SAM. In the event that this update may
-be performed in a branch office, the change will likely be stored in a delta file
-on the local BDC. The BDC will then send a trigger to the PDC to commence the process
-of SAM synchronization. The PDC will then request the delta from the BDC and apply
-it to the master SAM. The PDC will then contact all the BDCs in the Domain and
-trigger them to obtain the update and then apply that to their own copy of the SAM.
+Die Interaktion von PDC und seinen BDCs in einem Windows NT4-Environment ist es wert, hier
+erwähnt zu werden. Der PDC enthält die Master-Kopie der SAM. In dem Fall, daß ein Administrator
+eine Änderung an der Benutzer-Konten-Datenbank vornimmt, während er physisch im LAN des PDCs ist,
+wird die Veränderung wahrscheinlich direkt am PDC durchgeführt, anstatt in der Master-Kopie der SAM.
+Im Falle, daß diese Veränderung in einer Zweigstelle durchgeführt wird, wird diese Änderung
+wahrscheinlich in einem Delta-file auf dem lokalen BDC gespeichert. Der BDC wird dann einen Trigger
+an den PDC senden, um die Synchronisation der SAM zu beginnen. Dann wird der PDC das Delta-file vom
+BDC anfordern und es auf die Master-SAM anwenden. Danach wird der PDC alle BDCs in der Domäne
+kontaktieren, und per Trigger veranlassen, sich das Update zu holen, und es in ihre eigene Kopie
+der SAM einzuspielen.
 </para>
 
 <para>
-Samba-3 can not participate in true SAM replication and is therefore not able to
-employ precisely the same protocols used by MS Windows NT4. A Samba-3 BDC will
-not create SAM update delta files. It will not inter-operate with a PDC (NT4 or Samba)
-to synchronize the SAM from delta files that are held by BDCs.
+Samba-3 kann nicht an wirklicher SAM-Replikation teilnehmen, und ist daher nicht geeignet, exakt
+dieselben Protokolle zu verwenden wie MS Windows NT4. Ein Samba-3-BDC wird keine SAM-Update-Delta-files
+generieren. Es wird nicht mit einem PDC (NT4 oder Samba) zusammenarbeiten, um die SAM mittels Delta-files
+von BDCS zu synchronisieren.
 </para>
 
 <para>
-Samba-3 cannot function as a BDC to an MS Windows NT4 PDC, and Samba-3 can not
-function correctly as a PDC to an MS Windows NT4 BDC. Both Samba-3 and MS Windows
-NT4 can function as a BDC to its own type of PDC.
+Samba-3 kann nicht als BDC für einen MS Windows NT4 PDC arbeiten, und Samba-3 kann nicht korrekt als
+PDC für einen MS Windows NT4 BDC arbeiten. Sowohl Samba-3 als auch MS Windows NT4 können als BDC für
+ihren eigenen Typ von PDC arbeiten.
 </para>
 
 <para>
+Der BDC hält eine <emphasis>read-only</emphasis>-Version der SAM
+
+--- sgw
+
+
+
 The BDC is said to hold a <emphasis>read-only</emphasis> of the SAM from which
 it is able to process network logon requests and authenticate users. The BDC can
 continue to provide this service, particularly while, for example, the wide area
