@@ -216,7 +216,7 @@ Sie sollten eine Liste der verfügbaren Freigaben erhalten.
 
 <para>
 Sollten Sie ein Meldung <quote>Bad password</quote> erhalten, so dürfte
-es sich um einen falschen Eintrag bei <parameter>hosts allow</paramete>,
+es sich um einen falschen Eintrag bei <parameter>hosts allow</parameter>,
 <parameter>hosts deny</parameter> oder <parameter>valid users</parameter>
 in Ihrer &smb.conf; handeln oder der guest account ist nicht gültig.
 
@@ -483,7 +483,7 @@ Sie sollten eine Liste der verfügbaren Freigaben Ihres Servers erhalten.
 </para>
 
 <para>
-Erhalten Sie eine Meldung in der Art quote><errorname>network name not
+Erhalten Sie eine Meldung in der Art <quote><errorname>network name not
 found</errorname></quote>, dann funktioniert Ihre netbios
 Namensauflösung nicht. Das ist überlicherweise ein Problem mit
 <command>nmbd</command>. Um das zu beheben führen Sie eine der
@@ -541,7 +541,7 @@ kann. Wenn Ihr Computer TCP Wrapper einsetzt fügen Sie für den Client
 <step performance="required">
 
 <para>
-Starten Sie den Befehl: net use x: \\BIGSERVER\TMP</command>
+Starten Sie den Befehl: <command>net use x: \\BIGSERVER\TMP</command>
 Sie sollten nach einem Passwort gefragt werden und nach dessen Eingabe
 eine Meldung <computeroutput>command completed successfully</computeroutput> erhalten. 
 Sollte das nicht der Fall sein ist Ihr PC nicht
@@ -584,7 +584,7 @@ Adresse des Masterbrowsers für diese Arbeitsgruppe erhalten.
 Wenn nicht, dann ist der Auswahlprozess des Masterbrowsers fehlgeschlagen. 
 Warten Sie evtl.  noch ein paar Minuten und versuchen Sie es dann nochmal um zu sehen ob
 es nur etwas langsam ist. Klappt es dann immer noch nicht werfen Sie
-einen Blick zu den browsing Optionen in der &smb.con;.
+einen Blick zu den browsing Optionen in der &smb.conf;.
 Stellen Sie sicher das Sie <smbconfoption><name>preferred master</name><value>yes</value></smbconfoption>
 eingetragen haben um beim starten eine Auswahl des Masterbrowser
 durchgeführt wird.
