@@ -554,100 +554,103 @@ Server verschickt werden (Nur bei verwendung von Klartext-Passwörtern).
 </smbconfblock></para>
 
 <para>
-<!-- Hendrik workmark -->
-By default Samba will convert to lower case the username before attempting to lookup the user
-in the database of local system accounts. Because UNIX usernames conventionally
-only contain lower-case characters, the <smbconfoption><name>username level</name></smbconfoption> parameter
-is rarely needed.
+Samba wird Standardmäßig den Benutzernamen in Kleinbuchstaben umwandeln bevor versucht wird, 
+diesen in der Lokalen Benutzerdatenbank zu authentisieren. Da UNIX Benutzernamen üblicherweise 
+nur Kleinbuchstaben enthalten wird der <smbconfoption><name>username level</name></smbconfoption> Parameter 
+nur selten verwendet.
 </para>
 
 <para>
-However, passwords on UNIX systems often make use of mixed-case characters.
-This means that in order for a user on a Windows 9x/Me client to connect to a Samba
-server using cleartext authentication, the <smbconfoption><name>password level</name></smbconfoption>
-must be set to the maximum number of upper case letters that <emphasis>could</emphasis>
-appear in a password. Note that if the server OS uses the traditional DES version
-of crypt(), a <smbconfoption><name>password level</name></smbconfoption> of 8 will result in case
-insensitive passwords as seen from Windows users. This will also result in longer
-login times as Samba has to compute the permutations of the password string and
-try them one by one until a match is located (or all combinations fail).
+UNIX Systeme machen oftmals Gebraucht von gemischten Groß/Kleinschreibung im Passwort. 
+Dies hat zur Folge, dass unter Benutzung von Klartextpasswörtern bei Windows 9x/Me Systemen, der Parameter 
+<smbconfoption><name>password level</name></smbconfoption> auf das Level der maximal Vorkommenden Anzahl an 
+Großbuchstaben gesetzt werden muss die in einem Passwort vorkommen <emphasis>können</emphasis>. 
+Beachten Sie bitte, dass bei Verwendung der traditionellen DES Verschlüsselung der crypt()-Funktion 
+eine Konfiguration <smbconfoption><name>password level</name></smbconfoption> von 8 sich 
+dahingehend äussert, dass für jede Möglichkeit die das insensitive Passwort haben kann der 
+Server erst dass Passwort verschlüsseln und anschließend vergleichen muss. Dies kann lange 
+Login Zeiten nach sich ziehen bis ein Passwort angenommen bzw. alle Kombinationen fehlschlagen.
 </para>
 
 <para>
-The best option to adopt is to enable support for encrypted passwords wherever
-Samba is used. Most attempts to apply the registry change to re-enable plain-text
-passwords will eventually lead to user complaints and unhappiness.
+Die beste Lösung ist die Unterstützung von verschlüsselten Passwörtern zu aktivieren wo immer 
+Samba genutzt wird. Die meißten Versuche die Registrierung von Windows zu Klartextpasswörtern 
+zu ändern führten zur Verärgerung des Anwenders.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Häufige Fehler</title>
 
 <para>
-We all make mistakes. It is okay to make mistakes, as long as they are made in the right places
-and at the right time. A mistake that causes lost productivity is seldom tolerated, however a mistake
-made in a developmental test lab is expected.
+Wir alle machen fehler. Es ist okay fehler zu machen, solange man sie an den richtigen Stellen 
+am richtigen Zeitpunkt macht. Ein Fehler der zu Produktivitätsausfall führt wird selten tolleriert, 
+wohingegen ein Fehler in einem Entwicklungslabor erwartet wird.
 </para>
 
 <para>
-Here we look at common mistakes and misapprehensions that have been the subject of discussions
-on the Samba mailing lists. Many of these are avoidable by doing your homework before attempting
-a Samba implementation. Some are the result of a misunderstanding of the English language. The
-English language, which has many phrases that are potentially vague and may be highly confusing
-to those for whom English is not their native tongue.
+An dieser Stelle werfen wir einen Blick auf häufige Fehler die Thema aus Diskussionen der 
+Samba Mailing Liste sind. Viele dieser Fehler sind vermeidbar, wenn Sie ihre Hausaufgaben vor 
+der Einführung von Samba machen. Einige sind das Ergebnis von Missverständnissen in Bezug 
+auf die englische Sprache. Die englische Sprache hat viele Phrasen die potentiel Vage und 
+sehr zur Verwirrung führen kann für denjenigen dess Muttersprache nicht Englisch ist.
+(Anmerkung des Übersetzers: Ich hoffe dass ihnen dies hier nicht passiert.)
 </para>
 
 <sect2>
-<title>What Makes Samba a Server?</title>
+<title>Was macht Samba zu einem Server?</title>
 
 <para>
 To some the nature of the Samba <emphasis>security</emphasis> mode is obvious, but entirely
-wrong all the same. It is assumed that <smbconfoption><name>security</name><value>server</value></smbconfoption> means that Samba
-will act as a server. Not so! This setting means that Samba will <emphasis>try</emphasis>
-to use another SMB server as its source for user authentication alone.
+wrong all the same.
+Es wird oftmals angenommen, dass <smbconfoption><name>security</name><value>server</value></smbconfoption> bedeutet, 
+dass Samba als Server aggiert. Dies ist nicht so! Diese Einstellung bedeutet dass Samba <emphasis>versucht</emphasis>
+einen anderen SMB Server für sich selbst als Quelle zur Authentisierung zu verwenden.
 </para>
 
 </sect2>
 
 <sect2>
-<title>What Makes Samba a Domain Controller?</title>
+<title>Was macht Samba zu einem Domänencontroller?</title>
 
 <para>
-The &smb.conf; parameter <smbconfoption><name>security</name><value>domain</value></smbconfoption> does not really make Samba behave
-as a Domain Controller. This setting means we want Samba to be a Domain Member.
+Der &smb.conf; Parameter <smbconfoption><name>security</name><value>domain</value></smbconfoption> macht Samba nicht zu 
+einem Domänencontroller sondern besagt, dass der Samba Server einer Domäne als Mitglied angehören soll.
 </para>
 
 </sect2>
 
 <sect2>
-<title>What Makes Samba a Domain Member?</title>
+<title>Was macht Samba zu einem Domänenmitglied?</title>
 
 <para>
-Guess! So many others do. But whatever you do, do not think that <smbconfoption><name>security</name><value>user</value></smbconfoption>
-makes Samba act as a Domain Member. Read the manufacturer's manual before the warranty expires. See
-<link linkend="domain-member"></link> for more information.
+Raten Sie! So machen es viele anderen. Aber was auch immer Sie tun, glauben Sie nicht, dass 
+<smbconfoption><name>security</name><value>user</value></smbconfoption> Samba zu einem 
+Domänenmitglied werden lässt. Lesen Sie hier weiter: <link linkend="domain-member"></link>
 </para>
 
 </sect2>
 
 
 <sect2>
-<title>Constantly Losing Connections to Password Server</title>
+<title>Verlieren der Verbindung zum Passwort Server</title>
 
 <para>
 	<quote>
-Why does server_validate() simply give up rather than re-establish its connection to the
-password server?  Though I am not fluent in the SMB protocol, perhaps the cluster server
-process passes along to its client workstation the session key it receives from the password
-server, which means the password hashes submitted by the client would not work on a subsequent
-connection whose session key would be different. So server_validate() must give up.</quote>
+Warum gibt server_validate() einfach auf statt die Verbindung zum Passwort Server wieder 
+aufzubauen? Da ich das SMB Protokoll nicht so gut kenne vermute ich, dass der cluster server 
+den Session-Key vom Passwort-Server zu den Client Arbeitsstationen weiterreicht, was bedeutet 
+dass die Passwort-Hashes der Clients nicht auf der gleichen funktionieren da der Session-Key 
+anders sein könnte, somit muss server_validate() an dieser Stelle abbrechen.
+</quote>
 </para>
 
 <para>
-Indeed. That's why <smbconfoption><name>security</name><value>server</value></smbconfoption>
-is at best a nasty hack. Please use <smbconfoption><name>security</name><value>domain</value></smbconfoption>;
-<smbconfoption><name>security</name><value>server</value></smbconfoption> mode is also known as pass-through authentication.
+Genau! Das ist der Grund warum <smbconfoption><name>security</name><value>server</value></smbconfoption> 
+ein gemeiner Hack ist. Bitte verwenden Sie <smbconfoption><name>security</name><value>domain</value></smbconfoption>;
+<smbconfoption><name>security</name><value>server</value></smbconfoption> Modus ist auch als pass-through Authentisierung 
+bekannt.
 </para>
 
 </sect2>
