@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="CUPS-printing">
 
 <chapterinfo>
@@ -18,7 +19,7 @@
 	</author>
 
 	<author>&person.jelmer;<contrib>drawings</contrib></author>
-
+        <author>&person.reiss;<contrib>Deutsche Übersetzung</contrib></author>
 	<pubdate> (27 Jan 2004) </pubdate>
 </chapterinfo>
 
