@@ -3,7 +3,25 @@
 
 Dieses README soll laufend auftretende Fragen zur Formatierung und Uebersetzung der xml-Seiten beantworten.
 
+Für Newbies: Wenn Dich der Inhalt dieser Datei abschreckt, kontaktiere mich einfach, und ich werde die
+notwendigen Edits für Dich vornehmen, damit Du mit der Übersetzungsarbeit beginnen kannst.
+
 ###########################################################################################################
+
+---===---===---===---===---===---===---===---===---===---===---===---===
+
+- Editor
+
+---===---===---===---===---===---===---===---===---===---===---===---===
+
+Generell ist für die Übersetzungsarbeit KEIN XML-Editor erforderlich,
+im Gegenteil ist von der Verwendung eines solchen sogar abzuraten, da
+dieser die XML-tags ändert, bzw. neue einfügt, was zu Problemen beim
+Generieren der diversen Output-Formate führt.
+
+Verwendet einen Texteditor wie vim, emacs oder Ähnliches. Mit dem z.B.
+in vim verfügbaren Syntax-Highlighting ist das Bearbeiten des XML-Codes
+sehr gut möglich.
 
 ---===---===---===---===---===---===---===---===---===---===---===---===
 
@@ -34,12 +52,9 @@ Bitte verwendet den "German Translator"-Eintrag, wir wollen nicht dadurch auffal
 
 sgw, 18.11.03
 
-
-
-
 ---===---===---===---===---===---===---===---===---===---===---===---===
 
-- Sonderzeichen 
+- Sonderzeichen, Zeichensatz
 
 ---===---===---===---===---===---===---===---===---===---===---===---===
 
@@ -66,7 +81,6 @@ darauf achten, daß auch das Terminal-Programm auf ISO-8859-1 arbeitet.
 
 sgw, 18.11.03
 
-
+Dieser Header ist ZWINGEND einzufügen!
 
 ---===---===---===---===---===---===---===---===---===---===---===---===
-
