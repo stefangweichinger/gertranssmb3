@@ -1,32 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="Backup">
 <chapterinfo>
 	&author.jht;
+	<author>&person.hba;<contrib>German Translator</contrib></author>
 </chapterinfo>
 
-<title>Samba Backup Techniques</title>
+<TITLE>Samba Backup Techniken</TITLE>
 
 <sect1>
-<title>Note</title>
+<TITLE>Hinweis</TITLE>
 
 <para>
-This chapter did not make it into this release.
-It is planned for the published release of this document.
+Dieses Kapitel konnte nicht mehr in dieser Ausgabe veröffentlicht werden.
+Die Veröffentlichung ist für die nächsten Ausgaben geplant.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Features and Benefits</title>
+<TITLE>Besonderheiten und Vorteile</TITLE>
 
 <para>
-We need feedback from people who are backing up samba servers.
-We would like to know what software tools you are using to backup
-your samba server/s.
+Das Samba Entwicklungsteam benötigt Feedback von Personen die ihre Samba Server
+sichern, also eine Sicherungskopie erstellt haben. Sie möchten wissen welche Art von Software
+Sie verwendet haben und wie die Rücksicherung funktioniert hat.
 </para>
 
 <para>
-In particular, if you have any success and / or failure stories you could
-share with other users this would be appreciated.
+Wenn Sie im einzelnen Erfolg oder Fehler beim Backup von Samba Servern hatten, 
+teilen Sie diese Information bitte mit dem Samba Team.
 </para>
 
 </sect1>
