@@ -289,46 +289,46 @@ Nachdem wir die obigen Zeichen erklärt haben, werden wir näher auf diese Methode
 
 	<varlistentry><term>control-flag</term><listitem>
                 <para>
-		Die control-flag wird bentutzt um festzulegen wie die PAM Bibliothek auf einen Erfolg oder Misserfolg
+		Die control-flag wird benutzt, um festzulegen, wie die PAM-Bibliothek auf einen Erfolg oder Misserfolg
 		des mit ihr verbundenen Moduls reagiert. Seit Module gestapelt werden können (Module des gleichen Typs 
-		nacheinander geschaltet so, dass eins nach dem anderen ausgeführt wird), legen die control-flags auch die
+		nacheinander geschaltet, sodass eins nach dem anderen ausgeführt wird), legen die control-flags auch die
 		relative Wichtigkeit dieser fest. Der Applikation wird nicht der Erfolg oder Misserfolg jedes Moduls in der 
 		<filename>/etc/pam.conf</filename> Datei mitgeteilt, sondern sie erhält eine Zusammenfassung des Erfolgs
-		oder Misserfolgs von der Linux-PAM Bibliothek. Die Reihenfolge in der diese Module ausgeführt werden ist
-		die der Einträge in <filename>/etc/pam.conf</filename>; Der Erste Eintrag wird als erstes ausgeführt und
-		der Letzte zum Schluss. Ab Linux-PAM v0.60, kann diese control-flag mit einer von zwei Syntaxes angegeben
+		oder Misserfolgs von der Linux-PAM-Bibliothek. Die Reihenfolge, in der diese Module ausgeführt werden ist
+		die der Einträge in <filename>/etc/pam.conf</filename>; der erste Eintrag wird als erstes ausgeführt und
+		der Letzte zum Schluss. Ab Linux-PAM v0.60 kann dieser control-flag mit einer von zwei Syntaxes angegeben
 		werden.
 		</para>
 		
 
 		<para>
-		Die einfachere (und historische) Syntax für die Control-flag ist ein einzelnes Schlüsselwort welches
+		Die einfachere (und historische) Syntax für das control-flag ist ein einzelnes Schlüsselwort, welches
 		die Wichtigkeit des Erfolgs oder Misserfolgs des Moduls festlegt. Es gibt vier solcher Schlüsselworte:
 		<parameter>required, requisite, sufficient und optional</parameter>.
 		</para>
 
 		<para>
-		Die Linux-PAM Bibliothek interpretiert diese Schlüsselwörter wie folgt:
+		Die Linux-PAM-Bibliothek interpretiert diese Schlüsselwörter wie folgt:
 		</para>
 
 		<itemizedlist>
 			<listitem><para>
-			<parameter>required:</parameter> Dies gibt an dass der Efolg dieses Moduls essentiell für den Erfolg
+			<parameter>required:</parameter> Dies gibt an, dass der Efolg dieses Moduls essentiell für den Erfolg
 			des mit diesem Modul verbunden Dienstes ist. Ein Misserfolg dieses Moduls wird dem Benutzer nicht
-			mitgeteilt bevor nicht alle anderen Module (des selben Modul-typen) ausgeführt wurden.
+			mitgeteilt, bevor nicht alle anderen Module (des selben Modul-Typs) ausgeführt wurden.
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>requisite:</parameter> Gleich wie required, nur dass es im Falle eines Misserfolges die
+			<parameter>requisite:</parameter> Gleich wie required, nur dass im Falle eines Misserfolges die
 			Kontrolle direkt an die Applikation zurückgegeben wird. Der Rückgabewert ist der gleiche wie bei einem
-			Misserfolg des ersten Moduls. Diese Flag kann gesetzt werden um dem Benutzer die Möglichkeit zu nehmen
-			über ein unsicheres Medium das Passwort einzugeben. Es wäre möglich dass dies einem Angreifer Informationen
-			über Benutzernamen geben könnte. Dieser Möglichkeit sollte aber entgegengehalten werden dass sonst eventuell
+			Misserfolg des ersten Moduls. Diese Flag kann gesetzt werden, um dem Benutzer die Möglichkeit zu nehmen,
+			über ein unsicheres Medium das Passwort einzugeben. Es wäre möglich, dass dies einem Angreifer Informationen
+			über Benutzernamen geben könnte. Dieser Möglichkeit sollte aber entgegengehalten werden, da sonst eventuell
 			Passwörter durch eine unsichere Umgebung gehen könnten.
 			</para></listitem>
 
                         <listitem><para>
-                        <parameter>sufficient:</parameter> Der Erfolg dieses Moduls genügt damit die Linux-PAM Bibliothek ausgibt dass
+                        <parameter>sufficient:</parameter> Der Erfolg dieses Moduls genügt, damit die Linux-PAM-Bibliothek ausgibt, dass
 			dieses Modul erfolgreich in seinem Zweck war. Im Fall, dass kein vorhergehendes wichtiges (<parameter> required</parameter>)
 			Modul Misserfolg zurückgab, wird kein weiteres <quote>gestapeltes</quote> Modul ausgeführt (in diesem Fall werden auch keine
 			weiteren wichtigen Module mehr ausgeführt). Ein Fehlschlagen dieses Moduls allein genügt nicht für das Fehlschlagen des
@@ -336,19 +336,19 @@ Nachdem wir die obigen Zeichen erklärt haben, werden wir näher auf diese Methode
 			</para></listitem>
 
                         <listitem><para>
-                        <parameter>optional:</parameter> Wie der Name schon sagt, bedeutet diese Flag dass das dazugehörige Modul
-			keinen kritischen Einfluss auf den Erfolg der Applikation des Benutzers hat. Wenn Linux-PAM festlegen muss
+                        <parameter>optional:</parameter> Wie der Name schon sagt, bedeutet dieses Flag, dass das zugehörige Modul
+			keinen kritischen Einfluss auf den Erfolg der Applikation des Benutzers hat. Wenn Linux-PAM festlegen muss,
 			ob ein Modul-Stapel erfolgreich war, werden diese Module normalwerweise ignoriert. Gibt jedoch kein vorhergehendes
 			oder nachfolgendes Modul des Stapels eine definitve Rückgabe über den Erfolg, ist der Rückgabewert dieses Moduls ausschlaggebend
-			für den Erfolg des Modul-Stapels. Ein Beispiel für diesen Fall wäre wenn die anderen Module eine Rückgabe wie 
+			für den Erfolg des Modul-Stapels. Ein Beispiel für diesen Fall wäre, wenn die anderen Module eine Rückgabe wie 
 			PAM_IGNORE geben würden.
 			</para></listitem>
 		</itemizedlist>
 
 		<para>
 		Die besser ausgearbeitete (und neuere) Syntax ist viel spezifischer und gibt dem Administrator mehr Möglichkeiten
-		und Kontrolle wie der Benutzer authentifiziert wird. Diese Form der Kontroll Flaggen wird mit eckigen Klammern
-		abgegrenzt und besteht aus einer Serie von <parameter>value=action</parameter> Zeichen.
+		und Kontrolle darüber, wie der Benutzer authentifiziert wird. Diese Form der Kontroll-Flags wird mit eckigen Klammern
+		abgegrenzt und besteht aus einer Serie von <parameter>value=action</parameter>-Paaren.
 		</para>
 
 <para><programlisting>
@@ -369,46 +369,46 @@ Nachdem wir die obigen Zeichen erklärt haben, werden wir näher auf diese Methode
 </para>
 
 		<para>
-		Der letzte dieser <parameter>(default)</parameter> kann dafür benutzt 
-		werden die Aktion für Rückgabewerte festzulegen für die dies nicht explizit angegeben wurde.
+		Der letzte dieser <parameter>(default)</parameter>-Parameter kann dafür benutzt 
+		werden, die Aktion für Rückgabewerte festzulegen, für die dies nicht explizit angegeben wurde.
 		</para>
 
 		<para>
-		Der <parameter>action1</parameter> kann ein positiver Integer sein oder eines der folgenden Zeichen:
-		<parameter>ignore; ok; done; bad; die;</parameter> und <parameter>reset</parameter>. Ein positiver Integer,
-		J, wenn als Aktion fesgelegt, kann benutzt werden um anzugeben dass die nächsten J Module vom momentanen Modul-Stapel
+		Der Parameter <parameter>action1</parameter> kann ein positiver Integer-Wert sein oder eines der folgenden Zeichen:
+		<parameter>ignore; ok; done; bad; die;</parameter> und <parameter>reset</parameter>. Ein positiver Integer J,
+		wenn als Aktion festgelegt, kann benutzt werden, um anzugeben, dass die nächsten J Module vom momentanen Modul-Stapel
 		übersprungen werden. Wird dies richtig angewendet kann der Administrator einen hoch entwickelten Modul-Stapel mit
-		mehreren Ausführungsmöglichkeiten bauen. Welche Möglichkeit schlussendlich genommen wird, kann mit der Reaktion der
+		mehreren Ausführungsmöglichkeiten bauen. Welche Möglichkeit schlussendlich gewählt wird, kann mit der Reaktion der
 		einzelnen Module bestimmt werden.
 		</para>
 
 		<itemizedlist>
 			<listitem><para>
 			<parameter>ignore:</parameter> Wird dieser Parameter mit in einem Modul-Stapel angewendet, beeinflusst
-			die Rückgabe dieses Moduls nicht den Rückgabewert den die Applikation vom gesamten Stapel erhält.
+			die Rückgabe dieses Moduls nicht den Rückgabewert, den die Applikation vom gesamten Stapel erhält.
 			</para></listitem>
 
 			<listitem><para>
-                        <parameter>bad:</parameter> Dies gibt an dass der Rückgabewert dieses Modul ausschlaggebend ist für das
-			fehlschlagen des Moduls. Wenn dieses Modul das erste ist, das erfolglos durchgeführt wir, wird sein Rückgabewert
-			für den Status des gesamten Modul-Stabels verwendet.
+                        <parameter>bad:</parameter> Dies gibt an, dass der Rückgabewert dieses Modul ausschlaggebend ist für das
+			Fehlschlagen des Moduls. Wenn dieses Modul das erste ist, das erfolglos ausgeführt wird, wird sein Rückgabewert
+			für den Status des gesamten Modul-Stapels verwendet.
 			</para></listitem>
 
                         <listitem><para>
-                        <parameter>die:</parameter> Gleich wie <parameter>bad</parameter> nur mit dem Effekt dass der Modul-Stapel und PAM sofort abgebrochen
+                        <parameter>die:</parameter> Gleich wie <parameter>bad</parameter>, nur mit dem Effekt, dass der Modul-Stapel und PAM sofort abgebrochen
 			werden und zur Anwendung zurückgekehrt wird.
 			</para></listitem>
 
                         <listitem><para>
-                        <parameter>ok:</parameter> Dieser Parameter teilt PAM mit das der Administrator glaubt dieser Rückgabewert
+                        <parameter>ok:</parameter> Dieser Parameter teilt PAM mit, dass der Administrator glaubt, dieser Rückgabewert
 			sollte direkt den des gesamten Modul-Stapels beeinflussen. In anderen Worten, wenn der vorherige Wert des
 			Stapels einen Rückgabewert PAM_SUCCESS enthalten hätte, wird er jetzt von dem dieses Moduls überschrieben.
 			Achtung, weist jedoch der vorherige Wert auf den Misserfolg eines Moduls hin, so wird der <parameter>ok</parameter>
-			nicht verwendet um diesen zu überschreiben.
+			nicht verwendet, um diesen zu überschreiben.
 			</para></listitem>
 
                         <listitem><para>
-                        <parameter>done:</parameter> Gleich wie <parameter>ok</parameter> mit dem Effekt dass der Modul-Stapel und PAM sofort abgebrochen
+                        <parameter>done:</parameter> Gleich wie <parameter>ok</parameter>,mit dem Effekt dass der Modul-Stapel und PAM sofort
 			beendet werden und zur Anwendung zurückgekehrt wird.
 			</para></listitem>
 
@@ -426,19 +426,19 @@ Nachdem wir die obigen Zeichen erklärt haben, werden wir näher auf diese Methode
 		<para>
 		<itemizedlist>
 			<listitem><para>
-			<parameter>required</parameter> ist gleichwertig wie <parameter>[success=ok new_authtok_reqd=ok ignore=ignore default=bad]</parameter>.
+			<parameter>required</parameter> ist gleichwertig zu <parameter>[success=ok new_authtok_reqd=ok ignore=ignore default=bad]</parameter>.
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>requisite</parameter> ist gleichwertig wie <parameter>[success=ok new_authtok_reqd=ok ignore=ignore default=die]</parameter>.
+			<parameter>requisite</parameter> ist gleichwertig zu <parameter>[success=ok new_authtok_reqd=ok ignore=ignore default=die]</parameter>.
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>sufficient</parameter> ist gleichwertig wie <parameter>[success=done new_authtok_reqd=done<?latex \linebreak ?> default=ignore]</parameter>.
+			<parameter>sufficient</parameter> ist gleichwertig zu <parameter>[success=done new_authtok_reqd=done<?latex \linebreak ?> default=ignore]</parameter>.
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>optional</parameter> ist gleichwertig wie <parameter>[success=ok new_authtok_reqd=ok default=ignore]</parameter>.
+			<parameter>optional</parameter> ist gleichwertig zu <parameter>[success=ok new_authtok_reqd=ok default=ignore]</parameter>.
 			</para></listitem>
 		</itemizedlist>
 		</para>
