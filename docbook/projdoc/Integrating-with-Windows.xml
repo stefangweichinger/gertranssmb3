@@ -1,14 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="integrate-ms-networks">
  
 <chapterinfo>
 	&author.jht;
         <pubdate> (Jan 01 2001) </pubdate>
+	<author>&person.reiss;<contrib>German Translator</contrib></author>
 </chapterinfo>
  
-<title>Integrating MS Windows Networks with Samba</title>
+<title>Samba in MS Windows Netzwerke integrieren</title>
  
 <para>
 <indexterm><primary>NetBIOS</primary></indexterm>
+Dieses Kapitel handelt über die NETBIOS über TCP/IP Namen zu IP Adressen
+Auflösung.
+Wenn Ihre MS Windows Client's kein NetBIOS über TCP/IP verwenden ist
+dieses Kaptitel für Sie nicht relevant. Sollte Ihre Installation aber
+mit NetBIOS über TCP/IP arbeiten, kann Ihnen dieses Kapitel bei Netzwerkproblemen
+weiterhelfen.
+#
 This section deals with NetBIOS over TCP/IP name to IP address resolution. If
 your MS Windows clients are not configured to use NetBIOS over TCP/IP, then this
 section does not apply to your installation. If your installation
