@@ -637,7 +637,7 @@ an Active Directory environment.
 <!ENTITY prompt "<prompt>$ </prompt>">
 <!ENTITY dosprompt "<prompt>C:\&gt; </prompt>">
 
-<!ENTITY example.workgroup "MIDEARTH">
+<!ENTITY example.workgroup "MITTELERDE">
 <!ENTITY example.server.samba "GANDALF">
 <!ENTITY example.server.windows "SARUMAN">
 <!ENTITY example.workstation.windows "FRODO">
