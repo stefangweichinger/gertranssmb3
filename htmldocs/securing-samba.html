@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 15. Securing Samba</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.60.1"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Advanced Configuration"><link rel="previous" href="locking.html" title="Chapter 14. File and Record Locking"><link rel="next" href="InterdomainTrusts.html" title="Chapter 16. Interdomain Trust Relationships"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 15. Securing Samba</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="locking.html">Prev</a> </td><th width="60%" align="center">Part III. Advanced Configuration</th><td width="20%" align="right"> <a accesskey="n" href="InterdomainTrusts.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="securing-samba"></a>Chapter 15. Securing Samba</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Andrew</span> <span class="surname">Tridgell</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:tridge@samba.org">tridge@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">May 26, 2003</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="securing-samba.html#id2916008">Introduction</a></dt><dt><a href="securing-samba.html#id2916052">Features and Benefits</a></dt><dt><a href="securing-samba.html#id2916138">Technical Discussion of Protective Measures and Issues</a></dt><dd><dl><dt><a href="securing-samba.html#id2916157">Using Host-Based Protection</a></dt><dt><a href="securing-samba.html#id2916259">User-Based Protection</a></dt><dt><a href="securing-samba.html#id2916318">Using Interface Protection</a></dt><dt><a href="securing-samba.html#id2916401">Using a Firewall</a></dt><dt><a href="securing-samba.html#id2916457">Using IPC$ Share-Based Denials </a></dt><dt><a href="securing-samba.html#id2916542">NTLMv2 Security</a></dt></dl></dd><dt><a href="securing-samba.html#id2916601">Upgrading Samba</a></dt><dt><a href="securing-samba.html#id2916626">Common Errors</a></dt><dd><dl><dt><a href="securing-samba.html#id2916645">Smbclient Works on Localhost, but the Network Is Dead</a></dt><dt><a href="securing-samba.html#id2916669">Why Can Users Access Home Directories of Other Users?</a></dt></dl></dd></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2916008"></a>Introduction</h2></div></div><div></div></div><p>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 15. Securing Samba</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.60.1"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="locking.html" title="Chapter 14. File and Record Locking"><link rel="next" href="InterdomainTrusts.html" title="Chapter 16. Interdomain Trust Relationships"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 15. Securing Samba</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="locking.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="InterdomainTrusts.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="securing-samba"></a>Chapter 15. Securing Samba</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Andrew</span> <span class="surname">Tridgell</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:tridge@samba.org">tridge@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">May 26, 2003</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="securing-samba.html#id2916264">Introduction</a></dt><dt><a href="securing-samba.html#id2916308">Features and Benefits</a></dt><dt><a href="securing-samba.html#id2916393">Technical Discussion of Protective Measures and Issues</a></dt><dd><dl><dt><a href="securing-samba.html#id2916413">Using Host-Based Protection</a></dt><dt><a href="securing-samba.html#id2916515">User-Based Protection</a></dt><dt><a href="securing-samba.html#id2916574">Using Interface Protection</a></dt><dt><a href="securing-samba.html#id2916657">Using a Firewall</a></dt><dt><a href="securing-samba.html#id2916714">Using IPC$ Share-Based Denials </a></dt><dt><a href="securing-samba.html#id2916798">NTLMv2 Security</a></dt></dl></dd><dt><a href="securing-samba.html#id2916858">Upgrading Samba</a></dt><dt><a href="securing-samba.html#id2916882">Common Errors</a></dt><dd><dl><dt><a href="securing-samba.html#id2916901">Smbclient Works on Localhost, but the Network Is Dead</a></dt><dt><a href="securing-samba.html#id2916924">Why Can Users Access Home Directories of Other Users?</a></dt></dl></dd></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2916264"></a>Introduction</h2></div></div><div></div></div><p>
 This note was attached to the Samba 2.2.8 release notes as it contained an
 important security fix. The information contained here applies to Samba
 installations in general.
@@ -11,7 +11,7 @@ on it!</span>&#8221;
 Security concerns are just like that. You need to know a little about the subject to appreciate
 how obvious most of it really is. The challenge for most of us is to discover that first morsel
 of knowledge with which we may unlock the secrets of the masters.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2916052"></a>Features and Benefits</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2916308"></a>Features and Benefits</h2></div></div><div></div></div><p>
 There are three levels at which security principals must be observed in order to render a site
 at least moderately secure. They are the perimeter firewall, the configuration of the host
 server that is running Samba and Samba itself.
@@ -28,35 +28,35 @@ auto-share. The <i class="parameter"><tt>[IPC$]</tt></i> share is used for brows
 TCP/IP connections.
 </p><p>
 Another method by which Samba may be secured is by setting Access Control Entries (ACEs) in an Access 
-Control List (ACL) on the shares themselves. This is discussed in <a href="AccessControls.html" title="Chapter 13. Kapitel 13 Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle">???</a>.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2916138"></a>Technical Discussion of Protective Measures and Issues</h2></div></div><div></div></div><p>
+Control List (ACL) on the shares themselves. This is discussed in <a href="AccessControls.html" title="Chapter 13. Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle">???</a>.
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2916393"></a>Technical Discussion of Protective Measures and Issues</h2></div></div><div></div></div><p>
 The key challenge of security is the fact that protective measures suffice at best
 only to close the door on known exploits and breach techniques. Never assume that
 because you have followed these few measures that the Samba server is now an impenetrable
 fortress! Given the history of information systems so far, it is only a matter of time
 before someone will find yet another vulnerability.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916157"></a>Using Host-Based Protection</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916413"></a>Using Host-Based Protection</h3></div></div><div></div></div><p>
 	In many installations of Samba, the greatest threat comes from outside
 	your immediate network. By default, Samba will accept connections from
 	any host, which means that if you run an insecure version of Samba on
 	a host that is directly connected to the Internet you can be
 	especially vulnerable.
 	</p><p>
-	One of the simplest fixes in this case is to use the <a class="indexterm" name="id2916179"></a><i class="parameter"><tt>hosts allow</tt></i> and
-	<a class="indexterm" name="id2916192"></a><i class="parameter"><tt>hosts deny</tt></i> options in the Samba <tt class="filename">smb.conf</tt> configuration file to only
+	One of the simplest fixes in this case is to use the <a class="indexterm" name="id2916433"></a><i class="parameter"><tt>hosts allow</tt></i> and
+	<a class="indexterm" name="id2916448"></a><i class="parameter"><tt>hosts deny</tt></i> options in the Samba <tt class="filename">smb.conf</tt> configuration file to only
 	allow access to your server from a specific range of hosts. An example might be:
 	</p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>hosts allow = 127.0.0.1 192.168.2.0/24 192.168.3.0/24</tt></i></td></tr><tr><td><i class="parameter"><tt>hosts deny = 0.0.0.0/0</tt></i></td></tr></table><p>
 	The above will only allow SMB connections from <tt class="constant">localhost</tt> (your own
 	computer) and from the two private networks 192.168.2 and 192.168.3. All other
 	connections will be refused as soon as the client sends its first packet. The refusal
 	will be marked as <span class="errorname">not listening on called name</span> error.
-	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916259"></a>User-Based Protection</h3></div></div><div></div></div><p>
+	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916515"></a>User-Based Protection</h3></div></div><div></div></div><p>
 	If you want to restrict access to your server to valid users only, then the following
 	method may be of use. In the <tt class="filename">smb.conf</tt> <i class="parameter"><tt>[global]</tt></i> section put:
 	</p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>valid users = @smbusers, jacko</tt></i></td></tr></table><p>
 	This restricts all server access to either the user <span class="emphasis"><em>jacko</em></span>
 	or to members of the system group <span class="emphasis"><em>smbusers</em></span>.
-	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916318"></a>Using Interface Protection</h3></div></div><div></div></div><p>
+	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916574"></a>Using Interface Protection</h3></div></div><div></div></div><p>
 	By default, Samba will accept connections on any network interface that
 	it finds on your system. That means if you have a ISDN line or a PPP
 	connection to the Internet then Samba will accept connections on those
@@ -75,7 +75,7 @@ before someone will find yet another vulnerability.
 	connection refused reply. In that case, no Samba code is run at all as
 	the operating system has been told not to pass connections from that
 	interface to any Samba process.
-	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916401"></a>Using a Firewall</h3></div></div><div></div></div><p>
+	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916657"></a>Using a Firewall</h3></div></div><div></div></div><p>
 	Many people use a firewall to deny access to services they do not
 	want exposed outside their network. This can be a good idea,
 	although I recommend using it in conjunction with the above
@@ -88,7 +88,7 @@ before someone will find yet another vulnerability.
 	The last one is important as many older firewall setups may not be
 	aware of it, given that this port was only added to the protocol in
 	recent years. 
-	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916457"></a>Using IPC$ Share-Based Denials </h3></div></div><div></div></div><p>
+	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916714"></a>Using IPC$ Share-Based Denials </h3></div></div><div></div></div><p>
 	If the above methods are not suitable, then you could also place a
 	more specific deny on the IPC$ share that is used in the recently
 	discovered security hole. This allows you to offer access to other
@@ -108,7 +108,7 @@ before someone will find yet another vulnerability.
 	reply when they try to access the IPC$ share. Those clients will not be able to
 	browse shares, and may also be unable to access some other resources.  This is not
 	recommended unless you cannot use one of the other methods listed above for some reason.
-	</p></div><div xmlns:ns52="" class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916542"></a>NTLMv2 Security</h3></div></div><div></div></div><p>
+	</p></div><div xmlns:ns52="" class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916798"></a>NTLMv2 Security</h3></div></div><div></div></div><p>
 	To configure NTLMv2 authentication, the following registry keys are worth knowing about:
 	</p><ns52:p>
 		</ns52:p><pre class="screen">
@@ -128,24 +128,24 @@ before someone will find yet another vulnerability.
 	The value 0x00080000 means permit only NTLMv2 session security. If either NtlmMinClientSec or
 	NtlmMinServerSec is set to 0x00080000, the connection will fail if NTLMv2
 	session security is not negotiated.
-	</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2916601"></a>Upgrading Samba</h2></div></div><div></div></div><p>
+	</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2916858"></a>Upgrading Samba</h2></div></div><div></div></div><p>
 Please check regularly on <a href="http://www.samba.org/" target="_top">http://www.samba.org/</a> for updates and
 important announcements. Occasionally security releases are made and 
 it is highly recommended to upgrade Samba when a security vulnerability
 is discovered. Check with your OS vendor for OS specific upgrades.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2916626"></a>Common Errors</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2916882"></a>Common Errors</h2></div></div><div></div></div><p>
 If all of Samba and host platform configuration were really as intuitive as one might like them to be, this
 section would not be necessary. Security issues are often vexing for a support person to resolve, not
 because of the complexity of the problem, but for the reason that most administrators who post what turns
 out to be a security problem request are totally convinced that the problem is with Samba.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916645"></a>Smbclient Works on Localhost, but the Network Is Dead</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916901"></a>Smbclient Works on Localhost, but the Network Is Dead</h3></div></div><div></div></div><p>
 	This is a common problem. Red Hat Linux (and others) installs a default firewall.
 	With the default firewall in place, only traffic on the loopback adapter (IP address 127.0.0.1)
 	is allowed through the firewall.
 	</p><p>
 	The solution is either to remove the firewall (stop it) or modify the firewall script to
 	allow SMB networking traffic through. See section above in this chapter.
-	</p></div><div xmlns:ns53="" class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916669"></a>Why Can Users Access Home Directories of Other Users?</h3></div></div><div></div></div><p>
+	</p></div><div xmlns:ns53="" class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2916924"></a>Why Can Users Access Home Directories of Other Users?</h3></div></div><div></div></div><p>
 	&#8220;<span class="quote">
 	We are unable to keep individual users from mapping to any other user's
 	home directory once they have supplied a valid password! They only need
@@ -168,10 +168,10 @@ out to be a security problem request are totally convinced that the problem is w
 	Samba tries very hard not to second guess the UNIX administrators security policies, and
 	trusts the UNIX admin to set the policies and permissions he or she desires.
 	</p><p>
-	Samba allows the behavior you require. Simply put the <a class="indexterm" name="id2916754"></a><i class="parameter"><tt>only user</tt></i> = %S
+	Samba allows the behavior you require. Simply put the <a class="indexterm" name="id2917010"></a><i class="parameter"><tt>only user</tt></i> = %S
 	option in the <i class="parameter"><tt>[homes]</tt></i> share definition.
 	</p><ns53:p>
-	The <a class="indexterm" name="id2916779"></a><i class="parameter"><tt>only user</tt></i> works in conjunction with the <a class="indexterm" name="id2916795"></a><i class="parameter"><tt>users</tt></i> = list,
+	The <a class="indexterm" name="id2917035"></a><i class="parameter"><tt>only user</tt></i> works in conjunction with the <a class="indexterm" name="id2917050"></a><i class="parameter"><tt>users</tt></i> = list,
 	so to get the behavior you require, add the line :
 	</ns53:p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>users = %S</tt></i></td></tr></table><ns53:p>
 	this is equivalent to adding
