@@ -98,16 +98,16 @@ thinking?
 	</para></listitem>
 
 	<listitem><para>
-	NetBIOS: Akronym for "Network Basic Input/Output System". This is not a protocol;
-	it is a method of communication across an existing protocol. This is a standard which
-	was originally developed for IBM by Sytek in 1983. To exaggerate the analogy a bit,
-	it can help to think of this in comparison your computer's BIOS -- it controls the
-	essential functions of your input/output hardware -- whereas NetBIOS controls the
-	essential functions of your input/output traffic via the network. Again, this is a bit
-	of an exaggeration but it should help that paradigm shift. What is important to realize
-	is that NetBIOS is a transport standard, not a protocol. Unfortunately, even technically
-	brilliant people tend to interchange NetBIOS with terms like NetBEUI without a second
-	thought; this will cause no end (and no doubt) of confusion.
+	NetBIOS: Akronym f&uuml;r "Network Basic Input/Output System". Dies ist kein Protokol;
+	es ist eine M&ouml;glichkeit der Kommunikations &uuml;ber ein anderes Protokol.
+	Dies ist ein Standard welcher urspr&uuml;nglich 1983 von IBM entwickelt wurde.
+	Um die Analogie ein wenig zu &uuml;bertreiben k&ouml;nnte man NetBIOS mit dem BIOS ihres Rechners vergleichen,
+	ihr BIOS kontrolliert die Ein-/Ausgabe der Hardware ihres Rechners und NetBIOS kontrolliert die Ein-/Ausgaben
+	&uuml;ber das Netzwerk.
+	Nochmals, dies ist eine kleine &uuml;bertreibung sollte aber helfen dieses Paradigma verst&auml;ndlich zu machen.
+	Was wichtig ist, ist die Tatsache das NetBIOS kein Protokol sondern ein &uuml;bermittlungsstandard ist.
+	Leider tendieren auch technisch Versierte Leute dazu ohne viel dar&uuml;ber nachzudenken NetBIOS mit NetBEUI zu
+	verwechseln;
 	</para></listitem>
 
 	<listitem><para>
