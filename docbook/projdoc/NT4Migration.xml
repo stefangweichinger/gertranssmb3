@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="NT4Migration">
 <chapterinfo>
 	&author.jht;
 	<pubdate>April 3, 2003</pubdate>
+	<author>&person.sgw;<contrib>German Translation</contrib></author>
 </chapterinfo>
 
-<title>Migration from NT4 PDC to Samba-3 PDC</title>
+<title>Migration von einem NT4-PDC auf einen Samba-3-PDC</title>
 
 <para>
 This is a rough guide to assist those wishing to migrate from NT4 Domain Control to
