@@ -201,6 +201,15 @@
 
 <!ENTITY author.flex '<author>&person.flex;</author>'>
 
+<!ENTITY person.reiss '
+<firstname>Thomas</firstname><othername></othername><surname>Reiss</surname>
+<affiliation>
+        <orgname>German Samba-3-Docs-Translation Team</orgname>
+        <address><email>thomas@mypoint.franken.de</email></address>
+</affiliation>'>
+
+<!ENTITY author.reiss '<author>&person.reiss;</author>'>
+
 <!ENTITY person.gertrans '
 <firstname>German</firstname><othername>Translation</othername><surname>Team</surname>
 <affiliation>
