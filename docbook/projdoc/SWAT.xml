@@ -3,9 +3,8 @@
 <chapterinfo>
 	&author.jht;
 	<pubdate>April 21, 2003</pubdate>
+	<author>&person.klimklim;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
-
-<author>&person.klimklim;<contrib>German Translator</contrib></author>
 
 <title>SWAT &smbmdash; Das Samba-Administrations-Werkzeug</title>
 
