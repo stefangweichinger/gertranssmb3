@@ -261,14 +261,14 @@ erst die Unterschiede erklären und dann wie Samba hilft dies zu überbrücken.
 	<title>naging Directories</title>
 
 	<para>
-	There are three basic operations for managing directories: <command>create, delete, rename</command>.
+	Es gibt grunsaetzlich 3 Möglichkeiten um Ordner ( Verzeichnisse ) zu verwalten: <command>create (erstellen), 
+delete (loeschen) , rename ( umbenennen )</command>.
 	<table frame="all">
-		<title>Managing Directories with UNIX and Windows</title>
+		<title>Verwaltung von Ordnern ( Verzeichnisse ) mit UNIX und Windows</title>
 		<tgroup align="center" cols="3">
 		<thead>
-		<row><entry>Action</entry><entry>MS Windows Command</entry><entry>UNIX Command</entry></row>
+		<row><entry>Action</entry><entry>MS Windows Command ( Windows Befehele ) </entry><entry>UNIX Command ( UNIX Befehele )</entry></row>
 		</thead>
-
 		<tbody>
 			<row><entry>create</entry><entry>md folder</entry><entry>mkdir folder</entry></row>
 			<row><entry>delete</entry><entry>rd folder</entry><entry>rmdir folder</entry></row>
@@ -281,21 +281,19 @@ erst die Unterschiede erklären und dann wie Samba hilft dies zu überbrücken.
 	</sect2>
 
 	<sect2>
-	<title>File and Directory Access Control</title>
+	<title>Datei und Ordner ( Verzeichnis ) Zugriffskontrolle ( Verwaltung )</title>
 
 
 	<para>
 	<indexterm><primary>ACLs</primary><secondary>File System</secondary></indexterm>
-	The network administrator is strongly advised to read foundational training manuals and reference materials
-	regarding file and directory permissions maintenance. Much can be achieved with the basic UNIX permissions
-	without having to resort to more complex facilities like POSIX Access Control Lists (ACLs) or Extended
-	Attributes (EAs).
+	Jedem Administrator wird geraten zusaetzliche Handbuecher über dieses Thema zu studieren.
+	Die meisten Faelle koennen mit den grundlegenden Zugriffsmöglichkeiten von UNIX geloest werden.
+	ohne die  (ACLs) or Extended Attributes (EAs), Technologien zu gebrauchen
 	</para>
 
 	<para>
-	UNIX/Linux file and directory access permissions involves setting three primary sets of data and one control set.
-	A UNIX file listing looks as follows:
-<screen>
+	Die Datei, Verzeichnis Verwaltung von UNIX basiert den folgenden Zugriffsmoeglichkeiten:
+	<screen>
 &prompt;<userinput>ls -la</userinput>
 total 632
 drwxr-xr-x   13 maryo   gnomes      816 2003-05-12 22:56 .
@@ -315,50 +313,55 @@ drwsrwsrwx    2 maryo   gnomes       48 2003-05-12 22:29 muchado08
 	</para>
 
 	<para>
-	The columns above represent (from left to right): permissions, number of hard links to file, owner, group, size (bytes), access date, access time, file name.
+	Die Reihen oben repraesentieren ( von rechts nach links ): Berechtigung, Anzahl der "harten" Links einer Datei, 
+	Besitzer ( einer Datei ), die Besitzergruppe und die Groesse in byte.
 	</para>
 
 	<para>
-	An overview of the permissions field can be found in <link linkend="access1"/>.
+	Hier finden Sie eine Uebersicht<link linkend="access1"/>.
 	</para>
 
-	<image id="access1" scale="40"><imagedescription>Overview of UNIX permissions field.</imagedescription><imagefile>access1</imagefile></image>
+	<image id="access1" 
+scale="40"><imagedescription>Uebersicht der UNIX Berechtigungen</imagedescription><imagefile>access1</imagefile></image>
 
 	<para>
-	Any bit flag may be unset. An unset bit flag is the equivalent of <quote>cannot</quote> and is represented as a <quote>-</quote> character.
+	Jedes Bit kann auch unbesetzt sein und wird durch ein Minus ( - )dargestellt.
 
 	<example>
 		<title>Example File</title>
 		<programlisting>
-		-rwxr-x---   Means: The owner (user) can read, write, execute
-		                    the group can read and execute
-		                    everyone else cannot do anything with it.
+		-rwxr-x---   Bedeutet: Der Besitzer kann lesen schreiben ausfuehren 
+		                       Die Gruppe kann lesen und ausfuehren
+		                       Andere haben keine Rechte.
 		</programlisting>
 	</example>
 
 	</para>
 
 	<para>
-	Additional possibilities in the [type] field are: c = character device, b = block device, p = pipe device, s = UNIX Domain Socket.
+	Zusaetzliche Moeglichkeiten im Typen Feld sind [type] : c = character device, b = block device, p = pipe device, s = UNIX Domain Socket.
 	</para>
 
 	<para>
-	The letters <constant>rwxXst</constant> set permissions for the user, group and others as: read (r), write (w), execute (or access for directories) (x),
-	execute  only  if  the  file  is a directory or already has execute permission for some user (X), set user or group ID on execution (s),
-	sticky (t).
+	Die Zeichen <constant>rwxXst</constant> fuer die Berechtigungen fuer Nutzer, Gruppen und anderen sind: 
+	lesen (r), schreiben (w), ausfuehren ( oder Ordner Zugriff ) (x),
+	exclusives ausfuehren ,wenn der Nutzer berechtigt fuer die Datei oder den Ordner ist (X), setzen der ID des 
+	Nutzers bei Ausfuehrung (s),
+	sticky ( begleitendes Bit )(t).
 	</para>
 
 	<para>
-	When the sticky bit is set on a directory, files in that directory may be unlinked (deleted) or renamed only by root or their owner.
-	Without the sticky  bit, anyone able to write to the directory can delete or rename files. The sticky bit is commonly found on
-	directories, such as <filename>/tmp</filename>, that are world-writable.
-	</para>
+	Wenn das sticky bit auf einem Verzeichnis gesetzt ist, koennen darin enthaltene Dateien nur von Nutzer root oder dem 
+	Ersteller der Dateien geloescht werden, in jedem anderem Fall sind alle anderen Dateivorgaenge (loeschen,lesen,umbenennen 
+	erlaubt). Das sticky bit wird haeufig für Verzeichnisse wie das /tmp Verzeichnis benutzt das gewoehnlich für jeden 
+	beschreibbar ist.
+	 </para>
 
 	<para>
-	When the set user or group ID bit (s) is set on a directory, then all files created within it will be owned by the user and/or
-	group whose `set user or group' bit is set. This can be helpful in setting up directories for which it is desired that
-	all users who are in a group should be able to write to and read from a file, particularly when it is undesirable for that file
-	to be exclusively owned by a user whose primary group is not the group that all such users belong to.
+	Wenn das Gruppen oder Nutzer Identitaets Bit gesetzt ist auf einem Verzeichnis, dann werden Nutzer und Gruppen auf  dort 
+	enthaltenen Dateien berechtigt. Dies ermoeglicht das Erstellen von Verzeichnissen auf die alle Nutzer einer Gruppe 
+	zugreifen sollen, auch wenn die primaer Gruppe der Nutzer nicht gleiche ist und es nicht gewuenscht ist das nur ein Nutzer 
+	exklusiv auf eine Datei berechtigt ist.
 	</para>
 
 	<para>
