@@ -17,64 +17,66 @@
 <title>Macintosh Clients</title>
 
 <para>
-Yes. <ulink url="http://www.thursby.com/">Thursby</ulink> has a CIFS Client/Server called <ulink url="http://www.thursby.com/products/dave.html">DAVE.</ulink>
-They test it against Windows 95, Windows NT /200x/XP and Samba for
-compatibility issues. At the time of this writing, DAVE was at version
-4.1. Please refer to Thursby's Web site for more information regarding this
-product.
+Ja. <ulink url="http://www.thursby.com/">Thursby</ulink> hat einen CIFS-Client/Server namens <ulink url="http://www.thursby.com/products/dave.html">DAVE.</ulink>
+Er wird gegen Windows 95, Windows NT /200x/XP und Samba auf Kompatibilität geprüft. Bei Verfassen
+dieses Textes war DAVE in Version 4.1 erhältlich. Bitte konsultieren Sie Thursby's Web-Seite für mehr
+Informationen zu diesem Produkt.
 </para>
 
 <para> 
-Alternatives &smbmdash; There are two free implementations of AppleTalk for
-several kinds of UNIX machines and several more commercial ones.
-These products allow you to run file services and print services
-natively to Macintosh users, with no additional support required on
-the Macintosh. The two free implementations are 
-<ulink url="http://www.umich.edu/~rsug/netatalk/">Netatalk,</ulink> and 
-<ulink url="http://www.cs.mu.oz.au/appletalk/atalk.html">CAP.</ulink> 
-What Samba offers MS Windows users, these packages offer to Macs. 
-For more info on these packages, Samba, and Linux (and other UNIX-based systems), see
+Alternativen &smbmdash; Es gibt zwei freie Implementationen von Appletalk für einige Arten von
+UNIX-Maschinen und noch einige kommerzielle mehr. Diese Produkte erlauben es Ihnen, 
+native Datei- und Druck-Dienste für Macintosh-Benutzer anzubieten, ohne daß weitere Unterstützung
+dafür auf dem Macintosh erforderlich wäre.
+Die zwei freien Implementationen sind
+<ulink url="http://www.umich.edu/~rsug/netatalk/">Netatalk,</ulink> und
+<ulink url="http://www.cs.mu.oz.au/appletalk/atalk.html">CAP.</ulink>
+Diese Packages bieten Macs das, was Samba Benutzern von MS Windows bietet.
+Für mehr Informationen zu diesen Packages, Samba und Linux (sowie andere UNIX-basierende Systeme),
+sehen Sie 
 <ulink noescape="1" url="http://www.eats.com/linux_mac_win.html">http://www.eats.com/linux_mac_win.html.</ulink>
 </para>
 
-<para>Newer versions of the Macintosh (Mac OS X) include Samba.</para>
+<para>Neuere Versionen des Macintosh (Mac OS X) enthalten Samba.</para>
 
 </sect1>
 
 <sect1>
-<title>OS2 Client</title>
+<title>OS/2 Client</title>
 
 	<sect2>
-		<title>Configuring OS/2 Warp Connect or OS/2 Warp 4</title>
+		<title>Das Konfigurieren von OS/2 Warp Connect oder OS/2 Warp 4</title>
 
-		<para>Basically, you need three components:</para>
+		<para>Grundlegend brauchen Sie drei Komponenten:</para>
 		
 		<itemizedlist>
-			<listitem>The File and Print Client (IBM Peer)</listitem>
+			<listitem>Den Datei- und Druck-Client (IBM Peer)</listitem>
 			<listitem>TCP/IP (Internet support) </listitem>
-			<listitem>The <quote>NetBIOS over TCP/IP</quote> driver (TCPBEUI)</listitem>
+			<listitem>Den <quote>NetBIOS über TCP/IP</quote>-Treiber (TCPBEUI)</listitem>
 		</itemizedlist>
 		
-		<para>Installing the first two together with the base operating 
-		system on a blank system is explained in the Warp manual. If Warp 
-		has already been installed, but you now want to install the 
-		networking support, use the <quote>Selective Install for Networking</quote> 
-		object in the <quote>System Setup</quote> folder.</para>
+		<para>Das Installieren der ersten beiden, gemeinsam mit dem Basis-Betriebssystem,
+		auf einem leeren System ist im Warp-Handbuch beschrieben. Wenn Warp bereits
+		installiert wurde, Sie aber nun die Netzwerk-Unterstützung installieren wollen,
+		verwenden Sie den Eintrag <quote>Selective Install for Networking</quote>
+		im Ordner <quote>System Setup</quote> folder.</para>
 
-		<para>Adding the <quote>NetBIOS over TCP/IP</quote> driver is not described 
-		in the manual and just barely in the online documentation. Start 
-		<command>MPTS.EXE</command>, click on <guiicon>OK</guiicon>, click on <guimenu>Configure LAPS</guimenu> and click 
-		on <guimenu>IBM OS/2 NETBIOS OVER TCP/IP</guimenu> in  <guilabel>Protocols</guilabel>. This line 
-		is then moved to <guilabel>Current Configuration</guilabel>. Select that line, 
-		click on <guimenuitem>Change number</guimenuitem> and increase it from 0 to 1. Save this
-		configuration.</para>
+		<para>Das Hinzufügen des <quote>NetBIOS über TCP/IP</quote>-Treibers wird nicht
+		im Handbuch beschrieben und auch nur von der Online-Dokumentation gestreift.
+		Starten Sie <command>MPTS.EXE</command>, klicken Sie auf <guiicon>OK</guiicon>,
+		dann <guimenu>Configure LAPS</guimenu>, und auf 
+		<guimenu>IBM OS/2 NETBIOS OVER TCP/IP</guimenu> unter <guilabel>Protocols</guilabel>.
+		Diese Zeile wird dann in die <guilabel>Current Configuration</guilabel> verschoben.
+		Wählen Sie diese Zeile aus, klicken Sie auf <guimenuitem>Change number</guimenuitem>
+		und erhöhen Sie den Wert von 0 auf 1. Speichern Sie diese Konfiguration.</para>
 
-		<para>If the Samba server is not on your local subnet, you 
-		can optionally add IP names and addresses of these servers 
-		to the <guimenu>Names List</guimenu>, or specify a  WINS server (NetBIOS 
-		Nameserver in IBM and RFC terminology). For Warp Connect, you 
-		may need to download an update for <constant>IBM Peer</constant> to bring it on 
-		the same level as Warp 4. See the Web page mentioned above.</para>
+		<para>Wenn der Samba-Server nicht in Ihrem lokalen Subnetz ist, können Sie
+		optional IP-Namen und -Adressen dieser Server zur <guimenu>Names List</guimenu>
+		hinzufügen, oder einen WINS-Server (NetBIOS Nameserver, in der 
+		Terminologie von IBM und RFC) spezifizieren. Für Warp Connect brauchen Sie
+		eventuell ein Update für den <constant>IBM Peer</constant>, um ihn auf dasselbe
+		Level wie Warp 4 zu bringen. Sehen Sie dazu obige Webseite.</para>
+
 	</sect2>
 	
 	<sect2>
