@@ -229,40 +229,33 @@ ihren eigenen Typ von PDC arbeiten.
 </para>
 
 <para>
-Der BDC hält eine <emphasis>read-only</emphasis>-Version der SAM
-
---- sgw
-
-
-
-The BDC is said to hold a <emphasis>read-only</emphasis> of the SAM from which
-it is able to process network logon requests and authenticate users. The BDC can
-continue to provide this service, particularly while, for example, the wide area
-network link to the PDC is down. A BDC plays a very important role in both the
-maintenance of Domain Security as well as in network integrity.
+Der BDC speichert eine <emphasis>read-only</emphasis>-Version der SAM, mittels derer er imstande ist,
+Netzwerk-Anmelde-Anfragen zu bearbeiten und User zu authentifizieren. Der BDC kann damit fortfahren,
+diesen Dienst anzubieten, im Besonderen dann, wenn die WAN-Verbindung zum PDC unterbrochen ist.
+Ein BDC spielt eine sehr wichtige Rolle, sowohl in der Aufrechterhaltung der Domänen-Sicherheit wie auch
+in der Integrität des Netzwerks.
 </para>
 
 <para>
-In the event that the NT4 PDC should need to be taken out of service, or if it dies, 
-one of the NT4 BDCs can be promoted to a PDC. If this happens while the original NT4 PDC is on
-line, it is automatically demoted to an NT4 BDC. This is an important aspect of Domain
-Controller management. The tool that is used to effect a promotion or a demotion is the
-Server Manager for Domains. It should be noted that Samba-3 BDCs can not be promoted
-in this manner because reconfiguration of Samba requires changes to the &smb.conf; file.
+In dem Falle, daß der NT4 PDC außer Betrieb genommen werden muß, oder wenn dieser ausfällt, kann einer
+der NT4 BDCs zu einem PDC "befördert" werden. Wenn dies geschieht, während der originale NT4 PDC
+online ist, wird dieser automatisch zu einem NT4 BDC "degradiert". Dies ist ein wichtiger Aspekt des
+Managements von Domänen-Controllern. Es sollte bemerkt werden, daß Samba-3 BDCs NICHT auf diese Art
+zu PDCs befördert werden können, da die nötige Rekonfiguration von Samba Änderungen an &smb.conf; bedingt.
 </para>
 
 <sect3>
-<title>Example PDC Configuration</title>
+<title>Beispiel einer PDC-Konfiguration</title>
 
 <para>
-Beginning with Version 2.2, Samba officially supports domain logons for all current Windows clients,
-including Windows NT4, 2003 and XP Professional. For Samba to be enabled as a PDC, some
-parameters in the <smbconfsection>[global]</smbconfsection>-section of the &smb.conf; have to be set.
-Refer to <link linkend="minimalPDC"/> for an example of the minimum required settings.
+Seit der Version 2.2 unterstützt Samba offiziell Domänen-Anmeldungen für alle aktuellen Windows-Clients,
+einschließlich Windows NT4, 2003 und XP Professional. Um Samba als PDC zu betreiben, müssen einige 
+Parameter im <smbconfsection>[global]</smbconfsection>-Abschnitt von &smb.conf; gesetzt werden.
+Sehen Sie <link linkend="minimalPDC"/> für ein Beispiel der zumindest erforderlichen Einstellungen.
 </para>
 
 <para><smbconfexample id="minimalPDC">
-<title>Minimal smb.conf for a PDC in Use With a BDC &smbmdash; LDAP Server on PDC.</title>
+<title>Minimale smb.conf für einen PDC in Verbindung mit einem BDC &smbmdash; LDAP Server auf PDC.</title>
 <smbconfoption><name>workgroup</name><value>&example.workgroup;</value></smbconfoption>
 <smbconfoption><name>passdb backend</name><value>ldapsam://localhost:389</value></smbconfoption>
 <smbconfoption><name>domain master</name><value>yes</value></smbconfoption>
@@ -270,10 +263,10 @@ Refer to <link linkend="minimalPDC"/> for an example of the minimum required set
 </smbconfexample></para>
 
 <para>
-Several other things like a <smbconfsection>[homes]</smbconfsection> and a
-<smbconfsection>[netlogon]</smbconfsection> share also need to be set along with
-settings for the profile path, the user's home drive, and so on. This is not covered in this
-chapter; for more information please refer to <link linkend="samba-pdc"></link>.
+Einige andere Dinge wie eine <smbconfsection>[homes]</smbconfsection>- und eine
+<smbconfsection>[netlogon]</smbconfsection>-Freigabe müssen ebenfalls in Verbindung mit Einstellungen
+für den Profil-Pfad, das Home-Verzeichnis des Benutzers, usw. gesetzt werden.
+Dies wird in diesem Kapitel nicht behandelt; für mehr Informationen dazu, siehe <link linkend="samba-pdc"></link>.
 </para>
 
 </sect3>
