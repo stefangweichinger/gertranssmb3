@@ -34,8 +34,8 @@ Administratoren wird dies erstaunen,da dies seit Jahren elementarer Bestandteil 
 </para>
 
 <para>
-Diese Kapitel soll die Punkte im Einzelnen klaeren die mit Samba 3 nötig und moeglich sind um Administratoren die best
-mögliche Zugriffsverwaltung zu ermoeglichen welche die Windows Benutzer benoetigen
+Diese Kapitel soll die Punkte im Einzelnen klaeren die mit Samba 3 n&ouml;tig und moeglich sind um Administratoren die best
+m&ouml;gliche Zugriffsverwaltung zu ermoeglichen welche die Windows Benutzer benoetigen
 </para>
 
 <para>
@@ -47,7 +47,7 @@ moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 <title>Moeglichkeiten und Vorteile</title>
 
 	<para>
-	Samba ermöglicht ein hohe Flexibilitaet beim Systemzugriff. Hier sind die Zugriffskontrollmoeglichkeiten der
+	Samba erm&ouml;glicht ein hohe Flexibilitaet beim Systemzugriff. Hier sind die Zugriffskontrollmoeglichkeiten der
 	jetzigen Version (3) von Samba.
 	</para>
 
@@ -73,7 +73,7 @@ moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 
 			<para>
 			Beim Konfigurieren von Netzlaufwerken mit Samba in der Datei smb.conf kann der Administrator
-			Berechtigungen des darunterliegenden Dateisystems verändern und beeinflussen. Dies ermoeglicht teilweise eine Annaeherung
+			Berechtigungen des darunterliegenden Dateisystems ver&auml;ndern und beeinflussen. Dies ermoeglicht teilweise eine Annaeherung
 			an das Verhalten dass Windowsnutzer erwarten. Dieser Weg ist aber nur selten die beste Loesung.
 			Die grundlegenden Moeglichkeiten werden hier beschrieben.
 			</para>
@@ -132,7 +132,7 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbr&uuml;ck
 
 	<para>
 	Gluecklicherweise bietet Samba eine Reihe von Konfigurationsmoeglichkeiten um die Unterschiede zu
-	ueberbr&uuml;cken.Wir werden einige dieser Einstellungsmöglichkeiten betrachten, jedoch nicht alle. Wer mehr wissen moechte sollte die
+	ueberbr&uuml;cken.Wir werden einige dieser Einstellungsm&ouml;glichkeiten betrachten, jedoch nicht alle. Wer mehr wissen moechte sollte die
 	Beschreibung ( man = manual Datei ) der smb.conf lesen.
 	</para>
 
@@ -146,7 +146,7 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbr&uuml;ck
 			<term>Namens Raum</term>
 			<listitem>
 		<para>
-		Windows Dateinamen können 254 Zeichen lang sein, UNIX beherrscht bis zu 1023 Zeichen. Die
+		Windows Dateinamen k&ouml;nnen 254 Zeichen lang sein, UNIX beherrscht bis zu 1023 Zeichen. Die
 		Dateierweiterung beschreibt in Windows einen bestimmten Dateityp, in UNIXsystemen ist das nicht zwingend so.
 		</para>
 		<para>
