@@ -225,20 +225,18 @@ doppy$:x:505:100:<replaceable>machine_nickname</replaceable>:/dev/null:/bin/fals
 </programlisting>
 
 <para>
-Above, <replaceable>machine_nickname</replaceable> can be any
-descriptive name for the client, i.e., BasementComputer.
-<replaceable>machine_name</replaceable> absolutely must be the NetBIOS
-name of the client to be joined to the domain. The <quote>$</quote> must be
-appended to the NetBIOS name of the client or Samba will not recognize
-this as a Machine Trust Account.
+In obigem Beispiel kann <replaceable>machine_nickname</replaceable> eine beliebige Beschreibung
+des Clients sein, z.B. RechnerSekretariat.
+<replaceable>machine_name</replaceable> muß definitiv der NetBIOS-Namen des Clients sein, der der
+Domäne angeschlossen werden soll. Das Zeichen <quote>$</quote> muß an den NetBIOS-Namen des Clients
+angefügt werden, oder Samba wird dieses Konto nicht als Maschinen-Vertrauens-Konto erkennen.
 </para>
 
 <para>
-Now that the corresponding UNIX account has been created, the next step is to create 
-the Samba account for the client containing the well-known initial 
-Machine Trust Account password. This can be done using the 
-<command>smbpasswd</command> command 
-as shown here:
+Jetzt, wo das zugehörige UNIX-Konto angelegt wurde, ist der nächste Schritt das Anlegen
+des Samba-Kontos für den Client, mit dem wohlbekannten ursprünglichen Passwort des
+Maschinen-Vertrauens-Kontos. Dies kann mit dem Befehl <command>smbpasswd</command> geschehen,
+wie hier gezeigt:
 </para>
 
 <para>
@@ -248,24 +246,22 @@ as shown here:
 </para>
 
 <para>
-where <replaceable>machine_name</replaceable> is the machine's NetBIOS
-name. The RID of the new machine account is generated from the UID of 
-the corresponding UNIX account.
+wobei <replaceable>machine_name</replaceable> der NetBIOS-Namen der Maschine ist.
+Die RID des neuen Maschinen-Kontos wird aus der UID des zugehörigen UNIX-Kontos generiert.
 </para>
 
 <warning>
-<title>Join the client to the domain immediately</title>
+<title>Schliessen Sie den Client unverzüglich der Domäne an</title>
 
 <para>
-Manually creating a Machine Trust Account using this method is the 
-equivalent of creating a Machine Trust Account on a Windows NT PDC using 
-<indexterm><primary>Server Manager</primary></indexterm>
-the <application>Server Manager</application>. From the time at which the 
-account is created to the time the client joins the domain and 
-changes the password, your domain is vulnerable to an intruder joining 
-your domain using a machine with the same NetBIOS name. A PDC inherently 
-trusts members of the domain and will serve out a large degree of user 
-information to such clients. You have been warned!
+Das manuelle Anlegen eines Maschinen-Vertrauens-Kontos mit dieser Methode ist gleichwertig
+zum Anlegen eines Maschinen-Vertrauens-Kontos auf einem Windows NT PDC mittels des
+<indexterm><primary>Server Manager</primary></indexterm><application>Server Manager</application>.
+Vom Zeitpunkt des Anlegens des Kontos bis zum Anschliessen des Clients an die Domäne und des
+Ändern des Passworts ist Ihre Domäne verletzlich gegenüber einem Eindringling, der sich mittels
+einer Maschine mit dem gleichen NetBIOS-Namen der Domäne anschliesst. Ein PDC vertraut
+Mitgliedern der Domäne und wird ein grosses Maß an Benutzer-Informationen an solche Clients
+weitergeben. Sie wurden gewarnt!
 </para>
 </warning>
 </sect2>
