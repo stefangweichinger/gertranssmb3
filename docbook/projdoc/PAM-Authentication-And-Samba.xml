@@ -611,9 +611,8 @@ System Implementation zurück. Manche Linux Implementationen enthalten ein <filen
 Modul welches erlaubt dass jede Authentifizierung in einer einzigen zentralen Datei konfiguriert wird.
 Die <filename>pam_stack.so</filename> Methode hat einige Anhänger in der Basis
 so dass eine einfachere Administration möglich ist.
-As with all issues in 
-life though, every decision makes trade-offs, so you may want to examine the 
-PAM documentation for further helpful information.
+Wie so oft im Leben sind Entscheidungen mit Kompromissen verbunden, deshalb sollten Sie für mehr Informationen
+die PAM Dokumentation konsultieren.
 </para></note>
 
 </sect3>
@@ -621,20 +620,20 @@ PAM documentation for further helpful information.
 </sect2>
 
 <sect2>
-<title>&smb.conf; PAM Configuration</title>
+<title>&smb.conf; PAM Konfiguration</title>
 
 <para>
-	There is an option in &smb.conf; called <smbconfoption><name>obey pam restrictions</name></smbconfoption>.
-The following is from the online help for this option in SWAT;
+Es gibt eine Option in &smb.conf; die <smbconfoption><name>obey pam restrictions</name></smbconfoption> heisst.
+Das folgende ist von der Online Hilfe von SWAT für diese Option;
 </para>
 
 <para>
-When Samba is configured to enable PAM support (i.e., <option>--with-pam</option>), this parameter will 
-control whether or not Samba should obey PAM's account and session management directives. The default behavior 
-is to use PAM for cleartext authentication only and to ignore any account or session management. Samba always 
-ignores PAM for authentication in the case of <smbconfoption><name>encrypt passwords</name><value>yes</value></smbconfoption>. 
-The reason is that PAM modules cannot support the challenge/response authentication mechanism needed in the presence of SMB 
-password encryption. 
+Wenn Samba mit PAM Unterstützung konfiguriert wurde (<option>--with-pam</option>), gibt dieser Parameter an ob Samba
+den PAM Konto- und Sitzungs Richtlinien gehorchen soll oder nicht. Das Standard Verhalten sieht vor dass PAM nur für 
+Klartext Authentifizierung verwendet wird und Konto- und Sitzungs Management ignoriert werden. Samba ignoriert PAM
+vollkommen falls die Option <smbconfoption><name>encrypt passwords</name>den Wert<value>yes</value></smbconfoption>hat.
+Dies aus dem Grund da PAM Module nicht den challenge/response Authentifizierungs Mechanismus unterstützen der von Samba bei
+Passwort Verschlüsselung verwendet wird.
 </para>
 
 <para>Default: <smbconfoption><name>obey pam restrictions</name><value>no</value></smbconfoption></para>
@@ -642,9 +641,13 @@ password encryption.
 </sect2>
 
 <sect2>
-<title>Remote CIFS Authentication Using <filename>winbindd.so</filename></title>
+<title>Entfernte CIFS Authentifizierung mit<filename>winbindd.so</filename></title>
 
 <para>
+??Alle Betriebssysteme hängen von einer Bestimmung des Benutzers zu der jeweiligen Platform ab.??
+UNIX benutzt dazu die übergabe eines "User Identifier" (UID) sowie ein "Group Identifier" (GID).
+Dies sind beides Nummern vom Typ integer die von einem Password BACKEND wie <filename>/etc/passwd</filename>
+erhalten werden.
 All operating systems depend on the provision of users credentials acceptable to the platform.
 UNIX requires the provision of a user identifier (UID) as well as a group identifier (GID).
 These are both simple integer type numbers that are obtained from a password backend such
@@ -652,15 +655,18 @@ as <filename>/etc/passwd</filename>.
 </para>
 
 <para>
-Users and groups on a Windows NT server are assigned a relative ID (RID) which is unique for
-the domain when the user or group is created. To convert the Windows NT user or group into
-a  UNIX user or group, a mapping between RIDs and UNIX user and group IDs is required. This
-is one of the jobs that winbind performs.
+Benutzer und Gruppen unter Windows NT Server werden relative IDs (RID) zugeteilt welche einzigartig
+für die Domäne sind wenn der Benutzer oder die Gruppe erstellt wird. Um die Windows NT Benutzer und
+Gruppen in UNIX Benutzer und Gruppen umzuwandeln, braucht es einen Abgleich zwischen den RIDs und UNIX
+Benutzer und Gruppen IDs. Dies ist eine der Aufgaben die Winbind ausführt.
 </para>
 
 <para>
-As Winbind users and groups are resolved from a server, user and group IDs are allocated
-from a specified range. This is done on a first come, first served basis, although all
+Sowie Winbind Benutzer und Gruppen von einem Server aufgelöst werden, werden Benutzer
+und Gruppen IDs aus einer bestimmten Gruppe von Zahlen ermittelt. Diese werden auf einer
+"wer zuerst kommt, kriegt zuerst" Basis verteilt.
+
+This is done on a first come, first served basis, although all
 existing users and groups will be mapped as soon as a client performs a user or  group 
 enumeration command. The allocated UNIX IDs are stored in a database file under the Samba
 lock directory and will be remembered.
