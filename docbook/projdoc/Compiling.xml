@@ -3,12 +3,12 @@
 	&author.jelmer;
 	&author.jht;
 	&author.tridge;
-	
+	<author>&person.sgw;<contrib>German Translation</contrib></author>	
 	<pubdate> 22 May 2001 </pubdate>
 	<pubdate> 18 March 2003 </pubdate>
 </chapterinfo>
 
-<title>How to Compile Samba</title>
+<title>Wie man Samba kompiliert</title>
 
 <para>
 You can obtain the Samba source from the
