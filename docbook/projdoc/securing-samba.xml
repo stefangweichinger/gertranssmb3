@@ -357,7 +357,7 @@ herausstellt, völlig überzeugt davon sind, daß das Problem an Samba liegt.
 	</para>
 
 	<para>
-	Samba eröaubt das gewünschte Verhalten. Setzen Sie einfach die Option
+	Samba erlaubt das gewünschte Verhalten. Setzen Sie einfach die Option
 	<smbconfoption><name>only user</name><value>%S</value></smbconfoption> im Abschnitt der
 	<smbconfsection>[homes]</smbconfsection>-Freigaben-Definition.
 	</para>
