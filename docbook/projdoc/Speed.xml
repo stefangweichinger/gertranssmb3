@@ -12,8 +12,10 @@
 	</author>
 	&author.jelmer;
 	&author.jht;
-	<author>&person.sgw;<contrib>German Translator</contrib></author>
+	&author.sgw;<contrib>German Translator</contrib>
 </chapterinfo>
+
+TEST UMLAUTE : הצü ß ִײÜ
 
 <title>Samba Performance Tuning</title>
 
