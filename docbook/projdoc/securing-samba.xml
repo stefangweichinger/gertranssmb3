@@ -1,15 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="securing-samba">
-
 <chapterinfo>
 	&author.tridge;
 	&author.jht;
 	<pubdate>May 26, 2003</pubdate>
+        <author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
-<title>Securing Samba</title>
+<title>Samba absichern</title>
 
 <sect1>
-<title>Introduction</title>
+<title>Einführung</title>
 <para>
 This note was attached to the Samba 2.2.8 release notes as it contained an
 important security fix. The information contained here applies to Samba
