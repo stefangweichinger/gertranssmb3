@@ -8,13 +8,13 @@
 	<author><firstname>Stefan</firstname><surname>Metzmacher</surname><contrib>Update for multiple modules</contrib></author>
 <author>&person.flex;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
-<title>Stackable VFS modules</title>
+<title>Stapelbare VFS Module</title>
 
 <sect1>
 <title>Eigenschaften und Vorteile</title>
 
 <para>
-Seit Samba-3 gibt es Ünterstützung für STACKABLE VFS (Virtual File System) Module.
+Seit Samba-3 gibt es Ünterstützung für Stabelbare VFS (Virtual File System) Module.
 Samba gibt jede Anfrage an das UNIX Filesystem durch das geladene VFS Modul weiter.
 Dieses Kapitel deckt alle Module aus den Sambaquellen ab plus einige Referenzen auf 
 externe Module.
@@ -27,21 +27,21 @@ externe Module.
 <title>Diskussion</title>
 
 <para>
-Sind die verteilten Bibliotheken nicht bereits beim binary Packet Ihrer Platform dabei könnte
-es Probleme beim kompilieren geben da diese auf verschiedenen Platformen verschieden kompiliert
+Sind die verteilten Bibliotheken nicht bereits beim binären Packet Ihrer Plattform dabei könnte
+es Probleme beim kompilieren geben da diese auf verschiedenen Plattformen verschieden kompiliert
 und verlinkt werden. Momentan wurden diese auf GNU/LINUX und IRIX getestet.
 </para>
 
 <para>
-Um die VFS Module benutzen zu können erstellen sie eine Freigabe ähnlich der Unteren.
+Um die VFS Module benutzen zu können erstellen Sie eine Freigabe ähnlich der Unteren.
 Der essentielle Parameter ist der <smbconfoption><name>vfs objects</name></smbconfoption> Parameter
 bei dem man einen oder mehrere VFS Module als Namen angeben kann. Ein Beispiel um alle Zugriffe auf
 Dateien zu loggen und gelöschte Dateien in eine Recycle Bin zu werfen wäre <link linkend="vfsrecyc"/>.
 
 <smbconfexample id="vfsrecyc">
-	<title>smb.conf mit  VFS Modulen</title>
+	<title>smb.conf mit VFS Modulen</title>
 	<smbconfsection>[audit]</smbconfsection>
-<smbconfoption><name>comment</name><value>Audited /data directory</value></smbconfoption>
+<smbconfoption><name>comment</name><value>Überwachter /Daten Ordner</value></smbconfoption>
 <smbconfoption><name>path</name><value>/data</value></smbconfoption>
 <smbconfoption><name>vfs objects</name><value>audit recycle</value></smbconfoption>
 <smbconfoption><name>writeable</name><value>yes</value></smbconfoption>
@@ -53,7 +53,7 @@ Dateien zu loggen und gelöschte Dateien in eine Recycle Bin zu werfen wäre <link
 Die Module werden in der Reihenfole benutzt in der sie angegeben sind. Nehmen wir an 
 Sie möchten ein Virus Scanner Modul und eine Recycle Bin Modul haben. Es wäre schlauer
 das Viren Scanner Modul als erstes Modul festzulegen so dass es eventuelle Viren sofort 
-entdeckt bevor ein anderes Modul die Datei bearbeitet.
+entdeckt bevor die Datei von jemand anderes benutzt wird.
 <smbconfoption><name>vfs objects</name><value>vscan-clamav recycle</value></smbconfoption>
 </para>
 
@@ -61,25 +61,22 @@ entdeckt bevor ein anderes Modul die Datei bearbeitet.
 Samba wird versuchen Module vom <filename>/lib</filename> Ordner des Stammverzeinisses der Samba-installation
 zu laden (normalerweise <filename>/usr/lib/samba/vfs</filename> oder <filename>/usr/local/samba/lib/vfs
 </filename>).
-Samba will attempt to load modules from the <filename>/lib</filename> directory in the root directory of the
-Samba installation (usually <filename>/usr/lib/samba/vfs</filename> or <filename>/usr/local/samba/lib/vfs
-</filename>).
 </para>
 
 <para>
-Some modules can be used twice for the same share.
-This can be done using a configuration similar to the one shown in <link linkend="multimodule"/>.
+Manche Module können auch zweimal für die gleich Freigabe verwendet werden. Dazu verwenden Sie
+eine Konfiguration ähnlich dieser <link linkend="multimodule"/>.
 
 <smbconfexample id="multimodule">
-	<title>smb.conf with multiple VFS modules</title>
+	<title>smb.conf mit mehreren VFS Modulen</title>
 <smbconfsection>[test]</smbconfsection>
 <smbconfoption><name>comment</name><value>VFS TEST</value></smbconfoption>
 <smbconfoption><name>path</name><value>/data</value></smbconfoption>
 <smbconfoption><name>writeable</name><value>yes</value></smbconfoption>
 <smbconfoption><name>browseable</name><value>yes</value></smbconfoption>
-<smbconfoption><name>vfs objects</name><value>example:example1 example example:test</value></smbconfoption>
-<smbconfoption><name>example1: parameter</name><value>1</value></smbconfoption>
-<smbconfoption><name>example:  parameter</name><value>5</value></smbconfoption>
+<smbconfoption><name>vfs objects</name><value>Beispiel:Beispiel1 Beispiel Beispiel:test</value></smbconfoption>
+<smbconfoption><name>Beispiel1: parameter</name><value>1</value></smbconfoption>
+<smbconfoption><name>Beispiel:  parameter</name><value>5</value></smbconfoption>
 <smbconfoption><name>test:	  parameter</name><value>7</value></smbconfoption>
 </smbconfexample>
 </para>
@@ -87,19 +84,19 @@ This can be done using a configuration similar to the one shown in <link linkend
 </sect1>
 
 <sect1>
-<title>Included Modules</title>
+<title>Enthaltene Module</title>
 
 	<sect2>
 	<title>audit</title>
 
 		<para>
-		A simple module to audit file access to the syslog
-		facility. The following operations are logged:
+		Ein einfaches Modul um Dateioperationen im syslog aufzuzeichnen.
+		Folgende Operationen werden aufgezeichnet:
 		<itemizedlist>
-			<listitem>share</listitem>
-			<listitem>connect/disconnect</listitem>
-			<listitem>directory opens/create/remove</listitem>
-			<listitem>file open/close/rename/unlink/chmod</listitem>
+			<listitem>freigabe</listitem>
+			<listitem>verbinden/trennen</listitem>
+			<listitem>Ordner öffnen/erstellen/löschen</listitem>
+			<listitem>Datei öffnen/schliessen/umbenennen/unlink/chmod</listitem>
 		</itemizedlist>
 		</para>
 
@@ -109,25 +106,27 @@ This can be done using a configuration similar to the one shown in <link linkend
 	<title>extd_audit</title>
 
 		<para>
-		This module is identical with the <command>audit</command> module above except
-		that it sends audit logs to both syslog as well as the <command>smbd</command> log files. The 
-		<smbconfoption><name>log level</name></smbconfoption> for this module is set in the &smb.conf; file. 
+		Dieses Modul ist identisch mit dem <command>audit</command> Modul ausser dass es
+		sowohl ins syslog als auch in die <command>smbd</command> Log Dateien schreibt. Der
+		<smbconfoption><name>Log Level</name></smbconfoption> für dieses Modul wird in der  
+		&smb.conf; Datei gesetzt.
 		</para>
 
 		<para>
-		Valid settings and the information that will be recorded are shown in <link linkend="xtdaudit"/>.
+		Gültige Einstellung und Informationen über was alles aufgezeichnet wird, sind unter <link linkend="xtdaudit"/>
+		zu finden.
 		</para>
 
 		<table frame="all" id="xtdaudit">
-			<title>Extended Auditing Log Information</title>
+			<title>Ausführliche Beschreibung der Log Informationen</title>
 		<tgroup cols="2" align="center">
 			<thead>
-			<row><entry align="center">Log Level</entry><entry>Log Details - File and Directory Operations</entry></row>
+			<row><entry align="center">Log Level</entry><entry>Log Details - Ordner- und Dateioperationen</entry></row>
 			</thead>
 			<tbody>
-			<row><entry align="center">0</entry><entry align="left">Creation / Deletion</entry></row>
-			<row><entry align="center">1</entry><entry align="left">Create / Delete / Rename / Permission Changes</entry></row>
-			<row><entry align="center">2</entry><entry align="left">Create / Delete / Rename / Perm Change / Open / Close</entry></row>
+			<row><entry align="center">0</entry><entry align="left">Erstellen / Löschen</entry></row>
+			<row><entry align="center">1</entry><entry align="left">Erstellen / Löschen / Umbenennen / Berechtigungen ändern</entry></row>
+			<row><entry align="center">2</entry><entry align="left">Erstellen / Löschen / Umbenennen / Berechtigungen ändern / Öffnen / Schliessen</entry></row>
 			</tbody>
 		</tgroup>
 		</table>
@@ -138,10 +137,10 @@ This can be done using a configuration similar to the one shown in <link linkend
 	<title>fake_perms</title>
 
 		<para>
-		This module was created to allow Roaming Profile files and directories to be set (on the Samba server
-		under UNIX) as read only. This module will, if installed on the Profiles share, report to the client
-		that the Profile files and directories are writable. This satisfies the client even though the files
-		will never be overwritten as the client logs out or shuts down.
+		Dieses Modul wurde erstellt um Roaming Profil Dateien und Ordner (Auf dem Samba Server unter UNIX)
+		als nur lesbar zu setzen. Dieses Modul, sollte es unter der Proflies Freigabe installiert sein, gibt
+		dem Client an dass er Profil Ordner und Dateien beschreiben darf. Das genügt dem Client, auch wenn die
+		Dateien nicht überschrieben werden falls er sich abmeldet oder herunterfährt.
 		</para>
 
 	</sect2>
@@ -150,81 +149,79 @@ This can be done using a configuration similar to the one shown in <link linkend
 	<title>recycle</title>
 
 		<para>
-		A Recycle Bin-like module. Where used, unlink calls will be intercepted and files moved
-		to the recycle directory instead of being deleted. This gives the same effect as the
-		<guiicon>Recycle Bin</guiicon> on Windows computers.
+		Ein Recycle Bin ähnliches Modul. Wird es benutzt werden Lösch(UNLINK) Befehle abgefangen und die Datei
+		wird in den recycle Ordner verschoben anstatt gelöscht zu werden. Das ist im Prinzip dieselbe
+		Funktion die der <guiicon>Recycle Bin</guiicon> Ordner auf Windows Computern ausführt.
 		</para>
 
 		<para>
-		The <guiicon>Recycle Bin</guiicon> will not appear in <application>Windows Explorer</application> views of the network file system
-		(share) nor on any mapped drive. Instead, a directory called <filename>.recycle</filename> will be
-		automatically created when the first file is deleted. Users can recover files from the 
-		<filename>.recycle</filename> directory. If the <parameter>recycle:keeptree</parameter> has been
-		specified, deleted files will be found in a path identical with that from which the file was deleted.
+		Der <guiicon>Recycle Bin</guiicon> wird weder in <application>Windows Explorer</application> Ansichten der
+		Freigabe erscheinen noch in Netzwerkverbindungen. Es wird automatisch ein <filename>.recycle</filename> Ordner
+		erstellt sobald eine Datei gelöscht wird.
+		Benutzer können Dateien vom <filename>.recycle</filename> Ordner wiederherstellen. Falls der <parameter>recycle:keeptree</parameter>
+		gesetzt wurde, können gelöschte Dateien unter dem gleichen Pfad gefunden werden in dem sie vor dem Löschen waren.
 		</para>
 		
-		<para>Supported options for the <command>recycle</command> module are as follow:
+		<para>Unterstützte Optionen für das <command>recycle</command> Modul sind folgende:
 		<variablelist>
 			<varlistentry>
 			<term>recycle:repository</term>
 				<listitem><para>
-				Relative path of the directory where deleted files should be moved.
+				Relativer Pfad des Ordner wo gelöschte Dateien abgelegt werden sollten.
 				</para></listitem>
 			</varlistentry>
 
 			<varlistentry>
 			<term>recycle:keeptree</term>
 				<listitem><para>
-				Specifies whether the directory structure should be kept or if the files in the directory that is being 
-				deleted should be kept seperately in the recycle bin.
+				Legt fest ob die Ordnerstruktur beibehalten werden sollte oder 
+				ob die Dateien des gelöschten Ordners
+				getrennt im Recycle Bin aufbewart werden sollten.
 				</para></listitem>
 			</varlistentry>
 			
 			<varlistentry>
 			<term>recycle:versions</term>
 				<listitem><para>
-				If this option is set, two files 
-				with the same name that are deleted will both 
-				be kept in the recycle bin. Newer deleted versions 
-				of a file will be called <quote>Copy #x of <replaceable>filename</replaceable></quote>.
-				</para></listitem>
+				Ist diese Option gesetzt werden 2 Dateien mit dem
+				gleichen Namen beide im Recycle Bin aufbehalten.
+				Die neuere Version der Datei wird in <quote>Copy #x of <replaceable>Dateiname</replaceable></quote>
+				umbenannt</para></listitem>
 			</varlistentry>
 
 			<varlistentry>
 			<term>recycle:touch</term>
 				<listitem><para>
-				Specifies whether a file's access date should be touched when the file is moved to the recycle bin.
+				Legt fest ob das Datum des letzten Zugriffs verändert werden sollte wenn die Datein in den Recycle Bin kommt.
 				</para></listitem>
 			</varlistentry>
 
 			<varlistentry>
 			<term>recycle:maxsize</term>
 				<listitem><para>
-				Files that are larger than the number of bytes specified by this parameter will not be put into the recycle bin.
+				Dateien die grösser sind als die fesgelegte Grösse in bytes in diesem Parameter werden nicht in den Recycle bin verschoben.
 				</para></listitem>
 			</varlistentry>
 
 			<varlistentry>
 			<term>recycle:exclude</term>
 				<listitem><para>
-				List of files that should not be put into the recycle bin when deleted, but deleted in the regular way.
+				Auflistung der Dateien die nicht in den Recycle Bin verschoben werden sollten sondern normal gelöscht werden.
 				</para></listitem>
 			</varlistentry>
 
 			<varlistentry>
 			<term>recycle:exclude_dir</term>
 				<listitem><para>
-				Contains a list of directories. When files from these directories are
-				deleted, they are not put into the
-				recycle bin but are deleted in the
-				regular way.
+				Enthält eine Liste von Ordnern. Falls Dateien aus diesen Ordnern gelöscht
+				werden, werden sie nicht in den Recycle Bin verschoben sondern normal gelöscht.
 				</para></listitem>
 			</varlistentry>
 
 			<varlistentry>
 			<term>recycle:noversions</term>
 				<listitem><para>
-				Opposite of <parameter>recycle:versions</parameter>. If both options are specified, this one takes precedence.
+				Gegenteil des <parameter>recycle:versions</parameter> Parameters. Falls beide Optionen gesetzt sind wird dieser verwendet.
 				</para></listitem>
 			</varlistentry>
 		</variablelist>
@@ -236,14 +233,14 @@ This can be done using a configuration similar to the one shown in <link linkend
 	<title>netatalk</title>
 
 		<para>
-		A netatalk module will ease co-existence of Samba and netatalk file sharing services.
+		Ein netatalk Modul erleichtert die Koexistenz von Samba und netatalk Dateifreigabe Diensten.
 		</para>
 
-		<para>Advantages compared to the old netatalk module:
+		<para>Vorteile gegenüber dem alten netatalk Modul:
 		<itemizedlist>
-			<listitem><para>Does not care about creating .AppleDouble forks, just keeps them in sync.</para></listitem>
-			<listitem><para>If a share in &smb.conf; does not contain .AppleDouble item in hide or veto list, it will be added automatically.</para></listitem>
-		</itemizedlist>
+			<listitem><para>Schert sich nicht das erstellen von .AppleDouble FORKS, JUST KEEPS THEM IN SYNC.</para></listitem>
+			<listitem><para>Falls eine Freigabe in der &smb.conf; kein .AppleDouble Objekt in der hite oder veto Liste enthält wird es automatisch hinzugefügt.</para></listitem> 
+			</itemizedlist>
 		</para>
 
 	</sect2>
@@ -251,16 +248,18 @@ This can be done using a configuration similar to the one shown in <link linkend
 </sect1>
 
 <sect1>
-<title>VFS Modules Available Elsewhere</title>
+<title>Anderweitig verfügbare VFS Module</title>
 
 <para>
-This section contains a listing of various other VFS modules that 
-have been posted but do not currently reside in the Samba CVS 
-tree for one reason or another (e.g., it is easy for the maintainer 
-to have his or her own CVS tree).
+Diese Unterteilung enhält eine Auflistung verschiedener anderer
+VFS Module die es gibt aber aus verschiedenen Gründen nich im CVS
+Baum von Samba sind (z.B. da es Leichter für die Entwickler ist einen
+eigenen CVS Baum zu pflegen.)
 </para>
 
 <para>
+Es sollten keine Annahmen über die Funktionalität oder Stabilität dieser
+Module gemacht werden aufgrund ihrer Präsenz hier.
 No statements about the stability or functionality of any module
 should be implied due to its presence here.
 </para>
