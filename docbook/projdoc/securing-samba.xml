@@ -68,31 +68,33 @@ diskutiert.
 </sect1>
 
 <sect1>
-<title>Technical Discussion of Protective Measures and Issues</title>
+<title>Technische Diskussion von Schutzmaßnahmen</title>
 
 <para>
-The key challenge of security is the fact that protective measures suffice at best
-only to close the door on known exploits and breach techniques. Never assume that
-because you have followed these few measures that the Samba server is now an impenetrable
-fortress! Given the history of information systems so far, it is only a matter of time
-before someone will find yet another vulnerability.
+Die eigentliche Herausforderung der Sicherheit ist die Tatsache, daß Schutzmaßnahmen nur
+dazu ausreichen, die Tür für bekannte "exploit"- und "breach"-Techniken zu schliessen.
+Nehmen Sie niemals an, daß weil Sie diese paar Maßnahmen befolgt haben, der Samba-Server
+nun eine uneinnehmbare Festung ist! Wenn man die bisherige Geschichte von Informations-Systemen
+anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkeit findet.
 </para>
 
 	<sect2>
-	<title>Using Host-Based Protection</title>
+	<title>Host-basierter Schutz</title>
 
 	<para>
-	In many installations of Samba, the greatest threat comes from outside
-	your immediate network. By default, Samba will accept connections from
-	any host, which means that if you run an insecure version of Samba on
-	a host that is directly connected to the Internet you can be
-	especially vulnerable.
+	In vielen Installationen von Samba kommt die größte Bedrohung von außerhalb
+	des unmittelbaren Netzes. Standardmässig akzeptiert Samba Verbindungen von jedem
+	Host, was bedeutet, daß wenn Sie eine unsichere Version von Samba auf einem Host
+	ausführen, der direkte Verbindung zum Internet hat, Sie besonders gefährdet sein
+	können.
 	</para>
 
 	<para>
-	One of the simplest fixes in this case is to use the <smbconfoption><name>hosts allow</name></smbconfoption> and
-	<smbconfoption><name>hosts deny</name></smbconfoption> options in the Samba &smb.conf; configuration file to only
-	allow access to your server from a specific range of hosts. An example might be:
+	Eine der einfachsten Abhilfen in diesem Fall ist die Verwendung der Optionen
+	<smbconfoption><name>hosts allow</name></smbconfoption> und
+	<smbconfoption><name>hosts deny</name></smbconfoption> in der &smb.conf; Konfigurations-Datei,
+	um den Zugriff auf Ihren Server auf eine spezifizierte Menge von Hosts einzuschränken.
+	Ein Beispiel könnte sein:	
 	</para>
 
 	<para><smbconfblock>
@@ -101,20 +103,22 @@ before someone will find yet another vulnerability.
 	</smbconfblock></para>
 
 	<para>
-	The above will only allow SMB connections from <constant>localhost</constant> (your own
-	computer) and from the two private networks 192.168.2 and 192.168.3. All other
-	connections will be refused as soon as the client sends its first packet. The refusal
-	will be marked as <errorname>not listening on called name</errorname> error.
+	Obiges wird nur SMB-Verbindungen von <constant>localhost</constant> (Ihrem eigenen Rechner)
+	und von den beiden privaten Netzen 192.168.2 und 192.168.3 erlauben. Alle anderen
+	Verbindungen werden abgelehnt, sobald der Client sein erstes Paket sendet.
+	Die Ablehnung wird als <errorname>not listening on called name</errorname>-Fehler
+	gekennzeichnet.
 	</para>
 
 	</sect2>
 
 	<sect2>
-	<title>User-Based Protection</title>
+	<title>Benutzer-basierter Schutz</title>
 
 	<para>
-	If you want to restrict access to your server to valid users only, then the following
-	method may be of use. In the &smb.conf; <smbconfsection>[global]</smbconfsection> section put:
+	Wenn Sie den Zugriff auf Ihren Server nur auf gültige Benutzer beschränken wollen, kann
+	folgende Methode von Nutzen sein. Im Abschnitt <smbconfsection>[global]</smbconfsection>
+	der Datei &smb.conf; setzen Sie:
 	</para>
 
 	<para><smbconfblock>
@@ -122,25 +126,25 @@ before someone will find yet another vulnerability.
 	</smbconfblock></para>
 
 	<para>
-	This restricts all server access to either the user <emphasis>jacko</emphasis>
-	or to members of the system group <emphasis>smbusers</emphasis>.
+	Dies schränkt allen Server-Zugriff auf entweder den Benutzer <emphasis>jacko</emphasis>,
+	oder Mitglieder der System-Gruppe <emphasis>smbusers</emphasis> ein.
 	</para>
 
 	</sect2>
 
 	<sect2>
 
-	<title>Using Interface Protection</title>
+	<title>Benutzen von Schnittstellen-Schutz</title>
 
 	<para>
-	By default, Samba will accept connections on any network interface that
-	it finds on your system. That means if you have a ISDN line or a PPP
-	connection to the Internet then Samba will accept connections on those
-	links. This may not be what you want.
+	Standardmässig akzeptiert Samba Verbindungen auf jeder Netzwerk-Schnittstelle, die
+	es in Ihrem System findet. Das bedeutet, daß wenn Sie eine ISDN-Verbindung oder
+	einen PPP-Tunnel zum Internet haben, wird Samba Verbindungen über diese
+	Schnittstellen akzeptieren. Das könnte etwas sein, daß Sie nicht wollen.
 	</para>
 
 	<para>
-	You can change this behavior using options like this:
+	Sie können dieses Verhalten ändern:	
 	</para>
 
 	<para><smbconfblock>
@@ -149,38 +153,41 @@ before someone will find yet another vulnerability.
 	</smbconfblock></para>
 
 	<para>
-	This tells Samba to only listen for connections on interfaces with a
-	name starting with <constant>eth</constant> such as <constant>eth0, eth1</constant> plus on the loopback
-	interface called <constant>lo</constant>. The name you will need to use depends on what
-	OS you are using. In the above, I used the common name for Ethernet
-	adapters on Linux.
+	Dies weist Samba an, Verbindungen nur auf Schnittstellen zu erwarten, die mit
+	<constant>eth</constant> beginnen, wie <constant>eth0, eth1</constant>, sowie auf
+	dem loopback-Interface namens <constant>lo</constant>. Der zu verwendende Name
+	hängt vom verwendeten Betriebssystem ab. In obigem Beispiel wurden die unter Linux
+	gängigen Namen für Ethernet-Karten verwendet.	
 	</para>
 
 	<para>
-	If you use the above and someone tries to make an SMB connection to
-	your host over a PPP interface called <constant>ppp0,</constant> then they will get a TCP
-	connection refused reply. In that case, no Samba code is run at all as
-	the operating system has been told not to pass connections from that
-	interface to any Samba process.
+	Wenn Sie das obige Beispiel verwenden, und jemand versucht, 
+	eine SMB-Verbindung über eine PPP-Schnittstelle namens <constant>ppp0</constant> herzustellen,
+	wird er eine Ablehnung erhalten. In diesem Fall wird keinerlei Samba-Code ausgeführt,
+	da das OS angewiesen wurde, keine Verbindungen von dieser Schnittstelle an jeglichen
+	Samba-Prozeß weiterzuleiten.
 	</para>
 
 	</sect2>
 
 	<sect2>
-	<title>Using a Firewall</title>
+	<title>Verwendung einer Firewall</title>
 
 	<para>
-	Many people use a firewall to deny access to services they do not
-	want exposed outside their network. This can be a good idea,
-	although I recommend using it in conjunction with the above
-	methods so you are protected even if your firewall is not active
-	for some reason.
+	Viele verwenden eine Firewall, um Zugriff auf Dienste zu sperren, die sie nicht
+	außerhalb ihres Netzwerks anbieten wollen. Dies kann eine gute Idee sein, obwohl
+	wir es empfehlen, die Firewall gemeinsam mit obigen Methoden einzusetzen, so daß
+	Sie auch geschützt sind, wenn die Firewall aus irgendwelchen Gründen nicht
+	aktiv ist.
 	</para>
 
 	<para>
-	If you are setting up a firewall, you need to know what TCP and
-	UDP ports to allow and block. Samba uses the following:
+	Wenn Sie eine Firewall aufsetzen, müssen Sie wissen, welche TCP- und UDP-ports
+	zu öffnen bzw. zu blockieren sind. Samba benutzt die folgenden Ports:	
 	</para>
+
+
+---sgw
 
 	<simplelist>
 		<member>UDP/137 - used by nmbd</member>
