@@ -24,35 +24,30 @@ Option für viele Anwender.
 <para>
 Dieses Kapitel umfaßt Hintergrund-Informationen zur Domänen-Mitgliedschaft,
 der dazu notwendigen Samba-Konfiguration, und MS-Windows-Client-Prozeduren
-zum Beitreten zu einer Domäne.
-
-
-This chapter covers background information pertaining to Domain Membership,
-the Samba configuration for it, and MS Windows client procedures for joining a
-domain. Why is this necessary? Because both are areas in which there exists
-within the current MS Windows networking world and particularly in the
-UNIX/Linux networking and administration world, a considerable level of
-misinformation, incorrect understanding and a lack of knowledge. Hopefully
-this chapter will fill the voids.
+zum Beitreten zu einer Domäne. Warum dies notwendig ist? Weil beide Bereiche solche sind,
+in denen sowohl in der MS-Windows-Netzwerk-Welt, wie auch im Speziellen in der UNIX/Linux-
+Netzwerk- und Administrations-Welt, ein bemerkenswertes Level an Uninformiertheit,
+falschem Verständnis und fehlendem Wissen existiert. Es ist zu hoffen, daß dieses Kapitel
+die Lücken füllt.
 </para>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Vorzüge</title>
 
 <para>
-MS Windows workstations and servers that want to participate in Domain Security need to
-be made Domain Members. Participating in Domain Security is often called 
-<emphasis>Single Sign On</emphasis> or <acronym>SSO</acronym> for short. This
-chapter describes the process that must be followed to make a workstation
-(or another server &smbmdash; be it an <application>MS Windows NT4 / 200x</application>
-server) or a Samba server a member of an MS Windows Domain Security context.
+MS-Windows-Workstations und -Server, die an Domänen-Sicherheit teilhaben wollen, müssen zu
+Domänen-Mitgliedern gemacht werden. Das Teilnehmen an Domänen-Sicherheit wird oft
+<emphasis>Single Sign On</emphasis> oder kurz <acronym>SSO</acronym> genannt.
+Dieses Kapitel beschreibt den Prozeß, der durchgeführt werden muß, um eine Workstation
+(oder einen anderen Server &smbmdash; sei es ein <application>MS Windows NT4 / 200x</application>-
+Server) oder einen Samba-Server zu einem Mitglied in einem Microsoft-Domänen-Sicherheits-Kontext
+zu machen.
 </para>
 
 <para>
 <indexterm><primary>Server Type</primary><secondary>Domain Member</secondary></indexterm>
-Samba-3 can join an MS Windows NT4-style domain as a native member server, an 
-MS Windows Active Directory Domain as a native member server, or a Samba Domain
-Control network. Domain Membership has many advantages:
+Samba-3 kann sich einer MS-Windows-artigen Domäne als nativer Mitglieds-Server anschliessen,
+oder einem Samba-kontrollierten Netzwerk. Domänen-Mitgliedschaft hat viele Vorteile: 
 </para>
 
 <itemizedlist>
