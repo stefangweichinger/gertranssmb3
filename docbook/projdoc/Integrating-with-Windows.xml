@@ -4,7 +4,7 @@
 <chapterinfo>
 	&author.jht;
         <pubdate> (Jan 01 2001) </pubdate>
-	<author>&person.reiss;<contrib>German Translator</contrib></author>
+	<author>&person.reiss;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
  
 <title>Samba in MS Windows Netzwerke integrieren</title>
@@ -49,12 +49,17 @@ in die Grundlagen wie ein Name in seine IP Adresse aufgelöst wird.
 </sect1>
 
 <sect1>
-<title>Hintergrund Information</title>
+<title>Hintergrundinformation</title>
 
 <para>
 Seit der Einführung von MS Windows 2000 ist es möglich ein MS Windows
-Netzwerk ohne NetBIOS über TCP/IP zu verwenden.
-
+Netzwerk ohne NetBIOS über TCP/IP zu verwenden. NetBIOS über TCP/IP
+benutzt UDP Port 137 für die NetBIOS Namensauflösung und TCP Port 139
+für die NetBIOS Dienste Session. 
+Sollte auf den MS Windows 2000 Client's (oder spätere Versionen) 
+NetBIOS über TCP/IP deaktiviert sein, dann wird nur der TCP Port 445 verwendet.
+In diesem Fall wird der UDP Port 137 und der TCP Port 139 nicht
+verwendet.
 #
 Since the introduction of MS Windows 2000, it is possible to run MS Windows networking
 without the use of NetBIOS over TCP/IP. NetBIOS over TCP/IP uses UDP port 137 for NetBIOS
@@ -65,6 +70,12 @@ used and the UDP port 137 and TCP port 139 will not.
 
 <note>
 <para>
+Wenn Sie Windows 2000 Clients (oder später) verwenden und NetBIOS über
+TCP/IP nicht deaktiviert haben benutzt der Client UDP Port 137
+(NetBIOS Name Service, auch bekannt als der Windows Internet Name
+Service oder WINS), den TCP Port 139 und TCP Port 445 (für aktuellen
+Datei und Druck Verkehr).
+#
 When using Windows 2000 or later clients, if NetBIOS over TCP/IP is not disabled, then
 the client will use UDP port 137 (NetBIOS Name Service, also known as the Windows Internet
 Name Service or WINS), TCP port 139 and TCP port 445 (for actual file and print traffic).
@@ -72,6 +83,17 @@ Name Service or WINS), TCP port 139 and TCP port 445 (for actual file and print 
 </note>
 
 <para>
+Wenn Sie NetBIOS über TCP/IP deaktivieren ist die Benutzung von DNS
+unumgänglich. Die meisten aktuellen Installationen welche NetBIOS über TCP/IP
+deaktivieren verwenden MS Active Directory (ADS). ADS benötigt
+<indexterm><primary>DNS</primary><secondary>Dynamic</secondary></indexterm>
+Dynamic DNS with Service Resource Records (SRV RR) and with Incremental
+Zone Transfers (IXFR).
+<indexterm><primary>DHCP</primary></indexterm>
+....
+
+
+#
 When NetBIOS over TCP/IP is disabled, the use of DNS is essential. Most installations that
 disable NetBIOS over TCP/IP today use MS Active Directory Service (ADS). ADS requires
 <indexterm><primary>DNS</primary><secondary>Dynamic</secondary></indexterm>
