@@ -5,62 +5,54 @@
 	<author>&person.jelmer;<contrib>drawing</contrib></author>
 	<pubdate>May 10, 2003</pubdate>
 </chapterinfo>
-<title>File, Directory and Share Access Controls</title>
+<title>Kapitel 13 Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle</title>
 
 <para>
 <indexterm><primary>ACLs</primary></indexterm>
 Fortgeschrittene Windows Benutzer sind haeufig verwirrt, wenn eine Aenderung des Besitzes von Dateien oder Verzeichnissen 
 auf dem Samba Server sich nicht so auswirken wie sie es erwarten. MS Administratoren verwirrt es oft wenn sie versuchen 
 Ihre Daten mit Zugriffskontrolllisten vor unerlaubten  Zugriffen zu schuetzen.
- </para>
-
-<para>
-Many UNIX administrators are unfamiliar with the MS Windows environment and in particular
-have difficulty in visualizing what the MS Windows user wishes to achieve in attempts to set file
-and directory access permissions. 
 </para>
 
 <para>
-The problem lies in the differences in how file and directory permissions and controls work
-between the two environments. This difference is one that Samba cannot completely hide, even
-though it does try to bridge the chasm to a degree.
+Viele UNIX Administratoren sind nicht mit der MS Windows Umgebung vertraut, besondere Probleme ergeben sich aus den 
+Benutzerwuenschen über die Kontrolle von Dateien und Verzeichnisse und deren Einrichtung
+</para>
+
+<para>
+Das Problem begruendet sich in den Unterschieden bei  Datei und Verzeichnis Benutzerrechten der beiden Systeme. Diesen 
+Unterschied kann auch Samba nicht wirklich aus der Welt schaffen aber er schafft eine Bruecke zwischen den Umgebungen.
 </para>
 
 <para>
 <indexterm><primary>Extended Attributes</primary></indexterm>
 <indexterm><primary>ACLs</primary><secondary>POSIX</secondary></indexterm>
 
-POSIX Access Control List technology has been available (along with Extended Attributes)
-for UNIX for many years, yet there is little evidence today of any significant use. This
-explains to some extent the slow adoption of ACLs into commercial Linux products. MS Windows
-administrators are astounded at this, given that ACLs were a foundational capability of the now
-decade-old MS Windows NT operating system.
+POSIX ( UNIX, LINUX ) Zugriffskontrolltechnologie gibt es schon seit Jahren, aber sie wurden nie sehr intensiv genutzt. 
+Dies erklaert vielleicht auch warum es laenger dauert ehe diese in kommerzielle Linux Produkte eingebunden wurden. MS 
+Administratoren wird dies erstaunen,da dies seit Jahren elementarer Bestandteil von Windows Produkten ist.
 </para>
 
 <para>
-The purpose of this chapter is to present each of the points of control that are possible with
-Samba-3 in the hope that this will help the network administrator to find the optimum method
-for delivering the best environment for MS Windows desktop users.
+Diese Kapitel soll die Punkte im Einzelnen klaeren die mit Samba 3 nötig und moeglich sind um Administratoren die best 
+mögliche Zugriffsverwaltung zu ermoeglichen welche die Windows Benutzer benoetigen
 </para>
 
 <para>
-This is an opportune point to mention that Samba was created to provide a means of interoperability
-and interchange of data between differing operating environments. Samba has no intent to change
-UNIX/Linux into a platform like MS Windows. Instead the purpose was and is to provide a sufficient
-level of exchange of data between the two environments. What is available today extends well
-beyond early plans and expectations, yet the gap continues to shrink.
+Samba ist nicht primaer dafür gedacht eine Unix Plattform in eine Windows Plattform zu verwandeln, sondern soll hoechst 
+moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 </para>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Moeglichkeiten und Vorteile</title>
 
 	<para>
-	Samba offers a lot of flexibility in file system access management. These are the key access control
-	facilities present in Samba today:
+	Samba ermöglicht ein hohe Flexibilitaet beim Systemzugriff. Hier sind die Zugriffskontrollmoeglichkeiten der 
+	jetzigen Version (3) von Samba.
 	</para>
 
 	<itemizedlist>
-	<title>Samba Access Control Facilities</title>
+	<title>Samba Zugriffskontrollmoeglichkeiten</title>
 		<listitem><para>
 				<indexterm><primary>permissions</primary><secondary>UNIX file and directory</secondary></indexterm>
 		<emphasis>UNIX File and Directory Permissions</emphasis>
