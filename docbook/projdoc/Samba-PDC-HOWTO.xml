@@ -305,29 +305,18 @@ Ein Domänen-Controller ist ein SMB/CIFS-Server, der:
 </itemizedlist>
 
 <para>
-
----sgw.workmark
-
-It is rather easy to configure Samba to provide these. Each Samba Domain Controller must provide
-the NETLOGON service that Samba calls the <smbconfoption><name>domain logons</name></smbconfoption> functionality
-(after the name of the parameter in the &smb.conf; file). Additionally, one server in a Samba-3
-Domain must advertise itself as the Domain Master Browser<footnote>See <link linkend="NetworkBrowsing"/>.</footnote>.
-This causes the Primary Domain Controller to claim a domain-specific NetBIOS name that identifies it as a
-Domain Master Browser for its given domain or workgroup. Local master browsers in the same domain or workgroup on
-broadcast-isolated subnets then ask for a complete copy of the browse list for the whole wide area network.
-Browser clients will then contact their Local Master Browser, and will receive the domain-wide browse list,
-instead of just the list for their broadcast-isolated subnet.
+Es ist ziemlich einfach, Samba so zu konfigurieren, daß er all dies zur Verfügung stellt. Jeder Samba Domain Controller muß den NETLOGON-Dienst anbieten, welcher von Samba als <smbconfoption><name>domain logons</name></smbconfoption>-Funktionalität bezeichnet wird (nach dem Parameter in der &smb.conf;-Datei). Weiters muß ein Server in einer Samba-3-Domäne sich selbst als Domain Master Browser bekanntgeben <footnote>Siehe <link linkend="NetworkBrowsing"/>.</footnote>.
+Dies veranlaßt den PDC dazu, einen Domänen-spezifischen NetBIOS-Namen zu beanspruchen, der ihn als Domain Master Browser für die gegebene Domäne/Workgroup identifiziert. Lokale Master Browser in derselben Domäne/Workgroup und broadcast-isolierten Subnetzen erfragen dann eine komplette Kopie der "browse list" für das gesamte WAN. Browser Clients kontaktieren darauf ihren Lokalen Master Browser, und erhalten die "browse list" der gesamten Domäne, anstatt nur der Liste für ihr broadcast-isoliertes Subnetz.
 </para>
 
 </sect2>
 </sect1>
 
 <sect1>
-<title>Domain Control &smbmdash; Example Configuration</title>
+<title>Domänen-Verwaltung &smbmdash; Beispiel-Konfiguration</title>
 
 <para>
-The first step in creating a working Samba PDC is to understand the parameters necessary
-in &smb.conf;. An example &smb.conf; for acting as a PDC can be found in <link linkend="pdc-example"/>.
+Der erste Schritt, um einen funktionierenden Samba PDC zu erstellen, ist, die nötigen Parameter in &smb.conf; zu verstehen. Ein Beispiel einer &smb.conf; für einen PDC finden Sie unter <link linkend="pdc-example"/>.
 </para>
 
 <para>
@@ -362,27 +351,23 @@ in &smb.conf;. An example &smb.conf; for acting as a PDC can be found in <link l
 </para>
 
 <para>
-The basic options shown in <link linkend="pdc-example"/> are explained as follows:
+Die grundlegenden Optionen, die in <link linkend="pdc-example"/> gezeigt werden, werden wie folgt erklärt:
 </para>
 
 <variablelist>
 	<varlistentry><term>passdb backend </term>
 		<listitem><para>
-		This contains all the user and group account information. Acceptable values for a PDC
-		are: <emphasis>smbpasswd, tdbsam, and ldapsam</emphasis>. The <quote>guest</quote> entry provides
-		default accounts and is included by default, there is no need to add it explicitly.</para>
-
+		Dies enthält sämtliche Information zu Benutzer- und Gruppenkonten. Akzeptable Werte für einen PDC sind: <emphasis>smbpasswd, tdbsam, and ldapsam</emphasis>. Der <quote>guest</quote>-Eintrag stellt Standard-Konten zur Verfügung und ist standard-mässig inkludiert, es besteht keine Notwendigkeit, ihn explizit hinzuzufügen.
 		<para>
-		Where use of backup Domain Controllers (BDCs) is intended, the only logical choice is
-		to use LDAP so the passdb backend can be distributed. The tdbsam and smbpasswd files
-		cannot effectively be distributed and therefore should not be used.
+Wo der Einsatz von Backup-Domänen-Controllern (BDCs) beabsichtigt ist, ist die einzige logische Wahl die Verwendung von LDAP, sodaß die passdb verteilt werden kann. Die tdbsam und smbpasswd-Dateien können nicht effektiv verteilt werden und sollten daher nicht verwendet werden.		
 		</para></listitem>
 	</varlistentry>
-	<varlistentry><term>Domain Control Parameters </term>
+	<varlistentry><term>Domänen-Verwaltungs-Parameter </term>
 		<listitem><para>
-		The parameters <emphasis>os level, preferred master, domain master, security,
-		encrypt passwords, and domain logons</emphasis> play a central role in assuring domain
+		Die Parameter <emphasis>os level, preferred master, domain master, security,
+		encrypt passwords, und domain logons</emphasis> spielen eine wichtige Rolle in der play a central role in assuring domain
 		control and network logon support.</para>
+--- sgw.workmark
 
 		<para>
 		The <emphasis>os level</emphasis> must be set at or above a value of 32. A Domain Controller
