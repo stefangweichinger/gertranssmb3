@@ -1,0 +1,10 @@
+<samba:parameter name="root"
+                 context="G"
+                 advanced="1" developer="1"
+		 xmlns:samba="http://samba.org/common">
+    <para>Synonym for <link linkend="ROOTDIRECTORY">
+    <parameter moreinfo="none">root directory&quot;</parameter></link>.
+    </para>
+	<samba:default>foo</samba:default>
+	<samba:example>foo</samba:example>
+</samba:parameter>
