@@ -133,33 +133,38 @@ beste Lösung für Ihr Netzwerk ist.
 	</para>
 
 	<para>
-	NX performs better on my local LAN than any of the other <quote>pure</quote>
-	connection methods I am using from time to time: TightVNC, rdesktop or
-	Remote X. It is even faster than a direct crosslink connection between
-	two nodes.
+	NX arbeitet in meinem LAN besser als die anderen <quote>reinen</quote> Verbindungsarten,
+	die ich von Zeit zu Zeit benutze: TightVNC, rdesktop oder Remote X.
+	Es ist sogar schneller als eine direkte Crosslink-Verbindung zwischen 2 Knoten.	
 	</para>
 
 	<para>
-	I even got sound playing from the Remote X app to my local boxes, and
-	had a working <quote>copy'n'paste</quote> from an NX  window (running a KDE session
-	in Italy) to my Mozilla mailing agent. These guys are certainly doing
-	something right!
+	Ich bekomme sogar Sound von der Remote-X-applikation auf meine lokalen Lautsprecher,
+	und ich hatte ein funktionierendes <quote>copy'n'paste</quote> von einem NX-Fenster
+	(in welchem eine KDE-Sitzung in Italien lief) in meinen Mozilla-Mail-Agenten. Diese
+	Kerle machen definitiv etwas richtig!	
 	</para>
 
 	<para>
-	I recommend to test drive NX to anybody with a only a passing interest in remote computing
+	Ich empfehle jedem, der auch nur ein nebensächliches Interesse an Fernwartung hat,
+	NX auszuprobieren:	
 	<ulink noescape="1" url="http://www.nomachine.com/testdrive.php">http://www.nomachine.com/testdrive.php</ulink>.
 	</para>
 
 	<para>
-	Just download the free of charge client software (available for Red Hat,
-	SuSE, Debian and Windows) and be up and running within five minutes (they
-	need to send you your account data, though, because you are assigned
-	a real UNIX account on their testdrive.nomachine.com box.
+	Einfach den kostenlosen Client downloaden (verfügbar für Red Hat, SuSE, Debian
+	und Windows) und innerhalb 5 Minuten geht es los (es müssen allerdings erst
+	die Zugangsdaten gesendet werden, weil Sie einen vollen UNIX-account auf deren
+	testdrive.nomachine.com-Box erhalten).
 	</para>
 
 	<para>
-	They plan to get to the point were you can have NX application servers
+	Nomachine plant die Ausbaustufe, wo Sie NX-Applikations-Server als Cluster betreiben können,
+	und die Benutzer starten einfach eine lokale NX-Session	und können
+
+
+
+They plan to get to the point were you can have NX application servers
 	running as a cluster of nodes, and users simply start an NX session locally,
 	and can select applications to run transparently (apps may even run on
 	another NX node, but pretend to be on the same as used for initial login,
