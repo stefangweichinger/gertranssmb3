@@ -269,22 +269,22 @@ arbeiten nicht arbeiten möchten. Wir möchten verstärkt davor warnen im Share Lev
 
 <para>
 <indexterm><primary>Domain Member</primary></indexterm>
-When Samba is operating in <smbconfoption><name>security</name><value>domain</value></smbconfoption> mode,
-the Samba server has a domain security trust account (a machine account) and causes
-all authentication requests to be passed through to the Domain Controllers.
-In other words, this configuration makes the Samba server a Domain Member server.
+Wenn Samba im <smbconfoption><name>security</name><value>domain</value></smbconfoption> Modus betrieben wird,
+hat der Server einen Trust Account (Maschinen Account) und reicht alle Authentifizierungs Anfragen weiter
+zu den Domänen Controllern. Mit anderen Worten: Diese Konfiguration macht den Samba Server zu einen
+Domänen Mitglied.
 </para>
 
 <sect3>
-<title>Example Configuration</title>
+<title>Beispiel Konfiguration</title>
 <para><emphasis>
-Samba as a Domain Member Server
+Samba als Domänen Mitglieds Server
 </emphasis></para>
 
 
 <para>
 <indexterm><primary>Server Type</primary><secondary>Domain Member</secondary></indexterm>
-This method involves addition of the following parameters in the &smb.conf; file:
+Diese Art den Server zu betreiben benötigt folgende Parameter in der &smb.conf;:
 </para>
 
 <para><smbconfblock>
@@ -293,37 +293,36 @@ This method involves addition of the following parameters in the &smb.conf; file
 </smbconfblock></para>
 
 <para>
-In order for this method to work, the Samba server needs to join the MS Windows NT
-security domain. This is done as follows:
+Damit dies Funktioniert müssen folgende Schritte unternommen werden:
 <indexterm><primary>net</primary><secondary>rpc</secondary></indexterm>
 <indexterm><primary>Domain Member</primary><secondary>joining</secondary></indexterm>
 </para>
 
 
 <procedure>
-        <step><para>On the MS Windows NT Domain Controller, using
-        the Server Manager, add a machine account for the Samba server.
+        <step><para>Richten Sie einen Maschinen Account für den Samba Server ein, benutzen
+        Sie dafür den Server Manager.
         </para></step>
 
-        <step><para>On the UNIX/Linux system execute:</para>
+        <step><para>Auf dem UNIX/Linux System führen Sie folgendes aus:</para>
 
 			<para><screen>&rootprompt;<userinput>net rpc join -U administrator%password</userinput></screen></para>
 		</step>
 </procedure>
 
 <note><para>
-Samba-2.2.4 and later can auto-join a Windows NT4-style Domain just by executing:
+Samba-2.2.4 und spätere Versionen können durch ausführen von folgendem Befehl automatisch einer NT4 Domäne beitreten:
 <screen>
-&rootprompt;<userinput>smbpasswd -j <replaceable>DOMAIN_NAME</replaceable> -r <replaceable>PDC_NAME</replaceable> \
+&rootprompt;<userinput>smbpasswd -j <replaceable>DOMÄNEN-NAMEN</replaceable> -r <replaceable>PDC_NAME</replaceable> \
 	 -U Administrator%<replaceable>password</replaceable></userinput>
 </screen>
-
-Samba-3 can do the same by executing:
+Samba 3 kann das gleiche mit folgendem Kommando:
 <screen>
 &rootprompt;<userinput>net rpc join -U Administrator%<replaceable>password</replaceable></userinput>
 </screen>
-It is not necessary with Samba-3 to specify the <replaceable>DOMAIN_NAME</replaceable> or the
-<replaceable>PDC_NAME</replaceable> as it figures this out from the &smb.conf; file settings.
+Mit Samba 3 ist es nicht nötig den <replaceable>DOMÄNEN-NAMEN</replaceable> oder den
+<replaceable>PDC_NAME</replaceable> anzugeben da Samba 3 sich diese Informationen aus der &smb.conf;
+holt.
 </para></note>
 
 <para>
