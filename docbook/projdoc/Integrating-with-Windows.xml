@@ -7,10 +7,13 @@
 	<author>&person.reiss;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
  
-<title>Samba in MS Windows Netzwerke integrieren</title>
+<title>Samba in MS-Windows-Netzwerke integrieren</title>
  
 <para>
 <indexterm><primary>NetBIOS</primary></indexterm>
+
+...
+
 Dieses Kapitel handelt über die NETBIOS über TCP/IP Namen zu IP Adressen
 Auflösung.
 Wenn Ihre MS Windows Client's kein NetBIOS über TCP/IP verwenden ist
