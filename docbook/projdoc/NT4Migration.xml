@@ -9,61 +9,64 @@
 <title>Migration von einem NT4-PDC auf einen Samba-3-PDC</title>
 
 <para>
-This is a rough guide to assist those wishing to migrate from NT4 Domain Control to
-Samba-3-based Domain Control.
+Dies ist eine grobe Anleitung, um jenen zu helfen, die von NT4-basierter Domänen-Verwaltung
+auf Samba-3-basierte Domänen-Verwaltung migrieren wollen.
 </para>
 
 <sect1>
-<title>Planning and Getting Started</title>
+<title>Planung und Beginn</title>
 
 <para>
-In the IT world there is often a saying that all problems are encountered because of
-poor planning. The corollary to this saying is that not all problems can be anticipated
-and planned for. Then again, good planning will anticipate most show-stopper-type situations.
+In der IT-Welt gibt es den Satz, der besagt, daß alle Probleme infolge schlechter Planung entstehen.
+Der Folgesatz dazu ist, daß nicht alle Probleme vorweggenommen und eingeplant werden können.
+Jedoch wird gute Planung die meisten "Show-Stopper"-Situationen vorwegnehmen können.
 </para>
 
 <para>
-Those wishing to migrate from MS Windows NT4 Domain Control to a Samba-3 Domain Control
-environment would do well to develop a detailed migration plan. So here are a few pointers to
-help migration get under way.
+Diejenigen, die von NT4-basierter Domänen-Verwaltung auf Samba-3-basierte 
+Domänen-Verwaltung migrieren wollen, tun gut daran, einen detaillierten Migrations-Plan zu
+entwickeln. Dazu gibt es in diesem Dokument einige Hinweise.
 </para>
 
 <sect2>
-<title>Objectives</title>
+<title>Zielsetzungen</title>
 
 <para>
-The key objective for most organizations will be to make the migration from MS Windows NT4 
-to Samba-3 Domain Control as painless as possible. One of the challenges you may experience
-in your migration process may well be one of convincing management that the new environment
-should remain in place. Many who have introduced open source technologies have experienced
-pressure to return to a Microsoft-based platform solution at the first sign of trouble. 
+Die hauptsächliche Zielsetzung für die meisten Organisationen wird es sein, die Migration
+von NT4- auf Samba-3-Domänen-Verwaltung so reibungslos wie möglich zu gestalten. Eine der
+Herausforderungen, denen Sie in Ihrem Migrations-Prozeß begegnen werden, könnte sein, daß
+Sie das Management davon überzeugen müssen, daß die neue Umgebung bestehen bleiben sollte.
+Viele, die Open-Source-Technologie in Unternehmen eingebracht haben, haben es erlebt,
+beim ersten Anzeichen von Problemen unter Druck gesetzt zu werden, 
+zu Microsoft-basierten Lösungen zurückzukehren.
 </para>
 
 <para>
-Before attempting a migration to a Samba-3 controlled network, make every possible effort to
-gain all-round commitment to the change. Know precisely <emphasis>why</emphasis> the change
-is important for the organization. Possible motivations to make a change include:
+Bevor Sie eine Migration auf ein Samba-3-kontrolliertes Netz anstreben, unternehmen Sie
+jegliche Anstrengung, um dafür Unterstützung von allen Seiten zu erhalten.
+Vergewissern Sie sich, genau zu wissen, <emphasis>warum</emphasis> diese Veränderung
+wichtig für diese Organisation ist. Mögliche Motivationen zur Veränderung beinhalten:
 </para>
 
 <itemizedlist>
-    <listitem><para>Improve network manageability.</para></listitem>
-    <listitem><para>Obtain better user level functionality.</para></listitem>
-    <listitem><para>Reduce network operating costs.</para></listitem>
-    <listitem><para>Reduce exposure caused by Microsoft withdrawal of NT4 support.</para></listitem>
-    <listitem><para>Avoid MS License 6 implications.</para></listitem>
-    <listitem><para>Reduce organization's dependency on Microsoft.</para></listitem>
+    <listitem><para>Das Verbessern des Netzwerk-Managements.</para></listitem>
+    <listitem><para>Das Erreichen besserer Funktionalität auf Benutzer-Ebene.</para></listitem>
+    <listitem><para>Das Reduzieren der Kosten für das Betreiben des Netzwerks.</para></listitem>
+    <listitem><para>Das Reduzieren der Kosten durch den Wegfall des MS-NT4-Supports.</para></listitem>
+    <listitem><para>Das Vermeiden der Auswirkungen der MS Lizenz 6.</para></listitem>
+    <listitem><para>Das Verringern der Abhängigkeiten von Microsoft.</para></listitem>
 </itemizedlist>
 
 <para>
-Make sure everyone knows that Samba-3 is not MS Windows NT4. Samba-3 offers
-an alternative solution that is both different from MS Windows NT4 and offers 
-advantages compared with it. Gain recognition that Samba-3 lacks many of the
-features that Microsoft has promoted as core values in migration from MS Windows NT4 to 
-MS Windows 2000 and beyond (with or without Active Directory services).
+Sorgen Sie dafür, daß jeder weiß, daß Samba-3 NICHT MS Windows NT4 ist. Samba-3 bietet eine
+alternative Lösung, die sich einerseits von MS Windows NT4 unterscheidet, und andererseits
+ihm gegenüber Vorteile bietet. Erreichen Sie, daß man erkennt, daß Samba-3 viele der Features
+fehlen, die Microsoft als Schlüsselwerte in der Migration von MS Windows NT4 auf MS Windows 2000,
+und darüber hinaus, beworben hat (mit oder ohne Active Directory-Dienste).
 </para>
 
 <para>
-What are the features that Samba-3 cannot provide?
+Welche Features kann Samba-3 nicht bieten?
 </para>
 
 <itemizedlist>
