@@ -430,7 +430,7 @@ Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agru
 		</programlisting></para>
 
 		<para>Die exakte Syntax von <filename>/etc/inetd.conf</filename> 
-		variiert zwischen UNIXes. Nehmen Sie sich andere Einträge in inetd.conf 
+		variiert zwischen UNIX's. Nehmen Sie sich andere Einträge in inetd.conf 
 		zur Vorlage. </para>
 
 	<para>
@@ -438,7 +438,7 @@ Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agru
 		Manche Distributionen verwenden xinetd anstatt von inetd.
 		Konsultieren Sie das xinetd-Manual für Informationen zur Konfiguration.</para>
 
-		<note><para>Manche UNIXes haben bereits Einträge wie netbios_ns (beachten Sie
+		<note><para>Manche UNIX's haben bereits Einträge wie netbios_ns (beachten Sie
 		den Unterstrich) in <filename>/etc/services</filename>. Sie müssen
 		<filename>/etc/services</filename> oder <filename>/etc/inetd.conf</filename>
 		editieren, um beide konsistent zu erhalten.</para></note>
@@ -450,10 +450,10 @@ Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agru
 		um die IP-Adresse und Netzmaske Ihrer Netz-Interfaces anzugeben.
 		Führen Sie <application>ifconfig</application> als root aus, wenn Sie die
 		Broadcast-Adresse Ihres Netzes nicht kennen. &nmbd; versucht diese bei seiner
-		Ausführung zu bestimmen, scheitert aber auf manchen UNIXes.
+		Ausführung zu bestimmen, scheitert aber auf manchen UNIX's.
                 </para></note>
 
-		<warning><para>Viele UNIXes akzeptieren nur ungefähr fünf Parameter
+		<warning><para>Viele UNIX's akzeptieren nur ungefähr fünf Parameter
 		auf der Befehlszeile in <filename>inetd.conf</filename>. Das bedeutet, daß
 		Sie keine Leerzeichen zwischen Optionen und Argumenten verwenden sollten, bzw.
 		daß Sie ein Skript verwenden und dies mittels <command>inetd</command> starten
