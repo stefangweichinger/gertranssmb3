@@ -75,16 +75,16 @@ oder einem Samba-kontrollierten Netzwerk. Domänen-Mitgliedschaft hat viele Vorte
 	</para></listitem>
 
 	<listitem><para>
-	Through the use of logon scripts, users can be given transparent access to network
-	applications that run off application servers.
+	Durch die Verwendung von Anmelde-Skripts können Benutzer transparenten Zugriff auf
+	Netz-Anwendungen erhalten, die auf Applikations-Servern laufen.
 	</para></listitem>
 
 	<listitem><para>
-	Network administrators gain better application and user access management
-	abilities because there is no need to maintain user accounts on any network
-	client or server, other than the central Domain database 
-	(either NT4/Samba SAM style Domain, NT4 Domain that is backend-ed with an
-	LDAP directory, or via an Active Directory infrastructure).
+	Netzwerk-Administratoren erhalten bessere Möglichkeiten zum Management von
+	Applikations- und Benutzer-Zugriffen, da kein Bedarf mehr besteht, Benutzer-Konten
+	auf irgendeinem Netzwerk-Client oder -Server zu verwalten, außer in der zentralen
+	Domänen-Datenbank (entweder NT4/Samba-SAM-artig, eine NT4-Domäne, die durch ein
+	LDAP-Backend ergänzt wird, oder eine Active Directory Infrastruktur).
 	</para></listitem>
 </itemizedlist>
 
