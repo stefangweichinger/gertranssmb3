@@ -6,7 +6,7 @@
 	<pubdate>April 14, 2003</pubdate>
 </chapterinfo>
 
-<TITLE>Einfürung in Samba</TITLE>
+<title>Einfürung in Samba</title>
 
 <para><quote>
 "Wenn du verstehst was du tust, wirst du nichts lernen"
@@ -21,7 +21,7 @@ Samba wird derzeit von einem 30 köpfigen Team von Programmierern entwickelt und 
 </para>
 
 <sect1>
-<TITLE>Hintergrund</TITLE>
+<title>Hintergrund</title>
 
 <para>
 Vor langer Zeit gab es ein Schlüsselwort welches auf DCE/RPC referenzierte. Dies stand für
@@ -69,7 +69,7 @@ thinking?
 </sect1>
 
 <sect1>
-<TITLE>Fachsprache</TITLE>
+<title>Fachsprache</title>
 
 <itemizedlist>
 
@@ -149,7 +149,7 @@ thinking?
 </sect1>
 
 <sect1>
-<TITLE>Verwandte Projekte</TITLE>
+<title>Verwandte Projekte</title>
 
 <para>
 Derzeit gibt es zwei weitere Netzwerk Dateisystem Client Projekte für Linux die direkt mit Samba in Verbindung stehen:
@@ -191,7 +191,7 @@ welches ein SMB Client Toolkit in Java geschrieben zur Verfügung stellt.
 
 
 <sect1>
-<TITLE>SMB Methodologie</TITLE>
+<title>SMB Methodologie</title>
 
 <para>
 Traditionell nutzt SMB den UDP Port 137 (NetBIOS name service oder nerbios-ns), den UDP Port
@@ -246,7 +246,7 @@ Es ermöglicht es ihnen Schritt für Schritt durch eine SMB/CIFS Sitzung zu gehen.
 </sect1>
 
 <sect1>
-<TITLE>Epilog</TITLE>
+<title>Epilog</title>
 
 <para><quote>
 Was grundlegend Falsch ist, ist das niemand einen Geschmack finden kann wenn er es nicht probiert hat.
@@ -286,7 +286,7 @@ Das ist das, was mich wirklich irretiert.
 </sect1>
 
 <sect1>
-<TITLE>Verschiedenes</TITLE>
+<title>Verschiedenes</title>
 
 <!--FIXME: This really needs to go... -->
 

@@ -5,7 +5,7 @@
 ]>
 
 <book id="Samba-HOWTO-Collection">
-<TITLE>Samba HOWTO Collection</TITLE>
+<title>Samba HOWTO Collection</title>
 
 <bookinfo>
 	<authorgroup>
@@ -42,7 +42,7 @@ Quelle der Inspiration und Anwendungserfahrung von vielen Samba Benutzern und Ad
 </bookinfo>
 
 <preface>
-	<TITLE>Copyright Informationen</TITLE>
+	<title>Copyright Informationen</title>
 <para>
 Diese Dokumentation wird unter der GNU General Public License (GPL) Version 2 veröffentlicht.
 Eine Kopie dieser Lizensbestimmung ist in den Samba Quelldateien enthalten und kann ebenfalls
@@ -52,7 +52,7 @@ eingesehen werden.
 </preface>
 
 <preface>
-	<TITLE>Eigenschaft</TITLE>
+	<title>Eigenschaft</title>
 		&attributions;
 </preface>
 
@@ -61,9 +61,9 @@ eingesehen werden.
 
 <!-- Chapters -->
 <part id="introduction">
-<TITLE>Grundlegende Installation</TITLE>
+<title>Grundlegende Installation</title>
 <partintro>
-<TITLE>Vorbereitung zur Samba Konfiguration</TITLE>
+<title>Vorbereitung zur Samba Konfiguration</title>
 <para>Diese Sektion der Samba-HOWTO-Kollektion beinhaltet grundlegende Information wie man
 Samba installiert und konfiguriert die Sie am meisten nutzen.
 BITTE lesen Sie dies.
@@ -75,9 +75,9 @@ BITTE lesen Sie dies.
 </part>
 
 <part id="type">
-<TITLE>Basiswissen zur Server Konfiguration</TITLE>
+<title>Basiswissen zur Server Konfiguration</title>
 <partintro>
-<TITLE>Erste Schritte bei der Konfiguration</TITLE>
+<title>Erste Schritte bei der Konfiguration</title>
 <para>
 Samba kann in verschiedenen Modi in SMB Netzwerken operieren. Diese HOWTO Sektion beinhaltet
 Informationen Samba unter Berücksichtigung ihrer Netzwerkanforderungen einzurichten ist. Bitte
@@ -93,9 +93,9 @@ lesen Sie dieses Kapitel genau durch.
 </part>
 
 <part id="optional">
-<TITLE>Erweiterte Konfiguration</TITLE>
+<title>Erweiterte Konfiguration</title>
 <partintro>
-<TITLE>Wertvolle "Nuß und Bolzen" Informationen - Valuable Nuts and Bolts Information</TITLE>
+<title>Wertvolle "Nuß und Bolzen" Informationen - Valuable Nuts and Bolts Information</title>
 <para>
 Samba hat verschiedene Merkmale die Sie vielleicht nutzen möchten.
 Dieses Kapitel behandelt ausgewählte Merkmale.
@@ -124,14 +124,14 @@ Dieses Kapitel behandelt ausgewählte Merkmale.
 </part>
 
 <part id="migration">
-<TITLE>Migration und Updating</TITLE>
+<title>Migration und Updating</title>
 &upgrading;
 &NT4Migration;
 &SWAT;
 </part>
 
 <part id="troubleshooting">
-<TITLE>Troubleshooting</TITLE>
+<title>Troubleshooting</title>
 
 &Diagnosis;
 &problems;
@@ -139,7 +139,7 @@ Dieses Kapitel behandelt ausgewählte Merkmale.
 </part>
 
 <part id="Appendixes">
-	<TITLE>Anhang</TITLE>
+	<title>Anhang</title>
 &Compiling;
 	&Portability;
 &Other-Clients;
