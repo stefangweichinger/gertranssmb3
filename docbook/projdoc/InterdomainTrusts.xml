@@ -20,82 +20,84 @@
 <indexterm><primary>Interdomain Trusts</primary></indexterm>
 Samba-3 unterstützt NT4-gleiche Domänen Vertrauensstellungen. Dies ist ein  Bestandteil den
 viele Standorte benutzen möchten wenn sie von einer NT4-gleichen Domäne auf eine Samba-3 Domäne
-migrieren, ohne Active Directory oder ein LDAP-basierendes Backen übernehmen möchten. Dieses Kapitel
-beschreibt einige Hintergrundinformationen bezüglich Vertrauensstellung und wie sie erstellt werden.
-Es ist nun für Samba3 möglich NT4 zu vertrauen (und umgekehrt), genauso wie es möglich ist Samba zu Samba
-Vertrauensstellunge zu erstellen.
-
-Samba-3 supports NT4-style domain trust relationships. This is a feature that many sites
-will want to use if they migrate to Samba-3 from an NT4-style domain and do not want to
-adopt Active Directory or an LDAP-based authentication backend. This section explains
-some background information regarding trust relationships and how to create them. It is now
-possible for Samba-3 to trust NT4 (and vice versa), as well as to create Samba-to-Samba 
-trusts.
+migrieren, ohne Active Directory oder ein LDAP-basierendes Backend übernehmen zu müssen. Dieses Kapitel
+beschreibt einige Hintergrundinformationen bezüglich Vertrauensstellungen und wie sie erstellt werden.
+Es ist nun für Samba3 möglich NT4 zu vertrauen (und umgekehrt), genauso wie es möglich ist Samba-zu-Samba
+Vertrauensstellungen zu erstellen.
 </para>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Vorteile</title>
 
 <para>
-Samba-3 can participate in Samba-to-Samba as well as in Samba-to-MS Windows NT4-style
-trust relationships. This imparts to Samba similar scalability as with MS Windows NT4.
+Samba-3 kann an einer Samba-zu-Samba Vertrauensstellung teilnehmen genauso wie in einer Samba
+-zu-MS Windows NT4 Vertrauensstellung. Somit hat Samba eine ähnliche Skalierbarkeit wie
+MS Windows NT4.
 </para>
 
 <para>
-Given that Samba-3 has the capability to function with a scalable backend authentication
-database such as LDAP, and given its ability to run in Primary as well as Backup Domain Control
-modes, the administrator would be well advised to consider alternatives to the use of
-Interdomain trusts simply because by the very nature of how this works it is fragile.
-That was, after all, a key reason for the development and adoption of Microsoft Active Directory.
+Gegeben das Samba-3 die Fähigkeit besitzt mit einem skalierbaren Authentifizierungsbackend
+wie LDAP zu funktionieren, und gegeben dass es sowohl als Erster Domänen Kontroller sowie als
+Backup Domänen Kontroller funktioniert, sollte der Administrator sich nach Alternativen umschauen,
+bevor er Interdomänen Vertrauensstellung benutzt, aus dem einfachen Grund dass das Prinzip nach
+dem sie arbeiten einfach unsicher ist. Dies war, unter anderem, ein Hauptgrund für die Entwicklung
+von Microsoft Active Directory.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Trust Relationship Background</title>
+<title>Hintergrund von Vertrauensstellungen</title>
 
 <para>
-MS Windows NT3/4 type security domains employ a non-hierarchical security structure.
-The limitations of this architecture as it effects the scalability of MS Windows networking
-in large organizations is well known. Additionally, the flat namespace that results from
-this design significantly impacts the delegation of administrative responsibilities in
-large and diverse organizations.
+MS Windows NT3/4 Sicherheits Domänen haben eine nicht-hierarchische Sicherheits Struktur.
+Die Einschränkungen dieser Architektur und wie sie die Skalierbarkeit von MS Windows
+Netzwerken in grossen Organisationen betreffen, sind wohl bekannt. Dazu schränkt --the flat 
+namespace-- der aus diesem Design hervorgeht auch die Verteilung von administrativen Aufgaben
+in grossen Netzwerken sehr ein. 
+
+#MS Windows NT3/4 type security domains employ a non-hierarchical security structure.
+#The limitations of this architecture as it effects the scalability of MS Windows networking
+#in large organizations is well known. Additionally, the flat namespace that results from
+#this design significantly impacts the delegation of administrative responsibilities in
+#large and diverse organizations.
 </para>
 
 <para>
-Microsoft developed Active Directory Service (ADS), based on Kerberos and LDAP, as a means
-of circumventing the limitations of the older technologies. Not every organization is ready
-or willing to embrace ADS. For small companies the older NT4-style domain security paradigm
-is quite adequate, there remains an entrenched user base for whom there is no direct
-desire to go through a disruptive change to adopt ADS.
+Microsoft entwickelte Active Directory Service (ADS), basierend auf Kerberos und LDAP, als
+ein Mittel die Einschränkungen der älteren Technologien zu umgehen. Nicht jede Organisation
+ist gewillt oder bereit ADS einzusetzen. Für kleinere Unternehmen ist das alte NT4 Domänen 
+Sicherheits Muster eher angebracht, es bleibt eine feste Benutzer Basis für welche es keinen
+Grund gibt einen unterbrechenden Wechsel zu vollziehen um ADS zu adaptieren.
 </para>
 
 <para>
-With MS Windows NT, Microsoft introduced the ability to allow differing security domains
-to effect a mechanism so users from one domain may be given access rights and privileges
-in another domain. The language that describes this capability is couched in terms of
-<emphasis>Trusts</emphasis>. Specifically, one domain will <emphasis>trust</emphasis> the users
-from another domain. The domain from which users are available to another security domain is
-said to be a trusted domain. The domain in which those users have assigned rights and privileges
-is the trusting domain. With NT3.x/4.0 all trust relationships are always in one direction only,
-thus if users in both domains are to have privileges and rights in each others' domain, then it is
-necessary to establish two relationships, one in each direction.
+Mit MS Windows NT, hat Microsoft die Fähigkeit eingeführt, unterschiedlichen Sicherheits
+Domänen einen Mechanismus zu erlauben so, dass Benutzern einer Domäne, Anmelderechte und Privilegien
+in einer anderen Domäne gegeben werden können. Dies wird als <emphasis>Vertrauensstellung</emphasis>
+(Trusts) beschrieben. Z.B. eine Domäne <emphasis>vertraut</emphasis> den Benutzern einer anderen Domäne.
+Die Domäne, von welcher die Benutzer einer anderen Domäne zur Verfügung stehen, nennt man vertraute Domäne.
+Die Domäne, in der diese Benutzer gewisse Rechte und Privilegien haben ist die vertrauende Domäne. Mit
+NT3.x/4.0 gehen alle Vertrauensstellungen immer nur in eine Richtung, d.h. wenn Benutzer beider Domänen
+in der jeweils anderen Domäne Rechte und Privilegien haben sollen, muss man zwei Vertrauensstellung aufbauen,
+eine in jede Richtung.
 </para>
 
 <para>
-In an NT4-style MS security domain, all trusts are non-transitive. This means that if there
-are three domains (let's call them RED, WHITE and BLUE) where RED and WHITE have a trust
-relationship, and WHITE and BLUE have a trust relationship, then it holds that there is no
-implied trust between the RED and BLUE domains. Relationships are explicit and not
-transitive.
+In einer NT4-gleichen MS Sicherheits Domäne sind alle Vertrauensstellungen nicht-transitiv.
+Das bedeutet, dass wenn wir drei Domänen haben (nennen wir sie ROT, WEISS und BLAU), in der ROT
+und WEISS in einer Vertrauensstellung zueinander stehen, und WEISS und BLAU in einer Vertrauensstellung
+stehen, dann bedeutet das nicht dass ROT und BLAU automatisch eine Vertrauensstellung zueinander haben.
+Vertrauensstellung sind explizit und nicht transitiv. 
 </para>
 
 <para>
-New to MS Windows 2000 ADS security contexts is the fact that trust relationships are two-way
-by default. Also, all inter-ADS domain trusts are transitive. In the case of the RED, WHITE and BLUE
-domains above, with Windows 2000 and ADS the RED and BLUE domains can trust each other. This is
-an inherent feature of ADS domains. Samba-3 implements MS Windows NT4-style Interdomain trusts
-and interoperates with MS Windows 200x ADS security domains in similar manner to MS Windows NT4-style domains.
+Neu im MS Windows 2000 ADS Sicherheits Kontext ist die Tatsache, dass Vertrauensstellungen durch
+Voreinstellung in beiden Richtungen gehen. Zusätzlich sind alle inter-ADS Domänen Vertrauensstellung
+transitive. Im Fall der ROT, WEISS und BLAU Domänen oben und Windows 2000 mit ADS, würde das bedeuten,
+dass ROT und BLAU sich vertrauen würden. Dies ist eine Eigenschaft die nur ADS Domänen haben. Samba-3
+implementiert MS Windows NT4-gleiche Domänen Vertrauensstellungen und verkehrt mit MS Windows 200x
+ADS Sicherheits Domänen in einer ähnliche Weise wie mit MS Windows NT4-gleichen Domänen.
 </para>
 
 </sect1>
