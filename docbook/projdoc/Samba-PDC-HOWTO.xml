@@ -6,7 +6,7 @@
 	&author.jerry;
 	&author.dbannon;
 	<author>&person.gd; <contrib>LDAP updates</contrib></author>
-	<author>&person.sgw;<contrib>German Translator</contrib></author>
+	<author>&author.sgw;<contrib>German Translator</contrib></author>
 </chapterinfo>
 
 <title>Die Kontrolle über eine Domäne</title>
@@ -178,30 +178,16 @@ Im Falle von MS Windows NT4-Domänen ist es der PDC, der eine neue Domänen-Verwal
 </para>
 
 <para>
-In MS Windows 200x-Server-basierten Active-Directory-Domänen initiiert ein Domänen-Controller eine mögliche Hierarchie von Domänen-Controllern, von denen jeder seinen eigenen delegierten Verwaltungsbereich erhält. Der Master-Domänen-Controller hat die Möglichkeit, jeden untergebenen Controller zu übergehen.
-
-WEICHINGER.bookmark
-
-With MS Windows 200x Server-based Active Directory domains, one Domain Controller initiates a potential
-hierarchy of Domain Controllers, each with their own area of delegated control. The master domain
-controller has the ability to override any downstream controller, but a downline controller has
-control only over its downline. With Samba-3, this functionality can be implemented using an
-LDAP-based user and machine account backend.
+In MS Windows 200x-Server-basierten Active-Directory-Domänen initiiert ein Domänen-Controller eine mögliche Hierarchie von Domänen-Controllern, von denen jeder seinen eigenen delegierten Verwaltungsbereich erhält. Der Master-Domänen-Controller hat die Möglichkeit, jeden "downstream controller" zu übergehen, jedoch hat ein "downline controller" nur Kontrolle über seine "downline" (WEICHINGER: Wie übersetzen?) Mit Samba-3 kann diese Funktionalität durch Verwendung eines Konten-Backends auf LDAP-Basis implementiert werden.
 </para>
 
 <para>
-New to Samba-3 is the ability to use a backend database that holds the same type of data as
-the NT4-style SAM database (one of the registry files)<footnote>See also <link linkend="passdb"/>.</footnote>.
+Neu in Samba-3 ist die mögliche Verwendung einer Backend-Datenbank, die dieselben Daten enthält wie eine NT4-artige SAM-Datenbank (eines der Registrierungs-files)<footnote>Siehe auch <link linkend="passdb"/>.</footnote>.
 </para>
 
 <para>
-The <emphasis>Backup Domain Controller</emphasis> or BDC plays a key role in servicing network
-authentication requests. The BDC is biased to answer logon requests in preference to the PDC.
-On a network segment that has a BDC and a PDC, the BDC will most likely service network
-logon requests. The PDC will answer network logon requests when the BDC is too busy (high load).
-A BDC can be promoted to a PDC. If the PDC is online at the time that a BDC is promoted to
-PDC, the previous PDC is automatically demoted to a BDC. With Samba-3, this is not an automatic
-operation; the PDC and BDC must be manually configured and changes also need to be made.
+
+Der <emphasis>Backup Domain Controller</emphasis> oder BDC spielt eine Schlüsselrolle in der Beantwortung von Netzwerk-Authentifizierungs-Anfragen. Der BDC ist darauf ausgerichtet, logon-Anfragen vor dem PDC zu beantworten. In einem Netzwerk-Segment, das sowohl einen BDC wie auch einen PDC beinhaltet, wird der BDC meist die Netzwerk-logon-Anfragen bedienen. Der PDC wird diese dann beantworten, wenn der BDC überlastet ist. EIn BDC kann zum PDC ernannt werden. Wenn der PDC online ist, wenn der BDC zum PDC ernannt wird, wird der vorige PDC automatisch zum BDC zurückgestuft. Mit Samba-3 ist dieser Vorgang nicht automatisch; der PDC und der BDC müssen händisch konfiguriert werden.
 </para>
 
 <para>
