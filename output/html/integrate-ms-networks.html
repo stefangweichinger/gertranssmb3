@@ -1,210 +1,128 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 26. Samba in MS Windows Netzwerke integrieren</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.64.1"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="pam.html" title="Chapter 25. PAM-basierte verteilte Authentifizierung"><link rel="next" href="unicode.html" title="Chapter 27. Unicode/Charsets"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 26. Samba in MS Windows Netzwerke integrieren</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="pam.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="unicode.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="integrate-ms-networks"></a>Chapter 26. Samba in MS Windows Netzwerke integrieren</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Thomas</span> <span class="othername"></span> <span class="surname">Reiss</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:thomas@mypoint.franken.de">thomas@mypoint.franken.de</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate"> (Jan 01 2001) </p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="integrate-ms-networks.html#id2976858">Fähigkeiten und Möglichkeiten</a></span></dt><dt><span class="sect1"><a href="integrate-ms-networks.html#id2976886">Hintergrundinformation</a></span></dt><dt><span class="sect1"><a href="integrate-ms-networks.html#id2977046">Namensauflösung in einem reinen UNIX/Linux Umfeld</a></span></dt><dd><dl><dt><span class="sect2"><a href="integrate-ms-networks.html#id2977110">/etc/hosts</a></span></dt><dt><span class="sect2"><a href="integrate-ms-networks.html#id2977400">/etc/resolv.conf</a></span></dt><dt><span class="sect2"><a href="integrate-ms-networks.html#id2977477">/etc/host.conf</a></span></dt><dt><span class="sect2"><a href="integrate-ms-networks.html#id2977577">/etc/nsswitch.conf</a></span></dt></dl></dd><dt><span class="sect1"><a href="integrate-ms-networks.html#id2977785">Die Namensauflösung wie sie in einem MS Windows Netzwerk verwendet wird</a></span></dt><dd><dl><dt><span class="sect2"><a href="integrate-ms-networks.html#id2978337">The NetBIOS Name Cache</a></span></dt><dt><span class="sect2"><a href="integrate-ms-networks.html#id2978480">The LMHOSTS File</a></span></dt><dt><span class="sect2"><a href="integrate-ms-networks.html#id2978737">HOSTS File</a></span></dt><dt><span class="sect2"><a href="integrate-ms-networks.html#id2978791">DNS Lookup</a></span></dt><dt><span class="sect2"><a href="integrate-ms-networks.html#id2978880">WINS Lookup</a></span></dt></dl></dd><dt><span class="sect1"><a href="integrate-ms-networks.html#id2978995">Common Errors</a></span></dt><dd><dl><dt><span class="sect2"><a href="integrate-ms-networks.html#id2979010">Pinging Works Only in One Way</a></span></dt><dt><span class="sect2"><a href="integrate-ms-networks.html#id2979052">Very Slow Network Connections</a></span></dt><dt><span class="sect2"><a href="integrate-ms-networks.html#id2979104">Samba Server Name Change Problem</a></span></dt></dl></dd></dl></div><p>
-<a class="indexterm" name="id2976811"></a>
-Dieses Kapitel handelt über die NETBIOS über TCP/IP Namen zu IP Adressen
-Auflösung.
-Wenn Ihre MS Windows Client's kein NetBIOS über TCP/IP verwenden ist
-dieses Kaptitel für Sie nicht relevant. Sollte Ihre Installation aber
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 26. Samba in MS-Windows-Netzwerke integrieren</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="pam.html" title="Chapter 25. PAM-basierte verteilte Authentifizierung"><link rel="next" href="unicode.html" title="Chapter 27. Unicode/Charsets"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 26. Samba in MS-Windows-Netzwerke integrieren</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="pam.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="unicode.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="integrate-ms-networks"></a>Chapter 26. Samba in MS-Windows-Netzwerke integrieren</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Thomas</span> <span class="othername"></span> <span class="surname">Reiss</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:thomas@mypoint.franken.de">thomas@mypoint.franken.de</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate"> (Jan 01 2001) </p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="integrate-ms-networks.html#id2967511">Fähigkeiten und Möglichkeiten</a></dt><dt><a href="integrate-ms-networks.html#id2967539">Hintergrundinformation</a></dt><dt><a href="integrate-ms-networks.html#id2967630">Namensauflösung in einem reinen UNIX/Linux Umfeld</a></dt><dd><dl><dt><a href="integrate-ms-networks.html#id2967688">/etc/hosts</a></dt><dt><a href="integrate-ms-networks.html#id2967885">/etc/resolv.conf</a></dt><dt><a href="integrate-ms-networks.html#id2967936">/etc/host.conf</a></dt><dt><a href="integrate-ms-networks.html#id2968036">/etc/nsswitch.conf</a></dt></dl></dd><dt><a href="integrate-ms-networks.html#id2968244">Die Namensauflösung wie sie in einem MS Windows Netzwerk verwendet wird</a></dt><dd><dl><dt><a href="integrate-ms-networks.html#id2968798">The NetBIOS Name Cache</a></dt><dt><a href="integrate-ms-networks.html#id2968940">The LMHOSTS File</a></dt><dt><a href="integrate-ms-networks.html#id2969209">HOSTS File</a></dt><dt><a href="integrate-ms-networks.html#id2969263">DNS Lookup</a></dt><dt><a href="integrate-ms-networks.html#id2969352">WINS Lookup</a></dt></dl></dd><dt><a href="integrate-ms-networks.html#id2969518">Häufige Fehler</a></dt><dd><dl><dt><a href="integrate-ms-networks.html#id2969560">Ping funktioniert nur in eine Richtung</a></dt><dt><a href="integrate-ms-networks.html#id2969624">Sehr langsame Netzwerkverbindungen</a></dt><dt><a href="integrate-ms-networks.html#id2969714">Problem beim ändern des Samba Server Namen</a></dt></dl></dd></dl></div><p>
+<a class="indexterm" name="id2967467"></a>
+Dieses Kapitel handelt von der Auflösung von NETBIOS-TCP/IP-Namen zu IP-Adressen.
+Wenn Ihre MS-Windows-Clients kein NetBIOS über TCP/IP verwenden, ist
+dieses Kapitel für Sie nicht relevant. Sollte Ihre Installation aber
 mit NetBIOS über TCP/IP arbeiten, kann Ihnen dieses Kapitel bei Netzwerkproblemen
 weiterhelfen.
 </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
-NetBIOS über TCP/IP hat nichts zu tun mit NetBEUI. NetBEUI ist NetBIOS
+NetBIOS über TCP/IP hat nichts mit NetBEUI zu tun. NetBEUI ist NetBIOS
 über Logical Link Control (LLC). 
-Bei aktuellen Netzwerkwerken ist es dringend angeraten auf keinen Fall NetBEUI zu
-verwenden. Es ist auch anzumerken dass es nicht's in der Art von
-NetBEUI über TCP/IP  gibt. Wenn von so etwas gesprochen wird
+Bei aktuellen Netzwerken ist es dringend angeraten, auf keinen Fall NetBEUI zu
+verwenden. Es ist auch anzumerken, dass es nichts in der Art von
+NetBEUI über TCP/IP  gibt. Wenn von soetwas gesprochen wird,
 handelt es sich um ein komplettes Missverständniss.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2976858"></a>Fähigkeiten und Möglichkeiten</h2></div></div><div></div></div><p>
-Viele MS Windows Netzwerkadministratoren hatten bisher keine Ahnung von
-grundlegenden TCP/IP Netzwerken wie es in UNIX/Linux Betriebssystemen
-verwendet wird. Andererseits haben viele Unix und Linux Administratoren
-keine Ahnung von den Komplikationen eines Windows TCP/IP basierenden
-Netzwerkes (und haben keine Lust auf beides).
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2967511"></a>Fähigkeiten und Möglichkeiten</h2></div></div><div></div></div><p>
+Viele MS-Windows-Netzwerkadministratoren hatten bisher keine Ahnung von
+grundlegenden TCP/IP-Netzwerken, wie es in UNIX/Linux-Betriebssystemen
+verwendet wird. Andererseits haben viele Unix- und Linux-Administratoren
+keine Ahnung von den Komplikationen eines auf TCP/IP basierenden
+Windows-Netzwerks (und haben keinerlei Lust auf beides ...).
 </p><p>
 Dieses Kapitel gibt für jede Betriebssystemumgebung eine kurze Einweisung 
-in die Grundlagen wie ein Name in seine IP Adresse aufgelöst wird.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2976886"></a>Hintergrundinformation</h2></div></div><div></div></div><p>
-Seit der Einführung von MS Windows 2000 ist es möglich ein MS Windows
+in die Grundlagen der Namensauflösung.
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2967539"></a>Hintergrundinformation</h2></div></div><div></div></div><p>
+Seit der Einführung von MS Windows 2000 ist es möglich, ein MS-Windows-
 Netzwerk ohne NetBIOS über TCP/IP zu verwenden. NetBIOS über TCP/IP
-benutzt UDP Port 137 für die NetBIOS Namensauflösung und TCP Port 139
-für die NetBIOS Dienste Session. 
-Sollte auf den MS Windows 2000 Client's (oder spätere Versionen) 
+benutzt UDP Port 137 für die NetBIOS-Namensauflösung und TCP Port 139
+für die NetBIOS-Dienste-Session. 
+Sollte auf den MS Windows 2000 Clients (oder späteren Versionen) 
 NetBIOS über TCP/IP deaktiviert sein, dann wird nur der TCP Port 445 verwendet.
-In diesem Fall wird der UDP Port 137 und der TCP Port 139 nicht
+In diesem Fall werden der UDP Port 137 und der TCP Port 139 nicht
 verwendet.
-#
-Since the introduction of MS Windows 2000, it is possible to run MS Windows networking
-without the use of NetBIOS over TCP/IP. NetBIOS over TCP/IP uses UDP port 137 for NetBIOS
-name resolution and uses TCP port 139 for NetBIOS session services. When NetBIOS over
-TCP/IP is disabled on MS Windows 2000 and later clients, then only the TCP port 445 will be
-used and the UDP port 137 and TCP port 139 will not.
 </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
 Wenn Sie Windows 2000 Clients (oder später) verwenden und NetBIOS über
-TCP/IP nicht deaktiviert haben benutzt der Client UDP Port 137
+TCP/IP nicht deaktiviert haben, benutzt der Client UDP Port 137
 (NetBIOS Name Service, auch bekannt als der Windows Internet Name
 Service oder WINS), den TCP Port 139 und TCP Port 445 (für aktuellen
-Datei und Druck Verkehr).
-#
-When using Windows 2000 or later clients, if NetBIOS over TCP/IP is not disabled, then
-the client will use UDP port 137 (NetBIOS Name Service, also known as the Windows Internet
-Name Service or WINS), TCP port 139 and TCP port 445 (for actual file and print traffic).
+Datei- und Druck-Verkehr).
 </p></div><p>
-Wenn Sie NetBIOS über TCP/IP deaktivieren ist die Benutzung von DNS
-unumgänglich. Die meisten aktuellen Installationen welche NetBIOS über TCP/IP
-deaktivieren verwenden MS Active Directory (ADS). ADS benötigt
-<a class="indexterm" name="id2976986"></a>
+Wenn Sie NetBIOS über TCP/IP deaktivieren, ist die Benutzung von DNS
+unumgänglich. Die meisten aktuellen Installationen, welche NetBIOS über TCP/IP
+deaktivieren, verwenden MS Active Directory (ADS). ADS benötigt
+<a class="indexterm" name="id2967600"></a>
 Dynamic DNS mit Service Resource Records (SRV RR) und Incremental
 Zone Transfers (IXFR).
-<a class="indexterm" name="id2976998"></a>
+<a class="indexterm" name="id2967613"></a>
 Die Benutzung von DHCP mit ADS wird für eine weitergehende zentrale
 Pflege der Netzwerkkonfiguration von Client Workstations empfohlen.
-#
-When NetBIOS over TCP/IP is disabled, the use of DNS is essential. Most installations that
-disable NetBIOS over TCP/IP today use MS Active Directory Service (ADS). ADS requires
-<a class="indexterm" name="id2977020"></a>
-Dynamic DNS with Service Resource Records (SRV RR) and with Incremental Zone Transfers (IXFR).
-<a class="indexterm" name="id2977033"></a>
-Use of DHCP with ADS is recommended as a further means of maintaining central control
-over the client workstation network configuration.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2977046"></a>Namensauflösung in einem reinen UNIX/Linux Umfeld</h2></div><div><h2 class="title" style="clear: both"><a name="id2977046"></a>Namensauflösung in einem reinen UNIX/Linux Umfeld</h2></div></div><div></div></div>
-#
-<p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2967630"></a>Namensauflösung in einem reinen UNIX/Linux Umfeld</h2></div></div><div></div></div><p>
 Die wichtigsten Konfigurationsdateien in diesem Abschnitt sind:
-#
-The key configuration files covered in this section are:
-</p><div class="itemizedlist"><ul type="disc"><li><p><tt class="filename">/etc/hosts</tt></p></li><li><p><tt class="filename">/etc/resolv.conf</tt></p></li><li><p><tt class="filename">/etc/host.conf</tt></p></li><li><p><tt class="filename">/etc/nsswitch.conf</tt></p></li></ul></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2977110"></a><tt class="filename">/etc/hosts</tt></h3></div></div><div></div></div><p>
+</p><div class="itemizedlist"><ul type="disc"><li><p><tt class="filename">/etc/hosts</tt></p></li><li><p><tt class="filename">/etc/resolv.conf</tt></p></li><li><p><tt class="filename">/etc/host.conf</tt></p></li><li><p><tt class="filename">/etc/nsswitch.conf</tt></p></li></ul></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2967688"></a><tt class="filename">/etc/hosts</tt></h3></div></div><div></div></div><p>
 Diese Datei beinhaltet eine statische Liste von IP Adressen und Namen.
-#
-This file contains a static list of IP addresses and names.
 </p><pre class="programlisting">
 127.0.0.1	localhost localhost.localdomain
 192.168.1.1	bigbox.quenya.org	bigbox	alias4box
 </pre><p>
-Der Sinn der <tt class="filename">/etc/hosts</tt> ist eine Möglichkeit zur 
-Namensauflösung zu haben damit der Benutzer sich keine 
-IP Adressen merken muss.
-#
-The purpose of <tt class="filename">/etc/hosts</tt> is to provide a 
-name resolution mechanism so users do not need to remember 
-IP addresses.
+Der Sinn der Datei <tt class="filename">/etc/hosts</tt> ist, eine Möglichkeit zur 
+Namensauflösung zu haben, damit Benutzer sich keine 
+IP-Adressen merken müssen.
 </p><p>
-Netzwerk Packete welche über den Physical Network Transport Layer
-gesendet werden kommunizieren nicht über die IP Adresse vielmehr wird
-die Media Access Control Address, oder auch MAC Adresse genannt, verwendet.
-IP Adressen sind zur Zeit 32 bit lang und werden typischerweise 
+Netzwerk-Pakete, welche über den Physical Network Transport Layer
+gesendet werden, kommunizieren nicht über die IP-Adresse, vielmehr wird
+die Media Access Control Address (auch MAC-Adresse genannt), verwendet.
+IP-Adressen sind zur Zeit 32 bit lang und werden typischerweise 
 durch 4 dezimale und durch Punkte getrennte Zahlen dargestellt.
 Zum Beispiel: 168.192.1.1
-#
-Network packets that are sent over the physical network transport 
-layer communicate not via IP addresses but rather using the Media 
-Access Control address, or MAC address. IP addresses are currently 
-32 bits in length and are typically presented as four (4) decimal 
-numbers that are separated by a dot (or period). For example, 168.192.1.1.
 </p><p>
-<a class="indexterm" name="id2977206"></a>
-MAC Adressen sind 48 bits (oder 6 Bytes) lang und werden typischerweise
-als 2 zahlige Hexadezimal Ziffern und durch Doppelpunkte getrennt
+<a class="indexterm" name="id2967758"></a>
+MAC-Adressen sind 48 bits (oder 6 Bytes) lang und werden typischerweise
+als 2-stellige Hexadezimalziffern und durch Doppelpunkte getrennt
 dargestellt.
 Zum Beispiel: 40:8e:0a:12:34:56
-#
-MAC Addresses use 48 bits (or 6 bytes) and are typically represented 
-as two-digit hexadecimal numbers separated by colons: 40:8e:0a:12:34:56.
 </p><p>
-Jedes Netzwerkinterface muss eine MAC Adresse besitzen.
-Zu einer MAC Adresse können eine oder mehrere IP Adressen zugeordnet
-sein. Es gibt keinen Zusammenhang zwischen einer MAC Adresse und einer 
-IP Adresse; alle solche Zuweisungen sind beliebig frei und willkürlich.
-Am untersten Level der Netzwerkverbindungen wird die MAC Adressierung
-verwendet. Da die MAC Adresse global eindeutig und im allgemeinen fix
-für jedes einzelne Interface ist, macht die Zuordnung einer IP Adresse
-nur Sinn aus Sicht des Netzwerkmanagements. Es kann mehr als eine 
-IP Adresse zu einer MAC Adresse zugeordnet werden. Eine Adresse muss die
-primäre IP Adresse sein .
+Jedes Netzwerkinterface muss eine MAC-Adresse besitzen.
+Einer MAC-Adresse können eine oder mehrere IP-Adressen zugeordnet
+sein. Es gibt keinen Zusammenhang zwischen einer MAC-Adresse und einer 
+IP-Adresse; alle solche Zuweisungen sind beliebig frei und willkürlich.
+Am untersten Level der Netzwerkverbindungen wird die MAC-Adressierung
+verwendet. Da die MAC-Adresse global eindeutig und im allgemeinen fix
+für jedes einzelne Interface ist, macht die Zuordnung einer IP-Adresse
+nur aus Sicht des Netzwerkmanagements Sinn. Es kann mehr als eine 
+IP-Adresse zu einer MAC-Adresse zugeordnet werden. Eine Adresse muss die
+primäre IP-Adresse sein .
 Diese Adresse wird bei einem ARP Reply zurückgegeben.
-#
-Every network interface must have a MAC address. Associated with 
-a MAC address may be one or more IP addresses. There is no 
-relationship between an IP address and a MAC address; all such assignments 
-are arbitrary or discretionary in nature. At the most basic level, all 
-network communications take place using MAC addressing. Since MAC 
-addresses must be globally unique and generally remain fixed for 
-any particular interface, the assignment of an IP address makes sense 
-from a network management perspective. More than one IP address can 
-be assigned per MAC address. One address must be the primary IP
-address  
-this is the address that will be returned in the ARP reply.
 </p><p>
 Wenn ein Benutzer oder ein Prozess mit einem anderen Computer
-kommunizieren will, stell die Protokollschicht sicher dass der
-&#8220;<span class="quote">Computername</span>&#8221; oder &#8220;<span class="quote">Hostname</span>&#8221; in eine IP
-Adresse aufgelöst wird. Dies geschieht in der Art wie es in den 
-TCP/IP Konfigurations Dateien hinterlegt ist.
+kommunizieren will, stellt die Protokollschicht sicher, dass der
+&#8220;<span class="quote">Computername</span>&#8221; oder &#8220;<span class="quote">Hostname</span>&#8221; in eine IP-
+Adresse aufgelöst wird. Dies geschieht in der Art, wie es in den 
+TCP/IP-Konfigurations-Dateien hinterlegt ist.
 Die Datei <tt class="filename">/etc/hosts</tt> ist eine dieser Dateien.
-#
-When a user or a process wants to communicate with another machine, 
-the protocol implementation ensures that the &#8220;<span class="quote">machine name</span>&#8221; or &#8220;<span class="quote">host 
-name</span>&#8221; is resolved to an IP address in a manner that is controlled 
-by the TCP/IP configuration control files. The file 
-<tt class="filename">/etc/hosts</tt> is one such file.
 </p><p>
-Nachdem die IP Adresse des Zielinterfaces ermittelt wurde, wird ein
-Protokoll mit dem Namen ARP/RARP verwendet um die MAC Adresse des
-Zielinterfaces herauszufinden. ARP bedeutet Address Resolution Protokoll
-und ist eine Broadcast orientierte Methode welches über das User Data
-Protocol (UDP) einen Anfrage an die 1'te MAC Adresse aller Interfaces des 
+Nachdem die IP-Adresse des Zielinterfaces ermittelt wurde, wird ein
+Protokoll mit dem Namen ARP/RARP verwendet, um die MAC-Adresse des
+Zielinterfaces herauszufinden. ARP bedeutet Address Resolution Protocol
+und ist eine broadcast-orientierte Methode, die über das User Data
+Protocol (UDP) einen Anfrage an alle Interfaces des 
 lokalen Netzwerks verschickt.
-Netzwerkinterfaces sind so programmiert dass sie nur auf 2 MAC Adressen
+Netzwerkinterfaces sind so programmiert, dass sie nur auf 2 MAC Adressen
 reagieren; ihre eigene eindeutige Adresse und die Adresse
-ff:ff:ff:ff:ff:ff. Die Antwort zu einer ARP Anfrage beinhaltet die MAC
+ff:ff:ff:ff:ff:ff. Die Antwort zu einer ARP Anfrage beinhaltet die MAC-
 Adresse und die primäre IP Adresse für jedes Interface.
-#
-When the IP address of the destination interface has been 
-determined, a protocol called ARP/RARP is used to identify 
-the MAC address of the target interface. ARP stands for Address 
-Resolution Protocol and is a broadcast-oriented method that 
-uses User Datagram Protocol (UDP) to send a request to all 
-interfaces on the local network segment using the all 1s MAC 
-address. Network interfaces are programmed to respond to two 
-MAC addresses only; their own unique address and the address 
-ff:ff:ff:ff:ff:ff. The reply packet from an ARP request will 
-contain the MAC address and the primary IP address for each 
-interface.
 </p><p>
-<a class="indexterm" name="id2977361"></a>
+<a class="indexterm" name="id2967860"></a>
 Die Datei <tt class="filename">/etc/hosts</tt> ist eine Grundvoraussetzung
-für alle UNIX/Linux TCP/IP Installationen und beinhaltet als Minimum den
-localhost und die lokale Netzwerk Interface IP Adresse und primären
+für alle UNIX/Linux TCP/IP-Installationen und beinhaltet als Minimum den
+localhost, die lokale IP-Adresse des Netzwerk-Interfaces und den primären
 Namen des lokalen Computers.
-Diese Datei hilft dabei eine grundlegende Namensauflösung zu haben bevor
+Diese Datei hilft dabei, eine grundlegende Namensauflösung zu haben, bevor
 irgendwelche andere Methoden der Namensauflösung verfügbar sind.
-#
-The <tt class="filename">/etc/hosts</tt> file is foundational to all 
-UNIX/Linux TCP/IP installations and as a minimum will contain 
-the localhost and local network interface IP addresses and the 
-primary names by which they are known within the local machine. 
-This file helps to prime the pump so a basic level of name 
-resolution can exist before any other method of name resolution 
-becomes available.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2977400"></a><tt class="filename">/etc/resolv.conf</tt></h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2967885"></a><tt class="filename">/etc/resolv.conf</tt></h3></div></div><div></div></div><p>
 Diese Datei teilt den Bibliotheken der Namensauflösung folgendes mit:
-#
-This file tells the name resolution libraries:
-</p><div class="itemizedlist"><ul type="disc"><li><p>Den Domänennamen zu welcher der Computer
-	gehört.</p></li><li><p>The name of the domain to which the machine 
-	belongs.
-	</p></li><li><p>Die Namen der Domänen welche automatisch
-	durchsucht werden wenn zu einem unqualifizierten Rechnernamen
-	dessen IP Adresse gesucht werden soll.
-	</p></li><li><p>The name(s) of any domains that should be 
-	automatically searched when trying to resolve unqualified 
-	host names to their IP address.
-	</p></li><li><p>Den Name oder die IP Adresse der möglichen
-	Domain Name Server welche für eine Namen-zu-Adressen Übersetzung
+</p><div class="itemizedlist"><ul type="disc"><li><p>Den Namen der Domäne, zu welcher der Computer
+	gehört.</p></li><li><p>Die Namen der Domänen, welche automatisch
+	durchsucht werden, wenn zu einem unqualifizierten Rechnernamen
+	dessen IP-Adresse gesucht werden soll.
+	</p></li><li><p>Den Namen oder die IP-Adresse der möglichen
+	Domain-Name-Server, welche für eine Namen-zu-Adressen-Übersetzung
 	befragt werden können.
-	</p></li><li><p>The name or IP address of available Domain 
-	Name Servers that may be asked to perform name-to-address 
-	translation lookups.
-	</p></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2977477"></a><tt class="filename">/etc/host.conf</tt></h3></div></div><div></div></div><p>
-<a class="indexterm" name="id2977492"></a>
+	</p></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2967936"></a><tt class="filename">/etc/host.conf</tt></h3></div></div><div></div></div><p>
+<a class="indexterm" name="id2967950"></a>
+
+--- workmark
+
+
 Einträge in der <tt class="filename">/etc/host.conf</tt> sind primär dazu gedacht 
 wie sich die Einträge in <tt class="filename">/etc/resolv.conf</tt> auswirken sollen.
 Es ist eine kritische Konfigurationsdatei, da hier die Reihenfolge der
@@ -225,13 +143,13 @@ für <tt class="filename">host.conf</tt>.
 #
 then both addresses should be returned. Please refer to the 
 man page for <tt class="filename">host.conf</tt> for further details.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2977577"></a><tt class="filename">/etc/nsswitch.conf</tt></h3></div></div><div></div></div><p>
-<a class="indexterm" name="id2977591"></a>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2968036"></a><tt class="filename">/etc/nsswitch.conf</tt></h3></div></div><div></div></div><p>
+<a class="indexterm" name="id2968050"></a>
 Diese Datei kontrolliert die möglichen Ziele für eine Namensauflösung.
 Die Datei hat typischerweise folgende Spezifikationen für die Resolver
 Objekte: 
 #
-<a class="indexterm" name="id2977606"></a>
+<a class="indexterm" name="id2968064"></a>
 This file controls the actual name resolution targets. The 
 file typically has resolver object specifications as follows:
 </p><pre class="programlisting">
@@ -272,7 +190,7 @@ It should be noted that unless a network request/message must be
 sent, TCP/IP networks are silent. All TCP/IP communications assume a 
 principal of speaking only when necessary.
 </p><p>
-<a class="indexterm" name="id2977669"></a>
+<a class="indexterm" name="id2968128"></a>
 Seit Version 2.2.0 hat Samba Linux Support für Erweiterungen der
 Name Service Switch Infrastruktur. Darüber haben Linux Clients die
 Möglichkeit der Auflösung von MS Windows NetBIOS Namen zu IP Adressen.
@@ -299,7 +217,7 @@ the <tt class="filename">/etc/nsswitch.conf</tt> file. At this point, it
 will be possible to ping any MS Windows machine by its NetBIOS 
 machine name, as long as that machine is within the workgroup to 
 which both the Samba machine and the MS Windows machine belong.
-</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2977785"></a>Die Namensauflösung wie sie in einem MS Windows Netzwerk verwendet wird</h2></div><div><h2 class="title" style="clear: both"><a name="id2977785"></a>Die Namensauflösung wie sie in einem MS Windows Netzwerk verwendet wird</h2></div></div><div></div></div>
+</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2968244"></a>Die Namensauflösung wie sie in einem MS Windows Netzwerk verwendet wird</h2></div><div><h2 class="title" style="clear: both"><a name="id2968244"></a>Die Namensauflösung wie sie in einem MS Windows Netzwerk verwendet wird</h2></div></div><div></div></div>
 #
 <p>
 MS Windows Netzwerke basieren auf den Namen welche jeder Computer
@@ -338,7 +256,7 @@ zeigen typische NetBIOS Namen/Service Typen Registrierungen.
 #
 <a href="integrate-ms-networks.html#uniqnetbiosnames" title="Table 26.1. Unique NetBIOS Names">???</a> and <a href="integrate-ms-networks.html#netbiosnamesgrp" title="Table 26.2. Group Names">???</a> list typical NetBIOS name/service type registrations.
 </p><div class="table"><a name="uniqnetbiosnames"></a><p class="title"><b>Table 26.1. Unique NetBIOS Names</b></p><table summary="Unique NetBIOS Names" border="1"><colgroup><col align="left"><col align="justify"></colgroup><tbody><tr><td align="left">MACHINENAME&lt;00&gt;</td><td align="justify">Server Service is running on MACHINENAME</td></tr><tr><td align="left">MACHINENAME&lt;03&gt;</td><td align="justify">Generic Machine Name (NetBIOS name)</td></tr><tr><td align="left">MACHINENAME&lt;20&gt;</td><td align="justify">LanMan Server service is running on MACHINENAME</td></tr><tr><td align="left">WORKGROUP&lt;1b&gt;</td><td align="justify">Domain Master Browser</td></tr></tbody></table></div><div class="table"><a name="netbiosnamesgrp"></a><p class="title"><b>Table 26.2. Group Names</b></p><table summary="Group Names" border="1"><colgroup><col align="left"><col align="justify"></colgroup><tbody><tr><td align="left">WORKGROUP&lt;03&gt;</td><td align="justify">Generic Name registered by all members of WORKGROUP</td></tr><tr><td align="left">WORKGROUP&lt;1c&gt;</td><td align="justify">Domain Controllers / Netlogon Servers</td></tr><tr><td align="left">WORKGROUP&lt;1d&gt;</td><td align="justify">Local Master Browsers</td></tr><tr><td align="left">WORKGROUP&lt;1e&gt;</td><td align="justify">Browser Election Service</td></tr></tbody></table></div><p>
-<a class="indexterm" name="id2978104"></a>
+<a class="indexterm" name="id2968562"></a>
 Es sei angemerkt dass alle NetBIOS Maschinen ihre eigene Namen wie oben
 gezeigt registrieren. Das steht im krassen Kontrast zu TCP/IP
 Installationen in denen tratitionell der Systemadministrator in der
@@ -351,7 +269,7 @@ installations where traditionally the system administrator will
 determine in the <tt class="filename">/etc/hosts</tt> or in the DNS database what names 
 are associated with each IP address.
 </p><p>
-<a class="indexterm" name="id2978149"></a>
+<a class="indexterm" name="id2968607"></a>
 Ein weitere Punkt sollte klargestellt werden.
 Die Datei <tt class="filename">/etc/hosts</tt> und die DNS Einträge bieten
 keine NetBIOS Name Typ Informationen welche MS Windows Clients benötigen um den
@@ -430,7 +348,7 @@ uns in dieser Dokumentation nur um diesen Bereich kümmern.
 MS Windows machines use a complex array of name resolution mechanisms. 
 Since we are primarily concerned with TCP/IP, this demonstration is 
 limited to this area.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2978337"></a>The NetBIOS Name Cache</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2968798"></a>The NetBIOS Name Cache</h3></div></div><div></div></div><p>
 Alle MS Windows Maschinen besitzen einen Speicherbereich in welchen sie
 die NetBIOS Namen und IP Adressen aller Maschinen speichern mit denen 
 sie in den letzten 10-15 Minuten Kontakt hatten. Es ist am
@@ -459,17 +377,17 @@ to time-out delays. Its name is in the cache, so a name resolution
 lookup will succeed, but the machine cannot respond. This can be 
 frustrating for users but is a characteristic of the protocol.
 </p><p>
-<a class="indexterm" name="id2978433"></a>
-<a class="indexterm" name="id2978441"></a>
+<a class="indexterm" name="id2968893"></a>
+<a class="indexterm" name="id2968902"></a>
 Das MS Windows Utility welches es ermöglicht den NetBIOS Cache zu
 überprüfen wird &#8220;<span class="quote">nbtstat</span>&#8221; genannt.
-Das Samba Gegenstück wird <span><b class="command">nmblookup</b></span> genannt.
+Das Samba Gegenstück wird <b class="command">nmblookup</b> genannt.
 #
 The MS Windows utility that allows examination of the NetBIOS 
 name cache is called &#8220;<span class="quote">nbtstat</span>&#8221;. The Samba equivalent of this 
-is called <span><b class="command">nmblookup</b></span>.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2978480"></a>The LMHOSTS File</h3></div></div><div></div></div><p>
-<a class="indexterm" name="id2978491"></a>
+is called <b class="command">nmblookup</b>.
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2968940"></a>The LMHOSTS File</h3></div></div><div></div></div><p>
+<a class="indexterm" name="id2968951"></a>
 Diese Datei ist üblicherweise bei MS Windows NT 4.0 oder Windows 200x/XP
 im Verzeichniss <tt class="filename">C:\WINNT\SYSTEM32\DRIVERS\ETC</tt> zu
 finden und beinhaltet die Zuordnung der IP Adressen zu Computernamen.
@@ -562,7 +480,7 @@ It typically looks like this:
 # so keeping the number of comments to a minimum will improve performance.
 # Therefore it is not advisable to simply add lmhosts file entries onto the
 # end of this file.
-</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2978737"></a>HOSTS File</h3></div></div><div></div></div><p>
+</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2969209"></a>HOSTS File</h3></div></div><div></div></div><p>
 Diese Datei ist üblicherweise bei MS Windows NT 4.0 oder Windows 200x/XP
 im Verzeichniss zu finden und beinhaltet die IP Adressen und IP Namen
 Paare. Sie kann für die Infrastruktur zur Namensauflösung in MS Windows
@@ -577,8 +495,8 @@ the IP Address and the IP hostname in matched pairs. It can be
 used by the name resolution infrastructure in MS Windows, depending 
 on how the TCP/IP environment is configured. This file is in 
 every way the equivalent of the UNIX/Linux <tt class="filename">/etc/hosts</tt> file.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2978791"></a>DNS Lookup</h3></div></div><div></div></div><p>
-<a class="indexterm" name="id2978802"></a>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2969263"></a>DNS Lookup</h3></div></div><div></div></div><p>
+<a class="indexterm" name="id2969274"></a>
 Diese Möglichkeit wird im TCP/IP Bereich der Netzwerkeinstellungen
 konfiguriert. Wenn es eingeschaltet wurde, wird eine bestimmte Art der
 Namensauflösung verwendet, je nachdem wie der NetBIOS Node Type
@@ -602,48 +520,103 @@ cache. If that fails then DNS, HOSTS and LMHOSTS are checked. If set to
 Node Type 8, then a NetBIOS Unicast (over UDP Unicast) is sent to the 
 WINS Server to obtain a lookup before DNS, HOSTS, LMHOSTS, or broadcast 
 lookup is used.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2978880"></a>WINS Lookup</h3></div></div><div></div></div><p>
-<a class="indexterm" name="id2978890"></a>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2969352"></a>WINS Lookup</h3></div></div><div></div></div><p>
+<a class="indexterm" name="id2969362"></a>
+Ein WINS (Windows Internet Name Server) Service entspricht dem
+in RFC 1001/1002 spezifizierten NBNS (NetBIOS Name Server).
+Ein WINS Server speichert die Namen und IP Adressen welche Windows
+Client registrieren wenn in deren TCP/IP Setup mindestens eine WINS
+Server IP Adresse angegeben wurde.
+#
 A WINS (Windows Internet Name Server) service is the equivalent of the 
 rfc1001/1002 specified NBNS (NetBIOS Name Server). A WINS server stores 
 the names and IP addresses that are registered by a Windows client 
 if the TCP/IP setup has been given at least one WINS Server IP Address.
 </p><p>
+Um Samba als WINS Server zu konfigurieren, muss folgender Parameter in
+die <tt class="filename">smb.conf</tt> Datei hinzugefügt werden:
+#
 To configure Samba to be a WINS server, the following parameter needs 
 to be added to the <tt class="filename">smb.conf</tt> file:
 </p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>wins support = Yes</tt></i></td></tr></table><p>
+Um Samba für die Benutzung eines WINS Servers zu konfigurieren, werden
+folgende Parameter in der <tt class="filename">smb.conf</tt> benötigt:
+#
 To configure Samba to use a WINS server, the following parameters are 
 needed in the <tt class="filename">smb.conf</tt> file:
 </p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>wins support = No</tt></i></td></tr><tr><td><i class="parameter"><tt>wins server = xxx.xxx.xxx.xxx</tt></i></td></tr></table><p>
+Wobei <i class="replaceable"><tt>xxx.xxx.xxx.xxx</tt></i> die IP Adresse des
+WINS Servers ist.
+#
 where <i class="replaceable"><tt>xxx.xxx.xxx.xxx</tt></i> is the IP address 
 of the WINS server.
-</p><p>For information about setting up Samba as a WINS server, read 
-<a href="NetworkBrowsing.html" title="Chapter 10. Netzwerk-Browsing">???</a>.</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2978995"></a>Common Errors</h2></div></div><div></div></div><p>
+</p><p>Für Informationen über die Konfiguration von Samba als WINS Server
+lesen Sie bitte 
+<a href="NetworkBrowsing.html" title="Chapter 10. Netzwerk-Browsing">???</a>.</p>
+#
+<p>For information about setting up Samba as a WINS server, read 
+<a href="NetworkBrowsing.html" title="Chapter 10. Netzwerk-Browsing">???</a>.</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2969518"></a>Häufige Fehler</h2></div><div><h2 class="title" style="clear: both"><a name="id2969518"></a>Häufige Fehler</h2></div></div><div></div></div>
+#
+<p>
+Probleme in der TCP/IP Konfiguration findet jeder Netzwerkadministrator
+früher oder später.
+Die Ursachen können alles mögliche sein von Schreibfehlern,
+über Vergesslichkeit, simplen Missverständnissen bis hin zu
+Achtlosigkeit. Aber niemand ist absichtlich achtlos!
+#
 TCP/IP network configuration problems find every network administrator sooner or later.
 The cause can be anything from keyboard mishaps, forgetfulness, simple mistakes, and
 carelessness. Of course, no one is ever deliberately careless!
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2979010"></a>Pinging Works Only in One Way</h3></div></div><div></div></div><p>
-	&#8220;<span class="quote">I can ping my Samba server from Windows, but I cannot ping my Windows
-	machine from the Samba server.</span>&#8221;
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2969560"></a>Ping funktioniert nur in eine Richtung</h3></div><div><h3 class="title"><a name="id2969560"></a>Ping funktioniert nur in eine Richtung</h3></div></div><div></div></div>
+		#
+		<p>
+	&#8220;<span class="quote"> Ich kann meinen Sambaserver von Windows anpingen, aber
+	ich kann nicht von Windows meinen Sambaserver anpingen.</span>&#8221;
 	</p><p>
+	<span class="emphasis"><em>Antwort:</em></span> Die Windows Maschine war unter IP
+	Adresse 192.168.1.2 mit der Netzwerkmaske 255.255.255.0 zu
+	erreichen, der Samba Server (Linux) war unter der IP Adresse
+	192.168.1.130 mit der Netzwerkmaske 255.255.255.128 zu
+	erreichen. Die Maschinen sind in einem lokalen Netzwerk ohne
+	externe Verbindungen.
+	#
 	<span class="emphasis"><em>Answer:</em></span> The Windows machine was at IP Address 192.168.1.2 with netmask 255.255.255.0, the
 	Samba server (Linux) was at IP Address 192.168.1.130 with netmask 255.255.255.128.
 	The machines were on a local network with no external connections.
 	</p><p>
+	Durch die inkonsistenten Netwerkmasken; die Windows Maschine war
+	im Netzwerk 192.168.1.0/24, während der Sambaserver im Netzwerk
+	192.168.1.128/25  war; sind das unterschiedliche
+	Netzwerke.
+	#
 	Due to inconsistent netmasks, the Windows machine was on network 192.168.1.0/24, while
 	the Samba server was on network 192.168.1.128/25  logically a different network.
-	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2979052"></a>Very Slow Network Connections</h3></div></div><div></div></div><p>
+	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2969624"></a>Sehr langsame Netzwerkverbindungen</h3></div><div><h3 class="title"><a name="id2969624"></a>Sehr langsame Netzwerkverbindungen</h3></div></div><div></div></div><p>
+	Gängige Ursachen von langsamen Netzwerkverbindungen können sein:
 	A common cause of slow network response includes:
-	</p><div class="itemizedlist"><ul type="disc"><li><p>Client is configured to use DNS and the DNS server is down.</p></li><li><p>Client is configured to use remote DNS server, but the
-		remote connection is down.</p></li><li><p>Client is configured to use a WINS server, but there is no WINS server.</p></li><li><p>Client is not configured to use a WINS server, but there is a WINS server.</p></li><li><p>Firewall is filtering our DNS or WINS traffic.</p></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2979104"></a>Samba Server Name Change Problem</h3></div></div><div></div></div><p>
+	</p><div class="itemizedlist"><ul type="disc"><li><p>Client soll DNS benutzen aber der DNS Server ist down.</p></li><li><p>Client soll einen Remote DNS Server benutzen, aber die Verbindung ist unterbrochen.</p></li><li><p>Client soll einen WINS Server benutzen, aber es gibt keinen WINS Server.</p></li><li><p>Client wurde ohne WINS konfiguriert, aber es gibt einen WINS Server.</p></li><li><p>Eine Firewall filtert unseren DNS oder WINS Verkehr.</p></li><li><p>Client is configured to use DNS and the DNS server is down.</p></li><li><p>Client is configured to use remote DNS server, but the
+		remote connection is down.</p></li><li><p>Client is configured to use a WINS server, but there is no WINS server.</p></li><li><p>Client is not configured to use a WINS server, but there is a WINS server.</p></li><li><p>Firewall is filtering our DNS or WINS traffic.</p></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2969714"></a>Problem beim ändern des Samba Server Namen</h3></div><div><h3 class="title"><a name="id2969714"></a>Problem beim ändern des Samba Server Namen</h3></div></div><div></div></div>
+	#
+	<p>
+	&#8220;<span class="quote">Der Name des Samba Server wurde geändert, Samba wurde neu
+	gestartet, der Samba Server kann von Windows NT Workstations
+	nicht mit seinen neuen Namen angepingt werden, reagiert aber auf
+	pings mit seinen alten Namen. Warum ?</span>&#8221;
+	#
 	&#8220;<span class="quote">The name of the Samba server was changed, Samba was restarted, Samba server cannot be
 	pinged by new name from MS Windows NT4 Workstation, but it does still respond to ping using
 	the old name. Why?</span>&#8221;
 	</p><p>
+	Aufgrund der Beschreibung sind drei Dinge offensichtlich:
+	#
 	From this description, three things are obvious:
-	</p><div class="itemizedlist"><ul type="disc"><li><p>WINS is not in use, only broadcast-based name resolution is used.</p></li><li><p>The Samba server was renamed and restarted within the last 10-15 minutes.</p></li><li><p>The old Samba server name is still in the NetBIOS name cache on the MS Windows NT4 Workstation.</p></li></ul></div><p>
+	</p><div class="itemizedlist"><ul type="disc"><li><p>WINS wird nicht verwendet, nur die Broadcast basierende Namensauflösung wird benutzt.</p></li><li><p>Der Samba Server wurde innerhalb der letzten 10-15 Minuten umbenannt und neu gestartet.</p></li><li><p>Der alte Samba Server Name ist noch im NetBIOS Name Cache der MS Windows Workstation.</p></li><li><p>WINS is not in use, only broadcast-based name resolution is used.</p></li><li><p>The Samba server was renamed and restarted within the last 10-15 minutes.</p></li><li><p>The old Samba server name is still in the NetBIOS name cache on the MS Windows NT4 Workstation.</p></li></ul></div><p>
+	Um herauszufinden welche Namen noch im NetBIOS Name Cache der MS
+	Windows NT4 Computer sind, öffnen Sie bitte eine
+	<b class="command">cmd</b> Kommandozeile und geben folgendes ein:
+	#
 	To find what names are present in the NetBIOS name cache on the MS Windows NT4 machine,
-	open a <span><b class="command">cmd</b></span> shell and then:
+	open a <b class="command">cmd</b> shell and then:
 	</p><p>
 </p><pre class="screen">
 <tt class="prompt">C:\&gt; </tt><b class="userinput"><tt>nbtstat -n</tt></b>
@@ -671,6 +644,15 @@ GANDALF	&lt;20&gt;  UNIQUE      192.168.1.1          240
 <tt class="prompt">C:\&gt; </tt>
 </pre><p>
 	</p><p>
+	Im obigen Beispiel ist GANDALF der Samba Server
+	und FRODO ist die MS Windows NT4
+	Workstation. Die erste Ausgabe zeigt den Inhalt der Local Name
+	Table (i.e. Identitätsinformationen der MS Windows
+	Workstation) und in der weiteren Ausgabe wird der NetBIOS Name
+	im NetBIOS Name Cache angezeigt.
+	Der Name Cache beinhaltet die remote Computer welche diese
+	Workstation kennt.
+	#
 	In the above example, GANDALF is the Samba server and FRODO is the MS Windows NT4 Workstation.
 	The first listing shows the contents of the Local Name Table (i.e., Identity information on
 	the MS Windows workstation) and the second shows the NetBIOS name in the NetBIOS name cache.
