@@ -5,7 +5,7 @@
 <xsl:output method="text" encoding="ISO-8859-1" indent="yes"/>
 <xsl:param name="l10n.gentext.default.language">en</xsl:param>
 <xsl:variable name="latex.documentclass">sambadoc</xsl:variable>
-<xsl:variable name="latex.documentclass.common">german,final,titlepage,parskip,<xsl:value-of select="$papersize"/>,<xsl:value-of select="$fontsize"/>pt</xsl:variable>
+<xsl:variable name="latex.documentclass.common">english,final,titlepage,parskip,<xsl:value-of select="$papersize"/>,<xsl:value-of select="$fontsize"/>pt</xsl:variable>
 <xsl:variable name="latex.documentclass.book"></xsl:variable>
 <xsl:variable name="latex.generate.indexterm">1</xsl:variable>
 <xsl:variable name="latex.hyperref.param.pdftex">hyperfigures,hyperindex,citecolor=blue,urlcolor=blue</xsl:variable>
@@ -16,7 +16,7 @@
 <xsl:template name="latex.thead.row.entry">
 <xsl:text>{\bfseries </xsl:text><xsl:apply-templates/><xsl:text>}</xsl:text>
 </xsl:template>
-<xsl:param name="latex.babel.language">german</xsl:param>
+<xsl:param name="latex.babel.language">english</xsl:param>
 <xsl:param name="ulink.url">1</xsl:param>
 
 <xsl:variable name="latex.book.preamble.post">\fancyhf{}
