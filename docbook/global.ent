@@ -210,6 +210,15 @@
 
 <!ENTITY author.reiss '<author>&person.reiss;</author>'>
 
+<!ENTITY person.klimklim '
+<firstname>Markus</firstname><othername></othername><surname>Klimke</surname>
+<affiliation>
+        <orgname>German Samba-3-Docs-Translation Team</orgname>
+        <address><email>m.klimke@tu-harburg.de</email></address>
+</affiliation>'>
+
+<!ENTITY author.klimklim '<author>&person.klimklim;</author>'>
+
 <!ENTITY person.gertrans '
 <firstname>German</firstname><othername>Translation</othername><surname>Team</surname>
 <affiliation>
