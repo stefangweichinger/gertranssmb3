@@ -4,48 +4,49 @@
 	<pubdate>April 21, 2003</pubdate>
 </chapterinfo>
 
-<title>SWAT &smbmdash; The Samba Web Administration Tool</title>
+<author>&person.klimklim;<contrib>German Translator</contrib></author>
+
+<title>SWAT &smbmdash; Das Samba-Administrations-Werkzeug</title>
 
 <para>
-There are many and varied opinions regarding the usefulness of SWAT.
-No matter how hard one tries to produce the perfect configuration tool, it remains
-an object of personal taste. SWAT is a tool that will allow Web-based configuration
-of Samba. It has a wizard that may help to get Samba configured
-quickly, it has context-sensitive help on each &smb.conf; parameter, it provides for monitoring of current state
-of connection information, and it allows network-wide MS Windows network password
-management.
+Es gibt viele und verschiedene Meinungen bezüglich des Nutzens von SWAT. Gleichgueltig
+wieviel Muehe man sich gibt ein perfektes Konfigurationswerkzeug zu erstellen, ist die
+Benutzung eine Frage des persoenlichen Geschmacks. SWAT ist ein Werkzeug das eine
+Web-basierte Konfiguration von Samba ermoeglicht. Es beinhaltet einen Wizard zur schnellen
+Konfiguration von Samba, besitzt eine kontextabhaengige Hilfe für jeden &smb.conf; Paramter,
+ueberwacht den aktuellen Zustand der Verbindung und erlaubt eine netzwerkweite MS Windows
+Passwortverwaltung.
 </para>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Features und Nutzen</title>
 
 <para>
-SWAT is a facility that is part of the Samba suite. The main executable is called
-<command>swat</command> and is invoked by the inter-networking super daemon.
-See <link linkend="xinetd"/> for details.
+SWAT ist Teil der Samba Suite. Das Hauptprogramm heisst <command>swat</command> und wird
+über xinetd gestartet (siehe <link linkend="xinetd"/> fuer Einzelheiten). 
 </para>
 
 <para>
-SWAT uses integral samba components to locate parameters supported by the particular
-version of Samba. Unlike tools and utilities that are external to Samba, SWAT is always
-up to date as known Samba parameters change. SWAT provides context-sensitive help for each
-configuration parameter, directly from <command>man</command> page entries.
+SWAT verwendet Samba-eigene Komponenten, um die von der jeweiligen Samba-Version unterstuetzten
+Parameter zu lokalisieren. Anders als externe Werkzeuge und Hilfsmittel bleibt SWAT bei
+Parameteraenderungen auf dem aktuellen Stand. SWAT bietet kontextabhaengige Hilfe fuer jeden
+Konfigurationsparameter direkt aus <command>Man</command> Page Eintraegen heraus.
 </para>
 
 <para>
-There are network administrators who believe that it is a good idea to write systems
-documentation inside configuration files, and for them SWAT will aways be a nasty tool. SWAT
-does not store the configuration file in any intermediate form, rather, it stores only the
-parameter settings, so when SWAT writes the &smb.conf; file to disk, it will write only
-those parameters that are at other than the default settings. The result is that all comments,
-as well as parameters that are no longer supported, will be lost from the &smb.conf; file.
-Additionally, the parameters will be written back in internal ordering.
+Manche Netzwerkadministratoren schreiben Dokumentationen in Form von Kommentaren innerhalb
+von Konfigurationsdateien. Fuer diese wird SWAT ein eher unbeliebtes Werkzeug sein.
+SWAT speichert die Konfigurationsdatei in keine Mischform, sondern speichert ausschliesslich
+Parameterwerte. Wenn SWAT also die &smb.conf; schreibt, schreibt es nur jene Parameter, die von
+den Standardwerten abweichen. Das bedeutet, dass Kommentare und nicht unterstuetzte Parameter
+nicht mehr in der &smb.conf; erscheinen werden. Hinzu werden die Parameter in ein interne
+Ordnung geschrieben.
 </para>
 
 <note><para>
-Before using SWAT, please be warned &smbmdash; SWAT will completely replace your &smb.conf; with
-a fully-optimized file that has been stripped of all comments you might have placed there
-and only non-default settings will be written to the file.
+Vor dem Benutzen von SWAT &smbmdash; SWAT ersetzt eine bereits im System vorhandene &smb.conf;
+mit einer von SWAT optimierten Version, die von allen vorher eingefuegten Kommentaren und
+Nicht-Standardwerten bereinigt ist.
 </para></note>
 
 </sect1>
