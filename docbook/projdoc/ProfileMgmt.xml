@@ -414,9 +414,9 @@ mit dem neuen Parameter <smbconfoption><name>logon home</name></smbconfoption> v
 
 <para>
 Der Eintrag für das NT4-Profil ist ein Verzeichnis, keine Datei. Die NT-Hilfe bezüglich Profilen
-erwaähnt, daß ein Verzeichnis auch mit der Endung .PDS angelegt wird. Der Benutzer muß beim Anmelden
+erwähnt, daß ein Verzeichnis auch mit der Endung .PDS angelegt wird. Der Benutzer muß beim Anmelden
 Schreibrechte haben, um den vollen Profil-Pfad anzulegen (und den Ordner mit der Endung .PDS, in den
-Fällen, wo er angelegt wird).
+Fällen, in denen er angelegt wird).
 </para>
 
 <para>
@@ -426,40 +426,39 @@ den Ordner <filename>Anwendungsdaten</filename> und andere an, sowie <filename>D
 Das Profil selbst wird in einer Datei namens <filename>NTuser.DAT</filename> gespeichert. Scheinbar wird
 nichts in dem Verzeichnis .PDS gespeichert, und sein Zweck ist uns momentan unbekannt.</para>
 
- In the profile directory, Windows NT4 creates more folders than Windows 9x/Me. It creates
-<filename>Application Data</filename> and others, as well as <filename>Desktop</filename>,
-<filename>Nethood</filename>, <filename>Start Menu,</filename> and <filename>Programs</filename>.
-The profile itself is stored in a file <filename>NTuser.DAT</filename>. Nothing appears to be stored
-in the .PDS directory, and its purpose is currently unknown. </para>
-
-<para> You can use the <application>System Control Panel</application> to copy a local profile onto
-a Samba server (see NT Help on Profiles; it is also capable of firing up the correct location in the
-<application>System Control Panel</application> for you). The NT Help file also mentions that renaming
-<filename>NTuser.DAT</filename> to <filename>NTuser.MAN</filename> turns a profile into a mandatory one.
+<para>Sie können die <application>Systemsteuerung</application> dazu verwenden, um ein lokales
+Profil auf einen Samba-Server zu kopieren (sehen Sie dazu die NT-Hilfe zu Profilen; diese ist sogar
+dazu imstande, sie zum richtigen Platz in der <application>Systemsteuerung</application> zu bringen).
+Die NT-Hilfe-Datei erwähnt auch, daß das Umbenennen der Datei <filename>NTuser.DAT</filename> auf
+<filename>NTuser.MAN</filename> ein Profil in ein zwingendes Profil verwandelt.
 </para>
 
-<para> The case of the profile is significant.	The file must be called <filename>NTuser.DAT</filename>
-or, for a mandatory profile, <filename>NTuser.MAN</filename>. </para> </sect3>
+<para>
+Die Groß/Kleinschreibung des Profils ist wichtig. Die Datei muß <filename>NTuser.DAT</filename>
+heissen, oder, für ein zwingendes Profil, <filename>NTuser.MAN</filename>. </para> </sect3>
 
 <sect3> <title>Windows 2000/XP Professional</title>
 
-<para> You must first convert the profile from a local profile to a domain profile on the MS Windows
-workstation as follows: </para>
+<para>
+Sie müssen zuerst auf der MS Windows Workstation das Profil von einem lokalen zu einem 
+Domänen-Profil wandeln, wie folgt:</para>
 
 <procedure>
-	<step><para> Log on as the <emphasis>local</emphasis> workstation administrator. </para></step>
+	<step><para>Melden Sie sich als der <emphasis>lokale</emphasis> Workstation-Administrator an. </para></step>
 
-	<step><para> Right-click on the <guiicon>My Computer</guiicon> Icon, select
-	<guimenuitem>Properties</guimenuitem>.</para></step>
+	<step><para>Klicken Sie rechts auf das Icon <guiicon>Arbeitsplatz</guiicon>, wählen Sie
+	<guimenuitem>Eigenschaften</guimenuitem>.</para></step>
 
-	<step><para> Click on the <guilabel>User Profiles</guilabel> tab.</para></step>
+	<step><para>Klicken Sie den Tab <guilabel>Erweitert</guilabel>.</para></step>
 
-	<step><para> Select the profile you wish to convert (click it once).</para></step>
+	<step><para>Klicken Sie im Abschnitt Benutzerprofile den Eintrag <guilabel>Einstellungen</guilabel>.</para></step>
 
-	<step><para> Click on the <guibutton>Copy To</guibutton> button.</para></step>
+	<step><para>Wählen Sie das Profil, das Sie wandeln wollen (einmal darauf klicken).</para></step>
 
-	<step><para> In the <guilabel>Permitted to use</guilabel> box, click on the
-	<guibutton>Change</guibutton> button. </para></step>
+	<step><para>Klicken Sie auf den Knopf <guibutton>Kopieren nach</guibutton>.</para></step>
+
+	<step><para>In der Box <guilabel>Permitted to use</guilabel>, klicken Sie auf
+	<guibutton>Ändern</guibutton>.</para></step>
 
 	<step><para> Click on the <guilabel>Look in</guilabel> area that lists the machine name. When you click here, it will
 	open up a selection box. Click on the domain to which the profile must be accessible. </para>
