@@ -16,7 +16,7 @@
 <para>
 Seit Samba-3 gibt es Ünterstützung für Stabelbare VFS (Virtual File System) Module.
 Samba gibt jede Anfrage an das UNIX Filesystem durch das geladene VFS Modul weiter.
-Dieses Kapitel deckt alle Module aus den Sambaquellen ab plus einige Referenzen auf 
+Dieses Kapitel deckt alle Module aus den Sambaquellen ab, plus einige Referenzen auf 
 externe Module.
 </para>
 
@@ -27,14 +27,14 @@ externe Module.
 <title>Diskussion</title>
 
 <para>
-Sind die verteilten Bibliotheken nicht bereits beim binären Packet Ihrer Plattform dabei könnte
+Sind die verteilten Bibliotheken nicht bereits beim binären Packet Ihrer Plattform dabei, könnte
 es Probleme beim kompilieren geben da diese auf verschiedenen Plattformen verschieden kompiliert
 und verlinkt werden. Momentan wurden diese auf GNU/LINUX und IRIX getestet.
 </para>
 
 <para>
-Um die VFS Module benutzen zu können erstellen Sie eine Freigabe ähnlich der Unteren.
-Der essentielle Parameter ist der <smbconfoption><name>vfs objects</name></smbconfoption> Parameter
+Um die VFS Module benutzen zu können, erstellen Sie eine Freigabe ähnlich der Unteren.
+Der essentielle Parameter ist der <smbconfoption><name>vfs objects</name></smbconfoption> Parameter,
 bei dem man einen oder mehrere VFS Module als Namen angeben kann. Ein Beispiel um alle Zugriffe auf
 Dateien zu loggen und gelöschte Dateien in eine Recycle Bin zu werfen wäre <link linkend="vfsrecyc"/>.
 
@@ -151,7 +151,7 @@ eine Konfiguration ähnlich dieser <link linkend="multimodule"/>.
 		<para>
 		Ein Recycle Bin ähnliches Modul. Wird es benutzt werden Lösch(UNLINK) Befehle abgefangen und die Datei
 		wird in den recycle Ordner verschoben anstatt gelöscht zu werden. Das ist im Prinzip dieselbe
-		Funktion die der <guiicon>Recycle Bin</guiicon> Ordner auf Windows Computern ausführt.
+		Funktion die der <guiicon>Recycle Bin</guiicon> Ordner auf Windows Computern ausübt.
 		</para>
 
 		<para>
@@ -221,7 +221,7 @@ eine Konfiguration ähnlich dieser <link linkend="multimodule"/>.
 			<varlistentry>
 			<term>recycle:noversions</term>
 				<listitem><para>
-				Gegenteil des <parameter>recycle:versions</parameter> Parameters. Falls beide Optionen gesetzt sind wird dieser verwendet.
+				Gegenteil des <parameter>recycle:versions</parameter> Parameters. Falls beide Optionen gesetzt sind wird diese verwendet.
 				</para></listitem>
 			</varlistentry>
 		</variablelist>
@@ -238,7 +238,7 @@ eine Konfiguration ähnlich dieser <link linkend="multimodule"/>.
 
 		<para>Vorteile gegenüber dem alten netatalk Modul:
 		<itemizedlist>
-			<listitem><para>Schert sich nicht das erstellen von .AppleDouble FORKS, JUST KEEPS THEM IN SYNC.</para></listitem>
+			<listitem><para>Schert sich nicht um das erstellen von .AppleDouble FORKS, JUST KEEPS THEM IN SYNC.</para></listitem>
 			<listitem><para>Falls eine Freigabe in der &smb.conf; kein .AppleDouble Objekt in der hite oder veto Liste enthält wird es automatisch hinzugefügt.</para></listitem> 
 			</itemizedlist>
 		</para>
@@ -258,10 +258,7 @@ eigenen CVS Baum zu pflegen.)
 </para>
 
 <para>
-Es sollten keine Annahmen über die Funktionalität oder Stabilität dieser
-Module gemacht werden aufgrund ihrer Präsenz hier.
-No statements about the stability or functionality of any module
-should be implied due to its presence here.
+Die Auflistung der Module hier sollte keine Bewertung der Stabilität oder Funktionalität sein.
 </para>
 
 	<sect2>
@@ -271,24 +268,22 @@ should be implied due to its presence here.
 		URL: <ulink noescape="1" url="http://www.css.tayloru.edu/~elorimer/databasefs/index.php">http://www.css.tayloru.edu/~elorimer/databasefs/index.php</ulink>
 		</para>
 
-		<para>By <ulink url="mailto:elorimer@css.tayloru.edu">Eric Lorimer.</ulink></para>
+		<para>Von <ulink url="mailto:elorimer@css.tayloru.edu">Eric Lorimer.</ulink></para>
 
 		<para>
-		I have created a VFS module that implements a fairly complete read-only
-		filesystem. It presents information from a database as a filesystem in
-		a modular and generic way to allow different databases to be used
-		(originally designed for organizing MP3s under directories such as
-		<quote>Artists,</quote> <quote>Song Keywords,</quote> and so on. I have since easily
-		applied it to a student
-		roster database.) The directory structure is stored in the
-		database itself and the module makes no assumptions about the database
-		structure beyond the table it requires to run.
+		Ich habe ein VFS Modul entworfen dass einem read-only Dateisystem gleichkommt.
+		Es gibt die Informationen einer Datenbank in einer modularen und generischen 
+		Weise als ein Dateisystem aus, um die Benutzung verschiedener Datenbanken zu ermöglichen
+		(Ursprünglich dazu entworfen um MP3's in Ordnern wie <quote>Künstler,</quote> <quote>Lied Stichwörter,</quote>
+		usw. zu organisieren. Ich habe es aber auch schon für ein Studenten Register benutzt).
+		Die Ordnerstruktur wird in der Datenbank gespeichert und das Modul schert sich nicht um
+		die Datenbankstruktur ausserhalb der Tabelle die es braucht.
 		</para>
 
 		<para>
-		Any feedback would be appreciated: comments, suggestions, patches,
-		and so on. If nothing else, hopefully it might prove useful for someone
-		else who wishes to create a virtual filesystem.
+		Ich wäre dankbar für Rückmeldungen jeder Art:Kommentare, Vorschläge, Patches usw.
+		Ich hoffe dass es sich als brauchbar für jemanden erweist, der ein virtuelles Dateisystem
+		erstellen möchte.
 		</para>
 
 	</sect2>
@@ -299,11 +294,9 @@ should be implied due to its presence here.
 	<para>URL: <ulink noescape="1" url="http://www.openantivirus.org/">http://www.openantivirus.org/</ulink></para>
 
 		<para>
-		<filename>samba-vscan</filename> is a proof-of-concept module for Samba, which
-		uses the VFS (virtual file system) features of Samba 2.2.x/3.0
-		alphaX. Of course, Samba has to be compiled with VFS support. 
-		<filename>samba-vscan</filename> supports various virus scanners and is maintained 
-		by Rainer Link.
+		<filename>samba-vscan</filename> ist ein PROOF-OF-CONCEPT Modul für Samba, welches die VFS (Virtual File
+		System) Funktion von Samba 2.2.x/3.0 alphaX nutzt. Natürlich muss Samba mit VFS Unterstützung kompiliert
+		werden. <filename>samba-vscan</filename> unterstützt viele Viren Scanner und wird gepflegt von Rainer Link.
 		</para>
 
 	</sect2>
