@@ -6,7 +6,7 @@
 	<pubdate>April 14, 2003</pubdate>
 </chapterinfo>
 
-<title>Einf&uuml;rung in Samba</title>
+<title>Einfürung in Samba</title>
 
 <para><quote>
 "Wenn du verstehst was du tust, wirst du nichts lernen"
@@ -14,36 +14,36 @@
 </quote></para>
 
 <para>
-Samba ist ein Datei- und Druckserver f&uuml;r auf Windows basierende Clients die TCP/IP als transport Protokol nutzen.
-Tats&auml;chlich kann es jeden SMB/CIFS-aktiven Client unterst&uuml;tzen. Eine von Samba's grossen St&auml;rken ist, dass Sie in der
-Lage sind ihre Windows und Linux Maschienen zusammen zu mixen ohne einen separaten Windows NT/2000/2003 Server zu ben&ouml;tigen.
-Samba wird derzeit von einem 30 Kopfigen Team von Programmieren entwickelt und wurde urspr&uuml;nglich von Andrew Tridgell entwickelt.
+Samba ist ein Datei- und Druckserver für auf Windows basierende Clients die TCP/IP als transport Protokol nutzen.
+Tatsächlich kann es jeden SMB/CIFS-aktiven Client unterstützen. Eine von Samba's grossen Stärken ist, dass Sie in der
+Lage sind ihre Windows und Linux Maschienen zusammen zu mixen ohne einen separaten Windows NT/2000/2003 Server zu benötigen.
+Samba wird derzeit von einem 30 Kopfigen Team von Programmieren entwickelt und wurde ursprünglich von Andrew Tridgell entwickelt.
 </para>
 
 <sect1>
 <title>Hintergrund</title>
 
 <para>
-Vor langer Zeit gab es ein Schl&uuml;sselwort welches auf DCE/RPC referenzierte. Dies stand f&uuml;r
-Computing Environment/Remote Procedure Calls and war vom Konzept her eine gute Idee. Urspr&uuml;nglich
-wurde es von Apollo/HP als NCA1.0 (Network Computing Architecture entwickelt und konnte nur &uuml;ber
-UDP benutzt werden. Als es n&ouml;tig wurde das ganze &uuml;ber TCP zu betreiben um die Kompatibilit&auml;t zu
-DECnet3.0 gew&auml;hrleisten zu k&ouml;nnen, wurde es neu entworfen, zur Organisation The Open Group gesandt
-und wurde offiziell als DCE/RPC bekannt. Microsoft kam daher und entschied mehr als $20 f&uuml;r eine
+Vor langer Zeit gab es ein Schlüsselwort welches auf DCE/RPC referenzierte. Dies stand für
+Computing Environment/Remote Procedure Calls and war vom Konzept her eine gute Idee. Ursprünglich
+wurde es von Apollo/HP als NCA1.0 (Network Computing Architecture entwickelt und konnte nur über
+UDP benutzt werden. Als es nötig wurde das ganze über TCP zu betreiben um die Kompatibilität zu
+DECnet3.0 gewährleisten zu können, wurde es neu entworfen, zur Organisation The Open Group gesandt
+und wurde offiziell als DCE/RPC bekannt. Microsoft kam daher und entschied mehr als $20 für eine
 Arbeitsplatz Lizens haben zu wollen und es als eigenes MSRPC verkaufen zu wollen. Von diesem Punkt
 an wurde das Konzept in Form von SMB (Server Message Block, als "was") unter Benutzung von
-NetBIOS (Network Basic Input/Output System, als "wie") als Komatibilit&auml;ts-Schicht weiter gef&uuml;hrt.
-Sie k&ouml;nnen SMB &uuml;ber viele verschieden Protokolle nutzen, sprich transportieren; viele verschiedene
-Implementationen f&uuml;hren zu einem Ergebnis, einschlie&szlig;lich NBIPX (NetBIOS &uuml;ber IPX, NwLnkNb, oder NWNBLink)
-und NBT (NetBIOS &uuml;ber TCP/IP, oder NetBT). &uuml;ber die Jahre hinweg wurde NBT die meist genutzte Form der
+NetBIOS (Network Basic Input/Output System, als "wie") als Komatibilitäts-Schicht weiter geführt.
+Sie können SMB über viele verschieden Protokolle nutzen, sprich transportieren; viele verschiedene
+Implementationen führen zu einem Ergebnis, einschließlich NBIPX (NetBIOS über IPX, NwLnkNb, oder NWNBLink)
+und NBT (NetBIOS über TCP/IP, oder NetBT). über die Jahre hinweg wurde NBT die meist genutzte Form der
 Implementationen bis zum Fortschritt des "Direct-Hosted TCP" -- der Microsoft Marketing Formulierung zur
-vollst&ouml;ndigen Eleminierung von NetBIOS und der M&ouml;glichkeit SMB direkt &uuml;ber den TCP port 445 laufen zu lassen.
+vollstöndigen Eleminierung von NetBIOS und der Möglichkeit SMB direkt über den TCP port 445 laufen zu lassen.
 
 As of yet, direct-hosted TCP has yet to catch on.
 </para>
 
 <para>
-Es ist m&ouml;glich, dass der bisher beste Artikel &uuml;ber den Ursprung von SMB im Jahre 1997 in einem Artikel
+Es ist möglich, dass der bisher beste Artikel über den Ursprung von SMB im Jahre 1997 in einem Artikel
 mit dem Titel: CIFS: Common Insecurities Fail Scrutiny erschienen ist.
 
 Perhaps the best summary of the origins of SMB are voiced in the 1997 article titled, CIFS:
@@ -52,9 +52,9 @@ Common Insecurities Fail Scrutiny:
 
 <para><emphasis>
 Mehrere Megabytes aus NT-Security Archiven, ziellosen whitepapern, RFCs, der CIFS Spezifikation,
-das Samba Zeug, ein paar MS Knowledge Base Artikeln, Zeichenketten aus Bin&auml;rdateien und Packet-Abbildungen
-haben pflichtbewu&szlig;t den Weg durch die Phasen der Informationssammlung dieses Projektes durch schritten und es
-fehlen immer noch einige St&uuml;cke... Oftmals m&uuml;&szlig;ig wurde der Weg unordentlich gemacht durch "Hand vor die Stirn schlagen" und murmeln
+das Samba Zeug, ein paar MS Knowledge Base Artikeln, Zeichenketten aus Binärdateien und Packet-Abbildungen
+haben pflichtbewußt den Weg durch die Phasen der Informationssammlung dieses Projektes durch schritten und es
+fehlen immer noch einige Stücke... Oftmals müßig wurde der Weg unordentlich gemacht durch "Hand vor die Stirn schlagen" und murmeln
 "Mein Gott, was haben die sich dabei gedacht?"
 Hier das Original:
 Several megabytes of NT-security archives, random whitepapers, RFCs, the CIFS spec, the Samba
@@ -73,41 +73,41 @@ thinking?
 <itemizedlist>
 
 	<listitem><para>
-	SMB: Akronym f&uuml;r "Server Message Block". Dies ist Microsoft's Datei- und Druckerfreigabe Protokol.
+	SMB: Akronym für "Server Message Block". Dies ist Microsoft's Datei- und Druckerfreigabe Protokol.
 	</para></listitem>
 
 	<listitem><para>
-	CIFS: Akronym f&uuml;r "Common Internet File System". Um 1996 entschied Microsoft das SMB das Wort
-	"Internet" im Namen br&auml;uchte und sie &auml;nderten den Namen in CIFS.
+	CIFS: Akronym für "Common Internet File System". Um 1996 entschied Microsoft das SMB das Wort
+	"Internet" im Namen bräuchte und sie änderten den Namen in CIFS.
 	</para></listitem>
 
 	<listitem><para>
-	Direct-Hosted: Eine Methode Datei/Drucker Freigabedienste &uuml;ber port 445/tcp zur Verf&uuml;gung zu stellen,
-	Hierbei wurde nur DNS statt WINS zur Aufl&ouml;sung der Namen in IP-Adressen benutzt
+	Direct-Hosted: Eine Methode Datei/Drucker Freigabedienste über port 445/tcp zur Verfügung zu stellen,
+	Hierbei wurde nur DNS statt WINS zur Auflösung der Namen in IP-Adressen benutzt
 	</para></listitem>
 
 	<listitem><para>
-	IPC: Akronym f&uuml;r "Inter-Process Communication". Eine Methode spezielle Informationen zwischen Programmen
+	IPC: Akronym für "Inter-Process Communication". Eine Methode spezielle Informationen zwischen Programmen
 	zu verbreiten.
 	</para></listitem>
 
 	<listitem><para>
-	Marshalling: - Eine Methode zur seq&uuml;ntiellen Sortierung von variablen Daten,
-	passend zur &uuml;bertragung &uuml;ber eine Netzwerkverbindung bzw. Speicherung in eine Datei.
-	Die Quelldateien k&ouml;nnen mittels eines &auml;hnlichen Prozesses namens unmarschalling
+	Marshalling: - Eine Methode zur seqüntiellen Sortierung von variablen Daten,
+	passend zur übertragung über eine Netzwerkverbindung bzw. Speicherung in eine Datei.
+	Die Quelldateien können mittels eines ähnlichen Prozesses namens unmarschalling
 	wiederhergestellt werden.
 	</para></listitem>
 
 	<listitem><para>
-	NetBIOS: Akronym f&uuml;r "Network Basic Input/Output System". Dies ist kein Protokol;
-	es ist eine M&ouml;glichkeit der Kommunikations &uuml;ber ein anderes Protokol.
-	Dies ist ein Standard welcher urspr&uuml;nglich 1983 von IBM entwickelt wurde.
-	Um die Analogie ein wenig zu &uuml;bertreiben k&ouml;nnte man NetBIOS mit dem BIOS ihres Rechners vergleichen,
+	NetBIOS: Akronym für "Network Basic Input/Output System". Dies ist kein Protokol;
+	es ist eine Möglichkeit der Kommunikations über ein anderes Protokol.
+	Dies ist ein Standard welcher ursprünglich 1983 von IBM entwickelt wurde.
+	Um die Analogie ein wenig zu übertreiben könnte man NetBIOS mit dem BIOS ihres Rechners vergleichen,
 	ihr BIOS kontrolliert die Ein-/Ausgabe der Hardware ihres Rechners und NetBIOS kontrolliert die Ein-/Ausgaben
-	&uuml;ber das Netzwerk.
-	Nochmals, dies ist eine kleine &uuml;bertreibung sollte aber helfen dieses Paradigma verst&auml;ndlich zu machen.
-	Was wichtig ist, ist die Tatsache das NetBIOS kein Protokol sondern ein &uuml;bermittlungsstandard ist.
-	Leider tendieren auch technisch Versierte Leute dazu ohne viel dar&uuml;ber nachzudenken NetBIOS mit NetBEUI zu
+	über das Netzwerk.
+	Nochmals, dies ist eine kleine übertreibung sollte aber helfen dieses Paradigma verständlich zu machen.
+	Was wichtig ist, ist die Tatsache das NetBIOS kein Protokol sondern ein übermittlungsstandard ist.
+	Leider tendieren auch technisch Versierte Leute dazu ohne viel darüber nachzudenken NetBIOS mit NetBEUI zu
 	verwechseln;
 	</para></listitem>
 
@@ -121,70 +121,68 @@ thinking?
 	</para></listitem>
 
 	<listitem><para>
-	NBT: Akronym für for "NetBIOS over TCP"; also known as "NetBT". Allows the contin&uuml;d use
-	of NetBIOS traffic proxied over TCP/IP. As a result, NetBIOS names are made
-	to IP addresses and NetBIOS name types are conceptually equivalent to TCP/IP ports.
-	This is how file and printer sharing are accomplished in Windows 95/98/ME. They
-	traditionally rely on three ports: NetBIOS Name Service (nbname) via UDP port 137,
-	NetBIOS Datagram Service (nbdatagram) via UDP port 138, and NetBIOS Session Service
-	(nbsession) via TCP port 139. All name resolution is done via WINS, NetBIOS broadcasts,
-	and DNS. NetBIOS over TCP is documented in RFC 1001 (Concepts and methods) and RFC 1002
-	(Detailed specifications).
+	NBT: Akronym für "NetBIOS über TCP" auch bekannt als "NetBT". Erlaubt die Benutzung von NetBIOS Verkehrs
+	im TCP/IP. Im Endeffekt werden NetBIOS Namen zu IP Adressen gewandelt und NetBIOS Namenstypen sind im
+	grunde genommen mit TCP/IP Ports vergleichbar. So werden in Windows 95/98/ME die Datei- und Druckerfreigaben
+	verwirklicht. Traditionell sind sie an drei Ports gebunden: NetBIOS Name Service (nbname) über UDP Port 137,
+	NetBIOS Datagramm Service (nbdatagram) über UDP Port 138 und der NetBIOS Session Service (nbsession) über
+	TCP Port 139. Jegliche Namensauflösung wird über WINS erledigt, NetBIOS broadcasts (Anm. des Übersetzers:
+	broadcasts sind Netzwerkausrufe an alle anderen Stationen im Umkreis) und DNS. NetBIOS über TCP wird im RFC 1001
+	(Konzepte und Methoden) und RFC 1002 (Detailierte Spezifikationen) beschrieben.
 	</para></listitem>
 
 	<listitem><para>
-	W2K: Akronym for Windows 2000 Professional or Server
+	W2K: Akronym für Windows 2000 Professional oder Server
 	</para></listitem>
 
 	<listitem><para>
-	W3K: Akronym for Windows 2003 Server
+	W3K: Akronym für Windows 2003 Server
 	</para></listitem>
 
 </itemizedlist>
 
-<para>If you plan on getting help, make sure to subscribe to the Samba Mailing List (available at
+<para>Wenn Sie hilfe benötigen, wenden Sie sich bitte an die Samba Mailing Liste (Erreichbar über
 <ulink url="http://www.samba.org/">http://www.samba.org</ulink>).
 </para>
 
 </sect1>
 
 <sect1>
-<title>Related Projects</title>
+<title>Verwandte Projekte</title>
 
 <para>
-There are currently two network filesystem client projects for Linux that are directly
-related to Samba: SMBFS and CIFS VFS.  These are both available in the Linux kernel itself.
+Derzeit gibt es zwei weitere Netzwerk Dateisystem Client Projekte für Linux die direkt mit Samba in Verbindung stehen:
+SMBFS und CIFS VFS. Sie sind beide im Linux Kernel verfügbar.
 </para>
 
 <itemizedlist>
 
 	<listitem><para>
-	SMBFS (Server Message Block File System) allows you to mount SMB shares (the protocol
-	that Microsoft Windows and OS/2 Lan Manager use to share files and printers
-	over local networks) and access them just like any other Unix directory. This is useful
-	if you just want to mount such filesystems without being a SMBFS server.
+	SMBFS (Server Message Block File System) erlaubt es SMB Freigaben unter Linux zu mounten (binden); Das Protokol
+	welches Microsoft Windows und OS/2 Lan Manager zur Freigabe von Dateien und Druckern über lokale Netzwerke
+	verwenden lässt sich hier nutzen um entfernte Shares ähnlich wie andere Unix Verzeichnisse zu binden.
+	Dies ist nützlich wenn Sie nur solche Dateisysteme mounten wollen ohne gleich selbst ein SMBFS Server zu sein.
 	</para></listitem>
 
 	<listitem><para>
-	CIFS VFS (Common Internet File System Virtual File System) is the successor to SMBFS, and
-        is being actively developed for the upcoming version of the Linux kernel. The intent of this module
-        is to provide advanced network file system functionality including support for dfs (hierarchical
-	name space), secure per-user session establishment, safe distributed caching (oplock),
-	optional packet signing, Unicode and other internationalization improvements, and optional
-	Winbind (nsswitch) integration.
-        </para></listitem>
+	CIFS VFS (Common Internet File System Virtual File System) ist der Nachfolger von SMBFS und wird derzeit aktiv
+	für die neue Version des Linux Kernels entwickelt. Die Absicht dieses Moduls ist es erweiterte Netzwerkdateisysteme
+	Funktionen wie Unterstützung von dfs (hierarischer Namensplatz / hierarchical name space), sichere "Pro-User"
+	Sessions, sicheres verteiltes zwischenspeichern (oplock), optionales signieren von Paketen, den Unicode Zeichensatz
+	und weitere Internationalisierte Verbesserungen zu unterstützen und die optionale Einbindung von Winbind (nsswitch).
+    </para></listitem>
 
 </itemizedlist>
 
 <para>
-Again, it's important to note that these are implementations for client filesystems, and have
-nothing to do with acting as a file and print server for SMB/CIFS clients.
+Hinweis: es ist wichtig zu erkennen das dies nur implementationen für Client Dateisysteme sind und nichts
+damit zu tun haben selbst als Datei- und Druckserver zu aggieren.
 </para>
 
 <para>
-There are other Open Source CIFS client implementations, such as the
-<ulink url="http://jcifs.samba.org/">jCIFS project</ulink>
-which provides an SMB client toolkit written in Java.
+Es gibt noch weitere Open Source CIFS client Tools wie zum Beispiel dem
+<ulink url="http://jcifs.samba.org/">jCIFS Projekt</ulink>
+welches ein SMB Client Toolkit in Java geschrieben zur Verfügung stellt.
 </para>
 
 
@@ -192,55 +190,56 @@ which provides an SMB client toolkit written in Java.
 
 
 <sect1>
-<title>SMB Methodology</title>
+<title>SMB Methodologie</title>
 
 <para>
-Traditionally, SMB uses UDP port 137 (NetBIOS name service, or netbios-ns),
-UDP port 138 (NetBIOS datagram service, or netbios-dgm), and TCP port 139 (NetBIOS
-session service, or netbios-ssn). Anyone looking at their network with a good
-packet sniffer will be amazed at the amount of traffic generated by just opening
-up a single file. In general, SMB sessions are established in the following order:
+Traditionell nutzt SMB den UDP Port 137 (NetBIOS name service oder nerbios-ns), den UDP Port
+138 (NetBIOS datagramm service oder netbios-dgm) und den TCP Port 139 (NetBIOS
+session service oder netbios-ssn). Jeder der mit einem guten Netzwerk Packet Analyse Programm
+sein Netzwerk beobachtet wird amüsiert sein über die Menge an Verkehr welcher ausgelöst wird
+nur wenn man eine einzige Datei öffnet. Grundlegend werden SMB Sitzungen/Sessions in folgender
+Reihenfolge aufgebaut:
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	"TCP Connection" - establish 3-way handshake (connection) to port 139/tcp
-    or 445/tcp.
+	"TCP Verbindung" - aufbau des 3-Wege Handschlags (Verbindung) zu Port 139/tcp
+    oder 445/tcp.
 	</para></listitem>
 
 	<listitem><para>
-	"NetBIOS Session Req&uuml;st" - using the following "Calling Names": The local
-    machine's NetBIOS name plus the 16th character 0x00; The server's NetBIOS
-    name plus the 16th character 0x20
+	"NetBIOS Session Anfrage" - Benutzt folgende Rufnamen: Den lokalen NetBIOS Namen der lokalen
+	Maschine zzgl. den 16. Buchstaben 0x00 und den NetBIOS Namen des Servers zzgl. 0x20 als 16. Buchstaben.
 	</para></listitem>
 
 	<listitem><para>
-	"SMB Negotiate Protocol" - determine the protocol dialect to use, which will
-    be one of the following: PC Network Program 1.0 (Core) - share level security
-    mode only; Microsoft Networks 1.03 (Core Plus) - share level security
-    mode only; Lanman1.0 (LAN Manager 1.0) - uses Challenge/Response
-    Authentication; Lanman2.1 (LAN Manager 2.1) - uses Challenge/Response
-    Authentication; NT LM 0.12 (NT LM 0.12) - uses Challenge/Response
-    Authentication
+	"SMB Negotiate Protocol" - bestimmt den Protokol-Dialekt der benutzt werden soll, dieser Dialekt
+	kann einer der folgenden sein:
+	PC Network Program 1.0 (Core) - nur share level security modus;
+	Microsoft Networks 1.03 (Core Plus) - nur share level security modus;
+	Lanman1.0 (LAN Manager 1.0) - nutzt Challenge/Response Authentication;
+	Lanman2.1 (LAN Manager 2.1) - nutzt Challenge/Response Authentication;
+	NT LM 0.12 (NT LM 0.12) - nutzt Challenge/Response Authentication
 	</para></listitem>
 
 	<listitem><para>
-	SMB Session Startup. Passwords are encrypted (or not) according to one of
-    the following methods: Null (no encryption); Cleartext (no encryption); LM
-    and NTLM; NTLM; NTLMv2
+	SMB Session Startup. Passwörter werden nach folgenden Methoden verschlüsselt (oder auch nicht):
+    Null (keine Verschlüsselung); Cleartext/Klartext (keine Verschlüsselung); LM
+    und NTLM; NTLM; NTLMv2
 	</para></listitem>
 
 	<listitem><para>
-	SMB Tree Connect: Connect to a share name (e.g., \\servername\share); Connect
-    to a service type (e.g., IPC$ named pipe)
+	SMB Tree Connect: Verbindung zu einem Freigabenamen (z.B., \\servername\share); Verbindung
+    zu einem Servicenamen (z.B., IPC$)
 	</para></listitem>
 
 </itemizedlist>
 
 <para>
-A good way to examine this process in depth is to try out
-<ulink url="http://www.securityfriday.com/ToolDownload/SWB/swb_doc.html">SecurityFriday's SWB program</ulink>.
-It allows you to walk through the establishment of a SMB/CIFS session step by step.
+Eine gute Art diesen Prozess zu untersuchen ist das
+<ulink url="http://www.securityfriday.com/ToolDownload/SWB/swb_doc.html">SecurityFriday's SWB Program</ulink>
+aus zu probieren.
+Es ermöglicht es ihnen Schritt für Schritt durch eine SMB/CIFS Sitzung zu gehen.
 </para>
 
 </sect1>
@@ -249,56 +248,57 @@ It allows you to walk through the establishment of a SMB/CIFS session step by st
 <title>Epilog</title>
 
 <para><quote>
-What's fundamentally wrong is that nobody ever had any taste when they
-did it. Microsoft has been very much into making the user interface look good,
-but internally it's just a complete mess. And even people who program for Microsoft
-and who have had years of experience, just don't know how it works internally.
-Worse, nobody dares change it. Nobody dares to fix bugs because it's such a
-mess that fixing one bug might just break a hundred programs that depend on
-that bug. And Microsoft isn't interested in anyone fixing bugs -- they're interested
-in making money. They don't have anybody who takes pride in Windows 95 as an
-operating system.
+Was grundlegend Falsch ist, ist das niemand einen Geschmack finden kann wenn er es nicht probiert hat.
+Microsoft hat stark daran gearbeitet die Oberfläche schön zu gestalten, nur intern ist es eine komplette Unordnung.
+Auch Mitarbeiter von Microsoft die seit Jahren dort Arbeiten und viel Erfahrung mit sich bringen, haben
+keine Ahnung was intern wirklich abläuft. Schlimm das niemand sich traut dies zu ändern. Niemand traut sich
+einen Bug zu fixen nur weil die Gefahr besteht, dass dieser Fix hunderte von Programmen zum Absturz bringen kann.
+Dazu kommt das Microsoft nicht daran interessiert ist Bugs zu fixen -- sie sind vielmehr daran interessiert
+Geld zu machen. Sie haben niemanden der Stolz ist in Windows 95 ein Betriebssystem zu sehen.
 </quote></para>
 
 <para><quote>
-People inside Microsoft know it's a bad operating system and they still
-contin&uuml; obviously working on it because they want to get the next version out
-because they want to have all these new features to sell more copies of the
-system.
+Die Leute von Microsoft wissen dass es ein schlechtes Betriebssystem ist und arbeiten weiter daran weil sie die
+nächste Version auf den Markt bringen wollen, um all die neuen Möglichkeiten des Systems verkaufen zu können.
 </quote></para>
 
 <para><quote>
-The problem with that is that over time, when you have this kind of approach,
-and because nobody understands it, because nobody REALLY fixes bugs (other than
-when they're really obvious), the end result is really messy. You can't trust
-it because under certain circumstances it just spontaneously reboots or just
-halts in the middle of something that shouldn't be strange. Normally it works
-fine and then once in a bl&uuml; moon for some completely unknown reason, it's dead,
-and nobody knows why. Not Microsoft, not the experienced user and certainly
-not the completely cl&uuml;less user who probably sits there shivering thinking
-"What did I do wrong?" when they didn't do anything wrong at all.
+Das Problem hierbei ist, dass wenn Sie über die Zeit Verständnis hierfür entwickeln ohne es zu vertehen, da niemand
+WIRKLICH Probleme behebt, ist das Endergebnis stark verpfuscht.
+Sie können dem System nicht vertrauen da es unter bestimmten Bedingungen es einfach spontan neu startet oder
+einfach nur stehen bleibt wenn Sie gerade etwas völlig normales machen. Normalerweise funktioniert es gut nur dann
+irgendwann ohne Begründung ist es tot und niemand weiß warum. Nicht Microsoft, nicht die Erfahrenen Anwender
+und schon gar nicht der Ahnungslose Benutzer der vor seinem Bildschirm sitzt und sich fragt: "Was hab
+ich bloß falsch gemacht?" wenn er doch gar nichts falsch gemacht hat.
 </quote></para>
 
 <para><quote>
-That's what's really irritating to me."
+Das ist das, was mich wirklich irretiert.
+
+
 </quote></para>
 
 <para>--
-<ulink url="http://hr.uoregon.edu/davidrl/boot.txt">Linus Torvalds, from an interview with BOOT Magazine, Sept 1998</ulink>
+<ulink url="http://hr.uoregon.edu/davidrl/boot.txt">Linus Torvalds, in einem Interview mit dem BOOT Magazin, Sept 1998</ulink>
 </para>
 
 </sect1>
 
 <sect1>
-<title>Miscellaneous</title>
+<title>Verschiedenes</title>
 
 <!--FIXME: This really needs to go... -->
 
 <para>
-This chapter is Copyright 2003 David Lechnyr (david at lechnyr dot com).
-Permission is granted to copy, distribute and/or modify this document under the terms
-of the GNU Free Documentation License, Version 1.2 or any later version published by the Free
-Software Foundation. A copy of the license is available at http://www.gnu.org/licenses/fdl.txt.
+Dieses Kapitel unterliegt dem Copright 2003 David Lechnyr (david at lechnyr dot com).
+Es ist erlaubt dieses Dokument zu kopieren, zu verbreiten und/oder unter Beachtung der
+GNU Free Documentation Lizens zu ändern. Version 1.2 oder jede spätere Version wurde
+mit der Free Software Foundation erstellt. Eine Kopie der englischen Lizens ist unter
+http://www.gnu.org/licenses/fdl.txt verfügbar.
+</para>
+<para>
+Dieses Kapittel wurde unter Einhaltung der GNU Public Lizens von Hendrik Bäcker (h_baecker at gmx dot net)
+ins Deutsche Übersetzt. Es besteht kein Anspruch auf Richtigkeit der hier genannten Daten und Fakten.
 </para>
 
 </sect1>
