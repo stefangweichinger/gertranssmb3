@@ -9,25 +9,27 @@
 <title>Das Management von Desktop-Profilen</title>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Vorzüge</title>
 
 <para>
-Roaming profiles are feared by some, hated by a few, loved by many, and a Godsend for
-some administrators.
+Sogenannte "Roaming Profiles" (zu Deutsch etwa "servergespeicherte Benutzerprofile") 
+werden von manchen gefürchtet, von einigen gehasst, von vielen geliebt,
+und sind ein Geschenk des Himmels für so manchen Administrator.
 </para>
 
 <para>
-Roaming profiles allow an administrator to make available a consistent user desktop
-as the user moves from one machine to another. This chapter provides much information
-regarding how to configure and manage roaming profiles.
+Roaming Profiles erlauben es einem Administrator, dem Benutzer einen konsistenten Desktop
+zur Verfügung stellen, wenn er sich von einer Maschine zu einer anderen bewegt. Dieses
+Kapitel stellt Informationen zur Verfügung, wie man Roaming Profiles konfiguriert und
+verwaltet.
 </para>
 
 <para>
-While roaming profiles might sound like nirvana to some, they are a real and tangible
-problem to others. In particular, users of mobile computing tools, where often there may not
-be a sustained network connection, are often better served by purely local profiles.
-This chapter provides information to help the Samba administrator deal with those
-situations.
+Während Roaming Profiles für manche wie das Nirvana klingen mögen, sind sie für andere ein
+richtiges und konkretes Problem. Im Speziellen die Nutzer mobiler Computer, die oft
+keine dauerhafte Netzwerk-Verbindung haben, sind oft besser mit rein lokalen Profilen beraten.
+Dieses Kapitel bietet Informationen, um dem Samba-Administrator zu helfen, mit diesen Situationen
+umzugehen.
 </para>
 
 </sect1>
@@ -37,13 +39,13 @@ situations.
 
 <warning>
 <para>
-Roaming profiles support is different for Windows 9x/Me and Windows NT4/200x.
+Die Unterstützung für Roaming Profiles ist für Windows 9x/Me und Windows NT4/200x verschieden.
 </para>
 </warning>
 
 <para>
-Before discussing how to configure roaming profiles, it is useful to see how
-Windows 9x/Me and Windows NT4/200x clients implement these features.
+Bevor wir die Konfiguration von Roaming Profiles diskutieren, ist es sinnvoll, zu sehen, wie
+Windows 9x/Me und Windows NT4/200x Clients diese Eigenschaften implementieren.
 </para>
 
 <para>
