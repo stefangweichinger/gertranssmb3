@@ -91,103 +91,100 @@ oder einem Samba-kontrollierten Netzwerk. Domänen-Mitgliedschaft hat viele Vorte
 </sect1>
 
 <sect1 id="machine-trust-accounts">
-<title>MS Windows Workstation/Server Machine Trust Accounts</title>
+<title>MS Windows Workstation/Server Maschinen-Vertrauens-Konten</title>
 
 <para>
-<indexterm><primary>Machine Trust Accounts</primary></indexterm>
-A Machine Trust Account is an account that is used to authenticate a client
-machine (rather than a user) to the Domain Controller server. In Windows terminology,
-this is known as a <quote>Computer Account.</quote> The purpose of the machine account
-is to prevent a rogue user and Domain Controller from colluding to gain access to a 
-domain member workstation.
+<indexterm><primary>Maschinen-Vertrauens-Konto</primary></indexterm>
+Ein Maschinen-Vertrauens-Konto ist ein Konto, das dazu verwendet wird, eine Client-Maschine
+(und nicht einen Benutzer) am Domänen-Controller zu authentifizieren. In der Windows-
+Terminologie ist dies als <quote>Maschinen-Konto</quote> bekannt. Der Zweck des 
+Maschinen-Kontos ist es, zu verhindern, daß ein schurkischer Benutzer mit einem 
+Domänen-Controller konspiriert,
+um Zugriff auf eine Domänen-Mitglieds-Workstation zu erhalten.
 </para>
 
 <para>
-The password of a Machine Trust Account acts as the shared secret for
-secure communication with the Domain Controller. This is a security
-feature to prevent an unauthorized machine with the same NetBIOS name
-from joining the domain and gaining access to domain user/group
-accounts. Windows NT/200x/XP Professional clients use machine trust
-accounts, but Windows 9x/Me/XP Home clients do not. Hence, a
-Windows 9x/Me/XP Home client is never a true member of a Domain
-because it does not possess a Machine Trust Account, and, thus, has no
-shared secret with the Domain Controller.
+Das Passwort eines Maschinen-Vertrauens-Kontos fungiert als "gemeinsames Geheimnis" für
+sichere Kommunikation mit dem Domänen-Controller. Dies ist ein Sicherheits-Feature, um eine
+nicht authorisierte Maschine mit dem selben NetBIOS-Namen davon abzuhalten, sich der Domäne
+anzuschliessen und Zugriff auf Benutzer/Gruppen-Konten der Domäne zu erhalten.
+Windows NT/200x/XP Professional-Clients nutzen Maschinen-Vertrauens-Konten, aber
+Windows 9x/Me/XP Home Clients tun das nicht. Daher ist ein Windows 9x/Me/XP Home Client nie
+ein vollwertiges Domänen-Mitglied, da er kein Maschinen-Vertrauens-Konto besitzt, und daher
+kein "gemeinsames Geheimnis" mit dem Domänen-Controller teilt.
 </para>
 
 <para>
-A Windows NT4 PDC stores each Machine Trust Account in the Windows Registry.
-The introduction of MS Windows 2000 saw the introduction of Active Directory,
-the new repository for Machine Trust Accounts. A Samba PDC, however, stores
-each Machine Trust Account in two parts,
-as follows:
+Ein Windows NT4 PDC speichert jedes Maschinen-Vertrauens-Konto in der Windows-Registrierung.
+Die Einführung von MS Windows 2000 brachte auch die Einführung des Active Directory, dem
+neuen Repository für Maschinen-Vertrauens-Konten. Ein Samba-PDC speichert jedoch jedes
+Maschinen-Vertrauens-Konto in zwei Teilen, wie folgt:
 
 <itemizedlist>
 	<listitem><para>
-	A Domain Security Account (stored in the 
-	<smbconfoption><name>passdb backend</name></smbconfoption> that has been configured in the
-	&smb.conf; file. The precise nature of the account information that is
-	stored depends on the type of backend database that has been chosen.
+	Ein Domänen-Sicherheits-Konto (gespeichert in dem
+	<smbconfoption><name>passdb backend</name></smbconfoption>, das in der Datei &smb.conf;
+	konfiguriert wurde. Die exakte Form der gespeicherten Konten-Information ist vom
+	Typ des gewählten Backends abhängig.
 	</para>
 
 	<para>
-	The older format of this data is the <filename>smbpasswd</filename> database
-	that contains the UNIX login ID, the UNIX user identifier (UID), and the
-	LanMan and NT encrypted passwords. There is also some other information in
-	this file that we do not need to concern ourselves with here.
+	Das ältere Format dieser Daten ist die Datenbank <filename>smbpasswd</filename>, die
+	die UNIX Login-ID, den UNIX user identifier (UID), die LanMan- und die verschlüsselten
+	NT-Passwörter enthält. Es gibt noch weitere Informationen zu dieser Datei, die uns jedoch
+	an dieser Stelle nicht interessiert.
 	</para>
 
 	<para>
-	The two newer database types are called ldapsam, and
-	tdbsam. Both store considerably more data than the
-	older <filename>smbpasswd</filename> file did. The extra information
-	enables new user account controls to be implemented.
+	Die zwei neueren Datenbank-Typen heissen ldapsam und tdbsam. Beide speichern bei weitem
+	mehr Daten als das ältere <filename>smbpasswd</filename>. Die zusätzliche Information
+	ermöglicht das Implementieren neuer Funktionen für Benutzer-Konten.	
 	</para></listitem>
 
 	<listitem><para>
-	A corresponding UNIX account, typically stored in
-	<filename>/etc/passwd</filename>. Work is in progress to allow a
-	simplified mode of operation that does not require UNIX user accounts, but
-	this may not be a feature of the early releases of Samba-3.
+	Ein entsprechendes UNIX-Konto, meist in <filename>/etc/passwd</filename> gespeichert.
+	Es wird daran gearbeitet, eine vereinfachte Betriebsart zu erlauben, die keine
+	UNIX-Konten erfordert, jedoch wird dies kein Feature der ersten Samba-3-Releases sein.	
 	</para></listitem>
 </itemizedlist>
 </para>
 
 <para>
-<indexterm><primary>Machine Trust Accounts</primary><secondary>creating</secondary></indexterm>
-There are three ways to create Machine Trust Accounts:
+<indexterm><primary>Maschinen-Vertrauens-Konten</primary><secondary>anlegen</secondary></indexterm>
+Es gibt drei Möglichkeiten, Maschinen-Vertrauens-Konten anzulegen:
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	Manual creation from the UNIX/Linux command line. Here, both the Samba and
-	corresponding UNIX account are created by hand.
+	Manuelles Anlegen auf der UNIX/Linux-Befehlszeile.
+	Hier werden sowohl das Samba-, wie auch das zugehörige UNIX-Konto von Hand angelegt.
 	</para></listitem>
 
 	<listitem><para>
 	<indexterm><primary>Server Manager</primary></indexterm>
-	Using the MS Windows NT4 Server Manager, either from an NT4 Domain Member
-	server, or using the Nexus toolkit available from the Microsoft Web site.
-	This tool can be run from any MS Windows machine as long as the user is
-	logged on as the administrator account.
+	Das Verwenden vom MS Windows NT4 Server Manager, entweder auf einem
+	NT4 Domain Member Server, oder unter Verwendung des Nexus-Toolkits, das auf der
+	Microsoft Website verfügbar ist. Dieses Tool kann von jeder MS Windows Maschine aus
+	verwendet werden, solange der Benutzer als Administrator angemeldet ist.
 	</para></listitem>
 	
 	<listitem><para>
-	<quote>On-the-fly</quote> creation. The Samba Machine Trust Account is automatically
-	created by Samba at the time the client is joined to the domain.
-	(For security, this is the recommended method.) The corresponding UNIX
-	account may be created automatically or manually. 
+	<quote>On-the-fly</quote> anlegen. Das Samba Maschinen-Vertrauens-Konto wird
+	automatisch von Samba angelegt, wenn sich der Client der Domäne anschließt.
+	(Aus Sicherheitsgründen ist dies die empfohlene Methode.) Das zugehörige
+	UNIX-Konto kann automatisch oder manuell angelegt werden.
 	</para></listitem>
 </itemizedlist>
 
 <sect2>
-<title>Manual Creation of Machine Trust Accounts</title>
+<title>Manuelles Anlegen von Maschinen-Vertrauens-Konten</title>
 
 <para>
-The first step in manually creating a Machine Trust Account is to manually
-create the corresponding UNIX account in <filename>/etc/passwd</filename>. 
-This can be done using <command>vipw</command> or another <quote>add user</quote> command
-that is normally used to create new UNIX accounts. The following is an example for
-a Linux-based Samba server:
+Der erste Schritt beim manuellen Anlegen eines Maschinen-Vertrauens-Kontos ist das manuelle
+Anlegen des zugehörigen UNIX-Kontos in der Datei <filename>/etc/passwd</filename>.
+Dies kann mittels <command>vipw</command> oder einem anderen <quote>add user</quote>-Befehl
+geschehen, der normalerweise zum Anlegen von UNIX-Benutzern verwendet wird. Hier ein Beispiel
+für einen Linux-basierenden Samba-Server:
 </para>
 
 <para>
@@ -201,13 +198,13 @@ a Linux-based Samba server:
 </screen>
 </para>
 
-<para>In the above example above there is an existing system group <quote>machines</quote> which is used
-as the primary group for all machine accounts. In the following examples the <quote>machines</quote> group has
-numeric GID equal 100.</para>
+<para>In obigem Beispiel gibt es eine System-Gruppe <quote>machines</quote>, welche als primäre Gruppe
+für alle Maschinen-Konten verwendet wird. In den folgenden Beispielen hat die Gruppe
+<quote>machines</quote> eine numerische GID von 100.</para>
 
 <para>
 <indexterm><primary>chpass</primary></indexterm>
-On *BSD systems, this can be done using the <command>chpass</command> utility:
+Auf *BSD-Systemen kann dies mit dem Utility <command>chpass</command> geschehen:
 </para>
 
 <para>
@@ -218,10 +215,9 @@ On *BSD systems, this can be done using the <command>chpass</command> utility:
 </para>
 
 <para>
-The <filename>/etc/passwd</filename> entry will list the machine name 
-with a <quote>$</quote> appended, will not have a password, will have a null shell and no 
-home directory. For example, a machine named <quote>doppy</quote> would have an 
-<filename>/etc/passwd</filename> entry like this:
+Der Eintrag in <filename>/etc/passwd</filename> wird den Maschinen-Namen enthalten, mit einem
+angefügten <quote>$</quote>, ohne Passwort, mit einer Null-Shell und ohne home-Verzeichnis.
+Zum Beispiel würde eine Maschine namens <quote>doppy</quote> diesen Eintrag haben:
 </para>
 
 <programlisting>
