@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="domain-member">
 
 <chapterinfo>
@@ -7,9 +8,10 @@
 	&author.tridge;
 	&author.jelmer;
 	<author>&person.gd;<contrib>LDAP updates</contrib></author>
+	<author>&author.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
-<title>Domain Membership</title>
+<title>Domänen-Mitgliedschaft</title>
 
 <para>
 Domain Membership is a subject of vital concern. Samba must be able to
