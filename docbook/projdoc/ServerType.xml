@@ -1,102 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
 <chapter id="ServerType">
 <chapterinfo>
 	&author.tridge;
 	&author.jelmer;
 	&author.jht;
+	<author>&person.hba;<contrib>German Translator</contrib></author>
 </chapterinfo>
 
-<title>Server Types and Security Modes</title>
+<title>Server Arten und Sicherheitsmodi</title>
 
 <para>
-This chapter provides information regarding the types of server that Samba may be
-configured to be. A Microsoft network administrator who wishes to migrate to or
-use Samba will want to know the meaning, within a Samba context, of terms familiar to MS Windows
-administrator. This means that it is essential also to define how critical security
-modes function before we get into the details of how to configure the server itself.
+Dieses Kapitel enthällt Informationen betreffend der verschiedenen Server Typen
+die Sie im Samba Server einstellen können. Ein Microsoft Netzwerk Administrator
+der zu Samba migrieren bzw. Samba nutzen möchte, ist bestimmt interessiert welche
+Samba Konfigurationen er machen muss im Vergleich zu den Konfigurationen eines
+Windows Servers. Es ist wichtig die Sicherheitsdefinitionen zu definieren, bevor
+man den Server selbst konfiguriert.
 </para>
 
 <para>
-The chapter provides an overview of the security modes of which Samba is capable
-and how they relate to MS Windows servers and clients.
+Dieses Kapitel gibt einen Überblick über die Sicherheitsmodi von Samba und wie Sie
+im Vergleich zu Windows stehen.
 </para>
 
 <para>
-A question often asked is, <quote>Why would I want to use Samba?</quote> Most chapters contain a section
-that highlights features and benefits. We hope that the information provided will help to
-answer this question. Be warned though, we want to be fair and reasonable, so not all
-features are positive towards Samba. The benefit may be on the side of our competition.
+Eine Frage die häufig gestellt wird lautet: <quote>Warum will ich Samba nutzen?</quote>
+Die meisten Kapitel enthalten eine Sektion die die Postive Merkmale und Vorteile hervorhebt.
+Wir hoffen dass diese Informationen ihnen diese Frage beantworten können. Wir wollen Fair
+und Vernünftig bleiben, somit ist darauf zu achten, dass nicht alle Features für Samba
+sprechen. Der Vorzug könnte auf unserer seite des Wettkampfes sein.
 </para>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Positive Merkmale und Vorteile</title>
 
 <para>
-Two men were walking down a dusty road, when one suddenly kicked up a small red stone. It
-hurt his toe and lodged in his sandal. He took the stone out and cursed it with a passion
-and fury befitting his anguish. The other looked at the stone and said, <quote>This is a garnet.
-I can turn that into a precious gem and some day it will make a princess very happy!</quote>
+Zwei Männer gehen eine staubige Straße entlang als der eine plötlzlich einen kleinen roten
+Stein wegschießt. Sein Zeh schmerzt durch den Stein und dieser wandert in die Sandale des
+einen Mannes. Er nimmt den Stein unter zornigem Fluchen aus der Sandale und ist sehr verärgert.
+Der andere Mann schaut sich den Stein an und sagt: <quote>Dies ist ein Granat, ich könnte ihn
+zu Schmuck verarbeiten und eines Tages wird er einer Prinzessin viel Freude bereiten.</quote>
 </para>
 
 <para>
-The moral of this tale: Two men, two very different perspectives regarding the same stone.
-Like it or not, Samba is like that stone. Treat it the right way and it can bring great
-pleasure, but if you are forced to use it and have no time for its secrets, then it can be
-a source of discomfort.
+Und die Moral von dieser Geschichte: Zwei Männder, zwei verschiedene Betrachtungsweisen des
+gleichen Steins. Mögen oder hassen. Samba ist wie dieser Stein. Behandeln Sie ihn richtig
+kann er ihnen einen großen Dienst erweisen aber wenn Sie gezwungen sind ihn zu benutzen ohne
+seine Geheimnisse zu kennen kann er eine Quelle des Unbehagen sein.
 </para>
 
 <para>
-Samba started out as a project that sought to provide interoperability for MS Windows 3.x
-clients with a UNIX server. It has grown up a lot since its humble beginnings and now provides
-features and functionality fit for large scale deployment. It also has some warts. In sections
-like this one we tell of both.
+Samba startete als Projekt um zu versuchen die Zusammenarbeit von MS Windows 3.x Clients und
+Unix Servern zu gewährleisten. Es ist seit den Anfangen viel gewachsen und stellt jetzt Merkmale
+und Funktionen zur Verfügung die es bereit für große Aufgaben macht. Es hat aber auch ein paar
+Nachteile, die wir in Sektionen wie dieser besprechen möchten.
 </para>
 
 <para>
-So, what are the benefits of features mentioned in this chapter?
+Also, was sind die Vorteile und Merkmale die wir in diesem Kapitel erwähnt hatten?
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	Samba-3 can replace an MS Windows NT4 Domain Controller.
+	Samba 3 kann einen MS Windows NT4 Domänen Controller ersetzen.
 	</para></listitem>
 
 	<listitem><para>
-	Samba-3 offers excellent interoperability with MS Windows NT4-style
-	domains as well as natively with Microsoft Active Directory domains.
+	Samba 3 bietet exzellente Kompatibiltät mit MS Windows NT4 Domänen sowie
+	native Microsoft Active Directory Domänen.
 	</para></listitem>
 
 	<listitem><para>
-	Samba-3 permits full NT4-style Interdomain Trusts.
+	Samba 3 erlaubt volle NT4-Stil Interdomain Trusts.
 	</para></listitem>
 
 	<listitem><para>
-	Samba has security modes that permit more flexible
-	authentication than is possible with MS Windows NT4 Domain Controllers.
+	Samba hat Sicherheitsmodi die anpassungsfähigere Benutzer Beglaubigung
+	durchführen können als Windows NT4 Domänen Controller.
 	</para></listitem>
 
 	<listitem><para>
-	Samba-3 permits use of multiple account database backends.
+	Samba 3 unterstützt die Nutzung von verschiedenen Account Datenbanken zur gleichen Zeit.
 	</para></listitem>
 
 	<listitem><para>
-	The account (password) database backends can be distributed
-	and replicated using multiple methods. This gives Samba-3
-	greater flexibility than MS Windows NT4 and in many cases a
-	significantly higher utility than Active Directory domains
-	with MS Windows 200x.
+	Die Account- bzw. Passwortdatenbanken können mit verschiedenen Methoden verteilt und
+	Repliziert werden. Dies ermöglicht es mit Samba 3 eine größere Flexibilität als MS
+	Windows NT4 und in vielen Fällen auch bedeutsam besseres Werkzeug als Active Directory
+	Domänen unter Windows 200x.
 	</para></listitem>
 </itemizedlist>
 
 </sect1>
 
 <sect1>
-<title>Server Types</title>
+<title>Server Arten</title>
 
 
 <para>
 <indexterm><primary>Server Type</primary></indexterm>
-Administrators of Microsoft networks often refer to three
-different type of servers:</para>
+Administratoren von Microsoft Netzwerken beziehen sich oft auf drei verschiedene Serverarten:
+</para>
 
 <itemizedlist>
 	<listitem><para>Domain Controller</para>
@@ -118,7 +123,7 @@ different type of servers:</para>
 <para>
 The chapters covering Domain Control, Backup Domain Control and Domain Membership provide
 pertinent information regarding Samba configuration for each of these server roles.
-The reader is strongly encouraged to become intimately familiar with the information 
+The reader is strongly encouraged to become intimately familiar with the information
 presented.
 </para>
 
@@ -213,7 +218,7 @@ This is the default setting since Samba-2.2.x.
 
 <para>
 In Share Level security, the client authenticates
-itself separately for each share. It sends a password along with each 
+itself separately for each share. It sends a password along with each
 tree connection (share mount). It does not explicitly send a
 username with this operation. The client expects a password to be associated
 with each share, independent of the user. This means that Samba has to work out what
@@ -300,7 +305,7 @@ security domain. This is done as follows:
         </para></step>
 
         <step><para>On the UNIX/Linux system execute:</para>
-	
+
 			<para><screen>&rootprompt;<userinput>net rpc join -U administrator%password</userinput></screen></para>
 		</step>
 </procedure>
@@ -614,7 +619,7 @@ as a Domain Controller. This setting means we want Samba to be a Domain Member.
 
 <para>
 Guess! So many others do. But whatever you do, do not think that <smbconfoption><name>security</name><value>user</value></smbconfoption>
-makes Samba act as a Domain Member. Read the manufacturer's manual before the warranty expires. See 
+makes Samba act as a Domain Member. Read the manufacturer's manual before the warranty expires. See
 <link linkend="domain-member"></link> for more information.
 </para>
 
