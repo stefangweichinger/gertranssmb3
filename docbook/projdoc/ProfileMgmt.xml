@@ -49,30 +49,30 @@ Windows 9x/Me und Windows NT4/200x Clients diese Eigenschaften implementieren.
 </para>
 
 <para>
-Windows 9x/Me clients send a NetUserGetInfo request to the server to get the user's
-profiles location. However, the response does not have room for a separate
-profiles location field, only the user's home share. This means that Windows 9x/Me
-profiles are restricted to being stored in the user's home directory.
+Windows 9x/Me Clients senden einen NetUserGetInfo-Request an den Server, um den Pfad zu den
+Profilen des Benutzers zu erhalten. Die Antwort hat jedoch nicht genug Platz für ein separates
+Feld für den Pfad der Profile, nur für die home-Freigabe des Benutzers. Das bedeutet, daß
+Windows 9x/Me-Profile darauf beschränkt sind, im Home-Verzeichnis des Benutzers gespeichert zu werden.
 </para>
 
-
 <para>
-Windows NT4/200x  clients send a NetSAMLogon RPC request, which contains many fields
-including a separate field for the location of the user's profiles.
+Windows NT4/200x-Clients senden einen NetSAMLogon RPC Request, der viele Felder enthält, inklusive
+einem Feld für Pfad der Profile des Benutzers.
 </para>
 
 <sect2>
-<title>Samba Configuration for Profile Handling</title>
+<title>Die Konfiguration von Samba für den Umgang mit Profilen</title>
 
 <para>
-This section documents how to configure Samba for MS Windows client profile support.
+Dieser Abschnitt dokumentiert, wie man Samba konfiguriert, um MS Windows Client Profile zu
+unterstützen.
 </para>
 
 <sect3>
-<title>NT4/200x User Profiles</title>
+<title>NT4/200x Benutzer-Profile</title>
 
 <para>
-For example, to support Windows NT4/200x clients, set the followoing in the [global] section of the &smb.conf; file:
+Um zum Beispiel Windows NT4/200x Clients zu unterstützen, setzen Sie folgendes im Abschnitt [global] der Datei &smb.conf;:
 </para>
 
 <para>
@@ -80,67 +80,75 @@ For example, to support Windows NT4/200x clients, set the followoing in the [glo
 <smbconfoption><name>logon path</name><value>\\profileserver\profileshare\profilepath\%U\moreprofilepath</value></smbconfoption>
 </smbconfblock>
 
-This is typically implemented like:
+Dies wird typischerweise so implementiert:
 
 <smbconfblock>
 <smbconfoption><name>logon path</name><value>\\%L\Profiles\%u</value></smbconfoption>
 </smbconfblock>
-where <quote>%L</quote> translates to the name of the Samba server and <quote>%u</quote> translates to the user name.
+wobei <quote>%L</quote> auf den Namen des Samba-Servers aufgelöst wird, und <quote>%u</quote> auf den Benutzernamen.
 </para>
 
 <para>
-The default for this option is <filename>\\%N\%U\profile</filename>, namely <filename>\\sambaserver\username\profile</filename>. 
-The <filename>\\%N\%U</filename> service is created automatically by the [homes] service. If you are using
-a Samba server for the profiles, you must make the share that is specified in the logon path
-browseable. Please refer to the man page for &smb.conf; in respect of the different
-semantics of <quote>%L</quote> and <quote>%N</quote>, as well as <quote>%U</quote> and <quote>%u</quote>.
+Die Voreinstellung für diese Option ist <filename>\\%N\%U\profile</filename>, also
+<filename>\\sambaserver\username\profile</filename>.
+Der Dienst <filename>\\%N\%U</filename> wird automatisch vom [homes]-Dienst angelegt.
+Wenn Sie einen Samba-Server für die Profile verwenden, müssen Sie die in "logon path" angegebene
+Freigabe browseable machen. Bitte lesen Sie die manpage für &smb.conf;, um mehr über die 
+unterschiedliche Semantik von <quote>%L</quote> und <quote>%N</quote> zu erfahren, wie auch über
+<quote>%U</quote> und <quote>%u</quote>.
 </para>
 
 <note>
 <para>
-MS Windows NT/200x clients at times do not disconnect a connection to a server between logons. It is recommended
-to not use the <smbconfsection>homes</smbconfsection> meta-service name as part of the profile share path.
+MS Windows NT/200x Clients trennen manchmal zwischen einzelnen
+Logons eine Verbindung zu einem Server nicht. 
+Es wird empfohlen, den Meta-Dienst <smbconfsection>homes</smbconfsection> nicht als Teil des
+Profil-Pfads zu verwenden.
 </para>
 </note>
 </sect3>
 
 <sect3>
-<title>Windows 9x/Me User Profiles</title>
+<title>Windows 9x/Me Benutzer-Profile</title>
 
 <para>
-To support Windows 9x/Me clients, you must use the <smbconfoption><name>logon home</name></smbconfoption>
-parameter. Samba has been fixed so <userinput>net use /home</userinput> now works as well and it, too, relies
-on the <command>logon home</command> parameter.
+Um Windows 9x/Me Clients zu unterstützen, müssen Sie den Parameter 
+<smbconfoption><name>logon home</name></smbconfoption> verwenden. Samba wurde repariert, sodaß
+<userinput>net use /home</userinput> nun auch funktioniert, und daß es auch auf dem Parameter
+<command>logon home</command> beruht.
 </para>
 
 <para>
-By using the logon home parameter, you are restricted to putting Windows 9x/Me profiles in the user's home
-directory.  But wait! There is a trick you can use. If you set the following in the
-<smbconfsection>[global]</smbconfsection> section of your &smb.conf; file:
+Mittels Verwendung des Parameters logon home sind Sie darauf beschränkt, Windows 9x/Me Benutzer-Profile
+im Home-Verzeichnis des Benutzers abzulegen. Aber warten Sie! Es gibt einen Trick, den Sie
+benutzen können. Wenn Sie folgendes im Abschnitt <smbconfsection>[global]</smbconfsection> Ihrer
+&smb.conf;-Datei setzen:
 </para>
 <para><smbconfblock>
 <smbconfoption><name>logon home</name><value>\\%L\%U\.profiles</value></smbconfoption>
 </smbconfblock></para>
 
 <para>
-then your Windows 9x/Me clients will dutifully put their clients in a subdirectory
-of your home directory called <filename>.profiles</filename> (making them hidden).
+werden Ihre Windows 9x/Me Clients pflichtbewußt Ihre Clients in ein Unterverzeichnis Ihres
+home-Verzeichnisses namens <filename>.profiles</filename> ablegen (und sie damit verstecken).
 </para>
 
 <para>
-Not only that, but <userinput>net use /home</userinput> will also work because of a feature in
-Windows 9x/Me. It removes any directory stuff off the end of the home directory area
-and only uses the server and share portion. That is, it looks like you
-specified <filename>\\%L\%U</filename> for <smbconfoption><name>logon home</name></smbconfoption>.
+Nicht nur das, <userinput>net use /home</userinput> wird genauso funktionieren, aufgrund eines
+Features in Windows 9x/Me. Es entfernt jegliche Verzeichnis-Angaben am Ende der Angabe
+des Home-Verzeichnisses und benutzt nur die Teile, die Server und Freigabe angeben. Daher
+sieht es für den Client so aus, als ob Sie <filename>\\%L\%U</filename> für
+<smbconfoption><name>logon home</name></smbconfoption> spezifiziert hätten.
 </para>
 </sect3>
 
 <sect3>
-<title>Mixed Windows 9x/Me and Windows NT4/200x User Profiles</title>
+<title>Gemischte Windows 9x/Me und Windows NT4/200x Benutzer-Profile</title>
 
 <para>
-You can support profiles for Windows 9x and Windows NT clients by setting both the
-<smbconfoption><name>logon home</name></smbconfoption> and <smbconfoption><name>logon path</name></smbconfoption> parameters. For example:
+Sie können Profile für Windows 9x/Me und Windows NT4/200x Clients untertützen, indem Sie
+beide Parameter <smbconfoption><name>logon home</name></smbconfoption> und
+<smbconfoption><name>logon path</name></smbconfoption> angeben. Zum Beispiel:
 </para>
 
 <para><smbconfblock>
@@ -150,16 +158,16 @@ You can support profiles for Windows 9x and Windows NT clients by setting both t
 
 </sect3>
 <sect3>
-<title>Disabling Roaming Profile Support</title>
+<title>Deaktivieren der Unterstützung von Roaming Profiles</title>
 
 <para>
-A question often asked is: <quote>How may I enforce use of local profiles?</quote> or
-<quote>How do I disable roaming profiles?</quote>
+Oft wird gefragt: <quote>Wie kann ich die Verwendung lokaler Profile erzwingen?</quote> oder
+<quote>Wie kann ich Roaming Profiles deaktivieren?</quote>
 </para>
 
 <para>
 <indexterm><primary>roaming profiles</primary></indexterm>
-There are three ways of doing this:
+Es gibt drei Arten, dies zu tun:
 <indexterm><primary>windows registry settings</primary><secondary>roaming profiles</secondary></indexterm>
 </para>
 
@@ -168,17 +176,18 @@ There are three ways of doing this:
 	<varlistentry>
 		<term>In &smb.conf;</term>
 		<listitem><para>
-		Affect the following settings and ALL clients will be forced to use a local profile:
-		<smbconfoption><name>logon home</name></smbconfoption> and <smbconfoption><name>logon path</name></smbconfoption>
+		Ändern Sie die folgenden Settings und ALLE Clients werden dazu gezwungen,
+		ein lokales Profil zu verwenden:
+		<smbconfoption><name>logon home</name></smbconfoption> und <smbconfoption><name>logon path</name></smbconfoption>
 		</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 		<term>MS Windows Registry</term>
 		<listitem><para>
-		By using the Microsoft Management Console gpedit.msc to instruct your MS Windows XP
-		machine to use only a local profile. This, of course, modifies registry settings. The full
-		path to the option is:
+		Unter Verwendung der Microsoft Management Console gpedit.msc, um Ihre MS Windows XP
+		Maschine zu zwingen, nur ein lokales Profil zu verwenden. Dies verändert natürlich
+		Registry-Settings. Der volle Pfad zu der Option ist:
 <screen>
 Local Computer Policy\
 	Computer Configuration\
@@ -186,32 +195,35 @@ Local Computer Policy\
 			System\
 				User Profiles\
 
-Disable: Only Allow Local User Profiles 
-Disable: Prevent Roaming Profile Change from Propagating to the Server
+Disable: Nur lokale Benutzer-Profile erlauben
+Disable: Verhindern, daß Änderungen des Roaming Profiles zum Server weitergegeben werden 
 </screen>
 	</para> </listitem>
 	</varlistentry>
 
 	<varlistentry>
-		<term>Change of Profile Type:</term>
-		<listitem><para>From the start menu right-click on <guiicon>My Computer icon</guiicon>,
-		select <guimenuitem>Properties</guimenuitem>, click on the <guilabel>User Profiles</guilabel>
-		tab, select the profile you wish to change from
-		<guimenu>Roaming</guimenu> type to <guimenu>Local</guimenu>, and click on
+		<term>Ändern des Profil-Typs:</term>
+		<listitem><para>Klicken Sie im Start-Menü mit der rechten Maustaste auf
+		<guiicon>My Computer icon</guiicon>,
+		wählen Sie <guimenuitem>Properties</guimenuitem>, klicken auf das Tab
+		<guilabel>User Profiles</guilabel>,
+		wählen Sie das Profil, das Sie vom Typ
+		<guimenu>Roaming</guimenu> auf <guimenu>Local</guimenu> ändern wollen, und klicken auf 
 		<guibutton>Change Type</guibutton>.
 		</para></listitem>
 	</varlistentry>
 </variablelist>
 
 <para>
-Consult the MS Windows registry guide for your particular MS Windows version for more information
-about which registry keys to change to enforce use of only local user profiles.
+Konsultieren Sie die Anleitung zur MS Windows Registry für Ihre spezifische Version von MS Windows,
+um mehr Informationen dazu zu erhalten, welche Registrierungsschlüssel zu ändern sind, um die
+Verwendung lokaler Benutzer-Profile zu erzwingen.
 </para>
 
 <note><para>
-The specifics of how to convert a local profile to a roaming profile, or a roaming profile
-to a local one vary according to the version of MS Windows you are running. Consult the Microsoft MS
-Windows Resource Kit for your version of Windows for specific information.
+Die Besonderheiten, wie man ein lokales Profil auf ein roaming Profil wandelt, oder umgekehrt,
+variieren je nach Version von MS Windows, die Sie einsetzen. Konsultieren Sie auch das
+Microsoft MS Windows Resource Kit für besondere Informationen.
 </para></note>
 
 </sect3> </sect2>
