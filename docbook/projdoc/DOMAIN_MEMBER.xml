@@ -309,62 +309,60 @@ Starten Sie <command>srvmgr.exe</command> (Server Manager für Domänen) und folge
 </para>
 
 <procedure>
-<title>Server Manager Account Machine Account Management</title>
+<title>Verwaltung von Maschinen-Konten mittels Server Manager</title>
 	<step><para>
-	From the menu select <guimenu>Computer</guimenu>.
+	Wählen Sie den Eintrag <guimenu>Computer</guimenu> aus dem Menü.
 	</para></step>
 
 	<step><para>
-	Click <guimenuitem>Select Domain</guimenuitem>.
+	Klicken Sie auf <guimenuitem>Select Domain</guimenuitem>.
 	</para></step>
 
 	<step><para>
-	Click the name of the domain you wish to administer in the
-	<guilabel>Select Domain</guilabel> panel and then click 
-	<guibutton>OK</guibutton>.
+	Klicken Sie im Panel <guilabel>Select Domain</guilabel> auf den Namen der Domäne, 
+	die Sie administrieren wollen, und dann auf <guibutton>OK</guibutton>.
 	</para></step>
 
 	<step><para>
-	Again from the menu select <guimenu>Computer</guimenu>.
+	Wählen Sie nochmals das Menu <guimenu>Computer</guimenu>.
 	</para></step>
 
 	<step><para>
-	Select <guimenuitem>Add to Domain</guimenuitem>.
+	Wählen Sie <guimenuitem>Add to Domain</guimenuitem>.
 	</para></step>
 
 	<step><para>
-	In the dialog box, click the radio button to 
-	<guilabel>Add NT Workstation of Server</guilabel>, then
-	enter the machine name in the field provided, and click the 
-	<guibutton>Add</guibutton> button.
+	Klicken Sie den Radio-Button <guilabel>Add NT Workstation of Server</guilabel> 
+	in der folgenden Dialogbox, dann geben Sie den Maschinen-Namen im vorgegebenen Feld ein,
+	und klicken auf <guibutton>Add</guibutton>.
 	</para></step>
 </procedure>
 
 </sect2>
 
 <sect2>
-<title>On-the-Fly Creation of Machine Trust Accounts</title>
+<title>"On-the-Fly" Anlegen von Maschinen-Konten</title>
 
 <para>
-The second (and recommended) way of creating Machine Trust Accounts is
-simply to allow the Samba server to create them as needed when the client
-is joined to the domain.
+Die zweite (und empfohlene) Art, Maschinenkonten anzulegen, ist, es einfach dem Samba-Server zu
+erlauben, diese Konten bei Bedarf anzulegen, wenn der Client der Domäne angeschlossen wird.
 </para>
 
-<para>Since each Samba Machine Trust Account requires a corresponding UNIX account, a method
-for automatically creating the UNIX account is usually supplied; this requires configuration of the
-add machine script option in &smb.conf;. This method is not required, however, corresponding UNIX
-accounts may also be created manually.
+<para>Da jedes Maschinen-Vertrauens-Konto unter Samba ein zugehöriges UNIX-Konto benötigt,
+wird üblicherweise eine Methode zum automatischen Anlegen eines UNIX-Kontos bereitgestellt;
+dies erfordert die Konfiguration der Option "add machine script" in der Datei &smb.conf;.
+Diese Methode ist jedoch nicht erforderlich, die benötigten UNIX-Konten können auch händisch
+angelegt werden.
 </para>
 
 
 <para>
-Here is an example for a Red Hat Linux system.
+Hier ein Beispiel für ein Red Hat Linux System.
 </para>
 
 <para><smbconfblock>
 <smbconfsection>[global]</smbconfsection>
-<smbconfcomment>&lt;...remainder of parameters...&gt;</smbconfcomment>
+<smbconfcomment>&lt;...Erinnerung an Parameter...&gt;</smbconfcomment>
 <smbconfoption><name>add machine script</name><value>/usr/sbin/useradd -d /dev/null -g 100 \</value></smbconfoption>
 <member><parameter>  -s /bin/false -M %u</parameter></member>
 </smbconfblock></para>
@@ -373,39 +371,44 @@ Here is an example for a Red Hat Linux system.
 </sect2>
 
 
-<sect2><title>Making an MS Windows Workstation or Server a Domain Member</title>
+<sect2><title>Eine MS Windows Workstation oder einen MS Windows Server zum Domänen-Mitglied machen</title>
 
 <para>
-The procedure for making an MS Windows workstation or server a member of the domain varies
-with the version of Windows.
+Die Vorgehensweise, um eine MS Windows Workstation oder einen MS Windows Server zum Domänen-Mitglied
+zu machen, ist abhängig von der Version von Windows.
 </para>
 
 <sect3>
 	<title>Windows 200x/XP Professional Client</title>
 
 	<para>
-	When the user elects to make the client a Domain Member, Windows 200x prompts for
-	an account and password that has privileges to create  machine accounts in the domain.
-	A Samba Administrator Account (i.e., a Samba account that has <constant>root</constant> privileges on the
-	Samba server) must be entered here; the operation will fail if an ordinary user
-	account is given. 
+	Wenn der Benutzer den Client dazu "erwählt", ein Domänen-Mitglied zu werden, fragt
+	Windows 200x nach einer Konto/Passwort-Kombination, die dazu berechtigt ist, Maschinen-Konten
+	in der Domäne anzulegen. Ein Samba-Administrator-Konto (also ein Samba-Konto, das
+	<constant>root</constant>-Rechte auf dem Samba-Server hat) muß hier verwendet werden;
+	der Vorgang wird scheitern, wenn ein normales Benutzerkonto verwendet wird.
 	</para>
 
 	<para>
-	For security reasons, the password for this Administrator Account should be set
-	to a password that is other than that used for the root user in <filename>/etc/passwd</filename>.
+	Aus Sicherheitsgründen sollte das Passwort für dieses Administrator-Konto auf ein anderes
+	Passwort gesetzt werden als jenes, das für den Benutzer root in <filename>/etc/passwd</filename>
+	verwendet wird.
 	</para>
 
 	<para>
-	The name of the account that is used to create Domain Member machine accounts can be
-	anything the network administrator may choose. If it is other than <constant>root</constant>
-	then this is easily mapped to <constant>root</constant> in the file named in the &smb.conf; parameter
-	<smbconfoption><name>username map</name><value>/etc/samba/smbusers</value></smbconfoption>.
+	Der Name des Kontos, das zum Anlegen von Domänenmitglieds-Maschinen-Konten verwendet wird,
+	kann etwas beliebiges sein, das der Netzwerk-Administrator wählt. Wenn dieser Name etwas anderes
+	als <constant>root</constant> ist, wird es einfach auf den dem Benutzer
+	<constant>root</constant> zugehörigen Eintrag in der 
+	vom Parameter
+	<smbconfoption><name>username map</name><value>/etc/samba/smbusers</value></smbconfoption> 
+	in der Datei &smb.conf; bezeichneten Datei "gemappt".
 	</para>
 
 	<para>
-	The session key of the Samba Administrator Account acts as an encryption key for setting the password of the machine trust
-	account. The Machine Trust Account will be created on-the-fly, or updated if it already exists.
+	Der "Session-Key" des Samba-Administrator-Kontos fungiert als Verschlüsselungs-Schlüssel
+	zum Setzen des Passworts für das Maschinen-Vertrauens-Konto. Das Maschinen-Vertrauens-Konto
+	wird on-the-fly angelegt, oder aktualisiert, falls es bereits existiert.
 	</para>
 </sect3>
 
@@ -413,26 +416,27 @@ with the version of Windows.
 	<title>Windows NT4 Client</title>
 
 	<para>
-	If the Machine Trust Account was created manually, on the
-	Identification Changes menu enter the domain name, but do not
-	check the box <guilabel>Create a Computer Account in the Domain</guilabel>.
-	In this case, the existing Machine Trust Account is used to join the machine 
-	to the domain.
+	Wenn das Maschinen-Vertrauens-Konto manuell angelegt wurde, geben Sie im Menu
+	"Identification Changes" den Domänen-Namen an, aber aktivieren Sie NICHT die Box
+	<guilabel>Create a Computer Account in the Domain</guilabel>. In diesem Fall wird
+	das bereits existierende Maschinen-Vertrauens-Konto verwendet, um die Maschine der
+	Domäne anzuschliessen.
 	</para>
 
 	<para>
-	If the Machine Trust Account is to be created on-the-fly, on the Identification Changes menu enter the domain
-	name and check the box <guilabel>Create a Computer Account in the Domain</guilabel>. In this case, joining
-	the domain proceeds as above for Windows 2000 (i.e., you must supply a Samba Administrator Account when
-	prompted).
+	Wenn das Maschinen-Vertrauens-Konto on-the-fly angelegt werden soll, geben Sie im Menu
+	"Identification Changes" den Domänen-Namen an, und aktivieren die Box
+	<guilabel>Create a Computer Account in the Domain</guilabel>. In diesem Fall wird der Anschluß
+	an die Domäne wie oben fortgesetzt, wie oben für Windows 2000 beschrieben (d.h., Sie müssen
+	ein Samba-Administrator-Konto angeben, wenn danach verlangt wird).
 	</para>
 </sect3>
 
 <sect3>
 	<title>Samba Client</title>
 
-	<para>Joining a Samba client to a domain is documented in 
-	<link linkend="domain-member-server">Domain Member Server</link>.
+	<para>Das Anschliessen eines Samba-Clients an eine Domäne wird in
+	<link linkend="domain-member-server">Domänen-Mitglieds-Server</link> beschrieben.
 	</para>
 </sect3>
 
@@ -440,7 +444,7 @@ with the version of Windows.
 </sect1>
 
 <sect1 id="domain-member-server">
-<title>Domain Member Server</title>
+<title>Domänen-Mitglieds-Server</title>
 
 <para>
 This mode of server operation involves the Samba machine being made a member
