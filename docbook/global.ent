@@ -12,6 +12,7 @@
 <!ENTITY email.hba     'h_baecker@gmx.net'>
 <!ENTITY email.yoshi   'jochen.schmidt@millenux.com'>
 <!ENTITY email.rruegner   'robowarp@gmx.de'>
+<!ENTITY email.gertrans	'gertranssmb3-users@lists.berlios.de'>
 
 <!-- Author entities -->
 <!ENTITY person.jelmer '
@@ -189,6 +190,16 @@
 </affiliation>'>
 
 <!ENTITY author.rruegner '<author>&person.rruegner;</author>'>
+
+<!ENTITY person.gertrans '
+<firstname>German</firstname><othername>Translation</othername><surname>Team</surname>
+<affiliation>
+        <orgname>German Samba-3-Docs-Translation Team</orgname>
+        <address><email>gertranssmb3-users@lists.berlios.de</email></address>
+</affiliation>'>
+
+<!ENTITY author.gertrans '<author>&person.gertrans;</author>'>
+
 
 <!-- URL's -->
 <!ENTITY url.samba.cvsinfo 'http://pserver.samba.org/samba/cvs.html'>
