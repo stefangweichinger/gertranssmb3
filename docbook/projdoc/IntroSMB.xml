@@ -6,7 +6,7 @@
 	<pubdate>April 14, 2003</pubdate>
 </chapterinfo>
 
-<title>Einfürung in Samba</title>
+<TITLE>Einfürung in Samba</TITLE>
 
 <para><quote>
 "Wenn du verstehst was du tust, wirst du nichts lernen"
@@ -14,48 +14,48 @@
 </quote></para>
 
 <para>
-Samba ist ein Datei- und Druckserver für auf Windows basierende Clients die TCP/IP als transport Protokol nutzen.
-Tatsächlich kann es jeden SMB/CIFS-aktiven Client unterstützen. Eine von Samba's grossen Stärken ist, dass Sie in der
-Lage sind ihre Windows und Linux Maschienen zusammen zu mixen ohne einen separaten Windows NT/2000/2003 Server zu benötigen.
-Samba wird derzeit von einem 30 Kopfigen Team von Programmieren entwickelt und wurde ursprünglich von Andrew Tridgell entwickelt.
+Samba ist ein Datei- und Druckserver für auf Windows basierende Clients die TCP/IP als Transport Protokol nutzen.
+Tatsächlich kann es jeden SMB/CIFS-aktiven Client unterstützen. Eine von Samba's großen Stärken ist, dass Sie in der
+Lage sind ihre Windows und Linux Maschinen zusammen zu mixen ohne einen separaten Windows NT/2000/2003 Server zu benötigen.
+Samba wird derzeit von einem 30 köpfigen Team von Programmierern entwickelt und wurde ursprünglich von Andrew Tridgell entwickelt.
 </para>
 
 <sect1>
-<title>Hintergrund</title>
+<TITLE>Hintergrund</TITLE>
 
 <para>
 Vor langer Zeit gab es ein Schlüsselwort welches auf DCE/RPC referenzierte. Dies stand für
-Computing Environment/Remote Procedure Calls and war vom Konzept her eine gute Idee. Ursprünglich
-wurde es von Apollo/HP als NCA1.0 (Network Computing Architecture entwickelt und konnte nur über
+Computing Environment/Remote Procedure Calls und war vom Konzept her eine gute Idee. Ursprünglich
+wurde es von Apollo/HP als NCA1.0 (Network Computing Architecture) entwickelt und konnte nur über
 UDP benutzt werden. Als es nötig wurde das ganze über TCP zu betreiben um die Kompatibilität zu
-DECnet3.0 gewährleisten zu können, wurde es neu entworfen, zur Organisation The Open Group gesandt
-und wurde offiziell als DCE/RPC bekannt. Microsoft kam daher und entschied mehr als $20 für eine
+DECnet3.0 gewährleisten zu können, wurde es neu entworfen, zur Organisation "The Open Group" gesandt
+und offiziell als DCE/RPC bekannt. Microsoft kam allerdings daher und entschied mehr als $20 für eine
 Arbeitsplatz Lizens haben zu wollen und es als eigenes MSRPC verkaufen zu wollen. Von diesem Punkt
-an wurde das Konzept in Form von SMB (Server Message Block, als "was") unter Benutzung von
-NetBIOS (Network Basic Input/Output System, als "wie") als Komatibilitäts-Schicht weiter geführt.
-Sie können SMB über viele verschieden Protokolle nutzen, sprich transportieren; viele verschiedene
+an wurde das Konzept in Form von SMB (Server Message Block, das "was") unter Benutzung von
+NetBIOS (Network Basic Input/Output System, das "wie") als Komatibilitäts-Schicht weiter geführt.
+Sie können SMB über viele verschiedene Protokolle nutzen, sprich transportieren; viele verschiedene
 Implementationen führen zu einem Ergebnis, einschließlich NBIPX (NetBIOS über IPX, NwLnkNb, oder NWNBLink)
-und NBT (NetBIOS über TCP/IP, oder NetBT). über die Jahre hinweg wurde NBT die meist genutzte Form der
+und NBT (NetBIOS über TCP/IP, oder NetBT). Über die Jahre hinweg wurde NBT zur meist genutzten Form der
 Implementationen bis zum Fortschritt des "Direct-Hosted TCP" -- der Microsoft Marketing Formulierung zur
-vollstöndigen Eleminierung von NetBIOS und der Möglichkeit SMB direkt über den TCP port 445 laufen zu lassen.
+vollständigen Eleminierung von NetBIOS und der Möglichkeit SMB direkt an den TCP port 445 zu binden.
 
+<!-- Also zu diesem Satz weiß ich keine Übersetzung zu finden.-->
 As of yet, direct-hosted TCP has yet to catch on.
 </para>
 
 <para>
-Es ist möglich, dass der bisher beste Artikel über den Ursprung von SMB im Jahre 1997 in einem Artikel
-mit dem Titel: CIFS: Common Insecurities Fail Scrutiny erschienen ist.
-
-Perhaps the best summary of the origins of SMB are voiced in the 1997 article titled, CIFS:
-Common Insecurities Fail Scrutiny:
+Der wohl beste Artikel über den Ursprung von SMB erschien 1997 in einem Artikel mit dem Titel -
+"CIFS: Common Insecurities Fail Scrutiny".
 </para>
 
 <para><emphasis>
-Mehrere Megabytes aus NT-Security Archiven, ziellosen whitepapern, RFCs, der CIFS Spezifikation,
+Mehrere Megabytes aus NT-Security Archiven, ziellosen Whitepapern, RFCs, der CIFS Spezifikation,
 das Samba Zeug, ein paar MS Knowledge Base Artikeln, Zeichenketten aus Binärdateien und Packet-Abbildungen
-haben pflichtbewußt den Weg durch die Phasen der Informationssammlung dieses Projektes durch schritten und es
-fehlen immer noch einige Stücke... Oftmals müßig wurde der Weg unordentlich gemacht durch "Hand vor die Stirn schlagen" und murmeln
-"Mein Gott, was haben die sich dabei gedacht?"
+haben pflichtbewußt den Weg durch die Phasen der Informationssammlung dieses Projektes durchschritten und es
+fehlen immer noch einige Stücke... Oftmals müßig wurde der Weg erschwert durch "Hand vor die Stirn schlagen"
+und murmeln "Mein Gott, was haben die sich dabei gedacht?"
+</para>
+<para>
 Hier das Original:
 Several megabytes of NT-security archives, random whitepapers, RFCs, the CIFS spec, the Samba
 stuff, a few MS knowledge-base articles, strings extracted from binaries, and packet dumps have
@@ -68,7 +68,7 @@ thinking?
 </sect1>
 
 <sect1>
-<title>Fachsprache</title>
+<TITLE>Fachsprache</TITLE>
 
 <itemizedlist>
 
@@ -148,7 +148,7 @@ thinking?
 </sect1>
 
 <sect1>
-<title>Verwandte Projekte</title>
+<TITLE>Verwandte Projekte</TITLE>
 
 <para>
 Derzeit gibt es zwei weitere Netzwerk Dateisystem Client Projekte für Linux die direkt mit Samba in Verbindung stehen:
@@ -190,7 +190,7 @@ welches ein SMB Client Toolkit in Java geschrieben zur Verfügung stellt.
 
 
 <sect1>
-<title>SMB Methodologie</title>
+<TITLE>SMB Methodologie</TITLE>
 
 <para>
 Traditionell nutzt SMB den UDP Port 137 (NetBIOS name service oder nerbios-ns), den UDP Port
@@ -245,7 +245,7 @@ Es ermöglicht es ihnen Schritt für Schritt durch eine SMB/CIFS Sitzung zu gehen.
 </sect1>
 
 <sect1>
-<title>Epilog</title>
+<TITLE>Epilog</TITLE>
 
 <para><quote>
 Was grundlegend Falsch ist, ist das niemand einen Geschmack finden kann wenn er es nicht probiert hat.
@@ -285,7 +285,7 @@ Das ist das, was mich wirklich irretiert.
 </sect1>
 
 <sect1>
-<title>Verschiedenes</title>
+<TITLE>Verschiedenes</TITLE>
 
 <!--FIXME: This really needs to go... -->
 
