@@ -1,3 +1,19 @@
+---===---===---===---===---===---===---===---===---===---===---===---===
+
+- Änderungen am Inhaltsverzeichniss
+
+---===---===---===---===---===---===---===---===---===---===---===---===
+
+Sollten Änderungen am Inhaltsverzeichniss gemacht werden wollen, so muss zunächst die
+
+docbook/projdoc/samba-doc.xml
+
+geändert werden, aus dieser wird später die 
+
+Samba-HOWTO-Collection.xml erstellt die wiederum das Inhaltsverzeichnis und sehr wahrscheinlich noch 
+die Basis zu einigen anderen Files darstellt.
+
+hb, 02.03.04
 
 ###########################################################################################################
 
