@@ -11,46 +11,49 @@
 <title>Wie man Samba kompiliert</title>
 
 <para>
-You can obtain the Samba source from the
-<ulink url="http://samba.org/">Samba Website.</ulink> To obtain a development version, 
-you can download Samba from CVS or using <command>rsync</command>.
+Der Source-Text von Samba kann auf der <ulink url="http://samba.org/">Samba Website.</ulink>
+bezogen werden. Um eine Entwickler-Version zu beziehen, kann man Samba mittels CVS oder
+<command>rsync</command> herunterladen.
 </para>
 
 <sect1>
-<title>Access Samba Source Code via CVS</title>
+<title>Der Zugriff auf Samba Source Code via CVS</title>
 
 
 <sect2>
-<title>Introduction</title>
+<title>Einführung</title>
 
 <para>
 <indexterm><primary>CVS</primary></indexterm>
-Samba is developed in an open environment. Developers use
-Concurrent Versioning System (CVS) to <quote>checkin</quote> (also known as 
-<quote>commit</quote>) new source code. Samba's various CVS branches can
-be accessed via anonymous CVS using the instructions
-detailed in this chapter.
+Samba wird in einer offenen Umgebung entwickelt. Die Entwickler benutzen
+das Concurrent Versioning System (CVS), um mittels <quote>checkin</quote>,
+(auch als <quote>commit</quote> bekannt), neuen Quelltext einzufügen.
+Auf die verschiedenen CVS-Zweige von Samba kann mittels anonymem CVS
+zugegriffen werden, dies unter Verwendung der in diesem Kapitel
+enthaltenen Anleitungen.
 </para>
 
 <para>
-This chapter is a modified version of the instructions found at
+Dieses Kapitel ist eine geänderte Fassung der Instruktionen, die man unter
 <ulink noescape="1" url="http://samba.org/samba/cvs.html">http://samba.org/samba/cvs.html</ulink>
+findet.
 </para>
 
 </sect2>
 
 <sect2>
-<title>CVS Access to samba.org</title>
+<title>CVS-Zugriff auf samba.org</title>
 
 <para>
-The machine samba.org runs a publicly accessible CVS 
-repository for access to the source code of several packages, 
-including Samba, rsync, distcc, ccache, and jitterbug. There are two main ways
-of accessing the CVS server on this host:
+Die Maschine samba.org führt ein offen zugängliches CVS-repository.
+Damit ermöglicht sie den Zugriff auf den Quelltext mehrerer Packages,
+einschließlich Samba, rsync, distcc, ccache, und jitterbug.
+Es gibt zwei hauptsächliche Arten, um auf den CVS-server auf diesem host
+zuzugreifen:
 </para>
 
 <sect3>
-<title>Access via CVSweb</title>
+<title>Zugriff via CVSweb</title>
 
 
 <para>
