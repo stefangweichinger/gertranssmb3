@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 4. Server-Arten und Sicherheitsmodi</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="type.html" title="Part II. Basiswissen zur Server-Konfiguration"><link rel="previous" href="type.html" title="Part II. Basiswissen zur Server-Konfiguration"><link rel="next" href="samba-pdc.html" title="Chapter 5. Die Kontrolle über eine Domäne"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 4. Server-Arten und Sicherheitsmodi</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="type.html">Prev</a> </td><th width="60%" align="center">Part II. Basiswissen zur Server-Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="samba-pdc.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="ServerType"></a>Chapter 4. Server-Arten und Sicherheitsmodi</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Andrew</span> <span class="surname">Tridgell</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:tridge@samba.org">tridge@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Jelmer</span> <span class="othername">R.</span> <span class="surname">Vernooij</span></h3><div class="affiliation"><span class="orgname">The Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jelmer@samba.org">jelmer@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Hendrik</span> <span class="othername"></span> <span class="surname">Bäcker</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:h_baecker@gmx.net">h_baecker@gmx.net</a>&gt;</tt></p></div></div></div></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="ServerType.html#id2888472">Positive Merkmale und Vorteile</a></dt><dt><a href="ServerType.html#id2888608">Server Arten</a></dt><dt><a href="ServerType.html#id2888698">Samba Sicherheitsmodi</a></dt><dd><dl><dt><a href="ServerType.html#id2888822">User Level Sicherheit</a></dt><dt><a href="ServerType.html#id2888969">Share Level Sicherheit</a></dt><dt><a href="ServerType.html#id2889105">Domänen Sicherheitsmodus (User Level Security)</a></dt><dt><a href="ServerType.html#id2889429">ADS Sicherheits Modus (User Level Security)</a></dt><dt><a href="ServerType.html#id2893041">Server Security (User Level Security)</a></dt></dl></dd><dt><a href="ServerType.html#id2893382">Passwort-Prüfung</a></dt><dt><a href="ServerType.html#id2893651">Häufige Fehler</a></dt><dd><dl><dt><a href="ServerType.html#id2893694">Was macht Samba zu einem Server?</a></dt><dt><a href="ServerType.html#id2893732">Was macht Samba zu einem Domänencontroller?</a></dt><dt><a href="ServerType.html#id2893772">Was macht Samba zu einem Domänen-Mitglied?</a></dt><dt><a href="ServerType.html#id2893811">Verlieren der Verbindung zum Passwort-Server</a></dt></dl></dd></dl></div><p>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 4. Server-Arten und Sicherheitsmodi</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.64.1"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="type.html" title="Part II. Basiswissen zur Server-Konfiguration"><link rel="previous" href="type.html" title="Part II. Basiswissen zur Server-Konfiguration"><link rel="next" href="samba-pdc.html" title="Chapter 5. Die Kontrolle über eine Domäne"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 4. Server-Arten und Sicherheitsmodi</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="type.html">Prev</a> </td><th width="60%" align="center">Part II. Basiswissen zur Server-Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="samba-pdc.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="ServerType"></a>Chapter 4. Server-Arten und Sicherheitsmodi</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Andrew</span> <span class="surname">Tridgell</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:tridge@samba.org">tridge@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Jelmer</span> <span class="othername">R.</span> <span class="surname">Vernooij</span></h3><div class="affiliation"><span class="orgname">The Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jelmer@samba.org">jelmer@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Hendrik</span> <span class="othername"></span> <span class="surname">Bäcker</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:h_baecker@gmx.net">h_baecker@gmx.net</a>&gt;</tt></p></div></div></div></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="ServerType.html#id2896134">Positive Merkmale und Vorteile</a></span></dt><dt><span class="sect1"><a href="ServerType.html#id2896271">Server Arten</a></span></dt><dt><span class="sect1"><a href="ServerType.html#id2896361">Samba Sicherheitsmodi</a></span></dt><dd><dl><dt><span class="sect2"><a href="ServerType.html#id2896485">User Level Sicherheit</a></span></dt><dt><span class="sect2"><a href="ServerType.html#id2896632">Share Level Sicherheit</a></span></dt><dt><span class="sect2"><a href="ServerType.html#id2896767">Domänen Sicherheitsmodus (User Level Security)</a></span></dt><dt><span class="sect2"><a href="ServerType.html#id2897092">ADS Sicherheits Modus (User Level Security)</a></span></dt><dt><span class="sect2"><a href="ServerType.html#id2900779">Server Security (User Level Security)</a></span></dt></dl></dd><dt><span class="sect1"><a href="ServerType.html#id2901120">Passwort-Prüfung</a></span></dt><dt><span class="sect1"><a href="ServerType.html#id2901388">Häufige Fehler</a></span></dt><dd><dl><dt><span class="sect2"><a href="ServerType.html#id2901432">Was macht Samba zu einem Server?</a></span></dt><dt><span class="sect2"><a href="ServerType.html#id2901469">Was macht Samba zu einem Domänencontroller?</a></span></dt><dt><span class="sect2"><a href="ServerType.html#id2901509">Was macht Samba zu einem Domänen-Mitglied?</a></span></dt><dt><span class="sect2"><a href="ServerType.html#id2901549">Verlieren der Verbindung zum Passwort-Server</a></span></dt></dl></dd></dl></div><p>
 Dieses Kapitel enthält Informationen betreffend der verschiedenen Server-Typen,
 die Sie im Samba-Server einstellen können. Ein Microsoft-Netzwerk-Administrator,
 der zu Samba migrieren bzw. Samba nutzen möchte, ist bestimmt interessiert daran, welche
@@ -14,7 +14,7 @@ Die meisten Kapitel enthalten einen Abschnitt, die die positiven Merkmale und Vo
 Wir hoffen, dass diese Informationen ihnen diese Frage beantworten können. Wir wollen fair
 und vernünftig bleiben, somit ist darauf zu achten, dass nicht alle Features für Samba
 sprechen. Der Vorteil könnte auf unserer Seite sein.
-</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2888472"></a>Positive Merkmale und Vorteile</h2></div></div><div></div></div><p>
+</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2896134"></a>Positive Merkmale und Vorteile</h2></div></div><div></div></div><p>
 Zwei Männer gehen eine staubige Straße entlang, als der eine plötzlich einen kleinen roten
 Stein weg schießt. Sein Zeh schmerzt durch den Stein und dieser wandert in die Sandale des
 einen Mannes. Er nimmt den Stein unter zornigem Fluchen aus der Sandale und ist sehr verärgert.
@@ -49,16 +49,16 @@ Also, was sind die Vorteile und Merkmale, die wir in diesem Kapitel erwähnt hatt
 	repliziert werden. Dies ermöglicht mit Samba 3 eine größere Flexibilität als mit MS
 	Windows NT4, und in vielen Fällen auch ein bedeutsam besseres Werkzeug als Active Directory
 	Domänen unter Windows 200x.
-	</p></li></ul></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2888608"></a>Server Arten</h2></div></div><div></div></div><p>
-<a class="indexterm" name="id2888619"></a>
+	</p></li></ul></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2896271"></a>Server Arten</h2></div></div><div></div></div><p>
+<a class="indexterm" name="id2896282"></a>
 Administratoren von Microsoft Netzwerken beziehen sich oft auf drei verschiedene Serverarten:
 </p><div class="itemizedlist"><ul type="disc"><li><p>Domänen Controller</p><div class="itemizedlist"><ul type="circle"><li>Primary Domain Controller</li><li>Backup Domain Controller</li><li>ADS Domain Controller</li></ul></div></li><li><p>Domänen Mitglieds-Server</p><div class="itemizedlist"><ul type="circle"><li>Active Directory Domain Server</li><li>NT4 Style Domain Domain Server</li></ul></div></li><li><p>Stand-alone Server</p></li></ul></div><p>
 Die Kapitel über Domänen-Controller, Backup-Domänen-Controller und Domänen-Mitgliedschaft
 enthalten sachdienliche Informationen für die Samba-Konfiguration für jede dieser Serverrollen.
 Wir möchten den Leser ermutigen, sich mit diesen Informationen vertraut zu machen.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2888698"></a>Samba Sicherheitsmodi</h2></div></div><div></div></div><p>
-<a class="indexterm" name="id2888709"></a>
-<a class="indexterm" name="id2888718"></a>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2896361"></a>Samba Sicherheitsmodi</h2></div></div><div></div></div><p>
+<a class="indexterm" name="id2896372"></a>
+<a class="indexterm" name="id2896380"></a>
 In dieser Sektion werden die Funktionen und Zwecke der Samba-Sicherheitsmodi beschrieben.
 Es ist wichtig zu verstehen, wie jede der Sicherheits-Möglichkeiten, die Samba bietet, arbeitet
 und wie die Windows-Clients konfiguriert werden müssen, damit Sicherheit und
@@ -80,7 +80,7 @@ So wie diese beiden Möglichkeiten den Client erreichen, beeinflussen sie ihn in 
 selbst authentifiziert. Es beeinflusst ihn nicht direkt die Art, wie der Samba-Server die Sicherheit
 handhabt. Klingt ein wenig merkwürdig, aber es passt zu dem Weg wie SMB arbeitet. Bei SMB wird alles
 vom Client initiiert und kontrolliert und der Server teilt dem Client nur mit, was verfügbar bzw. erlaubt ist.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2888822"></a>User Level Sicherheit</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2896485"></a>User Level Sicherheit</h3></div></div><div></div></div><p>
 Der Einfachheit halber möchten wir zuerst die User Level Sicherheit erläutern.
 In dieser Sicherheitsstufe sendet der Client einen Session Setup Request und direkt darauf
 folgend eine Protokoll-Absprache. Diese Anfrage liefert einen Benutzernamen und ein Passwort,
@@ -100,11 +100,11 @@ Es ist ebenfalls möglich, dass ein Client verschiedene <span class="emphasis"><e
 sendet. Wenn der Server darauf antwortet vergibt er an den Client eine <span class="emphasis"><em>uid</em></span>
 als Authentifizierungs-Etikett. Der Client kann somit verschiedene Authentifizierungs-Kontexte
 aufrechterhalten (WinDD, als Beispiel, ist eine Applikation, die diese Verfahrensweise nutzt).
-</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2888927"></a>Beispiel Konfiguration</h4></div></div><div></div></div><p>
+</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2896590"></a>Beispiel Konfiguration</h4></div></div><div></div></div><p>
 Der <tt class="filename">smb.conf</tt>-Parameter, der die Sicherheitsstufe der security setzt, lautet:
 </p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>security = user</tt></i></td></tr></table><p>
 Dies ist die Standard-Einstellung seit Samba-2.2.x.
-</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2888969"></a>Share Level Sicherheit</h3></div></div><div></div></div><p>
+</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2896632"></a>Share Level Sicherheit</h3></div></div><div></div></div><p>
 Bei der Share Level Sicherheit authentifiziert sich der Client selbst bei jedem
 Aufruf einer Freigabe mit einem Passwort. Es wird nicht explizit ein Benutzername
 vom Client zum Server gesendet. Der Client erwartet ein Passwort, welches mit jeder
@@ -122,30 +122,30 @@ Viele Clients senden ein Session Setup auch dann, wenn der Server mit Share Leve
 Sie übergeben normalerweise einen gültigen Benutzernamen, den sich Samba in einer Liste der
 möglichen Benutzernamen merkt. Wenn nun der Client eine Tree-connection macht, nimmt der Samba-Server
 den Namen der Freigabe in seine Liste auf (nützlich für Freigaben des Heimat-Verzeichnisses) und jeder
-Benutzer des <a class="indexterm" name="id2889024"></a><i class="parameter"><tt>user</tt></i> Parameters in der <tt class="filename">smb.conf</tt> wird
+Benutzer des <a class="indexterm" name="id2896686"></a><i class="parameter"><tt>user</tt></i> Parameters in der <tt class="filename">smb.conf</tt> wird
 mit dem gesendeten Passworts überprüft. Wenn nun durch den anfänglich gesendeten Benutzernamen
 und dem für das Share gesendete Passwort eine Übereinstimmung gefunden wird, ist der Client
 berechtigt, auf dieses Share zuzugreifen.
-</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2889059"></a>Beispiel Konfiguration</h4></div></div><div></div></div><p>
+</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2896721"></a>Beispiel Konfiguration</h4></div></div><div></div></div><p>
 Der <tt class="filename">smb.conf</tt>-Parameter, der die Sicherheitsstufe auf Share Level Sicherheit setzt:
 </p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>security = share</tt></i></td></tr></table><p>
 Es gibt Berichte, dass neue MS Windows Clients nicht mit Servern, die im Share Level Sicherheitsmodus
 laufen, arbeiten möchten. Wir möchten verstärkt davor warnen, im Share Level Modus zu arbeiten.
-</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2889105"></a>Domänen Sicherheitsmodus (User Level Security)</h3></div></div><div></div></div><p>
-<a class="indexterm" name="id2889119"></a>
-Wenn Samba im <a class="indexterm" name="id2889126"></a><i class="parameter"><tt>security</tt></i> = domain-Modus betrieben wird,
+</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2896767"></a>Domänen Sicherheitsmodus (User Level Security)</h3></div></div><div></div></div><p>
+<a class="indexterm" name="id2896781"></a>
+Wenn Samba im <a class="indexterm" name="id2896789"></a><i class="parameter"><tt>security</tt></i> = domain-Modus betrieben wird,
 hat der Server einen Trust Account (Maschinen Account) und reicht alle Authentifizierungs-Anfragen weiter
 zu den Domänen-Controllern. Mit anderen Worten: Diese Konfiguration macht den Samba-Server zu einem
 Domänen-Mitglied.
-</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2889147"></a>Beispiel Konfiguration</h4></div></div><div></div></div><p><span class="emphasis"><em>
+</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2896810"></a>Beispiel Konfiguration</h4></div></div><div></div></div><p><span class="emphasis"><em>
 Samba als Domänen-Mitglieds-Server
 </em></span></p><p>
-<a class="indexterm" name="id2889166"></a>
+<a class="indexterm" name="id2896828"></a>
 Diese Art den Server zu betreiben benötigt folgende Parameter in der <tt class="filename">smb.conf</tt>:
 </p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>security = domain</tt></i></td></tr><tr><td><i class="parameter"><tt>workgroup = MIDEARTH</tt></i></td></tr></table><p>
 Damit dies funktioniert, müssen folgende Schritte vorgenommen werden:
-<a class="indexterm" name="id2889218"></a>
-<a class="indexterm" name="id2889229"></a>
+<a class="indexterm" name="id2896881"></a>
+<a class="indexterm" name="id2896892"></a>
 </p><div class="procedure"><ol type="1"><li><p>Richten Sie einen Maschinen-Account für den Samba-Server ein, benutzen
         Sie dafür den Server Manager.
         </p></li><li><p>Auf dem UNIX/Linux-System führen Sie folgendes aus:</p><pre class="screen"><tt class="prompt">root# </tt><b class="userinput"><tt>net rpc join -U administrator%password</tt></b></pre></li></ol></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
@@ -174,7 +174,7 @@ im Kapitel <a href="winbind.html" title="Chapter 21. Winbind: Benutzung von Domä
 </p><p>
 Für weitere Informationen betreffend Domänen-Mitgliedschaft lesen Sie bitte
 <a href="domain-member.html" title="Chapter 7. Domänen-Mitgliedschaft">hier</a>.
-</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2889429"></a>ADS Sicherheits Modus (User Level Security)</h3></div></div><div></div></div><p>
+</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2897092"></a>ADS Sicherheits Modus (User Level Security)</h3></div></div><div></div></div><p>
 Sowohl Samba 2.2 als auch Samba 3 können einer ADS Domäne beitreten. Dies ist
 allerdings nur dann möglich, wenn die ADS im Ursprungs-Modus betrieben wird.
 Active Directory im ursprünglichen Modus erlaubt gänzlich die Mitgliedschaft
@@ -189,13 +189,13 @@ schlichtweg verweigern. Wenn alle Server in ihrem Netzwerk Windows 2000 und höhe
 nutzen, würde Samba als NT4-artiges Domänen-Mitglied NT-kompatible
 Authentifizierungs-Daten benötigen. Samba im AD-Mitglieds Modus allerdings kann auch
 Kerberos-Tickets auswerten.
-</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2889456"></a>Beispiel Konfiguration</h4></div></div><div></div></div><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>realm = your.kerberos.REALM</tt></i></td></tr><tr><td><i class="parameter"><tt>security = ADS</tt></i></td></tr></table><p>
+</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2900697"></a>Beispiel Konfiguration</h4></div></div><div></div></div><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>realm = your.kerberos.REALM</tt></i></td></tr><tr><td><i class="parameter"><tt>security = ADS</tt></i></td></tr></table><p>
 Folgende Parameter würden benötigt:
 </p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>password server = your.kerberos.server</tt></i></td></tr></table><p>
 Für weitere Informationen zu dieser Konfigurationsoption lesen Sie bitte unter
 <a href="domain-member.html" title="Chapter 7. Domänen-Mitgliedschaft">Domänen-Mitglied</a> und <a href="domain-member.html#ads-member" title="Samba ADS Domain Membership">ADS-Mitglied</a>
 weiter.
-</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2893041"></a>Server Security (User Level Security)</h3></div></div><div></div></div><p>
+</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2900779"></a>Server Security (User Level Security)</h3></div></div><div></div></div><p>
 Der Server-Security-Modus ist noch aus den Zeiten, in denen Samba nicht als Domänen-Mitglied
 betrieben werden konnte, übrig geblieben. Sie sollten diesen Modus nicht verwenden, da er
 viele Nachteile mit sich bringt. Zum Beispiel:
@@ -203,20 +203,20 @@ viele Nachteile mit sich bringt. Zum Beispiel:
 Im Server-Sicherheits-Modus gibt der Samba-Server dem Client vor, im User-Level-Sicherheitsmodus
 zu agieren und der Client schickt daraufhin ein session setup wie zuvor beschrieben.
 Der Samba-Server nimmt nun den Benutzernamen und das Passwort des Clients und schickt diese Daten
-exakt so, wie er sie bekommen hat, weiter zum <a class="indexterm" name="id2893134"></a><i class="parameter"><tt>password server</tt></i>.
+exakt so, wie er sie bekommen hat, weiter zum <a class="indexterm" name="id2900872"></a><i class="parameter"><tt>password server</tt></i>.
 Wenn dieser Passwort-Server mit den Accountdaten einverstanden ist und in User Level Sicherheit
 betrieben wird, akzeptiert der Samba-Server die Client-Verbindung. Dies erlaubt dem Samba-Server,
-einen anderen SMB-Server als <a class="indexterm" name="id2893153"></a><i class="parameter"><tt>password server</tt></i> zu nutzen.
+einen anderen SMB-Server als <a class="indexterm" name="id2900891"></a><i class="parameter"><tt>password server</tt></i> zu nutzen.
 </p><p>
 Sie sollten wissen, dass am Anfang all dessen der Server dem Client auch mitteilt, ob
 eine Verschlüsselung der Daten stattfinden soll, wenn dies auf dem Samba-Server konfiguriert ist,
 sendet der Server dem Client einen Krypto-Schlüssel, mit dem dann die Daten vom Client
 verschlüsselt werden. Samba unterstützt diese Verschlüsselung als Standard.
 </p><p>
-Der Parameter <a class="indexterm" name="id2893188"></a><i class="parameter"><tt>security</tt></i> = server
+Der Parameter <a class="indexterm" name="id2900926"></a><i class="parameter"><tt>security</tt></i> = server
 bedeutet, dass der Samba-Server den Clients mitteilt, dass er im <span class="emphasis"><em>user Modus</em></span> betrieben
 wird, aber alle Passwort-Anfragen an einen anderen <span class="emphasis"><em>user modus</em></span>-Server
-weiterleitet. Hierzu benötigt man einen weiteren Parameter <a class="indexterm" name="id2893213"></a><i class="parameter"><tt>password
+weiterleitet. Hierzu benötigt man einen weiteren Parameter <a class="indexterm" name="id2900951"></a><i class="parameter"><tt>password
 server</tt></i>, der auf den echten Authentifizierungs-Server verweist.
 Dieser Passwort-Server kann ein anderer Samba-Server oder ein Windows-NT-Server sein.
 </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
@@ -226,7 +226,7 @@ Maschinen-Namen des Authentifizierungsservers setzen. Samba ist nicht in der Lag
 NetBIOS Namens-Auflösung zu ermitteln, da die Auswahl des Authentifizierungsservers beliebig ist 
 und nicht aus einem Domain-Namen ermittelt werden kann. Ergebnis hieraus: Ein Samba-Server im 
 <span class="emphasis"><em>Server Security Mode</em></span> arbeitet so, wie man es als workgroup mode kennt.
-</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2893269"></a>Beispiel Konfiguration</h4></div></div><div></div></div><p><span class="emphasis"><em>
+</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2901007"></a>Beispiel Konfiguration</h4></div></div><div></div></div><p><span class="emphasis"><em>
 Benutzung von MS Windows NT als Authentifizierungsserver.
 </em></span></p><p>
 Diese Methode betrifft folgende Parameter in der <tt class="filename">smb.conf</tt>-Datei:
@@ -244,7 +244,7 @@ in dieser Konfiguration der Fall sein können.
 </p><p>
 Diese Art der Authentifizierung benötigt einen Standard Unix Account für den User, der 
 allerdings für andere System-Logins blockiert werden darf.
-</p></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2893382"></a>Passwort-Prüfung</h2></div></div><div></div></div><p>
+</p></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2901120"></a>Passwort-Prüfung</h2></div></div><div></div></div><p>
 MS Windows Clients können verschlüsselte Passwörter (bekannt als NTLMv1 und MTLMv2) 
 zur Anmeldung nutzen oder aber auch Klartext-Passwörter für einfache Passwort-basierende 
 Authentifizierung nutzen. Man sollte sich deutlich machen, dass das SMB-Protokoll nicht 
@@ -286,15 +286,15 @@ Server verschickt werden (Nur bei Verwendung von Klartext-Passwörtern).
 </p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>password level = integer</tt></i></td></tr><tr><td><i class="parameter"><tt>username level = integer</tt></i></td></tr></table><p>
 Samba wird standardmäßig den Benutzernamen in Kleinbuchstaben umwandeln, bevor versucht wird, 
 diesen in der lokalen Benutzerdatenbank zu authentisieren. Da UNIX-Benutzernamen üblicherweise 
-nur Kleinbuchstaben enthalten, wird der <a class="indexterm" name="id2893551"></a><i class="parameter"><tt>username level</tt></i>-Parameter 
+nur Kleinbuchstaben enthalten, wird der <a class="indexterm" name="id2901289"></a><i class="parameter"><tt>username level</tt></i>-Parameter 
 nur selten verwendet.
 </p><p>
 UNIX-Systeme machen oftmals Gebrauch von gemischter Groß/Kleinschreibung im Passwort. 
 Dies hat zur Folge, dass unter Benutzung von Klartext-Passwörtern bei Windows 9x/Me Systemen der Parameter 
-<a class="indexterm" name="id2893578"></a><i class="parameter"><tt>password level</tt></i> auf das Level der maximal vorkommenden Anzahl an 
+<a class="indexterm" name="id2901315"></a><i class="parameter"><tt>password level</tt></i> auf das Level der maximal vorkommenden Anzahl an 
 Großbuchstaben gesetzt werden muss, die in einem Passwort vorkommen <span class="emphasis"><em>können</em></span>.
 Beachten Sie bitte, dass bei Verwendung der traditionellen DES-Verschlüsselung der crypt()-Funktion 
-eine Konfiguration <a class="indexterm" name="id2893606"></a><i class="parameter"><tt>password level</tt></i> von 8 sich 
+eine Konfiguration <a class="indexterm" name="id2901343"></a><i class="parameter"><tt>password level</tt></i> von 8 sich 
 dahingehend äußert, dass für jede Möglichkeit, die das insensitive Passwort haben kann, der 
 Server erst das Passwort verschlüsseln und anschließend vergleichen muss. Dies kann lange 
 Login-Zeiten nach sich ziehen, bis ein Passwort angenommen bzw. alle Kombinationen fehlschlagen.
@@ -302,7 +302,7 @@ Login-Zeiten nach sich ziehen, bis ein Passwort angenommen bzw. alle Kombination
 Die beste Lösung ist es, die Unterstützung von verschlüsselten Passwörtern zu aktivieren, wo immer 
 Samba genutzt wird. Die meisten Versuche, die Registrierung von Windows zu Klartext-Passwörtern 
 zu ändern, führten zur Verärgerung des Anwenders.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2893651"></a>Häufige Fehler</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2901388"></a>Häufige Fehler</h2></div></div><div></div></div><p>
 Wir alle machen Fehler. Es ist okay Fehler, zu machen, solange man sie an den richtigen Stellen 
 zum richtigen Zeitpunkt macht. Ein Fehler, der zu einem Produktivitätsausfall führt, wird selten toleriert, 
 wohingegen ein Fehler in einem Entwicklungslabor erwartet wird.
@@ -313,18 +313,18 @@ der Einführung von Samba machen. Einige sind das Ergebnis von Missverständnissen
 auf die englische Sprache. Die englische Sprache hat viele Phrasen, die potentiell vage sind und 
 die jemanden, dessen Muttersprache nicht Englisch ist, sehr verwirren können.
 (Anmerkung des Übersetzers: Ich hoffe dass Ihnen dies hier nicht passiert.)
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2893694"></a>Was macht Samba zu einem Server?</h3></div></div><div></div></div><p>
-Es wird oftmals angenommen, dass <a class="indexterm" name="id2893706"></a><i class="parameter"><tt>security</tt></i> = server bedeutet, 
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2901432"></a>Was macht Samba zu einem Server?</h3></div></div><div></div></div><p>
+Es wird oftmals angenommen, dass <a class="indexterm" name="id2901443"></a><i class="parameter"><tt>security</tt></i> = server bedeutet, 
 dass Samba als Server agiert. Dies ist nicht so! Diese Einstellung bedeutet, dass Samba <span class="emphasis"><em>versucht</em></span>,
 einen anderen SMB-Server für sich selbst als Quelle zur Authentisierung zu verwenden.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2893732"></a>Was macht Samba zu einem Domänencontroller?</h3></div></div><div></div></div><p>
-Der <tt class="filename">smb.conf</tt>-Parameter <a class="indexterm" name="id2893750"></a><i class="parameter"><tt>security</tt></i> = domain macht Samba nicht zu 
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2901469"></a>Was macht Samba zu einem Domänencontroller?</h3></div></div><div></div></div><p>
+Der <tt class="filename">smb.conf</tt>-Parameter <a class="indexterm" name="id2901487"></a><i class="parameter"><tt>security</tt></i> = domain macht Samba nicht zu 
 einem Domänencontroller, sondern besagt, dass der Samba-Server einer Domäne als Mitglied angehören soll.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2893772"></a>Was macht Samba zu einem Domänen-Mitglied?</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2901509"></a>Was macht Samba zu einem Domänen-Mitglied?</h3></div></div><div></div></div><p>
 Raten Sie! So machen es viele andere. Aber was auch immer Sie tun, glauben Sie nicht, dass 
-<a class="indexterm" name="id2893785"></a><i class="parameter"><tt>security</tt></i> = user Samba zu einem 
+<a class="indexterm" name="id2901522"></a><i class="parameter"><tt>security</tt></i> = user Samba zu einem 
 Domänenmitglied werden lässt. Lesen Sie hier weiter: <a href="domain-member.html" title="Chapter 7. Domänen-Mitgliedschaft">???</a>
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2893811"></a>Verlieren der Verbindung zum Passwort-Server</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2901549"></a>Verlieren der Verbindung zum Passwort-Server</h3></div></div><div></div></div><p>
 	&#8220;<span class="quote">
 Warum gibt server_validate() einfach auf, statt die Verbindung zum Passwort-Server wieder 
 aufzubauen? Da ich das SMB-Protokoll nicht so gut kenne, vermute ich, dass der Cluster-Server 
@@ -333,8 +333,8 @@ dass die Passwort-Hashes der Clients nicht in einer folgenden Sitzung funktionie
 anders wäre, somit muss server_validate() an dieser Stelle abbrechen.
 </span>&#8221;
 </p><p>
-Genau! Das ist der Grund, warum <a class="indexterm" name="id2893846"></a><i class="parameter"><tt>security</tt></i> = server 
-ein gemeiner Hack ist. Bitte verwenden Sie <a class="indexterm" name="id2893861"></a><i class="parameter"><tt>security</tt></i> = domain;
-der <a class="indexterm" name="id2893874"></a><i class="parameter"><tt>security</tt></i> = server-Modus ist auch als pass-through Authentisierung 
+Genau! Das ist der Grund, warum <a class="indexterm" name="id2901583"></a><i class="parameter"><tt>security</tt></i> = server 
+ein gemeiner Hack ist. Bitte verwenden Sie <a class="indexterm" name="id2901598"></a><i class="parameter"><tt>security</tt></i> = domain;
+der <a class="indexterm" name="id2901611"></a><i class="parameter"><tt>security</tt></i> = server-Modus ist auch als pass-through Authentisierung 
 bekannt.
 </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="type.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="type.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="samba-pdc.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Part II. Basiswissen zur Server-Konfiguration </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 5. Die Kontrolle über eine Domäne</td></tr></table></div></body></html>

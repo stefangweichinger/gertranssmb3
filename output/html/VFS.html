@@ -1,15 +1,15 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 20. Stapelbare VFS Module</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="CUPS-printing.html" title="Chapter 19. CUPS Printing Support"><link rel="next" href="winbind.html" title="Chapter 21. Winbind: Benutzung von Domänenkonten"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 20. Stapelbare VFS Module</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="CUPS-printing.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="winbind.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="VFS"></a>Chapter 20. Stapelbare VFS Module</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Jelmer</span> <span class="othername">R.</span> <span class="surname">Vernooij</span></h3><div class="affiliation"><span class="orgname">The Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jelmer@samba.org">jelmer@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Tim</span> <span class="surname">Potter</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:tpot@samba.org">tpot@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Simo</span> <span class="surname">Sorce</span></h3><span class="contrib">original vfs_skel README</span></div></div><div><div class="author"><h3 class="author"><span class="firstname">Alexander</span> <span class="surname">Bokovoy</span></h3><span class="contrib">original vfs_netatalk docs</span></div></div><div><div class="author"><h3 class="author"><span class="firstname">Stefan</span> <span class="surname">Metzmacher</span></h3><span class="contrib">Update for multiple modules</span></div></div><div><div class="author"><h3 class="author"><span class="firstname">Felix</span> <span class="othername"></span> <span class="surname">Erlacher</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:erlacher@virgilio.it">erlacher@virgilio.it</a>&gt;</tt></p></div></div></div></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="VFS.html#id2952785">Eigenschaften und Vorteile</a></dt><dt><a href="VFS.html#id2952809">Diskussion</a></dt><dt><a href="VFS.html#id2953102">Enthaltene Module</a></dt><dd><dl><dt><a href="VFS.html#id2953110">audit</a></dt><dt><a href="VFS.html#id2953145">extd_audit</a></dt><dt><a href="VFS.html#fakeperms">fake_perms</a></dt><dt><a href="VFS.html#id2953329">recycle</a></dt><dt><a href="VFS.html#id2953584">netatalk</a></dt></dl></dd><dt><a href="VFS.html#id2953633">Anderweitig verfügbare VFS-Module</a></dt><dd><dl><dt><a href="VFS.html#id2953656">DatabaseFS</a></dt><dt><a href="VFS.html#id2953730">vscan</a></dt></dl></dd></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2952785"></a>Eigenschaften und Vorteile</h2></div></div><div></div></div><p>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 20. Stapelbare VFS Module</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.64.1"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="CUPS-printing.html" title="Chapter 19. CUPS Printing Support"><link rel="next" href="winbind.html" title="Chapter 21. Winbind: Benutzung von Domänenkonten"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 20. Stapelbare VFS Module</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="CUPS-printing.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="winbind.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="VFS"></a>Chapter 20. Stapelbare VFS Module</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Jelmer</span> <span class="othername">R.</span> <span class="surname">Vernooij</span></h3><div class="affiliation"><span class="orgname">The Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jelmer@samba.org">jelmer@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Tim</span> <span class="surname">Potter</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:tpot@samba.org">tpot@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Simo</span> <span class="surname">Sorce</span></h3><span class="contrib">original vfs_skel README</span></div></div><div><div class="author"><h3 class="author"><span class="firstname">Alexander</span> <span class="surname">Bokovoy</span></h3><span class="contrib">original vfs_netatalk docs</span></div></div><div><div class="author"><h3 class="author"><span class="firstname">Stefan</span> <span class="surname">Metzmacher</span></h3><span class="contrib">Update for multiple modules</span></div></div><div><div class="author"><h3 class="author"><span class="firstname">Felix</span> <span class="othername"></span> <span class="surname">Erlacher</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:erlacher@virgilio.it">erlacher@virgilio.it</a>&gt;</tt></p></div></div></div></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="VFS.html#id2962980">Eigenschaften und Vorteile</a></span></dt><dt><span class="sect1"><a href="VFS.html#id2963002">Diskussion</a></span></dt><dt><span class="sect1"><a href="VFS.html#id2963297">Enthaltene Module</a></span></dt><dd><dl><dt><span class="sect2"><a href="VFS.html#id2963304">audit</a></span></dt><dt><span class="sect2"><a href="VFS.html#id2963340">extd_audit</a></span></dt><dt><span class="sect2"><a href="VFS.html#fakeperms">fake_perms</a></span></dt><dt><span class="sect2"><a href="VFS.html#id2963523">recycle</a></span></dt><dt><span class="sect2"><a href="VFS.html#id2963779">netatalk</a></span></dt></dl></dd><dt><span class="sect1"><a href="VFS.html#id2963827">Anderweitig verfügbare VFS-Module</a></span></dt><dd><dl><dt><span class="sect2"><a href="VFS.html#id2963850">DatabaseFS</a></span></dt><dt><span class="sect2"><a href="VFS.html#id2963925">vscan</a></span></dt></dl></dd></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2962980"></a>Eigenschaften und Vorteile</h2></div></div><div></div></div><p>
 Seit Samba-3 gibt es Unterstützung für stapelbare VFS-(Virtual File System) Module.
 Samba gibt jede Anfrage an das UNIX-Filesystem durch das geladene VFS-Modul weiter.
 Dieses Kapitel deckt alle Module aus den Sambaquellen ab, plus einige Referenzen auf 
 externe Module.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2952809"></a>Diskussion</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2963002"></a>Diskussion</h2></div></div><div></div></div><p>
 Sind die verteilten Bibliotheken nicht bereits im binären Paket Ihrer Plattform enthalten, könnte
 es Probleme beim Kompilieren geben, da diese auf verschiedenen Plattformen verschieden kompiliert
 und verlinkt werden. Momentan wurden diese auf GNU/LINUX und IRIX getestet.
 </p><p>
 Um die VFS-Module benutzen zu können, erstellen Sie eine Freigabe ähnlich der unten gezeigten.
-Der essentielle Parameter ist der <a class="indexterm" name="id2952837"></a><i class="parameter"><tt>vfs objects</tt></i>-Parameter,
+Der essentielle Parameter ist der <a class="indexterm" name="id2963030"></a><i class="parameter"><tt>vfs objects</tt></i>-Parameter,
 bei dem man einen oder mehrere VFS-Module als Namen angeben kann. Ein Beispiel, um alle Zugriffe auf
 Dateien zu loggen und gelöschte Dateien in einen Recycle-Bin zu werfen, wäre <a href="VFS.html#vfsrecyc" title="Example 20.1. smb.conf mit VFS-Modulen">???</a>.
 
@@ -19,7 +19,7 @@ Die Module werden in der Reihenfole benutzt, in der sie angegeben sind. Nehmen w
 Sie möchten ein Virus-Scanner-Modul und ein Recycle-Bin-Modul haben. Es wäre schlauer,
 das Viren Scanner Modul als erstes Modul festzulegen, sodass es eventuelle Viren sofort 
 entdeckt, bevor die Datei von jemand anderem benutzt wird.
-<a class="indexterm" name="id2952948"></a><i class="parameter"><tt>vfs objects</tt></i> = vscan-clamav recycle
+<a class="indexterm" name="id2963143"></a><i class="parameter"><tt>vfs objects</tt></i> = vscan-clamav recycle
 </p><p>
 Samba wird versuchen, Module vom <tt class="filename">/lib</tt>-Ordner des Stammverzeichnisses der Samba-Installation
 zu laden (normalerweise <tt class="filename">/usr/lib/samba/vfs</tt> oder <tt class="filename">/usr/local/samba/lib/vfs
@@ -29,14 +29,14 @@ Manche Module können auch zweimal für die gleiche Freigabe verwendet werden. Daz
 eine Konfiguration ähnlich dieser <a href="VFS.html#multimodule" title="Example 20.2. smb.conf mit mehreren VFS-Modulen">???</a>.
 
 </p><div class="example"><a name="multimodule"></a><p class="title"><b>Example 20.2. smb.conf mit mehreren VFS-Modulen</b></p><table class="simplelist" border="0" summary="Simple list"><tr><td> </td></tr><tr><td><i class="parameter"><tt>[test]</tt></i></td></tr><tr><td><i class="parameter"><tt>comment = VFS TEST</tt></i></td></tr><tr><td><i class="parameter"><tt>path = /data</tt></i></td></tr><tr><td><i class="parameter"><tt>writeable = yes</tt></i></td></tr><tr><td><i class="parameter"><tt>browseable = yes</tt></i></td></tr><tr><td><i class="parameter"><tt>vfs objects = Beispiel:Beispiel1 Beispiel Beispiel:test</tt></i></td></tr><tr><td><i class="parameter"><tt>Beispiel1: parameter = 1</tt></i></td></tr><tr><td><i class="parameter"><tt>Beispiel:  parameter = 5</tt></i></td></tr><tr><td><i class="parameter"><tt>test:	  parameter = 7</tt></i></td></tr></table></div><p>
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2953102"></a>Enthaltene Module</h2></div></div><div></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2953110"></a>audit</h3></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2963297"></a>Enthaltene Module</h2></div></div><div></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2963304"></a>audit</h3></div></div><div></div></div><p>
 		Ein einfaches Modul, um Dateioperationen im syslog aufzuzeichnen.
 		Folgende Operationen werden aufgezeichnet:
 		</p><div class="itemizedlist"><ul type="disc"><li>Freigabe verbinden/trennen</li><li>Ordner öffnen/erstellen/löschen</li><li>Datei öffnen/schliessen/umbenennen/unlink/chmod</li></ul></div><p>
-		</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2953145"></a>extd_audit</h3></div></div><div></div></div><p>
-		Dieses Modul ist identisch mit dem <b class="command">audit</b>-Modul, ausser dass es
-		sowohl ins syslog als auch in die <b class="command">smbd</b>-Log-Dateien schreibt. Der
-		<a class="indexterm" name="id2953172"></a><i class="parameter"><tt>Log Level</tt></i> für dieses Modul wird in der  
+		</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2963340"></a>extd_audit</h3></div></div><div></div></div><p>
+		Dieses Modul ist identisch mit dem <span><b class="command">audit</b></span>-Modul, ausser dass es
+		sowohl ins syslog als auch in die <span><b class="command">smbd</b></span>-Log-Dateien schreibt. Der
+		<a class="indexterm" name="id2963367"></a><i class="parameter"><tt>Log Level</tt></i> für dieses Modul wird in der  
 		<tt class="filename">smb.conf</tt>-Datei gesetzt.
 		</p><p>
 		Gültige Einstellungen und Informationen, über was alles aufgezeichnet wird, sind unter 
@@ -49,7 +49,7 @@ eine Konfiguration ähnlich dieser <a href="VFS.html#multimodule" title="Example 
 		installiert sein, gibt dem Client an, dass er Profil-Ordner und Dateien beschreiben darf.
 		Das genügt dem Client, auch wenn die
 		Dateien nicht überschrieben werden, falls er sich abmeldet oder herunterfährt.
-		</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2953329"></a>recycle</h3></div></div><div></div></div><p>
+		</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2963523"></a>recycle</h3></div></div><div></div></div><p>
 		Ein dem Recycle-Bin ähnliches Modul. Wird es benutzt, werden Lösch(UNLINK)-Befehle 
 		abgefangen und die Datei
 		wird in den recycle-Ordner verschoben, anstatt gelöscht zu werden. Das ist im Prinzip dieselbe
@@ -63,7 +63,7 @@ eine Konfiguration ähnlich dieser <a href="VFS.html#multimodule" title="Example 
 		Falls der <i class="parameter"><tt>recycle:keeptree</tt></i> -Parameter
 		gesetzt wurde, können gelöschte Dateien unter dem gleichen Pfad gefunden werden,
 		in dem sie vor dem Löschen waren.
-		</p><p>Unterstützte Optionen für das <b class="command">recycle</b>-Modul sind folgende:
+		</p><p>Unterstützte Optionen für das <span><b class="command">recycle</b></span>-Modul sind folgende:
 		</p><div class="variablelist"><dl><dt><span class="term">recycle:repository</span></dt><dd><p>
 				Relativer Pfad des Ordners, in dem gelöschte Dateien abgelegt werden sollen.
 				</p></dd><dt><span class="term">recycle:keeptree</span></dt><dd><p>
@@ -91,20 +91,20 @@ eine Konfiguration ähnlich dieser <a href="VFS.html#multimodule" title="Example 
 				Falls beide Optionen gesetzt sind, wird <i class="parameter"><tt>recycle:noversions</tt></i>
 				verwendet.
 				</p></dd></dl></div><p>
-		</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2953584"></a>netatalk</h3></div></div><div></div></div><p>
+		</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2963779"></a>netatalk</h3></div></div><div></div></div><p>
 		Das netatalk-Modul erleichtert die Koexistenz von Samba und netatalk-Dateifreigabe-Diensten.
 		</p><p>Vorteile gegenüber dem alten netatalk-Modul:
 		</p><div class="itemizedlist"><ul type="disc"><li><p>Schert sich nicht um das Erstellen 
 			von .AppleDouble FORKS, hält sie nur synchron.</p></li><li><p>Falls eine Freigabe in der <tt class="filename">smb.conf</tt> kein .AppleDouble-Objekt 
 			in der hite oder veto Liste enthälti, wird es automatisch hinzugefügt.</p></li></ul></div><p>
-		</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2953633"></a>Anderweitig verfügbare VFS-Module</h2></div></div><div></div></div><p>
+		</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2963827"></a>Anderweitig verfügbare VFS-Module</h2></div></div><div></div></div><p>
 Diese Unterteilung enhält eine Auflistung verschiedener anderer
 VFS-Module, die es gibt, die aber aus verschiedenen Gründen nicht im CVS-
 Baum von Samba enthalten sind (z.B. da es leichter für die Entwickler ist, einen
 eigenen CVS-Baum zu pflegen.)
 </p><p>
 Die Auflistung der Module hier sollte keine Bewertung der Stabilität oder Funktionalität sein.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2953656"></a>DatabaseFS</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2963850"></a>DatabaseFS</h3></div></div><div></div></div><p>
 		URL: <a href="http://www.css.tayloru.edu/~elorimer/databasefs/index.php" target="_top">http://www.css.tayloru.edu/~elorimer/databasefs/index.php</a>
 		</p><p>Von <a href="mailto:elorimer@css.tayloru.edu" target="_top">Eric Lorimer.</a></p><p>
 		Ich habe ein VFS-Modul entworfen, das einem read-only-Dateisystem gleichkommt.
@@ -118,7 +118,7 @@ Die Auflistung der Module hier sollte keine Bewertung der Stabilität oder Funkti
 		Ich wäre dankbar für Rückmeldungen jeder Art: Kommentare, Vorschläge, Patches usw.
 		Ich hoffe, dass es sich als brauchbar für jemanden erweist, der ein virtuelles Dateisystem
 		erstellen möchte.
-		</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2953730"></a>vscan</h3></div></div><div></div></div><p>URL: <a href="http://www.openantivirus.org/" target="_top">http://www.openantivirus.org/</a></p><p>
+		</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2963925"></a>vscan</h3></div></div><div></div></div><p>URL: <a href="http://www.openantivirus.org/" target="_top">http://www.openantivirus.org/</a></p><p>
 		<tt class="filename">samba-vscan</tt> ist ein PROOF-OF-CONCEPT-Modul für Samba, 
 		welches die VFS (Virtual File System) Funktion von Samba 2.2.x/3.0 alphaX nutzt.
 		Natürlich muss Samba mit VFS-Unterstützung kompiliert werden.

@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 32. SWAT  Das Samba-Administrations-Werkzeug</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="migration.html" title="Part IV. Migration und Updating"><link rel="previous" href="NT4Migration.html" title="Chapter 31. Migration von einem NT4-PDC auf einen Samba-3-PDC"><link rel="next" href="troubleshooting.html" title="Part V. Troubleshooting"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 32. SWAT  Das Samba-Administrations-Werkzeug</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="NT4Migration.html">Prev</a> </td><th width="60%" align="center">Part IV. Migration und Updating</th><td width="20%" align="right"> <a accesskey="n" href="troubleshooting.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="SWAT"></a>Chapter 32. SWAT  Das Samba-Administrations-Werkzeug</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Markus</span> <span class="othername"></span> <span class="surname">Klimke</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:m.klimke@tu-harburg.de">m.klimke@tu-harburg.de</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">April 21, 2003</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="SWAT.html#id2974719">Features und Nutzen</a></dt><dt><a href="SWAT.html#id2974831">Grundlagen und technische Hilfen</a></dt><dd><dl><dt><a href="SWAT.html#id2974848">Überprüfen der SWAT Installation</a></dt><dt><a href="SWAT.html#xinetd">SWAT aktivieren</a></dt><dt><a href="SWAT.html#id2975491">Absichern von SWAT mit SSL</a></dt><dt><a href="SWAT.html#id2975625">SWAT Mehrsprachenunterstützung aktivieren</a></dt></dl></dd><dt><a href="SWAT.html#id2975814">Übersicht und ein Schnelldurchlauf</a></dt><dd><dl><dt><a href="SWAT.html#id2975839">Die SWAT Homepage</a></dt><dt><a href="SWAT.html#id2975929">Globale Einstellungen</a></dt><dt><a href="SWAT.html#id2976059">Freigabe (Share) Einstellungen</a></dt><dt><a href="SWAT.html#id2976130">Druckereinstellungen</a></dt><dt><a href="SWAT.html#id2976203">Der SWAT Wizard</a></dt><dt><a href="SWAT.html#id2976305">Die Status-Seite</a></dt><dt><a href="SWAT.html#id2976370">Die Übersichtsseite</a></dt><dt><a href="SWAT.html#id2976398">Die Passwortänderungs-Seite</a></dt></dl></dd><dt><a href="SWAT.html#id2976438">Fehlherhafte Ausgaben der SWAT Übersichtsseite</a></dt></dl></div><p>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 32. SWAT  Das Samba-Administrations-Werkzeug</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.64.1"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="migration.html" title="Part IV. Migration und Updating"><link rel="previous" href="NT4Migration.html" title="Chapter 31. Migration von einem NT4-PDC auf einen Samba-3-PDC"><link rel="next" href="troubleshooting.html" title="Part V. Troubleshooting"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 32. SWAT  Das Samba-Administrations-Werkzeug</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="NT4Migration.html">Prev</a> </td><th width="60%" align="center">Part IV. Migration und Updating</th><td width="20%" align="right"> <a accesskey="n" href="troubleshooting.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="SWAT"></a>Chapter 32. SWAT  Das Samba-Administrations-Werkzeug</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Markus</span> <span class="othername"></span> <span class="surname">Klimke</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:m.klimke@tu-harburg.de">m.klimke@tu-harburg.de</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">April 21, 2003</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="SWAT.html#id2984950">Features und Nutzen</a></span></dt><dt><span class="sect1"><a href="SWAT.html#id2985061">Grundlagen und technische Hilfen</a></span></dt><dd><dl><dt><span class="sect2"><a href="SWAT.html#id2985078">Überprüfen der SWAT Installation</a></span></dt><dt><span class="sect2"><a href="SWAT.html#xinetd">SWAT aktivieren</a></span></dt><dt><span class="sect2"><a href="SWAT.html#id2985722">Absichern von SWAT mit SSL</a></span></dt><dt><span class="sect2"><a href="SWAT.html#id2985856">SWAT Mehrsprachenunterstützung aktivieren</a></span></dt></dl></dd><dt><span class="sect1"><a href="SWAT.html#id2986045">Übersicht und ein Schnelldurchlauf</a></span></dt><dd><dl><dt><span class="sect2"><a href="SWAT.html#id2986070">Die SWAT Homepage</a></span></dt><dt><span class="sect2"><a href="SWAT.html#id2986160">Globale Einstellungen</a></span></dt><dt><span class="sect2"><a href="SWAT.html#id2986290">Freigabe (Share) Einstellungen</a></span></dt><dt><span class="sect2"><a href="SWAT.html#id2986361">Druckereinstellungen</a></span></dt><dt><span class="sect2"><a href="SWAT.html#id2986434">Der SWAT Wizard</a></span></dt><dt><span class="sect2"><a href="SWAT.html#id2986536">Die Status-Seite</a></span></dt><dt><span class="sect2"><a href="SWAT.html#id2986601">Die Übersichtsseite</a></span></dt><dt><span class="sect2"><a href="SWAT.html#id2986628">Die Passwortänderungs-Seite</a></span></dt></dl></dd><dt><span class="sect1"><a href="SWAT.html#id2986669">Fehlherhafte Ausgaben der SWAT Übersichtsseite</a></span></dt></dl></div><p>
 Es gibt viele und verschiedene Meinungen bezüglich des Nutzens von SWAT. Gleichgültig
 wieviel Mühe man sich gibt ein perfektes Konfigurationswerkzeug zu erstellen, ist die
 Benutzung eine Frage des persönlichen Geschmacks. SWAT ist ein Werkzeug das eine
@@ -6,14 +6,14 @@ Web-basierte Konfiguration von Samba ermöglicht. Es beinhaltet einen Wizard zur 
 Konfiguration von Samba, besitzt eine kontextabhängige Hilfe für jeden <tt class="filename">smb.conf</tt> Parameter,
 überwacht den aktuellen Zustand der Verbindung und erlaubt eine netzwerkweite MS Windows
 Passwortverwaltung.
-</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2974719"></a>Features und Nutzen</h2></div></div><div></div></div><p>
-SWAT ist Teil der Samba Suite. Das Hauptprogramm heißt <b class="command">swat</b> und wird
+</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2984950"></a>Features und Nutzen</h2></div></div><div></div></div><p>
+SWAT ist Teil der Samba Suite. Das Hauptprogramm heißt <span><b class="command">swat</b></span> und wird
 über xinetd gestartet (siehe <a href="SWAT.html#xinetd" title="SWAT aktivieren">???</a> fuer Einzelheiten). 
 </p><p>
 SWAT verwendet Samba-eigene Komponenten, um die von der jeweiligen Samba-Version unterstützten
 Parameter zu lokalisieren. Anders als externe Werkzeuge und Hilfsmittel bleibt SWAT bei
 Parameteränderungen auf dem aktuellen Stand. SWAT bietet kontextabhaägige Hilfe fuer jeden
-Konfigurationsparameter direkt aus <b class="command">Man</b> Page Einträgen heraus.
+Konfigurationsparameter direkt aus <span><b class="command">Man</b></span> Page Einträgen heraus.
 </p><p>
 Manche Netzwerkadministratoren schreiben Dokumentationen in Form von Kommentaren innerhalb
 von Konfigurationsdateien. Für diese wird SWAT ein eher unbeliebtes Werkzeug sein.
@@ -26,36 +26,36 @@ Ordnung geschrieben.
 Vor dem Benutzen von SWAT  SWAT ersetzt eine bereits im System vorhandene <tt class="filename">smb.conf</tt>
 mit einer von SWAT optimierten Version, die von allen vorher eingefügten Kommentaren und
 Nicht-Standardwerten bereinigt ist.
-</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2974831"></a>Grundlagen und technische Hilfen</h2></div></div><div></div></div><p>
+</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2985061"></a>Grundlagen und technische Hilfen</h2></div></div><div></div></div><p>
 Dieser Abschnitt erklärt wie man SWAT aktiviert, wie man es sicherer macht
 und wie man Probleme bei der Mehrsprachenunterstützung löst.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2974848"></a>Überprüfen der SWAT Installation</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2985078"></a>Überprüfen der SWAT Installation</h3></div></div><div></div></div><p>
 Bevor man einen Rechner beginnt für SWAT zu konfigurieren, ist zu überprüfen, ob es
 überhaupt installiert ist. Dies mag einigen trivial erscheinen, dennoch installieren
 einige Distributionen SWAT nicht standardmäßig, obwohl es auf den Medien des
 Distributors vorhanden ist.
 </p><p>
 Ist man sich sicher, dass SWAT installiert ist, ist es notwendig zu überprüfen,
-dass die Installation das <b class="command">swat</b> Binary wie auch alle
+dass die Installation das <span><b class="command">swat</b></span> Binary wie auch alle
 unterstützenden Text- und Webseiten enthält. Bei einer Reihe von Linux-Distributoren
-fehlten diese vollständig, obwohl das <b class="command">swat</b> Binary installiert war.
+fehlten diese vollständig, obwohl das <span><b class="command">swat</b></span> Binary installiert war.
 </p><p>
 Nachdem man sich sicher ist, dass wirklich alles installiert ist, stellt man sicher,
 dass SWAT in der Kontrolldatei von inetd oder xinetd aktiviert ist, je nachdem, welches
 von beiden vom Betriebsystem verwendet wird.
-</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2974905"></a>Lokalisieren der <b class="command">swat</b> Datei</h4></div></div><div></div></div><p>
-Um sicher zu stellen, dass SWAT installiert ist, lokalisiert man das <b class="command">swat</b>
+</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2985136"></a>Lokalisieren der <span><b class="command">swat</b></span> Datei</h4></div></div><div></div></div><p>
+Um sicher zu stellen, dass SWAT installiert ist, lokalisiert man das <span><b class="command">swat</b></span>
 Binary im System. Es könnte in folgenden Verzeichnissen liegen:
 </p><table class="simplelist" border="0" summary="Simple list"><tr><td><tt class="filename">/usr/local/samba/bin</tt>  der standardmäßige swat Pfad.</td></tr><tr><td><tt class="filename">/usr/sbin</tt>  der Standardort vieler Linux-Systeme.</td></tr><tr><td><tt class="filename">/opt/samba/bin</tt></td></tr></table><p>
 </p><p>
 Der aktuelle Ort ist abhängig von der Wahl des Distributors oder des vom Administrator gewählten
 Installationspfades.
 </p><p>
-Es gibt eine Anzahl verschiedener Methoden den Ort der Installation des <b class="command">swat</b>
+Es gibt eine Anzahl verschiedener Methoden den Ort der Installation des <span><b class="command">swat</b></span>
 Binaries festzustellen. Die folgenden Methoden können hilfreich sein:
 </p><p>
-Wenn <b class="command">swat</b> sich im aktuellen Suchpfad des Betriebssystems befindet, ist es
-einfach zu finden. Man kann sich die Kommandoparameter von <b class="command">swat</b> wie folgt
+Wenn <span><b class="command">swat</b></span> sich im aktuellen Suchpfad des Betriebssystems befindet, ist es
+einfach zu finden. Man kann sich die Kommandoparameter von <span><b class="command">swat</b></span> wie folgt
 anzeigen lassen:
 </p><pre class="screen">
 frodo:~ # swat -?
@@ -72,15 +72,15 @@ Common samba options:
   -l, --log-basename=LOGFILEBASE       Basisname für log/debug Dateien
   -V, --version                        Gibt die Version aus
 </pre><p>
-</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2975047"></a>Lokalisieren der SWAT Hilfedateien</h4></div></div><div></div></div><p>
-Da man nun herausgefunden hat, dass <b class="command">swat</b> im Suchpfad ist, ist es einfach,
+</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2985278"></a>Lokalisieren der SWAT Hilfedateien</h4></div></div><div></div></div><p>
+Da man nun herausgefunden hat, dass <span><b class="command">swat</b></span> im Suchpfad ist, ist es einfach,
 es im System zu identifizieren. Hier ist ein anderer einfacher Weg dies zu bewerkstelligen:
 </p><pre class="screen">
 frodo:~ # whereis swat
 swat: /usr/sbin/swat /usr/share/man/man8/swat.8.gz
 </pre><p>
 </p><p>
-Wenn dieser Versuch das <b class="command">swat</b> Binary zu finden mislingt, ist ein weiterer
+Wenn dieser Versuch das <span><b class="command">swat</b></span> Binary zu finden mislingt, ist ein weiterer
 Versuch notwendig:
 </p><pre class="screen">
 frodo:/ # find / -name swat -print
@@ -90,11 +90,11 @@ frodo:/ # find / -name swat -print
 frodo:/ #
 </pre><p>
 </p><p>
-Die Ausgabe zeigt, dass sich eine Kontrolldatei für <b class="command">xinetd</b> auf der Maschine
+Die Ausgabe zeigt, dass sich eine Kontrolldatei für <span><b class="command">xinetd</b></span> auf der Maschine
 vorhanden ist. Der Ort der SWAT Binarydatei ist <tt class="filename">/usr/sbin/swat</tt> und die
 Hilfedateien befinden sich im Verzeichnis <tt class="filename">/usr/share/samba/swat</tt>.
 </p><p>
-Folgend muss überprüft werden, wo <b class="command">swat</b> annimmt das seine Hilfedateien liegen.
+Folgend muss überprüft werden, wo <span><b class="command">swat</b></span> annimmt das seine Hilfedateien liegen.
 Dies kann wie folgt geschehen:
 </p><pre class="screen">
 frodo:/ # strings /usr/sbin/swat | grep "/swat"
@@ -144,14 +144,14 @@ Wenn die oben aufgelisteten Dateien nicht vorhanden sind, ist es notwendig, dies
 installieren, da sich SWAT sonst nicht verwenden lässt.
 </p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="xinetd"></a>SWAT aktivieren</h3></div></div><div></div></div><p>
 SWAT sollte installiert werden, um es via inetd oder xinetd starten zu können. Abhängig vom
-UNIX/Linux-System ist dies entweder <b class="command">inetd</b> oder <b class="command">xinetd</b>. 
+UNIX/Linux-System ist dies entweder <span><b class="command">inetd</b></span> oder <span><b class="command">xinetd</b></span>. 
 </p><p>
 Die Handhabung und der Ort variiert hierbei vom verwendeten Betriebssystem. Die Kontrolldatei
 (oder Dateien) findet man im Allg. unter <tt class="filename">/etc/inetd.conf</tt> oder (für xinetd)
 im Verzeichnis <tt class="filename">/etc/[x]inet[d].d</tt>.
 </p><p>
 Der Eintrag für den älteren Typ der Kontrolldatei kann sein:
-<a class="indexterm" name="id2975284"></a>
+<a class="indexterm" name="id2985514"></a>
 </p><pre class="programlisting">
 	# swat is the Samba Web Administration Tool
 	swat stream tcp nowait.400 root /usr/sbin/swat swat
@@ -177,7 +177,7 @@ service swat
 </pre><p>
 
 </p><p>
-Beide der oben angegebenen Beispiele bedingen, dass <b class="command">swat</b> im
+Beide der oben angegebenen Beispiele bedingen, dass <span><b class="command">swat</b></span> im
 <tt class="filename">/usr/sbin</tt> Verzeichnis liegt. Zusätzlich benötigt SWAT ein
 Verzeichnis in dem es die Hilfedateien wie auch die Kontrollinformationen findet.
 Der Standardpfad für diese auf den meisten Linux-Systemen ist
@@ -196,8 +196,8 @@ sämtliche Funktionen in SWAT. Die angezeigten Buttons sind: <span class="guibutt
 <span class="guibutton">GLOBALS</span>, <span class="guibutton">SHARES</span>, <span class="guibutton">PRINTERS</span>, 
 <span class="guibutton">WIZARD</span>, <span class="guibutton">STATUS</span>, <span class="guibutton">VIEW</span>,
 <span class="guibutton">PASSWORD</span>.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2975491"></a>Absichern von SWAT mit SSL</h3></div></div><div></div></div><p>
-<a class="indexterm" name="id2975502"></a>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2985722"></a>Absichern von SWAT mit SSL</h3></div></div><div></div></div><p>
+<a class="indexterm" name="id2985733"></a>
 Viele Leute haben angefragt, wie man SWAT mit SSL aufsetzt, um so eine sichere
 Fernadministration zu erlauben. Hier ist eine funktionierende Methode, zur
 Verfügung gestellt von Markus Krieger.
@@ -216,7 +216,7 @@ Die Modifikationen der SWAT Installation wie folgt:
 </pre></li><li><p>
 	Entfernen des swat-Eintrages aus [x]inetd.
 	</p></li><li><p>
-	Ausführen von <b class="command">stunnel</b>.
+	Ausführen von <span><b class="command">stunnel</b></span>.
 
 </p><pre class="screen">
 <tt class="prompt">root# </tt><b class="userinput"><tt>stunnel -p /etc/stunnel/stunnel.pem -d 901 \
@@ -225,7 +225,7 @@ Die Modifikationen der SWAT Installation wie folgt:
 Danach einfach mit swat über die URL
 <a href="https://myhost:901" target="_top">https://myhost:901</a> verbinden,
 akzeptieren des Zertifikats und die SSL-Verbindung steht.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2975625"></a>SWAT Mehrsprachenunterstützung aktivieren</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2985856"></a>SWAT Mehrsprachenunterstützung aktivieren</h3></div></div><div></div></div><p>
 SWAT kann so konfiguriert werden, dass es seine Nachrichten in der Sprache
 anzeigt, die im Webbrowser eingestellt ist. Es wird SWAT im Accept-Language-Header
 der HTTP-Antwort übergeben.
@@ -236,10 +236,10 @@ Um dieses Feature zu aktivieren:
 </p><p>
 
 </p><div class="itemizedlist"><ul type="disc"><li><p>
-	Installieren der passenden <b class="command">msg</b> Dateien aus dem
+	Installieren der passenden <span><b class="command">msg</b></span> Dateien aus dem
 	Samba <tt class="filename">source/po</tt> Verzeichnis nach $LIBDIR.
 	</p></li><li><p>
-	Setzen des korrekten Werts für <a class="indexterm" name="id2975680"></a><i class="parameter"><tt>display charset</tt></i>.
+	Setzen des korrekten Werts für <a class="indexterm" name="id2985911"></a><i class="parameter"><tt>display charset</tt></i>.
 	</p></li><li><p>
 	Setzen der Sprache im Browser.
 	</p></li></ul></div><p>
@@ -250,31 +250,31 @@ en für "English", ja für "Japanisch", fr für "Französisch".
 </p><p>
 
 </p><p>
-Wenn einem einige der Nachrichten nicht gefallen, oder gar keine <b class="command">msg</b>
+Wenn einem einige der Nachrichten nicht gefallen, oder gar keine <span><b class="command">msg</b></span>
 Dateien für die eigene oder präferierte Sprache vorhanden ist, kann man einfach die
-<b class="command">en.msg</b> Dateien in das Verzeichnis für &#8220;<span class="quote">Meine Sprache ID.msg</span>&#8221;
+<span><b class="command">en.msg</b></span> Dateien in das Verzeichnis für &#8220;<span class="quote">Meine Sprache ID.msg</span>&#8221;
 kopieren und passende Nachrichten zu jedem &#8220;<span class="quote">msgstr</span>&#8221; eintragen. Zum Beispiel für
-<tt class="filename">it.msg</tt>, die <b class="command">msg</b> Datei für Italienisch, trägt man ein:
+<tt class="filename">it.msg</tt>, die <span><b class="command">msg</b></span> Datei für Italienisch, trägt man ein:
 </p><pre class="screen">
 msgid "Set Default"
 msgstr "Imposta Default"
 </pre><p>
-usw. Wenn man einen Fehler findet oder eine neue <b class="command">msg</b> Datei erstellt, mailt
+usw. Wenn man einen Fehler findet oder eine neue <span><b class="command">msg</b></span> Datei erstellt, mailt
 diese bitte, um sie für das nächste Release von Samba bereitzustellen.
 </p><p>
 
 </p><p>
 Anmerkend sei erwähnt, dass wenn dieses Feature aktiviert wird und
-<a class="indexterm" name="id2975782"></a><i class="parameter"><tt>display charset</tt></i> stimmt nicht mit der im Browser
+<a class="indexterm" name="id2986013"></a><i class="parameter"><tt>display charset</tt></i> stimmt nicht mit der im Browser
 eingestellten Sprache überein, kann die Ausgabe von SWAT durcheinander geraten. In einer
 zukünftigen Samba-Version wird SWAT immer UTF-8 kodierte Nachrichten anzeigen. Es wird dann
 nicht mehr nötig sein den <tt class="filename">smb.conf</tt> Dateiparameter für die Sprache zu setzen.
-</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2975814"></a>Übersicht und ein Schnelldurchlauf</h2></div></div><div></div></div><p>
+</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2986045"></a>Übersicht und ein Schnelldurchlauf</h2></div></div><div></div></div><p>
 SWAT ist ein Werkzeug, das von vielen genutzt wird, um Samba zu konfigurieren oder um
 auf die nützlichen Links zu wichtigen Inhalten und Referenzmaterial, wie auf den Inhalt
 dieser Dokumentation, zuzugreifen. Wie auch anderes nützliches, um Probleme mit dem
 Windows-Netzwerk zu lösen.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2975839"></a>Die SWAT Homepage</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2986070"></a>Die SWAT Homepage</h3></div></div><div></div></div><p>
 Die SWAT Titelseite bietet Zugriff auf die aktuellste Samba-Dokumentation. Von dieser Seite
 können auf die Manual Pages jeder Samba-Komponente zugegriffen werden, wie die Samba HOWTO-Sammlung
 (dieses Dokument)und auch auf das Buch von O'Reilly &#8220;<span class="quote">Using Samba.</span>&#8221;
@@ -282,7 +282,7 @@ können auf die Manual Pages jeder Samba-Komponente zugegriffen werden, wie die S
 Administratoren die ihre Samba-Konfiguration überprüfen möchten, finden nützliche Hilfe in
 den Man Pages der einzelnen Diagnose-Werkzeuge, die auch auf der SWAT Homepage im Internet
 verfügbar sind. Ein nicht erwähntes, aber teils nützliches Diagnose-Werkzeug findet man hier
-<a href="http://www.ethereal.com/" target="_top"><b class="command">ethereal</b>.</a>
+<a href="http://www.ethereal.com/" target="_top"><span><b class="command">ethereal</b></span>.</a>
 </p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>
 SWAT kann so konfiguriert werden, dass es in einem <span class="emphasis"><em>Demo</em></span> Modus läuft.
 Dieser Modus ist nicht empfohlen, da es SWAT ohne Authentifizierung, aber mit sämtlichen
@@ -290,7 +290,7 @@ administrativen Möglichkeiten ausführt. Es erlaubt Änderungen an der <tt class="
 alle anderen Tätigkeiten mit root-Rechten. Die Option, die dies erlaubt, ist das
 <tt class="option">-a</tt> Flag für swat. <span class="emphasis"><em>Dies sollte man nicht in einer
 Produktionsumgebung verwenden!</em></span>
-</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2975929"></a>Globale Einstellungen</h3></div></div><div></div></div><p>
+</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2986160"></a>Globale Einstellungen</h3></div></div><div></div></div><p>
 Der <span class="guibutton">GLOBALS</span> Button öffnet die Seite, auf der es möglich ist, die
 globalen Parameter in der <tt class="filename">smb.conf</tt> zu konfigurieren. Es gibt zwei Arten, wie diese
 Parameter angezeigt werden:
@@ -312,7 +312,7 @@ Seite verlässt, da sonst alle Änderungen verloren gehen.
 SWAT besitzt eine kontextabhängige Hilfe. Um herauszufinden, wofür jeder Parameter steht, welchen
 Zweck er erfüllt, drückt man auf den <span class="guibutton">Help</span> Link links neben dem
 Konfigurationsparameters.
-</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2976059"></a>Freigabe (Share) Einstellungen</h3></div></div><div></div></div><p>
+</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2986290"></a>Freigabe (Share) Einstellungen</h3></div></div><div></div></div><p>
 Um eine bereits konfigurierte Freigabe zu bearbeiten, drückt man auf das Pull-Down-Menü
 zwischen <span class="guibutton">Choose Share</span> und <span class="guibutton">Delete Share</span> und
 wählt die Freigabe aus, mit der man arbeiten will. Um die Einstellungen zu editieren,
@@ -322,7 +322,7 @@ wählt man den <span class="guibutton">Choose Share</span> Button. Um die Freigab
 Um eine neue Freigabe zu erzeugen, befindet sich neben dem mit <span class="guibutton">Create Share</span>
 bezeichneten Button ein Textfeld, in das man den Namen der Freigabe eingibt. Die Freigabe
 erzeugt man schließlich mit <span class="guibutton">Create Share</span>.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2976130"></a>Druckereinstellungen</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2986361"></a>Druckereinstellungen</h3></div></div><div></div></div><p>
 Einen bereits eingerichteten Drucker bearbeitet man mit dem Pull-Down-Menü zwischen
 <span class="guibutton">Choose Printer</span> und <span class="guibutton">Delete Printer</span>, aus dem
 man den zu bearbeitenden Drucker auswählt. Um die Einstellungen zu bearbeiten benutzt man
@@ -332,7 +332,7 @@ den <span class="guibutton">Choose Printer</span> Button, um den Drucker aus der
 Einen neuen Drucker legt man in dem Textfeld neben dem Button <span class="guibutton">Create Printer</span>
 an, indem man den Namen des freizugebenden Druckers eingibt. Frei gibt man ihn schließlich durch
 klicken auf <span class="guibutton">Create Printer</span>.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2976203"></a>Der SWAT Wizard</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2986434"></a>Der SWAT Wizard</h3></div></div><div></div></div><p>
 Der Zweck des SWAT Wizards ist es, dem sachkundigen Microsoft Netzwerkadministrator die
 Konfiguration von Samba so einfach wie möglich zu machen.
 </p><p>
@@ -350,7 +350,7 @@ Schließlich gibt es noch eine begrenzte Anzahl von Optionen, die bestimmen, für 
 Samba-Server konfiguriert werden soll: Ob als WINS-Server, anteilig als WINS-Client, oder
 ob er ohne WINS-Unterstützung arbeiten soll. Mit einem Klick kann man auswählen, ob man
 die Heimverzeichnisse von Benutzern freigeben will.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2976305"></a>Die Status-Seite</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2986536"></a>Die Status-Seite</h3></div></div><div></div></div><p>
 Die Status-Seite erfüllt nur einen geringen Nutzen. Es erlaubt die Überwachung der Samba-Daemonen,
 wobei die Schlüssel-Daemonen, die den Samba-Server ausmachen, <span class="application">smbd</span>, <span class="application">nmbd</span>, <span class="application">winbindd</span>
 sind.
@@ -363,11 +363,11 @@ Zustände verfolgen.
 </p><p>
 Zuletzt lässt sich die Status-Seite dazu benutzen, bestimmte smbd-Clientverbindungen zu unterbrechen,
 um Dateien freizugeben, die u.U. gesperrt sind.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2976370"></a>Die Übersichtsseite</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2986601"></a>Die Übersichtsseite</h3></div></div><div></div></div><p>
 Sie ermöglicht es dem Administrator sich die optimierte <tt class="filename">smb.conf</tt> Datei anzusehen und,
 für die Masochisten unter uns, erlaubt es ebenso die Ansicht aller möglichen globalen
 Konfigurationsparameter und ihrer Einstellungen. 
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2976398"></a>Die Passwortänderungs-Seite</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2986628"></a>Die Passwortänderungs-Seite</h3></div></div><div></div></div><p>
 Die Passwortänderungs-Seite ist ein sehr beliebtes Werkzeug, dass das Erstellen, Löschen,
 De- und Reaktivieren von MS Windows Benutzern auf der lokalen Maschine erlaubt. Alternativ
 kann man es zur Änderung von lokalen Passwörtern verwenden.
@@ -378,7 +378,7 @@ wird nur das neue Passwort benötigt.
 </p><p>
 Eine weitere bekannte Benutzung des Werkzeugs ist es, Benutzerpasswörter über eine Reihe von
 MS Windows-Servern hinweg zu ändern.
-</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2976438"></a>Fehlherhafte Ausgaben der SWAT Übersichtsseite</h2></div></div><div></div></div><p>
+</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2986669"></a>Fehlherhafte Ausgaben der SWAT Übersichtsseite</h2></div></div><div></div></div><p>
 Wenn sich die <i class="parameter"><tt>display charset</tt></i> und <i class="parameter"><tt>dos charset</tt></i>
 Parameter unterscheiden, wird die Übersichtsseite fehlerhaft angezeigt. Der
 <i class="parameter"><tt>display charset</tt></i> Parameter muss dieselbe Kodierung wie der msg-Datei
