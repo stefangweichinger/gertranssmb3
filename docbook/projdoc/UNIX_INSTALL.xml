@@ -17,11 +17,11 @@
 	<title>Wie man Samba bekommt und installiert</title>
 
 	<para>
-	Binär Pakete von Samba gibt es mittlerweile in fast jeder
-	Linux oder Unix Distribution. Auch gibt es einige Pakete
-	auf <ulink url="http://samba.org/">der Samba Homepage</ulink>.
+	Binäre Pakete von Samba gibt es mittlerweile in fast jeder
+	Linux- oder Unix-Distribution. Es gibt auch einige Pakete
+	auf <ulink url="http://samba.org/">, der Samba-Homepage</ulink>.
 	Lesen Sie bitte in der Bedienungsanleitung ihres Betriebsystems
-	nach wie Sie auf ihrem System Samba installieren können.
+	nach, wie Sie auf ihrem System Samba installieren können.
 	</para>
 
 	<para>Wenn Sie Samba von den Quelldateien selbst installieren
@@ -34,11 +34,11 @@
 	<title>Samba konfigurieren (smb.conf)</title>
 
 	<para>
-	Die Samba konfiguration wird in der &smb.conf; vorgenommen die
-	Sie üblicherweise in <filename>/etc/samba/smb.conf</filename> oder
+	Die Samba-Konfiguration wird in der Datei &smb.conf; vorgenommen, die
+	Sie üblicherweise unter <filename>/etc/samba/smb.conf</filename> oder
 	<filename>/usr/local/samba/lib/smb.conf</filename> finden.
-	Sie können diese Datei selbst editieren oder eines der vielen
-	grafischen Oberflächen wie das Webbasierte SWAT nutzen, welches
+	Sie können diese Datei selbst editieren oder eine der vielen
+	grafischen Oberflächen nutzen, wie das webbasierte SWAT, welches
 	mit Samba mitgeliefert wird.
 	</para>
 
@@ -46,22 +46,23 @@
 	<title>Die Syntax der Konfiguration</title>
 
 	<para>Die &smb.conf; nutzt nahezu die gleiche Syntax wie die
-	verschiedenen .ini Dateien von Windows 3.1: Jede Datei enthält
-	verschiedene Sektionen wobei jede dieser Sektionen durch Klammern
-	([]) getrennt sind. Jede Sektion besteht aus keinem oder mehreren
-	Schlüssel/Wert paaren die durch das Gleichheitszeichen (=)
-	miteinander verbunden werden. Dies ist eine Klartext ASCII Datei,
-	die Sie mit ihrem Lieblings Editor bearbeiten können.
+	verschiedenen ini-Dateien von Windows 3.1: Jede Datei enthält
+	verschiedene Abschnitte, wobei diese Abschnitte durch Klammern
+	([]) getrennt sind. Jeder Abschnitt besteht aus keinem oder mehreren
+	Schlüssel/Wert-Paaren, die durch das Gleichheitszeichen (=)
+	miteinander verbunden werden. Dies ist eine Klartext-ASCII-Datei,
+	die Sie mit ihrem Lieblings-Editor bearbeiten können.
 	</para>
 
-	<para>Jede Sektion der &smb.conf; Datei repräsentiert eine Freigabe
-	auf dem Samba Server bis auf die <quote>global</quote>, dies ist
-	eine spezielle Sektion da sie Einstellungen enthält die den gesamten
-	Samba Server beeinflussen und nicht nur einzelne Freigaben.
+	<para>Jeder Abschnitt der Datei &smb.conf; repräsentiert eine Freigabe
+	auf dem Samba-Server, bis auf den Abschnitt <quote>global</quote>.
+	Dieser ist
+	ein spezieller Abschnitt, da er Einstellungen enthält, die den gesamten
+	Samba-Server beeinflussen, und nicht nur einzelne Freigaben.
 	</para>
 
 <para><link linkend="smbconfminimal"/> enthält eine sehr kleine &smb.conf;.
-	<indexterm><primary>Minimal Konfiguration</primary></indexterm>
+	<indexterm><primary>Minimal-Konfiguration</primary></indexterm>
 </para>
 
 	<smbconfexample id="smbconfminimal">
@@ -84,63 +85,75 @@
 	<title>Samba starten</title>
 
 	<para>
-	Samba an sich besteht aus zwei oder drei sog. daemons. Ein deamon ist eine Unix Applikation die im Hintergrund läuft und Dienste zur Verfügung stellt.
-	Ein Beispiel eines solchen Dienstes ist der Apache Web Server für den der daemon <command>httpd</command> heißt.
-	Im Falle von Samba gibt es drei daemons von denen mindestens zwei benötigt werden.
+	Samba an sich besteht aus zwei oder drei sogenannten Daemons. 
+	Ein Daemon ist eine Unix-Applikation, die im Hintergrund läuft und Dienste zur Verfügung stellt.
+	Ein Beispiel eines solchen Dienstes ist der Apache Webserver, für den der Daemon <command>httpd</command> heißt.
+	Im Falle von Samba gibt es drei Daemons, von denen mindestens zwei benötigt werden.
 	</para>
 
 	<para>
-	Der Samba Server besteht aus folgenden daemons:
+	Der Samba-Server besteht aus folgenden Daemons:
 	</para>
 
 	<variablelist>
 		<varlistentry><term>nmbd</term>
 			<listitem><para>
-			Dieser daemon behandelt alle Namenregistrierungen und Namensauflösungs anfragen. Es ist das Primäre
-			Werkzeug für das schmöckern eines Netzwerkes. Er ist in der lage mit jedem UDP basierten Protokoll
-			umzugehen. Das Kommando <command>nmbd</command> sollte der erste daemon sein der im Rahmen des Samba
-			Startvorgangs geladen wird.
+			Dieser Daemon behandelt alle Namensregistrierungen und Anfragen zur 
+			Namensauflösung. Es ist das primäre
+			Werkzeug zum Durchsuchen eines Netzwerkes. 
+			Er ist in der Lage, mit jedem UDP-basierten Protokoll
+			umzugehen. Das Kommando <command>nmbd</command> sollte der erste 
+			Daemon sein, der im Rahmen des Startvorgangs von Samba geladen wird.
 			</para></listitem>
 		</varlistentry>
 
 		<varlistentry><term>smbd</term>
 			<listitem><para>
-			Dieser daemon behandelt alle TCP/IP basierenden Verbindungen für Datei- und Druckbasierten operationen.
-			Ebenfalls handelt dieser daemon mit der Benutzerauthentisierung und sollte direkt nach dem Start von
+			Dieser Daemon behandelt alle TCP/IP-basierenden Verbindungen 
+			für Datei- und Druck-basierende Operationen.
+			<command>smbd</command> befaßt sich auch mit der Benutzerauthentifikation
+			und sollte direkt nach dem Start von
 			<command>nmbd</command> aufgerufen werden.
 			</para></listitem>
 		</varlistentry>
 
 		<varlistentry><term>winbindd</term>
 			<listitem><para>
-			Dieser daemon sollte gestartet werden, wenn der Samba Server ein Mitglied einer Windows NT4 oder ADS
-			(ActiveDirectoryService) Domäne ist. Er ist ebenfalls nötig, wenn Samba in einem Vertrauenverhältnis
-			zu anderen Domänen steht. Der <command>winbindd</command> daemon überprüft die &smb.conf; auf das
-			vorhanden sein der <parameter>idmap uid</parameter> und <parameter>idmap gid</parameter> Parameter.
-			Sollten Sie fehlen gibt der <command>winbindd</command> einen Fehler aus und startet nicht.
+			Dieser Daemon sollte gestartet werden, wenn der Samba-Server 
+			Mitglied einer Windows-NT4- oder ADS-Domäne
+			(ADS = ActiveDirectoryService) ist. Er ist ebenfalls nötig, wenn Samba 
+			in einem Vertrauenverhältnis
+			zu anderen Domänen steht. Der Daemon <command>winbindd</command> 
+			überprüft die Datei &smb.conf; auf das
+			Vorhandensein der Parameter <parameter>idmap uid</parameter> 
+			und <parameter>idmap gid</parameter>.
+			Sollten diese fehlen, gibt der <command>winbindd</command> einen 
+			Fehler aus und startet nicht.
 			</para></listitem>
 		</varlistentry>
 	</variablelist>
 
 	<para>
-	Wenn Samba als Paket einer Distribution installiert wird liegt meist ein Start-Stop Script für den
-	Ordnungsgemäßen start von Samba vor ist aber eher ein positives Merkmal der Distribution. Bitte
-	konsultieren Sie das Administrationshandbuch ihres Betriebsystems bezüglich des einbinden eines solchen
-	Start-Stop Scripts.
+	Wenn Samba als Paket einer Distribution installiert wird,
+	liegt meist ein Start-Stop-Skript für den
+	ordnungsgemäßen Start von Samba vor. Dies ist aber eher ein positives Merkmal 
+	einer Distribution. Bitte konsultieren Sie das Administrationshandbuch ihres Betriebsystems 
+	bezüglich der Einbindung eines solchen
+	Start-Stop-Skripts.
 	</para>
 
 </sect2>
 
 <sect2>
-	<title>Beispiel Konfiguration</title>
+	<title>Beispiels-Konfiguration</title>
 
 	<para>
-	Es gibt Beispiel Konfigurationsdateien in einem separaten Unterverzeichnis der
-	Distribution. Es ist empfehlenswert diese Beispiele aufmerksam zu lesen um zu
-	verstehen wie die verschiedenen Optionen in der Praxis zusammenarbeiten. Um eine
-	zusammenfassung aller möglichen Optionen zu sehen rufen Sie bitte die man-pages auf.
-	Es lohnt sich die vorgegebene smb.conf.default als Grundlage der persönlichen
-	Konfiguration zu verwenden da sie viele Kommentare zu den verschiedenen Optionen enthält.
+	Es gibt Beispiele von Konfigurationsdateien in einem separaten Unterverzeichnis der
+	Distribution. Es ist empfehlenswert, diese Beispiele aufmerksam zu lesen, um zu
+	verstehen, wie die verschiedenen Optionen in der Praxis zusammenarbeiten. Um eine
+	Zusammenfassung aller möglichen Optionen zu sehen, rufen Sie bitte die man-pages auf.
+	Es lohnt sich, die vorgegebene Datei smb.conf.default als Grundlage der persönlichen
+	Konfiguration zu verwenden, da sie viele Kommentare zu den verschiedenen Optionen enthält.
 	</para>
 
 	<para>
@@ -150,7 +163,7 @@
 	<para>
 	<indexterm><primary>simple configuration</primary></indexterm>
 	<smbconfexample id="simple-example">
-		<title>Eine weitere vereinfachte smb.conf Datei</title>
+		<title>Eine weitere vereinfachte smb.conf-Datei</title>
 <smbconfsection>[global]</smbconfsection>
 <smbconfoption><name>workgroup</name><value>&example.workgroup;</value></smbconfoption>
 
@@ -161,18 +174,19 @@
 	</para>
 
 	<para>
-	Diese Konfiguration erlaubt es jedem der einen Benutzeraccount auf dem Server hat
-	sich mit seinem Login Namen auf die Freigabe <smbconfsection>homes</smbconfsection>
-	zu verbinden. (Hinweis: Der name der Arbeitsgruppe/Domäne sollte hier so wie
+	Diese Konfiguration erlaubt es jedem, der einen Benutzeraccount auf dem Server hat,
+	sich unter Verwendung seines Login-Namens mit der 
+	Freigabe <smbconfsection>homes</smbconfsection>
+	zu verbinden. (Hinweis: Der Name der Arbeitsgruppe/Domäne sollte hier so wie
 	gewünscht gesetzt werden, der Standard für diese Option ist WORKGROUP.)
 	</para>
 
 	<para>
-	Stellen Sie sicher, dass sie die &smb.conf; Datei im richtigen Verzeichniss gespeichert haben.
+	Stellen Sie sicher, dass sie die Datei &smb.conf; im richtigen Verzeichnis gespeichert haben.
 	</para>
 
 	<para>
-	Für weitere Informationen über die Sicherheitseinstellungen für <smbconfsection>[homes]</smbconfsection>
+	Für weitere Informationen zu den Sicherheitseinstellungen für <smbconfsection>[homes]</smbconfsection>
 	lesen Sie bitte hier: <link linkend="securing-samba"></link>
 	</para>
 
@@ -180,9 +194,9 @@
 	<title>Test der Konfiguration mit <command>testparm</command></title>
 
 	<para>
-	Es ist wichtig ihrer Konfigurationsänderung mit &testparm; zu überprüfen, wenn ihre Konfiguration
-	richtig ist sollte testparm eine Liste der Verfügbaren Services auflisten, andernfalls wird es
-	eine Fehlermeldung ausgeben.
+	Es ist wichtig, Ihre Konfigurationsänderung mit &testparm; zu überprüfen. 
+	Wenn ihre Konfiguration richtig ist, sollte testparm eine Liste der verfügbaren 
+	Services auflisten, andernfalls wird es eine Fehlermeldung ausgeben.
 	Überprüfen Sie ihre Konfiguration mittels:
 	</para>
 
@@ -190,14 +204,14 @@
 	&rootprompt; testparm /etc/samba/smb.conf
 	</screen>
 
-	<para>Testparm wird ihre Konfiguration überprüfen und mögliche unbekannte Parameter oder fehler in
-	der Syntax ausgeben.
+	<para>testparm wird ihre Konfiguration überprüfen und mögliche unbekannte 
+	Parameter oder Fehler in der Syntax ausgeben.
 	</para>
 
 
 
 	<para>
-	Es ist sehr empfehlenswert testparm nach einer Änderung der &smb.conf; auszuführen.
+	Es ist sehr empfehlenswert, testparm nach einer Änderung der &smb.conf; auszuführen.
 	</para>
 
 </sect3>
@@ -208,23 +222,26 @@
 
 	<para>
 	<indexterm><primary>swat</primary></indexterm>
-	SWAT ist eine Weboberfläche die dazu genutzt werden kann die Konfiguration von Samba zu erleichtern.
-	Es kann möglich sein, dass SWAT nicht in der Paketinstallation ihrer Distribution enthalten ist, dann
-	finden Sie es aber meist in einem separaten Paket. Bitte beachten Sie die SWAT man-page wenn Sie SWAT
-	aus den Quelldateien kompilieren, installieren und konfigurien wollen.
+	SWAT ist eine Weboberfläche, die dazu genutzt werden kann,
+	die Konfiguration von Samba zu erleichtern.
+	Es kann möglich sein, dass SWAT nicht in der Paketinstallation ihrer Distribution
+	enthalten ist, dannfinden Sie es aber meist in einem separaten Paket. Bitte beachten Sie die
+	SWAT-man-page, wenn Sie SWAT aus den Quelldateien kompilieren, installieren und 
+	konfigurieren wollen.
 	</para>
 
 	<para>
-	Um SWAT zu starten verwenden Sie einfach ihren favorisierten Web-Browser und verwenden folgende URL
+	Um SWAT zu starten, verwenden Sie einfach ihren liebsten Web-Browser und folgende URL
 	<ulink url="http://localhost:901/" noescape="1">http://localhost:901/</ulink>.
-	Ersetzen Sie <replaceable>localhost</replaceable> mit dem Namen des Computers auf dem Sie Samba
-	installiert haben wenn Sie den Web-Browser von einem anderen PC als den Samba Server starten.
+	Ersetzen Sie <replaceable>localhost</replaceable> durch den Namen des Computers,
+	auf dem Sie Samba installiert haben, wenn Sie den Web-Browser von einem anderen
+	PC als den Samba-Server starten.
 	</para>
 
 	<para>
-	SWAT kann von jedem Browser eines IP-Netzes aus genutzt werden aber beachten Sie dass bei Verbindungen
-	von einem entfernten Rechner die Gefahr besteht dass ihre Passwörter abgehört werden können, da diese
-	in Klartext über das Kabel transportiert werden.
+	SWAT kann von jedem Browser eines IP-Netzes aus genutzt werden, 
+	aber beachten Sie, dass bei Verbindungen von einem entfernten Rechner die Gefahr besteht,
+	dass ihre Passwörter abgehört werden, da diese im Klartext über das Kabel transportiert werden.
 	</para>
 
 	<para>Weitere Informationen über SWAT können Sie hier finden:
@@ -238,7 +255,7 @@
 	<title>Auflistung von Freigaben auf dem Server</title>
 
 	<para>
-	Verwenden Sie folgendes Kommando um die verfügbaren ihres Samba Server aufzulisten:
+	Verwenden Sie folgenden Befehl, um die verfügbaren Freigaben ihres Samba-Servers aufzulisten:
 	</para>
 
 <para><screen>
@@ -246,35 +263,39 @@
 </screen></para>
 
 	<para>Sie sollten nun eine Liste der verfügbaren Freigaben ihres Servers sehen, wenn
-	nicht dann ist etwas nicht richtig konfiguriert. Dieses Kommando können Sie ebenfalls
-	nutzen um die Freigaben anderer Server z.B. Windows 2000 zu betrachten.
+	nicht, dann ist etwas nicht richtig konfiguriert. Diesen Befehl können Sie ebenfalls
+	nutzen, um die Freigaben anderer Server z.B. Windows 2000 zu betrachten.
 	</para>
 
-	<para>Wenn Sie user-level Sicherheit als Sicherheit für ihren Server gewählt haben, sollten
-	Sie nach dem Kommando nach einem Passwort für ihren Benutzer gefragt werden bevor Sie die
-	Auflistung sehen. Lesen Sie die <command>smbclient</command> man-page für weitere Informationen.
-	Sie können das Kommando mittels der Option <option>-N</option> in der Kommandozeile dazu bringen sich auch ohne
+	<para>
+	Wenn Sie User-level-Sicherheit als Sicherheit für ihren Server gewählt haben, sollten
+	Sie nach Eingabe des Befehls nach einem Passwort für ihren Benutzer gefragt werden,
+	bevor Sie die Auflistung sehen. Lesen Sie die man-page zu
+	<command>smbclient</command> für weitere Informationen dazu.
+	Sie können den Befehl mittels der Option <option>-N</option> dazu bringen, auch ohne
 	Passwort die Freigabeliste anzuzeigen.
 	</para>
 </sect1>
 
 <sect1>
-	<title>Verbindung zu einem UNIX Client aufbauen</title>
+	<title>Verbindung zu einem UNIX-Client aufbauen</title>
 
 	<para>
-	Verwenden Sie folgendes Kommando:
+	Verwenden Sie folgenden Befehl:
 <screen>
-&prompt;<userinput>smbclient <replaceable> //yourhostname/aservice</replaceable></userinput>
+&prompt;<userinput>smbclient <replaceable> //ihrhostname/eindienst</replaceable></userinput>
 </screen></para>
 
-	<para>Normalerweise ist <replaceable>yourhostname</replaceable> der Name des Hosts auf dem sich der &smbd;
-	befindet und <replaceable>aservice</replaceable> ist ein belieber Service den dieser Host zur Verfügung
-	stellt. Versuchen Sie es mit ihrem Benutzernamen, wenn Sie eine Sektion <smbconfsection>[homes]</smbconfsection>
-	in der &smb.conf; haben.
+	<para>Normalerweise ist <replaceable>ihrhostname</replaceable> der Name des Hosts,
+	auf dem sich der &smbd; befindet und <replaceable>eindienst</replaceable> ist ein beliebiger
+	Dienst, den dieser Host zur Verfügung stellt.
+	Versuchen Sie es mit ihrem Benutzernamen, wenn Sie einen Abschnitt
+	<smbconfsection>[homes]</smbconfsection> in Ihrer &smb.conf; haben.
 	</para>
 
-	<para>Beispiel: Wenn der UNIX Host <replaceable>bambi</replaceable> heißt und ein gültiger Login Name
-	<replaceable>fred</replaceable> ist könnten Sie folgendes schreiben:
+	<para>Beispiel: Wenn der UNIX-Host <replaceable>bambi</replaceable> heißt und 
+	ein gültiger Login-Name
+	<replaceable>fred</replaceable> ist, könnten Sie folgendes schreiben:
 	</para>
 
 <para><screen>
@@ -283,27 +304,29 @@
 </sect1>
 
 <sect1>
-	<title>Verbindung von einem entfernten SMB Client</title>
+	<title>Verbindung von einem entfernten SMB-Client</title>
 
-	<para>Nun da Samba lokal richtig funktioniert können Sie versuchen sich von einem anderen Rechner aus
-	an ihrem Samba Server anzumelden. Innerhalb weniger minuten sollte der Samba Server in ihrer
-	Netzwerkumgebung ihres Windows Subnetzes sichtbar sein. Versuchen Sie ihren Samba Server dort zu finden
-	oder versuchen Sie eine Netzwerkverbindung mit ihrem Server herzustellen.
+	<para>Nun da Samba lokal richtig funktioniert, können Sie versuchen,
+	sich von einem anderen Rechner aus an ihrem Samba-Server anzumelden.
+	Innerhalb weniger Minuten sollte der Samba-Server in der
+	Netzwerkumgebung ihres Windows-Subnetzes sichtbar sein.
+	Versuchen Sie, Ihren Samba-Server dort zu finden,
+	oder versuchen Sie, eine Netzwerkverbindung mit ihrem Server herzustellen.
 	</para>
 
-	<para>Um eine Netzwerkverbindung unde DOS, Windows oder OS/2 Rechnern herzustellen führen Sie folgendes
-	Kommando aus:
+	<para>Um eine Netzwerkverbindung unter DOS, Windows oder OS/2 herzustellen,
+	führen Sie folgenden Befehl aus:
 	</para>
 
 	<para><screen>
-	&dosprompt;<userinput>net use d: \\servername\service</userinput>
+	&dosprompt;<userinput>net use d: \\servername\dienst</userinput>
 	</screen></para>
 
 	<para>Versuchen Sie zu drucken:</para>
 
 	<para>
 <screen>
-&dosprompt;<userinput>net use lpt1:	\\servername\spoolservice</userinput>
+&dosprompt;<userinput>net use lpt1:	\\servername\druckdienst</userinput>
 </screen></para>
 
 <para>
@@ -312,45 +335,45 @@
 </sect1>
 
 <sect1>
-	<title>Was wenn etwas nicht funktioniert?</title>
+	<title>Was, wenn etwas nicht funktioniert?</title>
 
-	<para>Sie können bei <link linkend="diagnosis">hier</link> Hilfe finden oder aber wenn es danach
-	immernoch nicht funktioniert lesen Sie bitte <link linkend="problems"></link>. Samba wurde
-	bereits auf tausenden von Systemen installiert und es könnte hilfreich sein im Internet zu suchen,
-	ob jemand anderes auch ihr Problem hatte und einen Weg gefunden hat es zu lösen.
-	You might want to read .
+	<para>Sie können <link linkend="diagnosis">hier</link> Hilfe finden oder aber, wenn es danach
+	immer noch nicht funktioniert, lesen Sie bitte <link linkend="problems"></link>.
+	Samba wurde bereits auf tausenden von Systemen installiert, daher könnte es hilfreich sein,
+	im Internet zu recherchieren, ob jemand anderes auch ihr Problem hatte und einen Weg
+	gefunden hat, es zu lösen.
 	</para>
 
 </sect1>
 
 <sect1>
-<title>Verbreitete Fehler</title>
+<title>Häufige Fehler</title>
 
 <para>
-Folgende Fragen und Themen tauchen immer wieder in der Samba Mailing Liste auf.
+Folgende Fragen und Themen tauchen immer wieder in der Samba-Mailing-Liste auf.
 </para>
 
 <sect2>
-	<title>Große Anzahl von smbd Prozessen</title>
+	<title>Große Anzahl von smbd-Prozessen</title>
 
 <para>
-Samba enthält drei Core Programme: &nmbd; ist der Namensserver daemon, &smbd; ist der Server Message
-daemon und &winbindd; ist der daemon der mit Domänen Controllern arbeitet.
+Samba enthält drei Kern-Programme: &nmbd; ist der Namensserver-Daemon, &smbd; ist der Server-Message-
+Daemon und &winbindd; ist der Daemon, der mit Domänen-Controllern arbeitet.
 </para>
 
 <para>
-Wenn Samba <emphasis>nicht</emphasis> als WINS Server fungiert sollte es nur eine Instanz des &nmbd; daemons
-auf ihrem System geben. Andernfalls sollten zwei &nmbd; Prozesse laufen einer von den beiden behandelt die
-WINS Anfragen.
+Wenn Samba <emphasis>nicht</emphasis> als WINS-Server fungiert, sollte es nur eine Instanz 
+des &nmbd;-Daemons auf ihrem System geben. Andernfalls sollten zwei &nmbd;-Prozesse laufen,
+von denen einer die WINS-Anfragen behandelt.
 </para>
 
 <para>
-&smbd; behandelt alle Verbindungsanfragen. Er ruft sich selbst für jede neue Client-Verbindung auf. Das ist
-der Grund warum Sie mehrere Prozesse von &smbd; sehen können, einen für jede Client-Verbindung.
+&smbd; behandelt alle Verbindungsanfragen. Er ruft sich selbst für jede neue Client-Verbindung auf.
+Das ist der Grund, warum Sie mehrere Prozesse von &smbd; sehen können, einen für jede Client-Verbindung.
 </para>
 
 <para>
-&winbindd; läuft in einem oder zwei Prozessen, abhängig davon ob er im <emphasis>split mode</emphasis>
+&winbindd; läuft in einem oder zwei Prozessen, abhängig davon, ob er im <emphasis>split mode</emphasis>
 läuft (in diesem Fall hat er zwei Instanzen).
 </para>
 
@@ -359,14 +382,14 @@ läuft (in diesem Fall hat er zwei Instanzen).
 	<sect2>
 		<title>Fehler Meldung: open_oplock_ipc</title>
 
-	<para>Eine Fehlermeldung wird in der Log Datei beim starten von &smbd; angezeigt:
+	<para>Eine Fehlermeldung wird in der Log-Datei beim Starten von &smbd; angezeigt:
 	<quote>open_oplock_ipc: Failed to get local UDP socket
 	for address 100007f. Error was Cannot assign requested.</quote></para>
 
-	<para>Ihr Loopback Interface funktioniert nicht korrekt. Vergewissern Sie sich dass es korrekt
-	konfiguriert wurde. Das Loopack Interface ist eine interne (virtuelles) Netzwerkkarte mit der
-	IP-Adresse <emphasis>127.0.0.1</emphasis>. Lesen Sie in ihrer Betriebssystem Dokumentation nach,
-	wie Sie ihr Loopback interface einrichten.
+	<para>Ihr Loopback-Interface funktioniert nicht korrekt. Vergewissern Sie sich, dass es korrekt
+	konfiguriert wurde. Das Loopback-Interface ist eine interne (virtuelle) Netzwerkkarte mit der
+	IP-Adresse <emphasis>127.0.0.1</emphasis>. Lesen Sie in der Dokumentation Ihres Betriebssystems
+	nach, wie Ihr Loopback-Interface einzurichten ist.
 	</para>
 
 	</sect2>
@@ -375,20 +398,21 @@ läuft (in diesem Fall hat er zwei Instanzen).
 		<title><quote><errorname>The network name cannot be found</errorname></quote></title>
 
 		<para>
-		Dieser fehler kann von folgenden Mißkonfigurationen stammen:
+		Dieser Fehler kann von folgenden Fehlkonfigurationen verursacht werden: 
 		</para>
 
 		<itemizedlist>
-			<listitem><para>Sie haben einen nicht existierenden Pfad für eine Freigabe in der
+			<listitem><para>Sie haben einen nicht existenten Pfad für eine Freigabe in der
 			&smb.conf; angegeben.
 			</para></listitem>
 
-			<listitem><para>Der Benutzer mit dem Sie versuchen auf eine Freigabe zu zugreifen hat
-			nicht die erforderlichen Rechte um auf den UNIX-Pfad zu zugreifen. Sowohl das Leserecht
-			(r) sowie das Zugriffsrecht (x) sollten dem Benutzer erlaubt sein.
+			<listitem><para>Der Benutzer, mit dem Sie versuchen, auf eine Freigabe 
+			zuzugreifen, hat nicht die erforderlichen Rechte, um auf den UNIX-Pfad 
+			zuzugreifen. Sowohl das Leserecht (r) sowie das Zugriffsrecht (x) sollten 
+			dem Benutzer eingeräumt werden. 
 			</para></listitem>
 
-			<listitem><para>Die Freigabe auf die Sie versuchen zu zugreifen existiert nicht.
+			<listitem><para>Die Freigabe, auf die Sie zuzugreifen versuchen, existiert nicht.
 			</para></listitem>
 	</itemizedlist>
 
