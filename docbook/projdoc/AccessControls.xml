@@ -6,7 +6,7 @@
 	<author>&person.rruegner;<contrib>German Translator</contrib></author>
 	<pubdate>May 10, 2003</pubdate>
 </chapterinfo>
-<title>Kapitel 13 Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle</title>
+<title>Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle</title>
 
 <para>
 <indexterm><primary>ACLs</primary></indexterm>
