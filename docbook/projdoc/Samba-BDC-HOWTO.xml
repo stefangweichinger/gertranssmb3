@@ -5,46 +5,47 @@
 	&author.jht;
 	&author.vl;
 	<author>&person.gd;<contrib>LDAP updates</contrib></author>
-	<author>&author.sgw;</author>
+	<author>&person.sgw;<contrib>German Translation</contrib></author>
 </chapterinfo>
 
-<title>Backup Domain Control</title>
+<title>Backup Domänen-Verwaltung</title>
 
 <para>
-Before you continue reading this section, please make sure that you are comfortable
-with configuring a Samba Domain Controller as described in <link linkend="samba-pdc"/>.
+Bevor Sie diesen Abschnitt lesen, vergewissern Sie sich, daß Sie mit der Konfiguration eines
+Samba Domänen-Controllers, wie in <link linkend="samba-pdc"/> beschrieben, vertraut sind.
 </para>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Vorteile</title>
 
 <para>
-This is one of the most difficult chapters to summarize. It does not matter what we say here
-for someone will still draw conclusions and/or approach the Samba Team with expectations
-that are either not yet capable of being delivered, or that can be achieved far more
-effectively using a totally different approach. In the event that you should have a persistent
-concern that is not addressed in this book, please email <ulink url="mailto:jht@samba.org">John H. Terpstra</ulink>
-clearly setting out your requirements and/or question and we will do our best to provide a solution.
+Dies ist eines der am schwierigsten zusammenzufassenden Kapitel. Was immer wir auch hier sagen,
+jemand wird seine eigenen Schlüsse ziehen und/oder sich dem Samba-Team mit Erwartungen nähern,
+die entweder noch nicht erfüllbar sind, bzw. bei mit einem komplett anderen Ansatz bei weitem 
+effektiver erfüllt werden können. Im Fall, daß Sie ein fortbestehendes Anliegen haben, das nicht
+in diesem Buch behandelt wird, bitte senden Sie eine email an <ulink url="mailto:jht@samba.org">John H. Terpstra</ulink>
+, in der Sie Ihre Anforderungen und/oder Fragen klar auseinandersetzen, und wir werden unser Bestes
+tun, um Ihnen eine Lösung anzubieten.
 </para>
 
 <para>
 <indexterm><primary>SAM backend</primary><secondary>LDAP</secondary></indexterm>
-Samba-3 is capable of acting as a Backup Domain Controller (BDC) to another Samba Primary Domain
-Controller (PDC). A Samba-3 PDC can operate with an LDAP Account backend. The LDAP backend can be
-either a common master LDAP server, or a slave server. The use of a slave LDAP server has the
-benefit that when the master is down, clients may still be able to log onto the network.
-This effectively gives Samba a high degree of scalability and is an effective solution
-for large organizations. If you use an LDAP slave server for a PDC,
-you will need to ensure the master's continued availablity - if the
-slave finds it's master down at the wrong time, you will have 
-stability and operational problems.
+Samba-3 ist fähig, als Backup-Domänen-Controller (BDC) für einen Samba Primary-Domänen-Controller (PDC)
+zu arbeiten. Ein Samba-3 PDC kann mit einem LDAP-Konten-Backend arbeiten. Das LDAP-Backend kann
+entweder ein gängiger Master-LDAP-Server, oder ein LDAP-Slave-Server sein. Die Benutzung eines 
+Slave-Servers hat den Vorteil, daß sich in dem Falle, daß der Master nicht verfügbar ist, die Clients
+noch immer am Netzwerk anmelden können. Dies hat zur Folge, daß Samba ein hohes Maß an
+Skalierbarkeit erhält und dadurch eine effektive Lösung für grosse Organisationen ist.
+Wenn Sie einen LDAP-Slave-Server für einen PDC verwenden, werden Sie für die andauernde
+Verfügbarkeit des Master-Servers sorgen müssen - wenn der Slave den Master zum falschen
+Zeitpunkt nicht erreichen kann, werden Sie Probleme mit dem Betrieb und der Stabilität haben.
 </para>
 
 <para>
 <indexterm><primary>replication</primary><secondary>SAM</secondary></indexterm>
-While it is possible to run a Samba-3 BDC with non-LDAP backend, that
-backend must allow some form of 'two way' propogration, of changes
-from the BDC to the master.  Only LDAP is capable of this at this stage.
+Während es möglich ist, einen Samba-3 BDC mit einem anderen Backend als LDAP zu betreiben,
+muß dieses Backend doch eine Form von '2-Weg'-propogration (sgw ???) von Veränderungen vom
+BDC zum Master erlauben. Nur LDAP kann dies zum gegenwärtigen Zeitpunkt.
 </para>
 
 <para>
