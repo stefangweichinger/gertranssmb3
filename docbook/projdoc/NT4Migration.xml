@@ -193,100 +193,96 @@ ein maßgeschneidertes Anmelde-Skript anzulegen. Dies kann durch Anwendung des Pa
 
 <para>
 Manche Organisationen bevorzugen es, ein Werkzeug wie <command>kixstart</command> zu verwenden, um
-eine kontrollierte Benutzer-Umgebung zu schaffen. Auf jeden Fall 
-
-
---- sgw
-
-Some sites prefer to use a tool such as <command>kixstart</command> to establish a controlled
-user environment. In any case, you may wish to do a Google search for logon script process controls.
-In particular, you may wish to explore the use of the Microsoft KnowledgeBase article KB189105 that
-deals with how to add printers without user intervention via the logon script process.
+eine kontrollierte Benutzer-Umgebung zu schaffen. Jedenfalls werden Sie vielleicht mittels Google
+nach Programmen für Anmelde-Skripts suchen wollen. Im Speziellen möchten Sie vielleicht die
+Anwendung des Artikels KB189105 in der Microsoft KnowledgeBase versuchen, der behandelt, wie man
+Drucker ohne Benutzer-Intervention hinzufügt, und das mittels des Anmelde-Skript-Vorgangs.
 </para>
 </sect3>
 
 <sect3>
-<title>Profile Migration/Creation</title>
+<title>Anlegen und Migration von Profilen</title>
 
 <para>
-User and Group Profiles may be migrated using the tools described in the section titled Desktop Profile
-Management.
+Benutzer- und Gruppen-Profile können unter Verwendung der Werkzeuge migriert werden, die in dem
+Abschnitt namens "Desktop Profil Management" beschrieben sind.
 </para>
 
 
 <para>
 <indexterm><primary>SID</primary></indexterm>
-Profiles may also be managed using the Samba-3 tool <command>profiles</command>. This tool allows
-the MS Windows NT-style security identifiers (SIDs) that are stored inside the profile <filename>NTuser.DAT</filename> file
-to be changed to the SID of the Samba-3 domain.
+Profile können auch mittels dem Samba-3-Werkzeug <command>profiles</command> verwaltet werden.
+Dieses Werkzeug erlaubt es, die Sicherheits-Identifier (SIDs) im MS Windows NT-Stil, die in der
+Profil-Datei <filename>NTuser.DAT</filename> gespeichert sind, auf den SID der Samba-3-Domäne
+zu ändern. 
 </para>
 </sect3>
 
 <sect3>
-<title>User and Group Accounts</title>
+<title>Benutzer- und Gruppen-Konten</title>
 
 <para>
-It is possible to migrate all account settings from an MS Windows NT4 domain to Samba-3. Before
-attempting to migrate user and group accounts, it is STRONGLY advised to create in Samba-3 the
-groups that are present on the MS Windows NT4 domain <emphasis>AND</emphasis> to map them to
-suitable UNIX/Linux groups. By following this simple advice, all user and group attributes
-should migrate painlessly.
+Es ist möglich, alle Konten-Einstellungen von einer MS Windows NT4-Domäne auf Samba-3 zu migrieren.
+Bevor Sie versuchen, Benutzer- und Gruppen-Konten zu migrieren, ist es STÄRKSTENS empfohlen, in
+Samba die Gruppen anzulegen, die in der MS Windows NT4-Domäne vorhanden sind <emphasis>UND</emphasis>
+sie auf passende UNIX/Linux-Gruppen umzulegen ("mappen"). Durch das Befolgen dieses einfachen
+Ratschlags sollten alle Benutzer- und Gruppen-Attribute problemlos migrieren.
 </para>
 </sect3>
 
 </sect2>
 
 <sect2>
-<title>Steps in Migration Process</title>
+<title>Schritte im Migrations-Prozess</title>
 
 <para>
-The approximate migration process is described below.
+Der ungefähre Migrations-Prozess ist im Folgenden beschrieben.
 </para>
 
 <itemizedlist>
 <listitem><para>
-You have an NT4 PDC that has the users, groups, policies and profiles to be migrated.
+Sie haben einen NT4 PDC, der die Benutzer, Gruppen, Richtlinien und Profile hat, die migriert werden sollen.
 </para></listitem>
 
 <listitem><para>
-Samba-3 set up as a DC with netlogon share, profile share, and so on. Configure the &smb.conf; file
-to fucntion as a BDC, i.e., <parameter>domain master = No</parameter>.
+Samba-3 ist als DC eingerichtet, mit Netlogon-Freigabe, Profil-Freigabe, und so weiter.
+Editieren Sie die Datei &smb.conf;, um Samba-3 z.B. als BDC zu konfigurieren: <parameter>domain master = No</parameter>.
 </para></listitem>
 </itemizedlist>
 
-<procedure><title>The Account Migration Process</title>
+<procedure><title>Der Migrations-Prozess der Konten</title>
 	<step><para>
 <indexterm><primary>pdbedit</primary></indexterm>
-			Create a BDC account in the old NT4 domain for the Samba server using NT Server Manager.</para>
-		<substeps><step><para>Samba must not be running.</para></step></substeps></step>
+Legen Sie ein BDC-Konto für den Samba-Server in der alten NT4-Domäne an, unter Verwendung des NT-Server-Managers.</para>
+<substeps><step><para>Samba darf nicht laufen.</para></step></substeps></step>
 
 
-	<step><para>
+<step><para>
 <indexterm><primary>net</primary><secondary>rpc</secondary></indexterm>
-			<userinput>net rpc join -S <replaceable>NT4PDC</replaceable> -w <replaceable>DOMNAME</replaceable> -U Administrator%<replaceable>passwd</replaceable></userinput></para></step>
+<userinput>net rpc join -S <replaceable>NT4PDC</replaceable> -w <replaceable>DOMNAME</replaceable> -U Administrator%<replaceable>passwd</replaceable></userinput></para></step>
 
-	<step><para><userinput>net rpc vampire -S <replaceable>NT4PDC</replaceable> -U administrator%<replaceable>passwd</replaceable></userinput></para></step>
+<step><para><userinput>net rpc vampire -S <replaceable>NT4PDC</replaceable> -U administrator%<replaceable>passwd</replaceable></userinput></para></step>
 
-	<step><para><userinput>pdbedit -L</userinput></para>
-		<substeps><step><para>Note &smbmdash; did the users migrate?</para></step></substeps>
+<step><para><userinput>pdbedit -L</userinput></para>
+<substeps><step><para>Beachten Sie &smbmdash; haben die Benutzer migriert?</para></step></substeps>
 	</step>
 
 
 	<step><para>
 <indexterm><primary>net</primary><secondary>groupmap</secondary></indexterm>
 <indexterm><primary>initGroups.sh</primary></indexterm>
-	Now assign each of the UNIX groups to NT groups:
-	(It may be useful to copy this text to a script called <filename>initGroups.sh</filename>)
-	<programlisting>
+Weisen Sie nun jede der UNIX-Gruppen einer NT-Gruppe zu:
+(Es könnte hilfreich sein, diesen Text in ein Skript namens <filename>initGroups.sh</filename> zu kopieren)
+<programlisting>
 #!/bin/bash
-#### Keep this as a shell script for future re-use
+#### Behalten Sie sich dies als Shell-Skript für weitere Verwendung 
 			
-# First assign well known domain global groups
+# Zuerst die Zuweisung der wohlbekannten globalen Domänen-Gruppen
 net groupmap modify ntgroup="Domain Admins" unixgroup=root   rid=512
 net groupmap modify ntgroup="Domain Users"  unixgroup=users  rid=513
 net groupmap modify ntgroup="Domain Guests" unixgroup=nobody rid=514
 
-# Now for our added domain global groups
+# Nun für unsere hinzugefügten globalen Domänen-Gruppen
 net groupmap add ntgroup="Designers" unixgroup=designers type=d rid=3200
 net groupmap add ntgroup="Engineers" unixgroup=engineers type=d rid=3210
 net groupmap add ntgroup="QA Team"   unixgroup=qateam    type=d rid=3220
@@ -294,23 +290,23 @@ net groupmap add ntgroup="QA Team"   unixgroup=qateam    type=d rid=3220
 	</para></step>
 
 	<step><para><userinput>net groupmap list</userinput></para>
-		<substeps><step><para>Check that all groups are recognized.</para></step></substeps>
+		<substeps><step><para>Überprüfen Sie, daß alle Gruppen erkannt werden.</para></step></substeps>
 	</step>
 </procedure>
 
 <para>
-Migrate all the profiles, then migrate all policy files.
+Migrieren Sie alle Profile, dann migrieren Sie alle Richtlinien.
 </para>
 
 </sect2>
 </sect1>
 
 <sect1>
-<title>Migration Options</title>
+<title>Migrations-Optionen</title>
 
 <para>
-Sites that wish to migrate from MS Windows NT4 Domain Control to a Samba-based solution
-generally fit into three basic categories. <link linkend="majtypes"/> shows the possibilities.
+Organisationen, die von MS Windows NT4-Domänen-Verwaltung auf eine Samba-basierende Lösung migrieren
+wollen, fallen generell in drei grundlegende Kategorien. <link linkend="majtypes"/> zeigt die Möglichkeiten.
 </para>
 
 <table frame="all" id="majtypes"><title>The Three Major Site Types</title>
