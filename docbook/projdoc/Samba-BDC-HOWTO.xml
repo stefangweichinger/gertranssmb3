@@ -369,9 +369,9 @@ sein. Das bedeutet, daß Samba-3 auch NICHT als BDC für einen Active Directory-DC
 <title>Was zeichnet einen Domänen-Controller im Netzwerk aus?</title>
 
 <para>
-Jede Maschine, die DC für die Domäne MIDEARTH ist, muß den NetBIOS-Gruppen-Namen MIDEARTH&lt;#1c&gt;
+Jede Maschine, die DC für die Domäne MITTELERDE ist, muß den NetBIOS-Gruppen-Namen MITTELERDE&lt;#1c&gt;
 am WINS-Server registrieren und/oder diesen Namen im LAN per Broadcast verteilen. Der PDC
-registriert zusätzlich den eindeutigen NetBIOS-Namen MIDEARTH&lt;#1b&gt; am WINS-Server.
+registriert zusätzlich den eindeutigen NetBIOS-Namen MITTELERDE&lt;#1b&gt; am WINS-Server.
 Der Namenstyp &lt;#1b&gt; ist normalerweise für den Domänen-Master-Browser reserviert, eine
 Rolle, die nichts mit irgendetwas in Bezug auf Authentifikation zu tun hat, aber die
 Microsoft-Domänen-Implementation verlangt, daß der Domänen-Master-Browser auf derselben
@@ -403,9 +403,9 @@ Umgebung brauchen alle Maschinen entsprechene DNS-Einträge. Mehr dazu in <link l
 <sect3>
 <title>NetBIOS über TCP/IP aktiviert</title>
 <para>
-Eine MS Windows NT4/200x/XP Professional Workstation in der Domäne MIDEARTH, die einen lokalen
-Benutzer authentifizieren will, muß den DC für MIDEARTH finden. Sie macht das mittels einer
-NetBIOS-Namens-Abfrage für den Gruppen-Namen MIDEARTH&lt;#1c&gt;. Die Workstation geht davon aus,
+Eine MS Windows NT4/200x/XP Professional Workstation in der Domäne MITTELERDE, die einen lokalen
+Benutzer authentifizieren will, muß den DC für MITTELERDE finden. Sie macht das mittels einer
+NetBIOS-Namens-Abfrage für den Gruppen-Namen MITTELERDE&lt;#1c&gt;. Die Workstation geht davon aus,
 daß jede Maschine, die auf diese Anfrage antwortet, ein DC ist und Anmelde-Anfragen beantworten kann.
 Um keine Sicherheits-Lücken zu öffnen, authentifizieren die Workstation und der gewählte DC
 einander gegenseitig. Danach sendet die Workstation die Benutzerdaten (Name/Passwort) 
