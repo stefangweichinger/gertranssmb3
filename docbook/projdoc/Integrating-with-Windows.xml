@@ -149,60 +149,34 @@ Diese Adresse wird bei einem ARP Reply zurückgegeben.
 
 <para>
 Wenn ein Benutzer oder ein Prozess mit einem anderen Computer
-kommunizieren will, stell die Protokollschicht sicher dass der
-<quote>Computername</quote> oder <quote>Hostname</quote> in eine IP
-Adresse aufgelöst wird. Dies geschieht in der Art wie es in den 
-TCP/IP Konfigurations Dateien hinterlegt ist.
+kommunizieren will, stellt die Protokollschicht sicher, dass der
+<quote>Computername</quote> oder <quote>Hostname</quote> in eine IP-
+Adresse aufgelöst wird. Dies geschieht in der Art, wie es in den 
+TCP/IP-Konfigurations-Dateien hinterlegt ist.
 Die Datei <filename>/etc/hosts</filename> ist eine dieser Dateien.
-#
-When a user or a process wants to communicate with another machine, 
-the protocol implementation ensures that the <quote>machine name</quote> or <quote>host 
-name</quote> is resolved to an IP address in a manner that is controlled 
-by the TCP/IP configuration control files. The file 
-<filename>/etc/hosts</filename> is one such file.
 </para>
 
 <para>
-Nachdem die IP Adresse des Zielinterfaces ermittelt wurde, wird ein
-Protokoll mit dem Namen ARP/RARP verwendet um die MAC Adresse des
-Zielinterfaces herauszufinden. ARP bedeutet Address Resolution Protokoll
-und ist eine Broadcast orientierte Methode welches über das User Data
-Protocol (UDP) einen Anfrage an die 1'te MAC Adresse aller Interfaces des 
+Nachdem die IP-Adresse des Zielinterfaces ermittelt wurde, wird ein
+Protokoll mit dem Namen ARP/RARP verwendet, um die MAC-Adresse des
+Zielinterfaces herauszufinden. ARP bedeutet Address Resolution Protocol
+und ist eine broadcast-orientierte Methode, die über das User Data
+Protocol (UDP) einen Anfrage an alle Interfaces des 
 lokalen Netzwerks verschickt.
-Netzwerkinterfaces sind so programmiert dass sie nur auf 2 MAC Adressen
+Netzwerkinterfaces sind so programmiert, dass sie nur auf 2 MAC Adressen
 reagieren; ihre eigene eindeutige Adresse und die Adresse
-ff:ff:ff:ff:ff:ff. Die Antwort zu einer ARP Anfrage beinhaltet die MAC
+ff:ff:ff:ff:ff:ff. Die Antwort zu einer ARP Anfrage beinhaltet die MAC-
 Adresse und die primäre IP Adresse für jedes Interface.
-#
-When the IP address of the destination interface has been 
-determined, a protocol called ARP/RARP is used to identify 
-the MAC address of the target interface. ARP stands for Address 
-Resolution Protocol and is a broadcast-oriented method that 
-uses User Datagram Protocol (UDP) to send a request to all 
-interfaces on the local network segment using the all 1s MAC 
-address. Network interfaces are programmed to respond to two 
-MAC addresses only; their own unique address and the address 
-ff:ff:ff:ff:ff:ff. The reply packet from an ARP request will 
-contain the MAC address and the primary IP address for each 
-interface.
 </para>
 
 <para>
 <indexterm><primary>/etc/hosts</primary></indexterm>
 Die Datei <filename>/etc/hosts</filename> ist eine Grundvoraussetzung
-für alle UNIX/Linux TCP/IP Installationen und beinhaltet als Minimum den
-localhost und die lokale Netzwerk Interface IP Adresse und primären
+für alle UNIX/Linux TCP/IP-Installationen und beinhaltet als Minimum den
+localhost, die lokale IP-Adresse des Netzwerk-Interfaces und den primären
 Namen des lokalen Computers.
-Diese Datei hilft dabei eine grundlegende Namensauflösung zu haben bevor
+Diese Datei hilft dabei, eine grundlegende Namensauflösung zu haben, bevor
 irgendwelche andere Methoden der Namensauflösung verfügbar sind.
-#
-The <filename>/etc/hosts</filename> file is foundational to all 
-UNIX/Linux TCP/IP installations and as a minimum will contain 
-the localhost and local network interface IP addresses and the 
-primary names by which they are known within the local machine. 
-This file helps to prime the pump so a basic level of name 
-resolution can exist before any other method of name resolution 
-becomes available.
 </para>
 
 </sect2>
@@ -213,41 +187,24 @@ becomes available.
 
 <para>
 Diese Datei teilt den Bibliotheken der Namensauflösung folgendes mit:
-#
-This file tells the name resolution libraries:
 </para>
 
 <itemizedlist>
-	<listitem><para>Den Domänennamen zu welcher der Computer
+	<listitem><para>Den Namen der Domäne, zu welcher der Computer
 	gehört.</para></listitem>
-	#
-	<listitem><para>The name of the domain to which the machine 
-	belongs.
+	
+	<listitem><para>Die Namen der Domänen, welche automatisch
+	durchsucht werden, wenn zu einem unqualifizierten Rechnernamen
+	dessen IP-Adresse gesucht werden soll.
 	</para></listitem>
 	
-	<listitem><para>Die Namen der Domänen welche automatisch
-	durchsucht werden wenn zu einem unqualifizierten Rechnernamen
-	dessen IP Adresse gesucht werden soll.
-	</para></listitem>
-	#
-	<listitem><para>The name(s) of any domains that should be 
-	automatically searched when trying to resolve unqualified 
-	host names to their IP address.
-	</para></listitem>
-	
-	<listitem><para>Den Name oder die IP Adresse der möglichen
-	Domain Name Server welche für eine Namen-zu-Adressen Übersetzung
+	<listitem><para>Den Namen oder die IP-Adresse der möglichen
+	Domain-Name-Server, welche für eine Namen-zu-Adressen-Übersetzung
 	befragt werden können.
-	</para></listitem>
-	 
-	<listitem><para>The name or IP address of available Domain 
-	Name Servers that may be asked to perform name-to-address 
-	translation lookups.
 	</para></listitem>
 </itemizedlist>
 
 </sect2>
-
 
 <sect2>
 <title><filename>/etc/host.conf</filename></title>
@@ -255,6 +212,10 @@ This file tells the name resolution libraries:
 
 <para>
 <indexterm><primary>/etc/host.conf</primary></indexterm>
+
+--- workmark
+
+
 Einträge in der <filename>/etc/host.conf</filename> sind primär dazu gedacht 
 wie sich die Einträge in <filename>/etc/resolv.conf</filename> auswirken sollen.
 Es ist eine kritische Konfigurationsdatei, da hier die Reihenfolge der
@@ -851,10 +812,6 @@ carelessness. Of course, no one is ever deliberately careless!
 	<para>
 	<quote> Ich kann meinen Sambaserver von Windows anpingen, aber
 	ich kann nicht von Windows meinen Sambaserver anpingen.</quote>
-	</para>
-	#
-	<quote>I can ping my Samba server from Windows, but I cannot ping my Windows
-	machine from the Samba server.</quote>
 	</para>
 
 	<para>
