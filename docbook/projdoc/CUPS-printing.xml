@@ -81,119 +81,74 @@
 		Drittherstellern, wie etwa das überwältigende, in KDE
 		enthaltene <ulink url="http://printing.kde.org/">KDEPrint</ulink>).
 		</para>
+		
 		<para>
-		CUPS allows creation of <quote>raw</quote> printers (i.e., no print file
-		format translation) as well as <quote>smart</quote> printers (i.e., CUPS does
-		file format conversion as required for the printer). In many ways
-		this gives CUPS similar capabilities to the MS Windows print
-		monitoring system. Of course, if you are a CUPS advocate, you would
-		argue that CUPS is better! In any case, let us now move on to
-		explore how one may configure CUPS for interfacing with MS Windows
-		print clients via Samba.
-		</para>
-		#
-		<para>
-		CUPS erlaubt die Erstellung von <quote>raw</quote>
+		CUPS erlaubt das Anlegen von <quote>raw</quote>-
 		Druckern (keine Übersetzung der Druckdaten) genauso wie
-		von <quote>smart</quote> Druckern (Cups übersetzt das
+		von <quote>smarten</quote> Druckern (Cups übersetzt das
 		Dateiformat in das benötigte Druckerformat). Diese
-		Fexibilität gibt CUPS ähnliche Möglichkeiten wie das MS
-		Windows Print Monitoring System. Sind Sie ein CUPS
-		Verfechter, dann werden Sie sicher argumentieren das es
-		sogar besser ist ! Wie auch immer, lassen Sie uns
-		damit weitermachen wie wir CUPS für eine Zusammenarbeit
-		mit MS Windows Druckclients über SAMBA konfigurieren
-		müssen.
+		gibt CUPS auf vielfache Arten ähnliche Fähigkeiten wie das MS
+		Windows Print Monitoring System. Sind Sie ein CUPS-
+		Verfechter, dann werden Sie sicher argumentieren, daß CUPS 
+		sogar besser ist! Wie auch immer, lassen Sie uns
+		damit weitermachen, wie man CUPS für eine Zusammenarbeit
+		mit MS Windows Druckclients über SAMBA konfigurieren kann.
 		</para>
 
 	</sect2>
 </sect1>
 
 <sect1>
-	<title>Basic CUPS Support Configuration</title>
-	#
-	<title>Grundlegende Konfiguration für den CUPS Support</title>
+	<title>Grundlegende Konfiguration für die CUPS-Unterstützung</title>
 
-	<para>
-	Printing with CUPS in the most basic &smb.conf; setup in Samba-3.0 (as was true for 2.2.x) only needs two
-	settings: <smbconfoption><name>printing</name><value>cups</value></smbconfoption> and
-	<smbconfoption><name>printcap</name><value>cups</value></smbconfoption>. CUPS does not need a printcap file.
-	However, the <filename>cupsd.conf</filename> configuration file knows of two related directives that control
-	how such a file will be automatically created and maintained by CUPS for the convenience of third-party
-	applications (example: <parameter>Printcap /etc/printcap</parameter> and <parameter>PrintcapFormat BSD</parameter>).
-	Legacy programs often require the existence of a printcap file containing printer names or they will refuse to
-	print. Make sure CUPS is set to generate and maintain a printcap file. For details, see
-	<command>man cupsd.conf</command> and other CUPS-related documentation, like the wealth of documents on your CUPS server
-	itself: <ulink noescape="1" url="http://localhost:631/documentation.html">http://localhost:631/documentation.html</ulink>.
-	</para>
-	#
 	<para>
 	In Samba-3.0 (gilt auch für 2.2.x) sind für das grundlegende
 	Drucken mit CUPS nur 2 Einträge nötig:
 	<smbconfoption><name>printing</name><value>cups</value></smbconfoption>
 	and
 	<smbconfoption><name>printcap</name><value>cups</value></smbconfoption>.
-	CUPS benötig auch keine printcap Datei.
+	CUPS benötigt keine printcap-Datei.
 	Dennoch gibt es in der Konfigurationsdatei
-	<filename>cupsd.conf</filename> zwei dazu relevante Einträge die
-	dazu dienen diese Datei anzulegen und zu verwalten damit
+	<filename>cupsd.conf</filename> zwei zugehörige Einträge, die
+	kontrollieren, wie diese Datei anzulegen und zu verwalten ist, damit
 	Anwendungen von Drittherstellern damit umgehen können (Beispiel:
 	<parameter>Printcap /etc/printcap</parameter> and
 	<parameter>PrintcapFormat BSD</parameter>).
-	Ältere Programme benötigen oft zum drucken diese printcap Datei mit den
-	Namen der Drucker. Stellen Sie daher sicher das CUPS so
-	konfiguriert wurde das diese printcap Datei erstellt und
-	gewartet wird. Für Details schauen Sie in die man Page
-	<command>man cupsd.conf</command>, in die CUPS relevanten
-	Dokumentationen sowie in den vielen Infos vom CUPS Server
+	Ältere Programme benötigen oft diese printcap-Datei mit den
+	Namen der Drucker, um drucken zu können. Stellen Sie daher sicher, daß CUPS so
+	konfiguriert wurde, daß diese printcap-Datei erstellt und
+	gewartet wird. Für Details sehen Sie die man-Page
+	<command>man cupsd.conf</command>, die CUPS-relevanten
+	Dokumentationen, sowie die vielen Infos vom CUPS Server
 	selbst: <ulink noescape="1" url="http://localhost:631/documentation.html">http://localhost:631/documentation.html</ulink>.
 	</para>
 
 	<sect2>
-		<title>Linking smbd with libcups.so</title>
-		#
-		<title>smbd mit libcups.so linken</title>
+		<title>Das Verlinken von smbd mit libcups.so</title>
 
-		<para>
-		Samba has a special relationship to CUPS. Samba can be compiled with CUPS library support.
-		Most recent installations have this support enabled. Per default, CUPS linking is compiled
-		into smbd and other Samba binaries. Of course, you can use CUPS even
-		if Samba is not linked against <filename>libcups.so</filename> &smbmdash; but
-		there are some differences in required or supported configuration.
-		</para>
-		#
 		<para>
 		Samba hat eine spezielle Beziehung zu CUPS. Samba kann
-		mit der CUPS Library übersetzt werden. Die meisten
+		mit Unterstützung für die CUPS-Library übersetzt werden. Die meisten
 		aktuellen Installationen haben diesen Support bereits
-		per default in smbd und den anderen Samba Binarys
-		integriert. Sie können CUPS auch benutzen wenn Samba
+		per default in smbd und den anderen Samba-Binaries
+		integriert. Sie können CUPS auch benutzen, wenn Samba
 		nicht gegen die <filename>libcups.so</filename>
-		&smbmdash; gelinkt ist, aber es sind dann einige Unterschiede in
-		den benötigten und unterstützten Konfigurationen.
+		&smbmdash; gelinkt ist, aber es gibt einige Unterschiede in
+		den benötigten oder unterstützten Konfigurationen.
 		</para>
-
-
+		
 		<para>
-		When Samba is compiled against <filename>libcups</filename>, <smbconfoption><name>printcap</name><value>cups</value></smbconfoption>
-		uses the CUPS API to list printers, submit jobs, query queues, and so on. Otherwise it maps to the System V
-		commands with an additional <command>-oraw</command> option for printing. On a Linux
-		system, you can use the <command>ldd</command> utility to find out details (ldd may not be present on
-		other OS platforms, or its function may be embodied by a different command):
-		</para>
-		#
-		<para>
-		Wenn Samba mit <filename>libcups</filename> comiliert
+		Wenn Samba mit <filename>libcups</filename> kompiliert
 		wurde, verwendet <smbconfoption><name>printcap</name><value>cups</value></smbconfoption>
-		die CUPS API um Drucker aufzufinden, Jobs zu übergeben,
+		die CUPS-API, um Drucker aufzufinden, Jobs zu übergeben,
 		Queues abzufragen usw. 
-		Sonst wird dies auf die System V Druck Kommandos mit der zusätzlichen
-		<command>-oraw</command> Option umgesetzt.
-		Auf einem Linux System können Sie mit dem
+		Sonst wird dies auf die System V Druck-Kommandos mit der zusätzlichen
+		<command>-oraw</command>-Option umgesetzt.
+		Auf einem Linux-System können Sie mit dem
 		<command>ldd</command> Utility nähere Details erfahren
 		(ldd muss nicht auf allen Plattformen vorhanden sein,
-		oder dessen Funktion kann durch ein vergleichbares
-		Programm erreicht werden).
+		oder dessen Funktion kann in einem vergleichbarem
+		Programm inkludiert sein).
 		</para>
 
 
@@ -206,39 +161,21 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 </screen></para>
 
 		<para>
-		The line <computeroutput>libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)</computeroutput> shows
-		there is CUPS support compiled into this version of Samba. If this is the case, and printing = cups
-		is set, then <emphasis>any otherwise manually set print command in &smb.conf; is ignored</emphasis>.
-		This is an important point to remember!
-		</para>
-		#
-		<para>
-		Die Zeile <computeroutput>libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)</computeroutput> 
-		bedeutet das der CUPS Support in Samba einkompiliert wurde.
-		In diesem Fall, und bei gesetzten printing = cups, dann
+		Die Zeile 
+		<computeroutput>libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)</computeroutput> 
+		bedeutet, daß der CUPS-Support in Samba einkompiliert wurde.
+		In diesem Fall, und bei gesetztem printing = cups,
 		<emphasis>werden anderweitige manuell gesetzte print
 		Kommandos in &smb.conf; ignoriert</emphasis>.
 		Bitte merken Sie sich diesen wichtigen Punkt !
 		</para>
 
-
-		<tip><para> Should it be necessary, for any reason, to set your own print commands, you can do this by setting
-		<smbconfoption><name>printing</name><value>sysv</value></smbconfoption>. However, you will loose all the benefits
-		of tight CUPS/Samba integration. When you do this you must manually configure the printing system commands
-		(most important: 
-		<smbconfoption><name>print command</name></smbconfoption>; other commands are
-		<smbconfoption><name>lppause command</name></smbconfoption>,
-		<smbconfoption><name>lpresume command</name></smbconfoption>,
-		<smbconfoption><name>lpq command</name></smbconfoption>,
-		<smbconfoption><name>lprm command</name></smbconfoption>,
-		<smbconfoption><name>queuepause command</name></smbconfoption> and
-		<smbconfoption><name>queue resume command</name></smbconfoption>).</para></tip>
-		#
-		<tip><para>Sollte es aus irgendeinem Grund nötig sein
-		Ihre eigenen Druck Kommandos zu verwenden, können sie
-		dies erreichen in dem sie die <smbconfoption><name>printing</name><value>sysv</value></smbconfoption>
-		Option verwenden.
-		Aber Sie verlieren die Unterstützung der engen CUPS/Samba Integration. 
+		<tip><para>Sollte es aus irgendeinem Grund nötig sein,
+		Ihre eigenen Druck-Kommandos zu setzen, können sie
+		dies erreichen, in dem sie die Option 
+		<smbconfoption><name>printing</name><value>sysv</value></smbconfoption>
+		verwenden.
+		Sie verlieren so jedoch die Unterstützung der engen CUPS/Samba-Integration. 
 		Wenn Sie das vorhaben, müssen Sie folgende Druckkommandos manuell konfigurieren
 		(am wichtigsten:	
 		<smbconfoption><name>print command</name></smbconfoption>; andere Kommandos sind
@@ -251,34 +188,25 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
         </sect2>
 
 	<sect2>
-		<title>Simple &smb.conf; Settings for CUPS</title>
-		#
 		<title>Einfache &smb.conf; Einstellungen für CUPS</title>
 
 		<para>
-		To summarize, <link linkend="cups-exam-simple">following example</link> shows simplest printing-related setup for &smb.conf; to enable basic CUPS support:
-		</para>
-		#
-		<para>
-		Als Zusammenfassung <link
-		linkend="cups-exam-simple">zeigt das folgende
-		Beispiel</link> ein einfaches, für Drucker relevantes Setup
-		für &smb.conf; um den grundlegenden Support für CUPS zu
-		erhalten:
+		Als Zusammenfassung <link linkend="cups-exam-simple">
+		zeigt das folgende Beispiel</link>
+		ein einfaches Drucker-relevantes Setup
+		für &smb.conf;, um den grundlegenden Support für CUPS zu erhalten:
 		</para>
 
 
 		<para><smbconfexample id="cups-exam-simple">
-		<title>Simplest printing-related smb.conf</title>
-		#
-		<title>einfache Druckerbezogene smb.conf</title>
+		<title>Einfachste Drucker-bezogene smb.conf</title>
 		<smbconfsection>[global]</smbconfsection>
 		<smbconfoption><name>load printers</name><value>yes</value></smbconfoption>
 		<smbconfoption><name>printing</name><value>cups</value></smbconfoption>
 		<smbconfoption><name>printcap name</name><value>cups</value></smbconfoption>
 
 		<smbconfsection>[printers]</smbconfsection>
-		<smbconfoption><name>comment</name><value>All Printers</value></smbconfoption>
+		<smbconfoption><name>comment</name><value>Alle Drucker</value></smbconfoption>
 		<smbconfoption><name>path</name><value>/var/spool/samba</value></smbconfoption>
 		<smbconfoption><name>browseable</name><value>no</value></smbconfoption>
 		<smbconfoption><name>public</name><value>yes</value></smbconfoption>
@@ -290,56 +218,36 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 		</smbconfexample></para>
 
 		<para>
-		This is all you need for basic printing setup for CUPS. It will print
-		all graphic, text, PDF, and PostScript files submitted from Windows
-		clients. However, most of your Windows users would not know how to
-		send these kinds of files to print without opening a GUI
-		application. Windows clients tend to have local printer drivers
-		installed, and the GUI application's print buttons start a printer
-		driver. Your users also rarely send files from the command
-		line. Unlike UNIX clients, they hardly submit graphic, text or PDF
-		formatted files directly to the spooler. They nearly exclusively print
-		from GUI applications with a <quote>printer driver</quote> hooked in between the
-		application's native format and the print-data-stream. If the backend
-		printer is not a PostScript device, the print data stream is <quote>binary,</quote>
-		sensible only for the target printer. Read on to learn which problem
-		this may cause and how to avoid it.
-		</para>
-		#
-		<para>
-		Das ist alles was Sie an grundlegende Einstellungen
-		zum Drucken mit CUPS benötigen. Es wird alle Grafik,
-		Text, PDF, und Postscript Dateien von Ihren Windows
-		Clients drucken. Aber die meisten Ihrer Windows User
-		wollen nicht wissen wie sie solche Dateien ohne einen
-		Grafischen Druckerdialog übermitteln können. Windows
-		Clients haben meist einen lokalen Druckertreiber
-		installiert, welcher in den Anwendungen durch den Druck
-		Button aktiviert wird. Ihre Benutzer drucken auch selten
+		Das ist alles, was Sie an grundlegenden Einstellungen
+		zum Drucken mit CUPS benötigen. Dies wird alle Grafik-,
+		Text-, PDF-, und Postscript-Dateien drucken, die von Ihren Windows-Clients
+		übermittelt werden. Aber die meisten Ihrer Windows-Benutzer
+		würden nicht wissen, wie sie solche Dateien ohne einen
+		grafischen Druckerdialog übermitteln können. Windows
+		Clients haben meist lokale Druckertreiber
+		installiert, welche in den Anwendungen durch den Druck-Button
+		aktiviert werden. Ihre Benutzer drucken auch selten
 		Dateien aus der Kommandozeile. Im Gegensatz zu Unix
-		Client's tun Sie sich schwer Grafik, Text oder PDF
-		formatierte Dateien direkt zum Spooler zu schicken. Sie
-		drucken eher exklusiv aus Anwendungen heraus über den
-		<quote>Druckertreiber</quote> welcher zwischen der
-		nativen Ausgabe aus dem Programm und dem Druckdatenstrom
-		sitzt. Ist das Ausgabegerät kein PostScript Drucker, so
+		Client's senden sie kaum Grafik-, Text- oder PDF-
+		formatierte Dateien direkt zum Spooler. Sie
+		drucken fast ausschließlich aus GUI-Anwendungen über den
+		<quote>Druckertreiber</quote>, welcher zwischen der
+		nativen Ausgabe des Programms und dem Druckdatenstrom
+		sitzt. Ist das Ausgabegerät kein PostScript-Drucker, so
 		ist der Druckdatenstrom in einem <quote>Binärformat</quote>
 		welches nur der betreffende Drucker versteht.
-		Lesen Sie bitte weiter um zu verstehen welche Probleme
+		Lesen Sie bitte weiter, um zu verstehen, welche Probleme
 		dabei entstehen und wie Sie diese vermeiden.	
 		</para>
 	</sect2>
 
 	<sect2>
-	<title>More Complex CUPS &smb.conf; Settings</title>
-	#
-	<title>Weitere, komplexere CUPS &smb.conf; Settings</title>
-##
+	<title>Komplexere CUPS-Einstellungen in der &smb.conf;</title>
 	<para>
-	<link linkend="overridesettings">Next configuration</link> is a slightly more complex printing-related setup
-	for &smb.conf;. It enables general CUPS printing
-	support for all printers, but defines one printer share, which is set
-	up differently. 
+	<link linkend="overridesettings">Die nächste Konfiguration</link> 
+	beschreibt ein etwas komplexeres Drucker-Setup der &smb.conf;.
+	Es aktiviert generellen CUPS-Druck-Support für alle Drucker, definiert aber einen
+	Drucker, der davon abweichend konfiguriert wird.
 	</para>
 
 	<para><smbconfexample id="overridesettings">
