@@ -142,52 +142,55 @@ Funktionstüchtigkeit gewährleistet ist.
 </para>
 
 <para>
-In the SMB/CIFS networking world, there are only two types of security: <emphasis>User Level</emphasis>
-and <emphasis>Share Level</emphasis>. We refer to these collectively as <emphasis>security levels</emphasis>.
-In implementing these two security levels, Samba provides flexibilities
-that are not available with Microsoft Windows NT4/200x servers. In actual fact, Samba implements
-<emphasis>Share Level</emphasis> security only one way, but has four ways of implementing
-<emphasis>User Level</emphasis> security. Collectively, we call the Samba implementations
-<emphasis>Security Modes</emphasis>. They are known as: <emphasis>SHARE</emphasis>, <emphasis>USER</emphasis>,
-<emphasis>DOMAIN</emphasis>, <emphasis>ADS</emphasis>, and <emphasis>SERVER</emphasis> modes.
-They are documented in this chapter.
+In der SMB/CIFS Netzwerkwelt gibt es nur zwei Arten der Sicherheit: <emphasis>User Level</emphasis>
+und <emphasis>Share Level</emphasis>. Wir beziehen uns auf diese beiden Arten als: <emphasis>User
+Level</emphasis>. Durch Realisierung dieser beiden Security Arten bietet Samba flexibilitäten die
+nicht in Microsoft NT4/200x Servern enthalten sind. Derzeit unterstützt Samba die <emphasis>Share
+Level</emphasis> Sicherheit nur in einem Weg, dafür aber vier Wege die <emphasis>User Level</emphasis>
+Sicherheit. Zusammen gesehen nennen wir die Samba Sicherheiten <emphasis>Sicherheits Modi</emphasis>.
+Sie sind bekannt als: <emphasis>SHARE</emphasis>, <emphasis>USER</emphasis>,
+<emphasis>DOMAIN</emphasis>, <emphasis>ADS</emphasis>, und <emphasis>SERVER</emphasis> modi die in diesem
+Kapitel behandelt werden.
 </para>
 
 <para>
-An SMB server tells the client at startup what security level it is running. There are two options:
-Share Level and User Level. Which of these two the client receives affects the way the client then
-tries to authenticate itself. It does not directly affect (to any great extent) the way the Samba
-server does security. This may sound strange, but it fits in with the client/server approach of SMB.
-In SMB everything is initiated and controlled by the client, and the server can only tell the client
-what is available and whether an action is allowed.
+Ein SMB Server sagt dem Client während des Startens mit welcher Sicherheitsstufe der SMB Server läuft,
+hierbei gibt es zwei Optionen: Share Level und User Level.
+So wie diese beiden Möglichkeiten den Client erreichen beeinflussen sie ihn in der Art, wie er sich
+selbst authentifiziert. Es beeinflusst den nicht direkt die Art wie der Samba Server die Sicherheit
+handhabt. Klingt ein wenig merkwürdig, aber es passt zu dem Weg wie SMB arbeitet. Bei SMB wird alles
+vom Client initiert und kontrolliert und der Server teilt dem Client nur mit was Verfügbar bzw. erlaubt ist.
 </para>
 
 <sect2>
-<title>User Level Security</title>
+<title>User Level Sicherheit</title>
 
 <para>
-We will describe User Level Security first, as its simpler.
-In User Level Security, the client will send a
-session setup request directly following protocol negotiation.
-This request provides a username and password. The server can either accept or reject that
-username/password combination. At this stage the server has no idea what
-share the client will eventually try to connect to, so it can't base the
-<emphasis>accept/reject</emphasis> on anything other than:
+Der einfachheit halber möchten wir zuerst die User Level Sicherheit erläutern.
+In dieser Sicherheitsstufe sendet der Client einen Session Setup Request und direkt darauf
+folgend eine Protocol Absprache. Diese Anfrage liefert einen Benutzernamen und ein Passwort,
+die der Server entweder akkzeptiert oder die Benutzernamen/Passwort Kombination verweigert.
+An diesem Punkt hat der Server keine Ahnung, welche Freigabe der Client eventuell aufrufen wollte,
+es wird nur durch folgende Punkte eine Entscheidung zur <emphasis>Annahme</emphasis> oder der
+<emphasis>Verweigerung</emphasis> getroffen:
+
 </para>
 
 <orderedlist>
-<listitem><para>the username/password.</para></listitem>
-<listitem><para>the name of the client machine.</para></listitem>
+<listitem><para>dem Benutzernamen/Passwort.</para></listitem>
+<listitem><para>dem Namen des Client PCs.</para></listitem>
 </orderedlist>
 
 <para>
-If the server accepts the username/password then the client expects to be able to
-mount shares (using a <emphasis>tree connection</emphasis>) without specifying a
-password. It expects that all access rights will be as the username/password
-specified in the <emphasis>session setup</emphasis>.
+Wenn der Server den Benutzernamen mit dem entsprechenden Passwort akkzeptiert
+erwartet der Client Freigaben zu binden (unter Verwendung einer <emphasis>Baum
+Verbindung</emphasis>) ohne ein weiteres mal das Passwort zu nennen. Der Client
+geht davo aus, dass alle Zugriffsrechte durch den Benutzernamen/Passwort aus
+dem <emphasis>Session Setup</emphasis> geregelt werden.
 </para>
 
 <para>
+
 It is also possible for a client to send multiple <emphasis>session setup</emphasis>
 requests. When the server responds, it gives the client a <emphasis>uid</emphasis> to use
 as an authentication tag for that username/password. The client can maintain multiple
