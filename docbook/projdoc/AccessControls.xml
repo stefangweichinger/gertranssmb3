@@ -16,7 +16,7 @@ Ihre Daten mit Zugriffskontrolllisten vor unerlaubten  Zugriffen zu schuetzen.
 
 <para>
 Viele UNIX Administratoren sind nicht mit der MS Windows Umgebung vertraut, besondere Probleme ergeben sich aus den
-Benutzerwuenschen &uuml;ber die Kontrolle von Dateien und Verzeichnisse und deren Einrichtung
+Benutzerwuenschen ueber die Kontrolle von Dateien und Verzeichnisse und deren Einrichtung
 </para>
 
 <para>
@@ -34,12 +34,12 @@ Administratoren wird dies erstaunen,da dies seit Jahren elementarer Bestandteil 
 </para>
 
 <para>
-Diese Kapitel soll die Punkte im Einzelnen klaeren die mit Samba 3 n&ouml;tig und moeglich sind um Administratoren die best
-m&ouml;gliche Zugriffsverwaltung zu ermoeglichen welche die Windows Benutzer benoetigen
+Diese Kapitel soll die Punkte im Einzelnen klaeren die mit Samba 3 noetig und moeglich sind um Administratoren die best
+erreichbare Zugriffsverwaltung zu ermoeglichen welche die Windows Benutzer benoetigen.
 </para>
 
 <para>
-Samba ist nicht primaer daf&uuml;r gedacht eine Unix Plattform in eine Windows Plattform zu verwandeln, sondern soll hoechst
+Samba ist nicht primaer dafuer gedacht eine Unix Plattform in eine Windows Plattform zu verwandeln, sondern soll hoechst
 moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 </para>
 
@@ -47,7 +47,7 @@ moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 <title>Moeglichkeiten und Vorteile</title>
 
 	<para>
-	Samba erm&ouml;glicht ein hohe Flexibilitaet beim Systemzugriff. Hier sind die Zugriffskontrollmoeglichkeiten der
+	Samba ermoeglicht ein hohe Flexibilitaet beim Systemzugriff. Hier sind die Zugriffskontrollmoeglichkeiten der
 	jetzigen Version (3) von Samba.
 	</para>
 
@@ -60,9 +60,9 @@ moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 
 			<para>
 			Samba arbeitet mit dem UNIX Dateizugriffskontrollen zusammen. Nutzer greifen als Windowsbenutzer
-			auf Samba zu. Informationen &uuml;ber den Nutzer werden beim einloggen uebergeben. Samba benutzt
+			auf Samba zu. Informationen ueber den Nutzer werden beim einloggen uebergeben. Samba benutzt
 			diese Login Informationen um zu entscheiden ob einem Nutzer Zugriff auf Systemdaten gewaehrt werden soll oder nicht. Dieses
-			Kapitel enthaelt eine Uebersicht von UNIX Berechtigungen f&uuml;r Nutzer die diese nicht kennen oder etwas verwirrt &uuml;ber
+			Kapitel enthaelt eine Uebersicht von UNIX Berechtigungen fuer Nutzer die diese nicht kennen oder etwas verwirrt ueber
 			diese sind.
 			</para>
 		</listitem>
@@ -73,7 +73,7 @@ moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 
 			<para>
 			Beim Konfigurieren von Netzlaufwerken mit Samba in der Datei smb.conf kann der Administrator
-			Berechtigungen des darunterliegenden Dateisystems ver&auml;ndern und beeinflussen. Dies ermoeglicht teilweise eine Annaeherung
+			Berechtigungen des darunterliegenden Dateisystems veraendern und beeinflussen. Dies ermoeglicht teilweise eine Annaeherung
 			an das Verhalten dass Windowsnutzer erwarten. Dieser Weg ist aber nur selten die beste Loesung.
 			Die grundlegenden Moeglichkeiten werden hier beschrieben.
 			</para>
@@ -100,7 +100,7 @@ moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 			<para>
 			Der Gebrauch von UNIXkontrolllisten ist nur moeglich wenn diese Funktion in dem darunterliegenden
 			Dateisystem implemtiert sind. In jedem anderem Fall ist deren Nutzung nicht moeglich. Aktuelle UNIXsysteme sollten diese
-			Unterstuezung haben. Es gibt Patches f&uuml;r die Linux Kernel die diese Moeglichkeit implementieren falls nicht vorhanden.
+			Unterstuezung haben. Es gibt Patches fuer die Linux Kernel die diese Moeglichkeit implementieren falls nicht vorhanden.
 			Viele UNIXsysteme werden mit der Unterstuetzung ausgeliefert , in diesem Kapitel werden wir wir versuchen den Nutzern
 			deren Gebrauch zu erklaeren
 			</para>
@@ -114,7 +114,7 @@ moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 
 <para>
 Es ist wichtig festzustellen dass MS Windows ein voellig anderes Dateizugriffssystem benutzt als UNIXsysteme. Wir werden
-erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbr&uuml;cken.
+erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbruecken.
 </para>
 
 	<sect2>
@@ -132,7 +132,7 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbr&uuml;ck
 
 	<para>
 	Gluecklicherweise bietet Samba eine Reihe von Konfigurationsmoeglichkeiten um die Unterschiede zu
-	ueberbr&uuml;cken.Wir werden einige dieser Einstellungsm&ouml;glichkeiten betrachten, jedoch nicht alle. Wer mehr wissen moechte sollte die
+	ueberbruecken.Wir werden einige dieser Einstellungsm&ouml;glichkeiten betrachten, jedoch nicht alle. Wer mehr wissen moechte sollte die
 	Beschreibung ( man = manual Datei ) der smb.conf lesen.
 	</para>
 
@@ -146,7 +146,7 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbr&uuml;ck
 			<term>Namens Raum</term>
 			<listitem>
 		<para>
-		Windows Dateinamen k&ouml;nnen 254 Zeichen lang sein, UNIX beherrscht bis zu 1023 Zeichen. Die
+		Windows Dateinamen koennen 254 Zeichen lang sein, UNIX beherrscht bis zu 1023 Zeichen. Die
 		Dateierweiterung beschreibt in Windows einen bestimmten Dateityp, in UNIXsystemen ist das nicht zwingend so.
 		</para>
 		<para>
@@ -170,7 +170,7 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbr&uuml;ck
 		ob eine Datei gross oder klein geschrieben wird.
 		</para>
 		<para>
-		Im unteren Beispiel w&uuml;rden die Dateinamen von Windows voellig gleich interpretiert werden , fuer UNIX waeren es drei verschiedene Dateien.
+		Im unteren Beispiel wuerden die Dateinamen von Windows voellig gleich interpretiert werden , fuer UNIX waeren es drei verschiedene Dateien.
 		<screen>
 				MYFILE.TXT
 				MyFile.txt
@@ -196,22 +196,21 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbr&uuml;ck
 		<para>
 				<indexterm><primary>Directory Separators</primary></indexterm>
 		MS Windows und DOS benutzen den \ ( Backslash) als Verzeichnis Trennzeichen <constant>\</constant>
-		UNIX benuzt ( wie im Internet &uuml;blich ) den Slash / als Verzeichnis Trennzeichen.
+		UNIX benuzt ( wie im Internet ueblich ) den Slash / als Verzeichnis Trennzeichen.
 		<constant>/</constant>Dies wird von Samba transparent (f&uuml;r den Windowsnutzer unbemerkt ) umgelegt.
 		</para>
 			</listitem>
 		</varlistentry>
 
 		<varlistentry>
-			<term>Drive Identification</term>
+			<term>Laufwerks Bezeichnung</term>
 			<listitem>
 		<para>
 			<indexterm><primary>Laufwerks Bezeichnung</primary></indexterm>
-		MS Windows products support a notion of drive letters, like <command>C:</command> to represent
-		disk partitions. UNIX has no concept of separate identifiers for file partitions, each
-		such file system is mounted to become part of the overall directory tree.
-		The UNIX directory tree begins at <constant>/</constant> just like the root of a DOS drive is specified as
-		<constant>C:\</constant>.
+		In MS Windows werden verschiedene Festplatten Partitionen mit Buchstaben belegt.<command>C:</command>
+		Es gibt unter UNIX kein aehnliches Konzept, Festplatten Teile ( Partitionen ) werden eingebunden 
+		( gemounted ) als Teil des Dateisystems. Was unter DOS <constant>C:\</constant> ist wäre unter UNIX einfach 
+		( root = Wurzel des Dateisystembaumes )<constant>/</constant>.
 		</para>
 			</listitem>
 		</varlistentry>
@@ -220,11 +219,10 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbr&uuml;ck
 			<term>File Naming Conventions</term>
 			<listitem>
 		<para>
-			<indexterm><primary>File Naming Conventions</primary></indexterm>
-		MS Windows generally never experiences file names that begin with a dot (<constant>.</constant>) while in UNIX these
-		are commonly found in a user's home directory. Files that begin with a dot (<constant>.</constant>) are typically
-		either start-up files for various UNIX applications, or they may be files that contain
-		start-up configuration data.
+			<indexterm><primary>Datei Namenskonvention</primary></indexterm>
+		MS Windows kennt keine Dateien deren Namen mit einem Punkt beginnt(<constant>.</constant>) 
+		In UNIX werden solche Dateien haeufig in den "Home" ( Heimatverzeichnissen) von Nutzern gefunden. 
+		Punktdateien(<constant>.</constant>) sind typischerweise Start oder Konfigurations Dateien fuer UNIXprogramme
 		</para>
 			</listitem>
 		</varlistentry>
