@@ -4,7 +4,7 @@
 	&author.jht;
 	&author.jeremy;
 	<author>&person.jelmer;<contrib>drawing</contrib></author>
-	<author>&person.rrügner;<contrib>German Translator</contrib></author>
+	<author>&person.rruegner;<contrib>German Translator</contrib></author>
 	<pubdate>May 10, 2003</pubdate>
 </chapterinfo>
 <title>Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle</title>
