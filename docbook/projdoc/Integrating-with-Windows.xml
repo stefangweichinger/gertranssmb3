@@ -288,7 +288,8 @@ This file tells the name resolution libraries:
 	<listitem><para>Den Name oder die IP Adresse der möglichen
 	Domain Name Server welche für eine Namen-zu-Adressen Übersetzung
 	befragt werden können.
-	#
+	</para></listitem>
+	 
 	<listitem><para>The name or IP address of available Domain 
 	Name Servers that may be asked to perform name-to-address 
 	translation lookups.
