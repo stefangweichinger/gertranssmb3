@@ -93,25 +93,25 @@ Cyclic Web site verfügbar.
 </para>
 
 <para>
-To gain access via anonymous CVS, use the following steps. 
-For this example it is assumed that you want a copy of the 
-Samba source code. For the other source code repositories 
-on this system just substitute the correct package name.
+Um Zugriff via anonymem CVS zu erlangen, führen Sie die folgenden Schritte durch.
+In diesem Beispiel wird angenommen, daß Sie eine Kopie des Samba-Quelltexts haben
+wollen. Für die anderen Quelltext-Repositories auf diesem System ersetzen sie einfach
+den Package-Namen.
 </para>
 
 <procedure>
-	<title>Retrieving Samba using CVS</title>
+	<title>Samba über CVS beziehen</title>
 
 	<step>
 	<para>
-	Install a recent copy of CVS. All you really need is a 
-	copy of the CVS client binary. 
+	Installieren Sie eine aktuelle Version von CVS.
+	Alles was Sie brauchen, ist eine Kopie des CVS-client-Programmes.
 	</para>
 	</step>
 
 	<step>
 	<para>
-	Run the command:
+	Führen Sie folgenden Befehl aus:
 	</para>
 
 	<para>
@@ -122,13 +122,13 @@ on this system just substitute the correct package name.
 	<step>
 	
 	<para>
-	When it asks you for a password, type <userinput>cvs</userinput>.
+	Wenn Sie nach dem Passwort gefragt werden, tippen Sie <userinput>cvs</userinput>.	
 	</para>
 	</step>
 
 	<step>
 	<para>
-	Run the command 
+	Führen Sie folgenden Befehl aus:	
 	</para>
 	
 	<para>
@@ -136,17 +136,17 @@ on this system just substitute the correct package name.
 	</para>
 	
 	<para>
-	This will create a directory called <filename>samba</filename> containing the 
-	latest Samba source code (i.e., the HEAD tagged CVS branch). This 
-	currently corresponds to the 3.0 development tree. 
+	Dies wird ein Verzeichnis namens <filename>samba</filename> anlegen, das
+	den neuesten Samba-Quelltext (den CVS-Zweig namens HEAD) enthält.
+	Dies entspricht momentan dem Entwicklungs-Code für Samba 3.0.	
 	</para>
 	
 	<para>
-	CVS branches other then HEAD can be obtained by using the
-	<option>-r</option> and defining a tag name. A list of branch tag names 
-	can be found on the <quote>Development</quote> page of the Samba Web site. A common
-	request is to obtain the latest 3.0 release code. This could be done by 
-	using the following command:
+	CVS-Zweige, die nicht HEAD sind, können bezogen werden, indem man die
+	Option <option>-r</option> mit einem tag-Namen verwendet. Eine Liste 
+	von tag-Namen kann auf der Seite <quote>Development</quote> der Samba-Web-Site
+	gefunden werden. Eine gebräuchliche Anfrage ist die nach dem letzten 3.0
+	Release-Code. Dies könnte wie folgt geschehen:
 	</para>
 	
 	<para>
@@ -156,8 +156,8 @@ on this system just substitute the correct package name.
 
 	<step>
 	<para>
-	Whenever you want to merge in the latest code changes, use 
-	the following command from within the Samba directory: 
+	Wann immer Sie die letzten Code-Änderungen übernehmen wollen, verwenden Sie
+	folgenden Befehl innerhalb des Samba-Verzeichnisses:	
 	</para>
 	
 	<para>
@@ -172,7 +172,7 @@ on this system just substitute the correct package name.
 </sect1>
 
 <sect1>
-	<title>Accessing the Samba Sources via rsync and ftp</title>
+	<title>Zugriff auf die Samba-Quelltexte via rsync und ftp</title>
 
 
 	<para>
