@@ -1,14 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="StandAloneServer">
 <chapterinfo>
 	&author.jht;
+        <author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
-<title>Stand-alone Servers</title>
+<title>Stand-alone-Server</title>
 
 <para>
-Stand-alone Servers are independent of Domain Controllers on the network.
-They are not Domain Members and function more like workgroup servers. In many
-cases a Stand-alone Server is configured with a minimum of security control
-with the intent that all data served will be readily accessible to all users.
+Stand-alone-Server sind im Netzwerk unabhängig von Domänen-Controllern.
+Sie sind keine Domänen-Mitglieder und funktionieren eher wie
+Arbeitsgruppen-Server. In vielen Fällen wird ein Stand-alone-Server mit einem
+Minimum an Sicherheits-Kontrolle konfiguriert, mit der Absicht, daß alle Daten
+für alle Benutzer frei zugänglich sein sollen.
 </para>
 
 <sect1>
