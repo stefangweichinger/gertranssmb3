@@ -1,20 +1,22 @@
 <para><link linkend="IntroSMB">Einf&#xFC;rung in Samba</link><itemizedlist><listitem><para>David Lechnyr &lt;<ulink noescape="1" url="mailto:david@lechnyr.com">david@lechnyr.com</ulink>&gt;</para></listitem>
 	<listitem><para>Hendrik B&#xE4;cker &lt;<ulink noescape="1" url="mailto:h_baecker@gmx.net">h_baecker@gmx.net</ulink>&gt; (German Translator) </para></listitem>
-	</itemizedlist></para><para><link linkend="install">How to Install and Test SAMBA</link><itemizedlist><listitem><para>Andrew Tridgell &lt;<ulink noescape="1" url="mailto:tridge@samba.org">tridge@samba.org</ulink>&gt;</para></listitem>
+	</itemizedlist></para><para><link linkend="install">Wie man Samba installiert und testet</link><itemizedlist><listitem><para>Andrew Tridgell &lt;<ulink noescape="1" url="mailto:tridge@samba.org">tridge@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Jelmer R.  Vernooij &lt;<ulink noescape="1" url="mailto:jelmer@samba.org">jelmer@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>John H.  Terpstra &lt;<ulink noescape="1" url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Karl Auer &lt;<ulink noescape="1" url="mailto:kauer@biplane.com.au">kauer@biplane.com.au</ulink>&gt;</para></listitem>
 	<listitem><para>Dan Shearer &lt;<ulink noescape="1" url="mailto:dan@samba.org">dan@samba.org</ulink>&gt;</para></listitem>
+	<listitem><para>Hendrik B&#xE4;cker &lt;<ulink noescape="1" url="mailto:h_baecker@gmx.net">h_baecker@gmx.net</ulink>&gt; (German Translator) </para></listitem>
 	</itemizedlist></para><para><link linkend="FastStart">Schnelleinstieg f&#xFC;r ungeduldige</link><itemizedlist><listitem><para>John H.  Terpstra &lt;<ulink noescape="1" url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Jochen Yoshi  Schmidt &lt;<ulink noescape="1" url="mailto:jochen.schmidt@millenux.com">jochen.schmidt@millenux.com</ulink>&gt; (German Translator) </para></listitem>
-	</itemizedlist></para><para><link linkend="ServerType">Server Types and Security Modes</link><itemizedlist><listitem><para>Andrew Tridgell &lt;<ulink noescape="1" url="mailto:tridge@samba.org">tridge@samba.org</ulink>&gt;</para></listitem>
+	</itemizedlist></para><para><link linkend="ServerType">Server Arten und Sicherheitsmodi</link><itemizedlist><listitem><para>Andrew Tridgell &lt;<ulink noescape="1" url="mailto:tridge@samba.org">tridge@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Jelmer R.  Vernooij &lt;<ulink noescape="1" url="mailto:jelmer@samba.org">jelmer@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>John H.  Terpstra &lt;<ulink noescape="1" url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
+	<listitem><para>Hendrik B&#xE4;cker &lt;<ulink noescape="1" url="mailto:h_baecker@gmx.net">h_baecker@gmx.net</ulink>&gt; (German Translator) </para></listitem>
 	</itemizedlist></para><para><link linkend="samba-pdc">Die Kontrolle &#xFC;ber eine Dom&#xE4;ne</link><itemizedlist><listitem><para>John H.  Terpstra &lt;<ulink noescape="1" url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Gerald (Jerry)  Carter &lt;<ulink noescape="1" url="mailto:jerry@samba.org">jerry@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>David Bannon &lt;<ulink noescape="1" url="mailto:dbannon@samba.org">dbannon@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Guenther Deschner &lt;<ulink noescape="1" url="mailto:gd@suse.de">gd@suse.de</ulink>&gt; (LDAP updates) </para></listitem>
-	<listitem><para>Stefan G.  Weichinger &lt;<ulink noescape="1" url="mailto:monitor@oops.co.at">monitor@oops.co.at</ulink>&gt; (German Translator) </para></listitem>
+	<listitem><para>  (German Translator) </para></listitem>
 	</itemizedlist></para><para><link linkend="samba-bdc">Backup Domain Control</link><itemizedlist><listitem><para>John H.  Terpstra &lt;<ulink noescape="1" url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Volker Lendecke &lt;<ulink noescape="1" url="mailto:Volker.Lendecke@SerNet.DE">Volker.Lendecke@SerNet.DE</ulink>&gt;</para></listitem>
 	<listitem><para>Guenther Deschner &lt;<ulink noescape="1" url="mailto:gd@suse.de">gd@suse.de</ulink>&gt; (LDAP updates) </para></listitem>

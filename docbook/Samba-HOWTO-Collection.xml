@@ -75,24 +75,26 @@ eingesehen werden.
 </preface>
 
 <preface>
-	<title>Eigenschaft</title>
+	<title>Zuschreibung</title>
 		<para><link linkend="IntroSMB">Einf&#xFC;rung in Samba</link><itemizedlist><listitem><para>David Lechnyr &lt;<ulink url="mailto:david@lechnyr.com">david@lechnyr.com</ulink>&gt;</para></listitem>
 	<listitem><para>Hendrik B&#xE4;cker &lt;<ulink url="mailto:h_baecker@gmx.net">h_baecker@gmx.net</ulink>&gt; (German Translator) </para></listitem>
-	</itemizedlist></para><para><link linkend="install">How to Install and Test SAMBA</link><itemizedlist><listitem><para>Andrew Tridgell &lt;<ulink url="mailto:tridge@samba.org">tridge@samba.org</ulink>&gt;</para></listitem>
+	</itemizedlist></para><para><link linkend="install">Wie man Samba installiert und testet</link><itemizedlist><listitem><para>Andrew Tridgell &lt;<ulink url="mailto:tridge@samba.org">tridge@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Jelmer R.  Vernooij &lt;<ulink url="mailto:jelmer@samba.org">jelmer@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>John H.  Terpstra &lt;<ulink url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Karl Auer &lt;<ulink url="mailto:kauer@biplane.com.au">kauer@biplane.com.au</ulink>&gt;</para></listitem>
 	<listitem><para>Dan Shearer &lt;<ulink url="mailto:dan@samba.org">dan@samba.org</ulink>&gt;</para></listitem>
+	<listitem><para>Hendrik B&#xE4;cker &lt;<ulink url="mailto:h_baecker@gmx.net">h_baecker@gmx.net</ulink>&gt; (German Translator) </para></listitem>
 	</itemizedlist></para><para><link linkend="FastStart">Schnelleinstieg f&#xFC;r ungeduldige</link><itemizedlist><listitem><para>John H.  Terpstra &lt;<ulink url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Jochen Yoshi  Schmidt &lt;<ulink url="mailto:jochen.schmidt@millenux.com">jochen.schmidt@millenux.com</ulink>&gt; (German Translator) </para></listitem>
-	</itemizedlist></para><para><link linkend="ServerType">Server Types and Security Modes</link><itemizedlist><listitem><para>Andrew Tridgell &lt;<ulink url="mailto:tridge@samba.org">tridge@samba.org</ulink>&gt;</para></listitem>
+	</itemizedlist></para><para><link linkend="ServerType">Server Arten und Sicherheitsmodi</link><itemizedlist><listitem><para>Andrew Tridgell &lt;<ulink url="mailto:tridge@samba.org">tridge@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Jelmer R.  Vernooij &lt;<ulink url="mailto:jelmer@samba.org">jelmer@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>John H.  Terpstra &lt;<ulink url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
+	<listitem><para>Hendrik B&#xE4;cker &lt;<ulink url="mailto:h_baecker@gmx.net">h_baecker@gmx.net</ulink>&gt; (German Translator) </para></listitem>
 	</itemizedlist></para><para><link linkend="samba-pdc">Die Kontrolle &#xFC;ber eine Dom&#xE4;ne</link><itemizedlist><listitem><para>John H.  Terpstra &lt;<ulink url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Gerald (Jerry)  Carter &lt;<ulink url="mailto:jerry@samba.org">jerry@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>David Bannon &lt;<ulink url="mailto:dbannon@samba.org">dbannon@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Guenther Deschner &lt;<ulink url="mailto:gd@suse.de">gd@suse.de</ulink>&gt; (LDAP updates) </para></listitem>
-	<listitem><para>Stefan G.  Weichinger &lt;<ulink url="mailto:monitor@oops.co.at">monitor@oops.co.at</ulink>&gt; (German Translator) </para></listitem>
+	<listitem><para>  (German Translator) </para></listitem>
 	</itemizedlist></para><para><link linkend="samba-bdc">Backup Domain Control</link><itemizedlist><listitem><para>John H.  Terpstra &lt;<ulink url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Volker Lendecke &lt;<ulink url="mailto:Volker.Lendecke@SerNet.DE">Volker.Lendecke@SerNet.DE</ulink>&gt;</para></listitem>
 	<listitem><para>Guenther Deschner &lt;<ulink url="mailto:gd@suse.de">gd@suse.de</ulink>&gt; (LDAP updates) </para></listitem>
@@ -532,6 +534,7 @@ ins Deutsche &#xDC;bersetzt. Es besteht kein Anspruch auf Richtigkeit der hier g
 </sect1>
 </chapter>
 
+
 <chapter id="install">
 <chapterinfo>
 	
@@ -569,60 +572,70 @@ ins Deutsche &#xDC;bersetzt. Es besteht kein Anspruch auf Richtigkeit der hier g
 	<address format="linespecific"><email>dan@samba.org</email></address>
 </affiliation>
 </author>
+	<author>
+<firstname>Hendrik</firstname><othername/><surname>B&#xE4;cker</surname><othername/>
+<affiliation>
+        <orgname>The German Samba 3.0 Translation Team</orgname>
+        <address format="linespecific"><email>h_baecker@gmx.net</email></address>
+</affiliation><contrib>German Translator</contrib></author>
 	
 
 </chapterinfo>
 
-<title>How to Install and Test SAMBA</title>
+<title>Wie man Samba installiert und testet</title>
 
 <sect1>
-	<title>Obtaining and Installing Samba</title>
+	<title>Wie man Samba bekommt und installiert</title>
 
 	<para>
-	Binary packages of Samba are included in almost any Linux or
-	UNIX distribution. There are also some packages available at 
-	<ulink url="http://samba.org/">the Samba homepage</ulink>. Refer to 
-	the manual of your operating system for details on installing packages 
-	for your specific operating system.
+	Bin&#xE4;r Pakete von Samba gibt es mittlerweile in fast jeder
+	Linux oder Unix Distribution. Auch gibt es einige Pakete
+	auf <ulink url="http://samba.org/">der Samba Homepage</ulink>.
+	Lesen Sie bitte in der Bedienungsanleitung ihres Betriebsystems
+	nach wie Sie auf ihrem System Samba installieren k&#xF6;nnen.
 	</para>
 
-	<para>If you need to compile Samba from source, check 
-	<link linkend="compiling"/>.</para>
+	<para>Wenn Sie Samba von den Quelldateien selbst installieren
+	m&#xF6;chten, bekommen Sie <link linkend="compiling">hier</link>
+	weitere Informationen.</para>
 
 </sect1>
 
 <sect1>
-	<title>Configuring Samba (smb.conf)</title>
+	<title>Samba konfigurieren (smb.conf)</title>
 
 	<para>
-	Samba's configuration is stored in the <filename moreinfo="none">smb.conf</filename> file, which
-	usually resides in <filename moreinfo="none">/etc/samba/smb.conf</filename> 
-	or <filename moreinfo="none">/usr/local/samba/lib/smb.conf</filename>. You can either 
-	edit this file yourself or do it using one of the many graphical 
-	tools that are available, such as the Web-based interface SWAT, that 
-	is included with Samba.
+	Die Samba konfiguration wird in der <filename moreinfo="none">smb.conf</filename> vorgenommen die
+	Sie &#xFC;blicherweise in <filename moreinfo="none">/etc/samba/smb.conf</filename> oder
+	<filename moreinfo="none">/usr/local/samba/lib/smb.conf</filename> finden.
+	Sie k&#xF6;nnen diese Datei selbst editieren oder eines der vielen
+	grafischen Oberfl&#xE4;chen wie das Webbasierte SWAT nutzen, welches
+	mit Samba mitgeliefert wird.
 	</para>
 
 	<sect2>
-	<title>Configuration file syntax</title>
+	<title>Die Syntax der Konfiguration</title>
 
-	<para>The <filename moreinfo="none">smb.conf</filename> file uses the same syntax as the various old 
-	.ini files in Windows 3.1: Each file consists of various sections, 
-	which are started by putting the section name between brackets ([]) 
-	on a new line. Each contains zero or more key/value-pairs seperated by an 
-	equality sign (=). The file is just a plain-text file, so you can 
-	open and edit it with your favorite editing tool.</para>
+	<para>Die <filename moreinfo="none">smb.conf</filename> nutzt nahezu die gleiche Syntax wie die
+	verschiedenen .ini Dateien von Windows 3.1: Jede Datei enth&#xE4;lt
+	verschiedene Sektionen wobei jede dieser Sektionen durch Klammern
+	([]) getrennt sind. Jede Sektion besteht aus keinem oder mehreren
+	Schl&#xFC;ssel/Wert paaren die durch das Gleichheitszeichen (=)
+	miteinander verbunden werden. Dies ist eine Klartext ASCII Datei,
+	die Sie mit ihrem Lieblings Editor bearbeiten k&#xF6;nnen.
+	</para>
 
-	<para>Each section in the <filename moreinfo="none">smb.conf</filename> file represents a share 
-	on the Samba server. The section <quote>global</quote> is special, since it 
-	contains settings that apply to the whole Samba server and not 
-	to one share in particular.</para>
+	<para>Jede Sektion der <filename moreinfo="none">smb.conf</filename> Datei repr&#xE4;sentiert eine Freigabe
+	auf dem Samba Server bis auf die <quote>global</quote>, dies ist
+	eine spezielle Sektion da sie Einstellungen enth&#xE4;lt die den gesamten
+	Samba Server beeinflussen und nicht nur einzelne Freigaben.
+	</para>
 
-<para><link linkend="smbconfminimal"/> contains a very minimal <filename moreinfo="none">smb.conf</filename>.
-	<indexterm significance="normal"><primary>minimal configuration</primary></indexterm>
+<para><link linkend="smbconfminimal"/> enth&#xE4;lt eine sehr kleine <filename moreinfo="none">smb.conf</filename>.
+	<indexterm significance="normal"><primary>Minimal Konfiguration</primary></indexterm>
 </para>
 
-	<example id="smbconfminimal"><title>A minimal smb.conf</title><simplelist>
+	<example id="smbconfminimal"><title>Eine minimale smb.conf</title><simplelist>
 		
 
 		<member> </member><member><parameter>[global]</parameter></member>
@@ -639,72 +652,75 @@ ins Deutsche &#xDC;bersetzt. Es besteht kein Anspruch auf Richtigkeit der hier g
 </sect2>
 
 <sect2>
-	<title>Starting Samba</title>
+	<title>Samba starten</title>
 
 	<para>
-	Samba essentiall consists of two or three daemons. A daemon is a UNIX application that runs in the background and provides services.
-	An example of a service is the Apache Web server for which the daemon is called <command moreinfo="none">httpd</command>. In the case of Samba there
-	are three daemons, two of which are needed as a minimum.
+	Samba an sich besteht aus zwei oder drei sog. daemons. Ein deamon ist eine Unix Applikation die im Hintergrund l&#xE4;uft und Dienste zur Verf&#xFC;gung stellt.
+	Ein Beispiel eines solchen Dienstes ist der Apache Web Server f&#xFC;r den der daemon <command moreinfo="none">httpd</command> hei&#xDF;t.
+	Im Falle von Samba gibt es drei daemons von denen mindestens zwei ben&#xF6;tigt werden.
 	</para>
 
 	<para>
-	The Samba server is made up of the following daemons:
+	Der Samba Server besteht aus folgenden daemons:
 	</para>
 
 	<variablelist>
 		<varlistentry><term>nmbd</term>
 			<listitem><para>
-			This daemon handles all name registration and resolution requests. It is the primary vehicle involved
-			in network browsing. It handles all UDP based protocols. The <command moreinfo="none">nmbd</command> daemon should
-			be the first command started as part of the Samba start-up process.
+			Dieser daemon behandelt alle Namenregistrierungen und Namensaufl&#xF6;sungs anfragen. Es ist das Prim&#xE4;re
+			Werkzeug f&#xFC;r das schm&#xF6;ckern eines Netzwerkes. Er ist in der lage mit jedem UDP basierten Protokoll
+			umzugehen. Das Kommando <command moreinfo="none">nmbd</command> sollte der erste daemon sein der im Rahmen des Samba
+			Startvorgangs geladen wird.
 			</para></listitem>
 		</varlistentry>
 
 		<varlistentry><term>smbd</term>
 			<listitem><para>
-			This daemon handles all TCP/IP based connection services for file and print based operations. It also
-			manages local authentication. It should be started immediately following the start-up of <command moreinfo="none">nmbd</command>.
+			Dieser daemon behandelt alle TCP/IP basierenden Verbindungen f&#xFC;r Datei- und Druckbasierten operationen.
+			Ebenfalls handelt dieser daemon mit der Benutzerauthentisierung und sollte direkt nach dem Start von
+			<command moreinfo="none">nmbd</command> aufgerufen werden.
 			</para></listitem>
 		</varlistentry>
 
 		<varlistentry><term>winbindd</term>
 			<listitem><para>
-			This daemon should be started when Samba is a member of a Windows NT4 or ADS Domain. It is also needed when
-			Samba has trust relationships with another Domain. The <command moreinfo="none">winbindd</command> daemon will check the
-			<filename moreinfo="none">smb.conf</filename> file for the presence of the <parameter moreinfo="none">idmap uid</parameter> and <parameter moreinfo="none">idmap gid</parameter>
-			parameters. If they are not found <command moreinfo="none">winbindd</command> will bail-out and refuse to start.
+			Dieser daemon sollte gestartet werden, wenn der Samba Server ein Mitglied einer Windows NT4 oder ADS
+			(ActiveDirectoryService) Dom&#xE4;ne ist. Er ist ebenfalls n&#xF6;tig, wenn Samba in einem Vertrauenverh&#xE4;ltnis
+			zu anderen Dom&#xE4;nen steht. Der <command moreinfo="none">winbindd</command> daemon &#xFC;berpr&#xFC;ft die <filename moreinfo="none">smb.conf</filename> auf das
+			vorhanden sein der <parameter moreinfo="none">idmap uid</parameter> und <parameter moreinfo="none">idmap gid</parameter> Parameter.
+			Sollten Sie fehlen gibt der <command moreinfo="none">winbindd</command> einen Fehler aus und startet nicht.
 			</para></listitem>
 		</varlistentry>
 	</variablelist>
 
 	<para>
-	When Samba has been packages by an operating system vendor the start-up process is typically a custom feature of its
-	integration into the platform as a whole. Please refer to your operating system platform administration manuals for
-	specific information pertaining to correct management of Samba start-up.
+	Wenn Samba als Paket einer Distribution installiert wird liegt meist ein Start-Stop Script f&#xFC;r den
+	Ordnungsgem&#xE4;&#xDF;en start von Samba vor ist aber eher ein positives Merkmal der Distribution. Bitte
+	konsultieren Sie das Administrationshandbuch ihres Betriebsystems bez&#xFC;glich des einbinden eines solchen
+	Start-Stop Scripts.
 	</para>
 
 </sect2>
-	
+
 <sect2>
-	<title>Example Configuration</title>
-	
+	<title>Beispiel Konfiguration</title>
+
 	<para>
-	There are sample configuration files in the examples subdirectory in the
-	distribution. It is suggested you read them carefully so you can see how the options
-	go together in practice. See the man page for all the options. 
-	It might be worthwhile to start out with the smb.conf.default 
-	configuration file and adapt it to your needs. It contains plenty of 
-	comments.
+	Es gibt Beispiel Konfigurationsdateien in einem separaten Unterverzeichnis der
+	Distribution. Es ist empfehlenswert diese Beispiele aufmerksam zu lesen um zu
+	verstehen wie die verschiedenen Optionen in der Praxis zusammenarbeiten. Um eine
+	zusammenfassung aller m&#xF6;glichen Optionen zu sehen rufen Sie bitte die man-pages auf.
+	Es lohnt sich die vorgegebene smb.conf.default als Grundlage der pers&#xF6;nlichen
+	Konfiguration zu verwenden da sie viele Kommentare zu den verschiedenen Optionen enth&#xE4;lt.
 	</para>
 
 	<para>
-	The simplest useful configuration file would contain something like shown in
-	<link linkend="simple-example"/>.
+	Die einfachste Konfiguration sollte mindestens <link linkend="simple-example"/> enthalten.
 	</para>
 
 	<para>
 	<indexterm significance="normal"><primary>simple configuration</primary></indexterm>
-	<example id="simple-example"><title>Another simple smb.conf File</title><simplelist>
+	<example id="simple-example"><title>Eine weitere vereinfachte smb.conf Datei</title><simplelist>
 		
 <member> </member><member><parameter>[global]</parameter></member>
 <member><parameter>workgroup = MIDEARTH</parameter></member>
@@ -714,44 +730,45 @@ ins Deutsche &#xDC;bersetzt. Es besteht kein Anspruch auf Richtigkeit der hier g
 <member><parameter>read only = no</parameter></member>
 	</simplelist></example>
 	</para>
-	
+
 	<para>
-	This will allow connections by anyone with an account on the server, using either
-	their login name or <parameter>homes</parameter> as the service name.
-	(Note: The workgroup that Samba should appear in must also be set. The default
-	workgroup name is WORKGROUP.)
-	</para>
-	
-	<para>
-	Make sure you put the <filename moreinfo="none">smb.conf</filename> file in the correct place.
+	Diese Konfiguration erlaubt es jedem der einen Benutzeraccount auf dem Server hat
+	sich mit seinem Login Namen auf die Freigabe <parameter>homes</parameter>
+	zu verbinden. (Hinweis: Der name der Arbeitsgruppe/Dom&#xE4;ne sollte hier so wie
+	gew&#xFC;nscht gesetzt werden, der Standard f&#xFC;r diese Option ist WORKGROUP.)
 	</para>
 
 	<para>
-	For more information about security settings for the 
-	<parameter>[homes]</parameter> share please refer to 
-	<link linkend="securing-samba"/>.
+	Stellen Sie sicher, dass sie die <filename moreinfo="none">smb.conf</filename> Datei im richtigen Verzeichniss gespeichert haben.
+	</para>
+
+	<para>
+	F&#xFC;r weitere Informationen &#xFC;ber die Sicherheitseinstellungen f&#xFC;r <parameter>[homes]</parameter>
+	lesen Sie bitte hier: <link linkend="securing-samba"/>
 	</para>
 
 <sect3>
-	<title>Test Your Config File with <command moreinfo="none">testparm</command></title>
+	<title>Test der Konfiguration mit <command moreinfo="none">testparm</command></title>
 
 	<para>
-	It's important to validate the contents of the <filename moreinfo="none">smb.conf</filename> file using the <application moreinfo="none">testparm</application> program.
-	If testparm runs correctly, it will list the loaded services. If not, it will give an error message.
-	Make sure it runs correctly and that the services look reasonable before proceeding. Enter the command: 
+	Es ist wichtig ihrer Konfigurations&#xE4;nderung mit <application moreinfo="none">testparm</application> zu &#xFC;berpr&#xFC;fen, wenn ihre Konfiguration
+	richtig ist sollte testparm eine Liste der Verf&#xFC;gbaren Services auflisten, andernfalls wird es
+	eine Fehlermeldung ausgeben.
+	&#xDC;berpr&#xFC;fen Sie ihre Konfiguration mittels:
 	</para>
 
 	<screen format="linespecific">
 	<prompt moreinfo="none">root# </prompt> testparm /etc/samba/smb.conf
 	</screen>
 
-	<para>Testparm will parse your configuration file and report 
-	any unknown parameters or incorrect syntax. </para>
+	<para>Testparm wird ihre Konfiguration &#xFC;berpr&#xFC;fen und m&#xF6;gliche unbekannte Parameter oder fehler in
+	der Syntax ausgeben.
+	</para>
 
-	
+
 
 	<para>
-	Always run testparm again whenever the <filename moreinfo="none">smb.conf</filename> file is changed!
+	Es ist sehr empfehlenswert testparm nach einer &#xC4;nderung der <filename moreinfo="none">smb.conf</filename> auszuf&#xFC;hren.
 	</para>
 
 </sect3>
@@ -762,67 +779,74 @@ ins Deutsche &#xDC;bersetzt. Es besteht kein Anspruch auf Richtigkeit der hier g
 
 	<para>
 	<indexterm significance="normal"><primary>swat</primary></indexterm>
-	SWAT is a Web-based interface that can be used to facilitate the configuration of Samba. 
-	SWAT might not be available in the Samba package that shipped with your platform, 
-	but in a separate package. Please read the SWAT manpage 
-	on compiling, installing and configuring SWAT from source.
+	SWAT ist eine Weboberfl&#xE4;che die dazu genutzt werden kann die Konfiguration von Samba zu erleichtern.
+	Es kann m&#xF6;glich sein, dass SWAT nicht in der Paketinstallation ihrer Distribution enthalten ist, dann
+	finden Sie es aber meist in einem separaten Paket. Bitte beachten Sie die SWAT man-page wenn Sie SWAT
+	aus den Quelldateien kompilieren, installieren und konfigurien wollen.
 	</para>
 
 	<para>
-	To launch SWAT, just run your favorite Web browser and point it to
+	Um SWAT zu starten verwenden Sie einfach ihren favorisierten Web-Browser und verwenden folgende URL
 	<ulink url="http://localhost:901/">http://localhost:901/</ulink>.
-	Replace <replaceable>localhost</replaceable> with the name of the computer on which
-	Samba is running if that is a different computer than your browser.
+	Ersetzen Sie <replaceable>localhost</replaceable> mit dem Namen des Computers auf dem Sie Samba
+	installiert haben wenn Sie den Web-Browser von einem anderen PC als den Samba Server starten.
 	</para>
 
 	<para>
-	SWAT can be used from a browser on any IP-connected machine, but be aware that connecting from a remote
-	machine leaves your connection open to password sniffing as passwords will be sent over the wire in the clear. 
+	SWAT kann von jedem Browser eines IP-Netzes aus genutzt werden aber beachten Sie dass bei Verbindungen
+	von einem entfernten Rechner die Gefahr besteht dass ihre Passw&#xF6;rter abgeh&#xF6;rt werden k&#xF6;nnen, da diese
+	in Klartext &#xFC;ber das Kabel transportiert werden.
 	</para>
 
-	<para>More information about SWAT can be found in <link linkend="SWAT"/>.</para>
+	<para>Weitere Informationen &#xFC;ber SWAT k&#xF6;nnen Sie hier finden:
+	<link linkend="SWAT"/></para>
 
 </sect2>
 
 </sect1>
 
 <sect1>
-	<title>List Shares Available on the Server</title>
+	<title>Auflistung von Freigaben auf dem Server</title>
 
 	<para>
-	To list shares that are available from the configured Samba server execute the
-	following command:
+	Verwenden Sie folgendes Kommando um die verf&#xFC;gbaren ihres Samba Server aufzulisten:
 	</para>
 
 <para><screen format="linespecific">
 <prompt moreinfo="none">$ </prompt><userinput moreinfo="none">smbclient -L <replaceable>yourhostname</replaceable></userinput>
 </screen></para>
 
-	<para>You should see a list of shares available on your server. If you do not, then
-	something is incorrectly configured. This method can also be used to see what shares 
-	are available on other SMB servers, such as Windows 2000.</para>
+	<para>Sie sollten nun eine Liste der verf&#xFC;gbaren Freigaben ihres Servers sehen, wenn
+	nicht dann ist etwas nicht richtig konfiguriert. Dieses Kommando k&#xF6;nnen Sie ebenfalls
+	nutzen um die Freigaben anderer Server z.B. Windows 2000 zu betrachten.
+	</para>
 
-	<para>If you choose user-level security you may find that Samba requests a password
-	before it will list the shares. See the <command moreinfo="none">smbclient</command> man page for details.
-	You can force it to list the shares without a password by adding the option
-	<option>-N</option> to the command line. </para>
+	<para>Wenn Sie user-level Sicherheit als Sicherheit f&#xFC;r ihren Server gew&#xE4;hlt haben, sollten
+	Sie nach dem Kommando nach einem Passwort f&#xFC;r ihren Benutzer gefragt werden bevor Sie die
+	Auflistung sehen. Lesen Sie die <command moreinfo="none">smbclient</command> man-page f&#xFC;r weitere Informationen.
+	Sie k&#xF6;nnen das Kommando mittels der Option <option>-N</option> in der Kommandozeile dazu bringen sich auch ohne
+	Passwort die Freigabeliste anzuzeigen.
+	</para>
 </sect1>
 
 <sect1>
-	<title>Connect with a UNIX Client</title>
-	
+	<title>Verbindung zu einem UNIX Client aufbauen</title>
+
 	<para>
-	Enter the following command:
+	Verwenden Sie folgendes Kommando:
 <screen format="linespecific">
 <prompt moreinfo="none">$ </prompt><userinput moreinfo="none">smbclient <replaceable> //yourhostname/aservice</replaceable></userinput>
 </screen></para>
-	
-	<para>Typically <replaceable>yourhostname</replaceable> is the name of the host on which <application moreinfo="none">smbd</application>
-	has been installed. The <replaceable>aservice</replaceable> is any service that has been defined in the <filename moreinfo="none">smb.conf</filename>
-	file. Try your user name if you just have a <parameter>[homes]</parameter> section in the <filename moreinfo="none">smb.conf</filename> file.</para>
 
-	<para>Example: If the UNIX host is called <replaceable>bambi</replaceable> and a valid login name
-	is <replaceable>fred</replaceable>, you would type:</para>
+	<para>Normalerweise ist <replaceable>yourhostname</replaceable> der Name des Hosts auf dem sich der <application moreinfo="none">smbd</application>
+	befindet und <replaceable>aservice</replaceable> ist ein belieber Service den dieser Host zur Verf&#xFC;gung
+	stellt. Versuchen Sie es mit ihrem Benutzernamen, wenn Sie eine Sektion <parameter>[homes]</parameter>
+	in der <filename moreinfo="none">smb.conf</filename> haben.
+	</para>
+
+	<para>Beispiel: Wenn der UNIX Host <replaceable>bambi</replaceable> hei&#xDF;t und ein g&#xFC;ltiger Login Name
+	<replaceable>fred</replaceable> ist k&#xF6;nnten Sie folgendes schreiben:
+	</para>
 
 <para><screen format="linespecific">
 <prompt moreinfo="none">$ </prompt><userinput moreinfo="none">smbclient //<replaceable>bambi</replaceable>/<replaceable>fred</replaceable></userinput>
@@ -830,21 +854,23 @@ ins Deutsche &#xDC;bersetzt. Es besteht kein Anspruch auf Richtigkeit der hier g
 </sect1>
 
 <sect1>
-	<title>Connect from a Remote SMB Client</title>
+	<title>Verbindung von einem entfernten SMB Client</title>
 
-	<para>Now that Samba is working correctly locally, you can try to 
-	access it from other clients. Within a few minutes, the Samba host 
-	should be listed in the Network Neighborhood on all Windows 
-	clients of its subnet. Try browsing the server from another client
-	or 'mounting' it.</para>
+	<para>Nun da Samba lokal richtig funktioniert k&#xF6;nnen Sie versuchen sich von einem anderen Rechner aus
+	an ihrem Samba Server anzumelden. Innerhalb weniger minuten sollte der Samba Server in ihrer
+	Netzwerkumgebung ihres Windows Subnetzes sichtbar sein. Versuchen Sie ihren Samba Server dort zu finden
+	oder versuchen Sie eine Netzwerkverbindung mit ihrem Server herzustellen.
+	</para>
 
-	<para>Mounting disks from a DOS, Windows or OS/2 client can be done by running a command such as:</para>
+	<para>Um eine Netzwerkverbindung unde DOS, Windows oder OS/2 Rechnern herzustellen f&#xFC;hren Sie folgendes
+	Kommando aus:
+	</para>
 
 	<para><screen format="linespecific">
-<prompt moreinfo="none">C:\&gt; </prompt><userinput moreinfo="none">net use d: \\servername\service</userinput>
-</screen></para>
+	<prompt moreinfo="none">C:\&gt; </prompt><userinput moreinfo="none">net use d: \\servername\service</userinput>
+	</screen></para>
 
-	<para>Try printing, e.g.</para>
+	<para>Versuchen Sie zu drucken:</para>
 
 	<para>
 <screen format="linespecific">
@@ -857,59 +883,62 @@ ins Deutsche &#xDC;bersetzt. Es besteht kein Anspruch auf Richtigkeit der hier g
 </sect1>
 
 <sect1>
-	<title>What If Things Don't Work?</title>
-	
-	<para>You might want to read <link linkend="diagnosis"/>.
-	If you are still stuck, refer to <link linkend="problems"/>.
-	Samba has been successfully installed at thousands of sites worldwide.
-	It is unlikely that your particular problem is unique, so it might be
-	productive to perform an Internet search to see if someone else has encountered
-	your problem and has found a way to overcome it.</para>
+	<title>Was wenn etwas nicht funktioniert?</title>
+
+	<para>Sie k&#xF6;nnen bei <link linkend="diagnosis">hier</link> Hilfe finden oder aber wenn es danach
+	immernoch nicht funktioniert lesen Sie bitte <link linkend="problems"/>. Samba wurde
+	bereits auf tausenden von Systemen installiert und es k&#xF6;nnte hilfreich sein im Internet zu suchen,
+	ob jemand anderes auch ihr Problem hatte und einen Weg gefunden hat es zu l&#xF6;sen.
+	You might want to read .
+	</para>
 
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Verbreitete Fehler</title>
 
 <para>
-The following questions and issues are raised repeatedly on the Samba mailing list.
+Folgende Fragen und Themen tauchen immer wieder in der Samba Mailing Liste auf.
 </para>
 
 <sect2>
-	<title>Large Number of smbd Processes</title>
+	<title>Gro&#xDF;e Anzahl von smbd Prozessen</title>
 
 <para>
-Samba consists of three core programs: <application moreinfo="none">nmbd</application>, <application moreinfo="none">smbd</application>, and <application moreinfo="none">winbindd</application>. <application moreinfo="none">nmbd</application> is the name server message daemon,
-<application moreinfo="none">smbd</application> is the server message daemon, and <application moreinfo="none">winbindd</application> is the daemon that handles communication with Domain Controllers.
+Samba enth&#xE4;lt drei Core Programme: <application moreinfo="none">nmbd</application> ist der Namensserver daemon, <application moreinfo="none">smbd</application> ist der Server Message
+daemon und <application moreinfo="none">winbindd</application> ist der daemon der mit Dom&#xE4;nen Controllern arbeitet.
 </para>
 
 <para>
-If Samba is <emphasis>not</emphasis> running as a WINS server, then there will be one single instance of
- <application moreinfo="none">nmbd</application> running on your system. If it is running as a WINS server then there will be
-two instances  one to handle the WINS requests.
+Wenn Samba <emphasis>nicht</emphasis> als WINS Server fungiert sollte es nur eine Instanz des <application moreinfo="none">nmbd</application> daemons
+auf ihrem System geben. Andernfalls sollten zwei <application moreinfo="none">nmbd</application> Prozesse laufen einer von den beiden behandelt die
+WINS Anfragen.
 </para>
 
 <para>
-<application moreinfo="none">smbd</application> handles all connection requests. It spawns a new process for each client
-connection made. That is why you may see so many of them, one per client connection.
+<application moreinfo="none">smbd</application> behandelt alle Verbindungsanfragen. Er ruft sich selbst f&#xFC;r jede neue Client-Verbindung auf. Das ist
+der Grund warum Sie mehrere Prozesse von <application moreinfo="none">smbd</application> sehen k&#xF6;nnen, einen f&#xFC;r jede Client-Verbindung.
 </para>
 
 <para>
-<application moreinfo="none">winbindd</application> will run as one or two daemons, depending on whether or not it is being
-run in <emphasis>split mode</emphasis> (in which case there will be two instances).
+<application moreinfo="none">winbindd</application> l&#xE4;uft in einem oder zwei Prozessen, abh&#xE4;ngig davon ob er im <emphasis>split mode</emphasis>
+l&#xE4;uft (in diesem Fall hat er zwei Instanzen).
 </para>
 
 </sect2>
 
 	<sect2>
-		<title>Error Message: open_oplock_ipc</title>
+		<title>Fehler Meldung: open_oplock_ipc</title>
 
-	<para>An error message is observed in the log files when <application moreinfo="none">smbd</application> is started: <quote>open_oplock_ipc: Failed to get local UDP socket
+	<para>Eine Fehlermeldung wird in der Log Datei beim starten von <application moreinfo="none">smbd</application> angezeigt:
+	<quote>open_oplock_ipc: Failed to get local UDP socket
 	for address 100007f. Error was Cannot assign requested.</quote></para>
 
-	<para>Your loopback device isn't working correctly. Make sure it is configured correctly. The loopback
-	device is an internal (virtual) network device with the IP address <emphasis>127.0.0.1</emphasis>.
-	Read your OS documentation for details on how to configure the loopback on your system.</para>
+	<para>Ihr Loopback Interface funktioniert nicht korrekt. Vergewissern Sie sich dass es korrekt
+	konfiguriert wurde. Das Loopack Interface ist eine interne (virtuelles) Netzwerkkarte mit der
+	IP-Adresse <emphasis>127.0.0.1</emphasis>. Lesen Sie in ihrer Betriebssystem Dokumentation nach,
+	wie Sie ihr Loopback interface einrichten.
+	</para>
 
 	</sect2>
 
@@ -917,18 +946,21 @@ run in <emphasis>split mode</emphasis> (in which case there will be two instance
 		<title><quote><errorname>The network name cannot be found</errorname></quote></title>
 
 		<para>
-		This error can be caused by one of these misconfigurations:
+		Dieser fehler kann von folgenden Mi&#xDF;konfigurationen stammen:
 		</para>
 
 		<itemizedlist>
-			<listitem><para>You specified an nonexisting path
-			for the share in <filename moreinfo="none">smb.conf</filename>.</para></listitem>
+			<listitem><para>Sie haben einen nicht existierenden Pfad f&#xFC;r eine Freigabe in der
+			<filename moreinfo="none">smb.conf</filename> angegeben.
+			</para></listitem>
 
-			<listitem><para>The user you are trying to access the share with does not 
-			have sufficient permissions to access the path for
-			the share. Both read (r) and access (x) should be possible.</para></listitem>
+			<listitem><para>Der Benutzer mit dem Sie versuchen auf eine Freigabe zu zugreifen hat
+			nicht die erforderlichen Rechte um auf den UNIX-Pfad zu zugreifen. Sowohl das Leserecht
+			(r) sowie das Zugriffsrecht (x) sollten dem Benutzer erlaubt sein.
+			</para></listitem>
 
-			<listitem><para>The share you are trying to access does not exist.</para></listitem>
+			<listitem><para>Die Freigabe auf die Sie versuchen zu zugreifen existiert nicht.
+			</para></listitem>
 	</itemizedlist>
 
 	</sect2>
@@ -978,6 +1010,8 @@ Informationen Samba unter Ber&#xFC;cksichtigung ihrer Netzwerkanforderungen einz
 lesen Sie dieses Kapitel aufmerksam durch.
 </para>
 </partintro>
+
+
 <chapter id="ServerType">
 <chapterinfo>
 	
@@ -1001,110 +1035,118 @@ lesen Sie dieses Kapitel aufmerksam durch.
 	<address format="linespecific"><email>jht@samba.org</email></address>
 </affiliation>
 </author>
+	<author>
+<firstname>Hendrik</firstname><othername/><surname>B&#xE4;cker</surname><othername/>
+<affiliation>
+        <orgname>The German Samba 3.0 Translation Team</orgname>
+        <address format="linespecific"><email>h_baecker@gmx.net</email></address>
+</affiliation><contrib>German Translator</contrib></author>
 </chapterinfo>
 
-<title>Server Types and Security Modes</title>
+<title>Server Arten und Sicherheitsmodi</title>
 
 <para>
-This chapter provides information regarding the types of server that Samba may be
-configured to be. A Microsoft network administrator who wishes to migrate to or
-use Samba will want to know the meaning, within a Samba context, of terms familiar to MS Windows
-administrator. This means that it is essential also to define how critical security
-modes function before we get into the details of how to configure the server itself.
+Dieses Kapitel enth&#xE4;llt Informationen betreffend der verschiedenen Server Typen
+die Sie im Samba Server einstellen k&#xF6;nnen. Ein Microsoft Netzwerk Administrator
+der zu Samba migrieren bzw. Samba nutzen m&#xF6;chte, ist bestimmt interessiert welche
+Samba Konfigurationen er machen muss im Vergleich zu den Konfigurationen eines
+Windows Servers. Es ist wichtig die Sicherheitsdefinitionen zu definieren, bevor
+man den Server selbst konfiguriert.
 </para>
 
 <para>
-The chapter provides an overview of the security modes of which Samba is capable
-and how they relate to MS Windows servers and clients.
+Dieses Kapitel gibt einen &#xDC;berblick &#xFC;ber die Sicherheitsmodi von Samba und wie Sie
+im Vergleich zu Windows stehen.
 </para>
 
 <para>
-A question often asked is, <quote>Why would I want to use Samba?</quote> Most chapters contain a section
-that highlights features and benefits. We hope that the information provided will help to
-answer this question. Be warned though, we want to be fair and reasonable, so not all
-features are positive towards Samba. The benefit may be on the side of our competition.
+Eine Frage die h&#xE4;ufig gestellt wird lautet: <quote>Warum will ich Samba nutzen?</quote>
+Die meisten Kapitel enthalten eine Sektion die die Postive Merkmale und Vorteile hervorhebt.
+Wir hoffen dass diese Informationen ihnen diese Frage beantworten k&#xF6;nnen. Wir wollen Fair
+und Vern&#xFC;nftig bleiben, somit ist darauf zu achten, dass nicht alle Features f&#xFC;r Samba
+sprechen. Der Vorzug k&#xF6;nnte auf unserer seite des Wettkampfes sein.
 </para>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Positive Merkmale und Vorteile</title>
 
 <para>
-Two men were walking down a dusty road, when one suddenly kicked up a small red stone. It
-hurt his toe and lodged in his sandal. He took the stone out and cursed it with a passion
-and fury befitting his anguish. The other looked at the stone and said, <quote>This is a garnet.
-I can turn that into a precious gem and some day it will make a princess very happy!</quote>
+Zwei M&#xE4;nner gehen eine staubige Stra&#xDF;e entlang als der eine pl&#xF6;tlzlich einen kleinen roten
+Stein wegschie&#xDF;t. Sein Zeh schmerzt durch den Stein und dieser wandert in die Sandale des
+einen Mannes. Er nimmt den Stein unter zornigem Fluchen aus der Sandale und ist sehr ver&#xE4;rgert.
+Der andere Mann schaut sich den Stein an und sagt: <quote>Dies ist ein Granat, ich k&#xF6;nnte ihn
+zu Schmuck verarbeiten und eines Tages wird er einer Prinzessin viel Freude bereiten.</quote>
 </para>
 
 <para>
-The moral of this tale: Two men, two very different perspectives regarding the same stone.
-Like it or not, Samba is like that stone. Treat it the right way and it can bring great
-pleasure, but if you are forced to use it and have no time for its secrets, then it can be
-a source of discomfort.
+Und die Moral von dieser Geschichte: Zwei M&#xE4;nnder, zwei verschiedene Betrachtungsweisen des
+gleichen Steins. M&#xF6;gen oder hassen. Samba ist wie dieser Stein. Behandeln Sie ihn richtig
+kann er ihnen einen gro&#xDF;en Dienst erweisen aber wenn Sie gezwungen sind ihn zu benutzen ohne
+seine Geheimnisse zu kennen kann er eine Quelle des Unbehagen sein.
 </para>
 
 <para>
-Samba started out as a project that sought to provide interoperability for MS Windows 3.x
-clients with a UNIX server. It has grown up a lot since its humble beginnings and now provides
-features and functionality fit for large scale deployment. It also has some warts. In sections
-like this one we tell of both.
+Samba startete als Projekt um zu versuchen die Zusammenarbeit von MS Windows 3.x Clients und
+Unix Servern zu gew&#xE4;hrleisten. Es ist seit den Anfangen viel gewachsen und stellt jetzt Merkmale
+und Funktionen zur Verf&#xFC;gung die es bereit f&#xFC;r gro&#xDF;e Aufgaben macht. Es hat aber auch ein paar
+Nachteile, die wir in Sektionen wie dieser besprechen m&#xF6;chten.
 </para>
 
 <para>
-So, what are the benefits of features mentioned in this chapter?
+Also, was sind die Vorteile und Merkmale die wir in diesem Kapitel erw&#xE4;hnt hatten?
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	Samba-3 can replace an MS Windows NT4 Domain Controller.
+	Samba 3 kann einen MS Windows NT4 Dom&#xE4;nen Controller ersetzen.
 	</para></listitem>
 
 	<listitem><para>
-	Samba-3 offers excellent interoperability with MS Windows NT4-style
-	domains as well as natively with Microsoft Active Directory domains.
+	Samba 3 bietet exzellente Kompatibilt&#xE4;t mit MS Windows NT4 Dom&#xE4;nen sowie
+	native Microsoft Active Directory Dom&#xE4;nen.
 	</para></listitem>
 
 	<listitem><para>
-	Samba-3 permits full NT4-style Interdomain Trusts.
+	Samba 3 erlaubt volle NT4-Stil Interdomain Trusts.
 	</para></listitem>
 
 	<listitem><para>
-	Samba has security modes that permit more flexible
-	authentication than is possible with MS Windows NT4 Domain Controllers.
+	Samba hat Sicherheitsmodi die anpassungsf&#xE4;higere Benutzer Beglaubigung
+	durchf&#xFC;hren k&#xF6;nnen als Windows NT4 Dom&#xE4;nen Controller.
 	</para></listitem>
 
 	<listitem><para>
-	Samba-3 permits use of multiple account database backends.
+	Samba 3 unterst&#xFC;tzt die Nutzung von verschiedenen Account Datenbanken zur gleichen Zeit.
 	</para></listitem>
 
 	<listitem><para>
-	The account (password) database backends can be distributed
-	and replicated using multiple methods. This gives Samba-3
-	greater flexibility than MS Windows NT4 and in many cases a
-	significantly higher utility than Active Directory domains
-	with MS Windows 200x.
+	Die Account- bzw. Passwortdatenbanken k&#xF6;nnen mit verschiedenen Methoden verteilt und
+	Repliziert werden. Dies erm&#xF6;glicht es mit Samba 3 eine gr&#xF6;&#xDF;ere Flexibilit&#xE4;t als MS
+	Windows NT4 und in vielen F&#xE4;llen auch bedeutsam besseres Werkzeug als Active Directory
+	Dom&#xE4;nen unter Windows 200x.
 	</para></listitem>
 </itemizedlist>
 
 </sect1>
 
 <sect1>
-<title>Server Types</title>
+<title>Server Arten</title>
 
 
 <para>
 <indexterm significance="normal"><primary>Server Type</primary></indexterm>
-Administrators of Microsoft networks often refer to three
-different type of servers:</para>
+Administratoren von Microsoft Netzwerken beziehen sich oft auf drei verschiedene Serverarten:
+</para>
 
 <itemizedlist>
-	<listitem><para>Domain Controller</para>
+	<listitem><para>D&#xF6;manen Controller</para>
 		<itemizedlist>
 			<listitem>Primary Domain Controller</listitem>
 			<listitem>Backup Domain Controller</listitem>
 			<listitem>ADS Domain Controller</listitem>
 		</itemizedlist>
 	</listitem>
-	<listitem><para>Domain Member Server</para>
+	<listitem><para>Dom&#xE4;nen Mitgliedsserver</para>
 		<itemizedlist>
 			<listitem>Active Directory Domain Server</listitem>
 			<listitem>NT4 Style Domain Domain Server</listitem>
@@ -1114,85 +1156,86 @@ different type of servers:</para>
 </itemizedlist>
 
 <para>
-The chapters covering Domain Control, Backup Domain Control and Domain Membership provide
-pertinent information regarding Samba configuration for each of these server roles.
-The reader is strongly encouraged to become intimately familiar with the information 
-presented.
+Die Kapitel &#xFC;ber Dom&#xE4;nen Controller, Backup Dom&#xE4;nen Controllern und Dom&#xE4;nen Mitgliedschaft
+enthalten sachdienliche Informationen f&#xFC;r die Samba Konfiguration f&#xFC;r jeden dieser Serverrollen.
+Wir m&#xF6;chte den Leser ermutigen sich mit diesen Informationen vertraut zu machen.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Samba Security Modes</title>
+<title>Samba Sicherheitsmodi</title>
 
 
 <para>
 <indexterm significance="normal"><primary>Security Mode</primary></indexterm>
 <indexterm significance="normal"><primary>security</primary></indexterm>
-In this section the function and purpose of Samba's security
-modes are described. An accurate understanding of how Samba implements each security
-mode as well as how to configure MS Windows clients for each mode will significantly
-reduce user complaints and administrator heartache.
+In dieser Sektion werden die Funktionen und Zwecke der Samba Sicherheits Modi beschrieben.
+Es ist wichtig zu verstehen wie jede der Sicherheitsm&#xF6;glichkeiten, die Samba bietet, arbeitet
+und wie die Windows Clients konfiguriert werden m&#xFC;ssen, damit die Sicherheit und
+Funktionst&#xFC;chtigkeit gew&#xE4;hrleistet ist.
 </para>
 
 <para>
-In the SMB/CIFS networking world, there are only two types of security: <emphasis>User Level</emphasis>
-and <emphasis>Share Level</emphasis>. We refer to these collectively as <emphasis>security levels</emphasis>.
-In implementing these two security levels, Samba provides flexibilities
-that are not available with Microsoft Windows NT4/200x servers. In actual fact, Samba implements
-<emphasis>Share Level</emphasis> security only one way, but has four ways of implementing
-<emphasis>User Level</emphasis> security. Collectively, we call the Samba implementations
-<emphasis>Security Modes</emphasis>. They are known as: <emphasis>SHARE</emphasis>, <emphasis>USER</emphasis>,
-<emphasis>DOMAIN</emphasis>, <emphasis>ADS</emphasis>, and <emphasis>SERVER</emphasis> modes.
-They are documented in this chapter.
+In der SMB/CIFS Netzwerkwelt gibt es nur zwei Arten der Sicherheit: <emphasis>User Level</emphasis>
+und <emphasis>Share Level</emphasis>. Wir beziehen uns auf diese beiden Arten als: <emphasis>User
+Level</emphasis>. Durch Realisierung dieser beiden Security Arten bietet Samba flexibilit&#xE4;ten die
+nicht in Microsoft NT4/200x Servern enthalten sind. Derzeit unterst&#xFC;tzt Samba die <emphasis>Share
+Level</emphasis> Sicherheit nur in einem Weg, daf&#xFC;r aber vier Wege die <emphasis>User Level</emphasis>
+Sicherheit. Zusammen gesehen nennen wir die Samba Sicherheiten <emphasis>Sicherheits Modi</emphasis>.
+Sie sind bekannt als: <emphasis>SHARE</emphasis>, <emphasis>USER</emphasis>,
+<emphasis>DOMAIN</emphasis>, <emphasis>ADS</emphasis>, und <emphasis>SERVER</emphasis> modi die in diesem
+Kapitel behandelt werden.
 </para>
 
 <para>
-An SMB server tells the client at startup what security level it is running. There are two options:
-Share Level and User Level. Which of these two the client receives affects the way the client then
-tries to authenticate itself. It does not directly affect (to any great extent) the way the Samba
-server does security. This may sound strange, but it fits in with the client/server approach of SMB.
-In SMB everything is initiated and controlled by the client, and the server can only tell the client
-what is available and whether an action is allowed.
+Ein SMB Server sagt dem Client w&#xE4;hrend des Startens mit welcher Sicherheitsstufe der SMB Server l&#xE4;uft,
+hierbei gibt es zwei Optionen: Share Level und User Level.
+So wie diese beiden M&#xF6;glichkeiten den Client erreichen beeinflussen sie ihn in der Art, wie er sich
+selbst authentifiziert. Es beeinflusst den nicht direkt die Art wie der Samba Server die Sicherheit
+handhabt. Klingt ein wenig merkw&#xFC;rdig, aber es passt zu dem Weg wie SMB arbeitet. Bei SMB wird alles
+vom Client initiert und kontrolliert und der Server teilt dem Client nur mit was Verf&#xFC;gbar bzw. erlaubt ist.
 </para>
 
 <sect2>
-<title>User Level Security</title>
+<title>User Level Sicherheit</title>
 
 <para>
-We will describe User Level Security first, as its simpler.
-In User Level Security, the client will send a
-session setup request directly following protocol negotiation.
-This request provides a username and password. The server can either accept or reject that
-username/password combination. At this stage the server has no idea what
-share the client will eventually try to connect to, so it can't base the
-<emphasis>accept/reject</emphasis> on anything other than:
+Der einfachheit halber m&#xF6;chten wir zuerst die User Level Sicherheit erl&#xE4;utern.
+In dieser Sicherheitsstufe sendet der Client einen Session Setup Request und direkt darauf
+folgend eine Protocol Absprache. Diese Anfrage liefert einen Benutzernamen und ein Passwort,
+die der Server entweder akkzeptiert oder die Benutzernamen/Passwort Kombination verweigert.
+An diesem Punkt hat der Server keine Ahnung, welche Freigabe der Client eventuell aufrufen wollte,
+es wird nur durch folgende Punkte eine Entscheidung zur <emphasis>Annahme</emphasis> oder der
+<emphasis>Verweigerung</emphasis> getroffen:
+
 </para>
 
 <orderedlist continuation="restarts" inheritnum="ignore">
-<listitem><para>the username/password.</para></listitem>
-<listitem><para>the name of the client machine.</para></listitem>
+<listitem><para>dem Benutzernamen/Passwort.</para></listitem>
+<listitem><para>dem Namen des Client PCs.</para></listitem>
 </orderedlist>
 
 <para>
-If the server accepts the username/password then the client expects to be able to
-mount shares (using a <emphasis>tree connection</emphasis>) without specifying a
-password. It expects that all access rights will be as the username/password
-specified in the <emphasis>session setup</emphasis>.
+Wenn der Server den Benutzernamen mit dem entsprechenden Passwort akkzeptiert
+erwartet der Client Freigaben zu binden (unter Verwendung einer <emphasis>Baum
+Verbindung</emphasis>) ohne ein weiteres mal das Passwort zu nennen. Der Client
+geht davo aus, dass alle Zugriffsrechte durch den Benutzernamen/Passwort aus
+dem <emphasis>Session Setup</emphasis> geregelt werden.
 </para>
 
 <para>
-It is also possible for a client to send multiple <emphasis>session setup</emphasis>
-requests. When the server responds, it gives the client a <emphasis>uid</emphasis> to use
-as an authentication tag for that username/password. The client can maintain multiple
-authentication contexts in this way (WinDD is an example of an application that does this).
+Es ist ebenfalls m&#xF6;glich, dass ein Client verschiedene <emphasis>session setup</emphasis> Anfragen,
+sendet. Wenn der Server darauf antwortet vergibt er dem Client eine <emphasis>uid</emphasis>
+als Authentifizierungs-Etikett. Der Client kann somit verschiedene Authentifizierungs Kontexte
+aufrecherhalten (WinDD ,als Beispiel, ist eine Applikation die diese Verfahrensweise nutzt).
 </para>
 
 <sect3>
-<title>Example Configuration</title>
+<title>Beispiel Konfiguration</title>
 
 <para>
-The <filename moreinfo="none">smb.conf</filename> parameter that sets user level security is:
+Die <filename moreinfo="none">smb.conf</filename> Parameter die die Sicherheitsstufe auf security setzt lautet:
 </para>
 
 <para><simplelist>
@@ -1200,48 +1243,48 @@ The <filename moreinfo="none">smb.conf</filename> parameter that sets user level
 </simplelist></para>
 
 <para>
-This is the default setting since Samba-2.2.x.
+Dies ist die Standard Einstellung seit Samba-2.2.x.
 </para>
 
 </sect3>
 
 </sect2>
 <sect2>
-<title>Share Level Security</title>
+<title>Share Level Sicherheit</title>
 
 <para>
-In Share Level security, the client authenticates
-itself separately for each share. It sends a password along with each 
-tree connection (share mount). It does not explicitly send a
-username with this operation. The client expects a password to be associated
-with each share, independent of the user. This means that Samba has to work out what
-username the client probably wants to use. It is never explicitly sent the username.
-Some commercial SMB servers such as NT actually associate passwords directly with
-shares in Share Level security, but Samba always uses the UNIX authentication scheme
-where it is a username/password pair that is authenticated, not a share/password pair.
+Bei der Share Level Sicherheit authentifiziert sich der Client selbst bei jedem
+Aufruf einer Freigabe mit einem Passwort. Es wird nicht explizit ein Benutzername
+vom Client zum Server gesendet. Der Client erwartet ein Passwort welches mit jeder
+Freigabe verbunden wird, somit hat Samba die Aufgabe heraus zu finden welchen
+Benuternamen der Client verwenden m&#xF6;chte. Einige kommerzielle SMB Server wie NT
+assoziieren Passw&#xF6;rter direkt mit Freigaben bei der Share Level Sicherheit, Samba
+im Gegensatz arbeitet mit dem UNIX Authentifizierung Schema welches ein Benutzer/Passwort
+Paar statt einem Share/Passwort Paar erwartet.
 </para>
 
 <para>
-To understand the MS Windows networking parallels, one should think
-in terms of MS Windows 9x/Me where one can create a shared folder that provides read-only
-or full access, with or without a password.
+Um die MS Windows Netzwerkparallele zu verstehen hier ein wichtiger Gedanke f&#xFC;r die Bedingung
+von Windows 9x/Me wo jemand einen Ordner Freigeben kann welcher Nur-Lese oder Vollzugriff mit
+oder ohne Passwort haben kann.
 </para>
 
 <para>
-Many clients send a session setup even if the server is in Share Level security. They
-normally send a valid username but no password. Samba records this username in a list
-of possible usernames. When the client then does a tree connection it also adds to this list the name
-of the share they try to connect to (useful for home directories) and any users
-listed in the <indexterm><primary>user</primary></indexterm><parameter moreinfo="none">user</parameter> parameter in the <filename moreinfo="none">smb.conf</filename> file.
-The password is then checked in turn against these possible usernames. If a match is found
-then the client is authenticated as that user.
+Viele Clients senden ein Session Setup auch dann wenn der Server als Share Level Sicherheit l&#xE4;uft.
+Sie &#xFC;bergeben normalerweise einen g&#xFC;ltigen Benutzernamen den sich Samba in einer Liste der
+m&#xF6;glichen Benutzernamen merkt. Wenn nun der Client eine Tree-connection macht nimmt der Samba Server
+den Namen der Freigabe in seine Liste auf (n&#xFC;tzlich f&#xFC;r Freigaben des Heimatverzeichnisses) und jeder
+Benutzer in des <indexterm><primary>user</primary></indexterm><parameter moreinfo="none">user</parameter> Parameters in der <filename moreinfo="none">smb.conf</filename> wird
+mit dem gesendeten Passworts &#xFC;berpr&#xFC;ft. Wenn nun durch den anf&#xE4;nglich gesendeten Benutzernamen
+und dem f&#xFC;r das Share gesendete Passwort eine &#xFC;bereinstimmung gefunden wird ist der Client
+berechtigt auf dieses Share zu zugreifen.
 </para>
 
 <sect3>
-<title>Example Configuration</title>
+<title>Beispiel Konfiguration</title>
 
 <para>
-The <filename moreinfo="none">smb.conf</filename> parameter that sets Share Level security is:
+Der <filename moreinfo="none">smb.conf</filename> Parameter der die Sicherheitsstufe auf Share Level Sicherheit setzt:
 </para>
 
 <para><simplelist>
@@ -1249,34 +1292,34 @@ The <filename moreinfo="none">smb.conf</filename> parameter that sets Share Leve
 </simplelist></para>
 
 <para>
-There are reports that recent MS Windows clients do not like to work
-with share mode security servers. You are strongly discouraged from using Share Level security.
+Es gibt Berichte, dass neue MS Windows Clients nicht mit Servern die im Share Level Sicherheitsmodus
+arbeiten nicht arbeiten m&#xF6;chten. Wir m&#xF6;chten verst&#xE4;rkt davor warnen im Share Level Modus zu arbeiten.
 </para>
 
 </sect3>
 </sect2>
 
 <sect2>
-<title>Domain Security Mode (User Level Security)</title>
+<title>Dom&#xE4;nen Sicherheitsmodus (User Level Security)</title>
 
 <para>
 <indexterm significance="normal"><primary>Domain Member</primary></indexterm>
-When Samba is operating in <indexterm><primary>security</primary></indexterm><parameter moreinfo="none">security</parameter> = domain mode,
-the Samba server has a domain security trust account (a machine account) and causes
-all authentication requests to be passed through to the Domain Controllers.
-In other words, this configuration makes the Samba server a Domain Member server.
+Wenn Samba im <indexterm><primary>security</primary></indexterm><parameter moreinfo="none">security</parameter> = domain Modus betrieben wird,
+hat der Server einen Trust Account (Maschinen Account) und reicht alle Authentifizierungs Anfragen weiter
+zu den Dom&#xE4;nen Controllern. Mit anderen Worten: Diese Konfiguration macht den Samba Server zu einen
+Dom&#xE4;nen Mitglied.
 </para>
 
 <sect3>
-<title>Example Configuration</title>
+<title>Beispiel Konfiguration</title>
 <para><emphasis>
-Samba as a Domain Member Server
+Samba als Dom&#xE4;nen Mitglieds Server
 </emphasis></para>
 
 
 <para>
 <indexterm significance="normal"><primary>Server Type</primary><secondary>Domain Member</secondary></indexterm>
-This method involves addition of the following parameters in the <filename moreinfo="none">smb.conf</filename> file:
+Diese Art den Server zu betreiben ben&#xF6;tigt folgende Parameter in der <filename moreinfo="none">smb.conf</filename>:
 </para>
 
 <para><simplelist>
@@ -1285,37 +1328,36 @@ This method involves addition of the following parameters in the <filename morei
 </simplelist></para>
 
 <para>
-In order for this method to work, the Samba server needs to join the MS Windows NT
-security domain. This is done as follows:
+Damit dies Funktioniert m&#xFC;ssen folgende Schritte unternommen werden:
 <indexterm significance="normal"><primary>net</primary><secondary>rpc</secondary></indexterm>
 <indexterm significance="normal"><primary>Domain Member</primary><secondary>joining</secondary></indexterm>
 </para>
 
 
 <procedure>
-        <step performance="required"><para>On the MS Windows NT Domain Controller, using
-        the Server Manager, add a machine account for the Samba server.
+        <step performance="required"><para>Richten Sie einen Maschinen Account f&#xFC;r den Samba Server ein, benutzen
+        Sie daf&#xFC;r den Server Manager.
         </para></step>
 
-        <step performance="required"><para>On the UNIX/Linux system execute:</para>
-	
+        <step performance="required"><para>Auf dem UNIX/Linux System f&#xFC;hren Sie folgendes aus:</para>
+
 			<para><screen format="linespecific"><prompt moreinfo="none">root# </prompt><userinput moreinfo="none">net rpc join -U administrator%password</userinput></screen></para>
 		</step>
 </procedure>
 
 <note><para>
-Samba-2.2.4 and later can auto-join a Windows NT4-style Domain just by executing:
+Samba-2.2.4 und sp&#xE4;tere Versionen k&#xF6;nnen durch ausf&#xFC;hren von folgendem Befehl automatisch einer NT4 Dom&#xE4;ne beitreten:
 <screen format="linespecific">
-<prompt moreinfo="none">root# </prompt><userinput moreinfo="none">smbpasswd -j <replaceable>DOMAIN_NAME</replaceable> -r <replaceable>PDC_NAME</replaceable> \
+<prompt moreinfo="none">root# </prompt><userinput moreinfo="none">smbpasswd -j <replaceable>DOM&#xC4;NEN-NAMEN</replaceable> -r <replaceable>PDC_NAME</replaceable> \
 	 -U Administrator%<replaceable>password</replaceable></userinput>
 </screen>
-
-Samba-3 can do the same by executing:
+Samba 3 kann das gleiche mit folgendem Kommando:
 <screen format="linespecific">
 <prompt moreinfo="none">root# </prompt><userinput moreinfo="none">net rpc join -U Administrator%<replaceable>password</replaceable></userinput>
 </screen>
-It is not necessary with Samba-3 to specify the <replaceable>DOMAIN_NAME</replaceable> or the
-<replaceable>PDC_NAME</replaceable> as it figures this out from the <filename moreinfo="none">smb.conf</filename> file settings.
+Mit Samba 3 ist es nicht n&#xF6;tig den <replaceable>DOM&#xC4;NEN-NAMEN</replaceable> oder den
+<replaceable>PDC_NAME</replaceable> anzugeben da Samba 3 sich diese Informationen aus der <filename moreinfo="none">smb.conf</filename>
+holt.
 </para></note>
 
 <para>
@@ -1612,7 +1654,7 @@ as a Domain Controller. This setting means we want Samba to be a Domain Member.
 
 <para>
 Guess! So many others do. But whatever you do, do not think that <indexterm><primary>security</primary></indexterm><parameter moreinfo="none">security</parameter> = user
-makes Samba act as a Domain Member. Read the manufacturer's manual before the warranty expires. See 
+makes Samba act as a Domain Member. Read the manufacturer's manual before the warranty expires. See
 <link linkend="domain-member"/> for more information.
 </para>
 
@@ -1642,7 +1684,6 @@ is at best a nasty hack. Please use <indexterm><primary>security</primary></inde
 </sect1>
 
 </chapter>
-
 
 
 <chapter id="samba-pdc">
@@ -1676,12 +1717,12 @@ is at best a nasty hack. Please use <indexterm><primary>security</primary></inde
 	<address format="linespecific"><email>gd@suse.de</email></address>
 </affiliation>
  <contrib>LDAP updates</contrib></author>
-	<author>
+	<author><author>
 <firstname>Stefan</firstname><othername>G.</othername><surname>Weichinger</surname><othername/>
 <affiliation>
         <orgname>The German Samba 3.0 Translation Team</orgname>
         <address format="linespecific"><email>monitor@oops.co.at</email></address>
-</affiliation><contrib>German Translator</contrib></author>
+</affiliation></author><contrib>German Translator</contrib></author>
 </chapterinfo>
 
 <title>Die Kontrolle &#xFC;ber eine Dom&#xE4;ne</title>
@@ -1689,7 +1730,7 @@ is at best a nasty hack. Please use <indexterm><primary>security</primary></inde
 <para>
 Viele n&#xE4;hern sich der Thematik der MS-Windows-Netzwerke mit falschen Vorstellungen.
 Das ist ok so, weil es uns anderen viele M&#xF6;glichkeiten dazu gibt, Hilfe zu geben.
-Diejenigen, die wirklich helfen wollen, sind gut beraten, sich mit der bereits vorhandenen Information und Dokumentation vertraut zu machen. 
+Diejenigen, die wirklich helfen wollen, sind gut beraten, sich mit der bereits vorhandenen Information und Dokumentation vertraut zu machen.
 </para>
 
 <para>
@@ -1726,7 +1767,7 @@ Wenn Sie mit den folgenden Themen nicht vertraut sind, wird es helfen, die entsp
 </itemizedlist>
 
 <para>
-Lassen Sie sich nicht abschrecken; an der Oberfl&#xE4;che erscheint ein MS-Windows-Netzwerk so simpel, da&#xDF; es jeder schafft. Tats&#xE4;chlich ist es aber keine gute Idee, ein MS-Windows-Netzwerk ohne entsprechende &#xDC;bung und Vorbereitung aufzusetzen. Aber lassen Sie uns unser erstes unausl&#xF6;schliches Prinzip aus dem Weg r&#xE4;umen: 
+Lassen Sie sich nicht abschrecken; an der Oberfl&#xE4;che erscheint ein MS-Windows-Netzwerk so simpel, da&#xDF; es jeder schafft. Tats&#xE4;chlich ist es aber keine gute Idee, ein MS-Windows-Netzwerk ohne entsprechende &#xDC;bung und Vorbereitung aufzusetzen. Aber lassen Sie uns unser erstes unausl&#xF6;schliches Prinzip aus dem Weg r&#xE4;umen:
 <emphasis>Es ist in Ordnung, Fehler zu machen!</emphasis>
 Am richtigen Ort, zur richtigen Zeit, sind Fehler die Essenz des Lernens. Es ist jedoch ganz und gar nicht in Ordnung, Fehler zu machen, die Produktivit&#xE4;ts-Einbussen verursachen und einer Organisation einen vermeidbaren finanziellen Verlust zuf&#xFC;gen.
 </para>
@@ -1768,7 +1809,7 @@ Die folgenden Funktionalit&#xE4;ten sind in der Release Samba 3 neu:
 	<listitem><para>
 	Windows NT4 Vertrauens-Dom&#xE4;nen.
 	</para></listitem>
-	
+
 	<listitem><para>
 	<indexterm significance="normal"><primary>Nexus.exe</primary></indexterm>
 	Das Hinzuf&#xFC;gen von Benutzern via &quot;User Manager for Domains&quot;. Dies kann von jedem MS-Windows-Client mittels dem <filename moreinfo="none">Nexus.exe</filename> toolkit f&#xFC;r Windows 9x/Me, oder mittels dem SRVTOOLS.EXE-Paket f&#xFC;r MS Windows NT4/200x/XP-Plattformen durchgef&#xFC;hrt werden. Diese Pakete sind auf der Microsoft-Website verf&#xFC;gbar.
@@ -1793,14 +1834,14 @@ Die folgenden Funktionalit&#xE4;ten werden von Samba-3 NICHT zur Verf&#xFC;gung 
 <indexterm significance="normal"><primary>SAM</primary></indexterm>
 <indexterm significance="normal"><primary>Replikation</primary></indexterm>
 	SAM-Replikation mit MS-Windows-NT4-Dom&#xE4;nen-Controllern
-	(z.B., ein Samba PDC und ein Windows NT BDC oder vice versa). 
+	(z.B., ein Samba PDC und ein Windows NT BDC oder vice versa).
 
 	Dies bedeutet, da&#xDF; Samba NICHT als BDC arbeiten kann, wenn der PDC Microsoft-basiert ist.
 	Weiters bedeutet es, da&#xDF; Samba Kontodaten NICHT auf MS-BDCs replizieren.
 	</para></listitem>
-	
+
 	<listitem><para>
-	Das Arbeiten als Windows 2000 Domain Controller 
+	Das Arbeiten als Windows 2000 Domain Controller
 	(z.B., Kerberos und Active Directory).
 
 	Tats&#xE4;chlich hat Samba-3 einige AD-Dom&#xE4;nen-Kontroll-F&#xE4;higkeiten, die zum jetzigen Zeitpunkt rein experimenteller Natur sind. Diese werden sicherlich zu voll unterst&#xFC;tzten Features ausgebaut, sei es w&#xE4;hrend der Existenz von Samba-3 oder zu einem sp&#xE4;teren Zeitpunkt. Wie dem auch sei, Active Directory ist mehr als nur SMB , es ist weiters LDAP, Kerberos, DHCP, und andere Protokolle (selbstverst&#xE4;ndlich mit propriet&#xE4;ren Erweiterungen).
@@ -1831,13 +1872,11 @@ Samba-3 mu&#xDF; (wie ein MS Windows NT4 PDC oder ein Windows 200x AD) Benutzer-
 <title>Grundlagen der Dom&#xE4;nen-Verwaltung</title>
 
 <para>
-Over the years, public perceptions of what Domain Control really is has taken on an
-almost mystical nature. Before we branch into a brief overview of Domain Control,
-there are three basic types of Domain Controllers.
+Im Laufe der Jahre hat die allgemeine Auffassung von Dom&#xE4;nen-Verwaltung eine fast schon mystische Gestalt angenommen. Bevor wir zu einem kurzen &#xDC;berblick &#xFC;ber Dom&#xE4;nen-Verwaltung verzweigen, beschreiben wir die drei grunds&#xE4;tzlichen Typen von Dom&#xE4;nen-Controllern.
 </para>
 
 <sect2>
-<title>Domain Controller Types</title>
+<title>Typen von Dom&#xE4;nen-Controllern</title>
 
 <itemizedlist>
 	<listitem><para>Primary Domain Controller</para></listitem>
@@ -1846,119 +1885,77 @@ there are three basic types of Domain Controllers.
 </itemizedlist>
 
 <para>
-The <emphasis>Primary Domain Controller</emphasis> or PDC plays an important role in MS 
-Windows NT4. In Windows 200x Domain Control architecture, this role is held by Domain Controllers.
-Folklore dictates that because of its role in the MS Windows
-network, the Domain Controller should be the most powerful and most capable machine in the network.
-As strange as it may seem to say this here, good overall network performance dictates that
-the entire infrastructure needs to be balanced. It is advisable to invest more in Stand-alone
-(Domain Member) servers than in the Domain Controllers.
+Der <emphasis>Primary Domain Controller</emphasis> oder PDC spielt eine wichtige Rolle in MS Windows NT4. In der Windows 200x-Dom&#xE4;nenverwaltungs-Architektur wird diese Rolle von Dom&#xE4;nen-Controllern &#xFC;bernommen. Die &quot;Folklore&quot; schreibt vor, da&#xDF; dies wegen seiner Rolle im MS Windows Netzwerk der st&#xE4;rkste und schnellste Rechner im Netz sein sollte. So seltsam das an dieser Stelle klingen mag, der Wunsch nach guter allgemeiner Netzwerk-Performance erfordert zwingend, da&#xDF; die gesamte Infrastruktur ausgewogen gestaltet wird. Es ist ratsam, mehr in Stand-alone(Dom&#xE4;nen-Mitglieds-)-Server zu investieren als in die DCs.
 </para>
 
 <para>
 <indexterm significance="normal"><primary>SAM</primary></indexterm>
-In the case of MS Windows NT4-style domains, it is the PDC that initiates a new Domain Control database.
-This forms a part of the Windows registry called the Security Account Manager (SAM). It plays a key
-part in NT4-type domain user authentication and in synchronization of the domain authentication
-database with Backup Domain Controllers. 
+Im Falle von MS Windows NT4-Dom&#xE4;nen ist es der PDC, der eine neue Dom&#xE4;nen-Verwaltungs-Datenbank initiiert. Diese bildet einen Teil der Windows-Registrierung namens Security Account Manager (SAM). Sie spielt eine Schl&#xFC;sselrolle in NT4-artiger Dom&#xE4;nen-Benutzer-Authentifizierung und in der Synchronisation der Dom&#xE4;nen-Authentifizierungs-Datenbank mit Backup-Dom&#xE4;nen-Controllern.
 </para>
 
 <para>
-With MS Windows 200x Server-based Active Directory domains, one Domain Controller initiates a potential
-hierarchy of Domain Controllers, each with their own area of delegated control. The master domain
-controller has the ability to override any downstream controller, but a downline controller has
-control only over its downline. With Samba-3, this functionality can be implemented using an
-LDAP-based user and machine account backend.
+In MS Windows 200x-Server-basierten Active-Directory-Dom&#xE4;nen initiiert ein Dom&#xE4;nen-Controller eine m&#xF6;gliche Hierarchie von Dom&#xE4;nen-Controllern, von denen jeder seinen eigenen delegierten Verwaltungsbereich erh&#xE4;lt. Der Master-Dom&#xE4;nen-Controller hat die M&#xF6;glichkeit, jeden &quot;downstream controller&quot; zu &#xFC;bergehen, jedoch hat ein &quot;downline controller&quot; nur Kontrolle &#xFC;ber seine &quot;downline&quot; (WEICHINGER: Wie &#xFC;bersetzen?) Mit Samba-3 kann diese Funktionalit&#xE4;t durch Verwendung eines Konten-Backends auf LDAP-Basis implementiert werden.
 </para>
 
 <para>
-New to Samba-3 is the ability to use a backend database that holds the same type of data as
-the NT4-style SAM database (one of the registry files)<footnote>See also <link linkend="passdb"/>.</footnote>.
+Neu in Samba-3 ist die m&#xF6;gliche Verwendung einer Backend-Datenbank, die dieselben Daten enth&#xE4;lt wie eine NT4-artige SAM-Datenbank (eines der Registrierungs-files)<footnote>Siehe auch <link linkend="passdb"/>.</footnote>.
 </para>
 
 <para>
-The <emphasis>Backup Domain Controller</emphasis> or BDC plays a key role in servicing network
-authentication requests. The BDC is biased to answer logon requests in preference to the PDC.
-On a network segment that has a BDC and a PDC, the BDC will most likely service network
-logon requests. The PDC will answer network logon requests when the BDC is too busy (high load).
-A BDC can be promoted to a PDC. If the PDC is online at the time that a BDC is promoted to
-PDC, the previous PDC is automatically demoted to a BDC. With Samba-3, this is not an automatic
-operation; the PDC and BDC must be manually configured and changes also need to be made.
+
+Der <emphasis>Backup Domain Controller</emphasis> oder BDC spielt eine Schl&#xFC;sselrolle in der Beantwortung von Netzwerk-Authentifizierungs-Anfragen. Der BDC ist darauf ausgerichtet, logon-Anfragen vor dem PDC zu beantworten. In einem Netzwerk-Segment, das sowohl einen BDC wie auch einen PDC beinhaltet, wird der BDC meist die Netzwerk-logon-Anfragen bedienen. Der PDC wird diese dann beantworten, wenn der BDC &#xFC;berlastet ist. EIn BDC kann zum PDC ernannt werden. Wenn der PDC online ist, wenn der BDC zum PDC ernannt wird, wird der vorige PDC automatisch zum BDC zur&#xFC;ckgestuft. Mit Samba-3 ist dieser Vorgang nicht automatisch; der PDC und der BDC m&#xFC;ssen h&#xE4;ndisch konfiguriert werden.
 </para>
 
 <para>
-With MS Windows NT4, a decision is made at installation to determine what type of machine the server will be.
-It is possible to promote a BDC to a PDC and vice versa. The only way
-to convert a Domain Controller to a Domain Member server or a Stand-alone Server is to
-reinstall it. The install time choices offered are:
+Bei der Installation von NT 4 wird die Entscheidung dar&#xFC;ber getroffen, welcher Art von Maschine der Server angeh&#xF6;ren soll. Es ist m&#xF6;glich, einen BDC zu einem PDC zu ernennen und umgekehrt. Die einzige M&#xF6;glichkeit, einen DC in einen Dom&#xE4;nen-Mitglieds-Server oder einen Stand-Alone-Server umzuwandeln, ist, ihn neu zu installieren.
+
+Die Wahlm&#xF6;glichkeiten bei der Installation sind:
 </para>
 
 <itemizedlist>
-	<listitem><para><emphasis>Primary Domain Controller</emphasis>  the one that seeds the domain SAM.</para></listitem>
-	<listitem><para><emphasis>Backup Domain Controller</emphasis>  one that obtains a copy of the domain SAM.</para></listitem>
-	<listitem><para><emphasis>Domain Member Server</emphasis>  one that has no copy of the domain SAM, rather it obtains authentication from a Domain Controller for all access controls.</para></listitem>
-	<listitem><para><emphasis>Stand-alone Server</emphasis>  one that plays no part is SAM synchronization, has its own authentication database and plays no role in Domain Security.</para></listitem>
+	<listitem><para><emphasis>Prim&#xE4;rer Dom&#xE4;nen-Controller / PDC </emphasis>  der Server, der die Dom&#xE4;nen-SAM begr&#xFC;ndet.</para></listitem>
+	<listitem><para><emphasis>Backup Dom&#xE4;nen-Controller / BDC </emphasis>  ein Server, der eine Kopieder Dom&#xE4;nen-SAM anlegt.</para></listitem>
+	<listitem><para><emphasis>Dom&#xE4;nen-Mitglieds-Server</emphasis>   ein Server, der keine Kopie der Dom&#xE4;nen-SAM h&#xE4;lt, jedoch seine Authentifizierungsinformationen von einem Dom&#xE4;nen-Controller bezieht.</para></listitem>
+	<listitem><para><emphasis>Stand-alone Server</emphasis>   ein Server, der keine Rolle in der Sysnchronisation der Dom&#xE4;nen-SAM spielt, seine eigene Authentifizierungs-Datenbank f&#xFC;hrt und auch keine Rolle in der Dom&#xE4;nen-Sicherheit &#xFC;bernimmt.</para></listitem>
 </itemizedlist>
 
 <para>
-With MS Windows 2000, the configuration of Domain Control is done after the server has been
-installed. Samba-3 is capable of acting fully as a native member of a Windows 200x server
-Active Directory domain.
+Bei der Verwendung von MS Windows 2000 wird die Konfiguration der Dom&#xE4;nen-Verwaltung nach der Installation des Servers vorgenommen. Samba-3 kann als vollwertiges Mitglied einer Windows-200x-Server-Active-Directory-Dom&#xE4;ne arbeiten.
 </para>
 
 <para>
-<indexterm significance="normal"><primary>replication</primary><secondary>SAM</secondary></indexterm>
-New to Samba-3 is the ability to function fully as an MS Windows NT4-style Domain Controller,
-excluding the SAM replication components. However, please be aware that Samba-3 also supports the
-MS Windows 200x Domain Control protocols.
+<indexterm significance="normal"><primary>Replikation</primary><secondary>SAM</secondary></indexterm>
+Neu in Samba-3 ist die F&#xE4;higkeit, als vollwertiger MS-Windows-NT4-Dom&#xE4;nen-Controller zu arbeiten, ausgenommen die SAM-Replikations-Komponenten. Bitte beachten Sie, da&#xDF; Samba-3 auch die MS Windows 200x Dom&#xE4;nen-Verwaltungs-Protokolle unterst&#xFC;tzt.
 </para>
 
 <para>
-At this time any appearance that Samba-3 is capable of acting as an
-<emphasis>Domain Controller</emphasis> in native ADS mode is limited and experimental in nature.
-This functionality should not be used until the Samba Team offers formal support for it.
-At such a time, the documentation will be revised to duly reflect all configuration and
-management requirements. Samba can act as a NT4-style DC in a Windows 2000/XP 
-environment. However, there are certain compromises:
+Zum jetzigen Zeitpunkt ist jegliches Anzeichen daf&#xFC;r, da&#xDF; Samba-3 als <emphasis>Dom&#xE4;nen Controller</emphasis> im nativen ADS-Modus arbeiten kann, begrenzt und v&#xF6;llig experimentell. Diese Funktionalit&#xE4;t sollte nicht verwendet werden, bis das Samba-Team formal die Unterst&#xFC;tzung daf&#xFC;r anbietet. Sobald dies erfolgt, wird die Dokumentation revidiert werden, um alle Konfigurations- und Verwaltungs-Erfordernisse vollst&#xE4;ndig widerzuspiegeln. Samba kann als NT4-DC in einem Windows 2000/XP-Umgebung arbeiten. Jedoch gibt es einige Kompromisse:
 
 <itemizedlist>
-	<listitem>No machine policy files.</listitem>
-	<listitem>No Group Policy Objects.</listitem>
-	<listitem>No synchronously executed AD logon scripts.</listitem>
-	<listitem>Can't use Active Directory management tools to manage users and machines.</listitem>
-	<listitem>Registry changes tattoo the main registry, while with AD they do not leave permanent changes in effect.</listitem>
-	<listitem>Without AD you cannot perform the function of exporting specific applications to specific users or groups.</listitem>
+	<listitem>Keine Maschinen-Policy-Dateien.</listitem>
+	<listitem>Keine Gruppen-Policy-Objekte.</listitem>
+	<listitem>Keine synchron ausgef&#xFC;hrten AD-logon-Skripts.</listitem>
+	<listitem>Active Directory management tools k&#xF6;nnen nicht zur Benutzer- und Maschinen-Verwaltung verwendet werden.</listitem>
+	<listitem>Registrierungs-&#xC4;nderungen pr&#xE4;gen die Haupt-Registrierung, w&#xE4;hrend mit AD keine bleibenden Ver&#xE4;nderungen hinterlassen werden.</listitem>
+	<listitem>Ohne AD kann die Funktion, spezifische Applikationen f&#xFC;r spezifische Benutzer/Gruppen zu exportieren, NICHT genutzt werden.</listitem>
 </itemizedlist>
 </para>
 
 </sect2>
 
 <sect2>
-<title>Preparing for Domain Control</title>
+<title>Vorbereitungen f&#xFC;r Dom&#xE4;nen-Verwaltung</title>
 
 <para>
-There are two ways that MS Windows machines may interact with each other, with other servers
-and with Domain Controllers: either as <emphasis>Stand-alone</emphasis> systems, more commonly
-called <emphasis>Workgroup</emphasis> members, or as full participants in a security system,
-more commonly called <emphasis>Domain</emphasis> members.
+Es gibt zwei Arten, auf die MS Windows-Maschinen miteinander, mit anderen Servern und DCs zusammenarbeiten k&#xF6;nnen: entweder als <emphasis>Stand-alone</emphasis>-Systeme, gebr&#xE4;uchlich bezeichnet als <emphasis>Workgroup</emphasis>-Mitglieder, oder als vollwertige Teilnehmer eines Sicherheits-Systems, gebr&#xE4;uchlich bezeichnet als <emphasis>Domain</emphasis>-Mitglieder.
 </para>
 
 <para>
-It should be noted that <emphasis>Workgroup</emphasis> membership involves no special configuration
-other than the machine being configured so the network configuration has a commonly used name
-for its workgroup entry. It is not uncommon for the name WORKGROUP to be used for this. With this
-mode of configurationi, there are no Machine Trust Accounts and any concept of membership as such
-is limited to the fact that all machines appear in the network neighborhood to be logically
-grouped together. Again, just to be clear: <emphasis>workgroup mode does not involve security machine 
-accounts</emphasis>.
+Es sollte beachtet werden, da&#xDF; <emphasis>Workgroup</emphasis>-Mitgliedschaft keine spezielle Konfiguration erfordert, au&#xDF;er da&#xDF; die Maschine so konfiguriert wird, da&#xDF; die Netzwerk-Konfiguration einen gebr&#xE4;uchlichen Namen f&#xFC;r den workgroup-Eintrag enth&#xE4;lt. oft wird hief&#xFC;r der Name WORKGROUP verwendet. In dieser Konfigurations-Art gibt es keine Maschinen-Vertrauens-Konten und jegliches Konzept von Mitgliedschaft ist darauf beschr&#xE4;nkt, da&#xDF; alle in der Netzwerkumgebung aufscheinenden Maschinen als logische Gruppe erscheinen. Zur Wiederholung und Kl&#xE4;rung: <emphasis>Workgroup Modus beinhaltet keine Maschinen-Sicherheits-Konten</emphasis>.
 </para>
 
 <para>
-Domain Member machines have a machine account in the Domain accounts database. A special procedure
-must be followed on each machine to effect Domain Membership. This procedure, which can be done
-only by the local machine Administrator account, will create the Domain machine account (if it does
-not exist), and then initializes that account. When the client first logs onto the
-Domain it triggers a machine password change.
+Dom&#xE4;nen-Mitglieds-Maschinen haben ein Maschinen-Konto in der Dom&#xE4;nen-Konten-Datenbank. Eine spezielle Prozedur mu&#xDF; auf jeder Maschine ausgef&#xFC;hrt werden, um Dom&#xE4;nen-Mitgliedschaft zu erwirken. Diese Prozedur, welche nur vom lokalen Administrator-Konto aus erfolgen kann, legt das Dom&#xE4;nen-Maschinen-Konto an (falls es noch nicht existiert), und initialisiert dieses Konto. Wenn der Client sich erstmals in der Dom&#xE4;ne anmeldet, wird ein Maschinen-Passwort-Wechsel ausgel&#xF6;st.
 </para>
 
 <note><para>
@@ -1977,7 +1974,7 @@ NT4/200x/XP clients:
 <itemizedlist>
 	<listitem><para>Configuration of basic TCP/IP and MS Windows networking.</para></listitem>
 	<listitem><para>Correct designation of the Server Role (<indexterm><primary>security</primary></indexterm><parameter moreinfo="none">security</parameter> = user).</para></listitem>
-	<listitem><para>Consistent configuration of Name Resolution<footnote><para>See <link linkend="NetworkBrowsing"/>, and 
+	<listitem><para>Consistent configuration of Name Resolution<footnote><para>See <link linkend="NetworkBrowsing"/>, and
 		<link linkend="integrate-ms-networks"/>.</para></footnote>.</para></listitem>
 	<listitem><para>Domain logons for Windows NT4/200x/XP Professional clients.</para></listitem>
 	<listitem><para>Configuration of Roaming Profiles or explicit configuration to force local profile usage.</para></listitem>
@@ -2006,7 +2003,7 @@ The following provisions are required to serve MS Windows 9x/Me clients:
 
 <note><para>
 Roaming Profiles and System/Network policies are advanced network administration topics
-that are covered in the <link linkend="ProfileMgmt"/> and 
+that are covered in the <link linkend="ProfileMgmt"/> and
 <link linkend="PolicyMgmt"/> chapters of this document. However, these are not
 necessarily specific to a Samba PDC as much as they are related to Windows NT networking concepts.
 </para></note>
@@ -2053,7 +2050,7 @@ instead of just the list for their broadcast-isolated subnet.
 
 <para>
 The first step in creating a working Samba PDC is to understand the parameters necessary
-in <filename moreinfo="none">smb.conf</filename>. An example <filename moreinfo="none">smb.conf</filename> for acting as a PDC can be found in <link linkend="pdc-example"/>. 
+in <filename moreinfo="none">smb.conf</filename>. An example <filename moreinfo="none">smb.conf</filename> for acting as a PDC can be found in <link linkend="pdc-example"/>.
 </para>
 
 <para>
@@ -2106,7 +2103,7 @@ The basic options shown in <link linkend="pdc-example"/> are explained as follow
 	</varlistentry>
 	<varlistentry><term>Domain Control Parameters </term>
 		<listitem><para>
-		The parameters <emphasis>os level, preferred master, domain master, security, 
+		The parameters <emphasis>os level, preferred master, domain master, security,
 		encrypt passwords, and domain logons</emphasis> play a central role in assuring domain
 		control and network logon support.</para>
 
@@ -2114,7 +2111,7 @@ The basic options shown in <link linkend="pdc-example"/> are explained as follow
 		The <emphasis>os level</emphasis> must be set at or above a value of 32. A Domain Controller
 		must be the Domain Master Browser, must be set in <emphasis>user</emphasis> mode security,
 		must support Microsoft-compatible encrypted passwords, and must provide the network logon
-		service (domain logons). Encrypted passwords must be enabled. For more details on how 
+		service (domain logons). Encrypted passwords must be enabled. For more details on how
 		to do this, refer to <link linkend="passdb"/>.
 		</para></listitem>
 	</varlistentry>
@@ -2301,7 +2298,7 @@ the use of domain logons.
 </emphasis></para>
 
 <para>
-Before launching into the configuration instructions, it is 
+Before launching into the configuration instructions, it is
 worthwhile to look at how a Windows 9x/Me client performs a logon:
 </para>
 
@@ -2311,7 +2308,7 @@ worthwhile to look at how a Windows 9x/Me client performs a logon:
 	The client broadcasts (to the IP broadcast address of the subnet it is in)
 	a NetLogon request. This is sent to the NetBIOS name DOMAIN&lt;#1c&gt; at the
 	NetBIOS layer. The client chooses the first response it receives, which
-	contains the NetBIOS name of the logon server to use in the format of 
+	contains the NetBIOS name of the logon server to use in the format of
 	<filename moreinfo="none">\\SERVER</filename>.
 	</para>
 </listitem>
@@ -2326,13 +2323,13 @@ worthwhile to look at how a Windows 9x/Me client performs a logon:
 <listitem>
 	<para>
 	The client does a NetWkstaUserLogon request, which retrieves the name
-	of the user's logon script. 
+	of the user's logon script.
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	The client then connects to the NetLogon share and searches for said script.	
+	The client then connects to the NetLogon share and searches for said script.
 	If it is found and can be read, it is retrieved and executed by the client.
 	After this, the client disconnects from the NetLogon share.
 	</para>
@@ -2342,7 +2339,7 @@ worthwhile to look at how a Windows 9x/Me client performs a logon:
 	<para>
 	The client sends a NetUserGetInfo request to the server to retrieve
 	the user's home share, which is used to search for profiles. Since the
-	response to the NetUserGetInfo request does not contain much more than	
+	response to the NetUserGetInfo request does not contain much more than
 	the user's home share, profiles for Windows 9x clients must reside in the user
 	home directory.
 	</para>
@@ -2350,7 +2347,7 @@ worthwhile to look at how a Windows 9x/Me client performs a logon:
 
 <listitem>
 	<para>
-	The client connects to the user's home share and searches for the 
+	The client connects to the user's home share and searches for the
 	user's profile. As it turns out, you can specify the user's home share as
 	a sharename and path. For example, <filename moreinfo="none">\\server\fred\.winprofile</filename>.
 	If the profiles are found, they are implemented.
@@ -2408,12 +2405,12 @@ security are really just a variation on SMB User Level Security.
 </para>
 
 <para>
-Actually, this issue is also closely tied to the debate on whether 
+Actually, this issue is also closely tied to the debate on whether
 Samba must be the Domain Master Browser for its workgroup
 when operating as a DC. While it may technically be possible
 to configure a server as such (after all, browsing and domain logons
 are two distinctly different functions), it is not a good idea to do
-so. You should remember that the DC must register the DOMAIN&lt;#1b&gt; NetBIOS 
+so. You should remember that the DC must register the DOMAIN&lt;#1b&gt; NetBIOS
 name. This is the name used by Windows clients to locate the DC.
 Windows clients do not distinguish between the DC and the DMB.
 A DMB is a Domain Master Browser  see <link linkend="DMB"/>.
@@ -2469,7 +2466,7 @@ The UNIX tool <command moreinfo="none">vipw</command> is a common tool for direc
 
 <sect2>
 <title>Joining Domain Fails Because of Existing Machine Account</title>
-		
+
 <para>
 <quote>I get told, `You already have a connection to the Domain....' or `Cannot join domain, the
 credentials supplied conflict with an existing set...' when creating a Machine Trust Account.</quote>
@@ -2485,9 +2482,9 @@ will remove all network drive connections:
 </para>
 
 <para>
-Further, if the machine is already a <quote>member of a workgroup</quote> that 
-is the same name as the domain you are joining (bad idea) you will 
-get this message. Change the workgroup name to something else, it 
+Further, if the machine is already a <quote>member of a workgroup</quote> that
+is the same name as the domain you are joining (bad idea) you will
+get this message. Change the workgroup name to something else, it
 does not matter what, reboot, and try again.
 </para>
 </sect2>
@@ -2495,9 +2492,9 @@ does not matter what, reboot, and try again.
 <sect2>
 <title>The System Cannot Log You On (C000019B)</title>
 
-<para><quote>I joined the domain successfully but after upgrading 
-to a newer version of the Samba code I get the message, <errorname>`The system 
-cannot log you on (C000019B), Please try again or consult your 
+<para><quote>I joined the domain successfully but after upgrading
+to a newer version of the Samba code I get the message, <errorname>`The system
+cannot log you on (C000019B), Please try again or consult your
 system administrator</errorname> when attempting to logon.'</quote>
 </para>
 
@@ -2506,7 +2503,7 @@ system administrator</errorname> when attempting to logon.'</quote>
 This occurs when the domain SID stored in the secrets.tdb database
 is changed. The most common cause of a change in domain SID is when
 the domain name and/or the server name (NetBIOS name) is changed.
-The only way to correct the problem is to restore the original domain 
+The only way to correct the problem is to restore the original domain
 SID or remove the domain client from the domain and rejoin. The domain
 SID may be reset using either the net or rpcclient utilities.
 </para>
@@ -2533,30 +2530,30 @@ it to the domain.
 <title>The Machine Trust Account Is Not Accessible</title>
 
 <para>
-<quote>When I try to join the domain I get the message, <errorname>`The machine account 
-for this computer either does not exist or is not accessible'</errorname>. What's 
+<quote>When I try to join the domain I get the message, <errorname>`The machine account
+for this computer either does not exist or is not accessible'</errorname>. What's
 wrong?</quote>
 </para>
 
 <para>
-This problem is caused by the PDC not having a suitable Machine Trust Account. 
-If you are using the <indexterm><primary>add machine script</primary></indexterm><parameter moreinfo="none">add machine script</parameter> method to create 
-accounts then this would indicate that it has not worked. Ensure the domain 
+This problem is caused by the PDC not having a suitable Machine Trust Account.
+If you are using the <indexterm><primary>add machine script</primary></indexterm><parameter moreinfo="none">add machine script</parameter> method to create
+accounts then this would indicate that it has not worked. Ensure the domain
 admin user system is working.
 </para>
 
 <para>
-Alternately, if you are creating account entries manually then they 
-have not been created correctly. Make sure that you have the entry 
-correct for the Machine Trust Account in <filename moreinfo="none">smbpasswd</filename> file on the Samba PDC. 
-If you added the account using an editor rather than using the smbpasswd 
-utility, make sure that the account name is the machine NetBIOS name 
-with a <quote>$</quote> appended to it (i.e., computer_name$). There must be an entry 
+Alternately, if you are creating account entries manually then they
+have not been created correctly. Make sure that you have the entry
+correct for the Machine Trust Account in <filename moreinfo="none">smbpasswd</filename> file on the Samba PDC.
+If you added the account using an editor rather than using the smbpasswd
+utility, make sure that the account name is the machine NetBIOS name
+with a <quote>$</quote> appended to it (i.e., computer_name$). There must be an entry
 in both /etc/passwd and the smbpasswd file.
 </para>
 
 <para>
-Some people have also reported that inconsistent subnet masks between the Samba server and the NT 
+Some people have also reported that inconsistent subnet masks between the Samba server and the NT
 client can cause this problem.  Make sure that these are consistent for both client and server.
 </para>
 </sect2>
@@ -2576,7 +2573,7 @@ Enable the user accounts with <userinput moreinfo="none">smbpasswd -e <replaceab
 
 <sect2>
 <title>Domain Controller Unavailable</title>
-		
+
 <para><quote>Until a few minutes after Samba has started, clients get the error `Domain Controller Unavailable'</quote></para>
 
 <para>
@@ -8716,6 +8713,7 @@ manually before putting them into active service.
 
 </chapter>
 
+
 <chapter id="AccessControls">
 <chapterinfo>
 	<author>
@@ -8751,19 +8749,19 @@ manually before putting them into active service.
 
 <para>
 <indexterm significance="normal"><primary>ACLs</primary></indexterm>
-Fortgeschrittene Windows Benutzer sind haeufig verwirrt, wenn eine Aenderung des Besitzes von Dateien oder Verzeichnissen
+Fortgeschrittene Windows Benutzer sind h&#xE4;ufig verwirrt, wenn eine Aenderung des Besitzes von Dateien oder Verzeichnissen
 auf dem Samba Server sich nicht so auswirken wie sie es erwarten. MS Administratoren verwirrt es oft wenn sie versuchen
-Ihre Daten mit Zugriffskontrolllisten vor unerlaubten  Zugriffen zu schuetzen.
+Ihre Daten mit Zugriffskontrolllisten vor unerlaubten  Zugriffen zu sch&#xFC;tzen.
 </para>
 
 <para>
 Viele UNIX Administratoren sind nicht mit der MS Windows Umgebung vertraut, besondere Probleme ergeben sich aus den
-Benutzerwuenschen ueber die Kontrolle von Dateien und Verzeichnisse und deren Einrichtung
+Benutzerw&#xFC;nschen &#xFC;ber die Kontrolle von Dateien und Verzeichnisse und deren Einrichtung
 </para>
 
 <para>
-Das Problem begruendet sich in den Unterschieden bei  Datei und Verzeichnis Benutzerrechten der beiden Systeme. Diesen
-Unterschied kann auch Samba nicht wirklich aus der Welt schaffen aber er schafft eine Bruecke zwischen den Umgebungen.
+Das Problem begr&#xFC;ndet sich in den Unterschieden bei  Datei und Verzeichnis Benutzerrechten der beiden Systeme. Diesen
+Unterschied kann auch Samba nicht wirklich aus der Welt schaffen aber er schafft eine Br&#xFC;cke zwischen den Umgebungen.
 </para>
 
 <para>
@@ -8771,30 +8769,30 @@ Unterschied kann auch Samba nicht wirklich aus der Welt schaffen aber er schafft
 <indexterm significance="normal"><primary>ACLs</primary><secondary>POSIX</secondary></indexterm>
 
 POSIX ( UNIX, LINUX ) Zugriffskontrolltechnologie gibt es schon seit Jahren, aber sie wurden nie sehr intensiv genutzt.
-Dies erklaert vielleicht auch warum es laenger dauert ehe diese in kommerzielle Linux Produkte eingebunden wurden. MS
-Administratoren wird dies erstaunen,da dies seit Jahren elementarer Bestandteil von Windows Produkten ist.
+Dies erkl&#xE4;rt vielleicht auch warum es l&#xE4;nger dauert ehe diese in kommerzielle Linux Produkte eingebunden wurden. MS
+Administratoren wird dies erstaunen, da dies seit Jahren elementarer Bestandteil von Windows Produkten ist.
 </para>
 
 <para>
-Diese Kapitel soll die Punkte im Einzelnen klaeren die mit Samba 3 noetig und moeglich sind um Administratoren die best
-erreichbare Zugriffsverwaltung zu ermoeglichen welche die Windows Benutzer benoetigen.
+Diese Kapitel soll die Punkte im Einzelnen kl&#xE4;ren die mit Samba 3 n&#xF6;tig und m&#xF6;glich sind um Administratoren die best
+erreichbare Zugriffsverwaltung zu erm&#xF6;glichen welche die Windows Benutzer ben&#xF6;tigen.
 </para>
 
 <para>
-Samba ist nicht primaer dafuer gedacht eine Unix Plattform in eine Windows Plattform zu verwandeln, sondern soll hoechst
-moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
+Samba ist nicht prim&#xE4;r daf&#xFC;r gedacht eine Unix Plattform in eine Windows Plattform zu verwandeln, sondern soll h&#xF6;chst
+m&#xF6;gliche Kompatibilit&#xE4;t zwischen den beiden Systemen schaffen.
 </para>
 
 <sect1>
-<title>Moeglichkeiten und Vorteile</title>
+<title>M&#xF6;glichkeiten und Vorteile</title>
 
 	<para>
-	Samba ermoeglicht ein hohe Flexibilitaet beim Systemzugriff. Hier sind die Zugriffskontrollmoeglichkeiten der
+	Samba erm&#xF6;glicht ein hohe Flexibilit&#xE4;t beim Systemzugriff. Hier sind die Zugriffskontrollm&#xF6;glichkeiten der
 	jetzigen Version (3) von Samba.
 	</para>
 
 	<itemizedlist>
-	<title>Samba Zugriffskontrollmoeglichkeiten</title>
+	<title>Samba Zugriffskontrollm&#xF6;glichkeiten</title>
 		<listitem><para>
 				<indexterm significance="normal"><primary>permissions</primary><secondary>UNIX file and directory</secondary></indexterm>
 		<emphasis>Unix Datei und Verzeichnis Berechtigungen</emphasis>
@@ -8802,9 +8800,9 @@ moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 
 			<para>
 			Samba arbeitet mit dem UNIX Dateizugriffskontrollen zusammen. Nutzer greifen als Windowsbenutzer
-			auf Samba zu. Informationen ueber den Nutzer werden beim einloggen uebergeben. Samba benutzt
-			diese Login Informationen um zu entscheiden ob einem Nutzer Zugriff auf Systemdaten gewaehrt werden soll oder nicht. Dieses
-			Kapitel enthaelt eine Uebersicht von UNIX Berechtigungen fuer Nutzer die diese nicht kennen oder etwas verwirrt ueber
+			auf Samba zu. Informationen &#xFC;ber den Nutzer werden beim einloggen &#xFC;bergeben. Samba benutzt
+			diese Login Informationen um zu entscheiden ob einem Nutzer Zugriff auf Systemdaten gew&#xE4;hrt werden soll oder nicht. Dieses
+			Kapitel enth&#xE4;lt eine Uebersicht von UNIX Berechtigungen f&#xFC;r Nutzer die diese nicht kennen oder etwas verwirrt &#xFC;ber
 			diese sind.
 			</para>
 		</listitem>
@@ -8815,9 +8813,9 @@ moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 
 			<para>
 			Beim Konfigurieren von Netzlaufwerken mit Samba in der Datei smb.conf kann der Administrator
-			Berechtigungen des darunterliegenden Dateisystems veraendern und beeinflussen. Dies ermoeglicht teilweise eine Annaeherung
-			an das Verhalten dass Windowsnutzer erwarten. Dieser Weg ist aber nur selten die beste Loesung.
-			Die grundlegenden Moeglichkeiten werden hier beschrieben.
+			Berechtigungen des darunterliegenden Dateisystems ver&#xE4;ndern und beeinflussen. Dies erm&#xF6;glicht teilweise eine Ann&#xE4;herung
+			an das Verhalten dass Windowsnutzer erwarten. Dieser Weg ist aber nur selten die beste L&#xF6;sung.
+			Die grundlegenden M&#xF6;glichkeiten werden hier beschrieben.
 			</para>
 		</listitem>
 
@@ -8827,8 +8825,8 @@ moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 		</para>
 
 			<para>
-			Wie in Windows NT ist es auch in Samba moeglich Netzlaufwerkskontrolllisten zu erstellen. Einige
-			Nutzer machen Gebrauch davon, es ist zur Zeit eine der leichtesten Moeglichkeiten Zugriffskontrolle zu erreichen im
+			Wie in Windows NT ist es auch in Samba m&#xF6;glich Netzlaufwerkskontrolllisten zu erstellen. Einige
+			Nutzer machen Gebrauch davon, es ist zur Zeit eine der leichtesten M&#xF6;glichkeiten Zugriffskontrolle zu erreichen im
 			Gegensatz zu komplexeren anderen Methoden.
 			</para>
 		</listitem>
@@ -8840,11 +8838,11 @@ moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 		</para>
 
 			<para>
-			Der Gebrauch von UNIXkontrolllisten ist nur moeglich wenn diese Funktion in dem darunterliegenden
-			Dateisystem implemtiert sind. In jedem anderem Fall ist deren Nutzung nicht moeglich. Aktuelle UNIXsysteme sollten diese
-			Unterstuezung haben. Es gibt Patches fuer die Linux Kernel die diese Moeglichkeit implementieren falls nicht vorhanden.
-			Viele UNIXsysteme werden mit der Unterstuetzung ausgeliefert , in diesem Kapitel werden wir wir versuchen den Nutzern
-			deren Gebrauch zu erklaeren
+			Der Gebrauch von UNIXkontrolllisten ist nur m&#xF6;glich wenn diese Funktion in dem darunterliegenden
+			Dateisystem implemtiert sind. In jedem anderem Fall ist deren Nutzung nicht m&#xF6;glich. Akt&#xFC;lle UNIXsysteme sollten diese
+			Unterst&#xFC;zung haben. Es gibt Patches f&#xFC;r die Linux Kernel die diese M&#xF6;glichkeit implementieren falls nicht vorhanden.
+			Viele UNIXsysteme werden mit der Unterst&#xFC;tzung ausgeliefert , in diesem Kapitel werden wir wir versuchen den Nutzern
+			deren Gebrauch zu erkl&#xE4;ren
 			</para>
 		</listitem>
 	</itemizedlist>
@@ -8855,8 +8853,8 @@ moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 <title>Datei System Zugriffs Kontrollen</title>
 
 <para>
-Es ist wichtig festzustellen dass MS Windows ein voellig anderes Dateizugriffssystem benutzt als UNIXsysteme. Wir werden
-erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbruecken.
+Es ist wichtig festzustellen dass MS Windows ein v&#xF6;llig anderes Dateizugriffssystem benutzt als UNIXsysteme. Wir werden
+erst die Unterschiede erkl&#xE4;ren und dann wie Samba hilft dies zu &#xFC;berbr&#xFC;cken.
 </para>
 
 	<sect2>
@@ -8868,13 +8866,13 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbruecken.
 <indexterm significance="normal"><primary>File System</primary><secondary>UNIX</secondary></indexterm>
 <indexterm significance="normal"><primary>File System</primary><secondary>Windows</secondary></indexterm>
 
-	Samba benutzt das UNIX Dateisystem. d h. Samba verhaelt sich innerhalb der Moeglichkeiten des UNIX Dateisystems.
+	Samba benutzt das UNIX Dateisystem. d h. Samba verh&#xE4;lt sich innerhalb der M&#xF6;glichkeiten des UNIX Dateisystems.
 	Aber Samba ist auch verantwortlich das Verhalten des Windows Dateisystems nachzustellen.
 	</para>
 
 	<para>
-	Gluecklicherweise bietet Samba eine Reihe von Konfigurationsmoeglichkeiten um die Unterschiede zu
-	ueberbruecken.Wir werden einige dieser Einstellungsm&#xF6;glichkeiten betrachten, jedoch nicht alle. Wer mehr wissen moechte sollte die
+	Gl&#xFC;cklicherweise bietet Samba eine Reihe von Konfigurationsm&#xF6;glichkeiten um die Unterschiede zu
+	&#xFC;berbr&#xFC;cken.Wir werden einige dieser Einstellungsm&#xF6;glichkeiten betrachten, jedoch nicht alle. Wer mehr wissen m&#xF6;chte sollte die
 	Beschreibung ( man = manual Datei ) der smb.conf lesen.
 	</para>
 
@@ -8888,7 +8886,7 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbruecken.
 			<term>Namens Raum</term>
 			<listitem>
 		<para>
-		Windows Dateinamen koennen 254 Zeichen lang sein, UNIX beherrscht bis zu 1023 Zeichen. Die
+		Windows Dateinamen k&#xF6;nnen 254 Zeichen lang sein, UNIX beherrscht bis zu 1023 Zeichen. Die
 		Dateierweiterung beschreibt in Windows einen bestimmten Dateityp, in UNIXsystemen ist das nicht zwingend so.
 		</para>
 		<para>
@@ -8904,7 +8902,7 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbruecken.
 		<indexterm significance="normal"><primary>8.3 file names</primary></indexterm>
 		<indexterm significance="normal"><primary>File System</primary><secondary>case sensitivity</secondary></indexterm>
 		Im Allgemeinen sind Dateinamen unter Windows 8+3 Zeichen lang und werden Gross erstellt. Dateinamen die
-		laenger sind, sind in ihrer Schreibweise insensitiv ( d. h. ob gross oder klein geschrieben spielt keine Rolle )
+		l&#xE4;nger sind, sind in ihrer Schreibweise insensitiv ( d. h. ob gross oder klein geschrieben spielt keine Rolle )
 		</para>
 
 		<para>
@@ -8912,7 +8910,7 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbruecken.
 		ob eine Datei gross oder klein geschrieben wird.
 		</para>
 		<para>
-		Im unteren Beispiel wuerden die Dateinamen von Windows voellig gleich interpretiert werden , fuer UNIX waeren es drei verschiedene Dateien.
+		Im unteren Beispiel w&#xFC;rden die Dateinamen von Windows v&#xF6;llig gleich interpretiert werden , f&#xFC;r UNIX w&#xE4;ren es drei verschiedene Dateien.
 		<screen format="linespecific">
 				MYFILE.TXT
 				MyFile.txt
@@ -8920,13 +8918,13 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbruecken.
 		</screen></para>
 
 		<para>
-		Es wird ziemlich klar dass diese Dateien in Windows nicht nebeneinander stehen koennten
+		Es wird ziemlich klar dass diese Dateien in Windows nicht nebeneinander stehen k&#xF6;nnten
 		( im selben Ordner ) unter UNIX jedoch jederzeit
 		</para>
 		<para>
-		Was soll nun Samba tun , wenn er auf diese Dateien trifft. Die Loesung besteht darin dass die erste
-		Datei fuer Windowsnutzer sichtbar ist die anderen jedoch nicht verfuegbar bzw. unsichtbar sind, eine
-		andere Loesung ist nicht denkbar.
+		Was soll nun Samba tun , wenn er auf diese Dateien trifft. Die L&#xF6;sung besteht darin dass die erste
+		Datei f&#xFC;r Windowsnutzer sichtbar ist die anderen jedoch nicht verf&#xFC;gbar bzw. unsichtbar sind, eine
+		andere L&#xF6;sung ist nicht denkbar.
 		</para>
 			</listitem>
 		</varlistentry>
@@ -8938,7 +8936,7 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbruecken.
 		<para>
 				<indexterm significance="normal"><primary>Directory Separators</primary></indexterm>
 		MS Windows und DOS benutzen den \ ( Backslash) als Verzeichnis Trennzeichen <constant>\</constant>
-		UNIX benuzt ( wie im Internet ueblich ) den Slash / als Verzeichnis Trennzeichen.
+		UNIX benuzt ( wie im Internet &#xFC;blich ) den Slash / als Verzeichnis Trennzeichen.
 		<constant>/</constant>Dies wird von Samba transparent (f&#xFC;r den Windowsnutzer unbemerkt ) umgelegt.
 		</para>
 			</listitem>
@@ -8950,8 +8948,8 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbruecken.
 		<para>
 			<indexterm significance="normal"><primary>Laufwerks Bezeichnung</primary></indexterm>
 		In MS Windows werden verschiedene Festplatten Partitionen mit Buchstaben belegt.<command moreinfo="none">C:</command>
-		Es gibt unter UNIX kein aehnliches Konzept, Festplatten Teile ( Partitionen ) werden eingebunden 
-		( gemounted ) als Teil des Dateisystems. Was unter DOS <constant>C:\</constant> ist w&#xE4;re unter UNIX einfach 
+		Es gibt unter UNIX kein &#xE4;hnliches Konzept, Festplatten Teile ( Partitionen ) werden eingebunden
+		( gemounted ) als Teil des Dateisystems. Was unter DOS <constant>C:\</constant> ist w&#xE4;re unter UNIX einfach
 		( root = Wurzel des Dateisystembaumes )<constant>/</constant>.
 		</para>
 			</listitem>
@@ -8962,37 +8960,37 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbruecken.
 			<listitem>
 		<para>
 			<indexterm significance="normal"><primary>Datei Namenskonvention</primary></indexterm>
-		MS Windows kennt keine Dateien deren Namen mit einem Punkt beginnt(<constant>.</constant>) 
-		In UNIX werden solche Dateien haeufig in den &quot;Home&quot; ( Heimatverzeichnissen) von Nutzern gefunden. 
-		Punktdateien(<constant>.</constant>) sind typischerweise Start oder Konfigurations Dateien fuer UNIXprogramme
+		MS Windows kennt keine Dateien deren Namen mit einem Punkt beginnt(<constant>.</constant>)
+		In UNIX werden solche Dateien h&#xE4;ufig in den &quot;Home&quot; ( Heimatverzeichnissen) von Nutzern gefunden.
+		Punktdateien(<constant>.</constant>) sind typischerweise Start oder Konfigurations Dateien f&#xFC;r UNIXprogramme
 		</para>
 			</listitem>
 		</varlistentry>
 
 		<varlistentry>
-			<term>Verknuepfungen und Verkuerzungen</term>
+			<term>Verkn&#xFC;pfungen und Verk&#xFC;rzungen</term>
 			<listitem>
 		<para>
 		<indexterm significance="normal"><primary>Links</primary><secondary>hard</secondary></indexterm>
 		<indexterm significance="normal"><primary>Links</primary><secondary>soft</secondary></indexterm>
 		<indexterm significance="normal"><primary>Short-Cuts</primary></indexterm>
-		Unter Windows sind Verknuepfungen spezielle Dateitypen die zum verkuerzten Starten von Programmen in deren 
-		realen Ordner dienen. Auch unter UNIX gibt es Verknuepfungen und Verkuerzungen,
-		diese werden jedoch voellig unterschiedlich gehandhabt. 
+		Unter Windows sind Verkn&#xFC;pfungen spezielle Dateitypen die zum verk&#xFC;rzten Starten von Programmen in deren
+		realen Ordner dienen. Auch unter UNIX gibt es Verkn&#xFC;pfungen und Verk&#xFC;rzungen,
+		diese werden jedoch v&#xF6;llig unterschiedlich gehandhabt.
 		</para>
 		<para>
-		Symbolische Verknuepfungen unter UNIX halten die aktuellen Informationen von Dateien oder Verzeichnissen. 
-		Schreib und Lesezugriffe auf eine Verknuepfung verhalten sich genauso wie bei der orginalen Datei. 
-		Symbolische Verknuepfungen nennt man auch weiche Verknuepfungen. 
-		Harte Verknuepfungen kennt MS Windows nicht,
-		diese wuerden das Benutzen ein und derselben Datei unter mehreren Namen gleichzeitig ermoeglichen
+		Symbolische Verkn&#xFC;pfungen unter UNIX halten die akt&#xFC;llen Informationen von Dateien oder Verzeichnissen.
+		Schreib und Lesezugriffe auf eine Verkn&#xFC;pfung verhalten sich genauso wie bei der orginalen Datei.
+		Symbolische Verkn&#xFC;pfungen nennt man auch weiche Verkn&#xFC;pfungen.
+		Harte Verkn&#xFC;pfungen kennt MS Windows nicht,
+		diese w&#xFC;rden das Benutzen ein und derselben Datei unter mehreren Namen gleichzeitig erm&#xF6;glichen
 		</para>
 			</listitem>
 		</varlistentry>
 	</variablelist>
 
 	<para>
-	Es gibt noch viele Unterschiede die einem Windows Administrator unangenehm im Umgang mit UNIX sein koennten.
+	Es gibt noch viele Unterschiede die einem Windows Administrator unangenehm im Umgang mit UNIX sein k&#xF6;nnten.
 	</para>
 
 	</sect2>Verwaltung von Verzeichnissen
@@ -9137,7 +9135,7 @@ Before using any of the following options, please refer to the man page for <fil
 	<para>
 	As always, it is highly advisable to use the least difficult to maintain and the least ambiguous method for
 	controlling access. Remember, when you leave the scene someone else will need to provide assistance and
-	if he finds too great a mess or does not understand what you have done, there is risk of
+	if he finds too great a mess or d&#xF6;s not understand what you have done, there is risk of
 	Samba being removed and an alternative solution being adopted.
 	</para>
 
@@ -9180,10 +9178,10 @@ Before using any of the following options, please refer to the man page for <fil
 			</para></entry>
 		</row>
 		<row>
-			<entry><indexterm><primary>guest ok</primary></indexterm><parameter moreinfo="none">guest ok</parameter></entry>
+			<entry><indexterm><primary>g&#xFC;st ok</primary></indexterm><parameter moreinfo="none">g&#xFC;st ok</parameter></entry>
 			<entry><para>
 			If this parameter is set for a service, then no password is required to connect to the service. Privileges will be
-			those of the  guest account.
+			those of the  g&#xFC;st account.
 			</para></entry>
 		</row>
 		<row>
@@ -9425,8 +9423,8 @@ Before using any of the following options, please refer to the man page for <fil
 	</para>
 
 	<para>
-	At this time Samba does not provide a tool for configuring access control setting on the share
-	itself. Samba does have the capacity to store and act on access control settings, but  the only
+	At this time Samba d&#xF6;s not provide a tool for configuring access control setting on the share
+	itself. Samba d&#xF6;s have the capacity to store and act on access control settings, but  the only
 	way to create those settings is to use either the NT4 Server Manager or the Windows 200x MMC for
 	Computer Management.
 	</para>
@@ -9544,7 +9542,7 @@ Before using any of the following options, please refer to the man page for <fil
 		</para>
 
 		<para>
-		Samba does not attempt to go beyond POSIX ACLs, so the various finer-grained access control
+		Samba d&#xF6;s not attempt to go beyond POSIX ACLs, so the various finer-grained access control
 		options provided in Windows are actually ignored.
 		</para>
 
@@ -9761,7 +9759,7 @@ Before using any of the following options, please refer to the man page for <fil
 		allowed to change, and one bits are those the user is allowed to change.
 		</para>
 
-		<para>If not explicitly set, this parameter defaults to the same value as
+		<para>If not explicitly set, this parameter defaults to the same val&#xFC; as
 		the <indexterm><primary>create mask</primary></indexterm><parameter moreinfo="none">create mask</parameter> parameter. To allow a user to modify all the
 		user/group/world permissions on a file, set this parameter to 0777.
 		</para>
@@ -9774,7 +9772,7 @@ Before using any of the following options, please refer to the man page for <fil
 		<para>Essentially, bits set in the <parameter moreinfo="none">force security mode</parameter> parameter
 		may be treated as a set of bits that, when modifying security on a file, the user has always set to be <quote>on</quote>.</para>
 
-		<para>If not explicitly set, this parameter defaults to the same value
+		<para>If not explicitly set, this parameter defaults to the same val&#xFC;
 		as the <indexterm><primary>force create mode</primary></indexterm><parameter moreinfo="none">force create mode</parameter> parameter.
 		To allow a user to modify all the user/group/world permissions on a file
 		with no restrictions set this parameter to 000. The
@@ -9790,9 +9788,9 @@ Before using any of the following options, please refer to the man page for <fil
 		</parameter>.</para>
 
 		<para>The <indexterm><primary>directory security mask</primary></indexterm><parameter moreinfo="none">directory security mask</parameter> parameter
-		by default is set to the same value as the <parameter moreinfo="none">directory mask
+		by default is set to the same val&#xFC; as the <parameter moreinfo="none">directory mask
 		</parameter> parameter and the <parameter moreinfo="none">force directory security
-		mode</parameter> parameter by default is set to the same value as
+		mode</parameter> parameter by default is set to the same val&#xFC; as
 		the <indexterm><primary>force directory mode</primary></indexterm><parameter moreinfo="none">force directory mode</parameter> parameter.
 		In this way Samba enforces the permission restrictions that
 		an administrator can set on a Samba share, while still allowing users
@@ -9800,15 +9798,15 @@ Before using any of the following options, please refer to the man page for <fil
 
 		<para>If you want to set up a share that allows users full control
 		in modifying the permission bits on their files and directories and
-		does not force any particular bits to be set <quote>on</quote>, then set the following
+		d&#xF6;s not force any particular bits to be set <quote>on</quote>, then set the following
 		parameters in the <filename moreinfo="none">smb.conf</filename> file in that share-specific section:
 		</para>
 
 		<simplelist>
-			<member><parameter>security mask = 0777</parameter></member>
-			<member><parameter>force security mode = 0</parameter></member>
-			<member><parameter>directory security mask = 0777</parameter></member>
-			<member><parameter>force directory security mode = 0</parameter></member>
+			<member><parameter>security mask</parameter></member>
+			<member><parameter>force security mode</parameter></member>
+			<member><parameter>directory security mask</parameter></member>
+			<member><parameter>force directory security mode</parameter></member>
 		</simplelist>
 	</sect2>
 
@@ -9886,7 +9884,7 @@ are examples taken from the mailing list in recent times.
 
 			<note><para>
 			The above will set the <constant>sticky bit</constant> on all directories. Read your
-			UNIX/Linux man page on what that does. It causes the OS to assign
+			UNIX/Linux man page on what that d&#xF6;s. It causes the OS to assign
 			to all files created in the directories the ownership of the
 			directory.
 			</para></note>
@@ -9948,8 +9946,8 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
 		<para>
 		Now in your <filename moreinfo="none">smb.conf</filename> for the share add:
 		<simplelist>
-<member><parameter>force create mode = 0775</parameter></member>
-<member><parameter>force direcrtory mode = 6775</parameter></member>
+<member><parameter>force create mode</parameter></member>
+<member><parameter>force direcrtory mode</parameter></member>
 		</simplelist>
 		</para>
 
@@ -9962,8 +9960,8 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
 		<para>
 		An alternative is to set in the <filename moreinfo="none">smb.conf</filename> entry for the share:
 		<simplelist>
-<member><parameter>force user = jack</parameter></member>
-<member><parameter>force group = engr</parameter></member>
+<member><parameter>force user</parameter></member>
+<member><parameter>force group</parameter></member>
 		</simplelist>
 		</para>
 	</step>
@@ -9989,7 +9987,7 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
 		</para>
 
 		<para>
-		<emphasis>Answer:</emphasis> Word does the following when you modify/change a Word document: MS Word creates a NEW document with
+		<emphasis>Answer:</emphasis> Word d&#xF6;s the following when you modify/change a Word document: MS Word creates a NEW document with
 		a temporary name, Word then closes the old document and deletes it, Word then renames the new document to the original document name.
 		There is no mechanism by which Samba can in any way know that the new document really should be owned by the owners
 		of the original file. Samba has no way of knowing that the file will be renamed by MS Word. As far as Samba is able
@@ -10005,8 +10003,8 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
 
 		<para>
 		<simplelist>
-                <member><parameter>force create mode = 0660</parameter></member>
-                <member><parameter>force directory mode = 0770</parameter></member>
+                <member><parameter>force create mode</parameter></member>
+                <member><parameter>force directory mode</parameter></member>
 		</simplelist>
 		</para>
 

@@ -1,8 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 31. Migration from NT4 PDC to Samba-3 PDC</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.60.1"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="migration.html" title="Part IV. Migration und Updating"><link rel="previous" href="upgrading-to-3.0.html" title="Chapter 30. Upgrading from Samba-2.x to Samba-3.0.0"><link rel="next" href="SWAT.html" title="Chapter 32. SWAT  The Samba Web Administration Tool"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 31. Migration from NT4 PDC to Samba-3 PDC</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="upgrading-to-3.0.html">Prev</a> </td><th width="60%" align="center">Part IV. Migration und Updating</th><td width="20%" align="right"> <a accesskey="n" href="SWAT.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="NT4Migration"></a>Chapter 31. Migration from NT4 PDC to Samba-3 PDC</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">April 3, 2003</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="NT4Migration.html#id2965142">Planning and Getting Started</a></dt><dd><dl><dt><a href="NT4Migration.html#id2965167">Objectives</a></dt><dt><a href="NT4Migration.html#id2965628">Steps in Migration Process</a></dt></dl></dd><dt><a href="NT4Migration.html#id2965882">Migration Options</a></dt><dd><dl><dt><a href="NT4Migration.html#id2965986">Planning for Success</a></dt><dt><a href="NT4Migration.html#id2966270">Samba-3 Implementation Choices</a></dt></dl></dd></dl></div><p>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 31. Migration from NT4 PDC to Samba-3 PDC</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.60.1"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="migration.html" title="Part IV. Migration und Updating"><link rel="previous" href="upgrading-to-3.0.html" title="Chapter 30. Upgrading from Samba-2.x to Samba-3.0.0"><link rel="next" href="SWAT.html" title="Chapter 32. SWAT  The Samba Web Administration Tool"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 31. Migration from NT4 PDC to Samba-3 PDC</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="upgrading-to-3.0.html">Prev</a> </td><th width="60%" align="center">Part IV. Migration und Updating</th><td width="20%" align="right"> <a accesskey="n" href="SWAT.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="NT4Migration"></a>Chapter 31. Migration from NT4 PDC to Samba-3 PDC</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">April 3, 2003</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="NT4Migration.html#id2965730">Planning and Getting Started</a></dt><dd><dl><dt><a href="NT4Migration.html#id2965755">Objectives</a></dt><dt><a href="NT4Migration.html#id2966239">Steps in Migration Process</a></dt></dl></dd><dt><a href="NT4Migration.html#id2966493">Migration Options</a></dt><dd><dl><dt><a href="NT4Migration.html#id2966597">Planning for Success</a></dt><dt><a href="NT4Migration.html#id2966881">Samba-3 Implementation Choices</a></dt></dl></dd></dl></div><p>
 This is a rough guide to assist those wishing to migrate from NT4 Domain Control to
 Samba-3-based Domain Control.
-</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2965142"></a>Planning and Getting Started</h2></div></div><div></div></div><p>
+</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2965730"></a>Planning and Getting Started</h2></div></div><div></div></div><p>
 In the IT world there is often a saying that all problems are encountered because of
 poor planning. The corollary to this saying is that not all problems can be anticipated
 and planned for. Then again, good planning will anticipate most show-stopper-type situations.
@@ -10,7 +10,7 @@ and planned for. Then again, good planning will anticipate most show-stopper-typ
 Those wishing to migrate from MS Windows NT4 Domain Control to a Samba-3 Domain Control
 environment would do well to develop a detailed migration plan. So here are a few pointers to
 help migration get under way.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2965167"></a>Objectives</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2965755"></a>Objectives</h3></div></div><div></div></div><p>
 The key objective for most organizations will be to make the migration from MS Windows NT4 
 to Samba-3 Domain Control as painless as possible. One of the challenges you may experience
 in your migration process may well be one of convincing management that the new environment
@@ -36,7 +36,7 @@ Before migrating a network from MS Windows NT4 to Samba-3, consider all necessar
 should be educated about changes they may experience so the change will be a welcome one
 and not become an obstacle to the work they need to do. The following are factors that will 
 help ensure a successful migration:
-</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2965379"></a>Domain Layout</h4></div></div><div></div></div><p>
+</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2965975"></a>Domain Layout</h4></div></div><div></div></div><p>
 Samba-3 can be configured as a Domain Controller, a back-up Domain Controller (probably best called
 a secondary controller), a Domain Member, or as a stand-alone Server. The Windows network security
 domain context should be sized and scoped before implementation. Particular attention needs to be
@@ -57,7 +57,7 @@ response time (ping timing) between the remote segment and the PDC. If
 it's long (more than 100 ms),
 locate a backup controller (BDC) on the remote segment to serve as the local authentication and
 access control server.
-</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2965433"></a>Server Share and Directory Layout</h4></div></div><div></div></div><p>
+</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2966044"></a>Server Share and Directory Layout</h4></div></div><div></div></div><p>
 There are cardinal rules to effective network design that cannot be broken with impunity.
 The most important rule: Simplicity is king in every well-controlled network. Every part of
 the infrastructure must be managed; the more complex it is, the greater will be the demand
@@ -82,33 +82,33 @@ Remember, job security through complex design and implementation may cause loss 
 and downtime to users as the new administrator learns to untangle your knots. Keep access
 controls simple and effective and make sure that users will never be interrupted by obtuse
 complexity.
-</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2965496"></a>Logon Scripts</h4></div></div><div></div></div><p>
+</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2966107"></a>Logon Scripts</h4></div></div><div></div></div><p>
 Logon scripts can help to ensure that all users gain the share and printer connections they need.
 </p><p>
 Logon scripts can be created on-the-fly so all commands executed are specific to the
 rights and privileges granted to the user. The preferred controls should be affected through
 group membership so group information can be used to create a custom logon script using
-the <a class="indexterm" name="id2965517"></a><i class="parameter"><tt>root preexec</tt></i> parameters to the <i class="parameter"><tt>NETLOGON</tt></i> share.
+the <a class="indexterm" name="id2966128"></a><i class="parameter"><tt>root preexec</tt></i> parameters to the <i class="parameter"><tt>NETLOGON</tt></i> share.
 </p><p>
 Some sites prefer to use a tool such as <b class="command">kixstart</b> to establish a controlled
 user environment. In any case, you may wish to do a Google search for logon script process controls.
 In particular, you may wish to explore the use of the Microsoft KnowledgeBase article KB189105 that
 deals with how to add printers without user intervention via the logon script process.
-</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2965559"></a>Profile Migration/Creation</h4></div></div><div></div></div><p>
+</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2966170"></a>Profile Migration/Creation</h4></div></div><div></div></div><p>
 User and Group Profiles may be migrated using the tools described in the section titled Desktop Profile
 Management.
 </p><p>
-<a class="indexterm" name="id2965576"></a>
+<a class="indexterm" name="id2966188"></a>
 Profiles may also be managed using the Samba-3 tool <b class="command">profiles</b>. This tool allows
 the MS Windows NT-style security identifiers (SIDs) that are stored inside the profile <tt class="filename">NTuser.DAT</tt> file
 to be changed to the SID of the Samba-3 domain.
-</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2965604"></a>User and Group Accounts</h4></div></div><div></div></div><p>
+</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2966214"></a>User and Group Accounts</h4></div></div><div></div></div><p>
 It is possible to migrate all account settings from an MS Windows NT4 domain to Samba-3. Before
 attempting to migrate user and group accounts, it is STRONGLY advised to create in Samba-3 the
 groups that are present on the MS Windows NT4 domain <span class="emphasis"><em>AND</em></span> to map them to
 suitable UNIX/Linux groups. By following this simple advice, all user and group attributes
 should migrate painlessly.
-</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2965628"></a>Steps in Migration Process</h3></div></div><div></div></div><p>
+</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2966239"></a>Steps in Migration Process</h3></div></div><div></div></div><p>
 The approximate migration process is described below.
 </p><div class="itemizedlist"><ul type="disc"><li><p>
 You have an NT4 PDC that has the users, groups, policies and profiles to be migrated.
@@ -116,12 +116,12 @@ You have an NT4 PDC that has the users, groups, policies and profiles to be migr
 Samba-3 set up as a DC with netlogon share, profile share, and so on. Configure the <tt class="filename">smb.conf</tt> file
 to fucntion as a BDC, i.e., <i class="parameter"><tt>domain master = No</tt></i>.
 </p></li></ul></div><div class="procedure"><p class="title"><b>Procedure 31.1. The Account Migration Process</b></p><ol type="1"><li><p>
-<a class="indexterm" name="id2965688"></a>
+<a class="indexterm" name="id2966299"></a>
 			Create a BDC account in the old NT4 domain for the Samba server using NT Server Manager.</p><ol type="a"><li><p>Samba must not be running.</p></li></ol></li><li><p>
-<a class="indexterm" name="id2965719"></a>
+<a class="indexterm" name="id2966330"></a>
 			<b class="userinput"><tt>net rpc join -S <i class="replaceable"><tt>NT4PDC</tt></i> -w <i class="replaceable"><tt>DOMNAME</tt></i> -U Administrator%<i class="replaceable"><tt>passwd</tt></i></tt></b></p></li><li><p><b class="userinput"><tt>net rpc vampire -S <i class="replaceable"><tt>NT4PDC</tt></i> -U administrator%<i class="replaceable"><tt>passwd</tt></i></tt></b></p></li><li><p><b class="userinput"><tt>pdbedit -L</tt></b></p><ol type="a"><li><p>Note  did the users migrate?</p></li></ol></li><li xmlns:ns130=""><ns130:p>
-<a class="indexterm" name="id2965800"></a>
-<a class="indexterm" name="id2965812"></a>
+<a class="indexterm" name="id2966412"></a>
+<a class="indexterm" name="id2966423"></a>
 	Now assign each of the UNIX groups to NT groups:
 	(It may be useful to copy this text to a script called <tt class="filename">initGroups.sh</tt>)
 	</ns130:p><pre class="programlisting">
@@ -140,10 +140,10 @@ net groupmap add ntgroup=&quot;QA Team&quot;   unixgroup=qateam    type=d rid=32
 </pre><ns130:p>
 	</ns130:p></li><li><p><b class="userinput"><tt>net groupmap list</tt></b></p><ol type="a"><li><p>Check that all groups are recognized.</p></li></ol></li></ol></div><p>
 Migrate all the profiles, then migrate all policy files.
-</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2965882"></a>Migration Options</h2></div></div><div></div></div><p>
+</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2966493"></a>Migration Options</h2></div></div><div></div></div><p>
 Sites that wish to migrate from MS Windows NT4 Domain Control to a Samba-based solution
 generally fit into three basic categories. <a href="NT4Migration.html#majtypes" title="Table 31.1. The Three Major Site Types">???</a> shows the possibilities.
-</p><div class="table"><a name="majtypes"></a><p class="title"><b>Table 31.1. The Three Major Site Types</b></p><table summary="The Three Major Site Types" border="1"><colgroup><col align="left"><col align="justify"></colgroup><thead><tr><th align="left">Number of Users</th><th align="justify">Description</th></tr></thead><tbody><tr><td align="left">&lt; 50</td><td align="justify"><p>Want simple conversion with no pain.</p></td></tr><tr><td align="left">50 - 250</td><td align="justify"><p>Want new features, can manage some in-house complexity.</p></td></tr><tr><td align="left">&gt; 250</td><td align="justify"><p>Solution/Implementation must scale well, complex needs. Cross-departmental decision process. Local expertise in most areas.</p></td></tr></tbody></table></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2965986"></a>Planning for Success</h3></div></div><div></div></div><p>
+</p><div class="table"><a name="majtypes"></a><p class="title"><b>Table 31.1. The Three Major Site Types</b></p><table summary="The Three Major Site Types" border="1"><colgroup><col align="left"><col align="justify"></colgroup><thead><tr><th align="left">Number of Users</th><th align="justify">Description</th></tr></thead><tbody><tr><td align="left">&lt; 50</td><td align="justify"><p>Want simple conversion with no pain.</p></td></tr><tr><td align="left">50 - 250</td><td align="justify"><p>Want new features, can manage some in-house complexity.</p></td></tr><tr><td align="left">&gt; 250</td><td align="justify"><p>Solution/Implementation must scale well, complex needs. Cross-departmental decision process. Local expertise in most areas.</p></td></tr></tbody></table></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2966597"></a>Planning for Success</h3></div></div><div></div></div><p>
 There are three basic choices for sites that intend to migrate from MS Windows NT4
 to Samba-3:
 </p><div class="itemizedlist"><ul type="disc"><li><p>
@@ -164,7 +164,7 @@ Minimize down-stream problems by:
 	Testing the full roll-out program, including workstation deployment.
 	</p></li></ul></div><p><a href="NT4Migration.html#natconchoices" title="Table 31.2. Nature of the Conversion Choices">???</a> lists the conversion choices given the type of migration
 being contemplated.
-</p><div class="table"><a name="natconchoices"></a><p class="title"><b>Table 31.2. Nature of the Conversion Choices</b></p><table summary="Nature of the Conversion Choices" border="1"><colgroup><col align="justify"><col align="justify"><col align="justify"></colgroup><thead><tr><th align="justify">Simple</th><th align="justify">Upgraded</th><th align="justify">Redesign</th></tr></thead><tbody><tr><td align="justify"><p>Make use of minimal OS specific features.</p></td><td align="justify"><p>Translate NT4 features to new host OS features.</p></td><td align="justify"><p>Decide:</p></td></tr><tr><td align="justify"><p>Move all accounts from NT4 into Samba-3</p></td><td align="justify"><p>Copy and improve</p></td><td align="justify"><p>Authentication regime (database location and access)</p></td></tr><tr><td align="justify"><p>Make least number of operational changes</p></td><td align="justify"><p>Make progressive improvements</p></td><td align="justify"><p>Desktop management methods</p></td></tr><tr><td align="justify"><p>Take least amount of time to migrate</p></td><td align="justify"><p>Minimize user impact</p></td><td align="justify"><p>Better control of Desktops/Users</p></td></tr><tr><td align="justify"><p>Live versus isolated conversion</p></td><td align="justify"><p>Maximize functionality</p></td><td align="justify"><p>Identify Needs for: <span class="emphasis"><em>Manageability, Scalability, Security, Availability</em></span></p></td></tr><tr><td align="justify"><p>Integrate Samba-3 then migrate while users are active, then change of control (swap out)</p></td><td align="justify"><p>Take advantage of lower maintenance opportunity</p></td><td align="justify"><p></p></td></tr></tbody></table></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2966270"></a>Samba-3 Implementation Choices</h3></div></div><div></div></div><div class="variablelist"><dl><dt><span class="term">Authentication Database/Backend</span></dt><dd xmlns:ns131=""><p>
+</p><div class="table"><a name="natconchoices"></a><p class="title"><b>Table 31.2. Nature of the Conversion Choices</b></p><table summary="Nature of the Conversion Choices" border="1"><colgroup><col align="justify"><col align="justify"><col align="justify"></colgroup><thead><tr><th align="justify">Simple</th><th align="justify">Upgraded</th><th align="justify">Redesign</th></tr></thead><tbody><tr><td align="justify"><p>Make use of minimal OS specific features.</p></td><td align="justify"><p>Translate NT4 features to new host OS features.</p></td><td align="justify"><p>Decide:</p></td></tr><tr><td align="justify"><p>Move all accounts from NT4 into Samba-3</p></td><td align="justify"><p>Copy and improve</p></td><td align="justify"><p>Authentication regime (database location and access)</p></td></tr><tr><td align="justify"><p>Make least number of operational changes</p></td><td align="justify"><p>Make progressive improvements</p></td><td align="justify"><p>Desktop management methods</p></td></tr><tr><td align="justify"><p>Take least amount of time to migrate</p></td><td align="justify"><p>Minimize user impact</p></td><td align="justify"><p>Better control of Desktops/Users</p></td></tr><tr><td align="justify"><p>Live versus isolated conversion</p></td><td align="justify"><p>Maximize functionality</p></td><td align="justify"><p>Identify Needs for: <span class="emphasis"><em>Manageability, Scalability, Security, Availability</em></span></p></td></tr><tr><td align="justify"><p>Integrate Samba-3 then migrate while users are active, then change of control (swap out)</p></td><td align="justify"><p>Take advantage of lower maintenance opportunity</p></td><td align="justify"><p></p></td></tr></tbody></table></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2966881"></a>Samba-3 Implementation Choices</h3></div></div><div></div></div><div class="variablelist"><dl><dt><span class="term">Authentication Database/Backend</span></dt><dd xmlns:ns131=""><p>
 		Samba-3 can use an external authentication backend:
 		</p><ns131:p>
 		</ns131:p><div class="itemizedlist"><ul type="disc"><li><p>Winbind (external Samba or NT4/200x server).</p></li><li><p>External server could use Active Directory or NT4 Domain.</p></li><li><p>Can use pam_mkhomedir.so to auto-create home dirs.</p></li><li><p>
@@ -181,7 +181,7 @@ being contemplated.
 		</p></dd><dt><span class="term">Logon Scripts</span></dt><dd><p>
 		Know how they work.
 		</p></dd><dt><span class="term">User and Group Mapping to UNIX/Linux</span></dt><dd><p>
-<a class="indexterm" name="id2966474"></a>
+<a class="indexterm" name="id2967085"></a>
 		User and Group mapping code is new. Many problems have been experienced as network administrators
 		who are familiar with Samba-2.2.x migrate to Samba-3. Carefully study the chapters that document
 		the new password backend behavior and the new group mapping functionality.
@@ -196,7 +196,7 @@ being contemplated.
 				(Linux 8 chars) NT4 up to 254 chars.</p></li><li><p>Add/Delete Machines: Applied only to Domain Members
 				(Note: machine names may be limited to 16 characters).</p></li><li><p>Use <b class="command">net groupmap</b> to connect NT4 groups to UNIX groups.</p></li><li><p>Add/Delete Groups: Note OS limits on size and nature.
 				Linux limit is 16 char, no spaces and no upper case chars (<b class="command">groupadd</b>).</p></li></ul></div></dd><dt><span class="term">Migration Tools</span></dt><dd xmlns:ns132=""><ns132:p>
-<a class="indexterm" name="id2966621"></a>
+<a class="indexterm" name="id2967232"></a>
 		Domain Control (NT4 Style) Profiles, Policies, Access Controls, Security
 		</ns132:p><div class="itemizedlist"><ul type="disc"><li><p>Samba: <b class="command">net, rpcclient, smbpasswd, pdbedit, profiles.</b></p></li><li><p>Windows: <b class="command">NT4 Domain User Manager, Server Manager (NEXUS)</b></p></li></ul></div><ns132:p>
 			</ns132:p></dd></dl></div></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="upgrading-to-3.0.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="migration.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="SWAT.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 30. Upgrading from Samba-2.x to Samba-3.0.0 </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 32. SWAT  The Samba Web Administration Tool</td></tr></table></div></body></html>
