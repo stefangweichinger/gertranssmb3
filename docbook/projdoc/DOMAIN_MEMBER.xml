@@ -53,24 +53,25 @@ oder einem Samba-kontrollierten Netzwerk. Domänen-Mitgliedschaft hat viele Vorte
 <itemizedlist>
 	<listitem><para>
 <indexterm><primary>SAM</primary></indexterm>
-	MS Windows workstation users get the benefit of SSO.
+	MS-Windows-Workstation-Benutzer erhalten die Vorteile von SSO.
 	</para></listitem>
 
 	<listitem><para>
-	Domain user access rights and file ownership/access controls can be set
-	from the single Domain Security Account Manager (SAM) database 
-	(works with Domain Member servers as well as with MS Windows workstations
-	that are Domain Members).
+	Zugriffsrechte von Domänen-Benutzern und Datei-Benutzer/Zugriffs-Kontrollen
+	können über die einzelne "Domain Security Account Manager" (SAM) Datenbank
+	gesetzt werden (arbeitet genauso mit Domänen-Mitglieds-Serveren wie auch mit
+	MS-Windows-Workstations, die Domänen-Mitglieder sind).
 	</para></listitem>
 
 	<listitem><para>
-	Only <application>MS Windows NT4/200x/XP Professional</application>
-	workstations that are Domain Members can use network logon facilities.
+	Nur <application>MS Windows NT4/200x/XP Professional</application>
+	Workstations, die Domänen-Mitglieder sind, können Netzwerk-Anmeldedienste benutzen.
 	</para></listitem>
 
 	<listitem><para>
-	Domain Member workstations can be better controlled through the use of
-	Policy files (<filename>NTConfig.POL</filename>) and Desktop Profiles.
+	Domänen-Mitglieds-Workstations können durch die Verwendung von Policy-Dateien 
+	(<filename>NTConfig.POL</filename>) und Desktop-Profilen besser
+	kontrolliert werden.
 	</para></listitem>
 
 	<listitem><para>
