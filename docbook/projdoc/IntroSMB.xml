@@ -13,36 +13,36 @@
 </quote></para>
 
 <para>
-Samba ist ein Datei- und Druckserver fuer auf Windows basierende Clients die TCP/IP als transport Protokol nutzen.
-Tatsaechlich kann es jeden SMB/CIFS-aktiven Client unterstuetzen. Eine von Samba's grossen Staerken ist, dass Sie in der
-Lage sind ihre Windows und Linux Maschienen zusammen zu mixen ohne einen separaten Windows NT/2000/2003 Server zu benaetigen.
-Samba wird derzeit von einem 30 Kopfigen Team von Programmieren entwickelt und wurde urspruenglich von Andrew Tridgell entwickelt.
+Samba ist ein Datei- und Druckserver f&uuml;r auf Windows basierende Clients die TCP/IP als transport Protokol nutzen.
+Tats&auml;chlich kann es jeden SMB/CIFS-aktiven Client unterst&uuml;tzen. Eine von Samba's grossen St&auml;rken ist, dass Sie in der
+Lage sind ihre Windows und Linux Maschienen zusammen zu mixen ohne einen separaten Windows NT/2000/2003 Server zu ben&auml;tigen.
+Samba wird derzeit von einem 30 Kopfigen Team von Programmieren entwickelt und wurde urspr&uuml;nglich von Andrew Tridgell entwickelt.
 </para>
 
 <sect1>
 <title>Hintergrund</title>
 
 <para>
-Vor langer Zeit gab es ein Schluesselwort welches auf DCE/RPC referenzierte. Dies stand fuer
-Computing Environment/Remote Procedure Calls and war vom Konzept her eine gute Idee. Urspruenglich
-wurde es von Apollo/HP als NCA1.0 (Network Computing Architecture entwickelt und konnte nur ueber
-UDP benutzt werden. Als es naetig wurde das ganze ueber TCP zu betreiben um die Kompatibilitaet zu
-DECnet3.0 gewaehrleisten zu kaennen, wurde es neu entworfen, zur Organisation The Open Group gesandt
-und wurde offiziell als DCE/RPC bekannt. Microsoft kam daher und entschied mehr als $20 fuer eine
+Vor langer Zeit gab es ein Schl&uuml;sselwort welches auf DCE/RPC referenzierte. Dies stand f&uuml;r
+Computing Environment/Remote Procedure Calls and war vom Konzept her eine gute Idee. Urspr&uuml;nglich
+wurde es von Apollo/HP als NCA1.0 (Network Computing Architecture entwickelt und konnte nur &uuml;ber
+UDP benutzt werden. Als es n&auml;tig wurde das ganze &uuml;ber TCP zu betreiben um die Kompatibilit&auml;t zu
+DECnet3.0 gew&auml;hrleisten zu k&auml;nnen, wurde es neu entworfen, zur Organisation The Open Group gesandt
+und wurde offiziell als DCE/RPC bekannt. Microsoft kam daher und entschied mehr als $20 f&uuml;r eine
 Arbeitsplatz Lizens haben zu wollen und es als eigenes MSRPC verkaufen zu wollen. Von diesem Punkt
 an wurde das Konzept in Form von SMB (Server Message Block, als "was") unter Benutzung von
-NetBIOS (Network Basic Input/Output System, als "wie") als Komatibilitaets-Schicht weiter gefuehrt.
-Sie kaennen SMB ueber viele verschieden Protokolle nutzen, sprich transportieren; viele verschiedene
-Implementationen fuehren zu einem Ergebnis, einschlie&szlig;lich NBIPX (NetBIOS ueber IPX, NwLnkNb, oder NWNBLink)
-und NBT (NetBIOS ueber TCP/IP, oder NetBT). ueber die Jahre hinweg wurde NBT die meist genutzte Form der
+NetBIOS (Network Basic Input/Output System, als "wie") als Komatibilit&auml;ts-Schicht weiter gef&uuml;hrt.
+Sie k&auml;nnen SMB &uuml;ber viele verschieden Protokolle nutzen, sprich transportieren; viele verschiedene
+Implementationen f&uuml;hren zu einem Ergebnis, einschlie&szlig;lich NBIPX (NetBIOS &uuml;ber IPX, NwLnkNb, oder NWNBLink)
+und NBT (NetBIOS &uuml;ber TCP/IP, oder NetBT). &uuml;ber die Jahre hinweg wurde NBT die meist genutzte Form der
 Implementationen bis zum Fortschritt des "Direct-Hosted TCP" -- der Microsoft Marketing Formulierung zur
-vollstaendigen Eleminierung von NetBIOS und der Maeglichkeit SMB direkt ueber den TCP port 445 laufen zu lassen.
+vollst&auml;ndigen Eleminierung von NetBIOS und der M&auml;glichkeit SMB direkt &uuml;ber den TCP port 445 laufen zu lassen.
 
 As of yet, direct-hosted TCP has yet to catch on.
 </para>
 
 <para>
-Es ist maeglich, dass der bisher beste Artikel ueber den Ursprung von SMB im Jahre 1997 in einem Artikel
+Es ist m&auml;glich, dass der bisher beste Artikel &uuml;ber den Ursprung von SMB im Jahre 1997 in einem Artikel
 mit dem Titel: CIFS: Common Insecurities Fail Scrutiny erschienen ist.
 
 Perhaps the best summary of the origins of SMB are voiced in the 1997 article titled, CIFS:
@@ -51,9 +51,9 @@ Common Insecurities Fail Scrutiny:
 
 <para><emphasis>
 Mehrere Megabytes aus NT-Security Archiven, ziellosen whitepapern, RFCs, der CIFS Spezifikation,
-das Samba Zeug, ein paar MS Knowledge Base Artikeln, Zeichenketten aus Binaerdateien und Packet-Abbildungen
+das Samba Zeug, ein paar MS Knowledge Base Artikeln, Zeichenketten aus Bin&auml;rdateien und Packet-Abbildungen
 haben pflichtbewu&szlig;t den Weg durch die Phasen der Informationssammlung dieses Projektes durch schritten und es
-fehlen immer noch einige Stuecke... Oftmals mue&szlig;ig wurde der Weg unordentlich gemacht durch "Hand vor die Stirn schlagen" und murmeln
+fehlen immer noch einige St&uuml;cke... Oftmals m&uuml;&szlig;ig wurde der Weg unordentlich gemacht durch "Hand vor die Stirn schlagen" und murmeln
 "Mein Gott, was haben die sich dabei gedacht?"
 Hier das Original:
 Several megabytes of NT-security archives, random whitepapers, RFCs, the CIFS spec, the Samba
@@ -72,28 +72,28 @@ thinking?
 <itemizedlist>
 
 	<listitem><para>
-	SMB: Akronym fuer "Server Message Block". Dies ist Microsoft's Datei- und Druckerfreigabe Protokol.
+	SMB: Akronym f&uuml;r "Server Message Block". Dies ist Microsoft's Datei- und Druckerfreigabe Protokol.
 	</para></listitem>
 
 	<listitem><para>
-	CIFS: Akronym fuer "Common Internet File System". Um 1996 entschied Microsoft das SMB das Wort
-	"Internet" im Namen braeuchte und sie aenderten den Namen in CIFS.
+	CIFS: Akronym f&uuml;r "Common Internet File System". Um 1996 entschied Microsoft das SMB das Wort
+	"Internet" im Namen br&auml;uchte und sie &auml;nderten den Namen in CIFS.
 	</para></listitem>
 
 	<listitem><para>
-	Direct-Hosted: Eine Methode Datei/Drucker Freigabedienste ueber port 445/tcp zur Verfuegung zu stellen,
-	Hierbei wurde nur DNS statt WINS zur Auflaesung der Namen in IP-Adressen benutzt
+	Direct-Hosted: Eine Methode Datei/Drucker Freigabedienste &uuml;ber port 445/tcp zur Verf&uuml;gung zu stellen,
+	Hierbei wurde nur DNS statt WINS zur Aufl&auml;sung der Namen in IP-Adressen benutzt
 	</para></listitem>
 
 	<listitem><para>
-	IPC: Akronym fuer "Inter-Process Communication". Eine Methode spezielle Informationen zwischen Programmen
+	IPC: Akronym f&uuml;r "Inter-Process Communication". Eine Methode spezielle Informationen zwischen Programmen
 	zu verbreiten.
 	</para></listitem>
 
 	<listitem><para>
-	Marshalling: - Eine Methode zur sequentiellen Sortierung von variablen Daten,
-	passend zur Uebertragung ueber eine Netzwerkverbindung bzw. Speicherung in eine Datei.
-	Die Quelldateien koennen mittels eines aehnlichen Prozesses namens unmarschalling
+	Marshalling: - Eine Methode zur seq&uuml;ntiellen Sortierung von variablen Daten,
+	passend zur &uuml;bertragung &uuml;ber eine Netzwerkverbindung bzw. Speicherung in eine Datei.
+	Die Q&uuml;lldateien k&ouml;nnen mittels eines &auml;hnlichen Prozesses namens unmarschalling
 	wiederhergestellt werden.
 	</para></listitem>
 
@@ -121,7 +121,7 @@ thinking?
 	</para></listitem>
 
 	<listitem><para>
-	NBT: Akronym for "NetBIOS over TCP"; also known as "NetBT". Allows the continued use
+	NBT: Akronym for "NetBIOS over TCP"; also known as "NetBT". Allows the contin&uuml;d use
 	of NetBIOS traffic proxied over TCP/IP. As a result, NetBIOS names are made
 	to IP addresses and NetBIOS name types are conceptually equivalent to TCP/IP ports.
 	This is how file and printer sharing are accomplished in Windows 95/98/ME. They
@@ -209,7 +209,7 @@ up a single file. In general, SMB sessions are established in the following orde
 	</para></listitem>
 
 	<listitem><para>
-	"NetBIOS Session Request" - using the following "Calling Names": The local
+	"NetBIOS Session Req&uuml;st" - using the following "Calling Names": The local
     machine's NetBIOS name plus the 16th character 0x00; The server's NetBIOS
     name plus the 16th character 0x20
 	</para></listitem>
@@ -246,7 +246,7 @@ It allows you to walk through the establishment of a SMB/CIFS session step by st
 </sect1>
 
 <sect1>
-<title>Epilogue</title>
+<title>Epilog&uuml;</title>
 
 <para><quote>
 What's fundamentally wrong is that nobody ever had any taste when they
@@ -262,7 +262,7 @@ operating system.
 
 <para><quote>
 People inside Microsoft know it's a bad operating system and they still
-continue obviously working on it because they want to get the next version out
+contin&uuml; obviously working on it because they want to get the next version out
 because they want to have all these new features to sell more copies of the
 system.
 </quote></para>
@@ -273,9 +273,9 @@ and because nobody understands it, because nobody REALLY fixes bugs (other than
 when they're really obvious), the end result is really messy. You can't trust
 it because under certain circumstances it just spontaneously reboots or just
 halts in the middle of something that shouldn't be strange. Normally it works
-fine and then once in a blue moon for some completely unknown reason, it's dead,
+fine and then once in a bl&uuml; moon for some completely unknown reason, it's dead,
 and nobody knows why. Not Microsoft, not the experienced user and certainly
-not the completely clueless user who probably sits there shivering thinking
+not the completely cl&uuml;less user who probably sits there shivering thinking
 "What did I do wrong?" when they didn't do anything wrong at all.
 </quote></para>
 
