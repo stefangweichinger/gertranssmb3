@@ -45,34 +45,22 @@ Eine weitere hilfreiche Methode des Debugging ist es, Samba mit dem Flag
 <command>gcc -g </command> zu kompilieren. Dies wird Debug-Information in den Binaries
 einschliessen, und erlaubt es, gdb an die laufenden <command>smbd/nmbd</command>-Prozesse
 anzudocken. Um dies auf einer NT-Workstation zu tun, lassen Sie zuerst die Workstation
-die Verbindung herstellen. 
-
-
-
-
-
-
-Another helpful method of debugging is to compile Samba using the 
-<command>gcc -g </command> flag. This will include debug information in the binaries and
-allow you to attach gdb to the running <command>smbd/nmbd</command> process. 
-To attach <command>gdb</command> to an <command>smbd</command> 
-process for an NT workstation, first get the workstation to make the 
-connection. Pressing ctrl-alt-delete and going down to the domain box 
-is sufficient (at least, the first time you join the domain) to 
-generate a <parameter>LsaEnumTrustedDomains</parameter>. Thereafter, the workstation 
-maintains an open connection and there will be an smbd 
-process running (assuming that you haven't set a really short smbd 
-idle timeout). So, in between pressing <command>ctrl-alt-delete</command> and actually 
-typing in your password, you can attach <command>gdb</command> and continue.
+die Verbindung herstellen. Das Drücken von ctrl-alt-delete und Gehen auf den Domänen-Eintrag
+sollte ausreichen (zumindest beim ersten Anmelden an der Domäne), um den Parameter
+<parameter>LsaEnumTrustedDomains</parameter> zu generieren. Danach hält die Workstation
+eine offene Verbindung und es wird ein smbd-Prozess laufen (unter der Annahme, daß Sie
+keinen wirklich kurzen smbd-Timeout gesetzt haben). Also können Sie zwischen dem Drücken
+von <command>ctrl-alt-delete</command> und dem tatsächlichen Eingeben Ihres Passworts
+<command>gdb</command> starten und fortsetzen.
 </para>
 
 <para>
-Some useful Samba commands worth investigating are:
+Einige Samba-Befehle, die nähere Betrachtung verdienen, sind:
 </para>
 	
 <screen>
 &prompt;<userinput>testparm | more</userinput>
-&prompt;<userinput>smbclient -L //{netbios name of server}</userinput>
+&prompt;<userinput>smbclient -L //{Netbios-Name des Servers}</userinput>
 </screen>
 
 </sect2>
@@ -81,10 +69,10 @@ Some useful Samba commands worth investigating are:
 	<title>Tcpdump</title>
   
 <para>
-<ulink url="http://www.tcpdump.org/">Tcpdump</ulink> was the first 
-UNIX sniffer with SMB support. It is a command-line utility and 
-now, its SMB support is somewhat lagging that of <command>ethereal</command> 
-and <command>tethereal</command>.
+<ulink url="http://www.tcpdump.org/">Tcpdump</ulink> war der erste
+UNIX sniffer mit SMB-Support. Es ist ein Befehlszeilen-Tool, und mittlerweile hängt seine
+SMB-Unterstützung etwas hinter der von <command>ethereal</command> und <command>tethereal</command>
+nach.
 </para>
 
 </sect2>
@@ -93,14 +81,12 @@ and <command>tethereal</command>.
 	<title>Ethereal</title>
 
 <para>
-<ulink url="http://www.ethereal.com/">Ethereal</ulink> is a graphical 
-sniffer, available for both UNIX (Gtk) and Windows. Ethereal's 
-SMB support is quite good.</para>
+<ulink url="http://www.ethereal.com/">Ethereal</ulink> ist ein grafischer Sniffer, verfügbar sowohl
+für UNIX (Gtk) und Windows. Ethereal's SMB-Unterstützung ist ziemlich gut.
+Für Details zu <command>ethereal</command>, lesen Sie den gutgeschriebenen Ethereal User Guide.
+</para>
 
-<para>For details on the use of <command>ethereal</command>, read the well-written 
-Ethereal User Guide.</para>
-
-<image id="ethereal1"><imagefile>ethereal1</imagefile><imagedescription>Starting a capture.</imagedescription></image>
+<image id="ethereal1"><imagefile>ethereal1</imagefile><imagedescription>Start eines Capture.</imagedescription></image>
 
 <para>
 Listen for data on ports 137, 138, 139, and 445. For example, use the filter <userinput>port 137, port 138, port 139, or port 445</userinput> as seen in <link linkend="ethereal1"/>.</para>
