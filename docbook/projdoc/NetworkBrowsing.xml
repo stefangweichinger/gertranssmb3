@@ -1,21 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="NetworkBrowsing">
 <chapterinfo>
 	&author.jht;
 	&author.jelmer;
 	<pubdate>July 5, 1998</pubdate>
 	<pubdate>Updated: April 21, 2003</pubdate>
+	<author>&person.klimklim;<contrib>German Translator</contrib></author>
 </chapterinfo>
 
-<title>Network Browsing</title>
+<title>Netzwerk-Browsing</title>
 
 <para>
-This document contains detailed information as well as a fast track guide to
-implementing browsing across subnets and/or across workgroups (or domains).
-WINS is the best tool for resolution of NetBIOS names to IP addresses. WINS is
-not involved in browse list handling except by way of name to address resolution.
+Diese Dokumentation enthält detailierte Informationen und einen Leitfaden, wie
+man das Browsing quer durch Subnetze und/oder Arbeitsgruppen (oder Domänen)
+implementiert. WINS ist das beste Werkzeug, um NetBIOS-Namen nach
+IP-Adressen aufzulösen. # WINS is not involved in browse list handling except
+by way of name to address resolution. #
 </para>
 
 <note><para>
+MS Windows 2000 und später können so konfiguriert werden, dass sie ohne NetBIOS über
+TCP/IP arbeiten, wozu Samba-3 und spätere Versionen ebenfalls in der Lage sind. Ist
+die Benutzung von NetBIOS über TCP/IP deaktiviert, werden die MS Windows Maschinen
+über DNS und Active Directory aufgelöst. Die folgenden Informationen gehen davon aus,
+dass ein Netz mit NetBIOS über TCP/IP betrieben wird. 
+
+
 MS Windows 2000 and later versions can be configured to operate with no NetBIOS 
 over TCP/IP. Samba-3 and later versions also support this mode of operation.
 When the use of NetBIOS over TCP/IP has been disabled, the primary
@@ -24,12 +34,12 @@ The following information assumes that your site is running NetBIOS over TCP/IP.
 </para></note>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Planung und Beginn</title>
 
 <para>
-Someone once referred to the past in these words <quote><emphasis>It was the best of times,
-it was the worst of times.</emphasis></quote> The more we look back, the more we long for what was and
-hope it never returns.
+Jemand bezog sich einst auf die Vergangenheit in den Worten <quote><emphasis>Es war die beste
+aller Zeiten, es war die schlechteste aller Zeiten.<quote><emphasis> Je mehr wir nach hinten
+schauen, umso mehr sehnen wir uns nach dem was war und hoffen, dass es nie wiederkehrt.
 </para>
 
 
