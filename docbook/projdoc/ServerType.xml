@@ -5,17 +5,17 @@
 	&author.tridge;
 	&author.jelmer;
 	&author.jht;
-	<author>&person.hba;<contrib>German Translator</contrib></author>
+	<author>&person.hba;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
-<title>Server Arten und Sicherheitsmodi</title>
+<title>Server-Arten und Sicherheitsmodi</title>
 
 <para>
-Dieses Kapitel enthält Informationen betreffend der verschiedenen Server Typen
-die Sie im Samba Server einstellen können. Ein Microsoft Netzwerk Administrator
-der zu Samba migrieren bzw. Samba nutzen möchte, ist bestimmt interessiert welche
-Samba Konfigurationen er machen muss im Vergleich zu den Konfigurationen eines
-Windows Servers. Es ist wichtig die Sicherheits-Definitionen zu definieren, bevor
+Dieses Kapitel enthält Informationen betreffend der verschiedenen Server-Typen,
+die Sie im Samba-Server einstellen können. Ein Microsoft-Netzwerk-Administrator,
+der zu Samba migrieren bzw. Samba nutzen möchte, ist bestimmt interessiert daran, welche
+Samba-Konfigurationen er vornehmen muss, verglichen zu den Konfigurationen eines
+Windows-Servers. Es ist wichtig, die Sicherheits-Definitionen zu definieren, bevor
 man den Server selbst konfiguriert.
 </para>
 
@@ -25,18 +25,18 @@ im Vergleich zu Windows stehen.
 </para>
 
 <para>
-Eine Frage die häufig gestellt wird lautet: <quote>Warum will ich Samba nutzen?</quote>
-Die meisten Kapitel enthalten eine Sektion die die Positive Merkmale und Vorteile hervorhebt.
-Wir hoffen dass diese Informationen ihnen diese Frage beantworten können. Wir wollen Fair
-und Vernünftig bleiben, somit ist darauf zu achten, dass nicht alle Features für Samba
-sprechen. Der Vorzug könnte auf unserer Seite des Wettkampfes sein.
+Eine Frage, die häufig gestellt wird, lautet: <quote>Warum will ich Samba nutzen?</quote>
+Die meisten Kapitel enthalten einen Abschnitt, die die positiven Merkmale und Vorteile hervorhebt.
+Wir hoffen, dass diese Informationen ihnen diese Frage beantworten können. Wir wollen fair
+und vernünftig bleiben, somit ist darauf zu achten, dass nicht alle Features für Samba
+sprechen. Der Vorteil könnte auf unserer Seite sein.
 </para>
 
 <sect1>
 <title>Positive Merkmale und Vorteile</title>
 
 <para>
-Zwei Männer gehen eine staubige Straße entlang als der eine plötzlich einen kleinen roten
+Zwei Männer gehen eine staubige Straße entlang, als der eine plötzlich einen kleinen roten
 Stein weg schießt. Sein Zeh schmerzt durch den Stein und dieser wandert in die Sandale des
 einen Mannes. Er nimmt den Stein unter zornigem Fluchen aus der Sandale und ist sehr verärgert.
 Der andere Mann schaut sich den Stein an und sagt: <quote>Dies ist ein Granat, ich könnte ihn
@@ -45,20 +45,20 @@ zu Schmuck verarbeiten und eines Tages wird er einer Prinzessin viel Freude bere
 
 <para>
 Und die Moral von dieser Geschichte: Zwei Männer, zwei verschiedene Betrachtungsweisen des
-gleichen Steins. Mögen oder hassen. Samba ist wie dieser Stein. Behandeln Sie ihn richtig
-kann er ihnen einen großen Dienst erweisen aber wenn Sie gezwungen sind ihn zu benutzen ohne
-seine Geheimnisse zu kennen kann er eine Quelle des Unbehagen sein.
+gleichen Steins. Mögen oder hassen. Samba ist wie dieser Stein. Behandeln Sie es richtig, so
+kann es Ihnen einen großen Dienst erweisen, aber wenn Sie gezwungen sind, Samba zu benutzen, ohne
+seine Geheimnisse zu kennen, kann es eine Quelle des Unbehagen sein.
 </para>
 
 <para>
-Samba startete als Projekt um zu versuchen die Zusammenarbeit von MS Windows 3.x Clients und
-Unix Servern zu gewährleisten. Es ist seit den Anfangen viel gewachsen und stellt jetzt Merkmale
-und Funktionen zur Verfügung die es bereit für große Aufgaben macht. Es hat aber auch ein paar
+Samba startete als Projekt, um zu versuchen, die Zusammenarbeit von MS Windows 3.x Clients und
+Unix-Servern zu gewährleisten. Es ist seit den Anfängen stark gewachsen und stellt jetzt Merkmale
+und Funktionen zur Verfügung, die es bereit für große Aufgaben macht. Es hat aber auch ein paar
 Nachteile, die wir in Sektionen wie dieser besprechen möchten.
 </para>
 
 <para>
-Also, was sind die Vorteile und Merkmale die wir in diesem Kapitel erwähnt hatten?
+Also, was sind die Vorteile und Merkmale, die wir in diesem Kapitel erwähnt hatten?
 </para>
 
 <itemizedlist>
@@ -68,26 +68,26 @@ Also, was sind die Vorteile und Merkmale die wir in diesem Kapitel erwähnt hatte
 
 	<listitem><para>
 	Samba 3 bietet exzellente Kompatibilität mit MS Windows NT4 Domänen sowie
-	native Microsoft Active Directory Domänen.
+	nativen Microsoft Active Directory Domänen.
 	</para></listitem>
 
 	<listitem><para>
-	Samba 3 erlaubt volle NT4-Stil Interdomain Trusts.
+	Samba 3 erlaubt volle Interdomain Trusts im NT4-Style.
 	</para></listitem>
 
 	<listitem><para>
-	Samba hat Sicherheitsmodi die anpassungsfähigere Benutzer Beglaubigung
+	Samba hat Sicherheitsmodi, die anpassungsfähigere Benutzer-Authentifikation
 	durchführen können als Windows NT4 Domänen Controller.
 	</para></listitem>
 
 	<listitem><para>
-	Samba 3 unterstützt die Nutzung von verschiedenen Account Datenbanken zur gleichen Zeit.
+	Samba 3 unterstützt die parallele Nutzung von verschiedenen Account-Datenbanken.
 	</para></listitem>
 
 	<listitem><para>
 	Die Account- bzw. Passwort-Datenbanken können mit verschiedenen Methoden verteilt und
-	Repliziert werden. Dies ermöglicht es mit Samba 3 eine größere Flexibilität als MS
-	Windows NT4 und in vielen Fällen auch bedeutsam besseres Werkzeug als Active Directory
+	repliziert werden. Dies ermöglicht mit Samba 3 eine größere Flexibilität als mit MS
+	Windows NT4, und in vielen Fällen auch ein bedeutsam besseres Werkzeug als Active Directory
 	Domänen unter Windows 200x.
 	</para></listitem>
 </itemizedlist>
@@ -121,9 +121,9 @@ Administratoren von Microsoft Netzwerken beziehen sich oft auf drei verschiedene
 </itemizedlist>
 
 <para>
-Die Kapitel über Domänen Controller, Backup Domänen Controllern und Domänen Mitgliedschaft
-enthalten sachdienliche Informationen für die Samba Konfiguration für jeden dieser Serverrollen.
-Wir möchte den Leser ermutigen sich mit diesen Informationen vertraut zu machen.
+Die Kapitel über Domänen-Controller, Backup-Domänen-Controller und Domänen-Mitgliedschaft
+enthalten sachdienliche Informationen für die Samba-Konfiguration für jede dieser Serverrollen.
+Wir möchten den Leser ermutigen, sich mit diesen Informationen vertraut zu machen.
 </para>
 
 </sect1>
@@ -135,26 +135,26 @@ Wir möchte den Leser ermutigen sich mit diesen Informationen vertraut zu machen.
 <para>
 <indexterm><primary>Security Mode</primary></indexterm>
 <indexterm><primary>security</primary></indexterm>
-In dieser Sektion werden die Funktionen und Zwecke der Samba Sicherheits Modi beschrieben.
-Es ist wichtig zu verstehen wie jede der Sicherheits Möglichkeiten, die Samba bietet, arbeitet
-und wie die Windows Clients konfiguriert werden müssen, damit die Sicherheit und
-Funktionstüchtigkeit gewährleistet ist.
+In dieser Sektion werden die Funktionen und Zwecke der Samba-Sicherheitsmodi beschrieben.
+Es ist wichtig zu verstehen, wie jede der Sicherheits-Möglichkeiten, die Samba bietet, arbeitet
+und wie die Windows-Clients konfiguriert werden müssen, damit Sicherheit und
+Funktionstüchtigkeit gewährleistet sind.
 </para>
 
 <para>
-In der SMB/CIFS Netzwerkwelt gibt es nur zwei Arten der Sicherheit: <emphasis>User Level</emphasis>
+In der SMB/CIFS-Netzwerkwelt gibt es nur zwei Arten der Sicherheit: <emphasis>User Level</emphasis>
 und <emphasis>Share Level</emphasis>. Wir beziehen uns auf diese beiden Arten als: <emphasis>User
-Level</emphasis>. Durch Realisierung dieser beiden Security Arten bietet Samba flexibilitäten die
-nicht in Microsoft NT4/200x Servern enthalten sind. Derzeit unterstützt Samba die <emphasis>Share
-Level</emphasis> Sicherheit nur in einem Weg, dafür aber vier Wege die <emphasis>User Level</emphasis>
-Sicherheit. Zusammen gesehen nennen wir die Samba Sicherheiten <emphasis>Sicherheits Modi</emphasis>.
+Level</emphasis>. Durch Realisierung dieser beiden Security Arten bietet Samba Flexibilitäten, die
+nicht in Microsoft NT4/200x-Servern enthalten sind. Derzeit unterstützt Samba die <emphasis>Share
+Level</emphasis>-Sicherheit nur in einer Richtung, dafür aber vier Arten der <emphasis>User Level</emphasis>-Sicherheit.
+Zusammen gesehen nennen wir die Samba-Sicherheiten <emphasis>Sicherheitsmodi</emphasis>.
 Sie sind bekannt als: <emphasis>SHARE</emphasis>, <emphasis>USER</emphasis>,
-<emphasis>DOMAIN</emphasis>, <emphasis>ADS</emphasis>, und <emphasis>SERVER</emphasis> Modi die in diesem
+<emphasis>DOMAIN</emphasis>, <emphasis>ADS</emphasis>, und <emphasis>SERVER</emphasis>-Modi, die in diesem
 Kapitel behandelt werden.
 </para>
 
 <para>
-Ein SMB Server sagt dem Client während des Startens mit welcher Sicherheitsstufe der SMB Server läuft,
+Ein SMB-Server sagt dem Client während des Startens mit welcher Sicherheitsstufe der SMB Server läuft,
 hierbei gibt es zwei Optionen: Share Level und User Level.
 So wie diese beiden Möglichkeiten den Client erreichen beeinflussen sie ihn in der Art, wie er sich
 selbst authentifiziert. Es beeinflusst den nicht direkt die Art wie der Samba Server die Sicherheit
