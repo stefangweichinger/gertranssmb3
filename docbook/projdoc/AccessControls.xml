@@ -11,7 +11,7 @@
 
 <para>
 <indexterm><primary>ACLs</primary></indexterm>
-Fortgeschrittene Windows Benutzer sind häufig verwirrt, wenn eine Aenderung des Besitzes von Dateien oder Verzeichnissen
+Fortgeschrittene Windows Benutzer sind häufig verwirrt, wenn eine Änderung des Besitzes von Dateien oder Verzeichnissen
 auf dem Samba Server sich nicht so auswirken wie sie es erwarten. MS Administratoren verwirrt es oft wenn sie versuchen
 Ihre Daten mit Zugriffskontrolllisten vor unerlaubten  Zugriffen zu schützen.
 </para>
@@ -22,7 +22,7 @@ Benutzerwünschen über die Kontrolle von Dateien und Verzeichnisse und deren Einr
 </para>
 
 <para>
-Das Problem begründet sich in den Unterschieden bei  Datei und Verzeichnis Benutzerrechten der beiden Systeme. Diesen
+Das Problem begründet sich in den Unterschieden bei Datei und Verzeichnis Benutzerrechten der beiden Systeme. Diesen
 Unterschied kann auch Samba nicht wirklich aus der Welt schaffen aber er schafft eine Brücke zwischen den Umgebungen.
 </para>
 
@@ -64,7 +64,7 @@ mögliche Kompatibilität zwischen den beiden Systemen schaffen.
 			Samba arbeitet mit dem UNIX Dateizugriffskontrollen zusammen. Nutzer greifen als Windowsbenutzer
 			auf Samba zu. Informationen über den Nutzer werden beim einloggen übergeben. Samba benutzt
 			diese Login Informationen um zu entscheiden ob einem Nutzer Zugriff auf Systemdaten gewährt werden soll oder nicht. Dieses
-			Kapitel enthält eine Uebersicht von UNIX Berechtigungen für Nutzer die diese nicht kennen oder etwas verwirrt über
+			Kapitel enthält eine Übersicht von UNIX Berechtigungen für Nutzer die diese nicht kennen oder etwas verwirrt über
 			diese sind.
 			</para>
 		</listitem>
@@ -75,7 +75,7 @@ mögliche Kompatibilität zwischen den beiden Systemen schaffen.
 
 			<para>
 			Beim Konfigurieren von Netzlaufwerken mit Samba in der Datei smb.conf kann der Administrator
-			Berechtigungen des darunterliegenden Dateisystems verändern und beeinflussen. Dies ermöglicht teilweise eine Annäherung
+			Berechtigungen des darunter liegenden Dateisystems verändern und beeinflussen. Dies ermöglicht teilweise eine Annäherung
 			an das Verhalten dass Windowsnutzer erwarten. Dieser Weg ist aber nur selten die beste Lösung.
 			Die grundlegenden Möglichkeiten werden hier beschrieben.
 			</para>
@@ -100,10 +100,10 @@ mögliche Kompatibilität zwischen den beiden Systemen schaffen.
 		</para>
 
 			<para>
-			Der Gebrauch von UNIXkontrolllisten ist nur möglich wenn diese Funktion in dem darunterliegenden
-			Dateisystem implemtiert sind. In jedem anderem Fall ist deren Nutzung nicht möglich. Aktülle UNIXsysteme sollten diese
-			Unterstüzung haben. Es gibt Patches für die Linux Kernel die diese Möglichkeit implementieren falls nicht vorhanden.
-			Viele UNIXsysteme werden mit der Unterstützung ausgeliefert , in diesem Kapitel werden wir wir versuchen den Nutzern
+			Der Gebrauch von UNIX-Kontrolllisten ist nur möglich wenn diese Funktion in dem darunter liegenden
+			Dateisystem implementiert sind. In jedem anderem Fall ist deren Nutzung nicht möglich. Aktülle UNIX-Systeme sollten diese
+			Unterstützung haben. Es gibt Patches für die Linux Kernel die diese Möglichkeit implementieren falls nicht vorhanden.
+			Viele UNIX-Systeme werden mit der Unterstützung ausgeliefert , in diesem Kapitel werden wir wir versuchen den Nutzern
 			deren Gebrauch zu erklären
 			</para>
 		</listitem>
@@ -115,7 +115,7 @@ mögliche Kompatibilität zwischen den beiden Systemen schaffen.
 <title>Datei System Zugriffs Kontrollen</title>
 
 <para>
-Es ist wichtig festzustellen dass MS Windows ein völlig anderes Dateizugriffssystem benutzt als UNIXsysteme. Wir werden
+Es ist wichtig festzustellen dass MS Windows ein völlig anderes Dateizugriffssystem benutzt als UNIX-Systeme. Wir werden
 erst die Unterschiede erklären und dann wie Samba hilft dies zu überbrücken.
 </para>
 
@@ -129,12 +129,12 @@ erst die Unterschiede erklären und dann wie Samba hilft dies zu überbrücken.
 <indexterm><primary>File System</primary><secondary>Windows</secondary></indexterm>
 
 	Samba benutzt das UNIX Dateisystem. d h. Samba verhält sich innerhalb der Möglichkeiten des UNIX Dateisystems.
-	Aber Samba ist auch verantwortlich das Verhalten des Windows Dateisystems nachzustellen.
+	Aber Samba ist auch verantwortlich das Verhalten des Windows Dateisystems nach zustellen.
 	</para>
 
 	<para>
 	Glücklicherweise bietet Samba eine Reihe von Konfigurationsmöglichkeiten um die Unterschiede zu
-	überbrücken.Wir werden einige dieser Einstellungsm&ouml;glichkeiten betrachten, jedoch nicht alle. Wer mehr wissen möchte sollte die
+	überbrücken.Wir werden einige dieser Einstellungsmöglichkeiten betrachten, jedoch nicht alle. Wer mehr wissen möchte sollte die
 	Beschreibung ( man = manual Datei ) der smb.conf lesen.
 	</para>
 
@@ -149,27 +149,27 @@ erst die Unterschiede erklären und dann wie Samba hilft dies zu überbrücken.
 			<listitem>
 		<para>
 		Windows Dateinamen können 254 Zeichen lang sein, UNIX beherrscht bis zu 1023 Zeichen. Die
-		Dateierweiterung beschreibt in Windows einen bestimmten Dateityp, in UNIXsystemen ist das nicht zwingend so.
+		Dateierweiterung beschreibt in Windows einen bestimmten Dateityp, in UNIX-Systemen ist das nicht zwingend so.
 		</para>
 		<para>
-		Was unter Windows ein Ordner ist , heisst in UNIX Verzeichnis.
+		Was unter Windows ein Ordner ist , heißt in UNIX Verzeichnis.
 		</para>
 			</listitem>
 		</varlistentry>
 
 		<varlistentry>
-			<term>Gross-Kleinschreibung</term>
+			<term>Groß-Kleinschreibung</term>
 			<listitem>
 		<para>
 		<indexterm><primary>8.3 file names</primary></indexterm>
 		<indexterm><primary>File System</primary><secondary>case sensitivity</secondary></indexterm>
-		Im Allgemeinen sind Dateinamen unter Windows 8+3 Zeichen lang und werden Gross erstellt. Dateinamen die
-		länger sind, sind in ihrer Schreibweise insensitiv ( d. h. ob gross oder klein geschrieben spielt keine Rolle )
+		Im Allgemeinen sind Dateinamen unter Windows 8+3 Zeichen lang und werden Groß erstellt. Dateinamen die
+		länger sind, sind in ihrer Schreibweise insensitiv ( d. h. ob groß oder klein geschrieben spielt keine Rolle )
 		</para>
 
 		<para>
 		Unter UNIX sind alle Dateien und Verzeichnisse Schreibweisen sensitiv ( es spielt sehr wohl eine Rolle
-		ob eine Datei gross oder klein geschrieben wird.
+		ob eine Datei groß oder klein geschrieben wird.
 		</para>
 		<para>
 		Im unteren Beispiel würden die Dateinamen von Windows völlig gleich interpretiert werden , für UNIX wären es drei verschiedene Dateien.
@@ -198,7 +198,7 @@ erst die Unterschiede erklären und dann wie Samba hilft dies zu überbrücken.
 		<para>
 				<indexterm><primary>Directory Separators</primary></indexterm>
 		MS Windows und DOS benutzen den \ ( Backslash) als Verzeichnis Trennzeichen <constant>\</constant>
-		UNIX benuzt ( wie im Internet üblich ) den Slash / als Verzeichnis Trennzeichen.
+		UNIX benutzt ( wie im Internet üblich ) den Slash / als Verzeichnis Trennzeichen.
 		<constant>/</constant>Dies wird von Samba transparent (f&uuml;r den Windowsnutzer unbemerkt ) umgelegt.
 		</para>
 			</listitem>
@@ -211,7 +211,7 @@ erst die Unterschiede erklären und dann wie Samba hilft dies zu überbrücken.
 			<indexterm><primary>Laufwerks Bezeichnung</primary></indexterm>
 		In MS Windows werden verschiedene Festplatten Partitionen mit Buchstaben belegt.<command>C:</command>
 		Es gibt unter UNIX kein ähnliches Konzept, Festplatten Teile ( Partitionen ) werden eingebunden
-		( gemounted ) als Teil des Dateisystems. Was unter DOS <constant>C:\</constant> ist w&auml;re unter UNIX einfach
+		( gemounted ) als Teil des Dateisystems. Was unter DOS <constant>C:\</constant> ist wäre unter UNIX einfach
 		( root = Wurzel des Dateisystembaumes )<constant>/</constant>.
 		</para>
 			</listitem>
@@ -224,7 +224,7 @@ erst die Unterschiede erklären und dann wie Samba hilft dies zu überbrücken.
 			<indexterm><primary>Datei Namenskonvention</primary></indexterm>
 		MS Windows kennt keine Dateien deren Namen mit einem Punkt beginnt(<constant>.</constant>)
 		In UNIX werden solche Dateien häufig in den "Home" ( Heimatverzeichnissen) von Nutzern gefunden.
-		Punktdateien(<constant>.</constant>) sind typischerweise Start oder Konfigurations Dateien für UNIXprogramme
+		Punktdateien(<constant>.</constant>) sind typischerweise Start oder Konfigurations-Dateien für UNIX-Programme
 		</para>
 			</listitem>
 		</varlistentry>
@@ -241,8 +241,8 @@ erst die Unterschiede erklären und dann wie Samba hilft dies zu überbrücken.
 		diese werden jedoch völlig unterschiedlich gehandhabt.
 		</para>
 		<para>
-		Symbolische Verknüpfungen unter UNIX halten die aktüllen Informationen von Dateien oder Verzeichnissen.
-		Schreib und Lesezugriffe auf eine Verknüpfung verhalten sich genauso wie bei der orginalen Datei.
+		Symbolische Verknüpfungen unter UNIX halten die aktuellen Informationen von Dateien oder Verzeichnissen.
+		Schreib und Lesezugriffe auf eine Verknüpfung verhalten sich genauso wie bei der originalen Datei.
 		Symbolische Verknüpfungen nennt man auch weiche Verknüpfungen.
 		Harte Verknüpfungen kennt MS Windows nicht,
 		diese würden das Benutzen ein und derselben Datei unter mehreren Namen gleichzeitig ermöglichen
@@ -261,13 +261,13 @@ erst die Unterschiede erklären und dann wie Samba hilft dies zu überbrücken.
 	<title>naging Directories</title>
 
 	<para>
-	Es gibt grunsaetzlich 3 Möglichkeiten um Ordner ( Verzeichnisse ) zu verwalten: <command>create (erstellen), 
-delete (loeschen) , rename ( umbenennen )</command>.
+	Es gibt grundsätzlich 3 Möglichkeiten um Ordner ( Verzeichnisse ) zu verwalten: <command>create (erstellen), 
+delete (löschen) , rename ( umbenennen )</command>.
 	<table frame="all">
 		<title>Verwaltung von Ordnern ( Verzeichnisse ) mit UNIX und Windows</title>
 		<tgroup align="center" cols="3">
 		<thead>
-		<row><entry>Action</entry><entry>MS Windows Command ( Windows Befehele ) </entry><entry>UNIX Command ( UNIX Befehele )</entry></row>
+		<row><entry>Action</entry><entry>MS Windows Command ( Windows Befehle ) </entry><entry>UNIX Command ( UNIX Befehele )</entry></row>
 		</thead>
 		<tbody>
 			<row><entry>create</entry><entry>md folder</entry><entry>mkdir folder</entry></row>
@@ -286,13 +286,13 @@ delete (loeschen) , rename ( umbenennen )</command>.
 
 	<para>
 	<indexterm><primary>ACLs</primary><secondary>File System</secondary></indexterm>
-	Jedem Administrator wird geraten zusaetzliche Handbuecher über dieses Thema zu studieren.
-	Die meisten Faelle koennen mit den grundlegenden Zugriffsmöglichkeiten von UNIX geloest werden.
+	Jedem Administrator wird geraten zusätzliche Handbücher über dieses Thema zu studieren.
+	Die meisten Fälle können mit den grundlegenden Zugriffsmöglichkeiten von UNIX gelöst werden.
 	ohne die  (ACLs) or Extended Attributes (EAs), Technologien zu gebrauchen
 	</para>
 
 	<para>
-	Die Datei, Verzeichnis Verwaltung von UNIX basiert den folgenden Zugriffsmoeglichkeiten:
+	Die Datei, Verzeichnis Verwaltung von UNIX basiert den folgenden Zugriffsmöglichkeiten:
 	<screen>
 &prompt;<userinput>ls -la</userinput>
 total 632
@@ -313,8 +313,8 @@ drwsrwsrwx    2 maryo   gnomes       48 2003-05-12 22:29 muchado08
 	</para>
 
 	<para>
-	Die Reihen oben repraesentieren ( von rechts nach links ): Berechtigung, Anzahl der "harten" Links einer Datei, 
-	Besitzer ( einer Datei ), die Besitzergruppe und die Groesse in byte.
+	Die Reihen oben repräsentieren ( von rechts nach links ): Berechtigung, Anzahl der "harten" Links einer Datei, 
+	Besitzer ( einer Datei ), die Besitzergruppe und die Größe in Bytes.
 	</para>
 
 	<para>
@@ -330,7 +330,7 @@ scale="40"><imagedescription>Uebersicht der UNIX Berechtigungen</imagedescriptio
 	<example>
 		<title>Example File</title>
 		<programlisting>
-		-rwxr-x---   Bedeutet: Der Besitzer kann lesen schreiben ausfuehren 
+		-rwxr-x---   Bedeutet: Der Besitzer kann lesen schreiben ausführen 
 		                       Die Gruppe kann lesen und ausfuehren
 		                       Andere haben keine Rechte.
 		</programlisting>
@@ -339,28 +339,28 @@ scale="40"><imagedescription>Uebersicht der UNIX Berechtigungen</imagedescriptio
 	</para>
 
 	<para>
-	Zusaetzliche Moeglichkeiten im Typen Feld sind [type] : c = character device, b = block device, p = pipe device, s = UNIX Domain Socket.
+	Zusätzliche Möglichkeiten im Typen Feld sind [type] : c = character device, b = block device, p = pipe device, s = UNIX Domain Socket.
 	</para>
 
 	<para>
-	Die Zeichen <constant>rwxXst</constant> fuer die Berechtigungen fuer Nutzer, Gruppen und anderen sind: 
-	lesen (r), schreiben (w), ausfuehren ( oder Ordner Zugriff ) (x),
-	exclusives ausfuehren ,wenn der Nutzer berechtigt fuer die Datei oder den Ordner ist (X), setzen der ID des 
-	Nutzers bei Ausfuehrung (s),
+	Die Zeichen <constant>rwxXst</constant> für die Berechtigungen für Nutzer, Gruppen und anderen sind: 
+	lesen (r), schreiben (w), ausführen ( oder Ordner Zugriff ) (x),
+	exclusives ausführen, wenn der Nutzer berechtigt für die Datei oder den Ordner ist (X), setzen der ID des 
+	Nutzers bei Ausführung (s),
 	sticky ( begleitendes Bit )(t).
 	</para>
 
 	<para>
-	Wenn das sticky bit auf einem Verzeichnis gesetzt ist, koennen darin enthaltene Dateien nur von Nutzer root oder dem 
-	Ersteller der Dateien geloescht werden, in jedem anderem Fall sind alle anderen Dateivorgaenge (loeschen,lesen,umbenennen 
-	erlaubt). Das sticky bit wird haeufig für Verzeichnisse wie das /tmp Verzeichnis benutzt das gewoehnlich für jeden 
+	Wenn das sticky bit auf einem Verzeichnis gesetzt ist, können darin enthaltene Dateien nur von Nutzer root oder dem 
+	Ersteller der Dateien gelöscht werden, in jedem anderem Fall sind alle anderen Dateivorgänge (löschen,lesen,umbenennen 
+	erlaubt). Das sticky bit wird häufig für Verzeichnisse wie das /tmp Verzeichnis benutzt das gewöhnlich für jeden 
 	beschreibbar ist.
 	 </para>
 
 	<para>
-	Wenn das Gruppen oder Nutzer Identitaets Bit gesetzt ist auf einem Verzeichnis, dann werden Nutzer und Gruppen auf  dort 
-	enthaltenen Dateien berechtigt. Dies ermoeglicht das Erstellen von Verzeichnissen auf die alle Nutzer einer Gruppe 
-	zugreifen sollen, auch wenn die primaer Gruppe der Nutzer nicht gleiche ist und es nicht gewuenscht ist das nur ein Nutzer 
+	Wenn das Gruppen oder Nutzer Identitäts Bit gesetzt ist auf einem Verzeichnis, dann werden Nutzer und Gruppen auf dort 
+	enthaltenen Dateien berechtigt. Dies ermöglicht das Erstellen von Verzeichnissen auf die alle Nutzer einer Gruppe 
+	zugreifen sollen, auch wenn die Primäre Gruppe der Nutzer nicht die gleiche ist und es nicht gewünscht ist das nur ein Nutzer 
 	exklusiv auf eine Datei berechtigt ist.
 	</para>
 
