@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="passdb">
 <chapterinfo>
 	&author.jelmer;
@@ -15,12 +16,17 @@
 	
 	<pubdate>May 24, 2003</pubdate>
 </chapterinfo>
-<title>Account Information Databases</title>
+<title>Die Account-Datenbank</title>
 
 <para>
+Samba-3 führt eine neue Art ein gleichermaßen mit verschiedenen Account-Datenbankservern zu arbeiten.
 Samba-3 implements a new capability to work concurrently with multiple account backends.
+Die möglichen neuen Kombinationen von Passwort-Datanbankservern ermglicht Samba-3
+eine Flexibilität und Skalierbarkeit, wie sie zuvor nur mit MS Windows Active Directory 
+erreicht werden konnte.
 The possible new combinations of password backends allows Samba-3 a degree of flexibility
 and scalability that previously could be achieved only with MS Windows Active Directory.
+Dieses Kapitel beschreibt die neue Funktionalität und wie Sie das Beste aus und  mit ihr herausholen.
 This chapter describes the new functionality and how to get the most out of it.
 </para>
 
