@@ -156,13 +156,11 @@ Samba-3 muß (wie ein MS Windows NT4 PDC oder ein Windows 200x AD) Benutzer- und 
 <title>Grundlagen der Domänen-Verwaltung</title>
 
 <para>
-Over the years, public perceptions of what Domain Control really is has taken on an
-almost mystical nature. Before we branch into a brief overview of Domain Control,
-there are three basic types of Domain Controllers.
+Im Laufe der Jahre hat die allgemeine Auffassung von Domänen-Verwaltung eine fast schon mystische Gestalt angenommen. Bevor wir zu einem kurzen Überblick über Domänen-Verwaltung verzweigen, beschreiben wir die drei grundsätzlichen Typen von Domänen-Controllern.
 </para>
 
 <sect2>
-<title>Domain Controller Types</title>
+<title>Typen von Domänen-Controllern</title>
 
 <itemizedlist>
 	<listitem><para>Primary Domain Controller</para></listitem>
@@ -171,24 +169,19 @@ there are three basic types of Domain Controllers.
 </itemizedlist>
 
 <para>
-The <emphasis>Primary Domain Controller</emphasis> or PDC plays an important role in MS
-Windows NT4. In Windows 200x Domain Control architecture, this role is held by Domain Controllers.
-Folklore dictates that because of its role in the MS Windows
-network, the Domain Controller should be the most powerful and most capable machine in the network.
-As strange as it may seem to say this here, good overall network performance dictates that
-the entire infrastructure needs to be balanced. It is advisable to invest more in Stand-alone
-(Domain Member) servers than in the Domain Controllers.
+Der <emphasis>Primary Domain Controller</emphasis> oder PDC spielt eine wichtige Rolle in MS Windows NT4. In der Windows 200x-Domänenverwaltungs-Architektur wird diese Rolle von Domänen-Controllern übernommen. Die "Folklore" schreibt vor, daß dies wegen seiner Rolle im MS Windows Netzwerk der stärkste und schnellste Rechner im Netz sein sollte. So seltsam das an dieser Stelle klingen mag, der Wunsch nach guter allgemeiner Netzwerk-Performance erfordert zwingend, daß die gesamte Infrastruktur ausgewogen gestaltet wird. Es ist ratsam, mehr in Stand-alone(Domänen-Mitglieds-)-Server zu investieren als in die DCs.
 </para>
 
 <para>
 <indexterm><primary>SAM</primary></indexterm>
-In the case of MS Windows NT4-style domains, it is the PDC that initiates a new Domain Control database.
-This forms a part of the Windows registry called the Security Account Manager (SAM). It plays a key
-part in NT4-type domain user authentication and in synchronization of the domain authentication
-database with Backup Domain Controllers.
+Im Falle von MS Windows NT4-Domänen ist es der PDC, der eine neue Domänen-Verwaltungs-Datenbank initiiert. Diese bildet einen Teil der Windows-Registrierung namens Security Account Manager (SAM). Sie spielt eine Schlüsselrolle in NT4-artiger Domänen-Benutzer-Authentifizierung und in der Synchronisation der Domänen-Authentifizierungs-Datenbank mit Backup-Domänen-Controllern.
 </para>
 
 <para>
+In MS Windows 200x-Server-basierten Active-Directory-Domänen initiiert ein Domänen-Controller eine mögliche Hierarchie von Domänen-Controllern, von denen jeder seinen eigenen delegierten Verwaltungsbereich erhält. Der Master-Domänen-Controller hat die Möglichkeit, jeden untergebenen Controller zu übergehen.
+
+WEICHINGER.bookmark
+
 With MS Windows 200x Server-based Active Directory domains, one Domain Controller initiates a potential
 hierarchy of Domain Controllers, each with their own area of delegated control. The master domain
 controller has the ability to override any downstream controller, but a downline controller has
