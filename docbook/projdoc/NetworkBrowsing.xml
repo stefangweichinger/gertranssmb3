@@ -24,13 +24,6 @@ TCP/IP arbeiten, wozu Samba-3 und spätere Versionen ebenfalls in der Lage sind. 
 die Benutzung von NetBIOS über TCP/IP deaktiviert, werden die MS Windows Maschinen
 über DNS und Active Directory aufgelöst. Die folgenden Informationen gehen davon aus,
 dass ein Netz mit NetBIOS über TCP/IP betrieben wird. 
-
-
-MS Windows 2000 and later versions can be configured to operate with no NetBIOS 
-over TCP/IP. Samba-3 and later versions also support this mode of operation.
-When the use of NetBIOS over TCP/IP has been disabled, the primary
-means for resolution of MS Windows machine names is via DNS and Active Directory.
-The following information assumes that your site is running NetBIOS over TCP/IP.
 </para></note>
 
 <sect1>
@@ -45,44 +38,52 @@ schauen, umso mehr sehnen wir uns nach dem was war und hoffen, dass es nie wiede
 
 <para>
 <indexterm><primary>NetBIOS</primary></indexterm>
-For many MS Windows network administrators, that statement sums up their feelings about
-NetBIOS networking precisely. For those who mastered NetBIOS networking, its fickle
-nature was just par for the course. For those who never quite managed to tame its
-lusty features, NetBIOS is like Paterson's Curse.
+Für viele MS Windows Netzwerkadministratoren beschreibt diese Aussage präzise deren
+Gefühle über NetBIOS. Diejenigen, die NetBIOS meisterten, wussten was sie erwartet.
+Für diejenigen, die es nie schafften, seine Eigenschaften zu zähmen, erscheint NetBIOS
+wie Pattersons Fluch.
 </para>
 
 <para>
-For those not familiar with botanical problems in Australia, Paterson's Curse,
-<emphasis>Echium plantagineum</emphasis>, was introduced to Australia from Europe during the mid-nineteenth
-century. Since then it has spread rapidly. The high seed production, with densities of
-thousands of seeds per square meter, a seed longevity of more than seven years, and an
-ability to germinate at any time of year, given the right conditions, are some of the
-features which make it such a persistent weed.
+Für diejenigen, die nicht mit den botanischen Problemen Australiens vertraut sind:
+Pattersons Fluch, <emphasis>Echium plantagineum</emphasis>, wurde Mitte des Neunzehnten
+Jahrhunderts eingeführt. Seitdem breitet es sich schnell aus. Die hohe Samenproduktion
+der Pflanze, mit einer Dichte von tausenden pro Quadratmeter, einer Lebensdauer von mehr
+als sieben Jahren, der Fähigkeit unter guten Voraussetzungen über das ganze Jahr hinweg
+zu keimen, sind einige der Eigenschaften, die es zu einem solch hartnäckigen Unkraut
+machen. (Frank Patterson war einer der gefürchtesten Gesetzlosen Australiens. Nachdem
+er wegen eines Diebstahls von vier Dollar am Galgen landete, verfluchte er die Stadt
+Ironbark und die australische Regierung. Seine Familie pflanzte eine lilafarbene,
+aus England stammende Pflanze auf sein Grab, die sich rasch im ganzen Land ausbreitete.
+Aufgrund der Giftigkeit der Planze, kostet die Vernichtung die Viehzüchter Australians
+ca. 30 Mill. Dollar pro Jahr, Anm. d. Übersetzers.)
 </para>
 
 <para>
-In this chapter we explore vital aspects of Server Message Block (SMB) networking with
-a particular focus on SMB as implemented through running NetBIOS (Network Basic
-Input/Output System) over TCP/IP. Since Samba does not implement SMB or NetBIOS over
-any other protocols, we need to know how to configure our network environment and simply
-remember to use nothing but TCP/IP on all our MS Windows network clients.
+In diesem Kapitel erfahren wir die grundlegenden Aspekte der Server Message Block- (SMB)
+Vernetzung mit einem besonderen Blick auf SMB als Implementation in einer NetBIOS-
+(Network Basic Input/Output System) Umgebung über TCP/IP. Da Samba SMB oder NetBIOS nicht
+über ein anderes Protokoll implementiert, ist es wichtig zu wissen, wie man die
+Netzwerkumgebung konfiguriert und uns schlicht daran erinnern, nichts anderes als TCP/IP auf 
+allen MS Windows Clients im Netzwerk zu benutzen.
 </para>
 
 <para>
-Samba provides the ability to implement a WINS (Windows Inter-networking Name Server)
-and implements extensions to Microsoft's implementation of WINS. These extensions
-help Samba to effect stable WINS operations beyond the normal scope of MS WINS.
+Samba bietet die Möglichkeit, WINS (Windows Inter-networking Name Server) samt der 
+Systemerweiterungen von Microsofts WINS zu implementieren. Diese Systemerweiterungen
+helfen Samba stabile WINS Operationen, über den herkömmlichen Anwendungsbereich von
+MS WINS hinaus, zu ermöglichen.
 </para>
 
 <para>
-WINS is exclusively a service that applies only to those systems
-that run NetBIOS over TCP/IP. MS Windows 200x/XP have the capacity to operate with
-support for NetBIOS disabled, in which case WINS is of no relevance. Samba supports this also.
+WINS wirkt sich ausschließlich auf Systeme aus, die mit NetBIOS über TCP/IP laufen.
+MS Windows 200x/XP können NetBIOS abschalten, in welchem Fall WINS keine Rolle mehr
+spielt. Samba unterstützt dies ebenfalls.
 </para>
 
 <para>
-For those networks on which NetBIOS has been disabled (i.e., WINS is not required)
-the use of DNS is necessary for host name resolution.
+In Netzwerken, in denen NetBIOS deaktiviert ist, d.h. wo WINS nicht mehr benötigt 
+wird, ist der Einsatz eines DNS für die Namensauflösung unabdingbar.
 </para>
 
 </sect1>
