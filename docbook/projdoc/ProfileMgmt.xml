@@ -279,36 +279,48 @@ wie es scheint!
 </para>
 
 <para>
-Sie werden nun sehen, daß 
-
-You will now find that the Microsoft Networks Login box contains <constant>[user, password, domain]</constant> instead
-of just <constant>[user, password]</constant>. Type in the Samba server's domain name (or any other domain known to exist,
-but bear in mind that the user will be authenticated against this domain and profiles downloaded from it,
-if that domain logon server supports it), user name and user's password. 
+Sie werden nun sehen, daß der MS-Netzwerk-Login-Dialog <constant>[Benutzer, Passwort, Domäne]</constant>
+anstatt nur <constant>[Benutzer, Passwort]</constant> enthält. Geben Sie den Domänen-Namen des
+Samba-Servers ein (oder den einer anderen existierenden Domäne, aber denken Sie daran, daß der Benutzer
+an dieser Domäne angemeldet wird, und die Profile aus dieser Domäne geladen werden, wenn dieser
+Domänen-Anmelde-Server es unterstützt), Benutzernamen, und das Passwort des Benutzers.
 </para>
 
-<para> Once the user has been successfully validated, the Windows 9x/Me machine will inform you that
-<computeroutput>The user has not logged on before</computeroutput> and asks you <computeroutput>Do you
-wish to save the user's preferences?</computeroutput> Select <guibutton>Yes</guibutton>. </para>
+<para> 
+Sobald der Benutzer erfolgreich überprüft wurde, wird Sie die Windows 9x/Me-Maschine informieren, daß
+<computeroutput>The user has not logged on before</computeroutput> und fragen
+<computeroutput>Do you wish to save the user's preferences?</computeroutput> 
+Select <guibutton>Yes</guibutton>.
+</para>
 
-<para> Once the Windows 9x/Me client comes up with the desktop, you should be able to examine the
-contents of the directory specified in the <smbconfoption><name>logon path</name></smbconfoption> on
-the Samba server and verify that the <filename>Desktop</filename>, <filename>Start Menu</filename>,
-<filename>Programs</filename> and <filename>Nethood</filename> folders have been created. </para>
+<para>
+Sobald der Windows 9x/Me-Client den Desktop hergestellt hat, sollte es Ihnen möglich sein, den Inhalt
+des im Parameter <smbconfoption><name>logon path</name></smbconfoption> angegebenen Verzeichnisses
+auf dem Samba-Server zu prüfen, und festzustellen, daß die Ordner
+<filename>Desktop</filename>, <filename>Startmenü</filename>, <filename>Programme</filename> und
+<filename>Netzwerkumgebung</filename> angelegt worden sind.
+</para>
 
-<para> These folders will be cached locally on the client, and updated when the user logs off (if
-you haven't made them read-only by then). You will find that if the user creates further folders or
-shortcut, that the client will merge the profile contents downloaded with the contents of the profile
-directory already on the local client, taking the newest folders and shortcut from each set.	</para>
+<para>
+Diese Ordner werden lokal auf dem Client gepuffert (Cache),
+und erfahren ein Update, wenn sich der Benutzer
+abmeldet (wenn Sie sie dann nicht schon auf read-only gesetzt haben). Sie werden sehen, daß der Client,
+wenn der Benutzer weitere Ordner oder Verknüpfungen anlegt, die heruntergeladenen Profil-Inhalte
+mit dem Inhalt des lokalen Profil-Ordners zusammenfügt, unter Verwendung der neuesten Ordner und
+Verknüpfungen jeden Profil-Bestands.
+</para>
 
-<para> If you have made the folders/files read-only on the Samba server, then you will get errors from
-the Windows 9x/Me machine on logon and logout as it attempts to merge the local and remote profile.
-Basically, if you have any errors reported by the Windows 9x/Me machine, check the UNIX file permissions
-and ownership rights on the profile directory contents, on the Samba server. </para>
+<para>
+Wenn Sie die Ordner/Dateien auf dem Samba-Server read-only gesetzt haben, werden Sie Fehler von
+der Windows 9x/Me-Maschine bei An- und Abmeldung erhalten, wenn sie versucht, lokale und entfernte
+Profile zu vereinigen. Grundsätzlich sollten Sie die UNIX-Dateirechte und Eigentumsverhältnisse
+auf dem Samba-Server prüfen, wenn Sie irgendwelche Fehler von der Windows 9x/Me-Maschine erhalten.
+</para>
 
-<para> If you have problems creating user profiles, you can reset the user's local desktop cache, as
-shown below. When this user next logs in, the user will be told that he/she is logging in <quote>for
-	the first time</quote>.
+<para>
+Wenn Sie Probleme beim Anlegen von Benutzerprofilen haben, können Sie den lokalen Desktop-Cache des
+Benutzers zurücksetzen, wie unten gezeigt. Wenn sich dieser Benutzer das nächste Mal anmeldet, wird
+ihm gesagt werden, daß er/sie sich <quote>zum ersten Mal</quote> anmeldet.
 	
 <indexterm><primary>windows registry settings</primary><secondary>profile path</secondary></indexterm>
 	</para>
@@ -316,11 +328,11 @@ shown below. When this user next logs in, the user will be told that he/she is l
 
 <orderedlist>
 	<listitem><para>
-	Instead of logging in under the [user, password, domain] dialog, press <guibutton>escape</guibutton>.
+	Anstatt sich im Dialog [Benutzer, Passwort, Domäne] anzumelden, drücken Sie <guibutton>escape</guibutton>.
 	</para> </listitem>
 
 	<listitem><para>
-	Run the <command>regedit.exe</command> program, and look in:
+	Führen Sie <command>regedit.exe</command> aus, und suchen Sie nach:
 	</para>
 
 	<para>
@@ -328,51 +340,58 @@ shown below. When this user next logs in, the user will be told that he/she is l
 	</para>
 
 	<para>
-	You will find an entry for each user of ProfilePath.	Note the contents of this key
-	(likely to be <filename>c:\windows\profiles\username</filename>), then delete the key
-	<parameter>ProfilePath</parameter> for the required user.
+	Sie werden einen ProfilePath-Eintrag für jeden Benutzer finden. Notieren Sie Sie die Inhalte
+	dieses Schlüssels (wahrscheinlich <filename>c:\windows\profiles\username</filename>), dann
+	löschen Sie den Schlüssel <parameter>ProfilePath</parameter> für den erforderlichen Benutzer.
 	</para></listitem>
 
 	<listitem><para>
-	Exit the registry editor.
+	Verlassen Sie den Registry-Editor.
 	</para></listitem>
 
 	<listitem><para>
-	Search for the user's .PWL password-caching file in the <filename>c:\windows</filename> directory, and delete it.
+	Suchen Sie nach der .PWL password-caching Datei des Benutzers im Verzeichnis
+	<filename>c:\windows</filename>, und löschen Sie es.
 	</para></listitem>
 
 	<listitem><para>
-	Log off the Windows 9x/Me client.
+	Melden Sie sich vom Windows 9x/Me-Client ab.	
 	</para></listitem>
 
 	<listitem><para>
-	Check the contents of the profile path (see <smbconfoption><name>logon path</name></smbconfoption>
-	described above) and delete the <filename>user.DAT</filename> or <filename>user.MAN</filename>
-	file for the user, making a backup if required. 
+	Prüfen Sie die Inhalte des Profil-Pfads (siehe 
+	<smbconfoption><name>logon path</name></smbconfoption>, wie oben beschrieben) und löschen Sie
+	die Datei <filename>user.DAT</filename> oder <filename>user.MAN</filename> des Benutzers,
+	nachdem Sie eine Sicherung angelegt haben, falls erforderlich.
 	</para></listitem>
 </orderedlist>
 
 <warning><para>
-Before deleting the contents of the directory listed in the <parameter>ProfilePath</parameter>
-(this is likely to be <filename>c:\windows\profiles\username)</filename>, ask the owner if they have
-any important files stored on their desktop or in their start menu. Delete the contents of the
-directory <parameter>ProfilePath</parameter> (making a backup if any of the files are needed).
+Vor dem Löschen der Inhalte des in <parameter>ProfilePath</parameter> angegebenen Verzeichnisses
+(wahrscheinlich <filename>c:\windows\profiles\username)</filename>) fragen Sie den Benutzer, ob er
+irgendwelche wichtige Dateien auf seinem Desktop oder im Startmenü gespeichert hat. Löschen Sie
+die Inhalte des Verzeichnisses <parameter>ProfilePath</parameter> (nach einem Backup, falls Dateien
+benötigt werden).
 </para>
 
 <para>
-This will have the effect of removing the local (read-only hidden system file) <filename>user.DAT</filename>
-in their profile directory, as well as the local <quote>desktop,</quote> <quote>nethood,</quote>
-<quote>start menu,</quote> and <quote>programs</quote> folders.
+Dies wird den Effekt haben, daß die lokale (read-only, versteckte) Datei <filename>user.DAT</filename>
+aus dem Profil-Verzeichnis entfernt wird, genauso die lokalen Ordner 
+<quote>Desktop</quote>, <quote>Startmenü</quote>, <quote>Programme</quote> und <quote>Netzwerkumgebung</quote>.
 </para></warning>
 
 <para>
-If all else fails, increase Samba's debug log levels to between 3 and 10, and/or run a packet
-sniffer program such as ethereal or <command>netmon.exe</command>, and look for error messages.
+Wenn alles scheitert, erhöhen Sie Samba's log-level auf einen Wert zwischen 3 und 10, und/oder
+verwenden Sie einen Packet-Sniffer wie ethereal oder <command>netmon.exe</command>, und suchen
+Sie nach Fehlermeldungen.
 </para>
 
-<para> If you have access to an Windows NT4/200x server, then first set up roaming profiles and/or
-netlogons on the Windows NT4/200x server. Make a packet trace, or examine the example packet traces
-provided with Windows NT4/200x server, and see what the differences are with the equivalent Samba trace.
+<para>
+Wenn Sie Zugriff auf einen Windows NT4/200x Server haben, installieren Sie zuerst Roaming Profiles
+und/oder Netzwerk-Anmeldungen auf dem Windows NT4/200x Server. Führen Sie eine Paketverfolgung aus,
+(Trace)
+oder prüfen Sie die Beispiel-Traces, die dem Windows NT4/200x Server beiliegen, und stellen
+Sie die Unterschiede zum Samba-Trace fest.
 </para>
 
 </sect3>
