@@ -700,7 +700,7 @@ unterstützte Arbeits-Modus.
 </sect1>
 
 <sect1>
-<title>Übliche Fehler</title>
+<title>Häufige Fehler</title>
 
 <sect2>
 	<title><quote>$</quote> darf nicht im Maschinen-Namen vorkommen</title>
@@ -729,51 +729,36 @@ Das UNIX-tool <command>vipw</command> ist ein übliches Werkzeug für das direkte 
 <sect2>
 <title>Der Anschluß an die Domäne scheitert an einem bereits existierenden Maschinen-Konto</title>
 
-sgw.workmark
-
 <para>
 <quote>Ich bekomme `You already have a connection to the Domain....' oder `Cannot join domain, the
-credentials supplied conflict with an existing set...' wenn ich einwhen creating a Machine Trust Account.</quote>
+credentials supplied conflict with an existing set...' wenn ich ein Maschinen-Vertrauens-Konto anlegen will.</quote>
 </para>
 
 <para>
-This happens if you try to create a Machine Trust Account from the machine itself and already have a
-connection (e.g., mapped drive) to a share (or IPC$) on the Samba PDC. The following command
-will remove all network drive connections:
+Dies passiert, wenn Sie versuchen, ein Maschinen-Vertrauens-Konto von der betreffenden Maschine aus anlegen wollen, und bereits eine bestehende Verbindung (wie z.B. ein verbundenes Netzlaufwerk) zu einer Freigabe (oder zu IPC$) auf dem Samba PDC haben. Der folgende Befehl trennt alle bestehenden Netzlaufwerksverbindungen:
 <screen>
 &dosprompt;<userinput>net use * /d</userinput>
 </screen>
 </para>
 
 <para>
-Further, if the machine is already a <quote>member of a workgroup</quote> that
-is the same name as the domain you are joining (bad idea) you will
-get this message. Change the workgroup name to something else, it
-does not matter what, reboot, and try again.
+Weiters: Wenn die Maschine bereits ein <quote>Mitglied einer Arbeitsgruppe</quote> ist, die denselben Namen hat wie die Domäne, der Sie sich anschliessen wollen (schlechte Idee), werden Sie dieselbe Meldung erhalten. Ändern Sie den Namen der Arbeitsgruppe auf etwas anderes, egal was, rebooten Sie, und versuchen Sie es erneut.
 </para>
 </sect2>
 
 <sect2>
-<title>The System Cannot Log You On (C000019B)</title>
+<title>Das System kann Sie nicht anmelden (C000019B)</title>
 
-<para><quote>I joined the domain successfully but after upgrading
-to a newer version of the Samba code I get the message, <errorname>`The system
-cannot log you on (C000019B), Please try again or consult your
-system administrator</errorname> when attempting to logon.'</quote>
+<para><quote>Ich schloß mich erfolgreich der Domäne an, aber nach dem Upgrade auf eine neue Samba-Release bekomme ich die Meldung <errorname>`The system cannot log you on (C000019B), Please try again or consult your system administrator</errorname>, wenn ich versuche, mich anzumelden.</quote>
 </para>
 
 <para>
 <indexterm><primary>SID</primary></indexterm>
-This occurs when the domain SID stored in the secrets.tdb database
-is changed. The most common cause of a change in domain SID is when
-the domain name and/or the server name (NetBIOS name) is changed.
-The only way to correct the problem is to restore the original domain
-SID or remove the domain client from the domain and rejoin. The domain
-SID may be reset using either the net or rpcclient utilities.
+Dies geschieht, wenn der Domänen-SID, der in der secrets.tdb-Datenbank gespeichert ist, geändert wird. Die häufigste Ursache für eine Änderung ist die Änderung des Domänen-Namens und/oder des Server-Namens (NetBIOS-Namen). Die einzige Lösung ist es, den originale Domänen-SID wiederherzustellen oder den Domänen-Client aus der Domäne zu entfernen und neu einzubinden. Der Domänen-SID kann mittels net- oder rpcclient-Werkzeug zurückgesetzt werden.
 </para>
 
 <para>
-To reset or change the domain SID you can use the net command as follows:
+Zum Zurücksetzen oder Ändern des Domänen-SID können Sie den net-Befehl wie folgt verwenden:
 
 <screen>
 &rootprompt;<userinput>net getlocalsid 'OLDNAME'</userinput>
@@ -782,96 +767,73 @@ To reset or change the domain SID you can use the net command as follows:
 </para>
 
 <para>
-Workstation Machine Trust Accounts work only with the Domain (or network) SID. If this SID changes
-Domain Members (workstations) will not be able to log onto the domain. The original Domain SID
-can be recovered from the secrets.tdb file. The alternative is to visit each workstation to re-join
-it to the domain.
+Maschinen-Vertrauens-Konten von Workstations arbeiten nur mit dem Domänen-SID (Netzwerk-SID). Wenn dieser SID sich ändert, können sich Domänen-Mitglieder (Workstations) nicht in der Domäne anmelden. Der originale Domänen-SID kann aus der secrets.tdb-Datenbank wiederhergestellt werden. Die Alternative ist es, jede einzelne Workstation aufzusuchen und neu der Domäne anzuschliessen.
+</para>
+
+</sect2>
+
+sgw.workmark
+<sect2>
+<title>Das Maschinen-Vertrauens-Konto ist nicht erreichbar</title>
+
+<para>
+<quote>Wenn ich versuche, mich der Domäne anzuschliessen, bekomme ich die Nachricht <errorname>`The machine account
+for this computer either does not exist or is not accessible'</errorname>. Was ist falsch?</quote>
+</para>
+
+<para>
+Dieses Problem wird dadurch verursacht, daß der PDC kein passendes Maschinen-Vertrauens-Konto bereitstellt. Wenn Sie die <smbconfoption><name>add machine script</name></smbconfoption>-Methode zum Anlegen von Konten verwenden, ist dies ein Zeichen dafür, daß diese Methode nicht funktioniert hat. Stellen Sie sicher, daß das Domänen-Administratoren-Benutzer-System richtig arbeitet.
+</para>
+
+<para>
+Andererseits, wenn Sie Konten händisch erstellen, dann wurden diese nicht korrekt erstellt. Stellen Sie sicher, daß Sie den Eintrag für das Maschinen-Vertrauens-Konto in der Datei <filename>smbpasswd</filename> auf dem Samba PDC korrekt erstellt haben. Wenn Sie den Eintrag unter Verwendung eines Editors anstatt des Programms smbpasswd erstellt haben, kontrollieren Sie, daß der Name des Kontos dem NetBIOS-Namen der Maschine, gefolgt von einem <quote>$</quote>, ist (z.B. computer_name$). Es muß je einen Eintrag in /etc/passwd und der Datei smbpasswd geben.
+</para>
+
+<para>
+Manche Benutzer haben auch berichtet, daß inkonsistente Subnetz-Masken zwischen dem Samba-Server und dem NT-Client dieses Problem verursachen können. Stellen Sie sicher, daß diese für Client und Server übereinstimmen.
+</para>
+</sect2>
+
+<sect2>
+<title>Konto deaktiviert</title>
+
+<para><quote>Wenn ich versuche, mich einer Domäne von einer NT4/W200x-Workstation aus anzuschliessen, bekomme ich die Nachricht, daß mein Konto deaktiviert wird.</quote></para>
+
+<para>
+Aktivieren Sie die Benutzer-Konten mittels <userinput>smbpasswd -e <replaceable>Benutzername</replaceable>
+</userinput>. Dies wird normalerweise beim Anlegen eines Kontos ausgeführt.
 </para>
 
 </sect2>
 
 <sect2>
-<title>The Machine Trust Account Is Not Accessible</title>
+<title>Domänen-Controller nicht verfügbar</title>
+
+<para><quote>Ein paar Minuten, nachdem Samba gestartet worden ist, bekommen die Clients den Fehler `Domain Controller Unavailable'</quote></para>
 
 <para>
-<quote>When I try to join the domain I get the message, <errorname>`The machine account
-for this computer either does not exist or is not accessible'</errorname>. What's
-wrong?</quote>
-</para>
-
-<para>
-This problem is caused by the PDC not having a suitable Machine Trust Account.
-If you are using the <smbconfoption><name>add machine script</name></smbconfoption> method to create
-accounts then this would indicate that it has not worked. Ensure the domain
-admin user system is working.
-</para>
-
-<para>
-Alternately, if you are creating account entries manually then they
-have not been created correctly. Make sure that you have the entry
-correct for the Machine Trust Account in <filename>smbpasswd</filename> file on the Samba PDC.
-If you added the account using an editor rather than using the smbpasswd
-utility, make sure that the account name is the machine NetBIOS name
-with a <quote>$</quote> appended to it (i.e., computer_name$). There must be an entry
-in both /etc/passwd and the smbpasswd file.
-</para>
-
-<para>
-Some people have also reported that inconsistent subnet masks between the Samba server and the NT
-client can cause this problem.  Make sure that these are consistent for both client and server.
+Ein Domänen-Controller muß seine Rolle im Netzwerk bekanntgeben. Dies braucht üblicherweise eine Weile. Haben Sie Geduld für bis zu 15 Minuten, versuchen Sie es dann nochmals.
 </para>
 </sect2>
 
 <sect2>
-<title>Account Disabled</title>
-
-<para><quote>When I attempt to login to a Samba Domain from a NT4/W200x workstation,
-I get a message about my account being disabled.</quote></para>
-
-<para>
-Enable the user accounts with <userinput>smbpasswd -e <replaceable>username</replaceable>
-</userinput>. This is normally done as an account is created.
-</para>
-
-</sect2>
-
-<sect2>
-<title>Domain Controller Unavailable</title>
-
-<para><quote>Until a few minutes after Samba has started, clients get the error `Domain Controller Unavailable'</quote></para>
-
-<para>
-A Domain Controller has to announce its role on the network. This usually takes a while. Be patient for up to fifteen minutes,
-then try again.
-</para>
-</sect2>
-
-<sect2>
-<title>Cannot Log onto Domain Member Workstation After Joining Domain</title>
+<title>Ich kann mich nicht an einer Domänen-Mitglieds-Workstation anmelden, nachdem ich mich einer Domäne angeschlossen habe</title>
 
 <para>
 <indexterm><primary>schannel</primary></indexterm>
 <indexterm><primary>signing</primary></indexterm>
-After successfully joining the domain, user logons fail with one of two messages: one to the
-effect that the Domain Controller cannot be found; the other claims that the account does not
-exist in the domain or that the password is incorrect. This may be due to incompatible
-settings between the Windows client and the Samba-3 server for <emphasis>schannel</emphasis>
-(secure channel) settings or <emphasis>smb signing</emphasis> settings. Check your Samba
-settings for <emphasis> client schannel, server schannel, client signing, server signing</emphasis>
-by executing:
+Nach dem erfolgreichen Beitreten zu einer Domäne scheitern Benutzeranmeldungen mit einer von zwei Meldungen: die eine aus dem Grund, daß der DC nicht gefunden werden kann; die andere behauptet, daß das Konto nicht in der Domäne existiert, bzw. daß das Passwort falsch ist. Dies kann durch imkompatible Einstellungen zwischen dem Windows-Client und dem Samba-3-Server verursacht werden: <emphasis>schannel</emphasis> (secure channel) oder <emphasis>smb signing</emphasis>-Einstellungen. Prüfen Sie die Einstellungen <emphasis> client schannel, server schannel, client signing, server signing</emphasis> durch das Ausführen von:
 <screen>
-<command>testparm -v | more</command> and looking for the value of these parameters.
+<command>testparm -v | more</command> und das Prüfen der Werte dieser Parameter.
 </screen>
 </para>
 
 <para>
-Also use the Microsoft Management Console &smbmdash; Local Security Settings. This tool is available from the
-Control Panel. The Policy settings are found in the Local Policies/Securty Options area and are prefixed by
-<emphasis>Secure Channel: ..., and Digitally sign ....</emphasis>.
+Benutzen Sie auch die  Microsoft Management Console &smbmdash; Local Security Settings. Dieses Werkzeug ist in der Systemsteuerung verfügbar. Die Policy-Einstellungen findet man im Bereich "Local Policies/Security Options", sie sind erkennbar am Prefix <emphasis>Secure Channel: ..., and Digitally sign ....</emphasis>.
 </para>
 
 <para>
-It is important that these be set consistently with the Samba-3 server settings.
+Es ist wichtig, daß diese Einstellungen konsistent mit denen des Samba-3-Servers gesetzt sind.
 </para>
 
 </sect2>
