@@ -5,12 +5,11 @@ Dieses README soll laufend auftretende Fragen zur Formatierung und Uebersetzung 
 
 ###########################################################################################################
 
-Stefan G. Weichinger, 18.11.2003
-
-
----
+---===---===---===---===---===---===---===---===---===---===---===---===
 
 - Format der Author-entities in docbook/global.ent
+
+---===---===---===---===---===---===---===---===---===---===---===---===
 
 Nach Rueckfrage bei John H Terpstra sollte sich an folgendes Format gehalten werden.
 
@@ -33,14 +32,16 @@ sowie in der header-section der jeweiligen uebersetzten xml-file:
 
 Bitte verwendet den "German Translator"-Eintrag, wir wollen nicht dadurch auffallen, uns mit fremden Federn zu schmuecken.
 
----
+sgw, 18.11.03
 
-------
 
-sgw, 18.11.2003
 
-------
-- !!! Update Sonderzeichen !!! WICHTIG !!!
+
+---===---===---===---===---===---===---===---===---===---===---===---===
+
+- Sonderzeichen 
+
+---===---===---===---===---===---===---===---===---===---===---===---===
 
 
 - Durch das Einfügen folgenden headers können Umlaute sowie ß, kurz
@@ -68,6 +69,9 @@ Die erste derart formatierte Datei Speed.xml, Rev.1.8, hat sauber ins html
 
 (Siehe Testabschnitt vor dem Title ...)
 
-sgw, 18.11.2003
+sgw, 18.11.03
 
-------
+
+
+---===---===---===---===---===---===---===---===---===---===---===---===
+
