@@ -1361,37 +1361,43 @@ holt.
 </para></note>
 
 <para>
-Use of this mode of authentication does require there to be a standard UNIX account
-for each user in order to assign a UID once the account has been authenticated by
-the remote Windows DC. This account can be blocked to prevent logons by clients other than
-MS Windows through means such as setting an invalid shell in the
-<filename moreinfo="none">/etc/passwd</filename> entry.
+Diese Art der Authentisierung zu nutzen ben&#xF6;tigt einen Standard Unix Account, damit f&#xFC;r jeden
+User eine g&#xFC;ltige UNIX UserID existiert die vom entfernten Windows Dom&#xE4;nen Controller authentisiert
+werden kann. Es spricht allerdings nichts dagegen, dass es diesem UNIX Account verboten wird sich ein
+zu loggen was bei MS Windows nicht m&#xF6;glich ist. Das blocken eines solchen UNIX Accounts kann durch
+setzen einer nicht Login f&#xE4;higen Shell in der <filename moreinfo="none">/etc/passwd</filename> geschehen (z.B.
+/bin/false als Shell).
 </para>
 
 <para>
-An alternative to assigning UIDs to Windows users on a Samba member server is
-presented in <link linkend="winbind"/>.
+Eine Alternative zum assoziieren von UIDs zu Windows User mit einem Samba Mitgliedsserver wird
+im Kapitel <link linkend="winbind">Winbind</link> beschrieben.
 </para>
 
 <para>
-For more information regarding Domain Membership, see <link linkend="domain-member"/>.
+F&#xFC;r weitere Informationen Dom&#xE4;nen Mitgliedschaft betreffend lesen Sie bitte
+<link linkend="domain-member">hier</link>.
 </para>
 
 </sect3>
 </sect2>
 
 <sect2>
-<title>ADS Security Mode (User Level Security)</title>
+<title>ADS Sicherheits Modus (User Level Security)</title>
 
 <para>
-Both Samba-2.2, and Samba-3 can join an Active Directory domain. This is
-possible if the domain is run in native mode. Active Directory in
-native mode perfectly allows NT4-style Domain Members. This is contrary to
-popular belief. Active Directory in native mode prohibits only the use of
-Backup Domain Controllers running MS Windows NT4.
+Sowohl Samba 2.2 als auch Samba 3 k&#xF6;nnen einer ADS Dom&#xE4;ne beitreten. Dies ist
+allerdings nur dann m&#xF6;glich, wenn die ADS im Ursprungs Modus betrieben wird.
+Active Directory im urspr&#xFC;nglichen Modus erlaubt g&#xE4;nzlich die Mitgliedschaft
+von NT4 artigen Mitgliedern. Dies ist wiederspr&#xFC;chlich im verbreiteten Glauben.
+Active Directory in diesem Zustand verhindert nur den Einsatz von Backup Dom&#xE4;nen
+Controllern auf NT4 Basis.
 </para>
 
 <para>
+Wenn Sie ADS benutzen und mit Samba 3 starten k&#xF6;nnen Sie der ADS als normales
+Active Directory Mitglied beitreten.
+
 If you are using Active Directory, starting with Samba-3 you can
 join as a native AD member. Why would you want to do that?
 Your security policy might prohibit the use of NT-compatible
@@ -1959,98 +1965,80 @@ Dom&#xE4;nen-Mitglieds-Maschinen haben ein Maschinen-Konto in der Dom&#xE4;nen-K
 </para>
 
 <note><para>
-When Samba is configured as a Domain Controller, secure network operation demands that
-all MS Windows NT4/200x/XP Professional clients should be configured as Domain Members.
-If a machine is not made a member of the Domain, then it will operate like a workgroup
-(Stand-alone) machine. Please refer to <link linkend="domain-member"/> for
-information regarding Domain Membership.
+Wird Samba als Dom&#xE4;nen-Controller konfiguriert, m&#xFC;ssen alle MS Windows NT4/200x/XP Professional Clients als Dom&#xE4;nen-Mitglieder konfiguriert werden, um den sicheren Betrieb des Netzwerks zu gew&#xE4;hrleisten. Wenn eine Maschine nicht zum Dom&#xE4;nen-Mitglied gemacht wird, wird sie sich wie eine Arbeitsgruppen(Standalone)-Maschine verhalten. Siehe <link linkend="domain-member"/> f&#xFC;r Informationen zur Dom&#xE4;nen-Mitgliedschaft.
 </para></note>
 
 <para>
-The following are necessary for configuring Samba-3 as an MS Windows NT4-style PDC for MS Windows
-NT4/200x/XP clients:
+Folgendes ist n&#xF6;tig, um Samba-3 als einen MS Windows NT4-artigen PDC f&#xFC;r MS-Windows-NT4/200x/XP-Clients zu konfigurieren:
 </para>
 
 <itemizedlist>
-	<listitem><para>Configuration of basic TCP/IP and MS Windows networking.</para></listitem>
-	<listitem><para>Correct designation of the Server Role (<indexterm><primary>security</primary></indexterm><parameter moreinfo="none">security</parameter> = user).</para></listitem>
-	<listitem><para>Consistent configuration of Name Resolution<footnote><para>See <link linkend="NetworkBrowsing"/>, and
+	<listitem><para>Konfiguration der Basisdienste TCP/IP und MS Windows Netzwerk.</para></listitem>
+	<listitem><para>Korrekte Zuweisung der Server-Rolle (<indexterm><primary>security</primary></indexterm><parameter moreinfo="none">security</parameter> = user).</para></listitem>
+	<listitem><para>Konsistente Konfiguration der Namensaufl&#xF6;sung <footnote><para>Siehe <link linkend="NetworkBrowsing"/>, und
 		<link linkend="integrate-ms-networks"/>.</para></footnote>.</para></listitem>
-	<listitem><para>Domain logons for Windows NT4/200x/XP Professional clients.</para></listitem>
-	<listitem><para>Configuration of Roaming Profiles or explicit configuration to force local profile usage.</para></listitem>
-	<listitem><para>Configuration of network/system policies.</para></listitem>
-	<listitem><para>Adding and managing domain user accounts.</para></listitem>
-	<listitem><para>Configuring MS Windows client machines to become Domain Members.</para></listitem>
+	<listitem><para>Dom&#xE4;nen-Logins f&#xFC;r Windows NT4/200x/XP Professional Clients.</para></listitem>
+	<listitem><para>Konfiguration von Roaming Profiles oder explizite Konfiguration, um die Verwendung lokaler Profile zu erzwingen.</para></listitem>
+	<listitem><para>Konfiguration von Netzwerk/System-Policies.</para></listitem>
+	<listitem><para>Hinzuf&#xFC;gen und Verwalten von Dom&#xE4;nen-Benutzer-Konten.</para></listitem>
+	<listitem><para>Konfiguration von MS Windows Clients als Dom&#xE4;nen-Mitglieder.</para></listitem>
 </itemizedlist>
 
 <para>
-The following provisions are required to serve MS Windows 9x/Me clients:
+Die folgenden Voraussetzungen sind erforderlich, um MS Windows 9x/Me-Clients bedienen zu k&#xF6;nnen:
 </para>
 
 <itemizedlist>
-	<listitem><para>Configuration of basic TCP/IP and MS Windows networking.</para></listitem>
-	<listitem><para>Correct designation of the server role (<indexterm><primary>security</primary></indexterm><parameter moreinfo="none">security</parameter> = user).</para></listitem>
-	<listitem><para>Network Logon Configuration (since Windows 9x/Me/XP Home are not technically domain
-	members, they do not really participate in  the security aspects of Domain logons as such).</para></listitem>
-	<listitem><para>Roaming Profile Configuration.</para></listitem>
-	<listitem><para>Configuration of System Policy handling.</para></listitem>
-	<listitem><para>Installation of the network driver <quote>Client for MS Windows Networks</quote> and configuration
-	to log onto the domain.</para></listitem>
-	<listitem><para>Placing Windows 9x/Me clients in User Level Security  if it is desired to allow
-	all client share access to be controlled according to domain user/group identities.</para></listitem>
-	<listitem><para>Adding and managing domain user accounts.</para></listitem>
+	<listitem><para>Konfiguration der Basisdienste TCP/IP und MS Windows Netzwerk.</para></listitem>
+	<listitem><para>Korrekte Zuweisung der Server-Rolle (<indexterm><primary>security</primary></indexterm><parameter moreinfo="none">security</parameter> = user).</para></listitem>
+	<listitem><para>Netzwerk-Login-Konfiguration (da Windows 9x/Me/XP Home technisch gesehen keine Dom&#xE4;nen-Mitglieder sind, nehmen sie auch nicht wirklich als solches an den Sicherheits-Aspekten von Dom&#xE4;nen Anteil) .</para></listitem>
+	<listitem><para>Konfiguration von Roaming Profiles.</para></listitem>
+	<listitem><para>Konfiguration von System Policy handling.</para></listitem>
+	<listitem><para>Installation des Netzwerk-Treibers <quote>Client for MS Windows Networks</quote> und dessen Konfiguration, um sich in der Dom&#xE4;ne anzumelden.</para></listitem>
+	<listitem><para>Setzen der Windows 9x/Me-Clients auf User Level Security  wenn es erw&#xFC;nscht ist, jeglichen Client-Zugriff auf Freigaben entsprechend der Dom&#xE4;nen-Benutzern/Gruppen zu verwalten.</para></listitem>
+	<listitem><para>Hinzuf&#xFC;gen und Verwalten von Dom&#xE4;nen-Benutzer-Konten.</para></listitem>
 </itemizedlist>
 
 <note><para>
-Roaming Profiles and System/Network policies are advanced network administration topics
-that are covered in the <link linkend="ProfileMgmt"/> and
-<link linkend="PolicyMgmt"/> chapters of this document. However, these are not
-necessarily specific to a Samba PDC as much as they are related to Windows NT networking concepts.
+Roaming Profiles und System/Network policies sind fortgeschrittene Netzwerk-Verwaltungs-Themen die in den Kapiteln <link linkend="ProfileMgmt"/> und <link linkend="PolicyMgmt"/> behandelt werden. Jedoch sind diese Themen f&#xFC;r einen Samba-PDC nicht so entscheidend, da sie eng mit den Windows NT-Netzwerk-Konzepten zusammenh&#xE4;ngen.
 </para></note>
 
 <para>
-A Domain Controller is an SMB/CIFS server that:
+Ein Dom&#xE4;nen-Controller ist ein SMB/CIFS-Server, der:
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	Registers and advertises itself as a Domain Controller (through NetBIOS broadcasts
-	as well as by way of name registrations either by Mailslot Broadcasts over UDP broadcast,
-	to a WINS server over UDP unicast, or via DNS and Active Directory).
+	sich selbst als Dom&#xE4;nen Controller registriert und anbietet (sowohl durch
+	NetBIOS broadcasts wie auch durch verschiedene Namensregistrierungen,
+	entweder durch Mailslot Broadcasts &#xFC;ber UDP broadcast, einem WINS-Server
+	&#xFC;ber UDP unicast, oder &#xFC;ber DNS und Active Directory).	
 	</para></listitem>
 
 	<listitem><para>
-	Provides the NETLOGON service. (This is actually a collection of services that runs over
-	mulitple protocols. These include the LanMan Logon service, the Netlogon service,
-	the Local Security Account service, and variations of them.)
+	den NETLOGON-Dienst anbietet. (Dies ist tats&#xE4;chlich eine Sammlung von Diensten,
+	die &#xFC;ber mehrere Protokolle laufen. Diese inkludieren den LanMan-Logon-Dienst,
+	den Netlogon-Dienst, den Local-Security-Account-Dienst, und Abwandlungen dieser.)
 	</para></listitem>
 
 	<listitem><para>
-	Provides a share called NETLOGON.
+	eine Freigabe namens NETLOGON anbietet.
 	</para></listitem>
 </itemizedlist>
 
 <para>
-It is rather easy to configure Samba to provide these. Each Samba Domain Controller must provide
-the NETLOGON service that Samba calls the <indexterm><primary>domain logons</primary></indexterm><parameter moreinfo="none">domain logons</parameter> functionality
-(after the name of the parameter in the <filename moreinfo="none">smb.conf</filename> file). Additionally, one server in a Samba-3
-Domain must advertise itself as the Domain Master Browser<footnote>See <link linkend="NetworkBrowsing"/>.</footnote>.
-This causes the Primary Domain Controller to claim a domain-specific NetBIOS name that identifies it as a
-Domain Master Browser for its given domain or workgroup. Local master browsers in the same domain or workgroup on
-broadcast-isolated subnets then ask for a complete copy of the browse list for the whole wide area network.
-Browser clients will then contact their Local Master Browser, and will receive the domain-wide browse list,
-instead of just the list for their broadcast-isolated subnet.
+Es ist ziemlich einfach, Samba so zu konfigurieren, da&#xDF; er all dies zur Verf&#xFC;gung stellt. Jeder Samba Domain Controller mu&#xDF; den NETLOGON-Dienst anbieten, welcher von Samba als <indexterm><primary>domain logons</primary></indexterm><parameter moreinfo="none">domain logons</parameter>-Funktionalit&#xE4;t bezeichnet wird (nach dem Parameter in der <filename moreinfo="none">smb.conf</filename>-Datei). Weiters mu&#xDF; ein Server in einer Samba-3-Dom&#xE4;ne sich selbst als Domain Master Browser bekanntgeben <footnote>Siehe <link linkend="NetworkBrowsing"/>.</footnote>.
+Dies veranla&#xDF;t den PDC dazu, einen Dom&#xE4;nen-spezifischen NetBIOS-Namen zu beanspruchen, der ihn als Domain Master Browser f&#xFC;r die gegebene Dom&#xE4;ne/Workgroup identifiziert. Lokale Master Browser in derselben Dom&#xE4;ne/Workgroup und broadcast-isolierten Subnetzen erfragen dann eine komplette Kopie der &quot;browse list&quot; f&#xFC;r das gesamte WAN. Browser Clients kontaktieren darauf ihren Lokalen Master Browser, und erhalten die &quot;browse list&quot; der gesamten Dom&#xE4;ne, anstatt nur der Liste f&#xFC;r ihr broadcast-isoliertes Subnetz.
 </para>
 
 </sect2>
 </sect1>
 
 <sect1>
-<title>Domain Control  Example Configuration</title>
+<title>Dom&#xE4;nen-Verwaltung  Beispiel-Konfiguration</title>
 
 <para>
-The first step in creating a working Samba PDC is to understand the parameters necessary
-in <filename moreinfo="none">smb.conf</filename>. An example <filename moreinfo="none">smb.conf</filename> for acting as a PDC can be found in <link linkend="pdc-example"/>.
+Der erste Schritt, um einen funktionierenden Samba PDC zu erstellen, ist, die n&#xF6;tigen Parameter in <filename moreinfo="none">smb.conf</filename> zu verstehen. Ein Beispiel einer <filename moreinfo="none">smb.conf</filename> f&#xFC;r einen PDC finden Sie unter <link linkend="pdc-example"/>.
 </para>
 
 <para>
@@ -2085,66 +2073,63 @@ in <filename moreinfo="none">smb.conf</filename>. An example <filename moreinfo=
 </para>
 
 <para>
-The basic options shown in <link linkend="pdc-example"/> are explained as follows:
+Die grundlegenden Optionen, die in <link linkend="pdc-example"/> gezeigt werden, werden wie folgt erkl&#xE4;rt:
 </para>
 
 <variablelist>
 	<varlistentry><term>passdb backend </term>
 		<listitem><para>
-		This contains all the user and group account information. Acceptable values for a PDC
-		are: <emphasis>smbpasswd, tdbsam, and ldapsam</emphasis>. The <quote>guest</quote> entry provides
-		default accounts and is included by default, there is no need to add it explicitly.</para>
+		Dies enth&#xE4;lt s&#xE4;mtliche Information zu Benutzer- und Gruppenkonten. Akzeptable Werte f&#xFC;r einen PDC sind: <emphasis>smbpasswd, tdbsam, and ldapsam</emphasis>. Der <quote>guest</quote>-Eintrag stellt Standard-Konten zur Verf&#xFC;gung und ist standard-m&#xE4;ssig inkludiert, es besteht keine Notwendigkeit, ihn explizit hinzuzuf&#xFC;gen.
+Wo der Einsatz von Backup-Dom&#xE4;nen-Controllern (BDCs) beabsichtigt ist, ist die einzige logische Wahl die Verwendung von LDAP, soda&#xDF; die passdb verteilt werden kann. Die tdbsam und smbpasswd-Dateien k&#xF6;nnen nicht effektiv verteilt werden und sollten daher nicht verwendet werden.		
+		</para>
+</listitem>
+	</varlistentry>
+	<varlistentry><term>Dom&#xE4;nen-Verwaltungs-Parameter </term>
+		<listitem><para>
+		Die Parameter <emphasis>os level, preferred master, domain master, security,
+		encrypt passwords, und domain logons</emphasis> spielen eine wichtige Rolle bei der Unterst&#xFC;tzung f&#xFC;r Dom&#xE4;nen-Kontrolle und Netzwerk-Anmeldung.</para>
 
 		<para>
-		Where use of backup Domain Controllers (BDCs) is intended, the only logical choice is
-		to use LDAP so the passdb backend can be distributed. The tdbsam and smbpasswd files
-		cannot effectively be distributed and therefore should not be used.
+		Das <emphasis>os level</emphasis> mu&#xDF; auf einen Wert von mindestens 32 gesetzt werden. 
+		Ein Dom&#xE4;nen-Controller mu&#xDF; auch der Dom&#xE4;nen-Master-Browser sein, mu&#xDF; auf <emphasis>user</emphasis>
+		mode security gesetzt sein, mu&#xDF; MS-kompatibel verschl&#xFC;sselte Passw&#xF6;rter unterst&#xFC;tzen, und mu&#xDF; den Nettwerk-Anmelde-Dienst (Dom&#xE4;nen-Anmeldungen) anbieten. Verschl&#xFC;sselte Passw&#xF6;rter m&#xFC;ssen aktiviert sein.
+		F&#xFC;r mehr Details dazu, siehe <link linkend="passdb"/>.
 		</para></listitem>
 	</varlistentry>
-	<varlistentry><term>Domain Control Parameters </term>
+	<varlistentry><term>Umgebungs-Parameter</term>
 		<listitem><para>
-		The parameters <emphasis>os level, preferred master, domain master, security,
-		encrypt passwords, and domain logons</emphasis> play a central role in assuring domain
-		control and network logon support.</para>
-
-		<para>
-		The <emphasis>os level</emphasis> must be set at or above a value of 32. A Domain Controller
-		must be the Domain Master Browser, must be set in <emphasis>user</emphasis> mode security,
-		must support Microsoft-compatible encrypted passwords, and must provide the network logon
-		service (domain logons). Encrypted passwords must be enabled. For more details on how
-		to do this, refer to <link linkend="passdb"/>.
+		Die Parameter <emphasis>logon path, logon home, logon drive, and logon script</emphasis> sind 
+		Umgebungs-Einstellungen, die dabei helfen, Client-Anmeldungen zu erm&#xF6;glichen, und die
+		automatisierte Kontrollmechanismen zur Verf&#xFC;gung stellen, um Overheads im Netzwerk-Management
+		zu verringern. Siehe die man-page f&#xFC;r Informationen zu diesen Parametern.
 		</para></listitem>
 	</varlistentry>
-	<varlistentry><term>Environment Parameters </term>
+	<varlistentry><term>NETLOGON-Freigabe</term>
 		<listitem><para>
-		The parameters <emphasis>logon path, logon home, logon drive, and logon script</emphasis> are
-		environment support settings that help to facilitate client logon operations and that help
-		to provide automated control facilities to ease network management overheads. Please refer
-		to the man page information for these parameters.
+		Die NETLOGON-Freigabe spielt eine zentrale Rolle in der Unterst&#xFC;tzung von Dom&#xE4;nen-Anmeldungen
+		und Dom&#xE4;nen-Mitgliedschaft. Diese Freigabe wird von allen MS-Dom&#xE4;nen-Controllern zur
+		Verf&#xFC;gung gestellt. Sie wird dazu verwendet, um Anmelde-Skripts bereit zu stellen, um
+		Group Policy files (wie NTConfig.POL) zu speichern, aber auch, um andere g&#xE4;ngige
+		Werkzeuge zur Verf&#xFC;gung zu stellen, die f&#xFC;r den Anmelde-Vorgang gebraucht werden.
+		Dies ist eine essentielle Freigabe auf einem Dom&#xE4;nen-Controller.
 		</para></listitem>
 	</varlistentry>
-	<varlistentry><term>NETLOGON Share </term>
+	<varlistentry><term>PROFILE-Freigabe</term>
 		<listitem><para>
-		The NETLOGON share plays a central role in domain logon and Domain Membership support.
-		This share is provided on all Microsoft Domain Controllers. It is used to provide logon
-		scripts, to store Group Policy files (NTConfig.POL), as well as to locate other common
-		tools that may be needed for logon processing. This is an essential share on a Domain Controller.
-		</para></listitem>
-	</varlistentry>
-	<varlistentry><term>PROFILE Share </term>
-		<listitem><para>
-		This share is used to store user desktop profiles. Each user must have a directory at the root
-		of this share. This directory must be write-enabled for the user and must be globally read-enabled.
-		Samba-3 has a VFS module called <quote>fake_permissions</quote> that may be installed on this share. This will
-		allow a Samba administrator to make the directory read-only to everyone. Of course this is useful
-		only after the profile has been properly created.
+		Diese Freigabe wird zur Speicherung von Benutzer-Desktop-Profilen verwendet.
+		Jeder Benutzer mu&#xDF; ein Verzeichnis im root-Verzeichnis dieser Freigabe haben.
+		Dieses Verzeichnis mu&#xDF; f&#xFC;r den Benutzer Schreibrechte haben und global lesbar sein.
+		Samba-3 hat ein VFS-Modul namens <quote>fake_permissions</quote>, das auf dieser
+		Freigabe installiert werden kann. Das erlaubt es einem Samba-Administrator, das
+		Verzeichnis read-only f&#xFC;r jeden zu setzen. Nat&#xFC;rlich ist dies nur sinnvoll, nachdem
+		das Profil richtig erstellt wurde.
 		</para></listitem>
 	</varlistentry>
 </variablelist>
 
 <note><para>
-The above parameters make for a full set of parameters that may define the server's mode
-of operation. The following <filename moreinfo="none">smb.conf</filename> parameters are the essentials alone:
+Die obigen Parameter bilden einen vollst&#xE4;ndigen Satz von Parametern, der den Arbeitsmodus des Servers definiert.
+Die folgenden <filename moreinfo="none">smb.conf</filename>-Parameter sind die essentiell notwendigen:
 </para>
 
 <para>
@@ -2158,33 +2143,35 @@ of operation. The following <filename moreinfo="none">smb.conf</filename> parame
 </para>
 
 <para>
-The additional parameters shown in the longer listing above just makes for
-a more complete explanation.
+Die zus&#xE4;tzlichen Parameter, die in der l&#xE4;ngeren Auflistung oben gezeigt werden, bed&#xFC;rfen einer weitergehenden Erkl&#xE4;rung.
 </para></note>
 
 </sect1>
 
 <sect1>
-<title>Samba ADS Domain Control</title>
+<title>Samba ADS Dom&#xE4;nen-Verwaltung</title>
 
 <para>
-Samba-3 is not, and cannot act as, an Active Directory Server. It cannot truly function as
-an Active Directory Primary Domain Controller. The protocols for some of the functionality
-of Active Directory Domain Controllers has been partially implemented on an experimental
-only basis. Please do not expect Samba-3 to support these protocols. Do not depend
-on any such functionality either now or in the future. The Samba Team may remove these
-experimental features or may change their behavior. This is mentioned for the benefit of those
-who have discovered secret capabilities in Samba-3 and who have asked when this functionality will be
-completed. The answer is maybe or maybe never!
+Samba-3 ist kein, und kann sich nicht verhalten wie ein Active Directory Server.
+Samba-3 kann nicht wirklich wie ein Active Directory Primary Domain Controller funktionieren.
+Die Protokolle f&#xFC;r einige Funktionalit&#xE4;ten von AD-DCs wurden teilweise auf experimenteller Basis
+implementiert. Bitte erwarten Sie nicht, da&#xDF; Samba-3 diese Protokolle unterst&#xFC;tzt.
+Verlassen Sie nicht auf irgendeine derartige Funktionalit&#xE4;t, weder jetzt noch in der Zukunft.
+Das Samba-Team k&#xF6;nnte diese experimentellen Features entfernen oder deren Verhalten ver&#xE4;ndern.
+Dies wird erw&#xE4;hnt, um jenen zu helfen, die &quot;geheime&quot; F&#xE4;higkeiten von Samba-3 entdeckt haben und
+danach gefragt haben, wann diese Funktionalit&#xE4;ten vervollst&#xE4;ndigt sein werden.
+Die Antwort darauf ist: &quot;Vielleicht. Vielleicht nie!&quot;
 </para>
 
 <para>
-To be sure, Samba-3 is designed to provide most of the functionality that Microsoft Windows NT4-style
-Domain Controllers have. Samba-3 does not have all the capabilities of Windows NT4, but it does have
-a number of features that Windows NT4 domain contollers do not have. In short, Samba-3 is not NT4 and it
-is not Windows Server 200x, it is not an Active Directory server. We hope this is plain and simple
-enough for all to understand.
+Um sicher zu sein, Samba-3 wurde entworfen, um den gr&#xF6;&#xDF;ten Teil der Funktionalit&#xE4;t zur Verf&#xFC;gung zu
+stellen, die MS Windows NT4-artige Dom&#xE4;nen-Controller anbieten. Samba-3 hat nicht alle F&#xE4;higkeiten von
+Windows NT4, aber es hat einige Eigenschaften, die Windows NT4-DCs nicht haben. 
+Kurz gesagt, Samba-3 ist nicht NT4, Samba-3 ist nicht Windows Server 200x, Samba-3 ist kein AD-Server.
+Wir hoffen, da&#xDF; dies kurz und einfach genug ist, um f&#xFC;r alle verst&#xE4;ndlich zu sein.
 </para>
+
+sgw---workmark
 
 </sect1>
 
@@ -8999,14 +8986,14 @@ erst die Unterschiede erkl&#xE4;ren und dann wie Samba hilft dies zu &#xFC;berbr
 	<title>naging Directories</title>
 
 	<para>
-	There are three basic operations for managing directories: <command moreinfo="none">create, delete, rename</command>.
+	Es gibt grunsaetzlich 3 M&#xF6;glichkeiten um Ordner ( Verzeichnisse ) zu verwalten: <command moreinfo="none">create (erstellen), 
+delete (loeschen) , rename ( umbenennen )</command>.
 	<table frame="all">
-		<title>Managing Directories with UNIX and Windows</title>
+		<title>Verwaltung von Ordnern ( Verzeichnisse ) mit UNIX und Windows</title>
 		<tgroup align="center" cols="3">
 		<thead>
-		<row><entry>Action</entry><entry>MS Windows Command</entry><entry>UNIX Command</entry></row>
+		<row><entry>Action</entry><entry>MS Windows Command ( Windows Befehele ) </entry><entry>UNIX Command ( UNIX Befehele )</entry></row>
 		</thead>
-
 		<tbody>
 			<row><entry>create</entry><entry>md folder</entry><entry>mkdir folder</entry></row>
 			<row><entry>delete</entry><entry>rd folder</entry><entry>rmdir folder</entry></row>
@@ -9019,21 +9006,19 @@ erst die Unterschiede erkl&#xE4;ren und dann wie Samba hilft dies zu &#xFC;berbr
 	</sect2>
 
 	<sect2>
-	<title>File and Directory Access Control</title>
+	<title>Datei und Ordner ( Verzeichnis ) Zugriffskontrolle ( Verwaltung )</title>
 
 
 	<para>
 	<indexterm significance="normal"><primary>ACLs</primary><secondary>File System</secondary></indexterm>
-	The network administrator is strongly advised to read foundational training manuals and reference materials
-	regarding file and directory permissions maintenance. Much can be achieved with the basic UNIX permissions
-	without having to resort to more complex facilities like POSIX Access Control Lists (ACLs) or Extended
-	Attributes (EAs).
+	Jedem Administrator wird geraten zusaetzliche Handbuecher &#xFC;ber dieses Thema zu studieren.
+	Die meisten Faelle koennen mit den grundlegenden Zugriffsm&#xF6;glichkeiten von UNIX geloest werden.
+	ohne die  (ACLs) or Extended Attributes (EAs), Technologien zu gebrauchen
 	</para>
 
 	<para>
-	UNIX/Linux file and directory access permissions involves setting three primary sets of data and one control set.
-	A UNIX file listing looks as follows:
-<screen format="linespecific">
+	Die Datei, Verzeichnis Verwaltung von UNIX basiert den folgenden Zugriffsmoeglichkeiten:
+	<screen format="linespecific">
 <prompt moreinfo="none">$ </prompt><userinput moreinfo="none">ls -la</userinput>
 total 632
 drwxr-xr-x   13 maryo   gnomes      816 2003-05-12 22:56 .
@@ -9053,50 +9038,54 @@ drwsrwsrwx    2 maryo   gnomes       48 2003-05-12 22:29 muchado08
 	</para>
 
 	<para>
-	The columns above represent (from left to right): permissions, number of hard links to file, owner, group, size (bytes), access date, access time, file name.
+	Die Reihen oben repraesentieren ( von rechts nach links ): Berechtigung, Anzahl der &quot;harten&quot; Links einer Datei, 
+	Besitzer ( einer Datei ), die Besitzergruppe und die Groesse in byte.
 	</para>
 
 	<para>
-	An overview of the permissions field can be found in <link linkend="access1"/>.
+	Hier finden Sie eine Uebersicht<link linkend="access1"/>.
 	</para>
 
-	<figure id="access1"><title>Overview of UNIX permissions field.</title><mediaobject><imageobject role="latex"><imagedata fileref="projdoc/imagefiles/access1" scale="40" scalefit="1"/></imageobject><imageobject><imagedata fileref="projdoc/imagefiles/access1.png" scale="50" scalefit="1"/></imageobject></mediaobject></figure>
+	<figure id="access1"><title>Uebersicht der UNIX Berechtigungen</title><mediaobject><imageobject role="latex"><imagedata fileref="projdoc/imagefiles/access1" scale="40" scalefit="1"/></imageobject><imageobject><imagedata fileref="projdoc/imagefiles/access1.png" scale="50" scalefit="1"/></imageobject></mediaobject></figure>
 
 	<para>
-	Any bit flag may be unset. An unset bit flag is the equivalent of <quote>cannot</quote> and is represented as a <quote>-</quote> character.
+	Jedes Bit kann auch unbesetzt sein und wird durch ein Minus ( - )dargestellt.
 
 	<example>
 		<title>Example File</title>
 		<programlisting format="linespecific">
-		-rwxr-x---   Means: The owner (user) can read, write, execute
-		                    the group can read and execute
-		                    everyone else cannot do anything with it.
+		-rwxr-x---   Bedeutet: Der Besitzer kann lesen schreiben ausfuehren 
+		                       Die Gruppe kann lesen und ausfuehren
+		                       Andere haben keine Rechte.
 		</programlisting>
 	</example>
 
 	</para>
 
 	<para>
-	Additional possibilities in the [type] field are: c = character device, b = block device, p = pipe device, s = UNIX Domain Socket.
+	Zusaetzliche Moeglichkeiten im Typen Feld sind [type] : c = character device, b = block device, p = pipe device, s = UNIX Domain Socket.
 	</para>
 
 	<para>
-	The letters <constant>rwxXst</constant> set permissions for the user, group and others as: read (r), write (w), execute (or access for directories) (x),
-	execute  only  if  the  file  is a directory or already has execute permission for some user (X), set user or group ID on execution (s),
-	sticky (t).
+	Die Zeichen <constant>rwxXst</constant> fuer die Berechtigungen fuer Nutzer, Gruppen und anderen sind: 
+	lesen (r), schreiben (w), ausfuehren ( oder Ordner Zugriff ) (x),
+	exclusives ausfuehren ,wenn der Nutzer berechtigt fuer die Datei oder den Ordner ist (X), setzen der ID des 
+	Nutzers bei Ausfuehrung (s),
+	sticky ( begleitendes Bit )(t).
 	</para>
 
 	<para>
-	When the sticky bit is set on a directory, files in that directory may be unlinked (deleted) or renamed only by root or their owner.
-	Without the sticky  bit, anyone able to write to the directory can delete or rename files. The sticky bit is commonly found on
-	directories, such as <filename moreinfo="none">/tmp</filename>, that are world-writable.
-	</para>
+	Wenn das sticky bit auf einem Verzeichnis gesetzt ist, koennen darin enthaltene Dateien nur von Nutzer root oder dem 
+	Ersteller der Dateien geloescht werden, in jedem anderem Fall sind alle anderen Dateivorgaenge (loeschen,lesen,umbenennen 
+	erlaubt). Das sticky bit wird haeufig f&#xFC;r Verzeichnisse wie das /tmp Verzeichnis benutzt das gewoehnlich f&#xFC;r jeden 
+	beschreibbar ist.
+	 </para>
 
 	<para>
-	When the set user or group ID bit (s) is set on a directory, then all files created within it will be owned by the user and/or
-	group whose `set user or group' bit is set. This can be helpful in setting up directories for which it is desired that
-	all users who are in a group should be able to write to and read from a file, particularly when it is undesirable for that file
-	to be exclusively owned by a user whose primary group is not the group that all such users belong to.
+	Wenn das Gruppen oder Nutzer Identitaets Bit gesetzt ist auf einem Verzeichnis, dann werden Nutzer und Gruppen auf  dort 
+	enthaltenen Dateien berechtigt. Dies ermoeglicht das Erstellen von Verzeichnissen auf die alle Nutzer einer Gruppe 
+	zugreifen sollen, auch wenn die primaer Gruppe der Nutzer nicht gleiche ist und es nicht gewuenscht ist das nur ein Nutzer 
+	exklusiv auf eine Datei berechtigt ist.
 	</para>
 
 	<para>

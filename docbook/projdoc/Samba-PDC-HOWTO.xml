@@ -358,55 +358,56 @@ Die grundlegenden Optionen, die in <link linkend="pdc-example"/> gezeigt werden,
 	<varlistentry><term>passdb backend </term>
 		<listitem><para>
 		Dies enthält sämtliche Information zu Benutzer- und Gruppenkonten. Akzeptable Werte für einen PDC sind: <emphasis>smbpasswd, tdbsam, and ldapsam</emphasis>. Der <quote>guest</quote>-Eintrag stellt Standard-Konten zur Verfügung und ist standard-mässig inkludiert, es besteht keine Notwendigkeit, ihn explizit hinzuzufügen.
-		<para>
 Wo der Einsatz von Backup-Domänen-Controllern (BDCs) beabsichtigt ist, ist die einzige logische Wahl die Verwendung von LDAP, sodaß die passdb verteilt werden kann. Die tdbsam und smbpasswd-Dateien können nicht effektiv verteilt werden und sollten daher nicht verwendet werden.		
-		</para></listitem>
+		</para>
+</listitem>
 	</varlistentry>
 	<varlistentry><term>Domänen-Verwaltungs-Parameter </term>
 		<listitem><para>
 		Die Parameter <emphasis>os level, preferred master, domain master, security,
-		encrypt passwords, und domain logons</emphasis> spielen eine wichtige Rolle in der play a central role in assuring domain
-		control and network logon support.</para>
---- sgw.workmark
+		encrypt passwords, und domain logons</emphasis> spielen eine wichtige Rolle bei der Unterstützung für Domänen-Kontrolle und Netzwerk-Anmeldung.</para>
 
 		<para>
-		The <emphasis>os level</emphasis> must be set at or above a value of 32. A Domain Controller
-		must be the Domain Master Browser, must be set in <emphasis>user</emphasis> mode security,
-		must support Microsoft-compatible encrypted passwords, and must provide the network logon
-		service (domain logons). Encrypted passwords must be enabled. For more details on how
-		to do this, refer to <link linkend="passdb"></link>.
+		Das <emphasis>os level</emphasis> muß auf einen Wert von mindestens 32 gesetzt werden. 
+		Ein Domänen-Controller muß auch der Domänen-Master-Browser sein, muß auf <emphasis>user</emphasis>
+		mode security gesetzt sein, muß MS-kompatibel verschlüsselte Passwörter unterstützen, und muß den Nettwerk-Anmelde-Dienst (Domänen-Anmeldungen) anbieten. Verschlüsselte Passwörter müssen aktiviert sein.
+		Für mehr Details dazu, siehe <link linkend="passdb"></link>.
 		</para></listitem>
 	</varlistentry>
-	<varlistentry><term>Environment Parameters </term>
+	<varlistentry><term>Umgebungs-Parameter</term>
 		<listitem><para>
-		The parameters <emphasis>logon path, logon home, logon drive, and logon script</emphasis> are
-		environment support settings that help to facilitate client logon operations and that help
-		to provide automated control facilities to ease network management overheads. Please refer
-		to the man page information for these parameters.
+		Die Parameter <emphasis>logon path, logon home, logon drive, and logon script</emphasis> sind 
+		Umgebungs-Einstellungen, die dabei helfen, Client-Anmeldungen zu ermöglichen, und die
+		automatisierte Kontrollmechanismen zur Verfügung stellen, um Overheads im Netzwerk-Management
+		zu verringern. Siehe die man-page für Informationen zu diesen Parametern.
 		</para></listitem>
 	</varlistentry>
-	<varlistentry><term>NETLOGON Share </term>
+	<varlistentry><term>NETLOGON-Freigabe</term>
 		<listitem><para>
-		The NETLOGON share plays a central role in domain logon and Domain Membership support.
-		This share is provided on all Microsoft Domain Controllers. It is used to provide logon
-		scripts, to store Group Policy files (NTConfig.POL), as well as to locate other common
-		tools that may be needed for logon processing. This is an essential share on a Domain Controller.
+		Die NETLOGON-Freigabe spielt eine zentrale Rolle in der Unterstützung von Domänen-Anmeldungen
+		und Domänen-Mitgliedschaft. Diese Freigabe wird von allen MS-Domänen-Controllern zur
+		Verfügung gestellt. Sie wird dazu verwendet, um Anmelde-Skripts bereit zu stellen, um
+		Group Policy files (wie NTConfig.POL) zu speichern, aber auch, um andere gängige
+		Werkzeuge zur Verfügung zu stellen, die für den Anmelde-Vorgang gebraucht werden.
+		Dies ist eine essentielle Freigabe auf einem Domänen-Controller.
 		</para></listitem>
 	</varlistentry>
-	<varlistentry><term>PROFILE Share </term>
+	<varlistentry><term>PROFILE-Freigabe</term>
 		<listitem><para>
-		This share is used to store user desktop profiles. Each user must have a directory at the root
-		of this share. This directory must be write-enabled for the user and must be globally read-enabled.
-		Samba-3 has a VFS module called <quote>fake_permissions</quote> that may be installed on this share. This will
-		allow a Samba administrator to make the directory read-only to everyone. Of course this is useful
-		only after the profile has been properly created.
+		Diese Freigabe wird zur Speicherung von Benutzer-Desktop-Profilen verwendet.
+		Jeder Benutzer muß ein Verzeichnis im root-Verzeichnis dieser Freigabe haben.
+		Dieses Verzeichnis muß für den Benutzer Schreibrechte haben und global lesbar sein.
+		Samba-3 hat ein VFS-Modul namens <quote>fake_permissions</quote>, das auf dieser
+		Freigabe installiert werden kann. Das erlaubt es einem Samba-Administrator, das
+		Verzeichnis read-only für jeden zu setzen. Natürlich ist dies nur sinnvoll, nachdem
+		das Profil richtig erstellt wurde.
 		</para></listitem>
 	</varlistentry>
 </variablelist>
 
 <note><para>
-The above parameters make for a full set of parameters that may define the server's mode
-of operation. The following &smb.conf; parameters are the essentials alone:
+Die obigen Parameter bilden einen vollständigen Satz von Parametern, der den Arbeitsmodus des Servers definiert.
+Die folgenden &smb.conf;-Parameter sind die essentiell notwendigen:
 </para>
 
 <para>
@@ -420,33 +421,35 @@ of operation. The following &smb.conf; parameters are the essentials alone:
 </para>
 
 <para>
-The additional parameters shown in the longer listing above just makes for
-a more complete explanation.
+Die zusätzlichen Parameter, die in der längeren Auflistung oben gezeigt werden, bedürfen einer weitergehenden Erklärung.
 </para></note>
 
 </sect1>
 
 <sect1>
-<title>Samba ADS Domain Control</title>
+<title>Samba ADS Domänen-Verwaltung</title>
 
 <para>
-Samba-3 is not, and cannot act as, an Active Directory Server. It cannot truly function as
-an Active Directory Primary Domain Controller. The protocols for some of the functionality
-of Active Directory Domain Controllers has been partially implemented on an experimental
-only basis. Please do not expect Samba-3 to support these protocols. Do not depend
-on any such functionality either now or in the future. The Samba Team may remove these
-experimental features or may change their behavior. This is mentioned for the benefit of those
-who have discovered secret capabilities in Samba-3 and who have asked when this functionality will be
-completed. The answer is maybe or maybe never!
+Samba-3 ist kein, und kann sich nicht verhalten wie ein Active Directory Server.
+Samba-3 kann nicht wirklich wie ein Active Directory Primary Domain Controller funktionieren.
+Die Protokolle für einige Funktionalitäten von AD-DCs wurden teilweise auf experimenteller Basis
+implementiert. Bitte erwarten Sie nicht, daß Samba-3 diese Protokolle unterstützt.
+Verlassen Sie nicht auf irgendeine derartige Funktionalität, weder jetzt noch in der Zukunft.
+Das Samba-Team könnte diese experimentellen Features entfernen oder deren Verhalten verändern.
+Dies wird erwähnt, um jenen zu helfen, die "geheime" Fähigkeiten von Samba-3 entdeckt haben und
+danach gefragt haben, wann diese Funktionalitäten vervollständigt sein werden.
+Die Antwort darauf ist: "Vielleicht. Vielleicht nie!"
 </para>
 
 <para>
-To be sure, Samba-3 is designed to provide most of the functionality that Microsoft Windows NT4-style
-Domain Controllers have. Samba-3 does not have all the capabilities of Windows NT4, but it does have
-a number of features that Windows NT4 domain contollers do not have. In short, Samba-3 is not NT4 and it
-is not Windows Server 200x, it is not an Active Directory server. We hope this is plain and simple
-enough for all to understand.
+Um sicher zu sein, Samba-3 wurde entworfen, um den größten Teil der Funktionalität zur Verfügung zu
+stellen, die MS Windows NT4-artige Domänen-Controller anbieten. Samba-3 hat nicht alle Fähigkeiten von
+Windows NT4, aber es hat einige Eigenschaften, die Windows NT4-DCs nicht haben. 
+Kurz gesagt, Samba-3 ist nicht NT4, Samba-3 ist nicht Windows Server 200x, Samba-3 ist kein AD-Server.
+Wir hoffen, daß dies kurz und einfach genug ist, um für alle verständlich zu sein.
 </para>
+
+sgw---workmark
 
 </sect1>
 
