@@ -94,41 +94,42 @@ beste Lösung für Ihr Netzwerk ist.
 	</para>
 
 		<para><quote>
-		I have a wonderful Linux/Samba server running as pdc for a network. Now I would like to add remote
-		desktop capabilities so users outside could login to the system and get their desktop up from home or
-		another country.
+		Ich habe einen wunderbaren Linux/Samba-Server als PDC laufen. Jetzt würde ich gerne
+		Fernwartungs-Funktionen hinzufügen, sodaß Benutzer sich am System anmelden, und ihren
+		Desktop von zuhause aus, oder aus dem Ausland erreichen können.		
 		</quote></para>
 
 		<para><quote>
-		Is there a way to accomplish this? Do I need a Windows Terminal Server?  Do I need to configure it so
-		it is a member of the domain or a BDC,PDC? Are there any hacks for MS Windows XP to enable remote login
-		even if the computer is in a domain?
+		Gibt es eine Möglichkeit, dies zu erreichen? Brauche ich einen Windows Terminal Server?
+		Muß ich so konfigurieren, daß er Domänen-Mitglied ist, oder ein BDC, PDC? Gibt es
+		irgendwelche hacks für Windows XP, um Fernzugriff zu aktivieren, auch wenn der Rechner
+		in einer Domäne ist?
 		</quote></para>
 
 		<para>
-		Answer provided: Check out the new offer of <quote>NX</quote> software from
+		Gegebene Antwort: Prüfen Sie das neue Angebot von <quote>NX</quote>-Software von
 		<ulink noescape="1" url="http://www.nomachine.com/">NoMachine</ulink>.
 		</para>
 
 	<para>
-	It implements an easy-to-use interface to the Remote X protocol as
-	well as incorporating VNC/RFB and rdesktop/RDP into it, but at a speed
-	performance much better than anything you may have ever seen.
+	Es implementiert ein leicht zu verwendendes Interface zum Remote-X-Protokoll genauso
+	wie es VNC/RFB und rdesktop/RDP einschließt, dies jedoch mit einer Geschwindigkeit, wie
+	sie sie wahrscheinlich noch nicht gesehen haben.
 	</para>
 
 	<para>
-	Remote X is not new at all, but what they did achieve successfully is
-	a new way of compression and caching technologies that makes the thing
-	fast enough to run even over slow modem/ISDN connections.
+	Remote X ist bei weitem nicht neu, aber was hier erreicht wurde, ist eine neue Art von
+	Kompressions- und Caching-Technologie, die diese Software sogar über langsame 
+	Modem/ISDN-Strecken ausreichend schnell laufen läßt.
 	</para>
 
 	<para>
-	I could test drive their (public) Red Hat machine in Italy, over a loaded
-	Internet connection, with enabled thumbnail previews in KDE konqueror
-	which popped up immediately on <quote>mouse-over</quote>. From inside that (remote X)
-	session I started a rdesktop session on another, a Windows XP machine.
-	To test the performance, I played Pinball. I am proud to announce
-	that my score was 631750 points at first try.
+	Ich konnte ihre (öffentliche) RedHat-Maschine in Italien "testfahren", über eine
+	belastete Internet-Verbindung, mit aktivierten Thumbnails im KDE Konqueror, welcher
+	unverzüglich auf <quote>mouse-over</quote> ansprang. Von innerhalb dieser (remote X)
+	Sitzung startete ich eine rdesktop-Sitzung auf eine weitere Windows XP Maschine.
+	Um die Performance zu testen, spielte ich Pinball. Ich bin stolz, sagen zu dürfen,
+	daß ich beim ersten Versuch 631750 Punkte erreichte.
 	</para>
 
 	<para>
