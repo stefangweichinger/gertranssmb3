@@ -77,7 +77,7 @@ PAM unterstützte Module sind vorhanden für:
 
 	<varlistentry><term>Kerberos</term><listitem>
 		<para>
-		Das <filename>pam_krb5.so</filename> Modul erlaubt die Nutzung von jedem Kerberos fähigem Server.
+		Das Modul <filename>pam_krb5.so</filename> erlaubt die Nutzung von jedem Kerberos-fähigem Server.
 		Dieses Tool kann mit MIT Kerberos, Heimdal Kerberos, und möglicherweise mit Microsoft Active Directory
 		(falls eingeschaltet) benutzt werden.
 		</para>
@@ -85,62 +85,65 @@ PAM unterstützte Module sind vorhanden für:
 
 	<varlistentry><term>LDAP</term><listitem>
 		<para>
-		Das <filename>pam_ldap.so</filename> Modul erlaubt die Benutzung von jedem LDAP v2 oder v3 kompatiblem
-		Backend server. Weit verbreitete LDAP Backend Server sind z.B. OpenLDAP v2.0 und v2.1,
+		Das <filename>pam_ldap.so</filename> Modul erlaubt die Benutzung von jedem 
+		LDAP v2 oder v3 kompatiblem
+		Backend-Server. Weit verbreitete LDAP-Backend-Server sind z.B. OpenLDAP v2.0 und v2.1,
 		Sun ONE iDentity Server, Novell eDirectory Server, Microsoft Active Directory. 
 		</para>
 	</listitem></varlistentry>
 
 	<varlistentry><term>NetWare Bindery</term><listitem>
 		<para>
-		Das <filename>pam_ncp_auth.so</filename> Modul erlaubt die Authentifizierung auf jedem Bindery
-		fähigem NetWare Core Protokoll basiertem Server.
+		Das Modul <filename>pam_ncp_auth.so</filename> erlaubt die Authentifizierung 
+		auf jedem Bindery-fähigen NetWare Core Protokoll basierenden Server.
 		</para>
 	</listitem></varlistentry>
 
 	<varlistentry><term>SMB Password</term><listitem>
 		<para>
 		Dieses Modul, namentlich <filename>pam_smbpass.so</filename>, erlaubt die Benutzerauthentifizierung
-		mit dem passdb Backend, dass in der &smb.conf; file angegeben ist.
+		mit dem passdb Backend, das in der Datei &smb.conf; angegeben ist.
 		</para>
 	</listitem></varlistentry>
 
 	<varlistentry><term>SMB Server</term><listitem>
 		<para>
-		Das <filename>pam_smb_auth.so</filename> Modul ist das original MS Windows Netzwerk authentifizierungs
-		Werkzeug. Dieses Modul ist eigentlich überholt seit es das Winbind Modul gibt.
+		Das Modul <filename>pam_smb_auth.so</filename> ist das original MS Windows 
+		Netzwerk Authentifizierungs-Werkzeug.
+		Dieses Modul ist eigentlich überholt, seit es das Winbind-Modul gibt.
 		</para>
 	</listitem></varlistentry>
 
 	<varlistentry><term>Winbind</term><listitem>
 		<para>
-		Das <filename>pam_winbind.so</filename> Modul erlaubt Samba sich mit jedem MS Windows Domain
-		Controller zu authentifizieren. Es kann genauso benutzt werden um Benutzern den Zugang zu irgendeiner
+		Das Modul <filename>pam_winbind.so</filename> erlaubt Samba, sich an
+		jedem MS Windows Domain-Controller zu authentifizieren.
+		Es kann genauso benutzt werden, um Benutzern den Zugang zu irgendeiner
 		PAM-fähigen Applikation zu erlauben.
 		</para>
 	</listitem></varlistentry>
 
 	<varlistentry><term>RADIUS</term><listitem>
 		<para>
-		Es gibt auch ein PAM RADIUS (Remote Access Dial-In User Service) authentifizierungs
-		Modul. In den meisten Fällen muss der Administrator den Quellcode suchen und dieses Modul selbst
-		kompilieren und installieren. RADIUS Protokolle werden von vielen Routern und Terminal Servern
+		Es gibt auch ein PAM RADIUS (Remote Access Dial-In User Service) Authentifizierungs
+		Modul. In den meisten Fällen muss der Administrator den Quellcode suchen und 
+		dieses Modul selbst kompilieren und installieren.
+		RADIUS-Protokolle werden von vielen Routern und Terminal Servern
 		benutzt.
 		</para>
 	</listitem></varlistentry>
 </variablelist>
 
 <para>
-Von diesen Modulen stellt Samba nur das <filename>pam_smbpasswd.so</filename> und das <filename>pam_winbind.so</filename> Modul 
-zur Verfügung.
+Von diesen Modulen stellt Samba nur das <filename>pam_smbpasswd.so</filename> und das <filename>pam_winbind.so</filename> Modul zur Verfügung.
 </para>
 
 <para>
-Einmal konfiguriert erlauben diese Module eine bemerkenswerte Stufe an Flexibilität und 
-die Benutzung von verteilten Samba Domänen Kontrollern die wiederum eine effiziente 
+Einmal konfiguriert erlauben diese Module einen bemerkenswerte Zuwachs an Flexibilität und 
+die Benutzung von verteilten Samba-Domänen-Controllern, die wiederum eine effiziente 
 Ausnutzung der Bandbreite in grossen Netzwerken mit PAM-fähigen Systemen erlauben.
-Richtig eingesetzt, erlaubt dies eine zentrale Administration einer verteilten 
-Authentifizierung von einer Einzelbenutzer Datenbank aus.  
+Richtig eingesetzt erlaubt dies eine zentrale Administration einer verteilten 
+Authentifizierung von einer Einzelbenutzer-Datenbank aus.  
 </para>
 
 </sect1>
@@ -149,34 +152,36 @@ Authentifizierung von einer Einzelbenutzer Datenbank aus.
 <title>Technische Ausarbeitung</title>
 
 <para>
-Pam wurde entworfen um dem Systemverwalter eine grosse Flexibilität in der Konfiguration von
-Programmzugriffen auf das System zu geben. Die lokale Konfiguration der Systemsicherheit
-die von PAM überwacht wird ist in einem dieser zwei Orte: Entweder in der einzelnen System Datei
-<filename>/etc/pam.conf</filename>, oder dem  <filename>/etc/pam.d/</filename> Ordner
+PAM wurde entworfen, um dem Systemverwalter eine grosse Flexibilität in der Konfiguration von
+Programmzugriffen auf das System zu geben. Die lokale Konfiguration der Systemsicherheit,
+die von PAM überwacht wird, liegt an einem dieser zwei Orte: Entweder in der einzelnen System-Datei
+<filename>/etc/pam.conf</filename>, oder dem Verzeichnis <filename>/etc/pam.d/</filename>.
 </para>
 
 <sect2>
-<title>PAM Konfigurations Syntax</title>
+<title>PAM Konfigurations-Syntax</title>
 
 <para>
 In diesem Kapitel sehen wir uns die richtige Syntax und die verschiedenen Optionen der Einträge in diesen
-Dateien an. Bei PAM spezifischen Zeichen ist die Gross- und Kleinschreibung egal. Die Modul Pfade hingegen 
+Dateien an. Bei PAM-spezifischen Zeichen ist die Gross- und Kleinschreibung egal. 
+Die Modul-Pfade hingegen 
 sind empfindlich gegenüber der Gross- und Kleinschreibung, da sie auf Dateinamen
 verweisen und diese die Schreibweise des Dateisystems wiedergeben. 
-Die Empfindlichkeit der Argumente der einzelnen Module gegenüber der Gross- und Kleinschreibung wird für jedes Modul
-eigens festgelegt.
+Die Empfindlichkeit der Argumente der einzelnen Module gegenüber der Gross- und Kleinschreibung 
+wird für jedes Modul eigens festgelegt.
 </para>
 
 <para>
-Zusätzlich zu den unten beschriebenen Zeilen, gibt es noch zwei zusätzliche Zeichen die dem Systemadministrator
-die Arbeit erleichtern: Auszukommentierende Zeilen werden mit einem <quote>#</quote> eingeleitet, welches 
-in der nächsten Zeile die Gültigkeit verliert; Um Zeilen in einer Modulbeschreibung über dem Zeilenumbruch zu verlängern
-kann ein <quote>\</quote> Zeichen verwendet werden.
+Zusätzlich zu den unten beschriebenen Zeilen gibt es noch zwei zusätzliche Zeichen,
+die dem Systemadministrator die Arbeit erleichtern: Auszukommentierende Zeilen werden
+mit einem <quote>#</quote> eingeleitet, welches 
+in der nächsten Zeile die Gültigkeit verliert; um Zeilen in einer Modulbeschreibung über den
+Zeilenumbruch zu verlängern, kann ein <quote>\</quote> Zeichen verwendet werden.
 </para>
 
 <para>
-Befindet sich das PAM authentifizierungs Modul (dynamisch ladbare Programmbibliothek)
-im Standardpfad so ist es nicht nötig den Pfad nochmal anzugeben. Befindet sich das
+Befindet sich das PAM-Authentifizierungs-Modul (dynamisch ladbare Programmbibliothek)
+im Standardpfad, so ist es nicht nötig, den Pfad nochmals anzugeben. Befindet sich das
 Modul ausserhalb dieses Pfades (unter Linux <filename>/lib/security</filename>), muss
 dieser wie folgt angegeben werden:
 </para>
@@ -188,15 +193,16 @@ auth  required  /anderer_pfad/pam_fremdes_modul.so
 </para>
 
 <sect3>
-<title>Eigenschaften der <filename>/etc/pam.d</filename> Einträge</title>
+<title>Eigenschaften der Einträge in <filename>/etc/pam.d</filename></title>
 
 <para>
-Die restlichen Informationen in diesem Unterkapitel sind aus dem Linux-PAM Dokumentations Projekt
-entnommen. Für mehr Informationen zu PAM, besuchen Sie diesen Link:<ulink url="http://ftp.kernel.org/pub/linux/libs/pam/">The Official Linux-PAM home page.</ulink>
+Die restlichen Informationen in diesem Unterkapitel sind dem Linux-PAM-Dokumentations-Projekt
+entnommen. Für mehr Informationen zu PAM, besuchen Sie diesen Link:
+<ulink url="http://ftp.kernel.org/pub/linux/libs/pam/">The Official Linux-PAM home page.</ulink>
 </para>
 
 <para>
-Eine allgemeine Konfigurationszeile der <filename>/etc/pam.conf</filename> Datei hat folgende Form:
+Eine allgemeine Konfigurationszeile der Datei <filename>/etc/pam.conf</filename> hat folgende Form:
 </para>
 
 <para>
@@ -207,23 +213,28 @@ Service-name	Modul-type	control-flag	Modul-path	Args.
 
 <para>
 Hier beschreiben wir die Bedeutung dieser einzelnen Zeichen. Die zweite (und öfters angewendete)
-Methode der Konfiguration von Linux-PAM ist durch Änderung des Inhalts des <filename>/etc/pam.d/</filename>
-Ordners. Nachdem wir die obigen Zeichen erklärt haben, werden wir näher auf diese Methode eingehen.
+Methode der Konfiguration von Linux-PAM ist durch Änderung des Inhalts des Ordners
+<filename>/etc/pam.d/</filename>.
+Nachdem wir die obigen Zeichen erklärt haben, werden wir näher auf diese Methode eingehen.
 </para>
 
 <variablelist>
 	<varlistentry><term>Service-name</term><listitem>
 		<para>
-		Der Name des Dienstes der mit diesem Eintrag verbunden ist. Meistens ist dies der herkömmliche Name
-		der Anwendung. Zum Beispiel <command>ftpd</command>, <command>rlogind</command>, <command>su</command>
+		Der Name des Dienstes, der mit diesem Eintrag verbunden ist. 
+		Meistens ist dies der herkömmliche Name
+		der Anwendung. Zum Beispiel <command>ftpd</command>, <command>rlogind</command>, 
+		<command>su</command>
 		usw.
 		</para>
 
 		<para>
-		Es gibt einen speziellen Dienst Namen der für einen standard authentifizierungs Mechanismus reserviert ist,
-		und zwar mit dem Namen <parameter>OTHER</parameter>, wobei es egal ist ob man ihn gross- oder kleinschreibt.
-		Beachten Sie, dass, falls bereits ein Modul für einen Dienst namentlich angegeben ist, dieser Parameter
-		ignoriert wird.
+		Es gibt einen speziellen Dienste-Namen, der für einen 
+		Standard-Authentifizierungs-Mechanismus reserviert ist,
+		und zwar mit dem Namen <parameter>OTHER</parameter>, wobei es egal ist ob man 
+		ihn gross oder klein schreibt.
+		Beachten Sie, dass, falls bereits ein Modul für einen Dienst namentlich angegeben 
+		ist, dieser Parameter ignoriert wird.
 		</para>
 		</listitem>
 	</varlistentry>
@@ -236,30 +247,41 @@ Ordners. Nachdem wir die obigen Zeichen erklärt haben, werden wir näher auf dies
 		<itemizedlist>
 			<listitem><para>
 			<parameter>auth:</parameter> 
-			Dieser Modul Typ stellt zwei Aspekte der Benutzerauthentifizierung zur Verfügung.
-			Erstens wird festgestellt, dass der Benutzer der ist der er angibt zu sein, indem er von 
-			der Applikation aufgefordert wird ein Password anzugeben oder sich sonst irgendwie zu authentifizieren.
-			Zweitens kann dieses Modul Gruppenzugehörigkeiten erlauben (unabhängig vom Inhalt von <filename>/etc/groups
-			</filename> welche oben behandelt wurde) oder andere Privilegien da es befähigt ist diese zu vergeben.
+			Dieser Modul-Typ stellt zwei Aspekte der Benutzerauthentifizierung zur Verfügung.
+			Erstens wird festgestellt, dass der Benutzer der ist, der er angibt zu sein,
+			indem er von der Applikation aufgefordert wird, ein Password anzugeben
+			oder sich sonst irgendwie zu authentifizieren.
+			Zweitens kann dieses Modul Gruppenzugehörigkeiten erlauben 
+			(unabhängig vom Inhalt von <filename>/etc/groups</filename>,
+			welcher oben behandelt wurde) oder andere Privilegien, da es befähigt ist,
+			diese zu vergeben.
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>account:</parameter> Dieses Modul führt nicht-authentifizierungs-basiertes Benutzermanagement aus.
-			Normalerweise wird es benutzt um den Zugang zu Diensten aufgrund der Tageszeit, momentan verfügbaren Systemressourcen
-			(maximale gleichzeitige Benutzer) oder vielleicht der Lage des <quote>root</quote> Logins auf der Konsole zu
+			<parameter>account:</parameter>
+			Dieses Modul führt nicht-authentifizierungs-basiertes Benutzermanagement aus.
+			Normalerweise wird es benutzt, um den Zugang zu Diensten aufgrund der Tageszeit,
+			momentan verfügbaren Systemressourcen
+			(maximale gleichzeitige Benutzer) oder vielleicht der Lage des
+			<quote>root</quote>-Logins auf der Konsole zu
 			erlauben oder verweigern.
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>session:</parameter> Dieses Modul wird vor allem dazu verwendet um festzulegen, was ausgeführt
-			werden sollte bevor ein Benutzer einen Dienst benutzt oder beendet. Dies könnte zum Beispiel das Aufzeichnen
-			von Information bezüglich dem Datenaustausch mit dem Benutzer oder das mounten von Ordnern usw. sein.
+			<parameter>session:</parameter> 
+			Dieses Modul wird vor allem dazu verwendet, um festzulegen, was ausgeführt
+			werden sollte, bevor ein Benutzer einen Dienst benutzt oder beendet.
+			Dies könnte zum Beispiel das Aufzeichnen
+			von Information bezüglich dem Datenaustausch mit dem Benutzer oder das 
+			Mounten von Ordnern usw. sein.
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>password:</parameter> Dieser letzte Modultyp wird gebraucht um das mit dem Benutzer verbundene
-			Authenitsierungstoken zu aktualisieren. Normalerweise ist immer ein Modul für jeden <quote>challenge/response</quote>
-			-basierten authentifizierungs <parameter>(auth)</parameter> Modul Typen.
+			<parameter>password:</parameter>
+			Dieser letzte Modultyp wird gebraucht, um das mit dem Benutzer verbundene
+			Authentisierungstoken zu aktualisieren. Normalerweise gibt es ein Modul 
+			für jeden <quote>challenge/response</quote>
+			-basierten Authentifizierungs <parameter>(auth)</parameter>-Modul-Typus.
 			</para></listitem>
 		</itemizedlist>
 		</listitem>
