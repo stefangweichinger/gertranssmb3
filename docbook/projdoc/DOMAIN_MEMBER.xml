@@ -14,13 +14,19 @@
 <title>Domänen-Mitgliedschaft</title>
 
 <para>
-Domain Membership is a subject of vital concern. Samba must be able to
-participate as a member server in a Microsoft Domain Security context, and
-Samba must be capable of providing Domain machine member trust accounts,
-otherwise it would not be able to offer a viable option for many users.
+Domänen-Mitgliedschaft ist ein Thema von regem Interesse. Samba muß fähig
+sein, als ein Mitglieds-Server in einem Microsoft-Domänen-Sicherheits-Kontext
+teilzunehmen, und Samba muß dazu fähig sein, Maschinen-Vertrauens-Konten für
+Domänen-Maschinen anzubieten, anderenfalls wäre es keine erwägenswerte
+Option für viele Anwender.
 </para>
 
 <para>
+Dieses Kapitel umfaßt Hintergrund-Informationen zur Domänen-Mitgliedschaft,
+der dazu notwendigen Samba-Konfiguration, und MS-Windows-Client-Prozeduren
+zum Beitreten zu einer Domäne.
+
+
 This chapter covers background information pertaining to Domain Membership,
 the Samba configuration for it, and MS Windows client procedures for joining a
 domain. Why is this necessary? Because both are areas in which there exists
