@@ -21,7 +21,7 @@ Benutzerebene von jeder
 MS Windows NT Domäne, MS Windows 200x Active Director-basierenden Domäne oder einer 
 Samba-basierten Domänen-Umgebung zu erlauben.
 
-Es sollte ihnen auch helfen, PAM-basierte lokale Host-Zugriffs-Kontrollen, die ihrer Samba-Konfiguration entsprechen,
+Es sollte ihnen auch helfen, PAM-basierte lokale Host-Zugriffs-Kontrollen, die Ihrer Samba-Konfiguration entsprechen,
 zu konfigurieren.
 </para>
 
@@ -444,43 +444,55 @@ Nachdem wir die obigen Zeichen erklärt haben, werden wir näher auf diese Methode
 		</para>
 
 		<para>
-		Um die Möglichkeiten im Umgang mit der neuen Syntax zu zeigen hier ein paar Beispiele. Mit Linux-PAM-0.63, wurde der
-		Begriff "Client Plug-in Agents" eingeführt. Dies macht es möglich das PAM eine Rechner zu Rechner Authentifizierung erlaubt
-		die das Transport Protokoll der Client/Server Applikation benützt. Mit der <parameter>[ ... value=action ... ]</parameter>
-		Kontroll Syntax, ist es für eine Applikation möglich so konfiguriert zu werden dass sie binäre Aufforderungen entsprechender
-		Clients unterstützt, jedoch ohne Probleme ältere Applikationen mit einer alternativen Methode authentifizieren kann.
+		Um die Möglichkeiten im Umgang mit der neuen Syntax zu zeigen, hier ein paar Beispiele.
+		Mit Linux-PAM-0.63 wurde der
+		Begriff "Client Plug-in Agents" eingeführt. Dies macht es möglich, dass PAM eine
+		Rechner-zu-Rechner-Authentifizierung erlaubt,
+		die das Transportprotokoll der Client/Server-Applikation benützt.
+		Mit der <parameter>[ ... value=action ... ]</parameter>
+		Kontroll-Syntax ist es für eine Applikation möglich, so konfiguriert zu werden,
+		dass sie binäre Aufforderungen entsprechender
+		Clients unterstützt, jedoch ohne Probleme ältere Applikationen mit einer 
+		alternativen Methode authentifizieren kann.
 		</para>
 		</listitem>
 	</varlistentry>
 
 	<varlistentry><term>module-path</term><listitem>
 		<para>
-		Der Pfadname der dynamisch ladbaren Objekt Datei; das Plug-in Modul selbst. Ist das erste Zeichen des Modulpfades ein
-		<quote>/</quote>, wird davon ausgegangen dass es ein absoluter Pfad ist. Ist dies nicht der Fall, wird der angegebene Pfad
-		an den standart Modul Pfad angehängt: <filename>/lib/security</filename> (siehe oben).
+		Der Pfadname der dynamisch ladbaren Objekt-Datei; das Plug-in-Modul selbst.
+		Ist das erste Zeichen des Modulpfades ein
+		<quote>/</quote>, wird davon ausgegangen, dass es ein absoluter Pfad ist.
+		Ist dies nicht der Fall, wird der angegebene Pfad
+		an den Standard-Modul-Pfad angehängt: <filename>/lib/security</filename> (siehe oben).
 		</para>
 
 		<para>
-		Die Argumente sind eine Liste von Zeichen die an das Modul weitergegeben werden wenn es aufgerufen wird, sehr ähnlich
-		zu den Argumenten eines normalen Linux Shell Befehls. Normalerweise sind gültige Argumente optional und sind spezifisch
-		für das angegeben Modul. Ungültige Argumente werden vom Modul ignoriert, es wird jedoch ein Fehler in die Syslog(3) 
-		geschrieben. Für eine Liste der verschiedenen Optionen sehen Sie die nächste Sektion an.
+		Die Argumente sind eine Liste von Zeichen, die an das Modul weitergegeben werden,
+		wenn es aufgerufen wird, sehr ähnlich zu den Argumenten eines normalen 
+		Linux-Shell-Befehls.
+		Normalerweise sind gültige Argumente optional und spezifisch
+		für das angegebene Modul. Ungültige Argumente werden vom Modul ignoriert, 
+		es wird jedoch ein Fehler in die Syslog(3) 
+		geschrieben. Eine Liste der verschiedenen Optionen sehen Sie im nächsten Abschnitt. 
 		</para>
 
 		<para>
-		Wenn sie Leerzeichen in ein Argument einfügen möchten sollten Sie es mit echigen Klammern umschliessen. Z.B.:
+		Wenn sie Leerzeichen in ein Argument einfügen möchten,
+		sollten Sie es mit eckigen Klammern umschliessen. Z.B.:
 		</para>
 
 <para><programlisting>
 squid auth required pam_mysql.so user=passwd_query passwd=mada \
 db=eminence [query=select user_name from internet_service where \
-user_name=<quote>%u</quote> and password=PASSWORD(<quote>%p</quote>) and service=<quote>web_proxy</quote>]
+user_name=<quote>%u</quote> und password=PASSWORD(<quote>%p</quote>) und service=<quote>web_proxy</quote>]
 </programlisting></para>
 
 		<para>
-		Wird dies so angewendet, kann man <quote>[</quote> Zeichen in der Zeichenkette verwenden, möchte man ein  <quote>]</quote>
-		Zeichen in der Zeichenkette haben welches die Argumentübergabe überlebt, sollten Sie <quote>\[</quote> verwenden. Mit anderen
-		Worten:
+		Wird dies so angewendet, kann man das Zeichen <quote>[</quote> in der Zeichenkette 
+		verwenden, möchte man das Zeichen <quote>]</quote>
+		in der Zeichenkette haben, welches die Argumentübergabe überlebt, sollten Sie 
+		<quote>\[</quote> verwenden. Mit anderen Worten:
 		</para>
 
 <para><programlisting>
@@ -488,8 +500,10 @@ user_name=<quote>%u</quote> and password=PASSWORD(<quote>%p</quote>) and service
 </programlisting></para>
 
 		<para>
-		Jede Zeile in einer der Konfigurations Dateien die nicht richtig formatiert ist, wird sehr wahrscheinlich dazu führen
-		dass der Authentifizierungsprozess fehlschlägt. Ein dementsprechender Fehler wird in den System Log Dateien geschrieben,
+		Jede Zeile in einer der Konfigurationsdateien, die nicht richtig formatiert ist,
+		wird sehr wahrscheinlich dazu führen,
+		dass der Authentifizierungsprozess fehlschlägt. Ein dementsprechender Fehler wird 
+		in die System-Logs geschrieben,
 		mit einem Aufruf in der Syslog(3).
 		</para>
 		</listitem>
@@ -501,13 +515,13 @@ user_name=<quote>%u</quote> and password=PASSWORD(<quote>%p</quote>) and service
 </sect2>
 
 <sect2>
-<title>Beispiel System Konfigurationen</title>
+<title>Beispiel einer System-Konfiguration</title>
 
 <para>
-Folgend eine Beispiel <filename>/etc/pam.d/login</filename> Konfigurationsdatei.
-Dieses Beispiel hat alle Optionen eingeschaltet und ist möglicherweise nicht brauchbar
-weil zu viele Bedingungen gestapelt werden bevor es einen erfolgreichen Abschluss erlaubt. Im
-Wesentlichen kann man alle Bedingungen auskommentieren ausser den Aufruf <filename>pam_pwdb.so</filename>.
+Folgend ein Beispiel der Konfigurationsdatei <filename>/etc/pam.d/login</filename>.
+Dieses Beispiel hat alle Optionen eingeschaltet und ist möglicherweise nicht brauchbar,
+weil zu viele Bedingungen gestapelt werden, bevor ein erfolgreicher Abschluss erlaubt wird. Im
+Wesentlichen kann man alle Bedingungen auskommentieren, ausser den Aufruf <filename>pam_pwdb.so</filename>.
 </para>
 
 <sect3>
@@ -539,7 +553,8 @@ password     required    pam_pwdb.so shadow md5
 <title>PAM: Login mit<filename>pam_smbpass</filename>Verwendug</title>
 
 <para>
-PAM erlaubt die Benützung von austauschbaren Modulen. Auf einem Beispiel System sollten folgende verfügbar sein:
+PAM erlaubt die Benützung von austauschbaren Modulen. 
+Auf einem Beispiel-System sollten folgende Module verfügbar sein:
 </para>
 
 <para><prompt>$</prompt><userinput>/bin/ls /lib/security</userinput>
@@ -559,19 +574,20 @@ pam_userdb.so    pam_warn.so         pam_unix_session.so
 </programlisting></para>
 
 <para>
-Das folgende Beispiel für das login Programm ersetzt die Benützung
-des <filename>pam_pwdb.so</filename> Moduls welches die System Password
+Das folgende Beispiel für das login-Programm ersetzt die Benützung
+des Moduls <filename>pam_pwdb.so</filename>, welches die System-Passwort-
 Datenbank benützt, (<filename>/etc/passwd</filename>,<filename>/etc/shadow</filename>, 
 <filename>/etc/group</filename>) mit dem Modul <filename>pam_smbpass.so</filename>,
-das die Samba Datenbank benutzt welche die Microsoft MD4 verschlüsselten Passwort 
-Hashes enthält. Diese Datenbank wird entweder in <filename>/usr/local/samba/private/smbpasswd</filename>, 
+das die Samba-Datenbank benutzt, welche die mit Microsoft-MD4 verschlüsselten Passwort- 
+Hashes enthält. Diese Datenbank wird entweder in
+<filename>/usr/local/samba/private/smbpasswd</filename>, 
 <filename>/etc/samba/smbpasswd</filename>, oder in <filename>/etc/samba.d/smbpasswd</filename>
-aufbewahrt, abhängig von der Samba Implementation ihres UNIX/Linux Systems. Das
-<filename>pam_smbpass.so</filename> Modul wird ab Samba Version 2.2.1 oder später mitgeliefert.
-Es kann mitkompiliert werden indem man die <option>--with-pam_smbpass</option> einschaltet wenn
-man Samba's <command>configure</command> Skript aufruft. Für mehr Informationen zum
-<filename>pam_smbpass</filename> Modul kann mann in der Dokumentation im 
-<filename>source/pam_smbpass</filename> Ordner der Samba Quelldistribution nachschauen.
+aufbewahrt, abhängig von der Samba-Implementation Ihres UNIX/Linux-Systems. Das
+Modul <filename>pam_smbpass.so</filename> wird ab Samba Version 2.2.1 mitgeliefert.
+Es kann mitkompiliert werden, indem man die Option <option>--with-pam_smbpass</option> einschaltet, wenn
+man Samba's <command>configure</command>-Skript aufruft. Für mehr Informationen zum
+Modul <filename>pam_smbpass</filename> kann mann in der Dokumentation im 
+Ordner <filename>source/pam_smbpass</filename> der Samba Quelldistribution nachschauen.
 </para>
 
 <para>
@@ -587,8 +603,8 @@ password    required    pam_smbpass.so nodelay
 </programlisting></smbfile></para>
 
 <para>
-Folgende ist eine PAM Konfiguration für ein bestimmtes Linux System. Unter Normalbedingungen
-wird <filename>pam_pwdb.so</filename> verwedet
+Folgendes ist eine PAM Konfiguration für ein bestimmtes Linux-System. Unter Normalbedingungen
+wird <filename>pam_pwdb.so</filename> verwendet.
 </para>
 
 <para>
@@ -604,10 +620,10 @@ password   required     pam_pwdb.so shadow md5
 </programlisting></smbfile></para>
 
 <para>
-Im folgende Beispiel wurde die Entscheidung getroffen die <command>smbpasswd</command>
-Datenbank zu verwenden, auch für standart Samba Authentifizierungen. So eine 
-Eintscheidung könnte auch für das <command>passwd</command> Programm getroffen werden 
-und würde so erlauben dass <command>smbpasswd</command> Passwörter mit dem <command>passwd</command>
+Im folgenden Beispiel wurde die Entscheidung getroffen, die <command>smbpasswd</command>-
+Datenbank zu verwenden, auch für Standard-Samba-Authentifizierungen. So eine 
+Eintscheidung könnte auch für das Programm <command>passwd</command> getroffen werden 
+und würde so erlauben, dass <command>smbpasswd</command>-Passwörter mit dem <command>passwd</command>
 Programm geändert werden können.
 </para>
 
@@ -623,16 +639,16 @@ password   required     pam_smbpass.so nodelay smbconf=/etc/samba.d/smb.conf
 </programlisting>
 </smbfile></para>
 
-<note><para>PAM erlaubt das Stapeln von Authentifizierungs Mechanismen. Es
-ist auch möglich Informationen die man in einem PAM Modul erhalten hat an
-das nächste Modul im PAM Stapel weiterzugeben. Für Details zu den Fähigkeiten von
-PAM in ihrem Umfeld, greifen Sie bitte auf die Dokumentation für ihre spezifische 
-System Implementation zurück. Manche Linux Implementationen enthalten ein <filename>pam_stack.so</filename>
-Modul welches erlaubt dass jede Authentifizierung in einer einzigen zentralen Datei konfiguriert wird.
-Die <filename>pam_stack.so</filename> Methode hat einige Anhänger in der Basis
+<note><para>PAM erlaubt das Stapeln von Authentifizierungs-Mechanismen. Es
+ist auch möglich, Informationen, die man in einem PAM-Modul erhalten hat, an
+das nächste Modul im PAM-Stapel weiterzugeben. Für Details zu den Fähigkeiten von
+PAM in Ihrem Umfeld, greifen Sie bitte auf die Dokumentation für Ihr spezifisches
+System zurück. Manche Linux-Implementationen enthalten ein Modul <filename>pam_stack.so</filename>,
+welches erlaubt, dass jede Authentifizierung in einer einzigen zentralen Datei konfiguriert wird.
+Die <filename>pam_stack.so</filename>-Methode hat einige Anhänger in der Basis
 so dass eine einfachere Administration möglich ist.
-Wie so oft im Leben sind Entscheidungen mit Kompromissen verbunden, deshalb sollten Sie für mehr Informationen
-die PAM Dokumentation konsultieren.
+Wie so oft im Leben sind Entscheidungen mit Kompromissen verbunden, deshalb sollten Sie für
+mehr Informationen die PAM-Dokumentation konsultieren.
 </para></note>
 
 </sect3>
@@ -640,65 +656,64 @@ die PAM Dokumentation konsultieren.
 </sect2>
 
 <sect2>
-<title>&smb.conf; PAM Konfiguration</title>
+<title>Die Konfiguration von PAM in &smb.conf;</title>
 
 <para>
-Es gibt eine Option in &smb.conf; die <smbconfoption><name>obey pam restrictions</name></smbconfoption> heisst.
-Das folgende ist von der Online Hilfe von SWAT für diese Option;
+Es gibt eine Option in &smb.conf;, die 
+<smbconfoption><name>obey pam restrictions</name></smbconfoption> heisst.
+Folgendes findet man zu dieser Option in der Online-Hilfe von SWAT:
 </para>
 
 <para>
-Wenn Samba mit PAM Unterstützung konfiguriert wurde (<option>--with-pam</option>), gibt dieser Parameter an ob Samba
-den PAM Konto- und Sitzungs Richtlinien gehorchen soll oder nicht. Das Standard Verhalten sieht vor dass PAM nur für 
-Klartext Authentifizierung verwendet wird und Konto- und Sitzungs Management ignoriert werden. Samba ignoriert PAM
-vollkommen falls die Option <smbconfoption><name>encrypt passwords</name>den Wert<value>yes</value></smbconfoption>hat.
-Dies aus dem Grund da PAM Module nicht den challenge/response Authentifizierungs Mechanismus unterstützen der von Samba bei
-Passwort Verschlüsselung verwendet wird.
+Wenn Samba mit PAM-Unterstützung konfiguriert wurde (<option>--with-pam</option>), gibt 
+dieser Parameter an, ob Samba den PAM Konto- und Sitzungs Richtlinien gehorchen soll oder nicht.
+Das Standard-Verhalten sieht vor, dass PAM nur für 
+Klartext-Authentifizierung verwendet wird und Konto- und Sitzungs-Management ignoriert werden.
+Samba ignoriert PAM vollkommen, falls die Option <smbconfoption><name>encrypt passwords</name>
+den Wert<value>yes</value></smbconfoption>hat.
+Dies aus dem Grund, da PAM-Module nicht den challenge/response-Authentifizierungs-Mechanismus
+unterstützen, der von Samba bei Passwort-Verschlüsselung verwendet wird.
 </para>
 
-<para>Default: <smbconfoption><name>obey pam restrictions</name><value>no</value></smbconfoption></para>
+<para>Standard: <smbconfoption><name>obey pam restrictions</name><value>no</value></smbconfoption></para>
 
 </sect2>
 
 <sect2>
-<title>Entfernte CIFS Authentifizierung mit<filename>winbindd.so</filename></title>
+<title>Entfernte CIFS-Authentifizierung mit<filename>winbindd.so</filename></title>
 
 <para>
-#All operating systems depend on the provision of users credentials acceptable to the platform.
-#??Alle Betriebssysteme hängen von einer Bestimmung des Benutzers zu der jeweiligen Plattform ab.??
+Alle Betriebssysteme hängen von einer Bereitstellung von Benutzerdaten ab, die von der jeweiligen
+Plattform akzeptiert werden kann.
 UNIX benutzt dazu die Übergabe eines "User Identifier" (UID) sowie eines "Group Identifier" (GID).
-Dies sind beides Nummern vom Typ Integer die von einem Password Backend wie <filename>/etc/passwd</filename>
-erhalten werden.
+Dies sind beides Nummern vom Typ Integer, die von einem Password Backend
+wie <filename>/etc/passwd</filename> bezogen werden.
 </para>
 
 <para>
-Benutzer und Gruppen unter Windows NT Server werden relative IDs (RID) zugeteilt welche einzigartig
-für die Domäne sind wenn der Benutzer oder die Gruppe erstellt wird. Um die Windows NT Benutzer und
+Benutzer und Gruppen unter Windows NT Server werden relative IDs (RID) zugeteilt, welche einzigartig
+für die Domäne sind, wenn der Benutzer oder die Gruppe erstellt wird. Um die Windows NT Benutzer und
 Gruppen in UNIX Benutzer und Gruppen umzuwandeln, braucht es einen Abgleich zwischen den RIDs und UNIX
 Benutzer und Gruppen IDs. Dies ist eine der Aufgaben die Winbind ausführt.
 </para>
 
 <para>
-Sowie Winbind Benutzer und Gruppen von einem Server aufgelöst werden, werden Benutzer
-und Gruppen IDs aus einer bestimmten Gruppe von Zahlen ermittelt. Diese werden auf einer
-"wer zuerst kommt, kriegt zuerst" Basis verteilt, auch wenn alle bestehenden Benutzer und
-Gruppen gemappt werden sobald ein Client einen Befehl zur Auflistung der Benutzer und 
-Gruppen gibt. Die zugeteilten UNIX IDs werden in einer Datenbank Datei im Samba Lock Verzeichniss
-gespeichert um sie nachher wiederverwenden zu können.
-
-#This is done on a first come, first served basis, although all
-#existing users and groups will be mapped as soon as a client performs a user or  group 
-#enumeration command. The allocated UNIX IDs are stored in a database file under the Samba
-#lock directory and will be remembered.
+Sowie Winbind-Benutzer und -Gruppen von einem Server aufgelöst werden, werden Benutzer-
+und Gruppen-IDs aus einer bestimmten Gruppe von Zahlen ermittelt. Diese werden auf einer
+Basis ala "Wer zuerst kommt, kriegt zuerst" verteilt, obwohl alle bestehenden Benutzer und
+Gruppen gemappt werden, sobald ein Client einen Befehl zur Auflistung der Benutzer und 
+Gruppen gibt. Die zugeteilten UNIX-IDs werden in einer Datenbank-Datei im Samba-Lock-Verzeichnis
+gespeichert, um sie nachher wiederverwenden zu können.
 </para>
 
 <para>
-Aufmerksame Administratoren werden bemerkt haben dass die Kombination von <filename>pam_smbpass.so</filename>, 
+Aufmerksame Administratoren werden bemerkt haben, dass die Kombination von <filename>pam_smbpass.so</filename>, 
 <command>winbindd</command> und einem verteilten <smbconfoption><name>passdb backend</name><value></value></smbconfoption>
-wie  <parameter>ldap</parameter>die Einrichtung einer zentral verwalteten, verteilten Benutzer/Passwort Datenbak 
-erlaubt welche von allen PAM-fähigen (d.h. Linux) Programmen und Anwendungen verwendet werden kann. 
-Dieses System kann grosse Vorteile im Vergleich zu Microsofts Active Directory Service (ADS) haben da es
-den Authentifizierungs Verkehr in grossen Netzwerken reduziert.
+wie  <parameter>ldap</parameter>die Einrichtung einer zentral verwalteten, verteilten 
+Benutzer/Passwort-Datenbank erlaubt, welche von allen PAM-fähigen (d.h. Linux) Programmen und 
+Anwendungen verwendet werden kann.
+Dieses System kann grosse Vorteile im Vergleich zu Microsofts Active Directory Service (ADS) haben,
+da es den Authentifizierungs-Verkehr in grossen Netzwerken reduziert.
 </para>
 
 <warning><para>
