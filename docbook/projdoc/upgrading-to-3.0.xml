@@ -11,33 +11,40 @@
 <title>Upgrade von Samba-2.x auf Samba-3.0.0</title>
 
 <para>
-This chapter deals exclusively with the differences between Samba-3.0.0 and Samba-2.2.8a.
-It points out where configuration parameters have changed, and provides a simple guide for 
-the move from 2.2.x to 3.0.0.
+Dieses Kapitel befaßt sich ausschließlich mit den Unterschieden zwischen Samba-3.0.0 und Samba-2.2.8a.
+Es zeigt, wo in der Konfiguration Parameter geändert wurden, und stellt eine einfache Anleitung für
+den Umstieg von 2.2.x auf 3.0.0 dar.
 </para>
 
 <sect1>
-<title>Quick Migration Guide</title>
+<title>Kurzanleitung zur Migration</title>
 
 <para>
-Samba-3.0.0 default behavior should be approximately the same as Samba-2.2.x.
-The default behavior when the new parameter <smbconfoption><name>passdb backend</name></smbconfoption>
-is not defined in the &smb.conf; file provides the same default behviour as Samba-2.2.x
-with <smbconfoption><name>encrypt passwords</name><value>Yes</value></smbconfoption>, and
-will use the <filename>smbpasswd</filename> database.
+Das Standard-Verhalten von Samba-3.0.0 sollte ungefähr dasselbe sein wie das von Samba-2.2.x.
+Das Standard-Verhalten, wenn der neue Parameter <smbconfoption><name>passdb backend</name></smbconfoption>
+nicht in der Datei &smb.conf; gesetzt ist, entspricht dem selben Standard-Verhalten von Samba-2.2.x mit
+<smbconfoption><name>encrypt passwords</name><value>Yes</value></smbconfoption>, und benutzt die Datenbank
+ <filename>smbpasswd</filename>.
 </para>
 
 <para>
-So why say that <emphasis>behavior should be approximately the same as Samba-2.2.x?</emphasis> Because
-Samba-3.0.0 can negotiate new protocols, such as support for native Unicode, that may result in
-differing protocol code paths being taken. The new behavior under such circumstances is not
-exactly the same as the old one. The good news is that the domain and machine SIDs will be
-preserved across the upgrade.
+Also warum dann sagen, <emphasis>das Verhalten sollte ungefähr gleich wie bei Samba-2.2.x sein?</emphasis>
+Weil Samba-3 neue Protokolle beherrscht, wie Unterstützung für Unicode, was darin resultieren kann, daß
+anderer Protokoll-Code verwendet werden könnte. Das neue Verhalten unter solchen Umständen ist nicht
+exakt dasselbe wie das vorherige. Die gute Nachricht dabei ist, daß die Domänen- und Maschinen-SIDs
+beim Upgrade beibehalten werden.
 </para>
 
 <para>
-If the Samba-2.2.x system was using an LDAP backend, and there is no time to update the LDAP
-database, then make sure that <smbconfoption><name>passdb backend</name><value>ldapsam_compat</value></smbconfoption>
+Wenn das Samba-2.2.x-System ein LDAP-Backend verwendet hat, und keine Zeit vorhanden ist, um die
+LDAP-Datenbank upzudaten, stellen Sie sicher, daß
+<smbconfoption><name>passdb backend</name><value>ldapsam_compat</value></smbconfoption>
+in der Datei &smb.conf; gesetzt ist. 
+
+
+---sgw
+
+
 is specified in the &smb.conf; file. For the rest, behavior should remain more or less the same.
 At a later date, when there is time to implement a new Samba-3 compatible LDAP backend, it is possible
 to migrate the old LDAP database to the new one through use of the <command>pdbedit</command>.
