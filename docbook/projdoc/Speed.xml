@@ -10,7 +10,6 @@
 	</author>
 	&author.jelmer;
 	&author.jht;
-	&author.sgw;
 </chapterinfo>
 
 <title>Samba Performance Tuning</title>
@@ -223,7 +222,7 @@ Das Stoppen dieses Ueberwachungs-Programms ergab Netzwerkzugriffe in normaler (s
 </para>
 
 <para>
-Wir haben dies festgestellt, indem wir eine frische Windows-Installation verwendeten und die Anwendung bei jedem Installations-Schritt anderer Software ausprobierte (wir mussten dies oft tun ...).´
+Wir haben dies festgestellt, indem wir eine frische Windows-Installation verwendeten und die Anwendung bei jedem Installations-Schritt anderer Software ausprobierte (wir mussten dies oft tun ...).
 </para>
 
 <para>
