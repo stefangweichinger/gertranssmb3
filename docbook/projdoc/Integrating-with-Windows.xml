@@ -11,24 +11,20 @@
  
 <para>
 <indexterm><primary>NetBIOS</primary></indexterm>
-
-...
-
-Dieses Kapitel handelt über die NETBIOS über TCP/IP Namen zu IP Adressen
-Auflösung.
-Wenn Ihre MS Windows Client's kein NetBIOS über TCP/IP verwenden ist
-dieses Kaptitel für Sie nicht relevant. Sollte Ihre Installation aber
+Dieses Kapitel handelt von der Auflösung von NETBIOS-TCP/IP-Namen zu IP-Adressen.
+Wenn Ihre MS-Windows-Clients kein NetBIOS über TCP/IP verwenden, ist
+dieses Kapitel für Sie nicht relevant. Sollte Ihre Installation aber
 mit NetBIOS über TCP/IP arbeiten, kann Ihnen dieses Kapitel bei Netzwerkproblemen
 weiterhelfen.
 </para>
 
 <note>
 <para>
-NetBIOS über TCP/IP hat nichts zu tun mit NetBEUI. NetBEUI ist NetBIOS
+NetBIOS über TCP/IP hat nichts mit NetBEUI zu tun. NetBEUI ist NetBIOS
 über Logical Link Control (LLC). 
-Bei aktuellen Netzwerkwerken ist es dringend angeraten auf keinen Fall NetBEUI zu
-verwenden. Es ist auch anzumerken dass es nicht's in der Art von
-NetBEUI über TCP/IP &smbmdash; gibt. Wenn von so etwas gesprochen wird
+Bei aktuellen Netzwerken ist es dringend angeraten, auf keinen Fall NetBEUI zu
+verwenden. Es ist auch anzumerken, dass es nichts in der Art von
+NetBEUI über TCP/IP &smbmdash; gibt. Wenn von soetwas gesprochen wird,
 handelt es sich um ein komplettes Missverständniss.
 </para>
 </note>
@@ -37,11 +33,11 @@ handelt es sich um ein komplettes Missverständniss.
 <title>Fähigkeiten und Möglichkeiten</title>
 
 <para>
-Viele MS Windows Netzwerkadministratoren hatten bisher keine Ahnung von
-grundlegenden TCP/IP Netzwerken wie es in UNIX/Linux Betriebssystemen
-verwendet wird. Andererseits haben viele Unix und Linux Administratoren
-keine Ahnung von den Komplikationen eines Windows TCP/IP basierenden
-Netzwerkes (und haben keine Lust auf beides).
+Viele MS-Windows-Netzwerkadministratoren hatten bisher keine Ahnung von
+grundlegenden TCP/IP-Netzwerken wie es in UNIX/Linux-Betriebssystemen
+verwendet wird. Andererseits haben viele Unix- und Linux-Administratoren
+keine Ahnung von den Komplikationen eines auf TCP/IP basierenden
+Windows-Netzwerks (und haben keinerlei Lust auf beides ...).
 </para>
 
 <para>
