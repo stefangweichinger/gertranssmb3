@@ -726,180 +726,181 @@ Sie müssen zumindest die folgenden drei Optionen in &smb.conf; verwenden:
 </para>
 
 <para><smbconfblock>
-<smbconfoption><name>realm</name><value>your.kerberos.REALM</value></smbconfoption>
+<smbconfoption><name>realm</name><value>ihre.kerberos.realm</value></smbconfoption>
 <smbconfoption><name>security</name><value>ADS</value></smbconfoption>
-<smbconfcomment>The following parameter need only be specified if present.</smbconfcomment>
-<smbconfcomment>The default setting is not present is Yes.</smbconfcomment>
+<smbconfcomment>Der folgende Parameter muß nur gesetzt werden, wenn er vorhanden ist.</smbconfcomment>
+<smbconfcomment>Der Standard-Wert, wenn er nicht vorhanden ist, ist yes.</smbconfcomment>
 <smbconfoption><name>encrypt passwords</name><value>yes</value></smbconfoption>
 </smbconfblock></para>
 
 <para>
-In case samba cannot correctly identify the appropriate ADS server using the realm name, use the 
-<smbconfoption><name>password server</name></smbconfoption> option in &smb.conf;:
+Im Falle, daß Samba den entsprechenden ADS-Server nicht korrekt über den Realm-Namen identifizieren
+kann, verwenden Sie die Option
+<smbconfoption><name>password server</name></smbconfoption> in &smb.conf;:
 <smbconfblock>
-<smbconfoption><name>password server</name><value>your.kerberos.server</value></smbconfoption>
+<smbconfoption><name>password server</name><value>ihr.kerberos.server</value></smbconfoption>
 </smbconfblock>
 </para>
 
 <note><para>
-You do <emphasis>not</emphasis> need a smbpasswd file, and older clients will be authenticated as 
-if <smbconfoption><name>security</name><value>domain</value></smbconfoption>, although it will not do any harm and 
-allows you to have local users not in the domain.
+Sie brauchen <emphasis>keine</emphasis> smbpasswd-Datei, und ältere Clients werden authentifiziert,
+als ob <smbconfoption><name>security</name><value>domain</value></smbconfoption> gesetzt wäre,
+obwohl es nicht schadet, und es Ihnen erlaubt, lokale Benutzer zu haben, die nicht in der Domäne sind.
 </para></note>
 
 </sect2>
   
 <sect2>
-<title>Configure <filename>/etc/krb5.conf</filename></title>
+<title>Das Konfigurieren von <filename>/etc/krb5.conf</filename></title>
 
 <para>
 <indexterm><primary>/etc/krb5.conf</primary></indexterm>
 <indexterm><primary>Kerberos</primary><secondary>/etc/krb5.conf</secondary></indexterm>
-With both MIT and Heimdal Kerberos, it is unnecessary to configure the 
-<filename>/etc/krb5.conf</filename>, and it may be detrimental.
+Sowohl mit MIT und Heimdal Kerberos ist es unnötig, <filename>/etc/krb5.conf</filename> zu
+konfigurieren, es kann sogar schädlich sein.
 </para>
 
 <para>
-Microsoft Active Directory servers automatically create SRV records in the DNS zone 
-<parameter>_kerberos.REALM.NAME</parameter> for each KDC in the realm. This is part
-of the installation and configuration process used to create an Active Directory Domain.
+Microsoft Active Directory Server legen automatisch SRV-Einträge in der DNS-Zone
+<parameter>_kerberos.REALM.NAME</parameter> an, für jeden KDC in der Realm. Dies ist Teil des
+Installations- und Konfigurationsprozesses zum Anlegen einer Active Directory Domäne.
 </para>
 
 <para>
-MIT's, as well as Heimdal's, recent KRB5 libraries default to checking for SRV records, so they will 
-automatically find the KDCs. In addition, <filename>krb5.conf</filename> only allows specifying 
-a single KDC, even there if there may be more than one. Using the DNS lookup allows the KRB5 
-libraries to use whichever KDCs are available.
+Sowohl MIT's, wie auch Heimdal's aktuelle KRB5-Libraries prüfen per Standard auf SRV-Einträge,
+werden also automatisch die KDCs finden. Zusätzlich gilt, daß <filename>krb5.conf</filename> nur
+die Angabe eines einzelnen KDC erlaubt, sogar wenn es mehr als einen gibt. Die Verwendung von
+DNS-Lookups erlaubt es den KRB5-Libraries, jeden verfügbaren KDC zu verwenden.
 </para>
 
 <para>
-When manually configuring <filename>krb5.conf</filename>, the minimal configuration is:
+Beim manuellen Konfigurieren von <filename>krb5.conf</filename> ist die minimale Konfiguration:
 </para>
 
 <para><programlisting>
 [libdefaults]
-	default_realm = YOUR.KERBEROS.REALM
+	default_realm = IHRE.KERBEROS.REALM
 
 [realms]
-	YOUR.KERBEROS.REALM = {
-	kdc = your.kerberos.server
+	IHRE.KERBEROS.REALM = {
+	kdc = ihr.kerberos.server
 	}
 
 [domain_realms]
-	.kerberos.server = YOUR.KERBEROS.REALM
+	.kerberos.server = IHRE.KERBEROS.REALM
 </programlisting></para>
 
 <para>
-When using Heimdal versions before 0.6 use the following configuration settings:
+Bei der Verwendung von Heimdal-Versionen vor 0.6 sind folgende Einstellungen zu treffen:
 <screen>
 [libdefaults]
-	default_realm      = YOUR.KERBEROS.REALM
+	default_realm      = IHRE.KERBEROS.REALM
 	default_etypes     = des-cbc-crc des-cbc-md5
 	default_etypes_des = des-cbc-crc des-cbc-md5
 
 [realms]
-        YOUR.KERBEROS.REALM = {
-        kdc = your.kerberos.server
+        IHRE.KERBEROS.REALM = {
+        kdc = ihr.kerberos.server
 	}
 
 [domain_realms]
-        .kerberos.server = YOUR.KERBEROS.REALM
+        .kerberos.server = IHRE.KERBEROS.REALM
 </screen>
 </para>
 
 <para>
 <indexterm><primary>kinit</primary></indexterm>
-Test your config by doing a <userinput>kinit
-<replaceable>USERNAME</replaceable>@<replaceable>REALM</replaceable></userinput> and
-making sure that your password is accepted by the Win2000 KDC.
+Prüfen Sie Ihre Konfiguration mittels <userinput>kinit <replaceable>BENUTZERNAME</replaceable>@<replaceable>REALM</replaceable></userinput>
+und stellen Sie sicher, daß Ihr Passwort vom Win2000 KDC akzeptiert wird.
 </para>
 
 <para>
-With Heimdal versions earlier than 0.6.x you only can use newly created accounts
-in ADS or accounts that have had the password changed once after migration, or
-in case of <constant>Administrator</constant> after installation. At the
-moment, a Windows 2003 KDC can only be used with a Heimdal releases later than 0.6
-(and no default etypes in krb5.conf). Unfortunately this whole area is still
-in a state of flux.
+Mit Heimdal-Versionen vor 0.6 können Sie nur neu in ADS angelegte Konten verwenden, oder Konten,
+deren Passwörter nach der Migration geändert wurden, bzw. im Falle des Kontos
+<constant>Administrator</constant> nach der Installation. Im Moment, kann ein Windows 2003 KDC
+nur mit Heimdal-Versionen nach 0.6 verwendet werden (und ohne default_etypes in krb5.conf).
+Unglücklicherweise ist dieser gesamte Bereich noch immer in Veränderung begriffen.
 </para>
 
 <note><para>
-The realm must be in uppercase or you will get <quote><errorname>Cannot find KDC for
-requested realm while getting initial credentials</errorname></quote> error (Kerberos
-is case-sensitive!).
+Die Realm muß in GROSSBUCHSTABEN angegeben werden, sonst erhalten Sie den Fehler
+<quote><errorname>Cannot find KDC for requested realm while getting initial credentials</errorname></quote>
+(Kerberos ist case-sensitive!).
 </para></note>
 
 <note><para>
-Time between the two servers must be synchronized. You will get a
-<quote><errorname>kinit(v5): Clock skew too great while getting initial credentials</errorname></quote>
-if the time difference is more than five minutes. 
+Zwischen zwei Servern muß die Zeit synchronisiert werden. Sie erhalten
+<quote><errorname>kinit(v5): Clock skew too great while getting initial credentials</errorname></quote>,
+wenn die Zeitabweichung grösser als fünf Minuten beträgt.
 </para></note>
 
 <para>
-Clock skew limits are configurable in the Kerberos protocols. The default setting is
-five minutes.
+Die Limits für die Zeitabweichung sind in den Kerberos-Protokollen konfigurierbar. Die Voreinstellung
+beträgt fünf Minuten.
 </para>
 
 <para>
-You also must ensure that you can do a reverse DNS lookup on the IP
-address of your KDC. Also, the name that this reverse lookup maps to
-must either be the NetBIOS name of the KDC (i.e., the hostname with no
-domain attached) or it can alternately be the NetBIOS name followed by the realm. 
+Sie müssen auch sicherstellen, daß Sie einen Reverse-DNS-Lookup auf die IP-Adresse Ihres KDCs
+durchführen können. Weiters muß der Name, auf den dieser Reverse-Lookup zeigt, entweder der
+NetBIOS-Namen des KDCs (z.B. der Hostname ohne angehängte Domäne) sein, oder er kann der
+NetBIOS-Namen, gefolgt von der Realm, sein.
 </para>
 
 <para>
-The easiest way to ensure you get this right is to add a 
-<filename>/etc/hosts</filename> entry mapping the IP address of your KDC to 
-its NetBIOS name. If you do not get this correct then you will get a 
-<errorname>local error</errorname> when you try to join the realm.
+Am leichtesten erreichen Sie dies, indem Sie einen Eintrag in <filename>/etc/hosts</filename>
+hinzufügen, der die IP-Adresse Ihres KDCs auf dessen NetBIOS-Namen zuweist. Wenn Sie dies nicht
+korrekt erstellen, erhalten Sie einen <errorname>local error</errorname>, wenn Sie versuchen, sich der
+Realm anzuschliessen.
 </para>
 
 <para>
-If all you want is Kerberos support in &smbclient; then you can skip
-directly to <link linkend="ads-test-smbclient">Testing with &smbclient;</link> now. 
-<link linkend="ads-create-machine-account">Create the Computer Account</link> and 
-<link linkend="ads-test-server">Testing Server Setup</link>
-are needed only if you want Kerberos support for &smbd; and &winbindd;.
+Wenn Sie nur Kerberos-Support in &smbclient; wollen, können Sie direkt zu
+<link linkend="ads-test-smbclient">Testen mit &smbclient;</link> springen.
+<link linkend="ads-create-machine-account">Anlegen des Maschinen-Kontos</link> und
+<link linkend="ads-test-server">Testen des Server-Setups</link> werden nur benötigt,
+wenn Sie Kerberos-Support für &smbd; und &winbindd; brauchen.
 </para>
 
 </sect2>
 
 <sect2 id="ads-create-machine-account">
-<title>Create the Computer Account</title>
+<title>Anlegen des Maschinen-Kontos</title>
 
 <para>
-As a user who has write permission on the Samba private directory (usually root), run:
+Als Benutzer mit Schreib-Zugriff auf das Samba-Verzeichnis (üblicherweise root) führen Sie aus:
 <screen>
-&rootprompt; <userinput>net ads join -U Administrator%password</userinput>
+&rootprompt; <userinput>net ads join -U Administrator%Passwort</userinput>
 </screen>
 </para>
 
 <para>
-When making a Windows client a member of an ADS domain within a complex organization, you
-may want to create the machine account within a particular organizational unit. Samba-3 permits
-this to be done using the following syntax:
+Wenn Sie einen Windows-Client zum Mitglied einer ADS-Domäne innerhalb einer komplexen
+Organisation machen, wollen Sie vielleicht das Maschinen-Konto innerhalb einer bestimmten
+Organisations-Einheit anlegen. Samba-3 erlaubt dies mittels folgender Syntax:
 <screen>
-&rootprompt; <userinput>kinit Administrator@your.kerberos.REALM</userinput>
-&rootprompt; <userinput>net ads join <quote>organizational_unit</quote></userinput>
+&rootprompt; <userinput>kinit Administrator@ihre.kerberos.REALM</userinput>
+&rootprompt; <userinput>net ads join <quote>Organisations-Einheit</quote></userinput>
 </screen>
 </para>
 
 <para>
-For example, you may want to create the machine account in a container called <quote>Servers</quote>
-under the organizational directory <quote>Computers\BusinessUnit\Department</quote> like this:
+Zum Beispiel wollen Sie vielleicht das Maschinen-Konto innerhalb eines Containers namens
+<quote>Server</quote> unterhalb des organisatorischen Verzeichnisses
+<quote>Computer\Geschäftsstelle\Abteilung</quote> anlegen, wie folgt:
+
 <screen>
-&rootprompt; <userinput>net ads join "Computers\BusinessUnit\Department\Servers"</userinput>
+&rootprompt; <userinput>net ads join "Computer\Geschäftsstelle\Abteilung\Server"</userinput>
 </screen>
 </para>
 
 <?latex \newpage ?>
 
 <sect3>
-<title>Possible Errors</title>
+<title>Mögliche Fehler</title>
 
 <para>
 <variablelist>
-	<varlistentry><term><errorname>ADS support not compiled in</errorname></term>
+	<varlistentry><term><errorname>ADS-Support nicht einkompiliert</errorname></term>
 	<listitem><para>Samba must be reconfigured (remove config.cache) and recompiled
 	(make clean all install) after the Kerberos libraries and headers files are installed.
 	</para></listitem></varlistentry>
@@ -923,7 +924,7 @@ under the organizational directory <quote>Computers\BusinessUnit\Department</quo
 </sect2>
 
 <sect2 id="ads-test-server">
-<title>Testing Server Setup</title>
+<title>Testen des Server-Setups</title>
 
 <para>
 If the join was successful, you will see a new computer account with the
@@ -945,7 +946,7 @@ Samba can use both DES-CBC-MD5 encryption as well as ARCFOUR-HMAC-MD5 encoding.
 </sect2>
 
 <sect2 id="ads-test-smbclient">
-<title>Testing with &smbclient;</title>
+<title>Testen mit &smbclient;</title>
 
 
 <para>
