@@ -1,58 +1,59 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 8. Stand-alone Servers</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="type.html" title="Part II. Basiswissen zur Server Konfiguration"><link rel="previous" href="domain-member.html" title="Chapter 7. Domain Membership"><link rel="next" href="ClientConfig.html" title="Chapter 9. MS Windows Netzwerk Konfigurationsanleitung"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 8. Stand-alone Servers</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="domain-member.html">Prev</a> </td><th width="60%" align="center">Part II. Basiswissen zur Server Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="ClientConfig.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="StandAloneServer"></a>Chapter 8. Stand-alone Servers</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="StandAloneServer.html#id2902469">Features and Benefits</a></dt><dt><a href="StandAloneServer.html#id2902508">Background</a></dt><dt><a href="StandAloneServer.html#id2902580">Example Configuration</a></dt><dd><dl><dt><a href="StandAloneServer.html#RefDocServer">Reference Documentation Server</a></dt><dt><a href="StandAloneServer.html#SimplePrintServer">Central Print Serving</a></dt></dl></dd><dt><a href="StandAloneServer.html#id2903213">Common Errors</a></dt></dl></div><p>
-Stand-alone Servers are independent of Domain Controllers on the network.
-They are not Domain Members and function more like workgroup servers. In many
-cases a Stand-alone Server is configured with a minimum of security control
-with the intent that all data served will be readily accessible to all users.
-</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2902469"></a>Features and Benefits</h2></div></div><div></div></div><p>
-Stand-alone Servers can be as secure or as insecure as needs dictate. They can
-have simple or complex configurations. Above all, despite the hoopla about
-Domain Security they remain a common installation.
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 8. Stand-alone-Server</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="type.html" title="Part II. Basiswissen zur Server Konfiguration"><link rel="previous" href="domain-member.html" title="Chapter 7. Domain Membership"><link rel="next" href="ClientConfig.html" title="Chapter 9. MS Windows Netzwerk Konfigurationsanleitung"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 8. Stand-alone-Server</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="domain-member.html">Prev</a> </td><th width="60%" align="center">Part II. Basiswissen zur Server Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="ClientConfig.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="StandAloneServer"></a>Chapter 8. Stand-alone-Server</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Stefan</span> <span class="othername">G.</span> <span class="surname">Weichinger</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:monitor@oops.co.at">monitor@oops.co.at</a>&gt;</tt></p></div></div></div></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="StandAloneServer.html#id2900101">Eigenschaften und Vorteile</a></dt><dt><a href="StandAloneServer.html#id2900147">Hintergrund</a></dt><dt><a href="StandAloneServer.html#id2900243">Beispiel-Konfiguration</a></dt><dd><dl><dt><a href="StandAloneServer.html#RefDocServer">Referenz-Dokumentations-Server</a></dt><dt><a href="StandAloneServer.html#SimplePrintServer">Central Print Serving</a></dt></dl></dd><dt><a href="StandAloneServer.html#id2900875">Common Errors</a></dt></dl></div><p>
+Stand-alone-Server sind im Netzwerk unabhängig von Domänen-Controllern.
+Sie sind keine Domänen-Mitglieder und funktionieren eher wie
+Arbeitsgruppen-Server. In vielen Fällen wird ein Stand-alone-Server mit einem
+Minimum an Sicherheits-Kontrolle konfiguriert, mit der Absicht, daß alle Daten
+für alle Benutzer frei zugänglich sein sollen.
+</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2900101"></a>Eigenschaften und Vorteile</h2></div></div><div></div></div><p>
+Stand-alone-Server können so sicher oder so unsicher gemacht werden, wie es die
+Anforderungen vorgeben. Sie können simple oder komplexe Konfigurationen haben.
+Generell, trotz all dem Trara um Domänen-Sicherheit, bleiben sie eine sehr gängige
+Installationsform.
 </p><p>
-If all that is needed is a server for read-only files, or for
-printers alone, it may not make sense to effect a complex installation.
-For example: A drafting office needs to store old drawings and reference
-standards. Noone can write files to the server as it is legislatively
-important that all documents remain unaltered. A share mode read-only Stand-alone
-Server is an ideal solution.
+Wenn alles, was gebraucht wird, ein Server mit read-only-Dateien ist, oder ein Server
+nur für Drucker, dann macht es keinen Sinn, eine komplexe Installation aufzusetzen.
+Zum Beispiel: Ein Zeichenbüro muß alte Zeichnungen und Referenz-Standard-Dateien speichern.
+Niemand kann Dateien auf den Server schreiben, da es gesetzgebend wichtig ist, daß alle
+Dokumente unverändert bleiben. Ein Stand-alone-Server im read-only Freigaben-Modus ist
+eine ideale Lösung.
 </p><p>
-Another situation that warrants simplicity is an office that has many printers
-that are queued off a single central server. Everyone needs to be able to print
-to the printers, there is no need to effect any access controls and no files will
-be served from the print server. Again, a share mode Stand-alone Server makes
-a great solution.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2902508"></a>Background</h2></div></div><div></div></div><p>
-The term <span class="emphasis"><em>Stand-alone Server</em></span> means that it
-will provide local authentication and access control for all resources
-that are available from it. In general this means that there will be a
-local user database. In more technical terms, it means resources
-on the machine will be made available in either SHARE mode or in
-USER mode.
+Eine andere Situation, die Einfachheit garantiert, ist ein Büro, das viele Drucker hat,
+die von einem einzelnen zentralen Server angesteuert werden. Jeder muß auf die Drucker
+drucken können, es gibt keinen Grund, irgendwelche Zugriffskontrolle einzusetzen,
+und keine Dateien werden vom Druckserver bereitgestellt. Wieder ist ein Stand-alone-Server
+im Freigaben-Modus (share) eine großartige Lösung.
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2900147"></a>Hintergrund</h2></div></div><div></div></div><p>
+Der Begriff <span class="emphasis"><em>Stand-alone-Server</em></span> bedeutet, daß er
+lokale Authentifikation und Zugriffs-Kontrolle für alle Ressourcen, die über ihn 
+zugänglich sind, anbietet. Allgemein bedeutet das, daß es eine lokale Benutzer-Datenbank
+geben wird. In mehr technischen Begriffen bedeutet es, daß Ressourcen auf der Maschine
+entweder im SHARE- oder im USER-Modus verfügbar gemacht werden.
 </p><p>
-No special action is needed other than to create user accounts. Stand-alone
-servers do not provide network logon services. This means that machines that
-use this server do not perform a domain logon to it. Whatever logon facility
-the workstations are subject to is independent of this machine. It is, however,
-necessary to accommodate any network user so the logon name they use will
-be translated (mapped) locally on the Stand-alone Server to a locally known
-user name. There are several ways this can be done.
+Es ist nichts weiter nötig als das Anlegen von Benutzerkonten.
+Stand-alone-Server bieten keine Netzwerk-Anmelde-Dienste an. Das bedeutet, daß Maschinen, die
+diesen Server benutzen, keine Domänen-Anmeldung auf ihm durchführen. Welchem Anmeldedienst
+diese Workstations unterstellt sind, ist unabhängig von dieser Maschine. Es ist aber notwendig,
+jeden Netzwerk-Benutzer dahingehend "unterzubringen", daß der zur Anmeldung benutzte Namen lokal
+auf dem Samba-Stand-alone-Server auf einen lokal bekannten Benutzernamen übersetzt (mapped) wird.
+Es gibt verschiedene Arten, auf die dies geschehen kann.
 </p><p>
-Samba tends to blur the distinction a little in respect of what is
-a Stand-alone Server. This is because the authentication database may be
-local or on a remote server, even if from the SMB protocol perspective
-the Samba server is not a member of a domain security context.
+Samba neigt dazu, die Unterscheidung etwas zu verwischen, was den Begriff des Stand-alone-Servers 
+angeht. Dies rührt daher, daß die Authentifikations-Datenbank lokal oder auf einem Netzwerk-Server
+liegen kann, sogar wenn der Samba-Server aus der SMB-Protokoll-Perspektive kein Mitglied des
+Domänen-Sicherheits-Kontexts ist.
 </p><p>
-Through the use of Pluggable Authentication Modules (PAM) and the name service switcher (NSSWITCH),
-which maintains the UNIX-user database) the source of authentication may reside on 
-another server. We would be inclined to call this the authentication server.
-This means that the Samba server may use the local UNIX/Linux system password database
-(<tt class="filename">/etc/passwd</tt> or <tt class="filename">/etc/shadow</tt>), may use a
-local smbpasswd file, or may use an LDAP backend, or even via PAM and Winbind another CIFS/SMB server
-for authentication.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2902580"></a>Example Configuration</h2></div></div><div></div></div><p>
-The examples, <a href="StandAloneServer.html#simplynice" title="Example 8.1. smb.conf for Reference Documentation Server">???</a>, and link linkend="SimplePrintServer"/&gt;,
-are designed to inspire simplicity. It is too easy to attempt a high level of creativity
-and to introduce too much complexity in server and network design.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="RefDocServer"></a>Reference Documentation Server</h3></div></div><div></div></div><p>
+Durch die Verwendung von Pluggable Authentication Modules (PAM) und dem Namens-Service-Switcher
+(NSSWITCH, welcher die UNIX-Benutzer-Datenbank verwaltet) kann die Wurzel der Authentifikation
+auf einem anderen Server liegen. Wir würden dies den Authentifikations-Server nennen.
+Das bedeutet, daß der Samba-Server die lokale UNIX/Linux-Passwort-DB verwenden kann
+(<tt class="filename">/etc/passwd</tt> oder <tt class="filename">/etc/shadow</tt>), die lokale Datei
+smbpasswd, oder ein LDAP-Backend, oder sogar via PAM und Winbind einen anderen CIFS/SMB-Server.
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2900243"></a>Beispiel-Konfiguration</h2></div></div><div></div></div><p>
+Die Beispiele, <a href="StandAloneServer.html#simplynice" title="Example 8.1. smb.conf for Reference Documentation Server">???</a>, and link linkend="SimplePrintServer"/&gt;,
+wurden entworfen, um Einfachheit zu inspirieren. Es ist oft gar zu leicht, einen hohen
+Grad an Kreativität anzustreben, und damit zu viel Komplexität ins Design von Server und
+Netzwerk zu bringen.
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="RefDocServer"></a>Referenz-Dokumentations-Server</h3></div></div><div></div></div><p>
 Configuration of a read-only data server that everyone can access is very simple.
 <a href="StandAloneServer.html#simplynice" title="Example 8.1. smb.conf for Reference Documentation Server">???</a> is the <tt class="filename">smb.conf</tt> file that will do this. Assume that all the reference documents
 are stored in the directory <tt class="filename">/export</tt>, and the documents are owned by a user other than
@@ -106,14 +107,14 @@ The contents of the <tt class="filename">smb.conf</tt> file is shown in <a href=
 </p><p>
 </p><div class="example"><a name="AnonPtrSvr"></a><p class="title"><b>Example 8.2. smb.conf for Anonymous Printing</b></p><table class="simplelist" border="0" summary="Simple list"><tr><td>#  Global parameters</td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[global]</tt></i></td></tr><tr><td><i class="parameter"><tt>workgroup = MIDEARTH</tt></i></td></tr><tr><td><i class="parameter"><tt>netbios name = GANDALF</tt></i></td></tr><tr><td><i class="parameter"><tt>security = SHARE</tt></i></td></tr><tr><td><i class="parameter"><tt>passdb backend = guest</tt></i></td></tr><tr><td><i class="parameter"><tt>printing = cups</tt></i></td></tr><tr><td><i class="parameter"><tt>printcap name = cups</tt></i></td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[printers]</tt></i></td></tr><tr><td><i class="parameter"><tt>comment = All Printers</tt></i></td></tr><tr><td><i class="parameter"><tt>path = /var/spool/samba</tt></i></td></tr><tr><td><i class="parameter"><tt>printer admin = root</tt></i></td></tr><tr><td><i class="parameter"><tt>guest ok = Yes</tt></i></td></tr><tr><td><i class="parameter"><tt>printable = Yes</tt></i></td></tr><tr><td><i class="parameter"><tt>use client driver = Yes</tt></i></td></tr><tr><td><i class="parameter"><tt>browseable = No</tt></i></td></tr></table></div><p>
 </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
-<a class="indexterm" name="id2903164"></a>
-<a class="indexterm" name="id2903175"></a>
+<a class="indexterm" name="id2900825"></a>
+<a class="indexterm" name="id2900836"></a>
 On CUPS-enabled systems there is a facility to pass raw data directly to the printer without
 intermediate processing via CUPS print filters. Where use of this mode of operation is desired,
 it is necessary to configure a raw printing device. It is also necessary to enable the raw mime
 handler in the <tt class="filename">/etc/mime.conv</tt> and <tt class="filename">/etc/mime.types</tt>
 files. Refer to <a href="CUPS-printing.html#cups-raw" title="Explicitly Enable raw Printing for application/octet-stream">???</a>.
-</p></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2903213"></a>Common Errors</h2></div></div><div></div></div><p>
+</p></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2900875"></a>Common Errors</h2></div></div><div></div></div><p>
 The greatest mistake so often made is to make a network configuration too complex.
 It pays to use the simplest solution that will meet the needs of the moment.
 </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="domain-member.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="type.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ClientConfig.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 7. Domain Membership </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 9. MS Windows Netzwerk Konfigurationsanleitung</td></tr></table></div></body></html>
