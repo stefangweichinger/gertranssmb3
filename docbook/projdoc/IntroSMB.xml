@@ -207,12 +207,12 @@ Reihenfolge aufgebaut:
 	</para></listitem>
 
 	<listitem><para>
-	"NetBIOS Session Anfrage" - Benutzt folgende Rufnamen: Den lokalen NetBIOS Namen der lokalen
-	Maschine zzgl. den 16. Buchstaben 0x00 und den NetBIOS Namen des Servers zzgl. 0x20 als 16. Buchstaben.
+	"NetBIOS Session Anfrage" - Benutzt folgende Rufnamen: Den lokalen NetBIOS-Namen der lokalen
+	Maschine zzgl. den 16. Buchstaben 0x00 und den NetBIOS-Namen des Servers zzgl. 0x20 als 16. Buchstaben.
 	</para></listitem>
 
 	<listitem><para>
-	"SMB Negotiate Protocol" - bestimmt den Protokol-Dialekt der benutzt werden soll, dieser Dialekt
+	"SMB Negotiate Protocol" - bestimmt den Protokoll-Dialekt, der benutzt werden soll, dieser Dialekt
 	kann einer der folgenden sein:
 	PC Network Program 1.0 (Core) - nur share level security modus;
 	Microsoft Networks 1.03 (Core Plus) - nur share level security modus;
@@ -235,10 +235,10 @@ Reihenfolge aufgebaut:
 </itemizedlist>
 
 <para>
-Eine gute Art diesen Prozess zu untersuchen ist das
+Eine gute Art, diesen Prozess zu untersuchen, ist, das
 <ulink url="http://www.securityfriday.com/ToolDownload/SWB/swb_doc.html">SecurityFriday's SWB Program</ulink>
-aus zu probieren.
-Es ermöglicht es ihnen Schritt für Schritt durch eine SMB/CIFS Sitzung zu gehen.
+auszuprobieren.
+Es ermöglicht Ihnen, Schritt für Schritt durch eine SMB/CIFS-Sitzung zu gehen.
 </para>
 
 </sect1>
@@ -247,34 +247,32 @@ Es ermöglicht es ihnen Schritt für Schritt durch eine SMB/CIFS Sitzung zu gehen.
 <title>Epilog</title>
 
 <para><quote>
-Was grundlegend Falsch ist, ist das niemand einen Geschmack finden kann wenn er es nicht probiert hat.
-Microsoft hat stark daran gearbeitet die Oberfläche schön zu gestalten, nur intern ist es eine komplette Unordnung.
-Auch Mitarbeiter von Microsoft die seit Jahren dort Arbeiten und viel Erfahrung mit sich bringen, haben
-keine Ahnung was intern wirklich abläuft. Schlimm das niemand sich traut dies zu ändern. Niemand traut sich
+Was grundlegend falsch ist, ist, daß niemand daran Geschmack finden kann, wenn er es nicht probiert hat.
+Microsoft hat stark daran gearbeitet, die Oberfläche schön zu gestalten, nur intern ist es eine komplette Unordnung.
+Auch Mitarbeiter von Microsoft, die seit Jahren dort arbeiten und viel Erfahrung mit sich bringen, haben
+keine Ahnung, was intern wirklich abläuft. Schlimm, daß niemand sich traut, dies zu ändern. Niemand traut sich
 einen Bug zu fixen nur weil die Gefahr besteht, dass dieser Fix hunderte von Programmen zum Absturz bringen kann.
-Dazu kommt das Microsoft nicht daran interessiert ist Bugs zu fixen -- sie sind vielmehr daran interessiert
-Geld zu machen. Sie haben niemanden der Stolz ist in Windows 95 ein Betriebssystem zu sehen.
+Dazu kommt, daß Microsoft nicht daran interessiert ist, Bugs zu fixen -- sie sind vielmehr daran interessiert,
+Geld zu machen. Sie haben niemanden, der stolz ist, in Windows 95 ein Betriebssystem zu sehen.
 </quote></para>
 
 <para><quote>
-Die Leute von Microsoft wissen dass es ein schlechtes Betriebssystem ist und arbeiten weiter daran weil sie die
+Die Leute von Microsoft wissen, daß es ein schlechtes Betriebssystem ist und arbeiten weiter daran, weil sie die
 nächste Version auf den Markt bringen wollen, um all die neuen Möglichkeiten des Systems verkaufen zu können.
 </quote></para>
 
 <para><quote>
-Das Problem hierbei ist, dass wenn Sie über die Zeit Verständnis hierfür entwickeln ohne es zu vertehen, da niemand
-WIRKLICH Probleme behebt, ist das Endergebnis stark verpfuscht.
-Sie können dem System nicht vertrauen da es unter bestimmten Bedingungen es einfach spontan neu startet oder
-einfach nur stehen bleibt wenn Sie gerade etwas völlig normales machen. Normalerweise funktioniert es gut nur dann
-irgendwann ohne Begründung ist es tot und niemand weiß warum. Nicht Microsoft, nicht die Erfahrenen Anwender
-und schon gar nicht der Ahnungslose Benutzer der vor seinem Bildschirm sitzt und sich fragt: "Was hab
-ich bloß falsch gemacht?" wenn er doch gar nichts falsch gemacht hat.
+Das Problem hierbei ist, dass wenn Sie über die Zeit Verständnis hierfür entwickeln, ohne es zu verstehen, 
+da niemand WIRKLICH Probleme behebt, ist das Endergebnis stark verpfuscht.
+Sie können dem System nicht vertrauen da es unter bestimmten Bedingungen einfach spontan neu startet oder
+einfach nur stehen bleibt wenn Sie gerade etwas völlig Normales machen. Normalerweise funktioniert es gut, nur dann
+irgendwann ohne Begründung ist es tot und niemand weiß warum. Nicht Microsoft, nicht die erfahrenen Anwender
+und schon gar nicht der ahnungslose Benutzer, der vor seinem Bildschirm sitzt und sich fragt: "Was hab
+ich bloß falsch gemacht?", wenn er doch gar nichts falsch gemacht hat.
 </quote></para>
 
 <para><quote>
-Das ist das, was mich wirklich irretiert.
-
-
+Das ist das, was mich wirklich irritiert.
 </quote></para>
 
 <para>--
@@ -292,11 +290,11 @@ Das ist das, was mich wirklich irretiert.
 Dieses Kapitel unterliegt dem Copright 2003 David Lechnyr (david at lechnyr dot com).
 Es ist erlaubt dieses Dokument zu kopieren, zu verbreiten und/oder unter Beachtung der
 GNU Free Documentation Lizens zu ändern. Version 1.2 oder jede spätere Version wurde
-mit der Free Software Foundation erstellt. Eine Kopie der englischen Lizens ist unter
+mit der Free Software Foundation erstellt. Eine Kopie der englischen Lizenz ist unter
 http://www.gnu.org/licenses/fdl.txt verfügbar.
 </para>
 <para>
-Dieses Kapittel wurde unter Einhaltung der GNU Public Lizens von Hendrik Bäcker (h_baecker at gmx dot net)
+Dieses Kapitel wurde unter Einhaltung der GNU Public Licence von Hendrik Bäcker (h_baecker at gmx dot net)
 ins Deutsche Übersetzt. Es besteht kein Anspruch auf Richtigkeit der hier genannten Daten und Fakten.
 </para>
 
