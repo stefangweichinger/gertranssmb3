@@ -95,15 +95,16 @@ Netzwerk zu bringen.
 <title>Referenz-Dokumentations-Server</title>
 
 <para>
-Configuration of a read-only data server that everyone can access is very simple.
-<link linkend="simplynice"/> is the &smb.conf; file that will do this. Assume that all the reference documents
-are stored in the directory <filename>/export</filename>, and the documents are owned by a user other than
-nobody. No home directories are shared, and there are no users in the <filename>/etc/passwd</filename>
-UNIX system database. This is a simple system to administer.
+Die Konfiguration eines Read-Only Datenservers, auf den jeder zugreifen kann, ist sehr einfach.
+<link linkend="simplynice"/> ist die &smb.conf;-Datei, die dies tut. Nehmen wir an, daß all die
+Referenz-Dokumente im Verzeichnis <filename>/export</filename> gespeichert werden, und daß die
+Dokumente einem anderen User als nobody gehören. Keine home-Verzeichnisse werden freigegeben, und es
+gibt keine Benutzer in der <filename>/etc/passwd</filename> UNIX-System-Datenbank. Dies ist einfach
+zu administrierendes System.
 </para>
 
 <smbconfexample id="simplynice">
-<title>smb.conf for Reference Documentation Server</title>
+<title>smb.conf für den Referenz-Dokumentations-Server</title>
 <smbconfcomment> Global parameters</smbconfcomment>
 <smbconfsection>[global]</smbconfsection>
 <smbconfoption><name>workgroup</name><value>&example.workgroup;</value></smbconfoption>
@@ -118,41 +119,42 @@ UNIX system database. This is a simple system to administer.
 </smbconfexample>
 
 <para>
-In <link linkend="simplynice"/> above, the machine name is set to &example.server.samba;, the workgroup is set to the name
-of the local workgroup (&example.workgroup;) so the machine will appear together with systems with
-which users are familiar. The only password backend required is the <quote>guest</quote> backend to allow default
-unprivileged account names to be used. As there is a WINS server on this networki, we of obviously make use of it.
+In obigem Beispiel <link linkend="simplynice"/> ist der Hostname auf &example.server.samba; gesetzt,
+die Arbeitsgruppe auf den Namen der lokalen Arbeitsgruppe (&example.workgroup;), so daß die Maschine
+gemeinsam mit Maschinen aufscheint, die den Benutzern vertraut sind. Das einzige Passwort-Backend, das
+benötigt wird, ist das <quote>guest</quote>-Backend, um die Verwendung von standardmässigen unprivilegierten
+Benutzernamen zu erlauben. Da es einen WINS-Server im Netz gibt, machen wir natürlich Gebrauch davon.
 </para>
 
 </sect2>
 
 <sect2 id="SimplePrintServer">
-<title>Central Print Serving</title>
+<title>Zentrales Druck-Serving</title>
 
 <para>
-Configuration of a simple print server is easy if you have all the right tools
-on your system.
+Die Konfiguration eines einfachen Druckservers ist einfach, wenn Sie die richtigen Tools auf Ihrem
+System haben.
 </para>
 
 <orderedlist>
-<title> Assumptions:</title>
+<title> Annahmen:</title>
 	<listitem><para>
-	The print server must require no administration.
+	Der Druck-Server darf keine Administration erfordern.
 	</para></listitem>
 
 	<listitem><para>
-	The print spooling and processing system on our print server will be CUPS.
-	(Please refer to <link linkend="CUPS-printing"></link> for more information).
+	Das Druck-Spooling- und Verarbeitungs-System auf unserem Druck-Server wird CUPS sein.
+	(Siehe <link linkend="CUPS-printing"></link> für mehr Informationen).
 	</para></listitem>
 
 	<listitem><para>
-	The print server will service only network printers. The network administrator
-	will correctly configure the CUPS environment to support the printers.
+	Der Druck-Server wird nur Netzwerk-Drucker bedienen. Der Netzwerk-Administrator wird
+	die CUPS-Umgebung korrekt für die Unterstützung der Drucker konfigurieren.
 	</para></listitem>
 
 	<listitem><para>
-	All workstations will use only postscript drivers. The printer driver
-	of choice is the one shipped with the Windows OS for the Apple Color LaserWriter.
+	Alle Workstations werden nur Postscript-Treiber verwenden. Der gewählte Druckertreiber
+	ist der mit MS Windows mitgelieferte Treiber für den Apple Color LaserWriter.	
 	</para></listitem>
 </orderedlist>
 
