@@ -140,7 +140,7 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 	Standardmässig akzeptiert Samba Verbindungen auf jeder Netzwerk-Schnittstelle, die
 	es in Ihrem System findet. Das bedeutet, daß wenn Sie eine ISDN-Verbindung oder
 	einen PPP-Tunnel zum Internet haben, wird Samba Verbindungen über diese
-	Schnittstellen akzeptieren. Das könnte etwas sein, daß Sie nicht wollen.
+	Schnittstellen akzeptieren. Das könnte etwas sein, das Sie nicht wollen.
 	</para>
 
 	<para>
