@@ -6,39 +6,40 @@
 	<author><firstname>Simo</firstname><surname>Sorce</surname><contrib>original vfs_skel README</contrib></author>
 	<author><firstname>Alexander</firstname><surname>Bokovoy</surname><contrib>original vfs_netatalk docs</contrib></author>
 	<author><firstname>Stefan</firstname><surname>Metzmacher</surname><contrib>Update for multiple modules</contrib></author>
+<author>&person.flex;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 <title>Stackable VFS modules</title>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Vorteile</title>
 
 <para>
-Since Samba-3, there is support for stackable VFS (Virtual File System) modules. 
-Samba passes each request to access the UNIX file system through the loaded VFS modules. 
-This chapter covers all the modules that come with the Samba source and references to 
-some external modules.
+Seit Samba-3 gibt es Ünterstützung für STACKABLE VFS (Virtual File System) Module.
+Samba gibt jede Anfrage an das UNIX Filesystem durch das geladene VFS Modul weiter.
+Dieses Kapitel deckt alle Module aus den Sambaquellen ab plus einige Referenzen auf 
+externe Module.
 </para>
 
 
 </sect1>
 
 <sect1>
-<title>Discussion</title>
+<title>Diskussion</title>
 
 <para>
-If not supplied with your platform distribution binary Samba package you may have problems
-compiling these modules, as shared libraries are compiled and linked in different ways
-on different systems. They currently have been tested against GNU/Linux and IRIX.
+Sind die verteilten Bibliotheken nicht bereits beim binary Packet Ihrer Platform dabei könnte
+es Probleme beim kompilieren geben da diese auf verschiedenen Platformen verschieden kompiliert
+und verlinkt werden. Momentan wurden diese auf GNU/LINUX und IRIX getestet.
 </para>
 
 <para>
-To use the VFS modules, create a share similar to the one below. The
-important parameter is the <smbconfoption><name>vfs objects</name></smbconfoption> parameter where
-you can list one or more VFS modules by name. For example, to log all access 
-to files and put deleted files in a recycle bin, see <link linkend="vfsrecyc"/>.
+Um die VFS Module benutzen zu können erstellen sie eine Freigabe ähnlich der Unteren.
+Der essentielle Parameter ist der <smbconfoption><name>vfs objects</name></smbconfoption> Parameter
+bei dem man einen oder mehrere VFS Module als Namen angeben kann. Ein Beispiel um alle Zugriffe auf
+Dateien zu loggen und gelöschte Dateien in eine Recycle Bin zu werfen wäre <link linkend="vfsrecyc"/>.
 
 <smbconfexample id="vfsrecyc">
-	<title>smb.conf with VFS modules</title>
+	<title>smb.conf mit  VFS Modulen</title>
 	<smbconfsection>[audit]</smbconfsection>
 <smbconfoption><name>comment</name><value>Audited /data directory</value></smbconfoption>
 <smbconfoption><name>path</name><value>/data</value></smbconfoption>
@@ -49,15 +50,17 @@ to files and put deleted files in a recycle bin, see <link linkend="vfsrecyc"/>.
 </para>
 
 <para>
-The modules are used in the order in which they are specified.
-Let's say that you want to both have a virus scanner module and a recycle
-bin module. It is wise to put the virus scanner module as the first one so
-that it is the first that get run an may detect a virus immediately, before
-any action is performed on that file.
+Die Module werden in der Reihenfole benutzt in der sie angegeben sind. Nehmen wir an 
+Sie möchten ein Virus Scanner Modul und eine Recycle Bin Modul haben. Es wäre schlauer
+das Viren Scanner Modul als erstes Modul festzulegen so dass es eventuelle Viren sofort 
+entdeckt bevor ein anderes Modul die Datei bearbeitet.
 <smbconfoption><name>vfs objects</name><value>vscan-clamav recycle</value></smbconfoption>
 </para>
 
 <para>
+Samba wird versuchen Module vom <filename>/lib</filename> Ordner des Stammverzeinisses der Samba-installation
+zu laden (normalerweise <filename>/usr/lib/samba/vfs</filename> oder <filename>/usr/local/samba/lib/vfs
+</filename>).
 Samba will attempt to load modules from the <filename>/lib</filename> directory in the root directory of the
 Samba installation (usually <filename>/usr/lib/samba/vfs</filename> or <filename>/usr/local/samba/lib/vfs
 </filename>).
