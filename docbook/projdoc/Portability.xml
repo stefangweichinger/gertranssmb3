@@ -1,15 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="Portability">
 <chapterinfo>
 	&author.jelmer;
 	&author.jht;
 	<!-- Some other people as well, but there were no author names in the text files this file is based on-->
+        <author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
-<title>Portability</title>
+<title>Portabilität</title>
 
-<para>Samba works on a wide range of platforms but the interface all the 
-platforms provide is not always compatible. This chapter contains 
-platform-specific information about compiling and using Samba.</para>
+<para>Samba arbeitet auf einer Vielzahl von Plattformen, aber das Interface, das
+diese Plattformen bereitstellen, ist nicht immer kompatibel. Dieses Kapitel enthält
+Plattform-spezifische Information über das Kompilieren und die Verwendung von Samba.</para>
 
 <sect1>
 <title>HPUX</title>
