@@ -89,67 +89,66 @@ Für Details zu <command>ethereal</command>, lesen Sie den gutgeschriebenen Ether
 <image id="ethereal1"><imagefile>ethereal1</imagefile><imagedescription>Start eines Capture.</imagedescription></image>
 
 <para>
-Listen for data on ports 137, 138, 139, and 445. For example, use the filter <userinput>port 137, port 138, port 139, or port 445</userinput> as seen in <link linkend="ethereal1"/>.</para>
+Überwachen der Daten auf den Ports 137, 138, 139, und 445. Zum Beispiel, verwenden Sie den Filter
+<userinput>port 137, port 138, port 139, oder port 445</userinput>, wie in <link linkend="ethereal1"/>
+zu sehen.
+</para>
 
-<para>A console version of ethereal is available as well and is called 
-<command>tethereal</command>.</para>
+<para>
+Eine Consolen-Version von ethereal ist auch verfügbar, namens <command>tethereal</command>.</para>
 
-<image id="ethereal2"><imagefile>ethereal2</imagefile><imagedescription>Main ethereal data window.</imagedescription></image>
+<image id="ethereal2"><imagefile>ethereal2</imagefile><imagedescription>Hauptansicht von ethereal.</imagedescription></image>
 
 </sect2>
 
 <sect2>
-<title>The Windows Network Monitor</title>
+<title>Der Windows Netzwerk-Monitor.</title>
 	
 <para>
-For tracing things on Microsoft Windows NT, Network Monitor 
-(aka Netmon) is available on Microsoft Developer Network CDs, 
-the Windows NT Server install CD and the SMS CDs. The version of 
-Netmon that ships with SMS allows for dumping packets between any two 
-computers (i.e., placing the network interface in promiscuous mode). 
-The version on the NT Server install CD will only allow monitoring 
-of network traffic directed to the local NT box and broadcasts on the 
-local subnet. Be aware that Ethereal can read and write Netmon 
-formatted files.
+Um Dinge unter Microsoft Windows NT zu verfolgen, ist der Netzwerk-Monitor (auch bekannt als Netmon)
+auf den Microsoft Developer Network CDs verfügbar, sowie auf der Installations-CD des Windows NT Servers,
+und auf den SMS CDs. Die mit SMS gelieferte Version erlaubt es, Pakete zwischen zwei Rechnern zu dumpen
+(die Netzwerkkarte im promiscuous mode zu betreiben). Die Version auf der Windows-NT-Server-CD erlaubt
+nur das Monitoring von Netzwerkverkehr zur lokalen NT-Box, und Broadcasts im lokalen Subnetz. Beachten Sie,
+daß Ethereal Dateien im Netmon-Format lesen und schreiben kann.
 </para>
 
 <sect3>
-<title>Installing Network Monitor on an NT Workstation</title>
+<title>Installieren des Netzwerk-Monitors auf einer NT-Workstation</title>
 
 <para>
-Installing Netmon on an NT workstation requires a couple 
-of steps. The following are instructions for installing Netmon V4.00.349, which comes 
-with Microsoft Windows NT Server 4.0, on Microsoft Windows NT 
-Workstation 4.0. The process should be similar for other versions of 
-Windows NT version of Netmon. You will need both the Microsoft Windows 
-NT Server 4.0 Install CD and the Workstation 4.0 Install CD.
+Das Installieren von Netmon auf einer NT-Workstation erfordert einige Schritte.
+Die folgenden Anweisungen gelten für die Installation von Netmon V4.00.349, welcher mit dem
+Microsoft Windows NT Server 4.0 geliefert wird, auf Microsoft Windows NT Workstation 4.0.
+Der Ablauf sollte für andere Versionen von Netmon für Windows NT sein. Sie werden sowohl die
+NT Server 4.0 Installations-CD, wie auch die Workstation 4.0 Installations-CD dazu brauchen.
 </para> 
 
 <para>
-Initially you will need to install <application>Network Monitor Tools and Agent</application>
-on the NT Server to do this: 
+Zuerst müssen Sie <application>Network Monitor Tools and Agent</application> auf dem NT-Server
+installieren:
 </para>
 
 <itemizedlist>
-	<listitem><para>Go to <guibutton>Start</guibutton> -> <guibutton>Settings</guibutton> -> <guibutton>Control Panel</guibutton> -> 
+	<listitem><para>Gehen Sie auf <guibutton>Start</guibutton> -> <guibutton>Settings</guibutton> -> <guibutton>Control Panel</guibutton> -> 
 	<guibutton>Network</guibutton> -> <guibutton>Services</guibutton> -> <guibutton>Add</guibutton>.</para></listitem>
 	
-	<listitem><para>Select the <guilabel>Network Monitor Tools and Agent</guilabel> and click on <guibutton>OK</guibutton>.</para></listitem> 
+	<listitem><para>Wählen Sie <guilabel>Network Monitor Tools and Agent</guilabel> und klicken Sie auf <guibutton>OK</guibutton>.</para></listitem> 
 	
-	<listitem><para>Click on <guibutton>OK</guibutton> on the Network Control Panel.</para></listitem> 
+	<listitem><para>Klicken Sie auf <guibutton>OK</guibutton> im Network Control Panel.</para></listitem> 
 	
-	<listitem><para>Insert the Windows NT Server 4.0 install CD when prompted.</para></listitem> 
+	<listitem><para>Legen Sie die NT Server 4.0 Installations-CD ein, wenn Sie dazu aufgefordert werden.</para></listitem> 
 </itemizedlist>
 
 <para>
-At this point, the Netmon files should exist in <filename>%SYSTEMROOT%\System32\netmon\*.*</filename>.   
-Two subdirectories exist as well, <filename>parsers\</filename> which contains the necessary DLLs
-for parsing the Netmon packet dump, and <filename>captures\</filename>.
+An diesem Punkt sollten die Netmon files in <filename>%SYSTEMROOT%\System32\netmon\*.*</filename> existieren.
+Es gibt auch zwei Unterverzeichnisse, <filename>parsers\</filename>, welches die notwendigen DLLs enthält, um
+den Netmon-Paket-dump zu parsen, und <filename>captures\</filename>.
 </para>
 
 <para>
-To install the Netmon tools on an NT Workstation, you will first need to install the 
-Network  Monitor Agent from the Workstation install CD.
+Um die Netmon-tools auf einer NT Workstation zu installieren, müssen Sie zuerst den Network Monitor Agent von
+der Workstation 4.0 Installations-CD installieren.
 </para>
 
 <itemizedlist>
