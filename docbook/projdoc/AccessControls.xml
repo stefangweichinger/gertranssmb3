@@ -9,11 +9,10 @@
 
 <para>
 <indexterm><primary>ACLs</primary></indexterm>
-Advanced MS Windows users are frequently perplexed when file, directory and share manipulation of
-resources shared via Samba do not behave in the manner they might expect. MS Windows network
-administrators are often confused regarding network access controls and how to
-provide users with the access they need while protecting resources from unauthorized access.
-</para>
+Fortgeschrittene Windows Benutzer sind haeufig verwirrt, wenn eine Aenderung des Besitzes von Dateien oder Verzeichnissen 
+auf dem Samba Server sich nicht so auswirken wie sie es erwarten. MS Administratoren verwirrt es oft wenn sie versuchen 
+Ihre Daten mit Zugriffskontrolllisten vor unerlaubten  Zugriffen zu schuetzen.
+ </para>
 
 <para>
 Many UNIX administrators are unfamiliar with the MS Windows environment and in particular
