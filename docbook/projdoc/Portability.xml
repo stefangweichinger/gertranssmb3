@@ -17,30 +17,31 @@ Plattform-spezifische Information über das Kompilieren und die Verwendung von Sa
 <title>HPUX</title>
 
 <para>
-HP's implementation of supplementary groups is non-standard (for
-historical reasons). There are two group files, <filename>/etc/group</filename> and
-<filename>/etc/logingroup</filename>; the system maps UIDs to numbers using the former, but
-initgroups() reads the latter. Most system admins who know the ropes
-symlink <filename>/etc/group</filename> to <filename>/etc/logingroup</filename>
-(hard link does not work for reasons too obtuse to go into here). initgroups() will complain if one of the
-groups you're in in <filename>/etc/logingroup</filename> has what it considers to be an invalid
-ID, which means outside the range <constant>[0..UID_MAX]</constant>, where <constant>UID_MAX</constant> is (I think)
-60000 currently on HP-UX. This precludes -2 and 65534, the usual <constant>nobody</constant>
-GIDs.
+HP's Implementation von unterstützenden Gruppen ist nicht standard-konform (aus
+historischen Gründen). Es gibt zwei Gruppen-Dateien, <filename>/etc/group</filename> und
+<filename>/etc/logingroup</filename>; das System mapped UIDs auf Nummern unter Verwendung
+der ersten Datei, aber initgroups() liest letztere. Die meisten System-Admins, die die
+Regeln kennen, linken <filename>/etc/group</filename> auf <filename>/etc/logingroup</filename>
+mittels Symlink (hard links funktionieren hier nicht, aus Gründen, die hier zu weit führen würden).
+nitgroups() wird sich beschweren, wenn eine der Gruppen, zu denen Sie gehören, in 
+<filename>/etc/logingroup</filename> eine ID hat, die es für ungültig hält, was bedeutet, daß sie
+außerhalb des Bereichs <constant>[0..UID_MAX]</constant> liegt, wobei <constant>UID_MAX</constant>
+momentan (glaube ich) 60000 unter HP-UX beträgt. Dies schließt -2 und 65534 aus, die üblichen GIDs
+für <constant>nobody</constant>.
 </para>
 
 <para>
-If you encounter this problem, make sure the programs that are failing 
-to initgroups() are run as users, not in any groups with GIDs outside the 
-allowed range.
+Wenn Ihnen dieses Problem begegnet, stellen Sie sicher, daß die Programme, die beim Aufruf von
+initgroups() scheitern, als Benutzer ausgeführt werden, nicht in Gruppen, deren GIDs außerhalb
+des erlaubten Bereichs liegen.
 </para>
 
-<para>This is documented in the HP manual pages under setgroups(2) and passwd(4).
+<para>Dies ist in den HP-manpages von setgroups(2) und passwd(4) dokumentiert.
 </para>
 
 <para>
-On HP-UX you must use gcc or the HP ANSI compiler. The free compiler
-that comes with HP-UX is not ANSI compliant and cannot compile Samba.
+Unter HP-UX müssen Sie gcc oder den HP ANSI-compiler verwenden. Der freie Compiler, der HP-UX
+beiliegt, entspricht nicht ANSI und kann Samba nicht kompilieren.
 </para>
 
 </sect1>
@@ -49,9 +50,9 @@ that comes with HP-UX is not ANSI compliant and cannot compile Samba.
 <title>SCO UNIX</title>
 
 <para> 
-If you run an old version of SCO UNIX, you may need to get important 
-TCP/IP patches for Samba to work correctly. Without the patch, you may 
-encounter corrupt data transfers using Samba.
+Wenn Sie eine alte Version von SCO UNIX verwenden, kann es sein, daß Sie wichtige
+TCP/IP-Patches brauchen, damit Samba korrekt arbeitet. Ohne die Patches können
+korrupte Daten-Transfers mit Samba auftreten.
 </para>
 
 <para>
