@@ -1,52 +1,74 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 26. Samba in MS Windows Netzwerke integrieren</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="pam.html" title="Chapter 25. PAM-Based Distributed Authentication"><link rel="next" href="unicode.html" title="Chapter 27. Unicode/Charsets"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 26. Samba in MS Windows Netzwerke integrieren</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="pam.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="unicode.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="integrate-ms-networks"></a>Chapter 26. Samba in MS Windows Netzwerke integrieren</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Thomas</span> <span class="othername"></span> <span class="surname">Reiss</span></h3><span class="contrib">German Translator</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:thomas@mypoint.franken.de">thomas@mypoint.franken.de</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate"> (Jan 01 2001) </p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="integrate-ms-networks.html#id2963654">Features and Benefits</a></dt><dt><a href="integrate-ms-networks.html#id2963678">Background Information</a></dt><dt><a href="integrate-ms-networks.html#id2963742">Name Resolution in a Pure UNIX/Linux World</a></dt><dd><dl><dt><a href="integrate-ms-networks.html#id2963799">/etc/hosts</a></dt><dt><a href="integrate-ms-networks.html#id2963962">/etc/resolv.conf</a></dt><dt><a href="integrate-ms-networks.html#id2964006">/etc/host.conf</a></dt><dt><a href="integrate-ms-networks.html#id2964071">/etc/nsswitch.conf</a></dt></dl></dd><dt><a href="integrate-ms-networks.html#id2964186">Name Resolution as Used within MS Windows Networking</a></dt><dd><dl><dt><a href="integrate-ms-networks.html#id2964537">The NetBIOS Name Cache</a></dt><dt><a href="integrate-ms-networks.html#id2964604">The LMHOSTS File</a></dt><dt><a href="integrate-ms-networks.html#id2964851">HOSTS File</a></dt><dt><a href="integrate-ms-networks.html#id2964884">DNS Lookup</a></dt><dt><a href="integrate-ms-networks.html#id2964916">WINS Lookup</a></dt></dl></dd><dt><a href="integrate-ms-networks.html#id2965032">Common Errors</a></dt><dd><dl><dt><a href="integrate-ms-networks.html#id2965047">Pinging Works Only in One Way</a></dt><dt><a href="integrate-ms-networks.html#id2965089">Very Slow Network Connections</a></dt><dt><a href="integrate-ms-networks.html#id2965140">Samba Server Name Change Problem</a></dt></dl></dd></dl></div><p>
-<a class="indexterm" name="id2963592"></a>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 26. Samba in MS Windows Netzwerke integrieren</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="pam.html" title="Chapter 25. PAM-Based Distributed Authentication"><link rel="next" href="unicode.html" title="Chapter 27. Unicode/Charsets"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 26. Samba in MS Windows Netzwerke integrieren</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="pam.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="unicode.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="integrate-ms-networks"></a>Chapter 26. Samba in MS Windows Netzwerke integrieren</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Thomas</span> <span class="othername"></span> <span class="surname">Reiss</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:thomas@mypoint.franken.de">thomas@mypoint.franken.de</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate"> (Jan 01 2001) </p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="integrate-ms-networks.html#id2966561">Fähigkeiten und Möglichkeiten</a></dt><dt><a href="integrate-ms-networks.html#id2966590">Hintergrundinformation</a></dt><dt><a href="integrate-ms-networks.html#id2966739">Name Resolution in a Pure UNIX/Linux World</a></dt><dd><dl><dt><a href="integrate-ms-networks.html#id2966796">/etc/hosts</a></dt><dt><a href="integrate-ms-networks.html#id2966947">/etc/resolv.conf</a></dt><dt><a href="integrate-ms-networks.html#id2966991">/etc/host.conf</a></dt><dt><a href="integrate-ms-networks.html#id2967056">/etc/nsswitch.conf</a></dt></dl></dd><dt><a href="integrate-ms-networks.html#id2967170">Name Resolution as Used within MS Windows Networking</a></dt><dd><dl><dt><a href="integrate-ms-networks.html#id2967523">The NetBIOS Name Cache</a></dt><dt><a href="integrate-ms-networks.html#id2967589">The LMHOSTS File</a></dt><dt><a href="integrate-ms-networks.html#id2967836">HOSTS File</a></dt><dt><a href="integrate-ms-networks.html#id2967869">DNS Lookup</a></dt><dt><a href="integrate-ms-networks.html#id2967902">WINS Lookup</a></dt></dl></dd><dt><a href="integrate-ms-networks.html#id2968017">Common Errors</a></dt><dd><dl><dt><a href="integrate-ms-networks.html#id2968033">Pinging Works Only in One Way</a></dt><dt><a href="integrate-ms-networks.html#id2968075">Very Slow Network Connections</a></dt><dt><a href="integrate-ms-networks.html#id2968126">Samba Server Name Change Problem</a></dt></dl></dd></dl></div><p>
+<a class="indexterm" name="id2966514"></a>
 Dieses Kapitel handelt über die NETBIOS über TCP/IP Namen zu IP Adressen
 Auflösung.
 Wenn Ihre MS Windows Client's kein NetBIOS über TCP/IP verwenden ist
 dieses Kaptitel für Sie nicht relevant. Sollte Ihre Installation aber
 mit NetBIOS über TCP/IP arbeiten, kann Ihnen dieses Kapitel bei Netzwerkproblemen
 weiterhelfen.
-#
-This section deals with NetBIOS over TCP/IP name to IP address resolution. If
-your MS Windows clients are not configured to use NetBIOS over TCP/IP, then this
-section does not apply to your installation. If your installation
-involves the use of
-NetBIOS over TCP/IP then this section may help you to resolve networking problems.
 </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
-NetBIOS over TCP/IP has nothing to do with NetBEUI. NetBEUI is NetBIOS
-over Logical Link Control (LLC). On modern networks it is highly advised
-to not run NetBEUI at all. Note also there is no such thing as
-NetBEUI over TCP/IP  the existence of such a protocol is a complete
-and utter misapprehension.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2963654"></a>Features and Benefits</h2></div></div><div></div></div><p>
-Many MS Windows network administrators have never been exposed to basic TCP/IP
-networking as it is implemented in a UNIX/Linux operating system. Likewise, many UNIX and
-Linux administrators have not been exposed to the intricacies of MS Windows TCP/IP-based
-networking (and may have no desire to be either).
+NetBIOS über TCP/IP hat nichts zu tun mit NetBEUI. NetBEUI ist NetBIOS
+über Logical Link Control (LLC). 
+Bei aktuellen Netzwerkwerken ist es dringend angeraten auf keinen Fall NetBEUI zu
+verwenden. Es ist auch anzumerken dass es nicht's in der Art von
+NetBEUI über TCP/IP  gibt. Wenn von so etwas gesprochen wird
+handelt es sich um ein komplettes Missverständniss.
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2966561"></a>Fähigkeiten und Möglichkeiten</h2></div></div><div></div></div><p>
+Viele MS Windows Netzwerkadministratoren hatten bisher keine Ahnung von
+grundlegenden TCP/IP Netzwerken wie es in UNIX/Linux Betriebssystemen
+verwendet wird. Andererseits haben viele Unix und Linux Administratoren
+keine Ahnung von den Komplikationen eines Windows TCP/IP basierenden
+Netzwerkes (und haben keine Lust auf beides).
 </p><p>
-This chapter gives a short introduction to the basics of how a name can be resolved to 
-its IP address for each operating system environment.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2963678"></a>Background Information</h2></div></div><div></div></div><p>
+Dieses Kapitel gibt für jede Betriebssystemumgebung eine kurze Einweisung 
+in die Grundlagen wie ein Name in seine IP Adresse aufgelöst wird.
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2966590"></a>Hintergrundinformation</h2></div></div><div></div></div><p>
+Seit der Einführung von MS Windows 2000 ist es möglich ein MS Windows
+Netzwerk ohne NetBIOS über TCP/IP zu verwenden. NetBIOS über TCP/IP
+benutzt UDP Port 137 für die NetBIOS Namensauflösung und TCP Port 139
+für die NetBIOS Dienste Session. 
+Sollte auf den MS Windows 2000 Client's (oder spätere Versionen) 
+NetBIOS über TCP/IP deaktiviert sein, dann wird nur der TCP Port 445 verwendet.
+In diesem Fall wird der UDP Port 137 und der TCP Port 139 nicht
+verwendet.
+#
 Since the introduction of MS Windows 2000, it is possible to run MS Windows networking
 without the use of NetBIOS over TCP/IP. NetBIOS over TCP/IP uses UDP port 137 for NetBIOS
 name resolution and uses TCP port 139 for NetBIOS session services. When NetBIOS over
 TCP/IP is disabled on MS Windows 2000 and later clients, then only the TCP port 445 will be
 used and the UDP port 137 and TCP port 139 will not.
 </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+Wenn Sie Windows 2000 Clients (oder später) verwenden und NetBIOS über
+TCP/IP nicht deaktiviert haben benutzt der Client UDP Port 137
+(NetBIOS Name Service, auch bekannt als der Windows Internet Name
+Service oder WINS), den TCP Port 139 und TCP Port 445 (für aktuellen
+Datei und Druck Verkehr).
+#
 When using Windows 2000 or later clients, if NetBIOS over TCP/IP is not disabled, then
 the client will use UDP port 137 (NetBIOS Name Service, also known as the Windows Internet
 Name Service or WINS), TCP port 139 and TCP port 445 (for actual file and print traffic).
 </p></div><p>
+Wenn Sie NetBIOS über TCP/IP deaktivieren ist die Benutzung von DNS
+unumgänglich. Die meisten aktuellen Installationen welche NetBIOS über TCP/IP
+deaktivieren verwenden MS Active Directory (ADS). ADS benötigt
+<a class="indexterm" name="id2966689"></a>
+Dynamic DNS with Service Resource Records (SRV RR) and with Incremental
+Zone Transfers (IXFR).
+<a class="indexterm" name="id2966702"></a>
+....
+
+
+#
 When NetBIOS over TCP/IP is disabled, the use of DNS is essential. Most installations that
 disable NetBIOS over TCP/IP today use MS Active Directory Service (ADS). ADS requires
-<a class="indexterm" name="id2963717"></a>
+<a class="indexterm" name="id2966714"></a>
 Dynamic DNS with Service Resource Records (SRV RR) and with Incremental Zone Transfers (IXFR).
-<a class="indexterm" name="id2963730"></a>
+<a class="indexterm" name="id2966726"></a>
 Use of DHCP with ADS is recommended as a further means of maintaining central control
 over the client workstation network configuration.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2963742"></a>Name Resolution in a Pure UNIX/Linux World</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2966739"></a>Name Resolution in a Pure UNIX/Linux World</h2></div></div><div></div></div><p>
 The key configuration files covered in this section are:
-</p><div class="itemizedlist"><ul type="disc"><li><p><tt class="filename">/etc/hosts</tt></p></li><li><p><tt class="filename">/etc/resolv.conf</tt></p></li><li><p><tt class="filename">/etc/host.conf</tt></p></li><li><p><tt class="filename">/etc/nsswitch.conf</tt></p></li></ul></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2963799"></a><tt class="filename">/etc/hosts</tt></h3></div></div><div></div></div><p>
+</p><div class="itemizedlist"><ul type="disc"><li><p><tt class="filename">/etc/hosts</tt></p></li><li><p><tt class="filename">/etc/resolv.conf</tt></p></li><li><p><tt class="filename">/etc/host.conf</tt></p></li><li><p><tt class="filename">/etc/nsswitch.conf</tt></p></li></ul></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2966796"></a><tt class="filename">/etc/hosts</tt></h3></div></div><div></div></div><p>
 This file contains a static list of IP addresses and names.
 </p><pre class="programlisting">
 127.0.0.1	localhost localhost.localdomain
@@ -62,7 +84,7 @@ Access Control address, or MAC address. IP addresses are currently
 32 bits in length and are typically presented as four (4) decimal 
 numbers that are separated by a dot (or period). For example, 168.192.1.1.
 </p><p>
-<a class="indexterm" name="id2963852"></a>
+<a class="indexterm" name="id2966849"></a>
 MAC Addresses use 48 bits (or 6 bytes) and are typically represented 
 as two-digit hexadecimal numbers separated by colons: 40:8e:0a:12:34:56.
 </p><p>
@@ -96,7 +118,7 @@ ff:ff:ff:ff:ff:ff. The reply packet from an ARP request will
 contain the MAC address and the primary IP address for each 
 interface.
 </p><p>
-<a class="indexterm" name="id2963938"></a>
+<a class="indexterm" name="id2966923"></a>
 The <tt class="filename">/etc/hosts</tt> file is foundational to all 
 UNIX/Linux TCP/IP installations and as a minimum will contain 
 the localhost and local network interface IP addresses and the 
@@ -104,7 +126,7 @@ primary names by which they are known within the local machine.
 This file helps to prime the pump so a basic level of name 
 resolution can exist before any other method of name resolution 
 becomes available.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2963962"></a><tt class="filename">/etc/resolv.conf</tt></h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2966947"></a><tt class="filename">/etc/resolv.conf</tt></h3></div></div><div></div></div><p>
 This file tells the name resolution libraries:
 </p><div class="itemizedlist"><ul type="disc"><li><p>The name of the domain to which the machine 
 	belongs.
@@ -114,8 +136,8 @@ This file tells the name resolution libraries:
 	</p></li><li><p>The name or IP address of available Domain 
 	Name Servers that may be asked to perform name-to-address 
 	translation lookups.
-	</p></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2964006"></a><tt class="filename">/etc/host.conf</tt></h3></div></div><div></div></div><p>
-<a class="indexterm" name="id2964021"></a>
+	</p></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2966991"></a><tt class="filename">/etc/host.conf</tt></h3></div></div><div></div></div><p>
+<a class="indexterm" name="id2967006"></a>
 <tt class="filename">/etc/host.conf</tt> is the primary means by 
 which the setting in <tt class="filename">/etc/resolv.conf</tt> may be effected. It is a 
 critical configuration file. This file controls the order by 
@@ -126,8 +148,8 @@ multi on
 </pre><p>
 then both addresses should be returned. Please refer to the 
 man page for <tt class="filename">host.conf</tt> for further details.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2964071"></a><tt class="filename">/etc/nsswitch.conf</tt></h3></div></div><div></div></div><p>
-<a class="indexterm" name="id2964085"></a>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2967056"></a><tt class="filename">/etc/nsswitch.conf</tt></h3></div></div><div></div></div><p>
+<a class="indexterm" name="id2967070"></a>
 This file controls the actual name resolution targets. The 
 file typically has resolver object specifications as follows:
 </p><pre class="programlisting">
@@ -159,7 +181,7 @@ It should be noted that unless a network request/message must be
 sent, TCP/IP networks are silent. All TCP/IP communications assume a 
 principal of speaking only when necessary.
 </p><p>
-<a class="indexterm" name="id2964131"></a>
+<a class="indexterm" name="id2967116"></a>
 Starting with version 2.2.0, Samba has Linux support for extensions to 
 the name service switch infrastructure so Linux clients will 
 be able to obtain resolution of MS Windows NetBIOS names to IP 
@@ -172,7 +194,7 @@ the <tt class="filename">/etc/nsswitch.conf</tt> file. At this point, it
 will be possible to ping any MS Windows machine by its NetBIOS 
 machine name, as long as that machine is within the workgroup to 
 which both the Samba machine and the MS Windows machine belong.
-</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2964186"></a>Name Resolution as Used within MS Windows Networking</h2></div></div><div></div></div><p>
+</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2967170"></a>Name Resolution as Used within MS Windows Networking</h2></div></div><div></div></div><p>
 MS Windows networking is predicated about the name each machine 
 is given. This name is known variously (and inconsistently) as 
 the &#8220;<span class="quote">computer name,</span>&#8221; &#8220;<span class="quote">machine name,</span>&#8221; &#8220;<span class="quote">networking name,</span>&#8221; &#8220;<span class="quote">netbios name,</span>&#8221; 
@@ -188,14 +210,14 @@ the client/server.
 </p><p>
 <a href="integrate-ms-networks.html#uniqnetbiosnames" title="Table 26.1. Unique NetBIOS Names">???</a> and <a href="integrate-ms-networks.html#netbiosnamesgrp" title="Table 26.2. Group Names">???</a> list typical NetBIOS name/service type registrations.
 </p><div class="table"><a name="uniqnetbiosnames"></a><p class="title"><b>Table 26.1. Unique NetBIOS Names</b></p><table summary="Unique NetBIOS Names" border="1"><colgroup><col align="left"><col align="justify"></colgroup><tbody><tr><td align="left">MACHINENAME&lt;00&gt;</td><td align="justify">Server Service is running on MACHINENAME</td></tr><tr><td align="left">MACHINENAME&lt;03&gt;</td><td align="justify">Generic Machine Name (NetBIOS name)</td></tr><tr><td align="left">MACHINENAME&lt;20&gt;</td><td align="justify">LanMan Server service is running on MACHINENAME</td></tr><tr><td align="left">WORKGROUP&lt;1b&gt;</td><td align="justify">Domain Master Browser</td></tr></tbody></table></div><div class="table"><a name="netbiosnamesgrp"></a><p class="title"><b>Table 26.2. Group Names</b></p><table summary="Group Names" border="1"><colgroup><col align="left"><col align="justify"></colgroup><tbody><tr><td align="left">WORKGROUP&lt;03&gt;</td><td align="justify">Generic Name registered by all members of WORKGROUP</td></tr><tr><td align="left">WORKGROUP&lt;1c&gt;</td><td align="justify">Domain Controllers / Netlogon Servers</td></tr><tr><td align="left">WORKGROUP&lt;1d&gt;</td><td align="justify">Local Master Browsers</td></tr><tr><td align="left">WORKGROUP&lt;1e&gt;</td><td align="justify">Browser Election Service</td></tr></tbody></table></div><p>
-<a class="indexterm" name="id2964421"></a>
+<a class="indexterm" name="id2967406"></a>
 It should be noted that all NetBIOS machines register their own 
 names as per the above. This is in vast contrast to TCP/IP 
 installations where traditionally the system administrator will 
 determine in the <tt class="filename">/etc/hosts</tt> or in the DNS database what names 
 are associated with each IP address.
 </p><p>
-<a class="indexterm" name="id2964444"></a>
+<a class="indexterm" name="id2967430"></a>
 One further point of clarification should be noted. The <tt class="filename">/etc/hosts</tt> 
 file and the DNS records do not provide the NetBIOS name type information 
 that MS Windows clients depend on to locate the type of service that may 
@@ -233,7 +255,7 @@ NBT or NetBT, the NetBIOS over TCP/IP.
 MS Windows machines use a complex array of name resolution mechanisms. 
 Since we are primarily concerned with TCP/IP, this demonstration is 
 limited to this area.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2964537"></a>The NetBIOS Name Cache</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2967523"></a>The NetBIOS Name Cache</h3></div></div><div></div></div><p>
 All MS Windows machines employ an in-memory buffer in which is 
 stored the NetBIOS names and IP addresses for all external 
 machines that machine has communicated with over the 
@@ -248,13 +270,13 @@ to time-out delays. Its name is in the cache, so a name resolution
 lookup will succeed, but the machine cannot respond. This can be 
 frustrating for users but is a characteristic of the protocol.
 </p><p>
-<a class="indexterm" name="id2964572"></a>
-<a class="indexterm" name="id2964580"></a>
+<a class="indexterm" name="id2967557"></a>
+<a class="indexterm" name="id2967566"></a>
 The MS Windows utility that allows examination of the NetBIOS 
 name cache is called &#8220;<span class="quote">nbtstat</span>&#8221;. The Samba equivalent of this 
 is called <b class="command">nmblookup</b>.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2964604"></a>The LMHOSTS File</h3></div></div><div></div></div><p>
-<a class="indexterm" name="id2964614"></a>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2967589"></a>The LMHOSTS File</h3></div></div><div></div></div><p>
+<a class="indexterm" name="id2967600"></a>
 This file is usually located in MS Windows NT 4.0 or Windows 200x/XP in the directory
 <tt class="filename">C:\WINNT\SYSTEM32\DRIVERS\ETC</tt> and contains the IP Address
 and the machine name in matched pairs. The <tt class="filename">LMHOSTS</tt> file
@@ -339,15 +361,15 @@ It typically looks like this:
 # so keeping the number of comments to a minimum will improve performance.
 # Therefore it is not advisable to simply add lmhosts file entries onto the
 # end of this file.
-</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2964851"></a>HOSTS File</h3></div></div><div></div></div><p>
+</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2967836"></a>HOSTS File</h3></div></div><div></div></div><p>
 This file is usually located in MS Windows NT 4.0 or Windows 200x/XP in 
 the directory <tt class="filename">C:\WINNT\SYSTEM32\DRIVERS\ETC</tt> and contains 
 the IP Address and the IP hostname in matched pairs. It can be 
 used by the name resolution infrastructure in MS Windows, depending 
 on how the TCP/IP environment is configured. This file is in 
 every way the equivalent of the UNIX/Linux <tt class="filename">/etc/hosts</tt> file.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2964884"></a>DNS Lookup</h3></div></div><div></div></div><p>
-<a class="indexterm" name="id2964894"></a>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2967869"></a>DNS Lookup</h3></div></div><div></div></div><p>
+<a class="indexterm" name="id2967880"></a>
 This capability is configured in the TCP/IP setup area in the network 
 configuration facility. If enabled, an elaborate name resolution sequence 
 is followed, the precise nature of which is dependant on how the NetBIOS 
@@ -358,8 +380,8 @@ cache. If that fails then DNS, HOSTS and LMHOSTS are checked. If set to
 Node Type 8, then a NetBIOS Unicast (over UDP Unicast) is sent to the 
 WINS Server to obtain a lookup before DNS, HOSTS, LMHOSTS, or broadcast 
 lookup is used.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2964916"></a>WINS Lookup</h3></div></div><div></div></div><p>
-<a class="indexterm" name="id2964927"></a>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2967902"></a>WINS Lookup</h3></div></div><div></div></div><p>
+<a class="indexterm" name="id2967912"></a>
 A WINS (Windows Internet Name Server) service is the equivalent of the 
 rfc1001/1002 specified NBNS (NetBIOS Name Server). A WINS server stores 
 the names and IP addresses that are registered by a Windows client 
@@ -374,11 +396,11 @@ needed in the <tt class="filename">smb.conf</tt> file:
 where <i class="replaceable"><tt>xxx.xxx.xxx.xxx</tt></i> is the IP address 
 of the WINS server.
 </p><p>For information about setting up Samba as a WINS server, read 
-<a href="NetworkBrowsing.html" title="Chapter 10. Network Browsing">???</a>.</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2965032"></a>Common Errors</h2></div></div><div></div></div><p>
+<a href="NetworkBrowsing.html" title="Chapter 10. Netzwerk-Browsing">???</a>.</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2968017"></a>Common Errors</h2></div></div><div></div></div><p>
 TCP/IP network configuration problems find every network administrator sooner or later.
 The cause can be anything from keyboard mishaps, forgetfulness, simple mistakes, and
 carelessness. Of course, no one is ever deliberately careless!
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2965047"></a>Pinging Works Only in One Way</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2968033"></a>Pinging Works Only in One Way</h3></div></div><div></div></div><p>
 	&#8220;<span class="quote">I can ping my Samba server from Windows, but I cannot ping my Windows
 	machine from the Samba server.</span>&#8221;
 	</p><p>
@@ -388,10 +410,10 @@ carelessness. Of course, no one is ever deliberately careless!
 	</p><p>
 	Due to inconsistent netmasks, the Windows machine was on network 192.168.1.0/24, while
 	the Samba server was on network 192.168.1.128/25  logically a different network.
-	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2965089"></a>Very Slow Network Connections</h3></div></div><div></div></div><p>
+	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2968075"></a>Very Slow Network Connections</h3></div></div><div></div></div><p>
 	A common cause of slow network response includes:
 	</p><div class="itemizedlist"><ul type="disc"><li><p>Client is configured to use DNS and the DNS server is down.</p></li><li><p>Client is configured to use remote DNS server, but the
-		remote connection is down.</p></li><li><p>Client is configured to use a WINS server, but there is no WINS server.</p></li><li><p>Client is not configured to use a WINS server, but there is a WINS server.</p></li><li><p>Firewall is filtering our DNS or WINS traffic.</p></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2965140"></a>Samba Server Name Change Problem</h3></div></div><div></div></div><p>
+		remote connection is down.</p></li><li><p>Client is configured to use a WINS server, but there is no WINS server.</p></li><li><p>Client is not configured to use a WINS server, but there is a WINS server.</p></li><li><p>Firewall is filtering our DNS or WINS traffic.</p></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2968126"></a>Samba Server Name Change Problem</h3></div></div><div></div></div><p>
 	&#8220;<span class="quote">The name of the Samba server was changed, Samba was restarted, Samba server cannot be
 	pinged by new name from MS Windows NT4 Workstation, but it does still respond to ping using
 	the old name. Why?</span>&#8221;

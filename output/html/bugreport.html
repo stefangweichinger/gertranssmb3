@@ -1,104 +1,106 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 35. Reporting Bugs</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="troubleshooting.html" title="Part V. Troubleshooting"><link rel="previous" href="problems.html" title="Chapter 34. Analyse und Lösung von Problemen mit Samba"><link rel="next" href="Appendixes.html" title="Part VI. Anhang"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 35. Reporting Bugs</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="problems.html">Prev</a> </td><th width="60%" align="center">Part V. Troubleshooting</th><td width="20%" align="right"> <a accesskey="n" href="Appendixes.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="bugreport"></a>Chapter 35. Reporting Bugs</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Jelmer</span> <span class="othername">R.</span> <span class="surname">Vernooij</span></h3><div class="affiliation"><span class="orgname">The Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jelmer@samba.org">jelmer@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Andrew</span> <span class="surname">Tridgell</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:tridge@samba.org">tridge@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Hendrik</span> <span class="othername"></span> <span class="surname">Bäcker</span></h3><span class="contrib">German Translator</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:h_baecker@gmx.net">h_baecker@gmx.net</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate"> 27 June 1997 </p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="bugreport.html#id2976025">Einführung</a></dt><dt><a href="bugreport.html#id2976096">General Information</a></dt><dt><a href="bugreport.html#id2976140">Debug Levels</a></dt><dt><a href="bugreport.html#id2976377">Interne Fehler</a></dt><dt><a href="bugreport.html#id2976540">Einklicken in einen laufenden Prozess</a></dt><dt><a href="bugreport.html#id2976592">Patches</a></dt></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2976025"></a>Einführung</h2></div></div><div></div></div><p>Bitte verwenden Sie <a href="https://bugzilla.samba.org/" target="_top">Bugzilla</a>
-um Bugs zu melden und lesen Sie es zunächst, bevor Sie einen Bug melden. Bitte prüfen 
-Sie gleichfalls ob sich der Zustand nach einem Releasewechsel geändert hat, da wir 
-an einigen Punkten den Mechanismus zum Thema Bug Report ändern.
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 35. Das Melden von Fehlern</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="troubleshooting.html" title="Part V. Troubleshooting"><link rel="previous" href="problems.html" title="Chapter 34. Analyse und Lösung von Problemen mit Samba"><link rel="next" href="Appendixes.html" title="Part VI. Anhang"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 35. Das Melden von Fehlern</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="problems.html">Prev</a> </td><th width="60%" align="center">Part V. Troubleshooting</th><td width="20%" align="right"> <a accesskey="n" href="Appendixes.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="bugreport"></a>Chapter 35. Das Melden von Fehlern</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Jelmer</span> <span class="othername">R.</span> <span class="surname">Vernooij</span></h3><div class="affiliation"><span class="orgname">The Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jelmer@samba.org">jelmer@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Andrew</span> <span class="surname">Tridgell</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:tridge@samba.org">tridge@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Hendrik</span> <span class="othername"></span> <span class="surname">Bäcker</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:h_baecker@gmx.net">h_baecker@gmx.net</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate"> 27 June 1997 </p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="bugreport.html#id2979296">Einführung</a></dt><dt><a href="bugreport.html#id2979363">Allgemeine Information</a></dt><dt><a href="bugreport.html#id2979407">Debug Levels</a></dt><dt><a href="bugreport.html#id2979638">Interne Fehler</a></dt><dt><a href="bugreport.html#id2979814">Sich an einen laufenden Prozess anschließen</a></dt><dt><a href="bugreport.html#id2979866">Patches</a></dt></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2979296"></a>Einführung</h2></div></div><div></div></div><p>Bitte verwenden Sie <a href="https://bugzilla.samba.org/" target="_top">Bugzilla</a>,
+um Bugs zu melden und lesen Sie zunächst nach, bevor Sie einen Bug melden. Bitte prüfen 
+Sie gleichfalls, ob sich der Zustand nach einem Releasewechsel geändert hat, da wir 
+an einigen Punkten den Mechanismus zum Thema Bug-Report ändern.
 </p><p>
-Bitte geben Sie so viele Informationen in dem Bug Report an wie Sie können. Wir 
-bekommen täglich mehr Mails als wir beantworten können, also helfen Sie uns bitte 
-indem Sie ihren Bug so &#8220;<span class="quote">Entwickler freundlich</span>&#8221; wie nur eben möglich gestalten.
+Bitte geben Sie so viele Informationen in dem Bug Report an, wie Sie können. Wir 
+bekommen täglich mehr Mails als wir beantworten können, also helfen Sie uns bitte,
+indem Sie ihren Bug so &#8220;<span class="quote">Entwickler-freundlich</span>&#8221; wie nur eben möglich gestalten.
 </p><p>
-Bitte gehen Sie nicht davon aus, wenn Sie einen Bug in der Newsgroup comp.protocols.smb posten, 
+Bitte gehen Sie nicht davon aus, dass wenn Sie einen Bug in der Newsgroup comp.protocols.smb posten, 
 dass wir dies lesen. Wenn Sie vermuten, dass es weniger ein Bug als ein Konfigurationsproblem ist, 
-wenden Sie sich bitte an die Samba Mailing Liste da dort tausende von anderen Benutzern evtl. in der 
-Lage sind ihnen zu helfen.
+wenden Sie sich bitte an die Samba-Mailing-Liste, da dort tausende von anderen Benutzern evtl. in der 
+Lage sind, Ihnen zu helfen.
 </p><p>
-Ebenfalls hilfreich ist ein durchsuchen der Mailing list Archive die über die Samba Webseite 
-<a href="http://samba.org/samba/" target="_top">http://samba.org/samba/</a> zu erreichen ist.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2976096"></a>General Information</h2></div></div><div></div></div><p>
-Bevor Sie einen Bug Report senden, prüfen Sie bitte ihre Konfiguration auf Tippfehler.
-Betrachten Sie auch ihre Log-Dateien ob diese ggf. eine Nachricht hervorbringen, dass 
-etwas falsch konfiguriert worden ist. Um die Syntax Ihrer Konfiguration zu prüfen führen 
+Ebenfalls hilfreich ist ein Durchsuchen der Mailing-Listen-Archive, die über die Samba-Webseite 
+<a href="http://samba.org/samba/" target="_top">http://samba.org/samba/</a> zu erreichen sind.
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2979363"></a>Allgemeine Information</h2></div></div><div></div></div><p>
+Bevor Sie einen Bug-Report senden, prüfen Sie bitte ihre Konfiguration auf Tippfehler.
+Betrachten Sie auch ihre Log-Dateien, ob diese ggf. eine Nachricht hervorbringen, dass 
+etwas falsch konfiguriert worden ist. Um die Syntax Ihrer Konfiguration zu prüfen, führen 
 Sie bitte testparm aus.
 </p><p>
 Haben Sie in <a href="diagnosis.html" title="Chapter 33. Die Samba Checkliste">???</a> nachgeschaut? Dies ist von bedeutender Wichtigkeit!
 </p><p>
-Wenn Sie Teile ihrer Log Dateien mit dem Report senden, stellen Sie sicher, dass 
-Sie es entsprechend ihrer Tätigkeit am Client kommentieren und bekanntgeben wie 
+Wenn Sie Teile ihrer Log-Dateien mit dem Report senden, stellen Sie sicher, dass 
+Sie es entsprechend ihrer Tätigkeit am Client kommentieren und bekannt geben, wie 
 das Resultat sich darstellt.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2976140"></a>Debug Levels</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2979407"></a>Debug Levels</h2></div></div><div></div></div><p>
 Wenn der Bug etwas damit zu tun hat, dass sich Samba als Server inkorrekt verhält (etwa 
-es abzulehnen eine Datei zu öffnen), sind die Log Dateien sehr nützlich. Im Verhältnis 
-zu dem Problem ist ein Log Level zwischen 3 und 10 sehr hilfreich das Problem zu analysieren, 
-ein höherer Log Level verspricht mehr Detail Informationen benötigt allerdings auch mehr 
+es abzulehnen, eine Datei zu öffnen), sind die Log-Dateien sehr nützlich. 
+Je nach Problem ist ein Log Level zwischen 3 und 10 sehr hilfreich, das Problem zu analysieren, 
+ein höherer Log Level verspricht mehr Detail-Informationen, benötigt allerdings auch mehr 
 Speicherkapazität.
 </p><p>
-Um den Debug Level einzustellen verwenden Sie die Option <a class="indexterm" name="id2976170"></a><i class="parameter"><tt>log level</tt></i> 
-in ihrer <tt class="filename">smb.conf</tt>. Sie könnten es nützlich finden für jede Maschine eine eigene Log Datei zu verwenden, 
-und nur für eine Maschine den Log Level höher einzustellen. Wenn Sie dies machen möchten fügen Sie
+Um den Debug Level einzustellen, verwenden Sie die Option <a class="indexterm" name="id2979433"></a><i class="parameter"><tt>log level</tt></i> 
+in ihrer <tt class="filename">smb.conf</tt>. Sie könnten es nützlich finden, für jede Maschine eine eigene Log Datei zu verwenden, 
+und nur für eine Maschine den Log Level höher einzustellen. Wenn Sie dies machen möchten, fügen Sie
 bitte folgende Zeilen ihrer <tt class="filename">smb.conf</tt> hinzu:
 </p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>log level = 10</tt></i></td></tr><tr><td><i class="parameter"><tt>log file = /usr/local/samba/lib/log.%m</tt></i></td></tr><tr><td><i class="parameter"><tt>include = /usr/local/samba/lib/smb.conf.%m</tt></i></td></tr></table><p>
-und erstellen eine Datei <tt class="filename">/usr/local/samba/lib/smb.conf.<i class="replaceable"><tt>machine</tt></i></tt>
-wobei <i class="replaceable"><tt>machine</tt></i> der Name des Clients ist den Sie debuggen wollen.
-In dieser Datei können Sie jegliche <tt class="filename">smb.conf</tt> optionen einbringen, zum Beispiel:
+und erstellen eine Datei <tt class="filename">/usr/local/samba/lib/smb.conf.<i class="replaceable"><tt>machine</tt></i></tt>,
+wobei <i class="replaceable"><tt>machine</tt></i> der Name des Clients ist, den Sie debuggen wollen.
+In dieser Datei können Sie jegliche <tt class="filename">smb.conf</tt>-Optionen einbringen, zum Beispiel:
 
-<a class="indexterm" name="id2976269"></a><i class="parameter"><tt>log level</tt></i> ist nützlich. Dies erlaubt es ihnen ebenfalls 
-mit verschiedenes Sicherheitsoptionen zu experementieren.
+<a class="indexterm" name="id2979531"></a><i class="parameter"><tt>log level</tt></i> ist nützlich. Dies erlaubt es Ihnen ebenfalls 
+mit verschiedenes Sicherheitsoptionen zu experimentieren.
 </p><p>
-Der <tt class="filename">smb.conf</tt> Eintrag <a class="indexterm" name="id2976299"></a><i class="parameter"><tt>log level</tt></i> ist ein Synonym für 
-<a class="indexterm" name="id2976313"></a><i class="parameter"><tt>debuglevel</tt></i> welches in älteren Versionen von Samba verwendet wurde 
-und zur Abwärtskompatibilität zu älteren <tt class="filename">smb.conf</tt> Dateien dient.
+Der <tt class="filename">smb.conf</tt>-Eintrag <a class="indexterm" name="id2979561"></a><i class="parameter"><tt>log level</tt></i> ist ein Synonym für 
+<a class="indexterm" name="id2979575"></a><i class="parameter"><tt>debuglevel</tt></i> welches in älteren Versionen von Samba verwendet wurde 
+und zur Abwärts Kompatibilität zu älteren <tt class="filename">smb.conf</tt>-Dateien dient.
 </p><p>
-Sobald der Wert für das <a class="indexterm" name="id2976341"></a><i class="parameter"><tt>log level</tt></i> erhöht worden und Samba neu 
-gestartet worden ist werden Sie ein signifikant höheres Level an Debug Informationen erhalten. Für 
+Sobald der Wert für das <a class="indexterm" name="id2979604"></a><i class="parameter"><tt>log level</tt></i> erhöht und Samba neu 
+gestartet worden ist, werden Sie ein signifikant höheres Level an Debug Informationen erhalten. Für 
 gewöhnlich werden Sie kein Level höher als <tt class="constant">3</tt> benötigen. Nahezu jeder Bug kann mit einem 
-Log Level von <tt class="constant">10</tt> festgestellt werden aber machen Sie sich auf ein großes 
-Datenvolumen an Log Dateien gefasst.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2976377"></a>Interne Fehler</h2></div></div><div></div></div><p>
+Log Level von <tt class="constant">10</tt> festgestellt werden, aber machen Sie sich auf ein großes 
+Datenvolumen an Log-Dateien gefasst.
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2979638"></a>Interne Fehler</h2></div></div><div></div></div><p>
 Wenn Sie einen &#8220;<span class="quote"><span class="errorname">INTERNAL ERROR</span></span>&#8221; in ihren Log Dateien bemerken sollten, 
-bedeutet dies das Samba ein nicht erwartetes Signal bekommen hat. Eventuell ein &#8220;<span class="quote">segmentation fault</span>&#8221;
-und bedeutet meistens einen Bug in Samba (vorrausgesetzt ihre Hardware oder Systemsoftware funktioniert einwandfrei).
+bedeutet dies, dass Samba ein nicht erwartetes Signal bekommen hat. Dies ist wahrscheinlich
+ein &#8220;<span class="quote">segmentation fault</span>&#8221; und deutet so gut wie sicher auf einen Bug in Samba hin
+(vorausgesetzt, ihre Hardware oder Systemsoftware funktioniert einwandfrei).
 </p><p>
-Sollte die Nachricht vom smbd ist es meistens so, dass vor dieser Nachricht das Log noch die letzte SMB Meldung enthält, 
-die der smbd erhalten hat. Diese Information ist oft sehr nützlich das Problem zu lokalisieren, bitte fügen Sie 
-diese Meldung ihrem Bug Report zu.
+Sollte die Nachricht vom smbd stammen, ist es meistens so, dass vor dieser Nachricht das Log noch die letzte 
+SMB-Meldung enthält, die der smbd erhalten hat. Diese Information ist oft sehr nützlich, um
+das Problem zu lokalisieren, bitte fügen Sie diese Meldung ihrem Bug-Report hinzu.
 </p><p>
-Wenn möglich sollten Sie, so detailliert wie möglich, erklären können wie das Problem reproduziert werden kann.
+Wenn möglich sollten Sie so detailliert wie möglich erklären können, wie das Problem reproduziert werden kann.
 </p><p>
-<a class="indexterm" name="id2976428"></a>
-Sie werden ebenfalls ein sogenanntes core file in einem <tt class="filename">corefiles</tt> 
-Unterverzeichnis im Verzeichnis wo sich ihre Log Dateien befinden, entdecken. 
-Dies Datei ist am nütlichsten um einen Bug zu ermitteln, um es zu verwenden machen Sie folgendes:
-<a class="indexterm" name="id2976448"></a>
-<a class="indexterm" name="id2976456"></a>
+<a class="indexterm" name="id2979695"></a>
+Sie werden ebenfalls ein so genanntes core-file in einem <tt class="filename">corefiles</tt> 
+-Unterverzeichnis in Ihrem Log-Verzeichnis entdecken. 
+Dies Datei ist das nützlichste Tool, um einen Bug zu verfolgen. Um es zu verwenden, machen Sie folgendes:
+<a class="indexterm" name="id2979720"></a>
+<a class="indexterm" name="id2979728"></a>
 </p><pre class="screen">
 <tt class="prompt">$ </tt><b class="userinput"><tt>gdb smbd core</tt></b>
 </pre><p>
-fügen Sie die passende Pfade zu smbd und dem core file zu gdb hinzu damit es sie finden kann.
-Wenn Sie gdb nicht haben sollten versuchen Sie es mit <b class="userinput"><tt>dbx</tt></b>.
-Anschließend innerhalb des debuggers verwenden Sie das Kommando <b class="command">where</b> um 
-eine stack Verfolgung zu beginnen wo das Problem auftrat. Fügen Sie diese Information der Bug Meldung hinzu.
+fügen Sie die jeweiligen Pfade zu smbd und dem core-file zu gdb hinzu, damit es sie finden kann.
+Wenn Sie gdb nicht haben sollten, versuchen Sie es mit <b class="userinput"><tt>dbx</tt></b>.
+Anschließend, innerhalb des Debuggers, verwenden Sie das Kommando <b class="command">where</b>, um 
+einen stack-Trace der Stelle zu erhalten, an der das Problem auftrat. 
+Fügen Sie diese Information der Bug-Meldung hinzu.
 </p><p>
-Wenn Sie Kenntnisse in einer Assembler Sprache haben, führen Sie ein <b class="command">disass</b>
-Kommando zu der Routine hinzu in der das Problem auftrat (wenn es in einer Library Routine war 
-disassemblieren Sie die Routine die sie aufgerufen hat) und versuchen Sie auszuarbeiten an welcher 
-Stelle das Problem liegt in dem Sie sich den Code ansehen. Selbst wenn Sie keine Kenntnisse in 
-Assembler Programmierung haben fügen Sie diese Information dem Report zu, dies kann sehr hilfreich sein.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2976540"></a>Einklicken in einen laufenden Prozess</h2></div></div><div></div></div><p>
-Leider lassen es einige UNIX's (zum Teil auch einige Linux Kernel) es nicht zu 
-einen Core Dump zu erstellen wenn der Prozess die UID ändert (was smbd oft tut).
-Um dies dennoch debuggen zu können Sie versuchen sich in den laufenden Prozess 
-einzuklinken indem Sie <b class="userinput"><tt>gdb smbd <i class="replaceable"><tt>PID</tt></i></tt></b>
-ausführen wobei Sie die <i class="replaceable"><tt>PID</tt></i> aus dem <span class="application">smbstatus</span> 
+Wenn Sie Kenntnisse in einer Assembler-Sprache haben, führen Sie ein <b class="command">disass</b>
+Kommando zu der Routine hinzu, in der das Problem auftrat (wenn es in einer Library-Routine war,
+disassemblieren Sie die Routine, die sie aufgerufen hat), und versuchen Sie auszuarbeiten, an welcher 
+Stelle das Problem liegt, indem Sie sich den Code ansehen. Selbst wenn Sie keine Kenntnisse in 
+Assembler-Programmierung haben, fügen Sie diese Information dem Report zu, dies kann sehr hilfreich sein.
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2979814"></a>Sich an einen laufenden Prozess anschließen</h2></div></div><div></div></div><p>
+Leider lassen es einige UNIXes (zum Teil auch einige Linux-Kernel) nicht zu, 
+einen Coredump zu erstellen, wenn der Prozess die UID ändert (was smbd oft tut).
+Um dies dennoch zu debuggen, könnten Sie versuchen, sich in den laufenden Prozess 
+einzuklinken, indem Sie <b class="userinput"><tt>gdb smbd <i class="replaceable"><tt>PID</tt></i></tt></b>
+ausführen, wobei Sie die <i class="replaceable"><tt>PID</tt></i> aus dem <span class="application">smbstatus</span> 
 entnehmen können.
-Anschließend verwenden Sie das <b class="command">c</b> Kommando um fortzufahren und um zu versuchen 
-den Core Dump mittels des Clients zu erzeugen. Der Debugger sollte den Fehler erfassen und ihnen 
-mitteilen wo er auftrat.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2976592"></a>Patches</h2></div></div><div></div></div><p>
-<a class="indexterm" name="id2976602"></a>
-<a class="indexterm" name="id2976611"></a>
-Die beste Art von Bug Reports sind die die bereits einen Fix beinhalten! Wenn Sie uns patches 
-schicken verwenden Sie bitte das <b class="userinput"><tt>diff -u</tt></b> Format wenn ihre Version von diff 
+Anschließend verwenden Sie das <b class="command">c</b> Kommando, um fortzufahren und um zu versuchen,
+den Coredump mittels des Clients zu erzeugen. Der Debugger sollte den Fehler erfassen und Ihnen 
+mitteilen, wo er auftrat.
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2979866"></a>Patches</h2></div></div><div></div></div><p>
+<a class="indexterm" name="id2979876"></a>
+<a class="indexterm" name="id2979885"></a>
+Die beste Art von Bug-Reports sind die, die bereits einen Fix beinhalten! Wenn Sie uns Patches 
+schicken, verwenden Sie bitte das <b class="userinput"><tt>diff -u</tt></b>-Format, wenn ihre Version von diff 
 dies bereitstellt, ansonsten verwenden Sie bitte <b class="userinput"><tt>diff -c4</tt></b>.
-Stellen Sie sicher dass Sie ihr diff gegen eine saubere Version des Source Codes machen 
-und lassen Sie uns exakt wissen welche Version Sie verwenden.
+Stellen Sie sicher, dass Sie ihr diff gegen eine saubere Version des Source-Codes machen 
+und lassen Sie uns exakt wissen, welche Version Sie verwenden.
 </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="problems.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="troubleshooting.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="Appendixes.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 34. Analyse und Lösung von Problemen mit Samba </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Part VI. Anhang</td></tr></table></div></body></html>

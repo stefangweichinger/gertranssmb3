@@ -1,8 +1,8 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 22. Fortgeschrittenes Netzwerk-Management</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="winbind.html" title="Chapter 21. Winbind: Benutzung von Domänenkonten"><link rel="next" href="PolicyMgmt.html" title="Chapter 23. System and Account Policies"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 22. Fortgeschrittenes Netzwerk-Management</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="winbind.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="PolicyMgmt.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="AdvancedNetworkManagement"></a>Chapter 22. Fortgeschrittenes Netzwerk-Management</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Stefan</span> <span class="othername">G.</span> <span class="surname">Weichinger</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:monitor@oops.co.at">monitor@oops.co.at</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">April 3 2003</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="AdvancedNetworkManagement.html#id2954013">Eigenschaften und Vorzüge</a></dt><dt><a href="AdvancedNetworkManagement.html#id2954052">Server-Fernwartung</a></dt><dt><a href="AdvancedNetworkManagement.html#id2954196">Desktop-Fernwartung</a></dt><dd><dl><dt><a href="AdvancedNetworkManagement.html#id2954214">Fernwartung von NoMachine.Com</a></dt></dl></dd><dt><a href="AdvancedNetworkManagement.html#id2954519">"Magie" von Netzwerk-Anmelde-Skripten</a></dt><dd><dl><dt><a href="AdvancedNetworkManagement.html#id2954797">Hinzufügen von Druckern ohne Benutzer-Eingriff</a></dt></dl></dd></dl></div><p>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 22. Fortgeschrittenes Netzwerk-Management</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="winbind.html" title="Chapter 21. Winbind: Benutzung von Domänenkonten"><link rel="next" href="PolicyMgmt.html" title="Chapter 23. System and Account Policies"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 22. Fortgeschrittenes Netzwerk-Management</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="winbind.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="PolicyMgmt.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="AdvancedNetworkManagement"></a>Chapter 22. Fortgeschrittenes Netzwerk-Management</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Stefan</span> <span class="othername">G.</span> <span class="surname">Weichinger</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:monitor@oops.co.at">monitor@oops.co.at</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">April 3 2003</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="AdvancedNetworkManagement.html#id2956958">Eigenschaften und Vorzüge</a></dt><dt><a href="AdvancedNetworkManagement.html#id2956997">Server-Fernwartung</a></dt><dt><a href="AdvancedNetworkManagement.html#id2957138">Desktop-Fernwartung</a></dt><dd><dl><dt><a href="AdvancedNetworkManagement.html#id2957156">Fernwartung von NoMachine.Com</a></dt></dl></dd><dt><a href="AdvancedNetworkManagement.html#id2957450">"Magie" von Netzwerk-Anmelde-Skripten</a></dt><dd><dl><dt><a href="AdvancedNetworkManagement.html#id2957728">Hinzufügen von Druckern ohne Benutzer-Eingriff</a></dt></dl></dd></dl></div><p>
 Dieser Abschnitt dokumentiert Randthemen, die sehr wichtig für Netzwerkadministratoren sind,
 die die Zugriffskontrolle auf Netzwerk-Ressourcen verbessern wollen, die Benutzerumgebung
 automatisieren, und ihr Leben ein wenig erleichtern wollen.
-</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2954013"></a>Eigenschaften und Vorzüge</h2></div></div><div></div></div><p>
+</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2956958"></a>Eigenschaften und Vorzüge</h2></div></div><div></div></div><p>
 Oft kann der Unterschied zwischen einer funktionierenden Netzwerkumgebung und einer als
 gut wahr- und angenommenen am Besten durch die <span class="emphasis"><em>Kleinigkeiten</em></span>
 gemessen werden, die alles noch harmonischer arbeiten lassen. Eine Schlüsselrolle jeder
@@ -12,41 +12,41 @@ Verfügung zu stellen, genauso wie andere "Hausarbeiten", die helfen, verlässlich
 Netzwerk-Betrieb zu erreichen.
 </p><p>
 Dieses Kapitel präsentiert Informationen zu jedem dieser Bereiche. Sie wurden hier, und
-nicht in anderen Kapiteln, plaziert, um das Nachschlagen zu erleichtern.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2954052"></a>Server-Fernwartung</h2></div></div><div></div></div><p>&#8220;<span class="quote">Wie bekomme ich `User Manager' und `Server Manager'?</span>&#8221;</p><p>
-<a class="indexterm" name="id2954070"></a>
-<a class="indexterm" name="id2954079"></a>
-<a class="indexterm" name="id2954087"></a>
-Da ich ja keinen <span class="application">NT4 Server</span> kaufen muß, wie bekomme ich den
+nicht in anderen Kapiteln, platziert, um das Nachschlagen zu erleichtern.
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2956997"></a>Server-Fernwartung</h2></div></div><div></div></div><p>&#8220;<span class="quote">Wie bekomme ich `User Manager' und `Server Manager'?</span>&#8221;</p><p>
+<a class="indexterm" name="id2957015"></a>
+<a class="indexterm" name="id2957024"></a>
+<a class="indexterm" name="id2957032"></a>
+Da ich ja keinen <span class="application">NT4 Server</span> kaufen muss, wie bekomme ich den
 `User Manager for Domains' und den `Server Manager'?
 </p><p>
-<a class="indexterm" name="id2954111"></a>
+<a class="indexterm" name="id2957053"></a>
 Microsoft vertreibt eine Version dieser Tools namens <tt class="filename">Nexus.exe</tt>, zur
 Installation auf <span class="application">Windows 9x/Me</span>-Systemen. Dieses Set enthält:
 </p><div class="itemizedlist"><ul type="disc"><li>Server Manager</li><li>User Manager for Domains</li><li>Event Viewer</li></ul></div><p>
 Laden Sie die Archivdatei von <a href="ftp://ftp.microsoft.com/Softlib/MSLFILES/NEXUS.EXE" target="_top">ftp://ftp.microsoft.com/Softlib/MSLFILES/NEXUS.EXE.</a>
 </p><p>
-<a class="indexterm" name="id2954168"></a>
+<a class="indexterm" name="id2957111"></a>
 Die <span class="application">Windows NT 4.0</span> Version des `User Manager for 
 Domains' und `Server Manager' sind via ftp bei Microsoft erhältlich <a href="ftp://ftp.microsoft.com/Softlib/MSLFILES/SRVTOOLS.EXE" target="_top">ftp://ftp.microsoft.com/Softlib/MSLFILES/SRVTOOLS.EXE</a>.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2954196"></a>Desktop-Fernwartung</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2957138"></a>Desktop-Fernwartung</h2></div></div><div></div></div><p>
 Es gibt eine Reihe von verfügbaren Desktop-Fernwartungs-Lösungen, die von gratis bis
 teuer reichen. Lassen Sie sich davon nicht abhalten. Manchmal ist die teuerste Lösung
 die kosten-effektivste. In jedem Fall müssen Sie Ihre eigenen Schlüsse ziehen, was die
 beste Lösung für Ihr Netzwerk ist.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2954214"></a>Fernwartung von NoMachine.Com</h3></div></div><div></div></div><p>
-	<a class="indexterm" name="id2954225"></a>
-	Folgende Informationen wurden auf der Samba mailing list am 3.4.2003, um 23:33:50 GMT
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2957156"></a>Fernwartung von NoMachine.Com</h3></div></div><div></div></div><p>
+	<a class="indexterm" name="id2957168"></a>
+	Folgende Informationen wurden auf der Samba Mailing list am 3.4.2003, um 23:33:50 GMT
 	gepostet. Sie werden in abgewandelter Form präsentiert (mit fehlenden Autor-Details
 	wegen Datenschutz).
 	Die gesamte Antwort wird (bis auf ein paar Kommentare) gezeigt.
 	</p><p>&#8220;<span class="quote">
 		Ich habe einen wunderbaren Linux/Samba-Server als PDC laufen. Jetzt würde ich gerne
-		Fernwartungs-Funktionen hinzufügen, sodaß Benutzer sich am System anmelden, und ihren
+		Fernwartungs-Funktionen hinzufügen, sodass Benutzer sich am System anmelden, und ihren
 		Desktop von zuhause aus, oder aus dem Ausland erreichen können.		
 		</span>&#8221;</p><p>&#8220;<span class="quote">
 		Gibt es eine Möglichkeit, dies zu erreichen? Brauche ich einen Windows Terminal Server?
-		Muß ich so konfigurieren, daß er Domänen-Mitglied ist, oder ein BDC, PDC? Gibt es
+		Muss ich so konfigurieren, dass er Domänen-Mitglied ist, oder ein BDC, PDC? Gibt es
 		irgendwelche hacks für Windows XP, um Fernzugriff zu aktivieren, auch wenn der Rechner
 		in einer Domäne ist?
 		</span>&#8221;</p><p>
@@ -59,14 +59,14 @@ beste Lösung für Ihr Netzwerk ist.
 	</p><p>
 	Remote X ist bei weitem nicht neu, aber was hier erreicht wurde, ist eine neue Art von
 	Kompressions- und Caching-Technologie, die diese Software sogar über langsame 
-	Modem/ISDN-Strecken ausreichend schnell laufen läßt.
+	Modem/ISDN-Strecken ausreichend schnell laufen lässt.
 	</p><p>
 	Ich konnte ihre (öffentliche) RedHat-Maschine in Italien "testfahren", über eine
 	belastete Internet-Verbindung, mit aktivierten Thumbnails im KDE Konqueror, welcher
 	unverzüglich auf &#8220;<span class="quote">mouse-over</span>&#8221; ansprang. Von innerhalb dieser (remote X)
 	Sitzung startete ich eine rdesktop-Sitzung auf eine weitere Windows XP Maschine.
 	Um die Performance zu testen, spielte ich Pinball. Ich bin stolz, sagen zu dürfen,
-	daß ich beim ersten Versuch 631750 Punkte erreichte.
+	dass ich beim ersten Versuch 631750 Punkte erreichte.
 	</p><p>
 	NX arbeitet in meinem LAN besser als die anderen &#8220;<span class="quote">reinen</span>&#8221; Verbindungsarten,
 	die ich von Zeit zu Zeit benutze: TightVNC, rdesktop oder Remote X.
@@ -83,7 +83,7 @@ beste Lösung für Ihr Netzwerk ist.
 	</p><p>
 	Einfach den kostenlosen Client downloaden (verfügbar für Red Hat, SuSE, Debian
 	und Windows) und innerhalb 5 Minuten geht es los (es müssen allerdings erst
-	die Zugangsdaten gesendet werden, weil Sie einen vollen UNIX-account auf deren
+	die Zugangsdaten gesendet werden, weil Sie einen vollen UNIX-Account auf deren
 	testdrive.nomachine.com-Box erhalten).
 	</p><p>
 	Nomachine plant die Ausbaustufe, wo Sie NX-Applikations-Server als Cluster betreiben können,
@@ -91,9 +91,9 @@ beste Lösung für Ihr Netzwerk ist.
 	die transparent laufen (Anwendungen können sogar auf einem anderen NX-Knoten laufen, aber
 	vorgeben, auf demselben Knoten zu sein wie der, an dem sich der Benutzer angemeldet hat,
 	weil es im selben Fenster angezeigt wird. Sie können sie auch full-screen ausführen, und
-	nach kurzer Zeit vergessen Sie überhaupt, daß es eine Remote-Session ist).
+	nach kurzer Zeit vergessen Sie überhaupt, dass es eine Remote-Session ist).
 	</p><p>
-	Nun das Beste am Schluß: All die Kerntechnologien zur Kompression und zum Caching
+	Nun das Beste am Schluss: All die Kerntechnologien zur Kompression und zum Caching
 	werden unter der GPL veröffentlicht, und sind als Sourcecode für jeden verfügbar,
 	der darauf aufbauen will! Diese Technologien funktionieren, wenn auch nur von der
 	Befehlszeile aus (und sehr unpraktisch zu gebrauchen, um eine voll funktionsfähige
@@ -101,7 +101,7 @@ beste Lösung für Ihr Netzwerk ist.
 	</p><p>
 	Um Ihre Fragen zu beantworten:	
 	</p><div class="itemizedlist"><ul type="disc"><li><p>
-		Sie müssen keinen Terminal-Server installieren; XP hat RDP-Unterstüzunng integriert.	
+		Sie müssen keinen Terminal-Server installieren; XP hat RDP-Unterstüzung integriert.	
 		</p></li><li><p>
 		NX ist viel billiger als Citrix  und vergleichbar in der Performance, wenn
 		nicht schneller.
@@ -109,7 +109,7 @@ beste Lösung für Ihr Netzwerk ist.
 		Sie müssen XP nicht hacken  es funktioniert einfach.
 		</p></li><li><p>
 		Sie melden sich an der XP-Box transparent aus der Ferne an (und ich glaube, es gibt
-		keinen Anlaß, etwas zu ändern, um eine Verbindung zu bekommen, sogar, wenn die
+		keinen Anlass, etwas zu ändern, um eine Verbindung zu bekommen, sogar, wenn die
 		Authentifikation an einer Domäne erfolgt).
 		</p></li><li><p>
 		Die NX-Kern-Technologien sind alle Open Source und unter der GPL 
@@ -120,7 +120,7 @@ beste Lösung für Ihr Netzwerk ist.
 		NoMachine ermutigt und unterstützt OSS/Free Software-Implementierungen auch
 		für ein solches Frontend, sogar wenn es für sie Konkurrenz bedeutet (sie haben
 		dies sogar in den Entwickler-Listen für LTSP, KDE und GNOME geschrieben).		
-		</p></li></ul></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2954519"></a>"Magie" von Netzwerk-Anmelde-Skripten</h2></div></div><div></div></div><p>
+		</p></li></ul></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2957450"></a>"Magie" von Netzwerk-Anmelde-Skripten</h2></div></div><div></div></div><p>
 Es gibt mehrere Möglichkeiten, um eine angepasste Konfiguration der Netzwerk-Start-Umgebung zu schaffen.
 </p><div class="itemizedlist"><ul type="disc"><li>Kein Anmelde-Skript.</li><li>Simples und universelles Anmelde-Skript, das für alle Benutzer verwendet wird.</li><li>Verwendung eines von Bedingungen abhängigen Skripts, das anhängig von Benutzer- oder Gruppen-Attributen angewendet wird.</li><li>Anwendung von Samba's preexec- und postexec-Funktionen beim Zugriff auf die NETLOGON-Freigabe,
 	um ein angepasstes Anmelde-Skript zu generieren und auszuführen.</li><li>Verwendung eines Tools wie KixStart.</li></ul></div><p>
@@ -130,7 +130,7 @@ und <tt class="filename">ntlogon</tt>.
 </p><p>
 Die folgenden listings stammen aus dem Verzeichnis <tt class="filename">genlogon</tt>.
 </p><p>
-<a class="indexterm" name="id2954615"></a>
+<a class="indexterm" name="id2957546"></a>
 Dies ist die Datei <tt class="filename">genlogon.pl</tt>:
 
 <font color="red">&lt;smbfile&gt;
@@ -212,8 +212,8 @@ Dies ist die Datei <tt class="filename">genlogon.pl</tt>:
 </p><p>
 Diejenigen, die sich ein weiter ausgeführtes oder mächtigeres Anmeldungs-System wünschen, mögen
 folgende Seiten aufsuchen:
-</p><div class="itemizedlist"><ul type="disc"><li><a href="http://www.craigelachie.org/rhacer/ntlogon" target="_top">http://www.craigelachie.org/rhacer/ntlogon</a></li><li><a href="http://www.kixtart.org" target="_top">http://www.kixtart.org</a></li></ul></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2954797"></a>Hinzufügen von Druckern ohne Benutzer-Eingriff</h3></div></div><div></div></div><p>
-<a class="indexterm" name="id2954810"></a>
+</p><div class="itemizedlist"><ul type="disc"><li><a href="http://www.craigelachie.org/rhacer/ntlogon" target="_top">http://www.craigelachie.org/rhacer/ntlogon</a></li><li><a href="http://www.kixtart.org" target="_top">http://www.kixtart.org</a></li></ul></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2957728"></a>Hinzufügen von Druckern ohne Benutzer-Eingriff</h3></div></div><div></div></div><p>
+<a class="indexterm" name="id2957740"></a>
 Drucker können automatisch während des Anmeldevorgangs hinzugefügt werden, durch Benutzung von:
 
 </p><pre class="screen">
