@@ -375,17 +375,28 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<sect2>
 	<title>More Complex CUPS &smb.conf; Settings</title>
 	#
-	<title>Weitere, komplexere CUPS &smb.conf; Settings</title>
-##
+	<title>Weitere, komplexere CUPS &smb.conf; Einstellungen</title>
+
 	<para>
 	<link linkend="overridesettings">Next configuration</link> is a slightly more complex printing-related setup
 	for &smb.conf;. It enables general CUPS printing
 	support for all printers, but defines one printer share, which is set
 	up differently. 
 	</para>
+	#
+	<para>
+	<link linkend="overridesettings">Die nächste Konfiguration ist
+	ein klein wenig komplexeres druckrelevantes Setup für &smb.conf;.
+	Es bietet einen generellen CUPS Support für alle Drucker,
+	definiert aber einen speziellen Drucker mit
+	unterschiedlichen Einstellungen.
+	</para>
+
 
 	<para><smbconfexample id="overridesettings">
 	<title>Overriding global CUPS settings for one printer</title>
+	#
+	<title>Überschreiben der globalen CUPS Einstellunge für einen Drucker</title>
 	<smbconfsection>[global]</smbconfsection>
 	<smbconfoption><name>printing</name><value>cups</value></smbconfoption>
 	<smbconfoption><name>printcap name</name><value>cups</value></smbconfoption>
@@ -401,7 +412,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<smbconfoption><name>printer admin</name><value>root, @ntadmins</value></smbconfoption>
 
 	<smbconfsection>[special_printer]</smbconfsection>
-	<smbconfoption><name>comment</name><value>A special printer with his own settings</value></smbconfoption>
+	<smbconfoption><name>comment</name><value>Ein spezieller Drucker mit seinen Einstellungen</value></smbconfoption>
 	<smbconfoption><name>path</name><value>/var/spool/samba-special</value></smbconfoption>
 	<smbconfoption><name>printing</name><value>sysv</value></smbconfoption>
 	<smbconfoption><name>printcap</name><value>lpstat</value></smbconfoption>
@@ -427,11 +438,33 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<smbconfoption><name>printing</name><value>sysv</value></smbconfoption> and
 	<smbconfoption><name>printcap</name><value>lpstat</value></smbconfoption>.
 	</para>
-	</sect2>
+	#
+	<para>
+	Diese spezielle Freigabe wurde nur zu Testzwecken angelegt. Es
+	schreibt keine Druckaufträge in Dateien. Es werden nur die von
+	Samba bekannten Jobparameter in die Datei
+	<filename>/tmp/smbprn.log</filename> geschrieben und die
+	Druckdatei gelöscht. Des weiteren ist der
+	<smbconfoption><name>printer admin</name></smbconfoption> dieser
+	Freigabe <quote>kurt</quote> (und nicht die
+	<quote>@ntadmins</quote> Gruppe), Gast Zugriff ist nicht erlaubt,
+	die Freigabe ist nicht in der Netzwerkumgebung zu sehen (Sie
+	müssen also wissen dass sie existiert) und der Zugriff wurde
+	nur für drei Rechner erlaubt. Um CUPS daran zu hindern für
+	diesen Drucker aktiv zu werden und dessen Aufträge abzuarbeiten
+	müssen wir folgendes einstellen:
+	<smbconfoption><name>printing</name><value>sysv</value></smbconfoption>
+	und
+        <smbconfoption><name>printcap</name><value>lpstat</value></smbconfoption>.
+        </para>
+        </sect2>
+        </sect2>
 </sect1>
 
 <sect1>
 	<title>Advanced Configuration</title>
+	#
+	<title>Erweiterte Konfiguration</title>
 
 	<para>
 	Before we delve into all the configuration options, let us clarify a few
@@ -439,10 +472,22 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	correctly</emphasis>. This frequently doesn't happen. Legacy systems
 	or small business LAN environments often lack design and good housekeeping.
 	</para>
+	#
+	<para>
+	Bevor wir alle Konfigurationseinstellungen erforschen, lassen
+	Sie uns ein paar Punkte klären.
+	<emphasis>Drucken im Netzwerk will gut organisiert und korrekt
+	konfiguriert sein</emphasis>. Das ist oft nicht der Fall.
+	Älteren oder kleineren LAN Umgebungen fehlt es oft an Design und
+	guter Organisation.
+	</para>
+
 
 
 	<sect2>
 	<title>Central Spooling vs. <quote>Peer-to-Peer</quote> Printing</title>
+	#
+	<title>Zentrales Spooling vs. <quote>Peer-to-Peer</quote> Drucken</title>
 
 
 	<para>
@@ -461,10 +506,29 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	printer(s) in the correct order.
 	</para>
 	</sect2>
-
+	#
+	<para>
+<indexterm><primary>spooling</primary><secondary>central</secondary></indexterm>
+<indexterm><primary>spooling</primary><secondary>peer-to-peer</secondary></indexterm>
+	Viele kleinere Büro oder Heimnetzwerke, genauso wie schlecht
+	organisierte größere Umgebungen, erlauben jeden Client einen
+	direkten Zugriff auf die verfügbaren Netzwerkdrucker.
+	Das ist generell schlecht, denn dann blockiert ein
+	Clientzugriff zum Drucker wenn ein andere Client bereits druckt.
+	Es kann dann beim ersten Client zu Hängern in der Anwendung
+	kommt wenn diese den Druckjob abschicken möchte. Es gibt auch
+	häufig Beschwerden wenn die Ausdrucke von verschiedenen Jobs
+	vermischt werden. Ein besseres Konzept ist die Benutzung von
+	Print Servern. Dieses leitet alle Aufträge durch ein zentrales
+	System welches sofort reagiert wenn mehrere Clients
+	gleichzeitig Druckaufträge absetzen und diese in der korrekten
+	Reihenfolge an den/die Drucker weiterleitet.
+	</para>
+	</sect2>
 	<sect2>
 	<title>Raw Print Serving &smbmdash; Vendor Drivers on Windows Clients</title>
-
+	#
+	<title>Raw Print Dienst &smbmdash; Treiber von Druckerherstellern auf Windows Clients</title>
 
 	<para>
 	<indexterm><primary>spooling-only</primary></indexterm>
@@ -477,6 +541,18 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	device. Here a native (vendor-supplied) Windows printer driver needs to
 	be installed on each and every client for the target device.
 	</para>
+	#
+	<indexterm><primary>"raw" printing</primary></indexterm>
+	Die meisten ursprünglichen UNIX Printserver haben für die Arbeit
+	mit den Windows Clients von Samba ein relativ einfaches Setup.
+	Deren einzige Aufgabe ist das managen von <quote>simplen</quote>
+	Spoolingjobs welche von Samba übergeben werden. Dies bedeutet
+	dass die Windowsclients die Druckdateien in dem Format aufbereiten
+	müssen damit diese passend zum Ausgabegerät weitergegeben werden können.
+	Hierzu ist ein nativer (Herstellereigener) Windows-Druckertreiber
+	für den betreffenden Drucker auf allen betreffenden
+	Arbeitsplätzen zu installieren.
+	</para>
 
 	<para>
 	It is possible to configure CUPS, Samba and your Windows clients in the
@@ -488,18 +564,42 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	this. In this case, CUPS will not do any print file format conversion
 	work.
 	</para>
-
+#
+	<para>
+	Es ist auch möglich CUPS, Samba und Ihre Windowsclients so zu
+	konfigurieren damit diese auch die ursprüngliche und einfache
+	Art zum drucken verwenden. Wurden CUPS Drucker für den RAW
+	Druckmodus konfiguriert, liegt es allein in der Verantwortung des
+	Samba-Clients die Druckdateien fertig aufzubereiten. Die Datei
+	muss in dem Format verschickt werden, damit diese direkt zum
+	Drucker ausgeliefert werden kann. Clients müssen dazu den
+	Herstellereigenen Druckertreiber verwenden. In diesem Fall wird
+	CUPS keinerlei Konvertierung der Druckdatei durchführen.
+	</para>
 	<para>
 	The easiest printing configuration possible is to use raw print-through.
 	This is achieved by installation of the printer as if it was physically
 	attached to the Windows client. You then redirect output to a raw network
 	print queue. The following procedure may be followed to achieve this:
 	</para>
-
+#
+	<para>
+	Die möglichst einfachste Druckerkonfiguration ist die, dass RAW-Drucken 
+	zu benutzen. Dies wird dadurch erreicht das der Drucker so
+	installiert wird als wenn er lokal am Windows-Client
+	angeschlossen wäre. 
+	Anschließend wird die Ausgabe zu einer Raw-Netzwerkdrucker-Queue umgeleitet.
+	Die folgende Beschreibung muss eingehalten werden um dass zu
+	ermöglichen:
+	</para>
 	<procedure>
 		<step><para>
 		Edit <filename>/etc/cups/mime.types</filename> to uncomment the line
 		near the end of the file that has:
+		#
+		<step><para>
+		Entfernen Sie ungefähr am Ende der Datei <filename>/etc/cups/mime.types</filename> 
+		das Kommentarzeichen in der Zeile mit:
 <screen>
 #application/octet-...
 </screen>
@@ -508,12 +608,25 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 		<step><para>
 		Do the same for the file <filename>/etc/cups/mime.convs</filename>.
 		</para></step>
+		#
+		<step><para>
+		Machen Sie das selbe in der Datei <filename>/etc/cups/mime.convs</filename>.
+		</para></step>
 
 		<step><para>
 		Add a raw printer using the Web interface. Point your browser at
 		<constant>http://localhost:631</constant>. Enter Administration, add
 		the printer following the prompts. Do not install any drivers for it.
 		Choose Raw. Choose queue name <constant>Raw Queue</constant>.
+		</para></step>
+		#
+		<step><para>
+		Fügen Sie über das Webinterface einen RAW-Drucker hinzu. 
+		Öffnen Sie mit Ihrem Browser die Seite <constant>http://localhost:631</constant>.
+		Folgen Sie den Anweisungen zum Hinzufügen von Druckern im Bereich der
+		Administration. Installieren Sie keinen Treiber dafür,
+		sondern wählen die RAW-Option. Bezeichnen Sie den
+		Queue-Name mit <constant>Raw Queue</constant>.
 		</para></step>
 
 		<step><para>
@@ -523,9 +636,25 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 		<smbconfoption><name>printing</name><value>CUPS</value></smbconfoption>, plus
 		<smbconfoption><name>printcap</name><value>CUPS</value></smbconfoption>.
 		</para></step>
+		#
+		<step><para>
+		In der Datei &smb.conf; fügen Sie in der
+		<constant>[printers]</constant> Sektion die Zeile
+		<smbconfoption><name>use client driver</name><value>Yes</value></smbconfoption>,
+		und in der <constant>[global]</constant> Sektion die Zeilen
+		<smbconfoption><name>printing</name><value>CUPS</value></smbconfoption>,
+		und
+		<smbconfoption><name>printcap</name><value>CUPS</value></smbconfoption>
+		hinzu.
+		</para></step>
 
 		<step><para>
 		Install the printer as if it is a local printer. i.e.: Printing to <constant>LPT1:</constant>.
+		</para></step>
+		#
+		<step><para>
+		Installieren Sie den Drucker unter Windows als wäre es
+		ein lokaler Drucker. In etwa so: Drucken an <constant>LPT1:</constant>.  
 		</para></step>
 
 		<step><para>
@@ -535,16 +664,34 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 		Here, the name <constant>raw_q</constant> is the name you gave the print
 		queue in the CUPS environment.
 		</para></step>
+		#
+		<step><para>
+		Gehen Sie in die Druckerkonfiguration unter
+		<guimenu>Erweitert</guimenu>und erstellen einen
+		<constant>Lokalen Anschluss</constant>. Dieser wird mit
+		der RAW-Druckerqueue verbunden, welche Sie wie oben
+		beschrieben angelegt haben. Beispiel: <constant>\\server\raw_q</constant>.
+		In diesem Beispiel ist der Name
+		<constant>raw_q</constant> der Name den Sie in CUPS für
+		diese Druckqueue vergeben haben.
+		</para></step>
 	</procedure>
 
 	</sect2>
 
 	<sect2>
 	<title>Installation of Windows Client Drivers</title>
+	#
+	<title>Installation der Windows-Client-Treiber</title>
 
 	<para>
 	The printer drivers on the Windows clients may be installed
 	in two functionally different ways:
+	</para>
+	#
+	<para>
+	Die Druckertreiber der Windows-Clients kann auf zwei
+	unterschiedlichen Wegen installiert werden:
 	</para>
 
 	<itemizedlist>
@@ -552,6 +699,12 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	one by one; this yields the old <emphasis>LanMan</emphasis> style
 	printing and uses a <filename>\\sambaserver\printershare</filename>
 	type of connection.</para></listitem>
+	#
+	<listitem><para>Manuelle Installation der Treiber lokal an jedem
+	Client, einer nach dem anderen; das entspricht der alten
+	<emphasis>LanMan</emphasis> Art zu drucken und benutzt den
+	<filename>\\sambaserver\printershare</filename> Verbindungstyp.
+	<para></listitem>
 
 
 	<listitem><para>
@@ -563,14 +716,31 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	clients use the <emphasis>SPOOLSS/MS-RPC</emphasis>
 	type printing calls.</para></listitem>
 	</itemizedlist>
+	#
+	<indexterm><primary>point 'n' print</primary></indexterm>
+			Vorbereiten und Ablegen der Treiber (für den
+			späteren Download) auf den Samba-Print-Server.
+			Dies ermöglicht den Clients die Treiber semi-automatisch 
+	über <quote>Point'n'Print</quote> beim ersten Zugriff
+	installiert zu bekommen. Mit dieser Methode verwenden die
+	Clients die <emphasis>SPOOLSS/MS-RPC</emphasis> Drucker-Calls.
+	</para></listitem>
+	</itemizedlist>
+
 
 	<para>
 	The second method is recommended for use over the first.
+	</para>
+	#
+	<para>
+	Die zweite Methode ist der ersten vorzuziehen.
 	</para>
 	</sect2>
 
 	<sect2 id="cups-raw">
 	<title>Explicitly Enable <quote>raw</quote> Printing for <emphasis>application/octet-stream</emphasis></title>
+	#
+	<title>Explizites Einstellen von<quote>raw</quote> Drucker für <emphasis>application/octet-stream</emphasis></title>
 
 
 	<para>
@@ -582,6 +752,18 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	that it should allow <quote>raw</quote> printing of deliberate (binary) file
 	formats. The CUPS files that need to be correctly set for RAW mode
 	printers to work are:
+	</para>
+	#
+	<para>
+	<indexterm><primary>application/octet-stream</primary></indexterm>
+	<indexterm><primary>raw printing</primary></indexterm>
+	<indexterm><primary>MIME</primary><secondary>raw</secondary></indexterm>
+	Wenn Sie die erste Option verwenden (Treiber werden manuell auf
+	den Clients installiert) müssen Sie auf eine Einstellung achten:
+	CUPS muss darüber informiert werden, dass es beim <quote>raw</quote>
+	Drucken absichtlich binary Dateien erlauben soll.
+	Um RAW-Mode Drucken zu ermöglichen sind die folgenden CUPS
+	Dateien richtig einzustellen:
 	</para>
 
 	<itemizedlist>
@@ -615,14 +797,51 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	printing, you may encounter the dreaded <computeroutput>Unable to
 	convert file 0</computeroutput> in your CUPS error_log file. 
 	</para>
+	#
+	<para>
+	Beide enthalten Einträge (jeweils am Ender der Dateien) bei
+	denen die Kommentarzeichen entfernt werden müssen um den
+	RAW-Modus zu erlauben.
+	Stellen Sie sicher, dass in der Datei <filename>/etc/cups/mime.types</filename>
+	diese Zeile vorhanden ist:
+
+	<filterline>
+	 application/octet-stream
+	</filterline>
+
+	<indexterm><primary>/etc/cups/mime.convs</primary></indexterm>
+	<indexterm><primary>/etc/cups/mime.types</primary></indexterm>
+
+	Die Datei <filename>/etc/cups/mime.convs</filename>
+	muss folgendes enthalten:
+
+	<indexterm><primary>application/vnd.cups-raw</primary></indexterm>
+
+	<filterline>
+		application/octet-stream   application/vnd.cups-raw   0   - 
+	</filterline>
+
+	Sind diese 2 Dateien nicht korrekt für das RAW-Drucken der
+	Windows-Clients konfiguriert, können Sie die gefürchtete Meldung 
+	 <computeroutput>Unable to convert file 0</computeroutput> in
+	Ihrer CUPS error_log Datei finden.
+	</para>
 
 	<note><para>Editing the <filename>mime.convs</filename> and the
 	<filename>mime.types</filename> file does not
 	<emphasis>enforce</emphasis> <quote>raw</quote> printing, it only
 	<emphasis>allows</emphasis> it.
 	</para></note>
+	#
+	<note><para>Das Ändern von <filename>mime.convs</filename> und 
+	<filename>mime.types</filename>
+	<emphasis>erzwingt</emphasis>nicht das <quote>raw</quote>
+	Drucken, es <emphasis>erlaubt</emphasis> es nur.
+	</para></note>
 
 	<formalpara><title>Background</title>
+	#
+	<formalpara><title>Hintergrund</title>
 
 
 	<para>
@@ -638,6 +857,24 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	try to convert them and passes them to the printer untouched (see the next
 	chapter for even more background explanations).
 	</para>
+	#
+	<para>
+	<indexterm><primary>application/octet-stream</primary></indexterm>
+	CUPS ist ein sichereres Drucksystem als die ursprünglichen
+	Drucksysteme, da es per default den Benutzern nicht erlaubt
+	absichtlich mögliche binäre Daten an das Drucksystem zu
+	übergeben. Dies könnte dazu missbraucht werden um eine <quote>Denial of
+	Service</quote> Attacke auf Ihre Drucker zu starten und damit
+	eine Menge Papier und Tinte/Toner zu verschwenden.
+	<quote>Unbekannte</quote> Daten werden von CUPS als
+	<parameter>MIME type: application/octet-stream</parameter>
+	markiert und nicht an die Drucker weitergeleitet. Per Default
+	können andere bekannte MIME-Types <quote>raw</quote> verschickt
+	werden. Daten mit <quote>raw</quote> zu verschicken bedeutet das
+	CUPS nicht versucht diese Daten zu konvertieren und leitet diese
+	unverändert weiter (Für genauere Hintergrunderläuterungen lesen
+	Sie bitte das nächste Kapitel).
+	</para>
 	</formalpara>
 
 	<para>
@@ -648,13 +885,30 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	of this chapter.
 	</para>
 	</sect2>
+	#
+	<para>
+	Das ist alles was Sie wissen müssen um mit der Kombination
+	CUPS/Samba <quote>raw</quote> Druckdateien von Windows Clients
+	mit lokal installierten Druckertreibern ausdrucken zu können.
+	Wenn Sie nicht an weitergehenden Informationen über die
+	erweiterten Möglichkeiten vom CUPS/Samba Drucken interessiert
+	sind, überspringen Sie einfach die verbleibenden Sektionen
+	dieses Kapitels.
+	</para>
+	</sect2>
 
 	<sect2>
 	<title>Driver Upload Methods</title>
+	<title>Treiber Upload Methoden</title>
 
 	<para>
 	This section describes three familiar methods, plus one new one, by which
 	printer drivers may be uploaded.
+	</para>
+	#
+	<para>
+	Diese Sektion beschreibt drei ähnliche Methoden, plus eine neu,
+	wie Printertreiber hinterlegt werden.
 	</para>
 
 	<para>
@@ -666,6 +920,19 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<quote>Point'n'Print</quote>), please refer to the previous chapter of this
 	HOWTO Collection. There you will find a description or reference to
 	three methods of preparing the client drivers on the Samba server:
+	</para>
+	#
+	<para>
+	<indexterm><primary>point 'n' print</primary></indexterm>
+	Möchten sie das MS-RPC Drucksystem verwenden, müssen erst die
+	Treiber auf dem Samba-Server
+	hinterlegen(<smbconfsection>[print$]</smbconfsection> share).
+	Für eine Beschreibung wie Druckertreiber am Samba-Host hinterlegt werden
+	(damit Windows-Clients diese per <quote>Point'n'Print</quote>
+	runterladen und benutzen können) schlagen Sie bitte in den
+	vorhergehenden Kapiteln dieser HOWTO Collection nach. Dort
+	finden Sie eine Beschreibung oder Referenz zu drei Methoden um
+	Client-Treiber am Sambaserver vorzubereiten.
 	</para>
 	<itemizedlist>
 		<listitem><para>
@@ -683,11 +950,34 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 			The Imprints Toolset
 	method.</para></listitem>
 	</itemizedlist>
+	#
+	<itemizedlist>
+		<listitem><para>
+	<indexterm><primary>Neue Drucker Asisstend</primary></indexterm>
+				Die GUI, <quote>Neue Drucker</quote>
+	<emphasis>upload-from-a-Windows-client</emphasis>
+	Methode.</para></listitem>
+
+	<listitem><para>Die Kommandozeilen, <quote>smbclient/rpcclient</quote>
+	upload-from-a-UNIX-workstation Methode.</para></listitem>
+
+
+	<listitem><para>
+	<indexterm><primary>imprints</primary></indexterm>
+			Die Imprints Toolkit	
+	Methode.</para></listitem>
+	</itemizedlist>
 
 	<para>
 	These three methods apply to CUPS all the same. A new and more
 	convenient way to load the Windows drivers into Samba is provided
 	if you use CUPS:
+	</para>
+	#
+	<para>
+	Diese drei Methoden sind für CUPS alle gleich. Es gibt einen neueren und
+	bequemeren Weg um Windows-Treiber für Samba hochzuladen wenn Sie
+	CUPS verwenden:
 	</para>
 
 
@@ -697,16 +987,31 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 				the <parameter>cupsaddsmb</parameter>
 	utility.</para></listitem>
 	</itemizedlist>
+	#
+	<itemizedlist>
+		<listitem><para>
+	<indexterm><primary>cupsaddsmb</primary></indexterm>
+				Das <parameter>cupsaddsmb</parameter>
+	Utility.</para></listitem>
+	</itemizedlist>
 
 	<para>
 	<command>cupsaddsmb</command> is discussed in much detail further below. But we first
 	explore the CUPS filtering system and compare the Windows and UNIX printing architectures.
+	</para>
+	#
+	<para>
+	<command>cupsaddsmb</command> wird weiter unter genauer
+	beschrieben. Aber zuerst erforschen wir das CUPS Filtersystem und
+	vergleichen die Windows und UNIX Druckerarchitekturen.
 	</para>
 	</sect2>
 </sect1>
 
 <sect1>
 	<title>Advanced Intelligent Printing with PostScript Driver Download</title>
+	#
+	<title>Erweitertes Intelligentes Drucken mit PostScript Treiber Download</title>
 
 
 	<para>
@@ -715,33 +1020,75 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	how to set up a <quote>dump</quote> printserver, that is, a server which is spooling
 	print-jobs <quote>raw</quote>, leaving the print data untouched.
 	</para>
+	#
+	<para>
+	<indexterm><primary>PostScript</primary><seealso>Ghostscript</seealso></indexterm>
+	Wir wissen bereits wie wir einen <quote>dummen</quote>
+	Druckserver aufsetzen. Ein Server der Druckaufträge
+	<quote>raw</quote> spooled und die Druckdaten nicht verändert.
+	</para>
 
 	<para>
 	Possibly you need to setup CUPS in a smarter way. The reasons could
 	be manifold:
 	</para>
+	#
+	<para>
+	Es ist auch möglich CUPS in eleganderer Weise zu konfigurieren.
+	Die Gründe können mannigfaltig sein:
+	</para>
+
 
 	<itemizedlist>
 	<listitem><para>Maybe your boss wants to get monthly statistics: Which
 	printer did how many pages? What was the average data size of a job?
 	What was the average print run per day? What are the typical hourly
 	peaks in printing? Which department prints how much?</para></listitem>
+	#
+	<itemizedlist>
+	<listitem><para> Vielleicht möchte Ihr Chef monatliche
+	Statistiken: Welcher Drucker druckt wieviele Seiten ?
+	Was war die durchschnittliche Größe der Druckaufträge ?
+	Wieviel wird im Durchschnitt pro Tag gedruck ?
+	Was sind die typischen Lastspitzen pro Stunde ?
+	Welche Abteilung druckt wieviel ?
+	</para></listitem>
 
 	<listitem><para>Maybe you are asked to setup a print quota system:
 	Users should not be able to print more jobs, once they have surpassed
 	a given limit per period.</para></listitem>
+	#
+	<listitem><para>Oder Sie werden gefragt ob fürs Drucken ein
+	Limit konfiguriert werden kann. Benutzer sollen nicht mehr
+	drucken können nachdem Sie ein gegebenes Limit in einem
+	bestimmten Zeitraum erreicht haben.
+	</para></listitem>
 
 	<listitem><para>Maybe your previous network printing setup is a mess
 	and must be re-organized from a clean beginning.</para></listitem>
+	#
+	<listitem><para>Oder Ihr vorhergehendes Netzwerk-Drucksystem ist
+	in Unordnung und muss nochmal neu organisiert werden.
+	</para></listitem>
 
 	<listitem><para>Maybe you have experiencing too many <quote>blue screens</quote>
 	originating from poorly debugged printer drivers running in NT <quote>kernel mode</quote>?</para></listitem>
 	</itemizedlist>
+	#
+	<listitem><para>Oder Sie erleben zu viele <quote>blue screens</quote>
+	durch schlechte Druckertreiber im NT <quote>kernel mode</quote>?</para></listitem> </itemizedlist>
 
 	<para>
 	These goals cannot be achieved by a raw print server. To build a
 	server meeting these requirements, you'll first need to learn about
 	how CUPS works and how you can enable its features.
+	</para>
+	#
+	<para>
+	Diese Ziele können nicht durch einen Raw-Druckserver erreicht
+	werden. Um einen Server für diese Aufgaben aufzusetzen, müssen
+	Sie erst verstehen wie CUPS arbeitet und wie Sie dessen
+	Möglichkeiten einsetzen können.
 	</para>
 
 	<para>
@@ -749,9 +1096,20 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	Windows and UNIX printing; then follows a description of the
 	CUPS filtering system, how it works and how you can tweak it.
 	</para>
+	#
+	<para>
+	Was nun folgt ist der Vergleich einiger fundamentaler Konzepte
+	für das drucken unter Windows und UNIX. Anschließend folgt eine
+	Beschreibung des Filter Systems von CUPS, wie es arbeitet und
+	wie Sie es nutzen können.
+	</para>
 
 	<sect2 id="gdipost">
 	<title>GDI on Windows -- PostScript on UNIX</title>
+	#
+	<sect2 id="gdipost">
+	<title>GDI bei Windows -- PostScript bei UNIX</title>
+
 
 
 	<para>
@@ -760,6 +1118,15 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	Network printing is one of the most complicated and error-prone
 	day-to-day tasks any user or administrator may encounter. This is
 	true for all OS platforms. And there are reasons for this.
+	</para>
+	#
+	<para>
+	<indexterm><primary>GDI</primary></indexterm>
+	<indexterm><primary>PostScript</primary></indexterm>
+	Das Drucken im Netzwerk ist eines der fehleranfälligsten und am
+	meisten kompliziertesten Arbeiten die dem Benutzer oder
+	Administrator begegnen. Das gilt für alle Plattformen.
+	Und es gibt Gründe dafür.
 	</para>
 
 
@@ -779,9 +1146,29 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	interpreters, and so on).
 	</para>
 	</sect2>
+	#
+	<para>
+	<indexterm><primary>PCL</primary></indexterm>
+	<indexterm><primary>PDL</primary></indexterm>
+	Sie können nicht erwarten alle Dateiformate einfach dem Drucker
+	hinzuwerfen und diese werden ausgedruckt. Es ist dazu nötig
+	in diesem Ablauf eine Konvertierung des Dateiformats durchzuführen.
+	Das Problem liegt darin dass es keinen allgemeingültigen
+	Standard der Druckdatei über alle Hersteller und Druckertypen
+	gibt. Da Postscript (Warenzeichen liegt bei Adobe) und, um
+	einen weiteren zu nennen, PCL (Warenzeichen liegt bei HP) unter
+	einem semi-offiziellen <quote>Standard</quote> entwickelt
+	werden sind Sie die am meisten genutzten PDLs Page Description
+	Languages (PDLs), es gibt aber nach wie vor viele weitere Hersteller mit eigenen
+	Entwicklungen (deren Gründe können nicht akzeptable Lizenzkosten
+	für den integrierten PostScript Interpreter o.ä. sein).
+	</para>
+	</sect2>
 
 	<sect2>
 	<title>Windows Drivers, GDI and EMF</title>
+	#
+	<title>Windows Treiber, GDI and EMF</title>
 
 
 	<para>
@@ -804,7 +1191,46 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	MetaFile (EMF). The EMF is processed by the printer driver and
 	converted to the printer-specific file format.
 	</para>
+	#
+	<para>
+	<indexterm><primary>GDI</primary></indexterm>
+	<indexterm><primary>EMF</primary></indexterm>
+	<indexterm><primary>WYSIWYG</primary></indexterm>
+	Im Windows OS wird die Arbeit der Dateikonvertierung durch den
+	Druckertreiber erledigt. Bei den Windows OS Plattformen steht
+	allen Applikationsprogrammierer zu Ihrer Unterstützung eine
+	eingebaute API zur Verfügung, das Graphical Device Interface
+	(GDI). Die ist Teil des Betriebssystems selbst und baut darauf
+	auf. Diese GDI wird benutzt als eine allgemeine und
+	kombinierte Grundlage für alle Windowsprogramme zum zeichnen von
+	Bildern, Schriften und Dokumenten <emphasis>am
+	Bildschirm</emphasis> aber auch für <emphasis>den
+	Ausdruck</emphasis> auf Papier. Daher können Entwickler von
+	Druckertreibern auf einer wohldefinierten GDI-Ausgabe für Ihre
+	Eingabe in ihren eigenen Treiber aufsetzen. WYSIWYG (<quote>What
+	You See Is What You Get</quote>) lässt sich daher relativ
+	einfach erreichen, da die Grafik Primitiven auf den Bildschirm
+	genauso wie die Objecte für den Ausdruck auf Papier aus einer
+	gemeinsamen Quelle stammen.
+	Diese Quelle, das GDI, erzeugt oft ein Dateiformat mit dem Namen
+	Enhanced MetaFile (EMF).
+	Das EMF wird durch den Druckertreiber bearbeitet und in das
+	Druckerspezifische Format konvertiert.
+	</para>
 
+	<note><para>
+	<indexterm><primary>PDF</primary></indexterm>
+	To the GDI foundation in MS Windows, Apple has chosen to
+	put paper and screen output on a common foundation for their
+	(BSD-UNIX-based, did you know?) Mac OS X and Darwin Operating
+	<indexterm><primary>X Window System</primary></indexterm>
+	<indexterm><primary>PostScript</primary></indexterm>
+	<indexterm><primary>PCL</primary></indexterm>
+	<indexterm><primary>Xprint</primary></indexterm>
+	Systems. Their <emphasis>Core Graphic Engine</emphasis> uses a
+	<emphasis>PDF</emphasis> derivative for all display work.
+	</para></note>
+	##
 	<note><para>
 	<indexterm><primary>PDF</primary></indexterm>
 	To the GDI foundation in MS Windows, Apple has chosen to
