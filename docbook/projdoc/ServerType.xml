@@ -104,14 +104,14 @@ Administratoren von Microsoft Netzwerken beziehen sich oft auf drei verschiedene
 </para>
 
 <itemizedlist>
-	<listitem><para>Domain Controller</para>
+	<listitem><para>Dömanen Controller</para>
 		<itemizedlist>
 			<listitem>Primary Domain Controller</listitem>
 			<listitem>Backup Domain Controller</listitem>
 			<listitem>ADS Domain Controller</listitem>
 		</itemizedlist>
 	</listitem>
-	<listitem><para>Domain Member Server</para>
+	<listitem><para>Domänen Mitgliedsserver</para>
 		<itemizedlist>
 			<listitem>Active Directory Domain Server</listitem>
 			<listitem>NT4 Style Domain Domain Server</listitem>
@@ -121,25 +121,24 @@ Administratoren von Microsoft Netzwerken beziehen sich oft auf drei verschiedene
 </itemizedlist>
 
 <para>
-The chapters covering Domain Control, Backup Domain Control and Domain Membership provide
-pertinent information regarding Samba configuration for each of these server roles.
-The reader is strongly encouraged to become intimately familiar with the information
-presented.
+Die Kapitel über Domänen Controller, Backup Domänen Controllern und Domänen Mitgliedschaft
+enthalten sachdienliche Informationen für die Samba Konfiguration für jeden dieser Serverrollen.
+Wir möchte den Leser ermutigen sich mit diesen Informationen vertraut zu machen.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Samba Security Modes</title>
+<title>Samba Sicherheitsmodi</title>
 
 
 <para>
 <indexterm><primary>Security Mode</primary></indexterm>
 <indexterm><primary>security</primary></indexterm>
-In this section the function and purpose of Samba's security
-modes are described. An accurate understanding of how Samba implements each security
-mode as well as how to configure MS Windows clients for each mode will significantly
-reduce user complaints and administrator heartache.
+In dieser Sektion werden die Funktionen und Zwecke der Samba Sicherheits Modi beschrieben.
+Es ist wichtig zu verstehen wie jede der Sicherheitsmöglichkeiten, die Samba bietet, arbeitet
+und wie die Windows Clients konfiguriert werden müssen, damit die Sicherheit und
+Funktionstüchtigkeit gewährleistet ist.
 </para>
 
 <para>
