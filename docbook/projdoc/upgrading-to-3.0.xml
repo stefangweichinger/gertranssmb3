@@ -72,9 +72,8 @@ Die wichtigsten neuen Features sind:
 	</para></listitem>
 
 	<listitem><para>
-	---sgw. Wie übersetzt man: New filename mangling system. The filename mangling system has been
-	completely rewritten. An internal database now stores mangling maps
-	persistently.
+	Neues Dateinamen-mangling-System. Das Dateinamen-mangling-System wurde komplett neu
+	geschrieben. Eine interne Datenbank speichert nun die "mangling-maps".
 	</para></listitem>
 
 	<listitem><para>
@@ -84,67 +83,68 @@ Die wichtigsten neuen Features sind:
 	</para></listitem>
 
 	<listitem><para>
-	Samba now negotiates NT-style status32 codes on the wire. This
-	considerably improves error handling.
+	Samba kann nun NT-style status32-codes on the wire verhandeln. Dies verbessert die
+	Handhabung von Fehlern und deren Codes deutlich. 
 	</para></listitem>
 
 	<listitem><para>
-	Better Windows 200x/XP printing support including publishing
-	printer attributes in Active Directory.
+	Bessere Windows-200x/XP-Druck-Unterstützung, einschließlich der Bereitstellung
+	von Drucker-Attributen im ADS.
 	</para></listitem>
 
 	<listitem><para>
-	New loadable RPC modules for passdb backends and character sets.
+	Neue ladbare RPC-Module für passdb-Backends und Zeichensätze.	
 	</para></listitem>
 
 	<listitem><para>
-	New default dual-daemon winbindd support for better performance.
+	Neue standardmässige Dual-Dämon-Unterstützung für Winbind mit besserer Performance.
 	</para></listitem>
 
 	<listitem><para>
-	Support for migrating from a Windows NT 4.0 domain to a Samba
-	domain and maintaining user, group and domain SIDs.
+	Unterstützung für die Migration von einer Windows NT 4.0-Domäne auf eine Samba-Domäne
+	unter Beibehaltung von Benutzer-, Gruppen- und Domänen-SIDs.	
 	</para></listitem>
 
 	<listitem><para>
-	Support for establishing trust relationships with Windows NT 4.0
-	Domain Controllers.
+	Unterstützung für das Herstellen von Vertrauensstellungen mit 
+	Windows NT 4.0-Domänen-Controllern.
 	</para></listitem>
 
 	<listitem><para>
-	Initial support for a distributed Winbind architecture using
-	an LDAP directory for storing SID to UID/GID mappings.
+	Initial-Unterstützung für eine verteilte Winbind-Architektur, unter Verwendung eines
+	LDAP-Verzeichnisses zur Speicherung der Zuordnungen von SIDs auf UIDs/GIDs.
 	</para></listitem>
 
 	<listitem><para>
-	Major updates to the Samba documentation tree.
+	Grosse Updates im Samba Dokumentations-Baum.
 	</para></listitem>
 
 	<listitem><para>
-	Full support for client and server SMB signing to ensure
-	compatibility with default Windows 2003 security settings.
+	Volle Unterstützung für Client- und Server-Signing, um Kompatibilität mit den
+	Standard-Sicherheits-Einstellungen von Windows 2003 zu sichern.
 	</para></listitem>
 </orderedlist>
 
 <para>
-Plus lots of other improvements!
+Und noch viele weitere Verbesserungen!
 </para>
 
 </sect1>
 
 <sect1>
-<title>Configuration Parameter Changes</title>
+<title>Änderungen von Konfigurations-Parametern</title>
 
 <para>
-This section contains a brief listing of changes to &smb.conf; options
-in the 3.0.0 release. Please refer to the smb.conf(5) man page for
-complete descriptions of new or modified parameters.
+Dieser Abschnitt enthält eine kurze Liste von Veränderungen an den
+Parametern in &smb.conf;, die in der Samba-Release 3.0.0 enthalten sind.
+Bitte konsultieren sie die smb.conf(5) man page für vollständige
+Beschreibungen der neuen oder geänderten Parameter.
 </para>
 
 <sect2>
-<title>Removed Parameters</title>
+<title>Enfernte Parameter</title>
 
-<para>(Ordered Alphabetically):</para>
+<para>(alphabetisch geordnet):</para>
 
 <itemizedlist>
 	<listitem><para>admin log </para></listitem>
@@ -172,18 +172,18 @@ complete descriptions of new or modified parameters.
 </sect2>
 
 <sect2>
-<title>New Parameters</title>
+<title>Neue Parameter</title>
 
-<para>(New parameters have been grouped by function):</para>
+<para>(Die neuen Parameter wurden nach Funktion gruppiert):</para>
 
-<para>Remote Management</para>
+<para>Fernwartung</para>
 
 <itemizedlist>
 	<listitem><para>abort shutdown script </para></listitem>
 	<listitem><para>shutdown script </para></listitem>
 </itemizedlist>
 
-<para>User and Group Account Management:</para>
+<para>Verwaltung von Benutzer- und Gruppen-Konten:</para>
 
 <itemizedlist>
 	<listitem><para>add group script </para></listitem>
@@ -196,14 +196,14 @@ complete descriptions of new or modified parameters.
 	<listitem><para>set primary group script </para></listitem>
 </itemizedlist>
 
-<para>Authentication:</para>
+<para>Authentifikation:</para>
 
 <itemizedlist>
 	<listitem><para>auth methods </para></listitem>
 	<listitem><para>realm </para></listitem>
 </itemizedlist>
 
-<para>Protocol Options:</para>
+<para>Protokoll-Optionen:</para>
 
 <itemizedlist>
 	<listitem><para>client lanman auth </para></listitem>
@@ -220,7 +220,7 @@ complete descriptions of new or modified parameters.
 	<listitem><para>use spnego </para></listitem>
 </itemizedlist>
 
-<para>File Service:</para>
+<para>Datei-Dienst:</para>
 
 <itemizedlist>
 	<listitem><para>get quota command </para></listitem>
@@ -236,14 +236,14 @@ complete descriptions of new or modified parameters.
 	<listitem><para>vfs objects </para></listitem>
 </itemizedlist>
 
-<para>Printing:</para>
+<para>Drucken:</para>
 
 <itemizedlist>
 	<listitem><para>max reported print jobs </para></listitem>
 </itemizedlist> 
 
 
-<para>Unicode and Character Sets:</para>
+<para>Unicode und Zeichensätze:</para>
 
 <itemizedlist>
 	<listitem><para>display charset </para></listitem>
@@ -252,7 +252,7 @@ complete descriptions of new or modified parameters.
 	<listitem><para>UNIX charset </para></listitem>
 </itemizedlist>
 
-<para>SID to UID/GID Mappings:</para>
+<para>Zuordnung von SID auf UID/GID:</para>
 
 <itemizedlist>
 	<listitem><para>idmap backend </para></listitem>
@@ -275,7 +275,7 @@ complete descriptions of new or modified parameters.
 	<listitem><para>ldap user suffix </para></listitem>
 </itemizedlist>
 
-<para>General Configuration:</para>
+<para>Allgemeine Konfiguration:</para>
 
 <itemizedlist>
 	<listitem><para>preload modules </para></listitem>
@@ -285,20 +285,20 @@ complete descriptions of new or modified parameters.
 </sect2>
 
 <sect2>
-<title>Modified Parameters (Changes in Behavior):</title>
+<title>Geänderte Parameter (Änderungen im Verhalten):</title>
 
 <itemizedlist>
-	<listitem><para>encrypt passwords (enabled by default) </para></listitem>
-	<listitem><para>mangling method (set to hash2 by default) </para></listitem>
+	<listitem><para>encrypt passwords (Standard-Wert: YES) </para></listitem>
+	<listitem><para>mangling method (Standard-Wert: hash2) </para></listitem>
 	<listitem><para>passwd chat </para></listitem>
 	<listitem><para>passwd program </para></listitem>
 	<listitem><para>password server </para></listitem>
-	<listitem><para>restrict anonymous (integer value) </para></listitem>
-	<listitem><para>security (new ads value) </para></listitem>
-	<listitem><para>strict locking (enabled by default) </para></listitem>
-	<listitem><para>winbind cache time (increased to 5 minutes) </para></listitem>
-	<listitem><para>winbind uid (deprecated in favor of idmap uid) </para></listitem>
-	<listitem><para>winbind gid (deprecated in favor of idmap gid) </para></listitem>
+	<listitem><para>restrict anonymous (Integer-Wert) </para></listitem>
+	<listitem><para>security (neuer ADS-Wert) </para></listitem>
+	<listitem><para>strict locking (Standard-Wert: YES) </para></listitem>
+	<listitem><para>winbind cache time (erhöht auf 5 Minuten) </para></listitem>
+	<listitem><para>winbind uid (veraltet, zugunsten von idmap uid) </para></listitem>
+	<listitem><para>winbind gid (veraltet, zugunsten von idmap gid) </para></listitem>
 </itemizedlist>
 
 </sect2>
@@ -306,25 +306,25 @@ complete descriptions of new or modified parameters.
 </sect1>
 
 <sect1>
-<title>New Functionality</title>
+<title>Neue Funktionalität</title>
 
 	<sect2>
-	<title>Databases</title>
+	<title>Datenbanken</title>
 
 	<para>
-	This section contains brief descriptions of any new databases
-	introduced in Samba-3. Please remember to backup your existing
-	${lock directory}/*tdb before upgrading to Samba-3. Samba will
-	upgrade databases as they are opened (if necessary), but downgrading
-	from 3.0 to 2.2 is an unsupported path.
+	Dieser Abschnitt enthält kurze Beschreibungen der neuen Datenbanken, die
+	mit Samba-3 eingeführt wurden. Bitte vergessen Sie nicht, Ihre existierenden
+	${lock directory}/*tdb-Dateien zu sichern, bevor Sie auf Samba-3 upgraden.
+	Samba wird die Datenbanken upgraden, wenn sie geöffnet sind (wenn nötig),
+	jedoch wird das Downgrade von 3.0 auf 2.2 nicht unterstützt.
 	</para>
 
 	<para>
-	The new tdb files are described in <link linkend="tdbfiledesc"/>.
+	Die neuen tdb-files sind in <link linkend="tdbfiledesc"/> beschrieben.	
 	</para>
 
 
-        <table frame='all' id="tdbfiledesc"><title>TDB File Descriptions</title>
+        <table frame='all' id="tdbfiledesc"><title>TDB Datei-Beschreibungen</title>
         <tgroup cols='3'>
 			<colspec align="left"/>
 			<colspec align="justify" width="1*"/>
@@ -332,26 +332,28 @@ complete descriptions of new or modified parameters.
                 <thead>
                 <row>
                         <entry align="left">Name</entry>
-                        <entry align="justify">Description</entry>
+                        <entry align="justify">Beschreibung</entry>
                         <entry align="center">Backup?</entry>
                 </row>
                 </thead>
                 <tbody>
                 <row>
                         <entry>account_policy</entry>
-			<entry>User policy settings</entry>
-			<entry>yes</entry>
+			<entry>Einstellungen zu Benutzer-Richtlinien</entry>
+			<entry>Ja</entry>
 		</row>
 		<row>
 			<entry>gencache</entry>
-			<entry>Generic caching db</entry>
-			<entry>no</entry>
+			<entry>Allgemeine Caching-DB</entry>
+			<entry>Nein</entry>
 		</row>
 		<row>
 			<entry>group_mapping</entry>
-			<entry><para>Mapping table from Windows groups/SID to UNIX groups</para></entry>
-			<entry>yes</entry>
+			<entry><para>Zuordnungs-Tabelle von Windows-Gruppen/SID auf UNIX-Gruppen</para></entry>
+			<entry>Ja</entry>
 		</row>
+
+---sgw.
 		<row>
 			<entry>idmap</entry>
 			<entry><para>new ID map table from SIDS to UNIX UIDs/GIDs</para></entry>
