@@ -1,39 +1,38 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 1. Einfürung in Samba</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.60.1"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="introduction.html" title="Part I. Grundlegende Installation"><link rel="previous" href="introduction.html" title="Part I. Grundlegende Installation"><link rel="next" href="install.html" title="Chapter 2. Wie man Samba installiert und testet"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 1. Einfürung in Samba</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="introduction.html">Prev</a> </td><th width="60%" align="center">Part I. Grundlegende Installation</th><td width="20%" align="right"> <a accesskey="n" href="install.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="IntroSMB"></a>Chapter 1. Einfürung in Samba</h2></div><div><div class="author"><h3 class="author"><span class="firstname">David</span> <span class="surname">Lechnyr</span></h3><div class="affiliation"><span class="orgname">Unofficial HOWTO<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:david@lechnyr.com">david@lechnyr.com</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Hendrik</span> <span class="othername"></span> <span class="surname">Bäcker</span></h3><span class="contrib">German Translator</span><div class="affiliation"><span class="orgname">The German Samba 3.0 Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:h_baecker@gmx.net">h_baecker@gmx.net</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">April 14, 2003</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="IntroSMB.html#id2819777">Hintergrund</a></dt><dt><a href="IntroSMB.html#id2819865">Fachsprache</a></dt><dt><a href="IntroSMB.html#id2883842">Verwandte Projekte</a></dt><dt><a href="IntroSMB.html#id2883941">SMB Methodologie</a></dt><dt><a href="IntroSMB.html#id2884060">Epilog</a></dt><dt><a href="IntroSMB.html#id2884146">Verschiedenes</a></dt></dl></div><p>&#8220;<span class="quote">
-&quot;Wenn du verstehst was du tust, wirst du nichts lernen&quot;
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 1. Einfürung in Samba</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="introduction.html" title="Part I. Grundlegende Installation"><link rel="previous" href="introduction.html" title="Part I. Grundlegende Installation"><link rel="next" href="install.html" title="Chapter 2. Wie man Samba installiert und testet"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 1. Einfürung in Samba</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="introduction.html">Prev</a> </td><th width="60%" align="center">Part I. Grundlegende Installation</th><td width="20%" align="right"> <a accesskey="n" href="install.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="IntroSMB"></a>Chapter 1. Einfürung in Samba</h2></div><div><div class="author"><h3 class="author"><span class="firstname">David</span> <span class="surname">Lechnyr</span></h3><div class="affiliation"><span class="orgname">Unofficial HOWTO<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:david@lechnyr.com">david@lechnyr.com</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Hendrik</span> <span class="othername"></span> <span class="surname">Bäcker</span></h3><span class="contrib">German Translator</span><div class="affiliation"><span class="orgname">The German Samba 3.0 Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:h_baecker@gmx.net">h_baecker@gmx.net</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">April 14, 2003</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="IntroSMB.html#id2817398">Hintergrund</a></dt><dt><a href="IntroSMB.html#id2820042">Fachsprache</a></dt><dt><a href="IntroSMB.html#id2817586">Verwandte Projekte</a></dt><dt><a href="IntroSMB.html#id2817685">SMB Methodologie</a></dt><dt><a href="IntroSMB.html#id2817785">Epilog</a></dt><dt><a href="IntroSMB.html#id2817872">Verschiedenes</a></dt></dl></div><p>&#8220;<span class="quote">
+"Wenn du verstehst was du tust, wirst du nichts lernen"
 -- Anonym
 </span>&#8221;</p><p>
 Samba ist ein Datei- und Druckserver für auf Windows basierende Clients die TCP/IP als Transport Protokol nutzen.
 Tatsächlich kann es jeden SMB/CIFS-aktiven Client unterstützen. Eine von Samba's großen Stärken ist, dass Sie in der
 Lage sind ihre Windows und Linux Maschinen zusammen zu mixen ohne einen separaten Windows NT/2000/2003 Server zu benötigen.
 Samba wird derzeit von einem 30 köpfigen Team von Programmierern entwickelt und wurde ursprünglich von Andrew Tridgell entwickelt.
-</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2819777"></a>Hintergrund</h2></div></div><div></div></div><p>
+</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2817398"></a>Hintergrund</h2></div></div><div></div></div><p>
 Vor langer Zeit gab es ein Schlüsselwort welches auf DCE/RPC referenzierte. Dies stand für
 Computing Environment/Remote Procedure Calls und war vom Konzept her eine gute Idee. Ursprünglich
 wurde es von Apollo/HP als NCA1.0 (Network Computing Architecture) entwickelt und konnte nur über
 UDP benutzt werden. Als es nötig wurde das ganze über TCP zu betreiben um die Kompatibilität zu
-DECnet3.0 gewährleisten zu können, wurde es neu entworfen, zur Organisation &quot;The Open Group&quot; gesandt
+DECnet3.0 gewährleisten zu können, wurde es neu entworfen, zur Organisation "The Open Group" gesandt
 und offiziell als DCE/RPC bekannt. Microsoft kam allerdings daher und entschied mehr als $20 für eine
 Arbeitsplatz Lizens haben zu wollen und es als eigenes MSRPC verkaufen zu wollen. Von diesem Punkt
-an wurde das Konzept in Form von SMB (Server Message Block, das &quot;was&quot;) unter Benutzung von
-NetBIOS (Network Basic Input/Output System, das &quot;wie&quot;) als Komatibilitäts-Schicht weiter geführt.
+an wurde das Konzept in Form von SMB (Server Message Block, das "was") unter Benutzung von
+NetBIOS (Network Basic Input/Output System, das "wie") als Komatibilitäts-Schicht weiter geführt.
 Sie können SMB über viele verschiedene Protokolle nutzen, sprich transportieren; viele verschiedene
 Implementationen führen zu einem Ergebnis, einschließlich NBIPX (NetBIOS über IPX, NwLnkNb, oder NWNBLink)
 und NBT (NetBIOS über TCP/IP, oder NetBT). Über die Jahre hinweg wurde NBT zur meist genutzten Form der
-Implementationen bis zum Fortschritt des &quot;Direct-Hosted TCP&quot; -- der Microsoft Marketing Formulierung zur
+Implementationen bis zum Fortschritt des "Direct-Hosted TCP" -- der Microsoft Marketing Formulierung zur
 vollständigen Eleminierung von NetBIOS und der Möglichkeit SMB direkt an den TCP port 445 zu binden.
 
 
 As of yet, direct-hosted TCP has yet to catch on.
 </p><p>
 Der wohl beste Artikel über den Ursprung von SMB erschien 1997 in einem Artikel mit dem Titel -
-&quot;CIFS: Common Insecurities Fail Scrutiny&quot;.
+"CIFS: Common Insecurities Fail Scrutiny".
 </p><p><span class="emphasis"><em>
 Mehrere Megabytes aus NT-Security Archiven, ziellosen Whitepapern, RFCs, der CIFS Spezifikation,
 das Samba Zeug, ein paar MS Knowledge Base Artikeln, Zeichenketten aus Binärdateien und Packet-Abbildungen
 haben pflichtbewußt den Weg durch die Phasen der Informationssammlung dieses Projektes durchschritten und es
-fehlen immer noch einige Stücke... Oftmals müßig wurde der Weg erschwert durch &quot;Hand vor die Stirn schlagen&quot;
-und murmeln &quot;Mein Gott, was haben die sich dabei gedacht?&quot;
+fehlen immer noch einige Stücke... Oftmals müßig wurde der Weg erschwert durch "Hand vor die Stirn schlagen"
+und murmeln "Mein Gott, was haben die sich dabei gedacht?"
 </em></span></p><p><span class="emphasis"><em>
 Hier das Original:
 Several megabytes of NT-security archives, random whitepapers, RFCs, the CIFS spec, the Samba
@@ -42,16 +41,16 @@ been dutifully waded through during the information-gathering stages of this pro
 are *still* many missing pieces... While often tedious, at least the way has been generously
 littered with occurrences of clapping hand to forehead and muttering 'crikey, what are they
 thinking?
-</em></span></p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2819865"></a>Fachsprache</h2></div></div><div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
-	SMB: Akronym für &quot;Server Message Block&quot;. Dies ist Microsoft's Datei- und Druckerfreigabe Protokol.
+</em></span></p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2820042"></a>Fachsprache</h2></div></div><div></div></div><div class="itemizedlist"><ul type="disc"><li><p>
+	SMB: Akronym für "Server Message Block". Dies ist Microsoft's Datei- und Druckerfreigabe Protokol.
 	</p></li><li><p>
-	CIFS: Akronym für &quot;Common Internet File System&quot;. Um 1996 entschied Microsoft das SMB das Wort
-	&quot;Internet&quot; im Namen bräuchte und sie änderten den Namen in CIFS.
+	CIFS: Akronym für "Common Internet File System". Um 1996 entschied Microsoft das SMB das Wort
+	"Internet" im Namen bräuchte und sie änderten den Namen in CIFS.
 	</p></li><li><p>
 	Direct-Hosted: Eine Methode Datei/Drucker Freigabedienste über port 445/tcp zur Verfügung zu stellen,
 	Hierbei wurde nur DNS statt WINS zur Auflösung der Namen in IP-Adressen benutzt
 	</p></li><li><p>
-	IPC: Akronym für &quot;Inter-Process Communication&quot;. Eine Methode spezielle Informationen zwischen Programmen
+	IPC: Akronym für "Inter-Process Communication". Eine Methode spezielle Informationen zwischen Programmen
 	zu verbreiten.
 	</p></li><li><p>
 	Marshalling: - Eine Methode zur seqüntiellen Sortierung von variablen Daten,
@@ -59,7 +58,7 @@ thinking?
 	Die Quelldateien können mittels eines ähnlichen Prozesses namens unmarschalling
 	wiederhergestellt werden.
 	</p></li><li><p>
-	NetBIOS: Akronym für &quot;Network Basic Input/Output System&quot;. Dies ist kein Protokol;
+	NetBIOS: Akronym für "Network Basic Input/Output System". Dies ist kein Protokol;
 	es ist eine Möglichkeit der Kommunikations über ein anderes Protokol.
 	Dies ist ein Standard welcher ursprünglich 1983 von IBM entwickelt wurde.
 	Um die Analogie ein wenig zu übertreiben könnte man NetBIOS mit dem BIOS ihres Rechners vergleichen,
@@ -70,14 +69,14 @@ thinking?
 	Leider tendieren auch technisch Versierte Leute dazu ohne viel darüber nachzudenken NetBIOS mit NetBEUI zu
 	verwechseln;
 	</p></li><li><p>
-	NetBEUI: Akronym für das &quot;NetBIOS Extended User Interface&quot;. Nicht vergleichbar mit NetBIOS ist NetBEUI
+	NetBEUI: Akronym für das "NetBIOS Extended User Interface". Nicht vergleichbar mit NetBIOS ist NetBEUI
 	ein Protokol, kein Standard. Es ist auch kein Routingfähiges Protokol, was wiederum heißt, dass es nicht
 	von einer Seite eines Routers auf die andere gelangt. Es ist nicht notwendig NetBEUI zu verstehen um SMB
 	zu entziffern; es hilft zu verstehen, es hilft zu verstehen dass NetBEUI nicht das gleiche wie NetBIOS ist
-	um ihren Schnitt auf Parties zu erhöhen. NetBEUI wurde ursprünglich von Microsoft als &quot;NBF&quot; oder &quot;Dem
-	Windows NT NetBEUI Frame Protokol Treiber&quot; verwiesen. Heutzutage hört man da nicht viel von.
+	um ihren Schnitt auf Parties zu erhöhen. NetBEUI wurde ursprünglich von Microsoft als "NBF" oder "Dem
+	Windows NT NetBEUI Frame Protokol Treiber" verwiesen. Heutzutage hört man da nicht viel von.
 	</p></li><li><p>
-	NBT: Akronym für &quot;NetBIOS über TCP&quot; auch bekannt als &quot;NetBT&quot;. Erlaubt die Benutzung von NetBIOS Verkehrs
+	NBT: Akronym für "NetBIOS über TCP" auch bekannt als "NetBT". Erlaubt die Benutzung von NetBIOS Verkehrs
 	im TCP/IP. Im Endeffekt werden NetBIOS Namen zu IP Adressen gewandelt und NetBIOS Namenstypen sind im
 	grunde genommen mit TCP/IP Ports vergleichbar. So werden in Windows 95/98/ME die Datei- und Druckerfreigaben
 	verwirklicht. Traditionell sind sie an drei Ports gebunden: NetBIOS Name Service (nbname) über UDP Port 137,
@@ -91,7 +90,7 @@ thinking?
 	W3K: Akronym für Windows 2003 Server
 	</p></li></ul></div><p>Wenn Sie hilfe benötigen, wenden Sie sich bitte an die Samba Mailing Liste (Erreichbar über
 <a href="http://www.samba.org/" target="_top">http://www.samba.org</a>).
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2883842"></a>Verwandte Projekte</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2817586"></a>Verwandte Projekte</h2></div></div><div></div></div><p>
 Derzeit gibt es zwei weitere Netzwerk Dateisystem Client Projekte für Linux die direkt mit Samba in Verbindung stehen:
 SMBFS und CIFS VFS. Sie sind beide im Linux Kernel verfügbar.
 </p><div class="itemizedlist"><ul type="disc"><li><p>
@@ -102,7 +101,7 @@ SMBFS und CIFS VFS. Sie sind beide im Linux Kernel verfügbar.
 	</p></li><li><p>
 	CIFS VFS (Common Internet File System Virtual File System) ist der Nachfolger von SMBFS und wird derzeit aktiv
 	für die neue Version des Linux Kernels entwickelt. Die Absicht dieses Moduls ist es erweiterte Netzwerkdateisysteme
-	Funktionen wie Unterstützung von dfs (hierarischer Namensplatz / hierarchical name space), sichere &quot;Pro-User&quot;
+	Funktionen wie Unterstützung von dfs (hierarischer Namensplatz / hierarchical name space), sichere "Pro-User"
 	Sessions, sicheres verteiltes zwischenspeichern (oplock), optionales signieren von Paketen, den Unicode Zeichensatz
 	und weitere Internationalisierte Verbesserungen zu unterstützen und die optionale Einbindung von Winbind (nsswitch).
     </p></li></ul></div><p>
@@ -112,7 +111,7 @@ damit zu tun haben selbst als Datei- und Druckserver zu aggieren.
 Es gibt noch weitere Open Source CIFS client Tools wie zum Beispiel dem
 <a href="http://jcifs.samba.org/" target="_top">jCIFS Projekt</a>
 welches ein SMB Client Toolkit in Java geschrieben zur Verfügung stellt.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2883941"></a>SMB Methodologie</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2817685"></a>SMB Methodologie</h2></div></div><div></div></div><p>
 Traditionell nutzt SMB den UDP Port 137 (NetBIOS name service oder nerbios-ns), den UDP Port
 138 (NetBIOS datagramm service oder netbios-dgm) und den TCP Port 139 (NetBIOS
 session service oder netbios-ssn). Jeder der mit einem guten Netzwerk Packet Analyse Programm
@@ -120,13 +119,13 @@ sein Netzwerk beobachtet wird amüsiert sein über die Menge an Verkehr welcher au
 nur wenn man eine einzige Datei öffnet. Grundlegend werden SMB Sitzungen/Sessions in folgender
 Reihenfolge aufgebaut:
 </p><div class="itemizedlist"><ul type="disc"><li><p>
-	&quot;TCP Verbindung&quot; - aufbau des 3-Wege Handschlags (Verbindung) zu Port 139/tcp
+	"TCP Verbindung" - aufbau des 3-Wege Handschlags (Verbindung) zu Port 139/tcp
     oder 445/tcp.
 	</p></li><li><p>
-	&quot;NetBIOS Session Anfrage&quot; - Benutzt folgende Rufnamen: Den lokalen NetBIOS Namen der lokalen
+	"NetBIOS Session Anfrage" - Benutzt folgende Rufnamen: Den lokalen NetBIOS Namen der lokalen
 	Maschine zzgl. den 16. Buchstaben 0x00 und den NetBIOS Namen des Servers zzgl. 0x20 als 16. Buchstaben.
 	</p></li><li><p>
-	&quot;SMB Negotiate Protocol&quot; - bestimmt den Protokol-Dialekt der benutzt werden soll, dieser Dialekt
+	"SMB Negotiate Protocol" - bestimmt den Protokol-Dialekt der benutzt werden soll, dieser Dialekt
 	kann einer der folgenden sein:
 	PC Network Program 1.0 (Core) - nur share level security modus;
 	Microsoft Networks 1.03 (Core Plus) - nur share level security modus;
@@ -145,7 +144,7 @@ Eine gute Art diesen Prozess zu untersuchen ist das
 <a href="http://www.securityfriday.com/ToolDownload/SWB/swb_doc.html" target="_top">SecurityFriday's SWB Program</a>
 aus zu probieren.
 Es ermöglicht es ihnen Schritt für Schritt durch eine SMB/CIFS Sitzung zu gehen.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2884060"></a>Epilog</h2></div></div><div></div></div><p>&#8220;<span class="quote">
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2817785"></a>Epilog</h2></div></div><div></div></div><p>&#8220;<span class="quote">
 Was grundlegend Falsch ist, ist das niemand einen Geschmack finden kann wenn er es nicht probiert hat.
 Microsoft hat stark daran gearbeitet die Oberfläche schön zu gestalten, nur intern ist es eine komplette Unordnung.
 Auch Mitarbeiter von Microsoft die seit Jahren dort Arbeiten und viel Erfahrung mit sich bringen, haben
@@ -162,15 +161,15 @@ WIRKLICH Probleme behebt, ist das Endergebnis stark verpfuscht.
 Sie können dem System nicht vertrauen da es unter bestimmten Bedingungen es einfach spontan neu startet oder
 einfach nur stehen bleibt wenn Sie gerade etwas völlig normales machen. Normalerweise funktioniert es gut nur dann
 irgendwann ohne Begründung ist es tot und niemand weiß warum. Nicht Microsoft, nicht die Erfahrenen Anwender
-und schon gar nicht der Ahnungslose Benutzer der vor seinem Bildschirm sitzt und sich fragt: &quot;Was hab
-ich bloß falsch gemacht?&quot; wenn er doch gar nichts falsch gemacht hat.
+und schon gar nicht der Ahnungslose Benutzer der vor seinem Bildschirm sitzt und sich fragt: "Was hab
+ich bloß falsch gemacht?" wenn er doch gar nichts falsch gemacht hat.
 </span>&#8221;</p><p>&#8220;<span class="quote">
 Das ist das, was mich wirklich irretiert.
 
 
 </span>&#8221;</p><p>--
 <a href="http://hr.uoregon.edu/davidrl/boot.txt" target="_top">Linus Torvalds, in einem Interview mit dem BOOT Magazin, Sept 1998</a>
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2884146"></a>Verschiedenes</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2817872"></a>Verschiedenes</h2></div></div><div></div></div><p>
 Dieses Kapitel unterliegt dem Copright 2003 David Lechnyr (david at lechnyr dot com).
 Es ist erlaubt dieses Dokument zu kopieren, zu verbreiten und/oder unter Beachtung der
 GNU Free Documentation Lizens zu ändern. Version 1.2 oder jede spätere Version wurde
