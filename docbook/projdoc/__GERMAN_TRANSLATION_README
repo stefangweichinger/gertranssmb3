@@ -1,0 +1,48 @@
+
+###########################################################################################################
+
+Dieses README soll laufend auftretende Fragen zur Formatierung und Uebersetzung der xml-Seiten beantworten.
+
+###########################################################################################################
+
+Stefan G. Weichinger, 18.11.2003
+
+
+---
+
+- Format der Author-entities in docbook/global.ent
+
+Nach Rueckfrage bei John H Terpstra sollte sich an folgendes Format gehalten werden.
+
+# global.ent
+
+<!ENTITY person.stefanw '
+<firstname>Stefan[C</firstname><othername>G.</othername><surname>Weichinger</surname><othername>R.</othername>
+<affiliation>
+        <orgname>The German Translation Team</orgname>
+        <address><email>monitor@oops.co.at</email></address>
+</affiliation>'>
+
+<!ENTITY author.stefanw '<author>&person.stefanw;</author>'>
+
+sowie in der header-section der jeweiligen uebersetzten xml-file:
+
+# x.xml
+
+<author>&person.stefanw;<contrib>German Translator</contrib></author>
+
+Bitte verwendet den "German Translator"-Eintrag, wir wollen nicht dadurch auffallen, uns mit fremden Federn zu schmuecken.
+
+---
+
+- Umlaute, Sonderzeichen
+
+Momentane Empfehlung ist, die deutschen Umlaute durch Verwendung von "ae", "oe" etc. abzubilden, um die Ueber setzung der xml-files in html etc. zu gewaehrleisten.
+
+Die Ersetzung der betreffenden Strings wird durch ein Skript vorgenommen werden und muss nicht vom einzelnen Uebersetzer vorgenommen werden.
+
+Wer files mit Umlauten liefert, muss sich im Klaren sein, dass es dann laenger dauert, bis diese als html-files im CVS landen, weil ich oder sonst jemand dann erst haendisch nacharbeiten muss.
+
+---
+
+sgw, 18.11.2003
