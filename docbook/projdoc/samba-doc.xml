@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="iso-8859-1"?> 
+<?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-
+				  
 <!ENTITY % globalentities SYSTEM '../global.ent'> %globalentities;
 ]>
 
 <book id="Samba-HOWTO-Collection">
-<TITLE>Samba HOWTO Collection</TITLE>
+<title>Samba HOWTO Collection</title>
 
 <bookinfo>
 	<authorgroup>
@@ -14,45 +14,45 @@
 	<editor>&person.jerry;</editor>
 	</authorgroup>
 	<pubdate>November 15, 2003</pubdate>
-<author>&person.hba;<contrib>German Translator</contrib></author>
+
 <abstract>
 <para>
-Dieses Buch ist eine Sammlung von HOWTOs welche über die Jahre hinweg der Samba Dokumentation
-hinzugefügt wurden. Samba ist immer unter Weiterentwicklung und so auch die Dokumentation.
-Diese Veröffentlichung der Dokumentation stellt eine große Veränderung der Dokumentation oder des Layouts dar.
-Die aktuelle Version dieser Dokumentation (englisch) finden Sie unter
+This book is a collection of HOWTOs added to Samba documentation over the years.
+Samba is always under development, and so is its' documentation. This release of the
+documentation represents a major revision or layout as well as contents.
+The most recent version of this document can be found at
 <ulink url="http://www.samba.org/">http://www.samba.org/</ulink>
-auf der "Documentation" Seite. Bitte senden Sie Neuigkeiten an
+on the "Documentation" page.  Please send updates to
 <ulink url="mailto:jelmer@samba.org">Jelmer Vernooij</ulink>,
 <ulink url="mailto:jht@samba.org">John H. Terpstra</ulink> or
 <ulink url="mailto:jerry@samba.org">Gerald (Jerry) Carter</ulink>.
 </para>
 
 <para>
-Das Samba-Team möchte seinen aufrichtigen dank zu den vielen Personen ausdrücken, die
-durch ihr Wissen oder Unwissen diesem Update der Doku beigetragen haben. Die größe und
-der Umfang dieses Projekts hätte niemals solche Ausmaße ohne den wichtigen Gemeinde
-Beitrag angenommen. Eine nicht bedeutungslose Anzahl von Ideen kamen aus eine Zahl
-von Inoffiziellen HOWTOs - zu jedem Autor dieser HOWTOs auch ein recht herzliches Danke schön.
-Bitte macht weiter mit der Veröffentlichung eurer Inoffiziellen HOWTOs - Sie sind eine
-Quelle der Inspiration und Anwendungserfahrung von vielen Samba Benutzern und Administratoren.
+The Samba-Team would like to express sincere thanks to the many people who have with
+or without their knowledge contributed to this update. The size and scope of this
+project would not have been possible without significant community contribution. A not
+insignificant number of ideas for inclusion (if not content itself) has been obtained
+from a number of Unofficial HOWTOs - to each such author a big "Thank-you" is also offered.
+Please keep publishing your Unofficial HOWTOs - they are a source of inspiration and
+application knowledge that is most to be desired by many Samba users and administrators.
 </para>
 
 </abstract>
 </bookinfo>
 
 <preface>
-	<TITLE>Copyright Informationen</TITLE>
+	<title>Legal Notice</title>
 <para>
-Diese Dokumentation wird unter der GNU General Public License (GPL) Version 2 veröffentlicht.
-Eine Kopie dieser Lizensbestimmung ist in den Samba Quelldateien enthalten und kann ebenfalls
-unter <ulink url="http://www.fsf.org/licenses/gpl.txt">http://www.fsf.org/licenses/gpl.txt</ulink>
-eingesehen werden.
+This documentation is distributed under the GNU General Public License (GPL) 
+version 2.  A copy of the license is included with the Samba source
+distribution.  A copy can be found on-line at <ulink 
+url="http://www.fsf.org/licenses/gpl.txt">http://www.fsf.org/licenses/gpl.txt</ulink>
 </para>
 </preface>
 
 <preface>
-	<TITLE>Eigenschaft</TITLE>
+	<title>Attributions</title>
 		&attributions;
 </preface>
 
@@ -61,13 +61,12 @@ eingesehen werden.
 
 <!-- Chapters -->
 <part id="introduction">
-<TITLE>Grundlegende Installation</TITLE>
+<title>General Installation</title>
 <partintro>
-<TITLE>Vorbereitung zur Samba Konfiguration</TITLE>
-<para>Diese Sektion der Samba-HOWTO-Kollektion beinhaltet grundlegende Information wie man
-Samba installiert und konfiguriert die Sie am meisten nutzen.
-BITTE lesen Sie dies.
-</para>
+<title>Preparing Samba for Configuration</title>
+<para>This section of the Samba-HOWTO-Collection contains general info on how to install samba 
+and how to configure the parts of samba you will most likely need.
+PLEASE read this.</para>
 </partintro>
 &IntroSMB;
 &UNIX-INSTALL;
@@ -75,13 +74,13 @@ BITTE lesen Sie dies.
 </part>
 
 <part id="type">
-<TITLE>Basiswissen zur Server Konfiguration</TITLE>
+<title>Server Configuration Basics</title>
 <partintro>
-<TITLE>Erste Schritte bei der Konfiguration</TITLE>
+<title>First Steps in Server Configuration</title>
 <para>
-Samba kann in verschiedenen Modi in SMB Netzwerken operieren. Diese HOWTO Sektion beinhaltet
-Informationen Samba unter Berücksichtigung ihrer Netzwerkanforderungen einzurichten ist. Bitte
-lesen Sie dieses Kapitel genau durch.
+Samba can operate in various modes within SMB networks. This HOWTO section contains information on
+configuring samba to function as the type of server your network requires. Please read this
+section carefully.
 </para>
 </partintro>
 &ServerType;
@@ -93,12 +92,11 @@ lesen Sie dieses Kapitel genau durch.
 </part>
 
 <part id="optional">
-<TITLE>Erweiterte Konfiguration</TITLE>
+<title>Advanced Configuration</title>
 <partintro>
-<TITLE>Wertvolle "Nuß und Bolzen" Informationen - Valuable Nuts and Bolts Information</TITLE>
+<title>Valuable Nuts and Bolts Information</title>
 <para>
-Samba hat verschiedene Merkmale die Sie vielleicht nutzen möchten.
-Dieses Kapitel behandelt ausgewählte Merkmale.
+Samba has several features that you might want or might not want to use. The chapters in this part each cover specific Samba features.
 </para>
 </partintro>
 &NetworkBrowsing;
@@ -124,14 +122,14 @@ Dieses Kapitel behandelt ausgewählte Merkmale.
 </part>
 
 <part id="migration">
-<TITLE>Migration und Updating</TITLE>
+<title>Migration and Updating</title>
 &upgrading;
 &NT4Migration;
 &SWAT;
 </part>
 
 <part id="troubleshooting">
-<TITLE>Troubleshooting</TITLE>
+<title>Troubleshooting</title>
 
 &Diagnosis;
 &problems;
@@ -139,7 +137,7 @@ Dieses Kapitel behandelt ausgewählte Merkmale.
 </part>
 
 <part id="Appendixes">
-	<TITLE>Anhang</TITLE>
+	<title>Appendixes</title>
 &Compiling;
 	&Portability;
 &Other-Clients;
