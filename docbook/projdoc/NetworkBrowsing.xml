@@ -89,31 +89,32 @@ wird, ist der Einsatz eines DNS für die Namensauflösung unabdingbar.
 </sect1>
 
 <sect1>
-<title>What Is Browsing?</title>
+<title>Was ist Browsing?</title>
 
 <para>
-To most people browsing means they can see the MS Windows and Samba servers
-in the Network Neighborhood, and when the computer icon for a particular server is
-clicked, it opens up and shows the shares and printers available on the target server.
+Für die meisten ist Browsing das sie die MS Windows und Samba Server in der
+Netzwerkumgebung sehen können, und das wenn man auf das Icon eines bestimmten
+Servers klickt, ein Fenster geöffnet wird, in dem man die verfügbaren Freigaben und
+Drucker des Servers sehen kann.
 </para>
 
 <para>
-What seems so simple is in fact a complex interaction of different technologies.
-The technologies (or methods) employed in making all of this work include:
+Was so einfach klingt ist in Wirklichkeit eine komplexe Interaktion verschiedener
+Technologien. Die dabei involvierten Technologien (oder Methoden) beinhalten:
 </para>
 
 <itemizedlist>
-	<listitem>MS Windows machines register their presence to the network.</listitem>
-	<listitem>Machines announce themselves to other machines on the network.</listitem>
-	<listitem>One or more machine on the network collates the local announcements.</listitem>
-	<listitem>The client machine finds the machine that has the collated list of machines.</listitem>
-	<listitem>The client machine is able to resolve the machine names to IP addresses.</listitem>
-	<listitem>The client machine is able to connect to a target machine.</listitem>
+	<listitem>MS Windows Maschinen melden ihre Präsenz im Netzwerk an.</listitem>
+	<listitem>Maschinen kündigen sich anderen Maschinen im Netzwerk an.</listitem>
+	<listitem>Eine oder mehrere Maschinen vereinigen diese Ankündigungen lokal.</listitem>
+	<listitem>Der Client findet die Maschine, die diese Liste von Maschinen gesammelt hat.</listitem>
+	<listitem>Der Client ist in der Lage, den Namen der Maschine in eine IP-Adresse aufzulösen.</listitem>
+	<listitem>Der Client ist in der Lage sich mit einer anderen Maschine zu verbinden.</listitem>
 </itemizedlist>
 
 <para>
-The Samba application that controls browse list management and name resolution is
-called <filename>nmbd</filename>. The configuration parameters involved in nmbd's operation are:
+Die Samba Anwendung, die die Verwaltung des Browsing und die Namensauflösung kontrolliert heißt
+<filename>nmbd</filename>. Die dabei verwendeten Konfigurationsparameter sind:
 </para>
 
 <para>Browsing options: <smbconfoption><name>os level</name></smbconfoption>(*),
