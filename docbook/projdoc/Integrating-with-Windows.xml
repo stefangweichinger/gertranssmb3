@@ -456,21 +456,14 @@ Das Samba-Gegenstück wird <command>nmblookup</command> genannt.
 <para>
 <indexterm><primary>LMHOSTS</primary></indexterm>
 Diese Datei ist üblicherweise bei MS Windows NT 4.0 oder Windows 200x/XP
-im Verzeichniss <filename>C:\WINNT\SYSTEM32\DRIVERS\ETC</filename> zu
-finden und beinhaltet die Zuordnung der IP Adressen zu Computernamen.
-Die Datei <filename>LMHOSTS</filename> bietet das NetBIOS zu IP Adressen
+im Verzeichnis <filename>C:\WINNT\SYSTEM32\DRIVERS\ETC</filename> zu
+finden und beinhaltet die Zuordnung der IP-Adressen zu Computernamen.
+Die Datei <filename>LMHOSTS</filename> bietet das NetBIOS-IP-Adressen-
 Mapping.
-#
-This file is usually located in MS Windows NT 4.0 or Windows 200x/XP in the directory
-<filename>C:\WINNT\SYSTEM32\DRIVERS\ETC</filename> and contains the IP Address
-and the machine name in matched pairs. The <filename>LMHOSTS</filename> file
-performs NetBIOS name to IP address mapping.
 </para>
 
 <para>
 Sie sieht typischerweise in etwa so aus:
-#
-It typically looks like this:
 </para>
 
 <para><programlisting>
@@ -560,52 +553,32 @@ It typically looks like this:
 
 <para>
 Diese Datei ist üblicherweise bei MS Windows NT 4.0 oder Windows 200x/XP
-im Verzeichniss zu finden und beinhaltet die IP Adressen und IP Namen
+im Verzeichnis <filename>C:\WINNT\SYSTEM32\DRIVERS\ETC</filename> zu finden 
+und beinhaltet die IP-Adressen und IP-Namen-
 Paare. Sie kann für die Infrastruktur zur Namensauflösung in MS Windows
-verwendet werden, abhängig davon wie die TCP/IP Umgebung konfiguriert
+verwendet werden, abhängig davon, wie die TCP/IP-Umgebung konfiguriert
 wurde.
-Diese Datei ist in jeglicher Hinwsicht das Gegenstück zu UNIX/LINUX
-<filename>/etc/hosts</filename> Datei.
-#
-This file is usually located in MS Windows NT 4.0 or Windows 200x/XP in 
-the directory <filename>C:\WINNT\SYSTEM32\DRIVERS\ETC</filename> and contains 
-the IP Address and the IP hostname in matched pairs. It can be 
-used by the name resolution infrastructure in MS Windows, depending 
-on how the TCP/IP environment is configured. This file is in 
-every way the equivalent of the UNIX/Linux <filename>/etc/hosts</filename> file.
+Diese Datei ist in jeglicher Hinwsicht das Gegenstück zur UNIX/LINUX-Datei 
+<filename>/etc/hosts</filename>.
 </para>
 </sect2>
-
 
 <sect2>
 <title>DNS Lookup</title>
 
-
 <para>
 <indexterm><primary>DNS</primary></indexterm>
-Diese Möglichkeit wird im TCP/IP Bereich der Netzwerkeinstellungen
+Diese Möglichkeit wird im TCP/IP-Bereich der Netzwerkeinstellungen
 konfiguriert. Wenn es eingeschaltet wurde, wird eine bestimmte Art der
-Namensauflösung verwendet, je nachdem wie der NetBIOS Node Type
-Parameter gesetzt ist. Ein Node Type 0 bedeutet dass ein NetBIOS
+Namensauflösung verwendet, je nachdem, wie der NetBIOS-Node-Type-
+Parameter gesetzt ist. Ein Node Type 0 bedeutet, dass ein NetBIOS-
 Broadcast (over UDP broadcast) verwendet wird, wenn die gewünschte
-Information einer Namensauflösung nicht im NetBIOS Name Cache gefunden
+Information einer Namensauflösung nicht im NetBIOS-Name-Cache gefunden
 wurde.
-Wenn auch das fehlschlägt werden DNS, HOSTS und LMHOSTS untersucht.
+Wenn auch das fehlschlägt, werden DNS, HOSTS und LMHOSTS untersucht.
 Wenn der Node Type 8 eingestellt wurde, dann wird eine Namensauflösung über 
 NetBIOS Unicast (over UDP Unicast) zum WINS Server versucht, bevor DNS,
 HOSTS, LMHOSTS oder ein Broadcast verwendet wird.
-#
-#
-This capability is configured in the TCP/IP setup area in the network 
-configuration facility. If enabled, an elaborate name resolution sequence 
-is followed, the precise nature of which is dependant on how the NetBIOS 
-Node Type parameter is configured. A Node Type of 0 means that
-NetBIOS broadcast (over UDP broadcast) is used if the name 
-that is the subject of a name lookup is not found in the NetBIOS name 
-cache. If that fails then DNS, HOSTS and LMHOSTS are checked. If set to 
-Node Type 8, then a NetBIOS Unicast (over UDP Unicast) is sent to the 
-WINS Server to obtain a lookup before DNS, HOSTS, LMHOSTS, or broadcast 
-lookup is used.
 </para>
 
 </sect2>
@@ -618,22 +591,14 @@ lookup is used.
 <indexterm><primary>WINS</primary></indexterm>
 Ein WINS (Windows Internet Name Server) Service entspricht dem
 in RFC 1001/1002 spezifizierten NBNS (NetBIOS Name Server).
-Ein WINS Server speichert die Namen und IP Adressen welche Windows
-Client registrieren wenn in deren TCP/IP Setup mindestens eine WINS
-Server IP Adresse angegeben wurde.
-#
-A WINS (Windows Internet Name Server) service is the equivalent of the 
-rfc1001/1002 specified NBNS (NetBIOS Name Server). A WINS server stores 
-the names and IP addresses that are registered by a Windows client 
-if the TCP/IP setup has been given at least one WINS Server IP Address.
+Ein WINS-Server speichert die Namen und IP-Adressen, welche Windows
+Clients registrieren, wenn in deren TCP/IP-Setup mindestens eine WINS-
+Server-IP-Adresse angegeben wurde.
 </para>
 
 <para>
-Um Samba als WINS Server zu konfigurieren, muss folgender Parameter in
+Um Samba als WINS-Server zu konfigurieren, muss folgender Parameter in
 die &smb.conf; Datei hinzugefügt werden:
-#
-To configure Samba to be a WINS server, the following parameter needs 
-to be added to the &smb.conf; file:
 </para>
 
 <para><smbconfblock>
@@ -641,11 +606,8 @@ to be added to the &smb.conf; file:
 </smbconfblock></para>
 
 <para>
-Um Samba für die Benutzung eines WINS Servers zu konfigurieren, werden
+Um Samba für die Benutzung eines WINS-Servers zu konfigurieren, werden
 folgende Parameter in der &smb.conf; benötigt:
-#
-To configure Samba to use a WINS server, the following parameters are 
-needed in the &smb.conf; file:
 </para>
 
 <para><smbconfblock>
@@ -654,44 +616,31 @@ needed in the &smb.conf; file:
 </smbconfblock></para>
 
 <para>
-Wobei <replaceable>xxx.xxx.xxx.xxx</replaceable> die IP Adresse des
+wobei <replaceable>xxx.xxx.xxx.xxx</replaceable> die IP-Adresse des
 WINS Servers ist.
-#
-where <replaceable>xxx.xxx.xxx.xxx</replaceable> is the IP address 
-of the WINS server.
 </para>
 
-<para>Für Informationen über die Konfiguration von Samba als WINS Server
+<para>Für Informationen über die Konfiguration von Samba als WINS-Server
 lesen Sie bitte 
-<link linkend="NetworkBrowsing"/>.</para>
-#
-<para>For information about setting up Samba as a WINS server, read 
-<link linkend="NetworkBrowsing"/>.</para>
+<link linkend="NetworkBrowsing"/>.
+</para>
 
 </sect2>
 </sect1>
 
 <sect1>
 <title>Häufige Fehler</title>
-#
-<title>Common Errors</title>
 
 <para>
-Probleme in der TCP/IP Konfiguration findet jeder Netzwerkadministrator
+Probleme in der TCP/IP-Konfiguration findet jeder Netzwerkadministrator
 früher oder später.
-Die Ursachen können alles mögliche sein von Schreibfehlern,
+Die Ursachen können alles mögliche sein, von Schreibfehlern
 über Vergesslichkeit, simplen Missverständnissen bis hin zu
 Achtlosigkeit. Aber niemand ist absichtlich achtlos!
-#
-TCP/IP network configuration problems find every network administrator sooner or later.
-The cause can be anything from keyboard mishaps, forgetfulness, simple mistakes, and
-carelessness. Of course, no one is ever deliberately careless!
 </para>
 
 	<sect2>
 		<title>Ping funktioniert nur in eine Richtung</title>
-		#
-		<title>Pinging Works Only in One Way</title>
 
 	<para>
 	<quote> Ich kann meinen Sambaserver von Windows anpingen, aber
@@ -699,96 +648,64 @@ carelessness. Of course, no one is ever deliberately careless!
 	</para>
 
 	<para>
-	<emphasis>Antwort:</emphasis> Die Windows Maschine war unter IP
+	<emphasis>Antwort:</emphasis> Die Windows-Maschine war unter IP-
 	Adresse 192.168.1.2 mit der Netzwerkmaske 255.255.255.0 zu
-	erreichen, der Samba Server (Linux) war unter der IP Adresse
+	erreichen, der Samba-Server (Linux) war unter der IP-Adresse
 	192.168.1.130 mit der Netzwerkmaske 255.255.255.128 zu
 	erreichen. Die Maschinen sind in einem lokalen Netzwerk ohne
 	externe Verbindungen.
-	#
-	<emphasis>Answer:</emphasis> The Windows machine was at IP Address 192.168.1.2 with netmask 255.255.255.0, the
-	Samba server (Linux) was at IP Address 192.168.1.130 with netmask 255.255.255.128.
-	The machines were on a local network with no external connections.
 	</para>
 
 	<para>
-	Durch die inkonsistenten Netwerkmasken; die Windows Maschine war
+	Durch die inkonsistenten Netwerkmasken; die Windows-Maschine war
 	im Netzwerk 192.168.1.0/24, während der Sambaserver im Netzwerk
 	192.168.1.128/25 &smbmdash; war; sind das unterschiedliche
 	Netzwerke.
-	#
-	Due to inconsistent netmasks, the Windows machine was on network 192.168.1.0/24, while
-	the Samba server was on network 192.168.1.128/25 &smbmdash; logically a different network.
 	</para>
 
 	</sect2>
 
 	<sect2>
 	<title>Sehr langsame Netzwerkverbindungen</title>
-	<title>Very Slow Network Connections</title>
 
 	<para>
 	Gängige Ursachen von langsamen Netzwerkverbindungen können sein:
-	A common cause of slow network response includes:
 	</para>
 
 	<itemizedlist>
-		<listitem><para>Client soll DNS benutzen aber der DNS Server ist down.</para></listitem>
-		<listitem><para>Client soll einen Remote DNS Server benutzen, aber die Verbindung ist unterbrochen.</para></listitem>
-		<listitem><para>Client soll einen WINS Server benutzen, aber es gibt keinen WINS Server.</para></listitem>
-		<listitem><para>Client wurde ohne WINS konfiguriert, aber es gibt einen WINS Server.</para></listitem>
-		<listitem><para>Eine Firewall filtert unseren DNS oder WINS Verkehr.</para></listitem>
-		#
-		#
-		<listitem><para>Client is configured to use DNS and the DNS server is down.</para></listitem>
-		<listitem><para>Client is configured to use remote DNS server, but the
-		remote connection is down.</para></listitem>
-		<listitem><para>Client is configured to use a WINS server, but there is no WINS server.</para></listitem>
-		<listitem><para>Client is not configured to use a WINS server, but there is a WINS server.</para></listitem>
-		<listitem><para>Firewall is filtering our DNS or WINS traffic.</para></listitem>
+		<listitem><para>Client soll DNS benutzen, aber der DNS-Server ist down.</para></listitem>
+		<listitem><para>Client soll einen Remote-DNS-Server benutzen, aber die Verbindung ist unterbrochen.</para></listitem>
+		<listitem><para>Client soll einen WINS-Server benutzen, aber es gibt keinen WINS-Server.</para></listitem>
+		<listitem><para>Client wurde ohne WINS konfiguriert, aber es gibt einen WINS-Server.</para></listitem>
+		<listitem><para>Eine Firewall filtert unseren DNS- oder WINS-Verkehr.</para></listitem>
 	</itemizedlist>
 
 	</sect2>
 
 	<sect2>
-	<title>Problem beim ändern des Samba Server Namen</title>
-	#
-	<title>Samba Server Name Change Problem</title>
+	<title>Problem bei Namensänderung des Samba Servers</title>
 
 	<para>
-	<quote>Der Name des Samba Server wurde geändert, Samba wurde neu
-	gestartet, der Samba Server kann von Windows NT Workstations
+	<quote>Der Name des Samba-Servers wurde geändert, Samba wurde neu
+	gestartet, der Samba-Server kann von Windows NT Workstations
 	nicht mit seinen neuen Namen angepingt werden, reagiert aber auf
 	pings mit seinen alten Namen. Warum ?</quote>
-	#
-	<quote>The name of the Samba server was changed, Samba was restarted, Samba server cannot be
-	pinged by new name from MS Windows NT4 Workstation, but it does still respond to ping using
-	the old name. Why?</quote>
 	</para>
 
 	<para>
 	Aufgrund der Beschreibung sind drei Dinge offensichtlich:
-	#
-	From this description, three things are obvious:
 	</para>
 
 	<itemizedlist>
-		<listitem><para>WINS wird nicht verwendet, nur die Broadcast basierende Namensauflösung wird benutzt.</para></listitem>
-		<listitem><para>Der Samba Server wurde innerhalb der letzten 10-15 Minuten umbenannt und neu gestartet.</para></listitem>
-		<listitem><para>Der alte Samba Server Name ist noch im NetBIOS Name Cache der MS Windows Workstation.</para></listitem>
-	#
-		<listitem><para>WINS is not in use, only broadcast-based name resolution is used.</para></listitem>
-		<listitem><para>The Samba server was renamed and restarted within the last 10-15 minutes.</para></listitem>
-		<listitem><para>The old Samba server name is still in the NetBIOS name cache on the MS Windows NT4 Workstation.</para></listitem>
+		<listitem><para>WINS wird nicht verwendet, nur die Broadcast-basierende Namensauflösung wird benutzt.</para></listitem>
+		<listitem><para>Der Samba-Server wurde innerhalb der letzten 10-15 Minuten umbenannt und neu gestartet.</para></listitem>
+		<listitem><para>Der alte Namen des Samba-Servers ist noch im NetBIOS-Name-Cache der MS Windows Workstation.</para></listitem>
 	</itemizedlist>
 
 	<para>
-	Um herauszufinden welche Namen noch im NetBIOS Name Cache der MS
+	Um herauszufinden, welche Namen noch im NetBIOS-Name-Cache der MS
 	Windows NT4 Computer sind, öffnen Sie bitte eine
 	<command>cmd</command> Kommandozeile und geben folgendes ein:
-	#
-	To find what names are present in the NetBIOS name cache on the MS Windows NT4 machine,
-	open a <command>cmd</command> shell and then:
 	</para>
 
 	<para>
@@ -826,13 +743,8 @@ SARDON           &lt;00&gt;  GROUP       Registered
 	Table (i.e. Identitätsinformationen der MS Windows
 	Workstation) und in der weiteren Ausgabe wird der NetBIOS Name
 	im NetBIOS Name Cache angezeigt.
-	Der Name Cache beinhaltet die remote Computer welche diese
+	Der Name Cache beinhaltet die remote Computer, welche diese
 	Workstation kennt.
-	#
-	In the above example, &example.server.samba; is the Samba server and &example.workstation.windows; is the MS Windows NT4 Workstation.
-	The first listing shows the contents of the Local Name Table (i.e., Identity information on
-	the MS Windows workstation) and the second shows the NetBIOS name in the NetBIOS name cache.
-	The name cache contains the remote machines known to this workstation.
 	</para>
 
 	</sect2>
