@@ -152,45 +152,46 @@ der Workstation 4.0 Installations-CD installieren.
 </para>
 
 <itemizedlist>
-	<listitem><para>Go to <guibutton>Start</guibutton> -> <guibutton>Settings</guibutton> -> <guibutton>Control Panel</guibutton> -> 
+	<listitem><para>Gehen Sie auf <guibutton>Start</guibutton> -> <guibutton>Settings</guibutton> -> <guibutton>Control Panel</guibutton> -> 
 			<guibutton>Network</guibutton> -> <guibutton>Services</guibutton> -> <guibutton>Add</guibutton>.</para></listitem> 
 
-	<listitem><para>Select the <guilabel>Network Monitor Agent</guilabel>, click on <guibutton>OK</guibutton>.</para></listitem> 
+	<listitem><para>Wählen Sie <guilabel>Network Monitor Agent</guilabel>und klicken Sie auf <guibutton>OK</guibutton>.</para></listitem> 
 	
-	<listitem><para>Click on <guibutton>OK</guibutton> in the Network Control Panel.
+	<listitem><para>Klicken Sie auf <guibutton>OK</guibutton> im Network Control Panel.
 	</para></listitem> 
 	
-	<listitem><para>Insert the Windows NT Workstation 4.0 install CD when prompted.</para></listitem> 
+	<listitem><para>Legen Sie die NT Server 4.0 Installations-CD ein, wenn Sie dazu aufgefordert werden.</para></listitem> 
 </itemizedlist>
 
 <para>
-Now copy the files from the NT Server in <filename>%SYSTEMROOT%\System32\netmon</filename>
-to <filename>%SYSTEMROOT%\System32\netmon</filename> on the Workstation and set permissions
-as you deem appropriate for your site. You will need administrative rights on the NT box to run Netmon.
+Kopieren Sie jetzt die Dateien vom NT Server in <filename>%SYSTEMROOT%\System32\netmon</filename> nach
+<filename>%SYSTEMROOT%\System32\netmon</filename> auf der Workstation, und setzen Sie die Berechtigungen
+so, wie Sie sie für Ihre Installation angemessen halten. Sie brauchen Administrator-Rechte auf der NT-Box,
+um Netmon auszuführen.
 </para>
 
 </sect3>
 <sect3>
-<title>Installing Network Monitor on Windows 9x/Me</title>
+<title>Installieren des Netzwerk-Monitors unter Windows 9x/Me</title>
 <para>
-To install Netmon on Windows 9x/Me, install the Network Monitor Agent 
-from the Windows 9x/Me CD (<filename>\admin\nettools\netmon</filename>). 
-There is a readme file located with the Netmon driver files on the CD if you need 
-information on how to do this. Copy the files from a working Netmon installation.
+Um Netmon unter Windows 9x/Me zu installieren, installieren Sie den Network Monitor Agent von der
+Windows 9x/Me CD (<filename>\admin\nettools\netmon</filename>).
+Es gibt eine README-Datei bei den Netmon-Treiber-Dateien auf der CD, wenn Sie Informationen dazu
+brauchen. Kopieren Sie die Dateien von einer bestehenden Netmon-Installation.
 </para>
 </sect3>
 </sect2>
 </sect1>
 
 <sect1>
-<title>Useful URLs</title>
+<title>Hilfreiche URLs</title>
 <itemizedlist>
 
-<listitem><para>See how Scott Merrill simulates a BDC behavior at 
+<listitem><para>Sehen Sie, wie Scott Merrill das Verhalten eines BDCs simuliert:
        <ulink noescape="1" url="http://www.skippy.net/linux/smb-howto.html">
        http://www.skippy.net/linux/smb-howto.html</ulink>. </para></listitem>
 
-<listitem><para>FTP site for older SMB specs: 
+<listitem><para>FTP site für ältere SMB-Spezifikationen:
        <ulink noescape="1" url="ftp://ftp.microsoft.com/developr/drg/CIFS/">
        ftp://ftp.microsoft.com/developr/drg/CIFS/</ulink></para></listitem>
 
@@ -199,90 +200,103 @@ information on how to do this. Copy the files from a working Netmon installation
 </sect1>
 
 <sect1>
-<title>Getting Mailing List Help</title>
+<title>Hilfe aus Mailing-Listen erhalten</title>
 
 <para>
-There are a number of Samba-related mailing lists. Go to <ulink 
-noescape="1" url="http://samba.org">http://samba.org</ulink>, click on your nearest mirror
-and then click on <command>Support</command> and next click on <command>
-Samba-related mailing lists</command>.
+Es gibt eine Anzahl von Mailing-Listen im Zusammenhang mit Samba. Gehen Sie auf
+<ulink noescape="1" url="http://samba.org">http://samba.org</ulink>, klicken Sie Ihren
+nächsten Mirror, dann auf <command>Support</command>, und auf <command>Samba-related mailing lists</command>.
 </para>
 
 <para>
-For questions relating to Samba TNG, go to
+Für Fragen im Zusammenhang mit Samba TNG, gehen Sie auf
 <ulink noescape="1" url="http://www.samba-tng.org/">http://www.samba-tng.org/.</ulink> 
-It has been requested that you do not post questions about Samba-TNG to the
-main-stream Samba lists.</para>
+Es wurde gefordert, Fragen zu Samba-TNG nicht in die Main-Stream-Samba-Listen zu posten.
+</para>
 
 <para>
-If you do post a message to one of the lists, please observe the following guidelines :
+Wenn Sie eine Nachricht an eine der Listen senden, beachten Sie bitte folgende Richtlinien:
 </para>
 
 <itemizedlist>
 
-	<listitem><para>Always remember that the developers are volunteers, they are
-	not paid and they never guarantee to produce a particular feature at 
-	a particular time. Any timelines are <quote>best guess</quote> and nothing more.
+	<listitem><para>
+	Erinnern Sie sich immer daran, daß die Entwickler Freiwillige sind, sie werden nicht
+	bezahlt, und sie garantieren niemals, ein bestimmtes Feature in einer bestimmten
+	Zeit zu produzieren. Alle Zeitangaben sind <quote>best guess</quote> und nicht mehr.
 	</para></listitem>
 
-	<listitem><para>Always mention what version of Samba you are using and what 
-	operating system it's running under. You should list the relevant sections of
-	your &smb.conf; file, at least the options in <smbconfsection>[global]</smbconfsection>
-	that affect PDC support.
+	<listitem><para>
+	Erwähnen Sie immer, welche Version von Samba Sie einsetzen, und unter welchem Betriebssystem
+	diese läuft. Sie sollten die relevanten Abschnitte Ihrer &smb.conf;-Datei auflisten,
+	zumindest die Optionen in <smbconfsection>[global]</smbconfsection>, die den PDC-Betrieb
+	beeinflussen.
 	</para></listitem>
 
-	<listitem><para>In addition to the version, if you obtained Samba via
-	CVS, mention the date when you last checked it out.</para></listitem>
-
-	<listitem><para> Try and make your questions clear and brief. Lots of long, 
-	convoluted questions get deleted before	they are completely read!
-	Do not post HTML encoded messages. Most people on mailing lists simply delete
-	them.
+	<listitem><para>
+	Wenn Sie Samba via CVS bezogen haben, erwähnen Sie bitte zusätzlich zur Version das
+	Datum, an dem Sie zuletzt ein "cvs checkout" durchgeführt haben.
 	</para></listitem>
 
-	<listitem><para> If you run one of those nifty <quote>I'm on holidays</quote> things when
-	you are away, make sure its configured to not answer mailing list traffic. Auto-responses
-	to mailing lists really irritate the thousands of people who end up having to deal
-	with such bad netiquet bahavior.
+	<listitem><para> 
+	Versuchen Sie, Ihre Fragen klar und kurz zu halten. Viele langatmige Konvolute werden
+	gelöscht, bevor sie überhaupt ganz gelesen werden! Senden Sie keine HTML-codierten
+	Nachrichten. Die meisten Leute auf Mailing-Listen löschen diese einfach.
+	</para></listitem>
+
+	<listitem><para> 
+	Wenn Sie eines dieser hübschen <quote>Ich bin auf Urlaub!</quote>-Dinger verwenden,
+	während Sie weg sind, stellen Sie sicher, daß es so konfiguriert ist, nicht auf
+	Mailing-Listen-Verkehr zu antworten. Auto-Responses auf Mailing-Listen ärgern 
+	tausende Leute, die mit solch schlechter Netiquette konfrontiert werden.
 	</para></listitem> 
 
-	<listitem><para>Don't cross post. Work out which is the best list to post to 
-	and see what happens. Do not post to both samba-ntdom and samba-technical.
-	Many people active on the lists subscribe to more 
-	than one list and get annoyed to see the same message two or more times.
-	Often someone will see a message and thinking it would be better dealt 
-	with on another list, will forward it on for you.</para></listitem>
+	<listitem><para>
+	Vermeiden Sie "cross-posting". Finden Sie heraus, welche die beste Liste für Ihre
+	Fragen ist und sehen Sie, was passiert. Posten Sie nicht auf samba-ntdom UND samba-technical.
+	Viele der Leute, die in diesen Listen aktiv sind, haben mehrere Listen abonniert, und
+	sind verärgert darübere, dieselbe Nachricht zweimal oder noch öfter zu sehen.
+	Oft wird jemand eine Nachricht sehen, sich denken, daß diese besser in einer anderen
+	Liste behandelt würde, und die Nachricht für Sie weiterleiten.		
+	</para></listitem>
 
-	<listitem><para>You might include <emphasis>partial</emphasis>
-	log files written at a debug level set to as much as 20. 
-	Please do not send the entire log but just enough to give the context of the
-	error messages.</para></listitem>
+	<listitem><para>
+	Sie könnten <emphasis>auszugsweise</emphasis> log-Dateien einschliessen, die auf einem
+	debug level bis zu 20 geschrieben wurden. Bitte senden Sie nicht die ganze Log-Datei,
+	sondern nur so viel, um den Kontext für die Fehlermeldungen zu schaffen.
+	</para></listitem>
 
-	<listitem><para>If you have a complete Netmon trace (from the opening of
-	the pipe to the error), you can send the *.CAP file as well.</para></listitem> 
-	    `
-	<listitem><para>Please think carefully before attaching a document to an email.
-	Consider pasting the relevant parts into the body of the message. The Samba
-	mailing lists go to a huge number of people. Do they all need a copy of your 
-	&smb.conf; in their attach directory?</para></listitem>
+	<listitem><para>
+	Wenn Sie einen kompletten Netmon-Trace haben (vom Öffnen der pipe bis zum Fehler),
+	können Sie auch die *.CAP-Datei senden.
+	</para></listitem>
+
+	<listitem><para>
+	Bitte überlegen Sie sorgfältig, bevor Sie ein Dokument an eine email hängen.
+	Erwägen Sie, die relevanten Teile in die Email zu kopieren. Die Samba-Mailing-Listen
+	gehen an eine riesige Zahl von Menschen. Brauchen diese alle eine Kopie Ihrer
+	&smb.conf; in Ihrem Attachment-Verzeichnis?
+	</para></listitem>
 
 </itemizedlist>
 
 </sect1>
 
 <sect1>
-<title>How to Get Off the Mailing Lists</title>
+<title>Wie man aus Mailing-Listen rauskommt.</title>
 
-<para>To have your name removed from a Samba mailing list, go to the same
-place where you went to
-subscribe to it. Go to <ulink noescape="1" url="http://lists.samba.org/">http://lists.samba.org</ulink>, 
-click on your nearest mirror, click on <command>Support</command> and 
-then click on<command> Samba related mailing lists</command>. 
+<para>
+Um Ihren Namen von einer Samba-Mailing-Liste löschen zu lassen, gehen Sie dorthin, wo Sie ihn
+in die Liste eintragen lassen haben. Gehen Sie auf
+<ulink noescape="1" url="http://lists.samba.org/">http://lists.samba.org</ulink>,
+klicken Sie auf Ihren nächsten Mirror, klicken Sie auf <command>Support</command> und dann auf
+<command> Samba related mailing lists</command>.
 </para>
 
 <para>
-Please do not post messages to the list asking to be removed. You will only
-be referred to the above address (unless that process failed in some way).
+Bitte senden Sie keine Nachrichten an die Liste, in denen Sie danach fragen, von der Liste
+entfernt zu werden. Sie werden nur an obige Adresse verwiesen werden (außer dieser Prozeß ist
+aus irgendeinem Grund gescheitert).
 </para>
 
 </sect1>
