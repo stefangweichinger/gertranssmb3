@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="problems">
 
 <chapterinfo>
@@ -6,9 +7,10 @@
 	&author.dbannon;
 	&author.danshearer;
 	<pubdate>8 Apr 2003</pubdate>
+        <author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
-<title>Analyzing and Solving Samba Problems</title>
+<title>Analyse und Lösung von Problemen mit Samba</title>
 
 <para>
 There are many sources of information available in the form 
