@@ -71,41 +71,45 @@ Welche Features kann Samba-3 nicht bieten?
 
 <itemizedlist>
 	<listitem><para>Active Directory Server.</para></listitem>
-	<listitem><para>Group Policy Objects (in Active Directory).</para></listitem>
-	<listitem><para>Machine Policy Objects.</para></listitem>
-	<listitem><para>Logon Scripts in Active Directory.</para></listitem>
-	<listitem><para>Software Application and Access Controls in Active Directory.</para></listitem>
+	<listitem><para>Gruppen-Richtlinien-Objekte (im Active Directory).</para></listitem>
+	<listitem><para>Maschinen-Richtlinien-Objekte.</para></listitem>
+	<listitem><para>Anmelde-Skripts im Active Directory.</para></listitem>
+	<listitem><para>Software-Anwendungs- und Zugriffs-Kontrolle im Active Directory.</para></listitem>
 </itemizedlist>
 
 <para>
-The features that Samba-3 does provide and that may be of compelling interest to your site
-include:
+Die Features, die Samba-3 anbietet, und die von zwingendem Interesse für Ihre Installation
+sein können, sind:
 </para>
 
 <itemizedlist>
-	<listitem><para>Lower cost of ownership.</para></listitem>
-	<listitem><para>Global availability of support with no strings attached.</para></listitem>
-	<listitem><para>Dynamic SMB Servers (can run more than one SMB/CIFS server per UNIX/Linux system).</para></listitem>
-	<listitem><para>Creation of on-the-fly logon scripts.</para></listitem>
-	<listitem><para>Creation of on-the-fly Policy Files.</para></listitem>
-	<listitem><para>Greater stability, reliability, performance and availability.</para></listitem>
-	<listitem><para>Manageability via an ssh connection.</para></listitem>
-	<listitem><para>Flexible choices of back-end authentication technologies (tdbsam, ldapsam, mysqlsam).</para></listitem>
-	<listitem><para>Ability to implement a full single-sign-on architecture.</para></listitem>
-	<listitem><para>Ability to distribute authentication systems for absolute minimum wide area network bandwidth demand.</para></listitem>
+	<listitem><para>Geringere Kosten (Total Cost of Ownership, TCO).</para></listitem>
+	<listitem><para>Globale Verfügbarkeit des Supports, ohne Verpflichtungen.</para></listitem>
+	<listitem><para>Dynamische SMB-Server (mehrere SMB/CIFS-Server per UNIX/Linux-System).</para></listitem>
+	<listitem><para>Anlegen von on-the-fly-Anmelde-Skripts.</para></listitem>
+	<listitem><para>Anlegen von on-the-fly-Richtlinien-Dateien.</para></listitem>
+	<listitem><para>Höhere Stabilität, Verläßlichkeit, Performance und Verfügbarkeit.</para></listitem>
+	<listitem><para>Administration über eine ssh-Verbindung.</para></listitem>
+	<listitem><para>Flexible Wahl der Back-End Authentifizierungs-Technologie (tdbsam, ldapsam, mysqlsam).</para></listitem>
+	<listitem><para>Mögliche Implementation einer vollen Single-Sign-On-Architektur.</para></listitem>
+	<listitem><para>Die mögliche Verteilung von Authentifizierungs-Systemen zur Minimierung des Bandbreiten-Bedarfs.</para></listitem>
 </itemizedlist>
 
 <para>
-Before migrating a network from MS Windows NT4 to Samba-3, consider all necessary factors. Users
-should be educated about changes they may experience so the change will be a welcome one
-and not become an obstacle to the work they need to do. The following are factors that will 
-help ensure a successful migration:
+Bedenken Sie vor der Migration eines Netzwerks von MS Windows NT4 auf Samba-3 alle notwendigen Faktoren.
+Die Benutzer sollten über die Änderungen, die Sie bemerken könnten, informiert werden, sodaß die
+Umstellung eine willkommene ist, und nicht ein Hindernis, das sie von ihrer Arbeit abhält.
+Folgende Faktoren tragen zur Gewährleistung einer erfolgreichen Migration bei:
 </para>
 
 <sect3>
-<title>Domain Layout</title>
+<title>Domänen-Entwurf</title>
 
 <para>
+Samba-3 kann als Domänen-Controller, als Backup-Domänen-Controller (vielleicht am besten als sekundärer
+Controller bezeichnet), als Domänen-Mitglieds-Server, oder als Stand-Alone-Server konfiguriert werden.
+
+
 Samba-3 can be configured as a Domain Controller, a back-up Domain Controller (probably best called
 a secondary controller), a Domain Member, or as a stand-alone Server. The Windows network security
 domain context should be sized and scoped before implementation. Particular attention needs to be
