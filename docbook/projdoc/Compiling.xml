@@ -59,38 +59,37 @@ zuzugreifen:
 
 <para>
 <indexterm><primary>CVS</primary><secondary>web</secondary></indexterm>
-You can access the source code via your favorite WWW browser. This allows you to access
-the contents of individual files in the repository and also to look at the revision 
-history and commit logs of individual files. You can also ask for a diff 
-listing between any two versions on the repository.
+Sie können so unter Verwendung Ihres bevorzugten WWW-Browsers auf den QUelltext
+zugreifen. Dies erlaubt den Zugriff auf einzelne Dateien im Repository genauso wie
+auf den Verlauf der Revisionen und die Commit-logs der einzelnen Dateien.
+Man kann damit auch diff-listings zwischen zwei Versionen erstellen.
 </para>
 
 <para>
-Use the URL:
+Verwenden Sie die URL:
 <ulink noescape="1" url="http://samba.org/cgi-bin/CVSweb">http://samba.org/cgi-bin/CVSweb</ulink>
 </para>
 </sect3>
 
 <sect3>
-<title>Access via CVS</title>
+<title>Zugriff via CVS</title>
 
 <para>
-You can also access the source code via a 
-normal CVS client. This gives you much more control over what you can 
-do with the repository and allows you to checkout whole source trees 
-and keep them up-to-date via normal CVS commands. This is the 
-preferred method of access if you are a developer and not
-just a casual browser.
+Sie können auf den Quelltext auch mittels eines normalen CVS-clients zugreifen.
+Dies gibt Ihnen mehr Kontrolle darüber, was Sie mit dem Repository tun können,
+und erlaubt Ihnen, ganze Quelltext-Bäume mittels checkout abzuholen, und sie mittels
+normaler CVS-Befehle am Stand zu halten. Dies ist die bevorzugte Variante des Zugriffs,
+wenn Sie ein Entwickler sind, und nicht nur ein gelegentlicher Besucher.
 </para>
 
 <para>
-To download the latest CVS source code, point your
-browser at the URL :
+Um den letzten CVS-Quelltext herunterzuladen, geben Sie folgende URL in Ihren Browser ein:
 <ulink noescape="1" url="http://www.cyclic.com/">http://www.cyclic.com/</ulink>.
-and click on the <quote>How to get CVS</quote> link. CVS is free software under 
-the GNU GPL (as is Samba). Note that there are several graphical CVS clients
-that provide a graphical interface to the sometimes mundane CVS commands.
-Links to theses clients are also available from the Cyclic Web site.
+und klicken SIe auf den Link <quote>How to get CVS</quote>. CVS ist freie Software
+unter der GNU GPL (so wie auch Samba). Wir machen Sie darauf aufmerksam, daß es auch
+einige graphische CVS-clients gibt, die eine graphische Oberfläche für die manchmal
+sehr nüchternen CVS-Befehle anbieten. Links zu diesen clients sind auch auf der
+Cyclic Web site verfügbar.
 </para>
 
 <para>
