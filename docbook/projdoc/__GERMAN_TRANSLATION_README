@@ -36,15 +36,6 @@ Bitte verwendet den "German Translator"-Eintrag, wir wollen nicht dadurch auffal
 ---
 
 ------
-- Umlaute, Sonderzeichen
-
-Momentane Empfehlung ist, die deutschen Umlaute durch Verwendung von "ae", "oe" etc. abzubilden, um die Ueber setzung der xml-files in html etc. zu gewaehrleisten.
-
-Die Ersetzung der betreffenden Strings wird durch ein Skript vorgenommen werden und muss nicht vom einzelnen Uebersetzer vorgenommen werden.
-
-Wer files mit Umlauten liefert, muss sich im Klaren sein, dass es dann laenger dauert, bis diese als html-files im CVS landen, weil ich oder sonst jemand dann erst haendisch nacharbeiten muss.
-
----
 
 sgw, 18.11.2003
 
