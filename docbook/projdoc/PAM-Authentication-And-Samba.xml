@@ -15,22 +15,24 @@
 <title>PAM-basierte verteilte Authentifizierung</title>
 
 <para>
-Dieses Kapitel hilft Ihnen bei der Verwendung von Winbind basierender Authentifikation auf jedem PAM fähigen 
-UNIX/Linux System. Winbind kann verwendet werden um Programm Zugriffs Authentifizierung auf Benutzerniveau von jeder
-MS Windows NT Domäne, MS Windows 200x Active Director-basierden Domäne oder einer Samba-basierten Domänen
-Umgebung zu erlauben.
+Dieses Kapitel hilft Ihnen bei der Verwendung von Winbind basierender Authentifikation auf jedem PAM-fähigen 
+UNIX/Linux-System. Winbind kann verwendet werden, um Programm-Zugriffs-Authentifizierung auf 
+Benutzerebene von jeder
+MS Windows NT Domäne, MS Windows 200x Active Director-basierenden Domäne oder einer 
+Samba-basierten Domänen-Umgebung zu erlauben.
 
-Es sollte ihnen auch helfen PAM-basierte lokale Host Zugriffs Kontrollen, die ihrer Samba Konfiguration entsprechen,
+Es sollte ihnen auch helfen, PAM-basierte lokale Host-Zugriffs-Kontrollen, die ihrer Samba-Konfiguration entsprechen,
 zu konfigurieren.
 </para>
 
 <para>
-Zusätzlich zur Konfiguration von Winbind in PAM, werden Sie die PAM Management Möglichkeiten kennenlernen wie z.B.
+Zusätzlich zur Konfiguration von Winbind in PAM, werden Sie die PAM-Management-Möglichkeiten 
+kennenlernen, wie z.B.
 die Verwendung von Werkzeugen wie <filename>pam_smbpass.so</filename> zu Ihrem Vorteil.
 </para>
 
 <note><para>
-Die Verwendung von Winbind erfordert mehr als nur die PAM Konfiguration alleine.
+Die Verwendung von Winbind erfordert mehr als nur die Konfiguration von PAM alleine.
 Für mehr Informationen zu Winbind schauen Sie sich bitte <link linkend="winbind"/> an.
 </para></note>
 
@@ -39,23 +41,25 @@ Für mehr Informationen zu Winbind schauen Sie sich bitte <link linkend="winbind"
 
 <para>
 Eine Vielzahl von UNIX Systemen (z.B. Sun Solaris), sowie die xxxxBSD Familie und Linux
-benutzen inzwischen die Pluggable Authentication Modules (PAM) Dienste um die gesamte Authentifikation, Authorisation
-und Ressourcen Kontroll Dienste anzubieten. Wollte man vor PAM eine Alternative zur systeminternen Passworddatenbank
-(<filename>/etc/passwd</filename>) musste man auch Änderungen oder Alternativen zu allen Programmen finden, die
+benutzen inzwischen die Pluggable Authentication Modules (PAM) Dienste, um die gesamten
+Dienste für Authentifikation, Authorisation
+und Ressourcen-Kontrolle anzubieten. Wollte man vor PAM eine Alternative zur systeminternen Passworddatenbank
+(<filename>/etc/passwd</filename>), musste man auch Änderungen oder Alternativen zu allen Programmen finden, die
 Sicherheitsdienste anbieten wie z.B.  <command>login</command>, <command>passwd</command>, <command>chown</command>
 usw.
 </para>
 
 <para>
-PAM liefert einen Mechanismus der diese Sicherheitsprogramme von der darunterliegenden Authentifizierung/Authorisierung
-trennt. PAM wird konfiguriert in dem man Änderungen an <filename>/etc/pam.conf</filename> vornimmt (Solaris), oder indem
-man die einzelnen Dateien die in <filename>/etc/pam.d</filename> aufgelistet sind, anpasst bzw. verändert.
+PAM liefert einen Mechanismus, der diese Sicherheitsprogramme von der darunterliegenden Authentifizierung/Authorisierung
+trennt. PAM wird konfiguriert, in dem man Änderungen an <filename>/etc/pam.conf</filename> vornimmt (Solaris), oder indem
+man die einzelnen Dateien, die in <filename>/etc/pam.d</filename> aufgelistet sind, anpasst bzw. verändert.
 </para>
 
 <para>
-Auf PAM-fähigen UNIX/Linux Systemen ist es ein einfaches Unterfangen irgend ein Authentifizierungs Backend
-zu konfigurieren solange die entsprechenden dynamisch ladbaren Modul Bibliotheken vorhanden sind.
-Das Backend kann auf dem lokalen System vorhanden sein oder, zentralisiert, auf einem entfernten Server.
+Auf PAM-fähigen UNIX/Linux-Systemen ist es ein einfaches Unterfangen, irgendein 
+Authentifizierungs-Backend
+zu konfigurieren, solange die entsprechenden dynamisch ladbaren Modul-Bibliotheken vorhanden sind.
+Das Backend kann auf dem lokalen System vorhanden sein oder zentralisiert, auf einem entfernten Server.
 </para>
 
 <para>
@@ -65,7 +69,7 @@ PAM unterstützte Module sind vorhanden für:
 <variablelist>
 	<varlistentry><term><filename>/etc/passwd</filename></term><listitem>
 		<para>
-		Es gibt mehrere PAM Module die mit dieser standart UNIX Benutzer Datenbank interagieren.
+		Es gibt mehrere PAM Module, die mit dieser Standard UNIX Benutzer Datenbank interagieren.
 		Die bekanntesten sind <filename>pam_unix.so</filename>, <filename>pam_unix2.so</filename>, <filename>pam_pwdb.so</filename>
 		und <filename>pam_userdb.so</filename>.
 		</para>
