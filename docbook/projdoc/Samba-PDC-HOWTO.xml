@@ -449,30 +449,27 @@ Kurz gesagt, Samba-3 ist nicht NT4, Samba-3 ist nicht Windows Server 200x, Samba
 Wir hoffen, daß dies kurz und einfach genug ist, um für alle verständlich zu sein.
 </para>
 
-sgw---workmark
-
 </sect1>
 
 <sect1>
-<title>Domain and Network Logon Configuration</title>
+<title>Konfiguration von Domänen- und Netzwerk-Anmeldung</title>
 
 <para>
-The subject of Network or Domain Logons is discussed here because it forms
-an integral part of the essential functionality that is provided by a Domain Controller.
+Das Thema der Domänen- oder Netzwerk-Anmeldungen wird hier diskutiert, weil es einen integralen Teil
+der essentiellen Funktionen eines Domänen-Controllers darstellt.
 </para>
 
 <sect2>
-<title>Domain Network Logon Service</title>
+<title>Domänen-Netzwerks-Anmelde-Dienst</title>
 
 <para>
-All Domain Controllers must run the netlogon service (<emphasis>domain logons</emphasis>
-in Samba). One Domain Controller must be configured with <smbconfoption><name>domain master</name><value>Yes</value></smbconfoption>
-(the Primary Domain Controller); on all Backup Domain Controllers <smbconfoption><name>domain master</name><value>No</value></smbconfoption>
-must be set.
+Alle Domänen-Controller müssen den netlogon-Dienst ausführen (<emphasis>domain logons</emphasis> in Samba).
+Ein Domänen-Controller muß mit <smbconfoption><name>domain master</name><value>Yes</value></smbconfoption>
+konfiguriert werden (der PDC); auf allen BDCs muß <smbconfoption><name>domain master</name><value>No</value></smbconfoption> gesetzt werden.
 </para>
 
 <sect3>
-<title>Example Configuration</title>
+<title>Beispiel einer Konfiguration</title>
 
 <smbconfexample id="PDC-config">
 <title>smb.conf for being a PDC</title>
@@ -489,32 +486,34 @@ must be set.
 
 </sect3>
 <sect3>
-<title>The Special Case of MS Windows XP Home Edition</title>
+<title>Der spezielle Fall von MS Windows XP Home Edition</title>
 
 <para>
-To be completely clear: If you want MS Windows XP Home Edition to integrate with your
-MS Windows NT4 or Active Directory Domain Security, understand it cannot be done.
-The only option is to purchase the upgrade from MS Windows XP Home Edition to
-MS Windows XP Professional.
+Um es unmißverständlich auszudrücken:
+Wenn Sie MS Windows XP Home Edition in ihre MS Windows NT4- oder ADS-Domäne integrieren wollen,
+müssen Sie verstehen, daß dies NICHT MÖGLICH ist. Die einzige Möglichkeit ist der Erwerb eines
+Upgrades von MS Windows XP Home Edition auf MS Windows XP Professional.
 </para>
 
 <note><para>
-MS Windows XP Home Edition does not have the ability to join any type of Domain
-Security facility. Unlike MS Windows 9x/Me, MS Windows XP Home Edition also completely
-lacks the ability to log onto a network.
+MS Windows XP Home Edition hat keine Fähigkeiten, sich jeglicher Art von Domäne anzuschliessen.
+Im Unterschied zu MS Windows 9x/Me fehlt MS Windows XP Home Edition auch völlig die Fähigkeit,
+sich an einem Netz anzumelden.
 </para></note>
 
 <para>
-Now that this has been said, please do not ask the mailing list or email any of the
-Samba Team members with your questions asking how to make this work. It can't be done.
-If it can be done, then to do so would violate your software license agreement with
-Microsoft, and we recommend that you do not do that.
+Nun, da dies ausgesprochen wurde, fragen Sie bitte NICHT auf der Samba-Mailing-Liste oder
+mailen Sie auch NICHT an die Mitglieder des Samba-Teams, um zu erfragen, wie dies machbar wäre.
+Es ist NICHT MÖGLICH. Wenn es möglich ist, dann würde es Ihr Software-Lizenz-Abkommen mit Microsoft
+verletzen, und wir empfehlen, dies NICHT zu tun.
 </para>
 
 </sect3>
 
+---sgw.workmark
+
 <sect3>
-<title>The Special Case of Windows 9x/Me</title>
+<title>Der spezielle Fall von Windows 9x/Me</title>
 
 <para>
 A domain and a workgroup are exactly the same in terms of network
