@@ -12,10 +12,10 @@
 	<editor>&person.jelmer;</editor>
 	<editor>&person.jht;</editor>
 	<editor>&person.jerry;</editor>
-	<editor>&person.hba;<contrib>German Translator</contrib></editor>
+	<editor>&person.gertrans;<contrib>German Translation Team</contrib></editor>
 	</authorgroup>
 	<pubdate>November 15, 2003</pubdate>
-<!-- <author>&person.hba;<contrib>German Translator</contrib></author> -->
+
 <abstract>
 <para>
 Dieses Buch ist eine Sammlung von HOWTOs welche über die Jahre hinweg der Samba Dokumentation
