@@ -291,33 +291,35 @@ Betriebssystem sind.
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Häufige Fehler</title>
 
 <para>
-If all of Samba and host platform configuration were really as intuitive as one might like them to be, this
-section would not be necessary. Security issues are often vexing for a support person to resolve, not
-because of the complexity of the problem, but for the reason that most administrators who post what turns
-out to be a security problem request are totally convinced that the problem is with Samba.
+Wenn die ganze Konfiguration von Samba und seiner Host-Plattform wirklich so intuitiv wäre, wie es sich
+mancher wünscht, dann wäre dieser Abschnitt unnötig. Sicherheits-Fragen sind oft ärgerlich für die
+Support-Person, die sie aufzulösen hat, nicht nur wegen der Komplexität des Problems, sondern aus dem Grund,
+daß die meisten Administratoren, die von etwas berichten, das sich dann als Sicherheits-Problem
+herausstellt, völlig überzeugt davon sind, daß das Problem an Samba liegt.
 </para>
 
 	<sect2>
-	<title>Smbclient Works on Localhost, but the Network Is Dead</title>
+	<title>Smbclient funktioniert auf Localhost, aber das Netzwerk ist tot</title>
 
 	<para>
-	This is a common problem. Red Hat Linux (and others) installs a default firewall.
-	With the default firewall in place, only traffic on the loopback adapter (IP address 127.0.0.1)
-	is allowed through the firewall.
+	Das ist ein verbreitetes Problem. Red Hat Linux (und andere) installiert eine Firewall.
+	Mit der Standard-Firewall wird nur Verkehr auf dem loopback-Adapter (IP 127.0.0.1)
+	durch die Firewall gelassen.
 	</para>
 
 	<para>
-	The solution is either to remove the firewall (stop it) or modify the firewall script to
-	allow SMB networking traffic through. See section above in this chapter.
+	Die Lösung ist es, entweder die Firewall zu entfernen (stoppen), oder das Firewall-Skript
+	so zu modifizieren, daß die Firewall SMB-Netzwerk-Verkehr durchläßt.
+	Siehe den obigen Abschnitt hierzu.	
 	</para>
 
 	</sect2>
 
 	<sect2>
-	<title>Why Can Users Access Home Directories of Other Users?</title>
+	<title>Warum können Benutzer auf die home-Verzeichnisse anderer Benutzer zugreifen?</title>
 
 	<para>
 	<quote>
@@ -334,40 +336,45 @@ out to be a security problem request are totally convinced that the problem is w
 	</quote></para>
 
 	<para>
-	This is not a security flaw, it is by design. Samba allows users to have
-	exactly the same access to the UNIX file system as when they were logged
-	onto the UNIX box, except that it only allows such views onto the file 
-	system as are allowed by the defined shares.
+	Dies ist kein Sicherheits-Versäumnis, sondern per Design vorgesehen.
+	Samba erlaubt Benutzern	denselben Zugriff auf das UNIX-Dateisystem, wie wenn
+	sie an der UNIX-Maschine angemeldet wären, mit der Einschränkung, daß es nur
+	Zugriff auf die Dateien erlaubt, die von den definierten Freigaben erlaubt sind.
 	</para>
 
 	<para>
-	If your UNIX home directories are set up so that one user can happily <command>cd</command>
-	into another users directory and execute <command>ls</command>, the UNIX security solution is to change file
-	permissions on the user's home directories such that the <command>cd</command> and <command>ls</command> are denied.
+	Wenn Ihre UNIX-home-Verzeichnisse so angelegt sind, daß ein Benutzer einfach per
+	<command>cd</command> in das home-Verzeichnis eines anderen Benutzers gelangen und
+	<command>ls</command> ausführen kann, so ist die UNIX-Sicherheits-Lösung dafür,
+	die Datei-Erlaubnisse für die home-Verzeichnisse so zu setzen, daß die Befehle
+	<command>cd</command> und <command>ls</command> abgelehnt werden.	
 	</para>
 
 	<para>
-	Samba tries very hard not to second guess the UNIX administrators security policies, and
-	trusts the UNIX admin to set the policies and permissions he or she desires.
+	Samba versucht sehr streng, die Sicherheits-Richtlinien des UNIX-Administrators
+	nicht zu hinterfragen, und ihm zu vertrauen, die Richtlinien und Erlaubnisse so zu setzen,
+	wie er es für richtig hält.	
 	</para>
 
 	<para>
-	Samba allows the behavior you require. Simply put the <smbconfoption><name>only user</name><value>%S</value></smbconfoption>
-	option in the <smbconfsection>[homes]</smbconfsection> share definition.
+	Samba eröaubt das gewünschte Verhalten. Setzen Sie einfach die Option
+	<smbconfoption><name>only user</name><value>%S</value></smbconfoption> im Abschnitt der
+	<smbconfsection>[homes]</smbconfsection>-Freigaben-Definition.
 	</para>
 
 	<para>
-	The <smbconfoption><name>only user</name><value></value></smbconfoption> works in conjunction with the <smbconfoption><name>users</name><value>list</value></smbconfoption>,
-	so to get the behavior you require, add the line :
+	Die Option <smbconfoption><name>only user</name><value></value></smbconfoption> arbeitet
+	in Wechselwirkung mit <smbconfoption><name>users</name><value>list</value></smbconfoption>,
+	also müssen Sie, um das gewünschte Verhalten zu erzielen, die Zeile hinzufügen:
 	<smbconfblock>
 <smbconfoption><name>users</name><value>%S</value></smbconfoption>
 </smbconfblock>
-	this is equivalent to adding
+	Dies ist gleichbedeutend zum Hinzufügen von
 	<smbconfblock>
 <smbconfoption><name>valid users</name><value>%S</value></smbconfoption>
 	</smbconfblock>
-	to the definition of the <smbconfsection>[homes]</smbconfsection> share, as recommended in
-	the &smb.conf; man page.
+	zur Definition der <smbconfsection>[homes]</smbconfsection>-Freigabe, wie in der manpage
+	zu &smb.conf; empfohlen.	
 	</para>
 	</sect2>
 
