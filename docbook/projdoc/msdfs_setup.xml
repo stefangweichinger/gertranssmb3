@@ -11,7 +11,7 @@
 		</affiliation>
 	</author>
 	&author.jht;
-	
+
 	<pubdate>12 Jul 2000</pubdate>
 <author>&person.flex;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
@@ -22,34 +22,48 @@
 <title>Eigenschaften und Vorteile</title>
 
 	<para>
-	Das Distributed File System (DFS) erlaubt es die logische Ansicht der Laufwerke und Ordner die der 
+	Das Distributed File System (DFS) erlaubt es die logische Ansicht der Laufwerke und Ordner die der
 	Benutzer sieht von der aktuellen physischen Lage dieser Resourcen auf dem Netzwerk zu trennen.
 	Die Vorteile sind höhere Erreichbarkeit, einfachere Speicherplatzerweiterung, Lastausgleich, usw.
 	</para>
 
 	<para>
-	Für Informationen zu DFS, wenden sie sich an 
-<ulink url="http://www.microsoft.com/NTServer/nts/downloads/winfeatures/NTSDistrFile/AdminGuide.asp">Microsoft
-	Dokumentation</ulink>.
-	Dieses Dokument erklärt wie man einen DFS Baum auf einer UNIX Maschine (für DFS-fähige Clients TO BROWSE)
-	mit Samba betreibt. 	
+	Für Informationen zu DFS, greifen sie auf die
+	<ulink url="http://www.microsoft.com/NTServer/nts/downloads/winfeatures/NTSDistrFile/AdminGuide.asp">Microsoft
+	Dokumentation</ulink>zurück.
+	Dieses Dokument erklärt wie man einen DFS Baum auf einer UNIX Maschine (für DFS-AWARE Clients TO BROWSE)
+	mit Samba betreibt.
 	</para>
 
 	<para>
+<<<<<<< msdfs_setup.xml
+	To enable SMB-based DFS for Samba, configure it with the <option>--with-msdfs</option>
+	option. Once built, a Samba server can be made a DFS server by setting the global
+	Boolean <smbconfoption><name>host msdfs</name></smbconfoption>
+	parameter in the &smb.conf; file. You designate a share as a DFS
+	root using the Share Level Boolean <smbconfoption><name>msdfs root</name></smbconfoption> parameter.
+	A DFS root directory on Samba hosts DFS
+	links in the form of symbolic links that point to other servers. For example, a symbolic link
+	<filename>junction-&gt;msdfs:storage1\share1</filename> in the share directory acts
+	as the DFS junction. When DFS-aware clients attempt to access the junction link,
+	they are redirected to the storage location (in this case, <parameter>\\storage1\share1</parameter>).
+=======
 	Um SMB-basiertes DFS für Samba zu erlauben müssen Sie es mit dem<option>--with-msdfs</option>
-	Schalter kompilieren. Einmal kompiliert, muss man in der &smb.conf; den globalen Boolean Parameter
+	Schalter kompilieren. Einmal kompiliert, muss man in der &smb.conf den globalen Boolean Parameter
 	<smbconfoption><name>host msdfs</name></smbconfoption> setzen. Sie machen eine Freigabe als DFS root in dem
-	sie den Share Level Boolean <smbconfoption><name>msdfs root</name></smbconfoption> Parameter benutzen. 
+	sie den Share Level Boolean <smbconfoption><name>msdfs root</name></smbconfoption> Parameter benutzen.
 	Ein DFS root Verzeichnis auf Samba gibt DFS Verweise in Form von symbolischen Links aus die auf andere Server zeigen.
 	Zum Beispiel ein symbolischen Link <filename>junction-&gt;msdfs:storage1\share1</filename> im Freigabe-Verzeichniss
-	ACTS als die DFS-Verzweigung. Sobald DFS-fähige clients versuchen diesen Link zu öffnen werden sie auf den entsprechenden Speicherort 
-	weitergeleitet (in diesem Fall, <parameter>\\storage1\share1</parameter>).
+	dient als die DFS-Verzweigung. Sobald DFS-fähige clients versuchen diesen Link zu öffnen werden sie auf den
+	entsprechenden Speicherort weitergeleitet (in diesem Fall, <parameter>\\storage1\share1</parameter>).
+
+>>>>>>> 1.4
 	</para>
 
 	<para>
 	DFS trees on Samba work with all DFS-aware clients ranging from Windows 95 to 200x.
 	<link linkend="dfscfg"/> shows how to setup a DFS tree on a Samba server.
-	In the <filename>/export/dfsroot</filename> directory, you set up your DFS links to 
+	In the <filename>/export/dfsroot</filename> directory, you set up your DFS links to
 	other servers on the network.
 <screen>
 &rootprompt;<userinput>cd /export/dfsroot</userinput>
@@ -62,7 +76,7 @@
 
 <para>
 <smbconfexample id="dfscfg">
-<title>smb.conf with DFS configured</title>
+.<title>smb.conf with DFS configured</title>
 <smbconfsection>[global]</smbconfsection>
 <smbconfoption><name>netbios name</name><value>&example.server.samba;</value></smbconfoption>
 <smbconfoption><name>host msdfs  </name><value>yes</value></smbconfoption>
@@ -73,36 +87,36 @@
 </smbconfexample>
 </para>
 
-	<para>You should set up the permissions and ownership of 
-	the directory acting as the DFS root so that only designated 
-	users can create, delete or modify the msdfs links. Also note 
-	that symlink names should be all lowercase. This limitation exists 
-	to have Samba avoid trying all the case combinations to get at 
-	the link name. Finally, set up the symbolic links to point to the 
+	<para>You should set up the permissions and ownership of
+	the directory acting as the DFS root so that only designated
+	users can create, delete or modify the msdfs links. Also note
+	that symlink names should be all lowercase. This limitation exists
+	to have Samba avoid trying all the case combinations to get at
+	the link name. Finally, set up the symbolic links to point to the
 	network shares you want and start Samba.</para>
 
-	<para>Users on DFS-aware clients can now browse the DFS tree 
-	on the Samba server at \\samba\dfs. Accessing 
-	links linka or linkb (which appear as directories to the client) 
+	<para>Users on DFS-aware clients can now browse the DFS tree
+	on the Samba server at \\samba\dfs. Accessing
+	links linka or linkb (which appear as directories to the client)
 	takes users directly to the appropriate shares on the network.</para>
 </sect1>
 
 <sect1>
 <title>Common Errors</title>
 	<itemizedlist>
-		<listitem><para>Windows clients need to be rebooted 
-		if a previously mounted non-DFS share is made a DFS 
-		root or vice versa. A better way is to introduce a 
+		<listitem><para>Windows clients need to be rebooted
+		if a previously mounted non-DFS share is made a DFS
+		root or vice versa. A better way is to introduce a
 		new share and make it the DFS root.</para>
 		</listitem>
-		
-		<listitem><para>Currently, there's a restriction that msdfs 
+
+		<listitem><para>Currently, there's a restriction that msdfs
 		symlink names should all be lowercase.</para>
 		</listitem>
-		
-		<listitem><para>For security purposes, the directory 
-		acting as the root of the DFS tree should have ownership 
-		and permissions set so only designated users can 
+
+		<listitem><para>For security purposes, the directory
+		acting as the root of the DFS tree should have ownership
+		and permissions set so only designated users can
 		modify the symbolic links in the directory.</para>
 		</listitem>
 	</itemizedlist>
