@@ -135,57 +135,69 @@ Segment, um als lokaler Authentifikations- und Zugriffs-Kontroll-Server zu arbei
 </sect3>
 
 <sect3>
-<title>Server Share and Directory Layout</title>
+<title>Entwurf der Server-Freigaben und -Verzeichnisse</title>
 
 <para>
-There are cardinal rules to effective network design that cannot be broken with impunity.
-The most important rule: Simplicity is king in every well-controlled network. Every part of
-the infrastructure must be managed; the more complex it is, the greater will be the demand
-of keeping systems secure and functional.
+Es gibt Kardinalregeln des effektiven Netzwerk-Designs, die nicht ungestraft verletzt werden können.
+Die wichtigste und erste Regel: Einfachheit ist König. Und das in jedem gut verwalteten Netzwerk.
+Jeder Teil der Infrastruktur muß verwaltet werden; je komplizierter sie ist, umso grösser ist die
+Notwendigkeit, die Systeme sicher und funktional zu halten.
 </para>
 
 <para>
-Keep in mind the nature of how data must be shared. Physical disk space layout should be considered
-carefully. Some data must be backed up. The simpler the disk layout the easier it will be to
-keep track of backup needs. Identify what backup media will meet your needs; consider backup to tape,
-CD-ROM or (DVD-ROM), or other offline storage medium. Plan and implement for minimum
-maintenance. Leave nothing to chance in your design; above all, do not leave backups to chance:
-Backup, test, and validate every backup, create a disaster recovery plan and prove that it works.
+Halten Sie sich vor Augen, welcher Natur die zu speichernden Daten sind. Das Layout des physischen
+Platten-Platzes sollte sorgfältig überlegt sein. Manche Daten müssen gesichert werden. Je einfacher 
+das Layout ist, umso einfacher wird es sein, den Backup-Anforderungen gerecht zu werden. Legen Sie fest,
+welche Backup-Medien Ihren Ansprüchen gerecht werden; erwägen Sie Backups auf Band, CD-ROM (oder DVD-ROM),
+bzw. andere Offline-Speicher-Medien. Planen und implementieren Sie im Hinblick auf minimalen Wartungsaufwand.
+Überlassen Sie nichts dem Zufall; zuallererst überlassen Sie die Backups nicht dem Zufall:
+Sichern, testen, und überprüfen Sie jedes Backup, schaffen Sie einen Disaster-Recovery-Plan und
+gehen Sie sicher, daß er auch funktioniert.
 </para>
 
 <para>
-Users should be grouped according to data access control needs. File and directory access 
-is best controlled via group permissions and the use of the <quote>sticky bit</quote> on group controlled
-directories may substantially avoid file access complaints from Samba share users.
+Benutzer sollten nach ihren Bedürfnissen, was den Datenzugriff, bzw. dessen Einschränkung, betrifft,
+gruppiert werden. Datei- und Verzeichnis-Zugriff wird am besten mittels Gruppen-Rechten verwaltet und die
+Verwendung des <quote>sticky bits</quote> auf Gruppen-kontrollierte Verzeichnisse kann grundlegend
+vermeiden, daß Benutzer von Samba-Freigaben sich bezüglich Dateien-Zugriffen beschweren.
 </para>
 
 <para>
-Inexperienced  network administrators often attempt elaborate techniques to set access
-controls on files, directories, shares, as well as in share definitions.
-Keep your design and implementation simple and document your design extensively. Have others
-audit your documentation. Do not create a complex mess that your successor will not understand.
-Remember, job security through complex design and implementation may cause loss of operations
-and downtime to users as the new administrator learns to untangle your knots. Keep access
-controls simple and effective and make sure that users will never be interrupted by obtuse
-complexity.
+Unerfahrene Netzwerk-Administratoren versuchen oft, Techniken auszuarbeiten, um Zugriffs-Kontrollen
+auf Dateien, Verzeichnisse, Freigaben zu setzen, genauso wie in Definitionen von Freigaben.
+Halten Sie Ihr Design und Ihre Implementation einfach und dokumentieren Sie Ihr Design ausführlich.
+Lassen Sie andere Ihre Dokumentation prüfen. Schaffen Sie kein komplexes Durcheinander, das kein
+Nachfolgender versteht. Erinnern Sie sich, Sicherheit durch komplexes Design und komplexe Implementation
+kann Betriebsausfall und Stillstand für die Benutzer verursachen, während der neue Adminístrator
+lernt, Ihre Knoten zu entwirren. Halten Sie die Zugriffskontrollen simpel und effektiv, und stellen Sie
+sicher, daß die Benutzer nie durch stumpfsinnige Komplexität unterbrochen werden.
 </para>
 </sect3>
 
 <sect3>
-<title>Logon Scripts</title>
+<title>Anmelde-Skripts</title>
 
 <para>
-Logon scripts can help to ensure that all users gain the share and printer connections they need.
+Anmelde-Skripts können dabei helfen, sicherzustellen, daß alle Benutzer die Freigabe- und 
+Drucker-Verbindungen erreichen können, die sie brauchen.
 </para>
 
 <para>
-Logon scripts can be created on-the-fly so all commands executed are specific to the
-rights and privileges granted to the user. The preferred controls should be affected through
-group membership so group information can be used to create a custom logon script using
-the <smbconfoption><name>root preexec</name></smbconfoption> parameters to the <smbconfsection>NETLOGON</smbconfsection> share.
+Anmelde-Skripts können im Betrieb erzeugt werden, sodaß alle ausgeführten Befehle spezifisch für
+die Rechte und Privilegien sind, die dem Benutzer erteilt wurden. Die bevorzugten Kontrollen sollten
+von der Gruppen-Mitgliedschaft abhängig sein, sodaß die Gruppen-Information dazue benutzt werden kann,
+ein maßgeschneidertes Anmelde-Skript anzulegen. Dies kann durch Anwendung des Parameters
+<smbconfoption><name>root preexec</name></smbconfoption> in der Freigabe
+<smbconfsection>NETLOGON</smbconfsection> geschehen.
 </para>
 
 <para>
+Manche Organisationen bevorzugen es, ein Werkzeug wie <command>kixstart</command> zu verwenden, um
+eine kontrollierte Benutzer-Umgebung zu schaffen. Auf jeden Fall 
+
+
+--- sgw
+
 Some sites prefer to use a tool such as <command>kixstart</command> to establish a controlled
 user environment. In any case, you may wish to do a Google search for logon script process controls.
 In particular, you may wish to explore the use of the Microsoft KnowledgeBase article KB189105 that
