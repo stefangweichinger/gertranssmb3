@@ -12,9 +12,9 @@
 <sect1>
 <title>Einführung</title>
 <para>
-This note was attached to the Samba 2.2.8 release notes as it contained an
-important security fix. The information contained here applies to Samba
-installations in general.
+Diese Anmerkung wurde den Release-Notes zu Samba 2.2.8 hinzugefügt, da sie eine
+wichtige Sicherheits-Korrektur enthält. Die hier enthaltene Information gilt generell
+für Samba-Installationen.
 </para>
 
 <blockquote>
