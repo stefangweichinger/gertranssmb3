@@ -447,71 +447,70 @@ zu machen, ist abhängig von der Version von Windows.
 <title>Domänen-Mitglieds-Server</title>
 
 <para>
-This mode of server operation involves the Samba machine being made a member
-of a domain security context. This means by definition that all user
-authentication will be done from a centrally defined authentication regime. 
-The authentication regime may come from an NT3/4-style (old domain technology)
-server, or it may be provided from an Active Directory server (ADS) running on
-MS Windows 2000 or later.
+Diese Server-Betriebsart beinhaltet, daß die Samba-Maschine zum Domänen-Mitglied gemacht wird.
+Das bedeutet per Definition, daß jegliche Benutzer-Authentifikation von einem zentral bestimmten
+Authentifikations-Regime erfolgen wird. Das Authentifikations-Regime kann von einem NT3/4-artigen
+(alte Domänen-Technologie) Server kommen, oder es kann von einem Active Directory Server (ADS)
+bereitgestellt werden, der unter MS Windows 2000 oder einem neueren MS Windows läuft.
 </para>
 
 <para>
 <emphasis>
-Of course it should be clear that the authentication backend itself could be
-from any distributed directory architecture server that is supported by Samba.
-This can be LDAP (from OpenLDAP), or Sun's iPlanet, or NetWare Directory
-Server, and so on.
+Es sollte natürlich klar sein, daß das Authentifikations-Backend selbst ein Server von jeder
+Verzeichnis-Dienst-Architektur sein kann, die von Samba unterstützt wird. Es kann LDAP (von
+OpenLDAP) sein, oder Sun's iPlanet, ein NetWare Directory Server, und so weiter.
 </emphasis>
 </para>
 
 <para><note>
-When Samba is configured to use an LDAP, or other identity management and/or
-directory service, it is Samba that continues to perform user and machine
-authentication. It should be noted that the LDAP server does not perform
-authentication handling in place of what Samba is designed to do.
+Wenn Samba für die Verwendung von LDAP konfiguriert ist, oder eine andere Identitäts-Verwaltung
+und/oder einen Verzeichnisdienst, dann ist es Samba, das die Authentifikation von Benutzern und
+Maschinen weiter ausführt. Es sollte beachtet werden, daß der LDAP-Server die Authentifikation
+nicht anstatt Samba ausführt.
 </note></para>
 
 <para>
-Please refer to <link linkend="samba-pdc">Domain Control</link>, for more information regarding
-how to create a domain machine account for a Domain Member server as well as for
-information on how to enable the Samba Domain Member machine to join the domain
-and be fully trusted by it.
+Bitte besuchen Sie <link linkend="samba-pdc">Domain Control</link> für mehr Informationen darüber,
+wie man ein Domänen-Maschinen-Konto anlegt, aber auch darüber, wie man eine Samba-Maschine, die
+Domänen-Mitglied ist, dazu befähigt, sich der Domäne anzuschliessen, und deren volles Vertrauen
+zu gewinnen ...
 </para>
 
 <sect2>
-<title>Joining an NT4-type Domain with Samba-3</title>
+<title>Sich mit Samba-3 einer NT4-Domäne anschliessen</title>
 
-<para><link linkend="assumptions">Next table</link> lists names that have been used in the remainder of this chapter.</para>
+<para><link linkend="assumptions">Die nächste Tabelle</link> enthält eine Liste von Namen, die im Rest dieses Kapitels verwendet wurden.</para>
 
-<table frame="all" id="assumptions"><title>Assumptions</title>
+<table frame="all" id="assumptions"><title>Annahmen</title>
 	<tgroup cols="2">
 		<colspec align="right"/>
 		<colspec align="left"/>
 	<tbody>
 			<row>
-				<entry>NetBIOS name:</entry><entry>SERV1</entry>
+				<entry>NetBIOS-Namen:</entry><entry>SERV1</entry>
 			</row>
 			<row>
-				<entry>Windows 200x/NT domain name:</entry><entry>&example.workgroup;</entry>
+				<entry>Windows 200x/NT Domänen-Namen:</entry><entry>&example.workgroup;</entry>
 			</row>
 			<row>
-				<entry>Domain's PDC NetBIOS name:</entry><entry>DOMPDC</entry>
+				<entry>NetBIOS-Namen des Domänen-PDC:</entry><entry>DOMPDC</entry>
 			</row>
 			<row>
-				<entry>Domain's BDC NetBIOS names:</entry><entry>DOMBDC1 and DOMBDC2</entry>
+				<entry>NetBIOS-Namen der Domänen-BDCs:</entry><entry>DOMBDC1 und DOMBDC2</entry>
 			</row>
 	</tbody>
 	</tgroup>
 </table>
 
 <para>
-First, you must edit your &smb.conf; file to tell Samba it should now use domain security.
+Als erstes müssen Sie Ihre Datei &smb.conf; editieren, um Samba mitzuteilen, daß es ab jetzt 
+Domänen-Sicherheit verwenden soll.
 </para>
 
 <para>
-	Change (or add) your 
-	<smbconfoption><name>security</name></smbconfoption> line in the [global] section 
-of your &smb.conf; to read:
+Ändern (oder fügen Sie sie hinzu) Sie die Zeile
+<smbconfoption><name>security</name></smbconfoption> im Abschnitt [global] 
+Ihrer &smb.conf; auf
 </para>
 
 <para>
@@ -521,8 +520,8 @@ of your &smb.conf; to read:
 </para>
 
 <para>
-Next change the <smbconfoption><name>workgroup</name></smbconfoption> line in the <smbconfsection>[global]</smbconfsection>
-section to read: 
+Als nächstes ändern Sie die Zeile <smbconfoption><name>workgroup</name></smbconfoption> im
+Abschnitt <smbconfsection>[global]</smbconfsection> auf
 </para>
 
 <para>
@@ -532,19 +531,20 @@ section to read:
 </para>
 
 <para>
-This is the name of the domain we are joining.
+Dies ist der Name der Domäne, der wir uns anschliessen.
 </para>
 
 <para>
-You must also have the parameter <smbconfoption><name>encrypt passwords</name></smbconfoption>
-set to <constant>yes</constant> in order for your users to authenticate to the NT PDC.
-This is the default setting if this parameter is not specified. There is no need to specify this
-parameter, but if it is specified in the &smb.conf; file, it must be set to <constant>Yes</constant>.
+Sie müssen auch den Parameter <smbconfoption><name>encrypt passwords</name></smbconfoption> auf
+<constant>yes</constant> setzen, um Ihren Benutzern die Authentifikation am NT-PDC zu ermöglichen.
+Dies ist die Standard-Einstellung, falls dieser Parameter nicht gesetzt wird. Es gibt keinen Grund,
+diesen Parameter zu setzen, aber wenn er in der Datei &smb.conf; gesetzt wird, muß er auf
+<constant>Yes</constant> gesetzt werden.
 </para>
 
 <para>
-Finally, add (or modify) a <smbconfoption><name>password server</name></smbconfoption> line in the [global]
-section to read: 
+Zuletzt fügen Sie dem Abschnitt [global] die Zeile 
+<smbconfoption><name>password server</name></smbconfoption> hinzu (oder ändern sie), sodaß sie lautet:
 </para>
 
 <para>
@@ -554,17 +554,14 @@ section to read:
 </para>
 
 <para>
-These are the primary and backup Domain Controllers Samba 
-will attempt to contact in order to authenticate users. Samba will 
-try to contact each of these servers in order, so you may want to 
-rearrange this list in order to spread out the authentication load 
-among Domain Controllers.
+Dies sind der PDC und die BDCs, die Samba kontaktieren wird, um Benutzer zu authentifizieren.
+Samba wird versuchen, jeden dieser Server in der angegebenen Reihenfolge zu kontaktieren, daher
+können Sie durch die Reihung der Server die Last auf die einzelnen Domänen-Controller verteilen.
 </para>
 
 <para>
-Alternately, if you want smbd to automatically determine 
-the list of Domain Controllers to use for authentication, you may 
-set this line to be:
+Wenn Sie andererseits wollen, daß smbd automatisch die Liste der zu verwendenden Domänen-Controller
+bestimmt, können Sie diese Zeile auf folgendes setzen:
 </para>
 
 <para>
@@ -574,33 +571,34 @@ set this line to be:
 </para>
 
 <para>
-This method allows Samba to use exactly the same mechanism that NT does. The 
-method either uses broadcast-based name resolution, performs a WINS database
-lookup in order to find a Domain Controller against which to authenticate,
-or locates the Domain Controller using DNS name resolution.
+Diese Methode erlaubt es Samba, genau denselben Mechanismus wie NT zu verwenden.
+Sie verwendet entweder Namensauflösung, die auf Broadcasts basiert, führt eine WINS-Datenbank-Abfrage
+durch, um einen Domänen-Controller zu finden, oder lokalisiert einen Domänen-Controller mittels
+DNS-Namensauflösung.
 </para>
 
 <para>
-To join the domain, run this command:
+Zum Anschluß an eine Domäne geben Sie diesen Befehl:
 </para>
 
 <para>
 <screen>
-&rootprompt;<userinput>net join -S DOMPDC -U<replaceable>Administrator%password</replaceable></userinput>
+&rootprompt;<userinput>net join -S DOMPDC -U<replaceable>Administrator%Passwort</replaceable></userinput>
 </screen>
 </para>
 
 <para>
-If the <option>-S DOMPDC</option> argument is not given, the domain name will be obtained from &smb.conf;.
+Wenn das Argument <option>-S DOMPDC</option> nicht angegeben wird, wird der Domänen-Name aus der Datei
+&smb.conf; gelesen.
 </para>
 
 <para>
-The machine is joining the domain DOM, and the PDC for that domain (the only machine
-that has write access to the domain SAM database) is DOMPDC, therefore use the <option>-S</option>
-option. The <replaceable>Administrator%password</replaceable> is the login name and
-password for an account that has the necessary privilege to add machines to the
-domain. If this is successful, you will see the message in your terminal window the
-text shown below. Where the older NT4 style domain architecture is used:
+Die Maschine schließt sich der Domäne DOM an, und der PDC für diese Domäne (die einzige Maschine, die
+Schreib-Zugriff auf die SAM-Datenbank der Domäne hat) ist DOMPDC, daher benutzen Sie die Option
+<option>-S</option>. <replaceable>Administrator%Passwort</replaceable> ist das Benutzer/Passwort-Paar
+für ein Konto, das die nötigen Privilegien hat, um Maschinen der Domäne hinzuzufügen. Wenn dies
+erfolgreich ist, werden Sie die Nachricht in Ihrem Terminal-Fenster sehen, die unten gezeigten Text
+enthält. Wo alte NT4-artige Domänen-Architektur eingesetzt wird:
 <screen>
 <computeroutput>Joined domain DOM.</computeroutput>
 </screen>
