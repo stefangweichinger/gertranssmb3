@@ -1,175 +1,199 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 2. Wie man Samba installiert und testet</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="introduction.html" title="Part I. Grundlegende Installation"><link rel="previous" href="IntroSMB.html" title="Chapter 1. Einführung in Samba"><link rel="next" href="FastStart.html" title="Chapter 3. Schnelleinstieg für Ungeduldige"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 2. Wie man Samba installiert und testet</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="IntroSMB.html">Prev</a> </td><th width="60%" align="center">Part I. Grundlegende Installation</th><td width="20%" align="right"> <a accesskey="n" href="FastStart.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="install"></a>Chapter 2. Wie man Samba installiert und testet</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Andrew</span> <span class="surname">Tridgell</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:tridge@samba.org">tridge@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Jelmer</span> <span class="othername">R.</span> <span class="surname">Vernooij</span></h3><div class="affiliation"><span class="orgname">The Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jelmer@samba.org">jelmer@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Karl</span> <span class="surname">Auer</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:kauer@biplane.com.au">kauer@biplane.com.au</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Dan</span> <span class="surname">Shearer</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:dan@samba.org">dan@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Hendrik</span> <span class="othername"></span> <span class="surname">Bäcker</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:h_baecker@gmx.net">h_baecker@gmx.net</a>&gt;</tt></p></div></div></div></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="install.html#id2879090">Wie man Samba bekommt und installiert</a></dt><dt><a href="install.html#id2879134">Samba konfigurieren (smb.conf)</a></dt><dd><dl><dt><a href="install.html#id2879172">Die Syntax der Konfiguration</a></dt><dt><a href="install.html#id2879348">Samba starten</a></dt><dt><a href="install.html#id2889556">Beispiel Konfiguration</a></dt><dt><a href="install.html#id2889789">SWAT</a></dt></dl></dd><dt><a href="install.html#id2889874">Auflistung von Freigaben auf dem Server</a></dt><dt><a href="install.html#id2889948">Verbindung zu einem UNIX Client aufbauen</a></dt><dt><a href="install.html#id2890067">Verbindung von einem entfernten SMB Client</a></dt><dt><a href="install.html#id2890172">Was wenn etwas nicht funktioniert?</a></dt><dt><a href="install.html#id2890211">Verbreitete Fehler</a></dt><dd><dl><dt><a href="install.html#id2890223">Große Anzahl von smbd Prozessen</a></dt><dt><a href="install.html#id2890331">Fehler Meldung: open_oplock_ipc</a></dt><dt><a href="install.html#id2890370">The network name cannot be found</a></dt></dl></dd></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2879090"></a>Wie man Samba bekommt und installiert</h2></div></div><div></div></div><p>
-	Binär Pakete von Samba gibt es mittlerweile in fast jeder
-	Linux oder Unix Distribution. Auch gibt es einige Pakete
-	auf <a href="http://samba.org/" target="_top">der Samba Homepage</a>.
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 2. Wie man Samba installiert und testet</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="introduction.html" title="Part I. Grundlegende Installation"><link rel="previous" href="IntroSMB.html" title="Chapter 1. Einführung in Samba"><link rel="next" href="FastStart.html" title="Chapter 3. Schnelleinstieg für Ungeduldige"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 2. Wie man Samba installiert und testet</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="IntroSMB.html">Prev</a> </td><th width="60%" align="center">Part I. Grundlegende Installation</th><td width="20%" align="right"> <a accesskey="n" href="FastStart.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="install"></a>Chapter 2. Wie man Samba installiert und testet</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Andrew</span> <span class="surname">Tridgell</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:tridge@samba.org">tridge@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Jelmer</span> <span class="othername">R.</span> <span class="surname">Vernooij</span></h3><div class="affiliation"><span class="orgname">The Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jelmer@samba.org">jelmer@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Karl</span> <span class="surname">Auer</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:kauer@biplane.com.au">kauer@biplane.com.au</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Dan</span> <span class="surname">Shearer</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:dan@samba.org">dan@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Hendrik</span> <span class="othername"></span> <span class="surname">Bäcker</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:h_baecker@gmx.net">h_baecker@gmx.net</a>&gt;</tt></p></div></div></div></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="install.html#id2879096">Wie man Samba bekommt und installiert</a></dt><dt><a href="install.html#id2879140">Samba konfigurieren (smb.conf)</a></dt><dd><dl><dt><a href="install.html#id2879179">Die Syntax der Konfiguration</a></dt><dt><a href="install.html#id2879355">Samba starten</a></dt><dt><a href="install.html#id2889569">Beispiels-Konfiguration</a></dt><dt><a href="install.html#id2889805">SWAT</a></dt></dl></dd><dt><a href="install.html#id2889891">Auflistung von Freigaben auf dem Server</a></dt><dt><a href="install.html#id2889968">Verbindung zu einem UNIX-Client aufbauen</a></dt><dt><a href="install.html#id2890086">Verbindung von einem entfernten SMB-Client</a></dt><dt><a href="install.html#id2890192">Was, wenn etwas nicht funktioniert?</a></dt><dt><a href="install.html#id2890231">Häufige Fehler</a></dt><dd><dl><dt><a href="install.html#id2890243">Große Anzahl von smbd-Prozessen</a></dt><dt><a href="install.html#id2890351">Fehler Meldung: open_oplock_ipc</a></dt><dt><a href="install.html#id2890390">The network name cannot be found</a></dt></dl></dd></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2879096"></a>Wie man Samba bekommt und installiert</h2></div></div><div></div></div><p>
+	Binäre Pakete von Samba gibt es mittlerweile in fast jeder
+	Linux- oder Unix-Distribution. Es gibt auch einige Pakete
+	auf <a href="http://samba.org/" target="_top">, der Samba-Homepage</a>.
 	Lesen Sie bitte in der Bedienungsanleitung ihres Betriebsystems
-	nach wie Sie auf ihrem System Samba installieren können.
+	nach, wie Sie auf ihrem System Samba installieren können.
 	</p><p>Wenn Sie Samba von den Quelldateien selbst installieren
 	möchten, bekommen Sie <a href="compiling.html" title="Chapter 36. Wie man Samba kompiliert">hier</a>
-	weitere Informationen.</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2879134"></a>Samba konfigurieren (smb.conf)</h2></div></div><div></div></div><p>
-	Die Samba konfiguration wird in der <tt class="filename">smb.conf</tt> vorgenommen die
-	Sie üblicherweise in <tt class="filename">/etc/samba/smb.conf</tt> oder
+	weitere Informationen.</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2879140"></a>Samba konfigurieren (smb.conf)</h2></div></div><div></div></div><p>
+	Die Samba-Konfiguration wird in der Datei <tt class="filename">smb.conf</tt> vorgenommen, die
+	Sie üblicherweise unter <tt class="filename">/etc/samba/smb.conf</tt> oder
 	<tt class="filename">/usr/local/samba/lib/smb.conf</tt> finden.
-	Sie können diese Datei selbst editieren oder eines der vielen
-	grafischen Oberflächen wie das Webbasierte SWAT nutzen, welches
+	Sie können diese Datei selbst editieren oder eine der vielen
+	grafischen Oberflächen nutzen, wie das webbasierte SWAT, welches
 	mit Samba mitgeliefert wird.
-	</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2879172"></a>Die Syntax der Konfiguration</h3></div></div><div></div></div><p>Die <tt class="filename">smb.conf</tt> nutzt nahezu die gleiche Syntax wie die
-	verschiedenen .ini Dateien von Windows 3.1: Jede Datei enthält
-	verschiedene Sektionen wobei jede dieser Sektionen durch Klammern
-	([]) getrennt sind. Jede Sektion besteht aus keinem oder mehreren
-	Schlüssel/Wert paaren die durch das Gleichheitszeichen (=)
-	miteinander verbunden werden. Dies ist eine Klartext ASCII Datei,
-	die Sie mit ihrem Lieblings Editor bearbeiten können.
-	</p><p>Jede Sektion der <tt class="filename">smb.conf</tt> Datei repräsentiert eine Freigabe
-	auf dem Samba Server bis auf die &#8220;<span class="quote">global</span>&#8221;, dies ist
-	eine spezielle Sektion da sie Einstellungen enthält die den gesamten
-	Samba Server beeinflussen und nicht nur einzelne Freigaben.
+	</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2879179"></a>Die Syntax der Konfiguration</h3></div></div><div></div></div><p>Die <tt class="filename">smb.conf</tt> nutzt nahezu die gleiche Syntax wie die
+	verschiedenen ini-Dateien von Windows 3.1: Jede Datei enthält
+	verschiedene Abschnitte, wobei diese Abschnitte durch Klammern
+	([]) getrennt sind. Jeder Abschnitt besteht aus keinem oder mehreren
+	Schlüssel/Wert-Paaren, die durch das Gleichheitszeichen (=)
+	miteinander verbunden werden. Dies ist eine Klartext-ASCII-Datei,
+	die Sie mit ihrem Lieblings-Editor bearbeiten können.
+	</p><p>Jeder Abschnitt der Datei <tt class="filename">smb.conf</tt> repräsentiert eine Freigabe
+	auf dem Samba-Server, bis auf den Abschnitt &#8220;<span class="quote">global</span>&#8221;.
+	Dieser ist
+	ein spezieller Abschnitt, da er Einstellungen enthält, die den gesamten
+	Samba-Server beeinflussen, und nicht nur einzelne Freigaben.
 	</p><p><a href="install.html#smbconfminimal" title="Example 2.1. Eine minimale smb.conf">???</a> enthält eine sehr kleine <tt class="filename">smb.conf</tt>.
-	<a class="indexterm" name="id2879249"></a>
-</p><div class="example"><a name="smbconfminimal"></a><p class="title"><b>Example 2.1. Eine minimale smb.conf</b></p><table class="simplelist" border="0" summary="Simple list"><tr><td> </td></tr><tr><td><i class="parameter"><tt>[global]</tt></i></td></tr><tr><td><i class="parameter"><tt>workgroup = WKG</tt></i></td></tr><tr><td><i class="parameter"><tt>netbios name = MYNAME</tt></i></td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[share1]</tt></i></td></tr><tr><td><i class="parameter"><tt>path = /tmp</tt></i></td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[share2]</tt></i></td></tr><tr><td><i class="parameter"><tt>path = /my_shared_folder</tt></i></td></tr><tr><td><i class="parameter"><tt>comment = Some random files</tt></i></td></tr></table></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2879348"></a>Samba starten</h3></div></div><div></div></div><p>
-	Samba an sich besteht aus zwei oder drei sog. daemons. Ein deamon ist eine Unix Applikation die im Hintergrund läuft und Dienste zur Verfügung stellt.
-	Ein Beispiel eines solchen Dienstes ist der Apache Web Server für den der daemon <b class="command">httpd</b> heißt.
-	Im Falle von Samba gibt es drei daemons von denen mindestens zwei benötigt werden.
+	<a class="indexterm" name="id2879256"></a>
+</p><div class="example"><a name="smbconfminimal"></a><p class="title"><b>Example 2.1. Eine minimale smb.conf</b></p><table class="simplelist" border="0" summary="Simple list"><tr><td> </td></tr><tr><td><i class="parameter"><tt>[global]</tt></i></td></tr><tr><td><i class="parameter"><tt>workgroup = WKG</tt></i></td></tr><tr><td><i class="parameter"><tt>netbios name = MYNAME</tt></i></td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[share1]</tt></i></td></tr><tr><td><i class="parameter"><tt>path = /tmp</tt></i></td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[share2]</tt></i></td></tr><tr><td><i class="parameter"><tt>path = /my_shared_folder</tt></i></td></tr><tr><td><i class="parameter"><tt>comment = Some random files</tt></i></td></tr></table></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2879355"></a>Samba starten</h3></div></div><div></div></div><p>
+	Samba an sich besteht aus zwei oder drei sogenannten Daemons. 
+	Ein Daemon ist eine Unix-Applikation, die im Hintergrund läuft und Dienste zur Verfügung stellt.
+	Ein Beispiel eines solchen Dienstes ist der Apache Webserver, für den der Daemon <b class="command">httpd</b> heißt.
+	Im Falle von Samba gibt es drei Daemons, von denen mindestens zwei benötigt werden.
 	</p><p>
-	Der Samba Server besteht aus folgenden daemons:
+	Der Samba-Server besteht aus folgenden Daemons:
 	</p><div class="variablelist"><dl><dt><span class="term">nmbd</span></dt><dd><p>
-			Dieser daemon behandelt alle Namenregistrierungen und Namensauflösungs anfragen. Es ist das Primäre
-			Werkzeug für das schmöckern eines Netzwerkes. Er ist in der lage mit jedem UDP basierten Protokoll
-			umzugehen. Das Kommando <b class="command">nmbd</b> sollte der erste daemon sein der im Rahmen des Samba
-			Startvorgangs geladen wird.
+			Dieser Daemon behandelt alle Namensregistrierungen und Anfragen zur 
+			Namensauflösung. Es ist das primäre
+			Werkzeug zum Durchsuchen eines Netzwerkes. 
+			Er ist in der Lage, mit jedem UDP-basierten Protokoll
+			umzugehen. Das Kommando <b class="command">nmbd</b> sollte der erste 
+			Daemon sein, der im Rahmen des Startvorgangs von Samba geladen wird.
 			</p></dd><dt><span class="term">smbd</span></dt><dd><p>
-			Dieser daemon behandelt alle TCP/IP basierenden Verbindungen für Datei- und Druckbasierten operationen.
-			Ebenfalls handelt dieser daemon mit der Benutzerauthentisierung und sollte direkt nach dem Start von
+			Dieser Daemon behandelt alle TCP/IP-basierenden Verbindungen 
+			für Datei- und Druck-basierende Operationen.
+			<b class="command">smbd</b> befaßt sich auch mit der Benutzerauthentifikation
+			und sollte direkt nach dem Start von
 			<b class="command">nmbd</b> aufgerufen werden.
 			</p></dd><dt><span class="term">winbindd</span></dt><dd><p>
-			Dieser daemon sollte gestartet werden, wenn der Samba Server ein Mitglied einer Windows NT4 oder ADS
-			(ActiveDirectoryService) Domäne ist. Er ist ebenfalls nötig, wenn Samba in einem Vertrauenverhältnis
-			zu anderen Domänen steht. Der <b class="command">winbindd</b> daemon überprüft die <tt class="filename">smb.conf</tt> auf das
-			vorhanden sein der <i class="parameter"><tt>idmap uid</tt></i> und <i class="parameter"><tt>idmap gid</tt></i> Parameter.
-			Sollten Sie fehlen gibt der <b class="command">winbindd</b> einen Fehler aus und startet nicht.
+			Dieser Daemon sollte gestartet werden, wenn der Samba-Server 
+			Mitglied einer Windows-NT4- oder ADS-Domäne
+			(ADS = ActiveDirectoryService) ist. Er ist ebenfalls nötig, wenn Samba 
+			in einem Vertrauenverhältnis
+			zu anderen Domänen steht. Der Daemon <b class="command">winbindd</b> 
+			überprüft die Datei <tt class="filename">smb.conf</tt> auf das
+			Vorhandensein der Parameter <i class="parameter"><tt>idmap uid</tt></i> 
+			und <i class="parameter"><tt>idmap gid</tt></i>.
+			Sollten diese fehlen, gibt der <b class="command">winbindd</b> einen 
+			Fehler aus und startet nicht.
 			</p></dd></dl></div><p>
-	Wenn Samba als Paket einer Distribution installiert wird liegt meist ein Start-Stop Script für den
-	Ordnungsgemäßen start von Samba vor ist aber eher ein positives Merkmal der Distribution. Bitte
-	konsultieren Sie das Administrationshandbuch ihres Betriebsystems bezüglich des einbinden eines solchen
-	Start-Stop Scripts.
-	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2889556"></a>Beispiel Konfiguration</h3></div></div><div></div></div><p>
-	Es gibt Beispiel Konfigurationsdateien in einem separaten Unterverzeichnis der
-	Distribution. Es ist empfehlenswert diese Beispiele aufmerksam zu lesen um zu
-	verstehen wie die verschiedenen Optionen in der Praxis zusammenarbeiten. Um eine
-	zusammenfassung aller möglichen Optionen zu sehen rufen Sie bitte die man-pages auf.
-	Es lohnt sich die vorgegebene smb.conf.default als Grundlage der persönlichen
-	Konfiguration zu verwenden da sie viele Kommentare zu den verschiedenen Optionen enthält.
+	Wenn Samba als Paket einer Distribution installiert wird,
+	liegt meist ein Start-Stop-Skript für den
+	ordnungsgemäßen Start von Samba vor. Dies ist aber eher ein positives Merkmal 
+	einer Distribution. Bitte konsultieren Sie das Administrationshandbuch ihres Betriebsystems 
+	bezüglich der Einbindung eines solchen
+	Start-Stop-Skripts.
+	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2889569"></a>Beispiels-Konfiguration</h3></div></div><div></div></div><p>
+	Es gibt Beispiele von Konfigurationsdateien in einem separaten Unterverzeichnis der
+	Distribution. Es ist empfehlenswert, diese Beispiele aufmerksam zu lesen, um zu
+	verstehen, wie die verschiedenen Optionen in der Praxis zusammenarbeiten. Um eine
+	Zusammenfassung aller möglichen Optionen zu sehen, rufen Sie bitte die man-pages auf.
+	Es lohnt sich, die vorgegebene Datei smb.conf.default als Grundlage der persönlichen
+	Konfiguration zu verwenden, da sie viele Kommentare zu den verschiedenen Optionen enthält.
 	</p><p>
-	Die einfachste Konfiguration sollte mindestens <a href="install.html#simple-example" title="Example 2.2. Eine weitere vereinfachte smb.conf Datei">???</a> enthalten.
+	Die einfachste Konfiguration sollte mindestens <a href="install.html#simple-example" title="Example 2.2. Eine weitere vereinfachte smb.conf-Datei">???</a> enthalten.
 	</p><p>
-	<a class="indexterm" name="id2889595"></a>
-	</p><div class="example"><a name="simple-example"></a><p class="title"><b>Example 2.2. Eine weitere vereinfachte smb.conf Datei</b></p><table class="simplelist" border="0" summary="Simple list"><tr><td> </td></tr><tr><td><i class="parameter"><tt>[global]</tt></i></td></tr><tr><td><i class="parameter"><tt>workgroup = MIDEARTH</tt></i></td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[homes]</tt></i></td></tr><tr><td><i class="parameter"><tt>guest ok = no</tt></i></td></tr><tr><td><i class="parameter"><tt>read only = no</tt></i></td></tr></table></div><p>
+	<a class="indexterm" name="id2889608"></a>
+	</p><div class="example"><a name="simple-example"></a><p class="title"><b>Example 2.2. Eine weitere vereinfachte smb.conf-Datei</b></p><table class="simplelist" border="0" summary="Simple list"><tr><td> </td></tr><tr><td><i class="parameter"><tt>[global]</tt></i></td></tr><tr><td><i class="parameter"><tt>workgroup = MIDEARTH</tt></i></td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[homes]</tt></i></td></tr><tr><td><i class="parameter"><tt>guest ok = no</tt></i></td></tr><tr><td><i class="parameter"><tt>read only = no</tt></i></td></tr></table></div><p>
 	</p><p>
-	Diese Konfiguration erlaubt es jedem der einen Benutzeraccount auf dem Server hat
-	sich mit seinem Login Namen auf die Freigabe <i class="parameter"><tt>homes</tt></i>
-	zu verbinden. (Hinweis: Der name der Arbeitsgruppe/Domäne sollte hier so wie
+	Diese Konfiguration erlaubt es jedem, der einen Benutzeraccount auf dem Server hat,
+	sich unter Verwendung seines Login-Namens mit der 
+	Freigabe <i class="parameter"><tt>homes</tt></i>
+	zu verbinden. (Hinweis: Der Name der Arbeitsgruppe/Domäne sollte hier so wie
 	gewünscht gesetzt werden, der Standard für diese Option ist WORKGROUP.)
 	</p><p>
-	Stellen Sie sicher, dass sie die <tt class="filename">smb.conf</tt> Datei im richtigen Verzeichniss gespeichert haben.
+	Stellen Sie sicher, dass sie die Datei <tt class="filename">smb.conf</tt> im richtigen Verzeichnis gespeichert haben.
 	</p><p>
-	Für weitere Informationen über die Sicherheitseinstellungen für <i class="parameter"><tt>[homes]</tt></i>
+	Für weitere Informationen zu den Sicherheitseinstellungen für <i class="parameter"><tt>[homes]</tt></i>
 	lesen Sie bitte hier: <a href="securing-samba.html" title="Chapter 15. Samba absichern">???</a>
-	</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2889717"></a>Test der Konfiguration mit <b class="command">testparm</b></h4></div></div><div></div></div><p>
-	Es ist wichtig ihrer Konfigurationsänderung mit <span class="application">testparm</span> zu überprüfen, wenn ihre Konfiguration
-	richtig ist sollte testparm eine Liste der Verfügbaren Services auflisten, andernfalls wird es
-	eine Fehlermeldung ausgeben.
+	</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2889733"></a>Test der Konfiguration mit <b class="command">testparm</b></h4></div></div><div></div></div><p>
+	Es ist wichtig, Ihre Konfigurationsänderung mit <span class="application">testparm</span> zu überprüfen. 
+	Wenn ihre Konfiguration richtig ist, sollte testparm eine Liste der verfügbaren 
+	Services auflisten, andernfalls wird es eine Fehlermeldung ausgeben.
 	Überprüfen Sie ihre Konfiguration mittels:
 	</p><pre class="screen">
 	<tt class="prompt">root# </tt> testparm /etc/samba/smb.conf
-	</pre><p>Testparm wird ihre Konfiguration überprüfen und mögliche unbekannte Parameter oder fehler in
-	der Syntax ausgeben.
+	</pre><p>testparm wird ihre Konfiguration überprüfen und mögliche unbekannte 
+	Parameter oder Fehler in der Syntax ausgeben.
 	</p><p>
-	Es ist sehr empfehlenswert testparm nach einer Änderung der <tt class="filename">smb.conf</tt> auszuführen.
-	</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2889789"></a>SWAT</h3></div></div><div></div></div><p>
-	<a class="indexterm" name="id2889799"></a>
-	SWAT ist eine Weboberfläche die dazu genutzt werden kann die Konfiguration von Samba zu erleichtern.
-	Es kann möglich sein, dass SWAT nicht in der Paketinstallation ihrer Distribution enthalten ist, dann
-	finden Sie es aber meist in einem separaten Paket. Bitte beachten Sie die SWAT man-page wenn Sie SWAT
-	aus den Quelldateien kompilieren, installieren und konfigurien wollen.
+	Es ist sehr empfehlenswert, testparm nach einer Änderung der <tt class="filename">smb.conf</tt> auszuführen.
+	</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2889805"></a>SWAT</h3></div></div><div></div></div><p>
+	<a class="indexterm" name="id2889815"></a>
+	SWAT ist eine Weboberfläche, die dazu genutzt werden kann,
+	die Konfiguration von Samba zu erleichtern.
+	Es kann möglich sein, dass SWAT nicht in der Paketinstallation ihrer Distribution
+	enthalten ist, dannfinden Sie es aber meist in einem separaten Paket. Bitte beachten Sie die
+	SWAT-man-page, wenn Sie SWAT aus den Quelldateien kompilieren, installieren und 
+	konfigurieren wollen.
 	</p><p>
-	Um SWAT zu starten verwenden Sie einfach ihren favorisierten Web-Browser und verwenden folgende URL
+	Um SWAT zu starten, verwenden Sie einfach ihren liebsten Web-Browser und folgende URL
 	<a href="http://localhost:901/" target="_top">http://localhost:901/</a>.
-	Ersetzen Sie <i class="replaceable"><tt>localhost</tt></i> mit dem Namen des Computers auf dem Sie Samba
-	installiert haben wenn Sie den Web-Browser von einem anderen PC als den Samba Server starten.
+	Ersetzen Sie <i class="replaceable"><tt>localhost</tt></i> durch den Namen des Computers,
+	auf dem Sie Samba installiert haben, wenn Sie den Web-Browser von einem anderen
+	PC als den Samba-Server starten.
 	</p><p>
-	SWAT kann von jedem Browser eines IP-Netzes aus genutzt werden aber beachten Sie dass bei Verbindungen
-	von einem entfernten Rechner die Gefahr besteht dass ihre Passwörter abgehört werden können, da diese
-	in Klartext über das Kabel transportiert werden.
+	SWAT kann von jedem Browser eines IP-Netzes aus genutzt werden, 
+	aber beachten Sie, dass bei Verbindungen von einem entfernten Rechner die Gefahr besteht,
+	dass ihre Passwörter abgehört werden, da diese im Klartext über das Kabel transportiert werden.
 	</p><p>Weitere Informationen über SWAT können Sie hier finden:
-	<a href="SWAT.html" title="Chapter 32. SWAT  Das Samba-Administrations-Werkzeug">???</a></p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2889874"></a>Auflistung von Freigaben auf dem Server</h2></div></div><div></div></div><p>
-	Verwenden Sie folgendes Kommando um die verfügbaren ihres Samba Server aufzulisten:
+	<a href="SWAT.html" title="Chapter 32. SWAT  Das Samba-Administrations-Werkzeug">???</a></p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2889891"></a>Auflistung von Freigaben auf dem Server</h2></div></div><div></div></div><p>
+	Verwenden Sie folgenden Befehl, um die verfügbaren Freigaben ihres Samba-Servers aufzulisten:
 	</p><pre class="screen">
 <tt class="prompt">$ </tt><b class="userinput"><tt>smbclient -L <i class="replaceable"><tt>yourhostname</tt></i></tt></b>
 </pre><p>Sie sollten nun eine Liste der verfügbaren Freigaben ihres Servers sehen, wenn
-	nicht dann ist etwas nicht richtig konfiguriert. Dieses Kommando können Sie ebenfalls
-	nutzen um die Freigaben anderer Server z.B. Windows 2000 zu betrachten.
-	</p><p>Wenn Sie user-level Sicherheit als Sicherheit für ihren Server gewählt haben, sollten
-	Sie nach dem Kommando nach einem Passwort für ihren Benutzer gefragt werden bevor Sie die
-	Auflistung sehen. Lesen Sie die <b class="command">smbclient</b> man-page für weitere Informationen.
-	Sie können das Kommando mittels der Option <tt class="option">-N</tt> in der Kommandozeile dazu bringen sich auch ohne
+	nicht, dann ist etwas nicht richtig konfiguriert. Diesen Befehl können Sie ebenfalls
+	nutzen, um die Freigaben anderer Server z.B. Windows 2000 zu betrachten.
+	</p><p>
+	Wenn Sie User-level-Sicherheit als Sicherheit für ihren Server gewählt haben, sollten
+	Sie nach Eingabe des Befehls nach einem Passwort für ihren Benutzer gefragt werden,
+	bevor Sie die Auflistung sehen. Lesen Sie die man-page zu
+	<b class="command">smbclient</b> für weitere Informationen dazu.
+	Sie können den Befehl mittels der Option <tt class="option">-N</tt> dazu bringen, auch ohne
 	Passwort die Freigabeliste anzuzeigen.
-	</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2889948"></a>Verbindung zu einem UNIX Client aufbauen</h2></div></div><div></div></div><p>
-	Verwenden Sie folgendes Kommando:
+	</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2889968"></a>Verbindung zu einem UNIX-Client aufbauen</h2></div></div><div></div></div><p>
+	Verwenden Sie folgenden Befehl:
 </p><pre class="screen">
-<tt class="prompt">$ </tt><b class="userinput"><tt>smbclient <i class="replaceable"><tt> //yourhostname/aservice</tt></i></tt></b>
-</pre><p>Normalerweise ist <i class="replaceable"><tt>yourhostname</tt></i> der Name des Hosts auf dem sich der <span class="application">smbd</span>
-	befindet und <i class="replaceable"><tt>aservice</tt></i> ist ein belieber Service den dieser Host zur Verfügung
-	stellt. Versuchen Sie es mit ihrem Benutzernamen, wenn Sie eine Sektion <i class="parameter"><tt>[homes]</tt></i>
-	in der <tt class="filename">smb.conf</tt> haben.
-	</p><p>Beispiel: Wenn der UNIX Host <i class="replaceable"><tt>bambi</tt></i> heißt und ein gültiger Login Name
-	<i class="replaceable"><tt>fred</tt></i> ist könnten Sie folgendes schreiben:
+<tt class="prompt">$ </tt><b class="userinput"><tt>smbclient <i class="replaceable"><tt> //ihrhostname/eindienst</tt></i></tt></b>
+</pre><p>Normalerweise ist <i class="replaceable"><tt>ihrhostname</tt></i> der Name des Hosts,
+	auf dem sich der <span class="application">smbd</span> befindet und <i class="replaceable"><tt>eindienst</tt></i> ist ein beliebiger
+	Dienst, den dieser Host zur Verfügung stellt.
+	Versuchen Sie es mit ihrem Benutzernamen, wenn Sie einen Abschnitt
+	<i class="parameter"><tt>[homes]</tt></i> in Ihrer <tt class="filename">smb.conf</tt> haben.
+	</p><p>Beispiel: Wenn der UNIX-Host <i class="replaceable"><tt>bambi</tt></i> heißt und 
+	ein gültiger Login-Name
+	<i class="replaceable"><tt>fred</tt></i> ist, könnten Sie folgendes schreiben:
 	</p><pre class="screen">
 <tt class="prompt">$ </tt><b class="userinput"><tt>smbclient //<i class="replaceable"><tt>bambi</tt></i>/<i class="replaceable"><tt>fred</tt></i></tt></b>
-</pre></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2890067"></a>Verbindung von einem entfernten SMB Client</h2></div></div><div></div></div><p>Nun da Samba lokal richtig funktioniert können Sie versuchen sich von einem anderen Rechner aus
-	an ihrem Samba Server anzumelden. Innerhalb weniger minuten sollte der Samba Server in ihrer
-	Netzwerkumgebung ihres Windows Subnetzes sichtbar sein. Versuchen Sie ihren Samba Server dort zu finden
-	oder versuchen Sie eine Netzwerkverbindung mit ihrem Server herzustellen.
-	</p><p>Um eine Netzwerkverbindung unde DOS, Windows oder OS/2 Rechnern herzustellen führen Sie folgendes
-	Kommando aus:
+</pre></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2890086"></a>Verbindung von einem entfernten SMB-Client</h2></div></div><div></div></div><p>Nun da Samba lokal richtig funktioniert, können Sie versuchen,
+	sich von einem anderen Rechner aus an ihrem Samba-Server anzumelden.
+	Innerhalb weniger Minuten sollte der Samba-Server in der
+	Netzwerkumgebung ihres Windows-Subnetzes sichtbar sein.
+	Versuchen Sie, Ihren Samba-Server dort zu finden,
+	oder versuchen Sie, eine Netzwerkverbindung mit ihrem Server herzustellen.
+	</p><p>Um eine Netzwerkverbindung unter DOS, Windows oder OS/2 herzustellen,
+	führen Sie folgenden Befehl aus:
 	</p><pre class="screen">
-	<tt class="prompt">C:\&gt; </tt><b class="userinput"><tt>net use d: \\servername\service</tt></b>
+	<tt class="prompt">C:\&gt; </tt><b class="userinput"><tt>net use d: \\servername\dienst</tt></b>
 	</pre><p>Versuchen Sie zu drucken:</p><p>
 </p><pre class="screen">
-<tt class="prompt">C:\&gt; </tt><b class="userinput"><tt>net use lpt1:	\\servername\spoolservice</tt></b>
+<tt class="prompt">C:\&gt; </tt><b class="userinput"><tt>net use lpt1:	\\servername\druckdienst</tt></b>
 </pre><p>
 </p><pre class="screen"><tt class="prompt">C:\&gt; </tt><b class="userinput"><tt>print filename</tt></b>
-</pre></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2890172"></a>Was wenn etwas nicht funktioniert?</h2></div></div><div></div></div><p>Sie können bei <a href="diagnosis.html" title="Chapter 33. Die Samba Checkliste">hier</a> Hilfe finden oder aber wenn es danach
-	immernoch nicht funktioniert lesen Sie bitte <a href="problems.html" title="Chapter 34. Analyse und Lösung von Problemen mit Samba">???</a>. Samba wurde
-	bereits auf tausenden von Systemen installiert und es könnte hilfreich sein im Internet zu suchen,
-	ob jemand anderes auch ihr Problem hatte und einen Weg gefunden hat es zu lösen.
-	You might want to read .
-	</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2890211"></a>Verbreitete Fehler</h2></div></div><div></div></div><p>
-Folgende Fragen und Themen tauchen immer wieder in der Samba Mailing Liste auf.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2890223"></a>Große Anzahl von smbd Prozessen</h3></div></div><div></div></div><p>
-Samba enthält drei Core Programme: <span class="application">nmbd</span> ist der Namensserver daemon, <span class="application">smbd</span> ist der Server Message
-daemon und <span class="application">winbindd</span> ist der daemon der mit Domänen Controllern arbeitet.
+</pre></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2890192"></a>Was, wenn etwas nicht funktioniert?</h2></div></div><div></div></div><p>Sie können <a href="diagnosis.html" title="Chapter 33. Die Samba Checkliste">hier</a> Hilfe finden oder aber, wenn es danach
+	immer noch nicht funktioniert, lesen Sie bitte <a href="problems.html" title="Chapter 34. Analyse und Lösung von Problemen mit Samba">???</a>.
+	Samba wurde bereits auf tausenden von Systemen installiert, daher könnte es hilfreich sein,
+	im Internet zu recherchieren, ob jemand anderes auch ihr Problem hatte und einen Weg
+	gefunden hat, es zu lösen.
+	</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2890231"></a>Häufige Fehler</h2></div></div><div></div></div><p>
+Folgende Fragen und Themen tauchen immer wieder in der Samba-Mailing-Liste auf.
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2890243"></a>Große Anzahl von smbd-Prozessen</h3></div></div><div></div></div><p>
+Samba enthält drei Kern-Programme: <span class="application">nmbd</span> ist der Namensserver-Daemon, <span class="application">smbd</span> ist der Server-Message-
+Daemon und <span class="application">winbindd</span> ist der Daemon, der mit Domänen-Controllern arbeitet.
 </p><p>
-Wenn Samba <span class="emphasis"><em>nicht</em></span> als WINS Server fungiert sollte es nur eine Instanz des <span class="application">nmbd</span> daemons
-auf ihrem System geben. Andernfalls sollten zwei <span class="application">nmbd</span> Prozesse laufen einer von den beiden behandelt die
-WINS Anfragen.
+Wenn Samba <span class="emphasis"><em>nicht</em></span> als WINS-Server fungiert, sollte es nur eine Instanz 
+des <span class="application">nmbd</span>-Daemons auf ihrem System geben. Andernfalls sollten zwei <span class="application">nmbd</span>-Prozesse laufen,
+von denen einer die WINS-Anfragen behandelt.
 </p><p>
-<span class="application">smbd</span> behandelt alle Verbindungsanfragen. Er ruft sich selbst für jede neue Client-Verbindung auf. Das ist
-der Grund warum Sie mehrere Prozesse von <span class="application">smbd</span> sehen können, einen für jede Client-Verbindung.
+<span class="application">smbd</span> behandelt alle Verbindungsanfragen. Er ruft sich selbst für jede neue Client-Verbindung auf.
+Das ist der Grund, warum Sie mehrere Prozesse von <span class="application">smbd</span> sehen können, einen für jede Client-Verbindung.
 </p><p>
-<span class="application">winbindd</span> läuft in einem oder zwei Prozessen, abhängig davon ob er im <span class="emphasis"><em>split mode</em></span>
+<span class="application">winbindd</span> läuft in einem oder zwei Prozessen, abhängig davon, ob er im <span class="emphasis"><em>split mode</em></span>
 läuft (in diesem Fall hat er zwei Instanzen).
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2890331"></a>Fehler Meldung: open_oplock_ipc</h3></div></div><div></div></div><p>Eine Fehlermeldung wird in der Log Datei beim starten von <span class="application">smbd</span> angezeigt:
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2890351"></a>Fehler Meldung: open_oplock_ipc</h3></div></div><div></div></div><p>Eine Fehlermeldung wird in der Log-Datei beim Starten von <span class="application">smbd</span> angezeigt:
 	&#8220;<span class="quote">open_oplock_ipc: Failed to get local UDP socket
-	for address 100007f. Error was Cannot assign requested.</span>&#8221;</p><p>Ihr Loopback Interface funktioniert nicht korrekt. Vergewissern Sie sich dass es korrekt
-	konfiguriert wurde. Das Loopack Interface ist eine interne (virtuelles) Netzwerkkarte mit der
-	IP-Adresse <span class="emphasis"><em>127.0.0.1</em></span>. Lesen Sie in ihrer Betriebssystem Dokumentation nach,
-	wie Sie ihr Loopback interface einrichten.
-	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2890370"></a>&#8220;<span class="quote"><span class="errorname">The network name cannot be found</span></span>&#8221;</h3></div></div><div></div></div><p>
-		Dieser fehler kann von folgenden Mißkonfigurationen stammen:
-		</p><div class="itemizedlist"><ul type="disc"><li><p>Sie haben einen nicht existierenden Pfad für eine Freigabe in der
+	for address 100007f. Error was Cannot assign requested.</span>&#8221;</p><p>Ihr Loopback-Interface funktioniert nicht korrekt. Vergewissern Sie sich, dass es korrekt
+	konfiguriert wurde. Das Loopback-Interface ist eine interne (virtuelle) Netzwerkkarte mit der
+	IP-Adresse <span class="emphasis"><em>127.0.0.1</em></span>. Lesen Sie in der Dokumentation Ihres Betriebssystems
+	nach, wie Ihr Loopback-Interface einzurichten ist.
+	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2890390"></a>&#8220;<span class="quote"><span class="errorname">The network name cannot be found</span></span>&#8221;</h3></div></div><div></div></div><p>
+		Dieser Fehler kann von folgenden Fehlkonfigurationen verursacht werden: 
+		</p><div class="itemizedlist"><ul type="disc"><li><p>Sie haben einen nicht existenten Pfad für eine Freigabe in der
 			<tt class="filename">smb.conf</tt> angegeben.
-			</p></li><li><p>Der Benutzer mit dem Sie versuchen auf eine Freigabe zu zugreifen hat
-			nicht die erforderlichen Rechte um auf den UNIX-Pfad zu zugreifen. Sowohl das Leserecht
-			(r) sowie das Zugriffsrecht (x) sollten dem Benutzer erlaubt sein.
-			</p></li><li><p>Die Freigabe auf die Sie versuchen zu zugreifen existiert nicht.
+			</p></li><li><p>Der Benutzer, mit dem Sie versuchen, auf eine Freigabe 
+			zuzugreifen, hat nicht die erforderlichen Rechte, um auf den UNIX-Pfad 
+			zuzugreifen. Sowohl das Leserecht (r) sowie das Zugriffsrecht (x) sollten 
+			dem Benutzer eingeräumt werden. 
+			</p></li><li><p>Die Freigabe, auf die Sie zuzugreifen versuchen, existiert nicht.
 			</p></li></ul></div></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="IntroSMB.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="introduction.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="FastStart.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 1. Einführung in Samba </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 3. Schnelleinstieg für Ungeduldige</td></tr></table></div></body></html>
