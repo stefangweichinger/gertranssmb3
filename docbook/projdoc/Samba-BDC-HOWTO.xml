@@ -5,7 +5,7 @@
 	&author.jht;
 	&author.vl;
 	<author>&person.gd;<contrib>LDAP updates</contrib></author>
-	<author>&person.sgw;<contrib>German Translation</contrib></author>
+	<author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Backup Domänen-Verwaltung</title>

@@ -3,7 +3,7 @@
 <chapterinfo>
 	&author.jht;
 	<pubdate>April 3, 2003</pubdate>
-	<author>&person.sgw;<contrib>German Translation</contrib></author>
+	<author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Migration von einem NT4-PDC auf einen Samba-3-PDC</title>
