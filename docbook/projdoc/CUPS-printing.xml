@@ -24,13 +24,19 @@
 </chapterinfo>
 
 <title>CUPS Printing Support</title>
+#
+<title>Unterstützung des CUPS Drucksystems</title>
 
 <sect1>
 
 	<title>Introduction</title>
+	#
+	<title>Einleitung</title>
 
 	<sect2>
 		<title>Features and Benefits</title>
+		#
+		<title>Fähigkeiten und Möglichkeiten</title>
 
 		<para>
 		The Common UNIX Print System (<ulink url="http://www.cups.org/">CUPS</ulink>)
@@ -41,6 +47,21 @@
 		there is a little problem, they are in trouble to find out where to
 		start debugging it. Refer to the chapter <quote>Classical Printing</quote> that
 		contains a lot of information that is relevant for CUPS.
+		</para>
+		#
+		<para>
+		Das Common UNIX Print System (<ulink url="http://www.cups.org/">CUPS</ulink>)
+		ist mittlerweile sehr populär geworden. Alle großen
+		Linux Distributionen liefern dieses als das Standard
+		Druck System aus. Für viele ist es ein mystisches Tool.
+		Hauptsache es funktioniert einfach. Daher wird es 
+		oft als <quote>Black Box</quote> angesehen und solange
+		es funktioniert möchte sich auch niemand damit
+		befassen. Sobald aber ein kleines Problem auftritt
+		bekomme sie Schwierigkeiten herauszufinden wie man mit
+		der Fehlersuche beginnt. Sehr viele Informationen welche
+		auch für CUPS relevant sind finden Sie im Kapitel
+		<quote>klassisches Drucken</quote>.
 		</para>
 
 		<para>
@@ -53,11 +74,27 @@
 		complete understanding of CUPS. Let's start with the most basic
 		things first.
 		</para>
+		#
+		<para>
+		CUPS bietet einige mächtige und einmalige Möglichkeiten.
+		Neu ist auch die sehr einfache Handhabung der
+		grundsätzlichen Funktionen. Da diese Funktionen anders
+		sind als in den mehr traditionell orientierten
+		Drucksystemen, wenden Sie am besten nicht ihr
+		bisheriges Wissen bzgl. Drucken an.
+		Versuchen Sie lieber eher CUPS von Grund auf zu
+		vestehen. Diese Dokumentation möchte Sie zu einem
+		kompletten Verständniss von CUPS führen. 
+		Zuerst möchten wir mit den grundsätzlichen Dingen beginnen.
+		</para>
+
 
 	</sect2>
 
 	<sect2>
 		<title>Overview</title>
+		#
+		<title>Übersicht</title>
 
 		<para>
 		CUPS is more than just a print spooling system. It is a complete
@@ -71,7 +108,21 @@
 		(GUI interfaces developed by third parties, like KDE's
 		overwhelming <ulink url="http://printing.kde.org/">KDEPrint</ulink>).
 		</para>
-
+		#
+		<para>
+		CUPS ist mehr als nur ein Print Spooling System. Es ist
+		ein komplettes Drucker Management System welches das
+		neue Internet Printing Protocol (IPP) erfüllt. IPP ist
+		ein Industrie und Internet Engineering Task Force (IETF) Standard für 
+		das Drucken in Netzwerken. Viele seiner Funktionen kann
+		remote oder lokal über einen Webbrowser gemanaget
+		werden. Dies bietet Ihnen einen Plattform unabhängigen
+		Zugriff zum CUPS Printserver. Zusätzlich hat es die
+		traditionellen Kommandozeilen Tools und weitere moderne
+		GUI Schnittstellen. (GUI Schnittstellen von
+		Drittherstellern, wie etwa das überwältigende in KDE
+		enthaltene <ulink url="http://printing.kde.org/">KDEPrint</ulink>).
+		</para>
 		<para>
 		CUPS allows creation of <quote>raw</quote> printers (i.e., no print file
 		format translation) as well as <quote>smart</quote> printers (i.e., CUPS does
@@ -82,11 +133,28 @@
 		explore how one may configure CUPS for interfacing with MS Windows
 		print clients via Samba.
 		</para>
+		#
+		<para>
+		CUPS erlaubt die Erstellung von <quote>raw</quote>
+		Druckern (keine Übersetzung der Druckdaten) genauso wie
+		von <quote>smart</quote> Druckern (Cups übersetzt das
+		Dateiformat in das benötigte Druckerformat). Diese
+		Fexibilität gibt CUPS ähnliche Möglichkeiten wie das MS
+		Windows Print Monitoring System. Sind Sie ein CUPS
+		Verfechter, dann werden Sie sicher argumentieren das es
+		sogar besser ist ! Wie auch immer, lassen Sie uns
+		damit weitermachen wie wir CUPS für eine Zusammenarbeit
+		mit MS Windows Druckclients über SAMBA konfigurieren
+		müssen.
+		</para>
+
 	</sect2>
 </sect1>
 
 <sect1>
 	<title>Basic CUPS Support Configuration</title>
+	#
+	<title>Grundlegende Konfiguration für den CUPS Support</title>
 
 	<para>
 	Printing with CUPS in the most basic &smb.conf; setup in Samba-3.0 (as was true for 2.2.x) only needs two
@@ -100,7 +168,29 @@
 	<command>man cupsd.conf</command> and other CUPS-related documentation, like the wealth of documents on your CUPS server
 	itself: <ulink noescape="1" url="http://localhost:631/documentation.html">http://localhost:631/documentation.html</ulink>.
 	</para>
-
+	#
+	<para>
+	In Samba-3.0 (gilt auch für 2.2.x) sind für das grundlegende
+	Drucken mit CUPS nur 2 Einträge nötig:
+	<smbconfoption><name>printing</name><value>cups</value></smbconfoption>
+	and
+	<smbconfoption><name>printcap</name><value>cups</value></smbconfoption>.
+	CUPS benötig auch keine printcap Datei.
+	Dennoch gibt es in der Konfigurationsdatei
+	<filename>cupsd.conf</filename> zwei dazu relevante Einträge die
+	dazu dienen diese Datei anzulegen und zu verwalten damit
+	Anwendungen von Drittherstellern damit umgehen können (Beispiel:
+	<parameter>Printcap /etc/printcap</parameter> and
+	<parameter>PrintcapFormat BSD</parameter>).
+	Ältere Programme benötigen oft zum drucken diese printcap Datei mit den
+	Namen der Drucker. Stellen Sie daher sicher das CUPS so
+	konfiguriert wurde das diese printcap Datei erstellt und
+	gewartet wird. Für Details schauen Sie in die man Page
+	<command>man cupsd.conf</command>, in die CUPS relevanten
+	Dokumentationen sowie in die vielen Infos vom CUPS Server
+	selbst: <ulink noescape="1" url="http://localhost:631/documentation.html">http://localhost:631/documentation.html</ulink>.
+	</para>
+###
 	<sect2>
 		<title>Linking smbd with libcups.so</title>
 
