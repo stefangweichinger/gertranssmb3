@@ -243,78 +243,71 @@ Domänen-Mitglieds-Maschinen haben ein Maschinen-Konto in der Domänen-Konten-Date
 </para>
 
 <note><para>
-When Samba is configured as a Domain Controller, secure network operation demands that
-all MS Windows NT4/200x/XP Professional clients should be configured as Domain Members.
-If a machine is not made a member of the Domain, then it will operate like a workgroup
-(Stand-alone) machine. Please refer to <link linkend="domain-member"></link> for
-information regarding Domain Membership.
+Wird Samba als Domänen-Controller konfiguriert, müssen alle MS Windows NT4/200x/XP Professional Clients als Domänen-Mitglieder konfiguriert werden, um den sicheren Betrieb des Netzwerks zu gewährleisten. Wenn eine Maschine nicht zum Domänen-Mitglied gemacht wird, wird sie sich wie eine Arbeitsgruppen(Standalone)-Maschine verhalten. Siehe <link linkend="domain-member"></link> für Informationen zur Domänen-Mitgliedschaft.
 </para></note>
 
 <para>
-The following are necessary for configuring Samba-3 as an MS Windows NT4-style PDC for MS Windows
-NT4/200x/XP clients:
+Folgendes ist nötig, um Samba-3 als einen MS Windows NT4-artigen PDC für MS-Windows-NT4/200x/XP-Clients zu konfigurieren:
 </para>
 
 <itemizedlist>
-	<listitem><para>Configuration of basic TCP/IP and MS Windows networking.</para></listitem>
-	<listitem><para>Correct designation of the Server Role (<smbconfoption><name>security</name><value>user</value></smbconfoption>).</para></listitem>
-	<listitem><para>Consistent configuration of Name Resolution<footnote><para>See <link linkend="NetworkBrowsing"></link>, and
+	<listitem><para>Konfiguration der Basisdienste TCP/IP und MS Windows Netzwerk.</para></listitem>
+	<listitem><para>Korrekte Zuweisung der Server-Rolle (<smbconfoption><name>security</name><value>user</value></smbconfoption>).</para></listitem>
+	<listitem><para>Konsistente Konfiguration der Namensauflösung <footnote><para>Siehe <link linkend="NetworkBrowsing"></link>, und
 		<link linkend="integrate-ms-networks"></link>.</para></footnote>.</para></listitem>
-	<listitem><para>Domain logons for Windows NT4/200x/XP Professional clients.</para></listitem>
-	<listitem><para>Configuration of Roaming Profiles or explicit configuration to force local profile usage.</para></listitem>
-	<listitem><para>Configuration of network/system policies.</para></listitem>
-	<listitem><para>Adding and managing domain user accounts.</para></listitem>
-	<listitem><para>Configuring MS Windows client machines to become Domain Members.</para></listitem>
+	<listitem><para>Domänen-Logins für Windows NT4/200x/XP Professional Clients.</para></listitem>
+	<listitem><para>Konfiguration von Roaming Profiles oder explizite Konfiguration, um die Verwendung lokaler Profile zu erzwingen.</para></listitem>
+	<listitem><para>Konfiguration von Netzwerk/System-Policies.</para></listitem>
+	<listitem><para>Hinzufügen und Verwalten von Domänen-Benutzer-Konten.</para></listitem>
+	<listitem><para>Konfiguration von MS Windows Clients als Domänen-Mitglieder.</para></listitem>
 </itemizedlist>
 
 <para>
-The following provisions are required to serve MS Windows 9x/Me clients:
+Die folgenden Voraussetzungen sind erforderlich, um MS Windows 9x/Me-Clients bedienen zu können:
 </para>
 
 <itemizedlist>
-	<listitem><para>Configuration of basic TCP/IP and MS Windows networking.</para></listitem>
-	<listitem><para>Correct designation of the server role (<smbconfoption><name>security</name><value>user</value></smbconfoption>).</para></listitem>
-	<listitem><para>Network Logon Configuration (since Windows 9x/Me/XP Home are not technically domain
-	members, they do not really participate in  the security aspects of Domain logons as such).</para></listitem>
-	<listitem><para>Roaming Profile Configuration.</para></listitem>
-	<listitem><para>Configuration of System Policy handling.</para></listitem>
-	<listitem><para>Installation of the network driver <quote>Client for MS Windows Networks</quote> and configuration
-	to log onto the domain.</para></listitem>
-	<listitem><para>Placing Windows 9x/Me clients in User Level Security &smbmdash; if it is desired to allow
-	all client share access to be controlled according to domain user/group identities.</para></listitem>
-	<listitem><para>Adding and managing domain user accounts.</para></listitem>
+	<listitem><para>Konfiguration der Basisdienste TCP/IP und MS Windows Netzwerk.</para></listitem>
+	<listitem><para>Korrekte Zuweisung der Server-Rolle (<smbconfoption><name>security</name><value>user</value></smbconfoption>).</para></listitem>
+	<listitem><para>Netzwerk-Login-Konfiguration (da Windows 9x/Me/XP Home technisch gesehen keine Domänen-Mitglieder sind, nehmen sie auch nicht wirklich als solches an den Sicherheits-Aspekten von Domänen Anteil) .</para></listitem>
+	<listitem><para>Konfiguration von Roaming Profiles.</para></listitem>
+	<listitem><para>Konfiguration von System Policy handling.</para></listitem>
+	<listitem><para>Installation des Netzwerk-Treibers <quote>Client for MS Windows Networks</quote> und dessen Konfiguration, um sich in der Domäne anzumelden.</para></listitem>
+	<listitem><para>Setzen der Windows 9x/Me-Clients auf User Level Security &smbmdash; wenn es erwünscht ist, jeglichen Client-Zugriff auf Freigaben entsprechend der Domänen-Benutzern/Gruppen zu verwalten.</para></listitem>
+	<listitem><para>Hinzufügen und Verwalten von Domänen-Benutzer-Konten.</para></listitem>
 </itemizedlist>
 
 <note><para>
-Roaming Profiles and System/Network policies are advanced network administration topics
-that are covered in the <link linkend="ProfileMgmt"></link> and
-<link linkend="PolicyMgmt"></link> chapters of this document. However, these are not
-necessarily specific to a Samba PDC as much as they are related to Windows NT networking concepts.
+Roaming Profiles und System/Network policies sind fortgeschrittene Netzwerk-Verwaltungs-Themen die in den Kapiteln <link linkend="ProfileMgmt"></link> und <link linkend="PolicyMgmt"></link> behandelt werden. Jedoch sind diese Themen für einen Samba-PDC nicht so entscheidend, da sie eng mit den Windows NT-Netzwerk-Konzepten zusammenhängen.
 </para></note>
 
 <para>
-A Domain Controller is an SMB/CIFS server that:
+Ein Domänen-Controller ist ein SMB/CIFS-Server, der:
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	Registers and advertises itself as a Domain Controller (through NetBIOS broadcasts
-	as well as by way of name registrations either by Mailslot Broadcasts over UDP broadcast,
-	to a WINS server over UDP unicast, or via DNS and Active Directory).
+	sich selbst als Domänen Controller registriert und anbietet (sowohl durch
+	NetBIOS broadcasts wie auch durch verschiedene Namensregistrierungen,
+	entweder durch Mailslot Broadcasts über UDP broadcast, einem WINS-Server
+	über UDP unicast, oder über DNS und Active Directory).	
 	</para></listitem>
 
 	<listitem><para>
-	Provides the NETLOGON service. (This is actually a collection of services that runs over
-	mulitple protocols. These include the LanMan Logon service, the Netlogon service,
-	the Local Security Account service, and variations of them.)
+	den NETLOGON-Dienst anbietet. (Dies ist tatsächlich eine Sammlung von Diensten,
+	die über mehrere Protokolle laufen. Diese inkludieren den LanMan-Logon-Dienst,
+	den Netlogon-Dienst, den Local-Security-Account-Dienst, und Abwandlungen dieser.)
 	</para></listitem>
 
 	<listitem><para>
-	Provides a share called NETLOGON.
+	eine Freigabe namens NETLOGON anbietet.
 	</para></listitem>
 </itemizedlist>
 
 <para>
+
+---sgw.workmark
+
 It is rather easy to configure Samba to provide these. Each Samba Domain Controller must provide
 the NETLOGON service that Samba calls the <smbconfoption><name>domain logons</name></smbconfoption> functionality
 (after the name of the parameter in the &smb.conf; file). Additionally, one server in a Samba-3
