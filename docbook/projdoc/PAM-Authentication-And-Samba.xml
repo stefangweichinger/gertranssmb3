@@ -299,37 +299,36 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>requisite:</parameter> Like required, however, in the case that such a module returns a
-			failure, control is directly returned to the application. The return value is that associated with
-			the first required or requisite module to fail. This flag can be used to protect against the
-			possibility of a user getting the opportunity to enter a password over an unsafe medium. It is
-			conceivable that such behavior might inform an attacker of valid accounts on a system. This
-			possibility should be weighed against the not insignificant concerns of exposing a sensitive
-			password in a hostile environment.
+			<parameter>requisite:</parameter> Gleich wie required, nur dass es im Falle eines Misserfolges die
+			Kontrolle direkt an die Applikation zurückgegeben wird. Der Rückgabewert ist der gleiche wie bei einem
+			Misserforlg des ersten Moduls. Diese Flag kann gesetzt werden um dem Benutzer die Möglichkeit zu nehmen
+			über ein unsicheres Medium das Passwort einzugeben. Es wäre möglich dass dies einem Angreifer Informationen
+			über Benutzernamen geben könnte. Dieser Möglichkeit sollte aber entgegengehalten werden dass sonst eventuell
+			Passwörter durch eine feindliche Umgebung gehen könnten.
 			</para></listitem>
 
                         <listitem><para>
-                        <parameter>sufficient:</parameter> The success of this module is deemed <parameter>sufficient</parameter> to satisfy
-			the Linux-PAM library that this module-type has succeeded in its purpose. In the event that no
-			previous required module has failed, no more <quote>stacked</quote> modules of this type are invoked.
-			(In this case, subsequent required modules are not invoked). A failure of this module is not deemed
+                        <parameter>sufficient:</parameter> Der Erfolg dieses Moduls genügt damit die Linux-PAM Bibliothek ausgibt dass
+			dieses Modul erfolgreich in seinem Zweck war. Im Fall, dass kein vorhergehendes wichtiges (<parameter> required</parameter>)
+			Modul Misserfolg zurückgab, wird kein weiteres <quote>gestapeltes</quote> Modul ausgeführt (in diesem Fall werden auch keine
+			weiteren wichtigen Module mehr ausgeführt). A failure of this module is not deemed
 			as fatal to satisfying the application that this module-type has succeeded.
 			</para></listitem>
 
                         <listitem><para>
-                        <parameter>optional:</parameter> As its name suggests, this control-flag marks the module as not
-			being critical to the success or failure of the user's application for service. In general,
-			Linux-PAM ignores such a module when determining if the module stack will succeed or fail.
-			However, in the absence of any definite successes or failures of previous or subsequent stacked
-			modules, this module will determine the nature of the response to the application. One example of
-			this latter case, is when the other modules return something like PAM_IGNORE.
+                        <parameter>optional:</parameter> Wie der Name schon sagt, bedeutet diese Flag dass das dazugehörige Modul
+			keinen kritischen Einfluss auf den Erfolg der Applikation des Benutzers hat. Wenn Linux-PAM festlegen muss
+			ob ein Modul-Stapel erfolgreich war, werden diese Module normalwerweise ignoriert. Gibt jedoch kein vorhergehendes
+			oder nachfolgendes Modul des Stapels eine definitve Rückgabe über den Erfolg, ist der Rückgabewert dieses Moduls ausschlaggebend
+			für den Erfolg des Modul-Stapels. Ein Beispiel für diesen Fall wäre wenn die anderen Module eine Rückgabe wie 
+			PAM_IGNORE geben würden.
 			</para></listitem>
 		</itemizedlist>
 
 		<para>
-		The more elaborate (newer) syntax is much more specific and gives the administrator a great deal of control
-		over how the user is authenticated. This form of the control flag is delimited with square brackets and
-		consists of a series of <parameter>value=action</parameter> tokens:
+		Die besser ausgearbeitete (und neuere) Syntax ist viel spezifischer und gibt dem Administrator mehr Möglichkeiten
+		und Kontrolle wie der Benutzer authentifiziert wird. Diese Form der Kontroll Flaggen wird mit eckigen Klammern
+		abgegrenzt und besteht aus einer Serie von <parameter>value=action</parameter> Zeichen.
 		</para>
 
 <para><programlisting>
@@ -337,7 +336,7 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 </programlisting></para>
 
 		<para>
-		Here, <parameter>value1</parameter> is one of the following return values:
+		Hier, ist <parameter>value1</parameter> einer der folgenden Rückgabewerte:
 <screen>
 <parameter>success; open_err; symbol_err; service_err; system_err; buf_err;</parameter>
 <parameter>perm_denied; auth_err; cred_insufficient; authinfo_unavail;</parameter>
@@ -350,75 +349,76 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 </para>
 
 		<para>
-		The last of these <parameter>(default)</parameter> can be used to set the action for those return values that are not explicitly defined.
+		Der letzte dieser <parameter>(default)</parameter> kann dafür benutzt 
+		werden die ACTION für Rückgabwerte festzulegen für die dies nicht explizit angegeben wurde.
 		</para>
 
 		<para>
-		The <parameter>action1</parameter> can be a positive integer or one of the following tokens: 
-		<parameter>ignore; ok; done; bad; die;</parameter> and <parameter>reset</parameter>.
-		A positive integer, J, when specified as the action, can be used to indicate that the next J modules of the
-		current module-type will be skipped. In this way, the administrator can develop a moderately sophisticated
-		stack of modules with a number of different paths of execution. Which path is taken can be determined by the
-		reactions of individual modules.
+		Der <parameter>action1</parameter> kann ein positiver Integer sein oder eines der folgenden Zeichen:
+		<parameter>ignore; ok; done; bad; die;</parameter> und <parameter>reset</parameter>. Ein positiver Integer,
+		J, WHEN SPECIFIED AS ACTION, kann benutzt werden um anzugeben dass die nächsten J Module vom momentanen Modul-Stapel
+		übersprungen werden. Wird dies richtig angewendet kann der Administrator einen hoch entwickelten Modul-Stapel mit
+		mehrer Ausführungsmöglichkeiten bauen. Welche Möglichkeit schlussendlich genommen wird, kann mit der Reaktion der
+		einzelnen Module bestimmt werden.
 		</para>
 
 		<itemizedlist>
 			<listitem><para>
-			<parameter>ignore:</parameter> When used with a stack of modules, the module's return status will not
-			contribute to the return code the application obtains.
+			<parameter>ignore:</parameter> Wird dieser Parameter mit in einem Modul-Stapel angewendet, beeinflusst
+			die Rückgabe dieses Moduls nicht den Rückgabewert den die Applikation vom gesamten Stapel erhält.
 			</para></listitem>
 
 			<listitem><para>
-                        <parameter>bad:</parameter> This action indicates that the return code should be thought of as indicative
-			of the module failing. If this module is the first in the stack to fail, its status value will be used
-			for that of the whole stack.
+                        <parameter>bad:</parameter> Dies gibt an dass der Rückgabewert dieses Modul ausschlaggebend ist für das
+			fehlschlagen des Moduls. Wenn dieses Modul das erste ist, das erfolglos durchgeführt wir, wird sein Rückgabewert
+			für den Status des gesamten Modul-Stabels verwendet.
 			</para></listitem>
 
                         <listitem><para>
-                        <parameter>die:</parameter> Equivalent to bad with the side effect of terminating the module stack and
-			PAM immediately returning to the application.
+                        <parameter>die:</parameter> Gleich wie <parameter>bad</parameter> nur mit dem Effekt dass der Modul-Stabel und PAM sofort abgebrochen
+			werden und zur Anwendung zurückgekehrt wird.
 			</para></listitem>
 
                         <listitem><para>
-                        <parameter>ok:</parameter> This tells PAM that the administrator thinks this return code should
-			contribute directly to the return code of the full stack of modules. In other words, if the former
-			state of the stack would lead to a return of PAM_SUCCESS, the module's return code will override
-			this value. Note, if the former state of the stack holds some value that is indicative of a modules
-			failure, this <parameter>ok</parameter> value will not be used to override that value.
+                        <parameter>ok:</parameter> Dieser Parameter teilt PAM mit das der Administrator glaubt dieser Rückgabewert
+			sollte direkt den des gesamten Modul-Stapels beeinflussen. In anderen Worten, wenn der vorherige Wert des
+			Stapels einen Rückgabewert PAM_SUCCESS enthalten hätte, wird er jetzt von dem dieses Moduls überschrieben.
+			Achtung, weist jedoch der vorherige Wert auf den Misserfolg eines Moduls hin, so wird der <parameter>ok</parameter>
+			nicht verwendet um diesen zu überschreiben.
 			</para></listitem>
 
                         <listitem><para>
-                        <parameter>done:</parameter> Equivalent to <parameter>ok</parameter> with the side effect of terminating the module stack and
-			PAM immediately returning to the application.
-                        </para></listitem>
+                        <parameter>done:</parameter> Gleich wie <parameter>ok</parameter> mit dem Effekt dass der Modul-Stapel und PAM sofort abgebrochen
+			beendet werden und zur Anwendung zurückgekehrt wird.
+			</para></listitem>
 
                         <listitem><para>
-                        <parameter>reset:</parameter> Clears all memory of the state of the module stack and starts again with
-			the next stacked module.
+                        <parameter>reset:</parameter> Löscht den Speicher des Rückgabewertes des Moduls und startet mit dem nächsten
+			gestapelten Modul neu.
 			</para></listitem>
 		</itemizedlist>
 
 		<para>
-		Each of the four keywords: <parameter>required; requisite; sufficient;</parameter> and <parameter>optional</parameter>,
-		have an equivalent expression in terms of the [...] syntax. They are as follows:
+		Jedes dieser vier Schlüsselworte: <parameter>required; requisite; sufficient;</parameter> und <parameter>optional</parameter>,
+		hat einen gleichwertigen Ausdruck in der [...] Syntax:
 		</para>
 
 		<para>
 		<itemizedlist>
 			<listitem><para>
-			<parameter>required</parameter> is equivalent to <parameter>[success=ok new_authtok_reqd=ok ignore=ignore default=bad]</parameter>.
+			<parameter>required</parameter> ist gleichwertig wie <parameter>[success=ok new_authtok_reqd=ok ignore=ignore default=bad]</parameter>.
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>requisite</parameter> is equivalent to <parameter>[success=ok new_authtok_reqd=ok ignore=ignore default=die]</parameter>.
+			<parameter>requisite</parameter> ist gleichwertig wie <parameter>[success=ok new_authtok_reqd=ok ignore=ignore default=die]</parameter>.
 			</para></listitem>
 
 			<listitem><para>
-					<parameter>sufficient</parameter> is equivalent to <parameter>[success=done new_authtok_reqd=done<?latex \linebreak ?> default=ignore]</parameter>.
+			<parameter>sufficient</parameter> ist gleichwertig wie <parameter>[success=done new_authtok_reqd=done<?latex \linebreak ?> default=ignore]</parameter>.
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>optional</parameter> is equivalent to <parameter>[success=ok new_authtok_reqd=ok default=ignore]</parameter>.
+			<parameter>optional</parameter> ist gleichwertig wie <parameter>[success=ok new_authtok_reqd=ok default=ignore]</parameter>.
 			</para></listitem>
 		</itemizedlist>
 		</para>
