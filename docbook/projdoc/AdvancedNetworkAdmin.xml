@@ -15,43 +15,43 @@ automatisieren, und ihr Leben ein wenig erleichtern wollen.
 </para>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Vorzüge</title>
 
 <para>
-Often the difference between a working network environment and a well appreciated one can
-best be measured by the <emphasis>little things</emphasis> that make everything work more
-harmoniously. A key part of every network environment solution is the
-ability to remotely
-manage MS Windows workstations, remotely access the Samba server, provide customized
-logon scripts, as well as other housekeeping activities that help to sustain more reliable
-network operations.
+Oft kann der Unterschied zwischen einer funktionierenden Netzwerkumgebung und einer als
+gut wahr- und angenommenen am Besten durch die <emphasis>Kleinigkeiten</emphasis>
+gemessen werden, die alles noch harmonischer arbeiten lassen. Eine Schlüsselrolle jeder
+Netzwerklösung ist die Fähigkeit, per Fernzugriff MS Windows Workstations zu warten,
+über das Netz auf den Samba-Server zugreifen zu können, angepasste Anmelde-Skripts zur
+Verfügung zu stellen, genauso wie andere "Hausarbeiten", die helfen, verlässlicheren
+Netzwerk-Betrieb zu erreichen.
 </para>
 
 <para>
-This chapter presents information on each of these areas. They are placed here, and not in
-other chapters, for ease of reference.
+Dieses Kapitel präsentiert Informationen zu jedem dieser Bereiche. Sie wurden hier, und
+nicht in anderen Kapiteln, plaziert, um das Nachschlagen zu erleichtern.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Remote Server Administration</title>
+<title>Server-Fernwartung</title>
 
 
-<para><quote>How do I get `User Manager' and `Server Manager'?</quote></para>
+<para><quote>Wie bekomme ich `User Manager' und `Server Manager'?</quote></para>
 
 <para>
 <indexterm><primary>User Manager</primary></indexterm>
 <indexterm><primary>Server Manager</primary></indexterm>
 <indexterm><primary>Event Viewer</primary></indexterm>
-Since I do not need to buy an <application>NT4 Server</application>, how do I get the `User Manager for Domains'
-and the `Server Manager'?
+Da ich ja keinen <application>NT4 Server</application> kaufen muß, wie bekomme ich den
+`User Manager for Domains' und den `Server Manager'?
 </para>
 
 <para>
 <indexterm><primary>Nexus.exe</primary></indexterm>
-Microsoft distributes a version of these tools called <filename>Nexus.exe</filename> for installation 
-on <application>Windows 9x/Me</application> systems. The tools set includes:
+Microsoft vertreibt eine Version dieser Tools namens <filename>Nexus.exe</filename>, zur
+Installation auf <application>Windows 9x/Me</application>-Systemen. Dieses Set enthält:
 </para>
 
 <itemizedlist>
@@ -61,25 +61,25 @@ on <application>Windows 9x/Me</application> systems. The tools set includes:
 </itemizedlist>
 
 <para>
-Download the archived file at <ulink noescape="1" url="ftp://ftp.microsoft.com/Softlib/MSLFILES/NEXUS.EXE">ftp://ftp.microsoft.com/Softlib/MSLFILES/NEXUS.EXE.</ulink>
+Laden Sie die Archivdatei von <ulink noescape="1" url="ftp://ftp.microsoft.com/Softlib/MSLFILES/NEXUS.EXE">ftp://ftp.microsoft.com/Softlib/MSLFILES/NEXUS.EXE.</ulink>
 </para>
 
 <para>
 <indexterm><primary>SRVTOOLS.EXE</primary></indexterm>
-The <application>Windows NT 4.0</application> version of the `User Manager for 
-Domains' and `Server Manager' are available from Microsoft <ulink url="ftp://ftp.microsoft.com/Softlib/MSLFILES/SRVTOOLS.EXE">via ftp</ulink>.
+Die <application>Windows NT 4.0</application> Version des `User Manager for 
+Domains' und `Server Manager' sind via ftp bei Microsoft erhältlich <ulink url="ftp://ftp.microsoft.com/Softlib/MSLFILES/SRVTOOLS.EXE"></ulink>.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Remote Desktop Management</title>
+<title>Desktop-Fernwartung</title>
 
 <para>
-There are a number of possible remote desktop management solutions that range from free
-through costly. Do not let that put you off. Sometimes the most costly solution is the
-most cost effective. In any case, you will need to draw your own conclusions as to which
-is the best tool in your network environment.
+Es gibt eine Reihe von verfügbaren Desktop-Fernwartungs-Lösungen, die von gratis bis
+teuer reichen. Lassen Sie sich davon nicht abhalten. Manchmal ist die teuerste Lösung
+die kosten-effektivste. In jedem Fall müssen Sie Ihre eigenen Schlüsse ziehen, was die
+beste Lösung für Ihr Netzwerk ist.
 </para>
 
 	<sect2>
