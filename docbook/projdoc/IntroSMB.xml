@@ -54,8 +54,9 @@ das Samba Zeug, ein paar MS Knowledge Base Artikeln, Zeichenketten aus Binärdate
 haben pflichtbewußt den Weg durch die Phasen der Informationssammlung dieses Projektes durchschritten und es
 fehlen immer noch einige Stücke... Oftmals müßig wurde der Weg erschwert durch "Hand vor die Stirn schlagen"
 und murmeln "Mein Gott, was haben die sich dabei gedacht?"
-</para>
-<para>
+</emphasis></para>
+
+<para><emphasis>
 Hier das Original:
 Several megabytes of NT-security archives, random whitepapers, RFCs, the CIFS spec, the Samba
 stuff, a few MS knowledge-base articles, strings extracted from binaries, and packet dumps have
