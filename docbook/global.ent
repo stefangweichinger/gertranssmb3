@@ -13,6 +13,8 @@
 <!ENTITY email.yoshi   'jochen.schmidt@millenux.com'>
 <!ENTITY email.rruegner   'robowarp@gmx.de'>
 <!ENTITY email.flex    'erlacher@virgilio.it'>
+<!ENTITY email.rdoelker 'rainer.doelker@hp.com'>
+<!ENTITY email.luft 'joachim@luft-it.de'>
 <!ENTITY email.gertrans	'gertranssmb3-users@lists.berlios.de'>
 
 <!-- Author entities -->
@@ -228,6 +230,23 @@
 
 <!ENTITY author.gertrans '<author>&person.gertrans;</author>'>
 
+<!ENTITY person.rdoelker'
+<firstname>Rainer</firstname><othername></othername><surname>Dölker</surname>
+<affiliation>
+        <orgname>German Samba-3-Docs-Translation Team</orgname>
+        <address><email>rainer.doelker@hp.com</email></address>
+</affiliation>'>
+
+<!ENTITY author.rdoelker '<author>&person.rdoelker;</author>'>
+
+<!ENTITY person.luft'
+<firstname>Joachim</firstname><othername></othername><surname>Luft</surname>
+<affiliation>
+        <orgname>German Samba-3-Docs-Translation Team</orgname>
+        <address><email>joachim@luft-it.de</email></address>
+</affiliation>'>
+
+<!ENTITY author.luft '<author>&person.luft;</author>'>
 
 <!-- URL's -->
 <!ENTITY url.samba.cvsinfo 'http://pserver.samba.org/samba/cvs.html'>
