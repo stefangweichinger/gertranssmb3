@@ -41,55 +41,53 @@ Für mehr Informationen zu Winbind schauen Sie sich bitte <link linkend="winbind"
 <title>Eigenschaften und Vorteile</title>
 
 <para>
-A number of UNIX systems (e.g., Sun Solaris), as well as the xxxxBSD family and Linux,
-now utilize the Pluggable Authentication Modules (PAM) facility to provide all authentication, 
-authorization and resource control services. Prior to the introduction of PAM, a decision
-to use an alternative to the system password database (<filename>/etc/passwd</filename>) 
-would require the provision of alternatives for all programs that provide security services.
-Such a choice would involve provision of alternatives to programs such as: <command>login</command>, 
-<command>passwd</command>, <command>chown</command>, and so on.
+Eine Vielzahl von UNIX Systemen (z.B. Sun Solaris), sowie die xxxxBSD Familie und Linux
+benutzen inzwischen die Pluggable Authentication Modules (PAM) Dienste um die gesamte Authentifikation, Authorisation
+und Ressourcen Kontroll Dienste anzubieten. Wollte man vor PAM eine Alternative zur systeminternen Passworddatenbank
+(<filename>/etc/passwd</filename>) musste man auch Änderungen oder Alternativen zu allen Programmen finden, die
+Sicherheitsdienste anbieten wie z.B.  <command>login</command>, <command>passwd</command>, <command>chown</command>
+usw.
 </para>
 
 <para>
-PAM provides a mechanism that disconnects these security programs from the underlying
-authentication/authorization infrastructure. PAM is configured by making appropriate modifications to  one file
-<filename>/etc/pam.conf</filename> (Solaris), or by editing individual control files that are
-located in <filename>/etc/pam.d</filename>.
+PAM liefert einen Mechanismus der diese Sicherheitsprogramme von der darunterliegenden Authentifizierung/Authorisierung
+trennt. PAM wird konfiguriert in dem man Änderungen an <filename>/etc/pam.conf</filename> vornimmt (Solaris), oder indem
+man die einzelnen Dateien die in <filename>/etc/pam.d</filename> aufgelistet sind, anpasst bzw. verändert.
 </para>
 
 <para>
-On PAM-enabled UNIX/Linux systems, it is an easy matter to configure the system to use any
-authentication backend so long as the appropriate dynamically loadable library modules
-are available for it. The backend may be local to the system, or may be centralized on a
-remote server.
+Auf PAM-fähigen UNIX/Linux Systemen ist es ein einfaches Unterfangen irgend ein Authentifizierungs BACKEND
+zu konfigurieren solange die entsprechenden dynamisch ladbaren Modul Bibliotheken vorhanden sind.
+Das BACKEND kann auf dem lokalen System vorhanden sein oder, zentralisiert, auf einem entfernten Server.
 </para>
 
 <para>
+PAM unterstützungs Module sind vorhanden für:
 PAM support modules are available for:
 </para>
 
 <variablelist>
 	<varlistentry><term><filename>/etc/passwd</filename></term><listitem>
 		<para>
-		There are several PAM modules that interact with this standard UNIX user
-		database. The most common are called: <filename>pam_unix.so</filename>, <filename>pam_unix2.so</filename>, <filename>pam_pwdb.so</filename>
-		and <filename>pam_userdb.so</filename>.
+		Es gibt mehrere PAM Module die mit dieser standart UNIX Benutzer Datenbank interagieren.
+		Die bekanntesten sind <filename>pam_unix.so</filename>, <filename>pam_unix2.so</filename>, <filename>pam_pwdb.so</filename>
+		und <filename>pam_userdb.so</filename>.
 		</para>
 	</listitem></varlistentry>
 
 	<varlistentry><term>Kerberos</term><listitem>
 		<para>
-		The <filename>pam_krb5.so</filename> module allows the use of any Kerberos compliant server.
-		This tool is used to access MIT Kerberos, Heimdal Kerberos, and potentially
-		Microsoft Active Directory (if enabled).
+		Das <filename>pam_krb5.so</filename> Modul erlaubt die Nutzung von jedem Kerberos fähigem Server.
+		Dieses Tool kann mit MIT Kerberos, Heimdal Kerberos, und möglicherweise mit Microsoft Active Directory
+		(fals ENABLED ) benutzt werden.
 		</para>
 	</listitem></varlistentry>
 
 	<varlistentry><term>LDAP</term><listitem>
 		<para>
-		The <filename>pam_ldap.so</filename> module allows the use of any LDAP v2 or v3 compatible backend
-		server. Commonly used LDAP backend servers include: OpenLDAP v2.0 and v2.1,
-		Sun ONE iDentity server, Novell eDirectory server, Microsoft Active Directory.
+		Das <filename>pam_ldap.so</filename> Modul erlaubt die Benutzung von jedem LDAP v2 oder v3 kompatiblem
+		BACKEND server. Weit verbreitete LDAP BACKEND Server sind z.B. OpenLDAP v2.0 und v2.1,
+		Sun ONE iDentity Server, Novell eDirectory Server, Microsoft Active Directory. 
 		</para>
 	</listitem></varlistentry>
 
