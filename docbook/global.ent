@@ -9,6 +9,7 @@
 <!ENTITY email.jelmer  'jelmer@samba.org'>
 <!ENTITY email.jht     'jht@samba.org'>
 <!ENTITY email.sgw     'monitor@oops.co.at'>
+<!ENTITY email.hba     'h_baecker@gmx.net'>
 
 
 <!-- Author entities -->
@@ -159,7 +160,16 @@
         <address><email>monitor@oops.co.at</email></address>
 </affiliation>'>
 
-<!ENTITY author.sgw '<author>&person.sgw;</author>'>
+<!ENTITY author.hba '<author>&person.sgw;</author>'>
+
+<!ENTITY person.hba '
+<firstname>Hendrik</firstname><othername></othername><surname>B&auml;cker</surname><othername></othername>
+<affiliation>
+        <orgname>The German Samba 3.0 Translation Team</orgname>
+        <address><email>h_baecker@gmx.net</email></address>
+</affiliation>'>
+
+<!ENTITY author.sgw '<author>&person.hba;</author>'>
 
 <!-- URL's -->
 <!ENTITY url.samba.cvsinfo 'http://pserver.samba.org/samba/cvs.html'>
