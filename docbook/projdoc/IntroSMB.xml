@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="IntroSMB">
 <chapterinfo>
 	&author.dlechnyr;
@@ -93,7 +94,7 @@ thinking?
 	<listitem><para>
 	Marshalling: - Eine Methode zur seq&uuml;ntiellen Sortierung von variablen Daten,
 	passend zur &uuml;bertragung &uuml;ber eine Netzwerkverbindung bzw. Speicherung in eine Datei.
-	Die Q&uuml;lldateien k&ouml;nnen mittels eines &auml;hnlichen Prozesses namens unmarschalling
+	Die Quelldateien k&ouml;nnen mittels eines &auml;hnlichen Prozesses namens unmarschalling
 	wiederhergestellt werden.
 	</para></listitem>
 
@@ -111,17 +112,16 @@ thinking?
 	</para></listitem>
 
 	<listitem><para>
-	NetBEUI: Akronym for the "NetBIOS Extended User Interface". Unlike NetBIOS, NetBEUI
-	is a protocol, not a standard. It is also not routable, so traffic on one side of a
-	router will be unable to communicate with the other side. Understanding NetBEUI is
-	not essential to deciphering SMB; however it helps to point out that it is not the
-	same as NetBIOS and to improve your score in trivia at parties. NetBEUI was originally
-	referred to by Microsoft as "NBF", or "The Windows NT NetBEUI Frame protocol driver".
-	It is not often heard from these days.
+	NetBEUI: Akronym für das "NetBIOS Extended User Interface". Nicht vergleichbar mit NetBIOS ist NetBEUI
+	ein Protokol, kein Standard. Es ist auch kein Routingfähiges Protokol, was wiederum heißt, dass es nicht
+	von einer Seite eines Routers auf die andere gelangt. Es ist nicht notwendig NetBEUI zu verstehen um SMB
+	zu entziffern; es hilft zu verstehen, es hilft zu verstehen dass NetBEUI nicht das gleiche wie NetBIOS ist
+	um ihren Schnitt auf Parties zu erhöhen. NetBEUI wurde ursprünglich von Microsoft als "NBF" oder "Dem
+	Windows NT NetBEUI Frame Protokol Treiber" verwiesen. Heutzutage hört man da nicht viel von.
 	</para></listitem>
 
 	<listitem><para>
-	NBT: Akronym for "NetBIOS over TCP"; also known as "NetBT". Allows the contin&uuml;d use
+	NBT: Akronym für for "NetBIOS over TCP"; also known as "NetBT". Allows the contin&uuml;d use
 	of NetBIOS traffic proxied over TCP/IP. As a result, NetBIOS names are made
 	to IP addresses and NetBIOS name types are conceptually equivalent to TCP/IP ports.
 	This is how file and printer sharing are accomplished in Windows 95/98/ME. They
@@ -246,7 +246,7 @@ It allows you to walk through the establishment of a SMB/CIFS session step by st
 </sect1>
 
 <sect1>
-<title>Epilog&uuml;</title>
+<title>Epilog</title>
 
 <para><quote>
 What's fundamentally wrong is that nobody ever had any taste when they
