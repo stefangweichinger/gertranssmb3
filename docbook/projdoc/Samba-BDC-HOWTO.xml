@@ -273,69 +273,70 @@ Dies wird in diesem Kapitel nicht behandelt; für mehr Informationen dazu, siehe 
 </sect2>
 
 <sect2>
-<title>LDAP Configuration Notes</title>
+<title>Bemerkungen zur LDAP-Konfiguration</title>
 
 <para>
-When configuring a master and a slave LDAP server, it is advisable to use the master LDAP server
-for the PDC and slave LDAP servers for the BDCs. It is not essential to use slave LDAP servers, however,
-many administrators will want to do so in order to provide redundant services. Of course, one or more BDCs
-may use any slave LDAP server. Then again, it is entirely possible to use a single LDAP server for the
-entire network.
+Wenn man einen Master- und einen Slave-LDAP-Server konfiguriert, ist es ratsam, den Master-LDAP-Server
+als PDC, und die Slave-LDAP-Server als BDCs zu verwenden. Es ist nicht essentiell, Slave-LDAP-Server
+zu verwenden, wenn es auch viele Administratoren tun werden wollen, um die Redundanz zu erhöhen.
+Natürlich können ein oder mehrere BDCs jeglichen Slave-LDAP-Server nutzen. Auch dann ist es wieder
+möglich, einen einzelnen LDAP-Server für das ganze Netzwerk zu verwenden.
 </para>
 
 <para>
-When configuring a master LDAP server that will have slave LDAP servers, do not forget to configure
-this in the <filename>/etc/openldap/slapd.conf</filename> file. It must be noted that the DN of a
-server certificate must use the CN attribute to name the server, and the CN must carry the servers'
-fully qualified domain name. Additional alias names and wildcards may be present in the
-subjectAltName certificate extension. More details on server certificate names are in RFC2830.
+Wenn man einen Master-LDAP-Server konfiguriert, der Slave-LDAP-Server haben wird, darf man nicht
+vergessen, dies in der Datei <filename>/etc/openldap/slapd.conf</filename> zu konfigurieren.
+Es sollte bemerkt werden, daß der DN eines Server-Zertifikats das CN-Attribut zur Benennung des
+Servers verwenden muß, und daß CN den vollen Domain-Namen (FQDN = fully qualified domain name) des
+Servers beinhalten muß. Weitere Aliases und Wildcards können in der subjectAltName-Zertifikats-Erweiterung
+abgelegt werden. Mehr Details zu Server-Zertifikaten finden Sie in der RFC2830.
 </para>
 
 <para>
-It does not really fit within the scope of this document, but a working LDAP installation is
-basic to LDAP enabled Samba operation. When using an OpenLdap server with Transport Layer Security
-(TLS), the machine name in <filename>/etc/ssl/certs/slapd.pem</filename> must be the
-same as in <filename>/etc/openldap/sldap.conf</filename>. The Red Hat Linux startup script
-creates the <filename>slapd.pem</filename> file with hostname <quote>localhost.localdomain.</quote>
-It is impossible to access this LDAP server from a slave LDAP server (i.e., a Samba BDC) unless the
-certificate is recreated with a correct hostname.
+Es paßt nicht wirklich zum Thema dieses Dokuments, aber eine funktionierende LDAP-Installation
+ist Grundlage für LDAP-basierenden Betrieb von Samba. Bei Verwendung eines OpenLdap-Servers mit 
+sogenannter Transport Layer Security (TLS), muß der Maschinen-Name in 
+<filename>/etc/ssl/certs/slapd.pem</filename> der selbe sein wie in <filename>/etc/openldap/sldap.conf</filename>.
+Das Red Hat Linux Startup-Skript legt die Datei <filename>slapd.pem</filename> mit dem Hostnamen
+<quote>localhost.localdomain.</quote> an. Es ist unmöglich, mit einem Slave-LDAP-Server auf diesen
+LDAP-Server zuzugreifen, solange nicht das Zertifikat mit einem korrekten Hostnamen neu angelegt wurde.
 </para>
 
 <para>
-Do not install a Samba PDC on a OpenLDAP slave server. Joining client machines to the domain
-will fail in this configuration because the change to the machine account in the LDAP tree
-must take place on the master LDAP server. This is not replicated rapidly enough to the slave
-server that the PDC queries. It therfore gives an error message on the client machine about
-not being able to set up account credentials. The machine account is created on the LDAP server
-but the password fields will be empty.
+Installieren Sie keinen Samba-PDC auf einem OpenLDAP-Slave-Server. Das Hinzufügen von Client-Maschinen
+zur Domäne wird in dieser Konfiguration fehlschlagen, da die Veränderung am Maschinen-Konto im
+LDAP-Baum auf dem Master-LDAP-Server stattfinden muß. Dies wird nicht schnell genug auf den Slave-Server
+repliziert, den der PDC abfragt. Daher gibt es auf der Client-Maschine eine Fehlermeldung, die besagt,
+daß es nicht möglich sei, die Konto-Informationen richtig zu setzen. Das Maschinen-Konto wird auf dem
+LDAP-Server angelegt, aber die Passwort-Felder werden leer bleiben.
 </para>
 
 <para>
-Possible PDC/BDC plus LDAP configurations include:
+Mögliche PDC/BDC plus LDAP Konfigurationen beinhalten:
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	PDC+BDC -> One Central LDAP Server.
+	PDC+BDC -> Ein zentraler LDAP Server.
 	</para></listitem>
 	<listitem><para>
-	PDC -> LDAP master server, BDC -> LDAP slave server.
+	PDC -> LDAP Master Server, BDC -> LDAP Slave Server.
 	</para></listitem>
 	<listitem><para>
-	PDC -> LDAP master, with secondary slave LDAP server.
+	PDC -> LDAP Master, mit einem sekundären Slave LDAP Server.
 	</para><para>
-	BDC -> LDAP master, with secondary slave LDAP server.
+	BDC -> LDAP Master, mit einem sekundären Slave LDAP Server.
 	</para></listitem>
 	<listitem><para>
-	PDC -> LDAP master, with secondary slave LDAP server.
+	PDC -> LDAP Master, mit einem sekundären Slave LDAP Server.
 	</para><para>
-	BDC -> LDAP slave server, with secondary master LDAP server.
+	BDC -> LDAP Slave Server, mit einem sekundären Master LDAP Server.
 	</para></listitem>
 </itemizedlist>
 
 <para>
-In order to have a fall-back configuration (secondary) LDAP server one would specify
-the secondary LDAP server in the &smb.conf; file as shown in <link linkend="mulitldapcfg"/>.
+Um eine sogenannte Fall-Back-Konfiguration zu haben (sekundärer LDAP-Server), würde man den
+sekundären LDAP-Server in der Datei &smb.conf; so angeben, wie in <link linkend="mulitldapcfg"/>.
 </para>
 
 <para>
