@@ -87,12 +87,11 @@ Wenn Sie NetBIOS über TCP/IP deaktivieren ist die Benutzung von DNS
 unumgänglich. Die meisten aktuellen Installationen welche NetBIOS über TCP/IP
 deaktivieren verwenden MS Active Directory (ADS). ADS benötigt
 <indexterm><primary>DNS</primary><secondary>Dynamic</secondary></indexterm>
-Dynamic DNS with Service Resource Records (SRV RR) and with Incremental
+Dynamic DNS mit Service Resource Records (SRV RR) und Incremental
 Zone Transfers (IXFR).
 <indexterm><primary>DHCP</primary></indexterm>
-....
-
-
+Die Benutzung von DHCP mit ADS wird für eine weitergehende zentrale
+Pflege der Netzwerkkonfiguration von Client Workstations empfohlen.
 #
 When NetBIOS over TCP/IP is disabled, the use of DNS is essential. Most installations that
 disable NetBIOS over TCP/IP today use MS Active Directory Service (ADS). ADS requires
@@ -106,9 +105,13 @@ over the client workstation network configuration.
 </sect1>
 
 <sect1>
+<title>Namensauflösung in einem reinen UNIX/Linux Umfeld</title>
+#
 <title>Name Resolution in a Pure UNIX/Linux World</title>
 
 <para>
+Die wichtigsten Konfigurationsdateien in diesem Abschnitt sind:
+#
 The key configuration files covered in this section are:
 </para>
 
@@ -123,6 +126,8 @@ The key configuration files covered in this section are:
 <title><filename>/etc/hosts</filename></title>
 
 <para>
+Diese Datei beinhaltet eine statische Liste von IP Adressen und Namen.
+#
 This file contains a static list of IP addresses and names.
 </para>
 <para><programlisting>
@@ -131,12 +136,23 @@ This file contains a static list of IP addresses and names.
 </programlisting></para>
 
 <para>
+Der Sinn der <filename>/etc/hosts</filename> ist eine Möglichkeit zur 
+Namensauflösung zu haben damit der Benutzer sich keine 
+IP Adressen merken muss.
+#
 The purpose of <filename>/etc/hosts</filename> is to provide a 
 name resolution mechanism so users do not need to remember 
 IP addresses.
 </para>
 
 <para>
+Netzwerk Packete welche über den Physical Network Transport Layer
+gesendet werden kommunizieren nicht über die IP Adresse vielmehr wird
+die Media Access Control Address, oder auch MAC Adresse genannt, verwendet.
+IP Adressen sind zur Zeit 32 bit lang und werden typischerweise 
+durch 4 dezimale und durch Punkte getrennte Zahlen dargestellt.
+Zum Beispiel: 168.192.1.1
+#
 Network packets that are sent over the physical network transport 
 layer communicate not via IP addresses but rather using the Media 
 Access Control address, or MAC address. IP addresses are currently 
@@ -145,12 +161,29 @@ numbers that are separated by a dot (or period). For example, 168.192.1.1.
 </para>
 
 <para>
-<indexterm><primary>MAC Addresses</primary></indexterm>
+<indexterm><primary>MAC Adressen</primary></indexterm>
+MAC Adressen sind 48 bits (oder 6 Bytes) lang und werden typischerweise
+als 2 zahlige Hexadezimal Ziffern und durch Doppelpunkte getrennt
+dargestellt.
+Zum Beispiel: 40:8e:0a:12:34:56
+#
 MAC Addresses use 48 bits (or 6 bytes) and are typically represented 
 as two-digit hexadecimal numbers separated by colons: 40:8e:0a:12:34:56.
 </para>
 
 <para>
+Jedes Netzwerkinterface muss eine MAC Adresse besitzen.
+Zu einer MAC Adresse können eine oder mehrere IP Adressen zugeordnet
+sein. Es gibt keinen Zusammenhang zwischen einer MAC Adresse und einer 
+IP Adresse; alle solche Zuweisungen sind beliebig frei und willkürlich.
+Am untersten Level der Netzwerkverbindungen wird die MAC Adressierung
+verwendet. Da die MAC Adresse global eindeutig und im allgemeinen fix
+für jedes einzelne Interface ist, macht die Zuordnung einer IP Adresse
+nur Sinn aus Sicht des Netzwerkmanagements. Es kann mehr als eine 
+IP Adresse zu einer MAC Adresse zugeordnet werden. Eine Adresse muss die
+primäre IP Adresse sein &smbmdash;.
+Diese Adresse wird bei einem ARP Reply zurückgegeben.
+#
 Every network interface must have a MAC address. Associated with 
 a MAC address may be one or more IP addresses. There is no 
 relationship between an IP address and a MAC address; all such assignments 
@@ -165,6 +198,13 @@ this is the address that will be returned in the ARP reply.
 </para>
 
 <para>
+Wenn ein Benutzer oder ein Prozess mit einem anderen Computer
+kommunizieren will, stell die Protokollschicht sicher dass der
+<quote>Computername</quote> oder <quote>Hostname</quote> in eine IP
+Adresse aufgelöst wird. Dies geschieht in der Art wie es in den 
+TCP/IP Konfigurations Dateien hinterlegt ist.
+Die Datei <filename>/etc/hosts</filename> ist eine dieser Dateien.
+#
 When a user or a process wants to communicate with another machine, 
 the protocol implementation ensures that the <quote>machine name</quote> or <quote>host 
 name</quote> is resolved to an IP address in a manner that is controlled 
@@ -173,6 +213,17 @@ by the TCP/IP configuration control files. The file
 </para>
 
 <para>
+Nachdem die IP Adresse des Zielinterfaces ermittelt wurde, wird ein
+Protokoll mit dem Namen ARP/RARP verwendet um die MAC Adresse des
+Zielinterfaces herauszufinden. ARP bedeutet Address Resolution Protokoll
+und ist eine Broadcast orientierte Methode welches über das User Data
+Protocol (UDP) einen Anfrage an die 1'te MAC Adresse aller Interfaces des 
+lokalen Netzwerks verschickt.
+Netzwerkinterfaces sind so programmiert dass sie nur auf 2 MAC Adressen
+reagieren; ihre eigene eindeutige Adresse und die Adresse
+ff:ff:ff:ff:ff:ff. Die Antwort zu einer ARP Anfrage beinhaltet die MAC
+Adresse und die primäre IP Adresse für jedes Interface.
+#
 When the IP address of the destination interface has been 
 determined, a protocol called ARP/RARP is used to identify 
 the MAC address of the target interface. ARP stands for Address 
@@ -188,6 +239,13 @@ interface.
 
 <para>
 <indexterm><primary>/etc/hosts</primary></indexterm>
+Die Datei <filename>/etc/hosts</filename> ist eine Grundvoraussetzung
+für alle UNIX/Linux TCP/IP Installationen und beinhaltet als Minimum den
+localhost und die lokale Netzwerk Interface IP Adresse und primären
+Namen des lokalen Computers.
+Diese Datei hilft dabei eine grundlegende Namensauflösung zu haben bevor
+irgendwelche andere Methoden der Namensauflösung verfügbar sind.
+#
 The <filename>/etc/hosts</filename> file is foundational to all 
 UNIX/Linux TCP/IP installations and as a minimum will contain 
 the localhost and local network interface IP addresses and the 
@@ -204,19 +262,33 @@ becomes available.
 <title><filename>/etc/resolv.conf</filename></title>
 
 <para>
+Diese Datei teilt den Bibliotheken der Namensauflösung folgendes mit:
+#
 This file tells the name resolution libraries:
 </para>
 
 <itemizedlist>
+	<listitem><para>Den Domänennamen zu welcher der Computer
+	gehört.</para></listitem>
+	#
 	<listitem><para>The name of the domain to which the machine 
 	belongs.
 	</para></listitem>
 	
+	<listitem><para>Die Namen der Domänen welche automatisch
+	durchsucht werden wenn zu einem unqualifizierten Rechnernamen
+	dessen IP Adresse gesucht werden soll.
+	</para></listitem>
+	#
 	<listitem><para>The name(s) of any domains that should be 
 	automatically searched when trying to resolve unqualified 
 	host names to their IP address.
 	</para></listitem>
 	
+	<listitem><para>Den Name oder die IP Adresse der möglichen
+	Domain Name Server welche für eine Namen-zu-Adressen Übersetzung
+	befragt werden können.
+	#
 	<listitem><para>The name or IP address of available Domain 
 	Name Servers that may be asked to perform name-to-address 
 	translation lookups.
@@ -232,6 +304,9 @@ This file tells the name resolution libraries:
 
 <para>
 <indexterm><primary>/etc/host.conf</primary></indexterm>
+<filename>/etc/host.conf</filename>
+#
+#
 <filename>/etc/host.conf</filename> is the primary means by 
 which the setting in <filename>/etc/resolv.conf</filename> may be effected. It is a 
 critical configuration file. This file controls the order by 
