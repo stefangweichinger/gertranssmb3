@@ -34,7 +34,7 @@ handelt es sich um ein komplettes Missverständniss.
 
 <para>
 Viele MS-Windows-Netzwerkadministratoren hatten bisher keine Ahnung von
-grundlegenden TCP/IP-Netzwerken wie es in UNIX/Linux-Betriebssystemen
+grundlegenden TCP/IP-Netzwerken, wie es in UNIX/Linux-Betriebssystemen
 verwendet wird. Andererseits haben viele Unix- und Linux-Administratoren
 keine Ahnung von den Komplikationen eines auf TCP/IP basierenden
 Windows-Netzwerks (und haben keinerlei Lust auf beides ...).
@@ -42,7 +42,7 @@ Windows-Netzwerks (und haben keinerlei Lust auf beides ...).
 
 <para>
 Dieses Kapitel gibt für jede Betriebssystemumgebung eine kurze Einweisung 
-in die Grundlagen wie ein Name in seine IP Adresse aufgelöst wird.
+in die Grundlagen der Namensauflösung.
 </para>
 
 </sect1>
@@ -51,67 +51,45 @@ in die Grundlagen wie ein Name in seine IP Adresse aufgelöst wird.
 <title>Hintergrundinformation</title>
 
 <para>
-Seit der Einführung von MS Windows 2000 ist es möglich ein MS Windows
+Seit der Einführung von MS Windows 2000 ist es möglich, ein MS-Windows-
 Netzwerk ohne NetBIOS über TCP/IP zu verwenden. NetBIOS über TCP/IP
-benutzt UDP Port 137 für die NetBIOS Namensauflösung und TCP Port 139
-für die NetBIOS Dienste Session. 
-Sollte auf den MS Windows 2000 Client's (oder spätere Versionen) 
+benutzt UDP Port 137 für die NetBIOS-Namensauflösung und TCP Port 139
+für die NetBIOS-Dienste-Session. 
+Sollte auf den MS Windows 2000 Clients (oder späteren Versionen) 
 NetBIOS über TCP/IP deaktiviert sein, dann wird nur der TCP Port 445 verwendet.
-In diesem Fall wird der UDP Port 137 und der TCP Port 139 nicht
+In diesem Fall werden der UDP Port 137 und der TCP Port 139 nicht
 verwendet.
-#
-Since the introduction of MS Windows 2000, it is possible to run MS Windows networking
-without the use of NetBIOS over TCP/IP. NetBIOS over TCP/IP uses UDP port 137 for NetBIOS
-name resolution and uses TCP port 139 for NetBIOS session services. When NetBIOS over
-TCP/IP is disabled on MS Windows 2000 and later clients, then only the TCP port 445 will be
-used and the UDP port 137 and TCP port 139 will not.
 </para>
 
 <note>
 <para>
 Wenn Sie Windows 2000 Clients (oder später) verwenden und NetBIOS über
-TCP/IP nicht deaktiviert haben benutzt der Client UDP Port 137
+TCP/IP nicht deaktiviert haben, benutzt der Client UDP Port 137
 (NetBIOS Name Service, auch bekannt als der Windows Internet Name
 Service oder WINS), den TCP Port 139 und TCP Port 445 (für aktuellen
-Datei und Druck Verkehr).
-#
-When using Windows 2000 or later clients, if NetBIOS over TCP/IP is not disabled, then
-the client will use UDP port 137 (NetBIOS Name Service, also known as the Windows Internet
-Name Service or WINS), TCP port 139 and TCP port 445 (for actual file and print traffic).
+Datei- und Druck-Verkehr).
 </para>
 </note>
 
 <para>
-Wenn Sie NetBIOS über TCP/IP deaktivieren ist die Benutzung von DNS
-unumgänglich. Die meisten aktuellen Installationen welche NetBIOS über TCP/IP
-deaktivieren verwenden MS Active Directory (ADS). ADS benötigt
+Wenn Sie NetBIOS über TCP/IP deaktivieren, ist die Benutzung von DNS
+unumgänglich. Die meisten aktuellen Installationen, welche NetBIOS über TCP/IP
+deaktivieren, verwenden MS Active Directory (ADS). ADS benötigt
 <indexterm><primary>DNS</primary><secondary>Dynamic</secondary></indexterm>
 Dynamic DNS mit Service Resource Records (SRV RR) und Incremental
 Zone Transfers (IXFR).
 <indexterm><primary>DHCP</primary></indexterm>
 Die Benutzung von DHCP mit ADS wird für eine weitergehende zentrale
 Pflege der Netzwerkkonfiguration von Client Workstations empfohlen.
-#
-When NetBIOS over TCP/IP is disabled, the use of DNS is essential. Most installations that
-disable NetBIOS over TCP/IP today use MS Active Directory Service (ADS). ADS requires
-<indexterm><primary>DNS</primary><secondary>Dynamic</secondary></indexterm>
-Dynamic DNS with Service Resource Records (SRV RR) and with Incremental Zone Transfers (IXFR).
-<indexterm><primary>DHCP</primary></indexterm>
-Use of DHCP with ADS is recommended as a further means of maintaining central control
-over the client workstation network configuration.
 </para>
 
 </sect1>
 
 <sect1>
 <title>Namensauflösung in einem reinen UNIX/Linux Umfeld</title>
-#
-<title>Name Resolution in a Pure UNIX/Linux World</title>
 
 <para>
 Die wichtigsten Konfigurationsdateien in diesem Abschnitt sind:
-#
-The key configuration files covered in this section are:
 </para>
 
 <itemizedlist>
@@ -126,8 +104,6 @@ The key configuration files covered in this section are:
 
 <para>
 Diese Datei beinhaltet eine statische Liste von IP Adressen und Namen.
-#
-This file contains a static list of IP addresses and names.
 </para>
 <para><programlisting>
 127.0.0.1	localhost localhost.localdomain
@@ -135,65 +111,40 @@ This file contains a static list of IP addresses and names.
 </programlisting></para>
 
 <para>
-Der Sinn der <filename>/etc/hosts</filename> ist eine Möglichkeit zur 
-Namensauflösung zu haben damit der Benutzer sich keine 
-IP Adressen merken muss.
-#
-The purpose of <filename>/etc/hosts</filename> is to provide a 
-name resolution mechanism so users do not need to remember 
-IP addresses.
+Der Sinn der Datei <filename>/etc/hosts</filename> ist, eine Möglichkeit zur 
+Namensauflösung zu haben, damit Benutzer sich keine 
+IP-Adressen merken müssen.
 </para>
 
 <para>
-Netzwerk Packete welche über den Physical Network Transport Layer
-gesendet werden kommunizieren nicht über die IP Adresse vielmehr wird
-die Media Access Control Address, oder auch MAC Adresse genannt, verwendet.
-IP Adressen sind zur Zeit 32 bit lang und werden typischerweise 
+Netzwerk-Pakete, welche über den Physical Network Transport Layer
+gesendet werden, kommunizieren nicht über die IP-Adresse, vielmehr wird
+die Media Access Control Address (auch MAC-Adresse genannt), verwendet.
+IP-Adressen sind zur Zeit 32 bit lang und werden typischerweise 
 durch 4 dezimale und durch Punkte getrennte Zahlen dargestellt.
 Zum Beispiel: 168.192.1.1
-#
-Network packets that are sent over the physical network transport 
-layer communicate not via IP addresses but rather using the Media 
-Access Control address, or MAC address. IP addresses are currently 
-32 bits in length and are typically presented as four (4) decimal 
-numbers that are separated by a dot (or period). For example, 168.192.1.1.
 </para>
 
 <para>
-<indexterm><primary>MAC Adressen</primary></indexterm>
-MAC Adressen sind 48 bits (oder 6 Bytes) lang und werden typischerweise
-als 2 zahlige Hexadezimal Ziffern und durch Doppelpunkte getrennt
+<indexterm><primary>MAC-Adressen</primary></indexterm>
+MAC-Adressen sind 48 bits (oder 6 Bytes) lang und werden typischerweise
+als 2-stellige Hexadezimalziffern und durch Doppelpunkte getrennt
 dargestellt.
 Zum Beispiel: 40:8e:0a:12:34:56
-#
-MAC Addresses use 48 bits (or 6 bytes) and are typically represented 
-as two-digit hexadecimal numbers separated by colons: 40:8e:0a:12:34:56.
 </para>
 
 <para>
-Jedes Netzwerkinterface muss eine MAC Adresse besitzen.
-Zu einer MAC Adresse können eine oder mehrere IP Adressen zugeordnet
-sein. Es gibt keinen Zusammenhang zwischen einer MAC Adresse und einer 
-IP Adresse; alle solche Zuweisungen sind beliebig frei und willkürlich.
-Am untersten Level der Netzwerkverbindungen wird die MAC Adressierung
-verwendet. Da die MAC Adresse global eindeutig und im allgemeinen fix
-für jedes einzelne Interface ist, macht die Zuordnung einer IP Adresse
-nur Sinn aus Sicht des Netzwerkmanagements. Es kann mehr als eine 
-IP Adresse zu einer MAC Adresse zugeordnet werden. Eine Adresse muss die
-primäre IP Adresse sein &smbmdash;.
+Jedes Netzwerkinterface muss eine MAC-Adresse besitzen.
+Einer MAC-Adresse können eine oder mehrere IP-Adressen zugeordnet
+sein. Es gibt keinen Zusammenhang zwischen einer MAC-Adresse und einer 
+IP-Adresse; alle solche Zuweisungen sind beliebig frei und willkürlich.
+Am untersten Level der Netzwerkverbindungen wird die MAC-Adressierung
+verwendet. Da die MAC-Adresse global eindeutig und im allgemeinen fix
+für jedes einzelne Interface ist, macht die Zuordnung einer IP-Adresse
+nur aus Sicht des Netzwerkmanagements Sinn. Es kann mehr als eine 
+IP-Adresse zu einer MAC-Adresse zugeordnet werden. Eine Adresse muss die
+primäre IP-Adresse sein &smbmdash;.
 Diese Adresse wird bei einem ARP Reply zurückgegeben.
-#
-Every network interface must have a MAC address. Associated with 
-a MAC address may be one or more IP addresses. There is no 
-relationship between an IP address and a MAC address; all such assignments 
-are arbitrary or discretionary in nature. At the most basic level, all 
-network communications take place using MAC addressing. Since MAC 
-addresses must be globally unique and generally remain fixed for 
-any particular interface, the assignment of an IP address makes sense 
-from a network management perspective. More than one IP address can 
-be assigned per MAC address. One address must be the primary IP
-address &smbmdash; 
-this is the address that will be returned in the ARP reply.
 </para>
 
 <para>
