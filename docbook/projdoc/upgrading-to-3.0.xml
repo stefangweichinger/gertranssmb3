@@ -352,35 +352,33 @@ Beschreibungen der neuen oder geänderten Parameter.
 			<entry><para>Zuordnungs-Tabelle von Windows-Gruppen/SID auf UNIX-Gruppen</para></entry>
 			<entry>Ja</entry>
 		</row>
-
----sgw.
 		<row>
 			<entry>idmap</entry>
-			<entry><para>new ID map table from SIDS to UNIX UIDs/GIDs</para></entry>
-			<entry>yes</entry>
+			<entry><para>Neue Tabelle für ID-Zuordnung von SIDs auf UNIX UIDs/GIDs</para></entry>
+			<entry>Ja</entry>
 		</row>
 		<row>
 			<entry>namecache</entry>
-			<entry>Name resolution cache entries</entry>
-			<entry>no</entry>
+			<entry>Einträge im Namensauflösungs-Cache</entry>
+			<entry>Nein</entry>
 		</row>
 		<row>
 			<entry>netlogon_unigrp</entry>
-			<entry><para>Cache of universal group membership obtained when operating
-				as a member of a Windows domain</para></entry>
-			<entry>no</entry>
+			<entry><para>Cache der universellen Gruppenmitgliedschaft, die man erhält,
+				wenn man als Domänen-Mitglied arbeitet</para></entry>
+			<entry>Nein</entry>
 		</row>
 		<row>
 			<entry>printing/*.tdb</entry>
-			<entry><para>Cached output from `lpq command' created on a per print 
-				service basis</para></entry>
-			<entry>no</entry>
+			<entry><para>Gepufferte Ausgabe des Befehls `lpq command', pro Druckdienst
+			angelegt</para></entry>
+			<entry>Nein</entry>
 		</row>
 		<row>
 
 			<entry>registry</entry>
-			<entry><para>Read-only Samba registry skeleton that provides support for
-				exporting various db tables via the winreg RPCs</para></entry>
+			<entry><para>Read-only Samba-Registry-Gerüst, das Unterstützung für den
+			Export verschiedener Datenbank-Tabellen via winreg-RPCs bietet</para></entry>
 			<entry>no</entry>
 		</row>
 		</tbody>
@@ -390,74 +388,74 @@ Beschreibungen der neuen oder geänderten Parameter.
 	</sect2>
 
 	<sect2>
-	<title>Changes in Behavior</title>
+	<title>Änderungen im Verhalten</title>
 
 	<para>
-	The following issues are known changes in behavior between Samba-2.2 and
-	Samba-3 that may affect certain installations of Samba.
+	Die folgenden Themen snd bekannte Veränderungen im Verhalten zwischen
+	Samba-2.2 und Samba-3, die manche Installationen beeinflussen können.
 	</para>
 
 	<orderedlist>
 		<listitem><para>
-		When operating as a member of a Windows domain, Samba-2.2 would
-		map any users authenticated by the remote DC to the <quote>guest account</quote>
-		if a uid could not be obtained via the getpwnam() call. Samba-3
-		rejects the connection as <?latex \linebreak ?>NT_STATUS_LOGON_FAILURE. There is no
-		current work around to re-establish the Samba-2.2 behavior.
+		Wenn Samba-2.2 als Mitglied einer Windows-Domäne arbeitet, würde es
+		alle Benutzer, die vom entfernten DC authentifiziert wurden, dem
+		<quote>guest account</quote> zuordnen, wenn keine UID mittels des Aufrufs
+		getpwnam() erhalten werden kann.
+		Samba-3 weist die Verbindung als <?latex \linebreak ?>NT_STATUS_LOGON_FAILURE ab.
+		Es gibt derzeit keine Möglichkeit, das Verhalten von Samba-2.2 wiederherzustellen.
 		</para></listitem>
 
 		<listitem><para>
-		When adding machines to a Samba-2.2 controlled domain, the
-		<quote>add user script</quote> was used to create the UNIX identity of the
-		Machine Trust Account. Samba-3 introduces a new <quote>add machine
-		script</quote> that must be specified for this purpose. Samba-3 will
-		not fall back to using the <quote>add user script</quote> in the absence of
-		an <quote>add machine script</quote>.
+		Beim Hinzufügen von Maschinen zu einer Samba-2.2-Domäne wurde 
+		<quote>add user script</quote> verwendet, um die UNIX-Identität des 
+		Maschinen-Vertrauens-Kontos anzulegen.
+		Samba-3 führt <quote>add machine script</quote> ein, das zu diesem Zweck
+		spezifiziert werden muß. Samba-3 wird nicht auf die Verwendung von
+		<quote>add user script</quote> zurückgreifen, wenn kein <quote>add machine script</quote>
+		vorhanden ist.
 		</para></listitem>
 	</orderedlist>
 
 	</sect2>
 
 	<sect2>
-	<title>Passdb Backends and Authentication</title>
+	<title>Passdb-Backends und Authentifikation</title>
 
 	<para>
-	There have been a few new changes that Samba administrators should be
-	aware of when moving to Samba-3.
+	Es gibt einige Änderungen, deren sich Samba-Administratoren beim Wechsel auf Samba-3
+	bewußt sein sollten.
 	</para>
 
 	<orderedlist>
 		<listitem><para>
-		Encrypted passwords have been enabled by default in order to
-		interoperate better with out-of-the-box Windows client
-		installations. This does mean that either (a) a Samba account
-		must be created for each user, or (b) <quote>encrypt passwords = no</quote>
-		must be explicitly defined in &smb.conf;.
+		Verschlüsselte Passwörter wurden nun standardmässig aktiviert, um besser mit
+		out-of-the-box Windows-Client-Installationen zusammenzuarbeiten.
+		Das bedeutet, daß entweder (a) ein Samba-Konto für jeden Benutzer angelegt werden muß,
+		oder daß (b) <quote>encrypt passwords = no</quote> explizit in &smb.conf; gesetzt sein muß.
 		</para></listitem>
 
 		<listitem><para>
-		Inclusion of new <smbconfoption><name>security</name><value>ads</value></smbconfoption> option for integration
-		with an Active Directory domain using the native Windows Kerberos 5 and LDAP protocols.
+		Die neue Option <smbconfoption><name>security</name><value>ads</value></smbconfoption>
+		wurde inkludiert, um die Integration einer ADS-Domäne unter Verwendung der nativen
+		Windows-Kerberos-5- und LDAP-Protokolle zu ermöglichen.
 		</para></listitem>
 	</orderedlist>
 
 	<para>
-	Samba-3 also includes the possibility of setting up chains
-	of authentication methods 
-	(<smbconfoption><name>auth methods</name></smbconfoption>) and account
-	storage backends 
-	(<smbconfoption><name>passdb backend</name></smbconfoption>). 
-	Please refer to the &smb.conf;
-	man page and <link linkend="passdb"/>, for details. While both parameters assume sane default
-	values, it is likely that you will need to understand what the
-	values actually mean in order to ensure Samba operates correctly.
+	Samba-3 beinhaltet auch die Möglichkeit, Verkettungen von Authentifikations-Methoden
+	(<smbconfoption><name>auth methods</name></smbconfoption>), und Konten-DB-Backends
+	(<smbconfoption><name>passdb backend</name></smbconfoption>) einzusetzen. 
+	Bitte konsultieren Sie die manpage für &smb.conf; und <link linkend="passdb"/> für Details.
+	Obwohl beide Parameter auf vernünftige Standard-Werte gesetzt werden, ist es doch
+	wahrscheinlich, daß Sie ihre Bedeutung kennenlernen wollen,
+	um den korrekten Betrieb von Samba zu gewährleisten.
 	</para>
 
 	<para>
 <indexterm><primary>pdbedit</primary></indexterm>
-	Certain functions of the <command>smbpasswd</command> tool have been split between the
-	new <command>smbpasswd</command> utility, the <command>net</command> tool and the new <command>pdbedit</command>
-	utility. See the respective man pages for details.
+Bestimmte Funktionen des Befehls <command>smbpasswd</command> wurden auf das neue Werkzeug
+<command>smbpasswd</command>, das Werkzeug <command>net</command> und das neue <command>pdbedit</command>
+aufgeteilt. Details dazu in den jeweiligen manpages.
 	</para>
 
 	</sect2>
@@ -466,22 +464,22 @@ Beschreibungen der neuen oder geänderten Parameter.
 	<title>LDAP</title>
 
 	<para>
-	This section outlines the new features effecting Samba/LDAP integration.
+	Dieser Abschnitt umreißt die neuen Features betreffend Samba/LDAP-Integration.	
 	</para>
 
 		<sect3>
-		<title>New Schema</title>
+		<title>Neues Schema</title>
 
 		<para>
-		A new object class (sambaSamAccount) has been introduced to replace
-		the old sambaAccount. This change aids us in the renaming of attributes
-		to prevent clashes with attributes from other vendors. There is a
-		conversion script (examples/LDAP/convertSambaAccount) to modify an LDIF
-		file to the new schema.
+		Eine neue Objektklasse (sambaSamAccount) wurde eingeführt, um die alte
+		Klasse sambaAccount zu ersetzen. Diese Änderung hilft dabei, Attribute
+		umzubenennen, um Kollisionen mit Attributen anderer Hersteller zu vermeiden.
+		Es gibt ein Konverter-Skript (examples/LDAP/convertSambaAccount), das
+		ein LDIF-file auf das neue Schema konvertiert.
 		</para>
 
 		<para>
-		Example:
+		Beispiel:
 		</para>
 		<para><screen>
 		&prompt;ldapsearch .... -b "ou=people,dc=..." &gt; old.ldif
@@ -489,11 +487,11 @@ Beschreibungen der neuen oder geänderten Parameter.
 		</screen></para>
 
 		<para>
-		The &lt;DOM SID&gt; can be obtained by running 
+		Die &lt;DOM SID&gt; kann durch das Ausführen von
 <screen>
 &prompt;<userinput>net getlocalsid &lt;DOMAINNAME&gt;</userinput>
 </screen>
-		on the Samba PDC as root.
+		auf dem Samba PDC (als root) abgefragt werden.
 		</para>
 
 		<para>
