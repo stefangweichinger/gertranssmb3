@@ -131,83 +131,84 @@ PAM support modules are available for:
 </variablelist>
 
 <para>
-Of the above, Samba provides the <filename>pam_smbpasswd.so</filename> and the <filename>pam_winbind.so</filename> modules alone.
+Von diesen Modulen stellt Samba nur das <filename>pam_smbpasswd.so</filename> und das <filename>pam_winbind.so</filename> Modul 
+zur Verfügung.
 </para>
 
 <para>
-Once configured, these permit a remarkable level of flexibility in the location and use
-of distributed Samba Domain Controllers that can provide wide area network bandwidth
-efficient authentication services for PAM-capable systems. In effect, this allows the
-deployment of centrally managed and maintained distributed authentication from a
-single-user account database.
+Einmal konfiguriert erlauben diese Module eine bemerkenswerte Stufe an Flexibilität und 
+die Benutzung von verteilten Samba Domänen Kontrollern die wiederum eine effiziente 
+Ausnutzung der Bandbreite in grossen Netzwerken mit PAM-fähigen Systemen erlauben.
+IN EFFECT, erlaubt dies eine zentrale Administration einer verteilten 
+Authentifizierung von einer Einzelbenutzer Datenbank aus.  
 </para>
 
 </sect1>
 
 <sect1>
-<title>Technical Discussion</title>
+<title>TECHNICAL DISCUSSION</title>
 
 <para>
-PAM is designed to provide the system administrator with a great deal of flexibility in
-configuration of the privilege granting applications of their system. The local
-configuration of system security controlled by PAM is contained in one of two places:
-either the single system file, <filename>/etc/pam.conf</filename>, or the
-<filename>/etc/pam.d/</filename> directory.
+Pam wurde entworfen um dem Systemverwalter eine grosse Flexibilität in der Konfiguration
+OF THE PRIVILEGE GRANTING APPLICATIONS OF THEIR SYSTEM. Die lokale Konfiguration der Systemsicherheit
+die von PAM überwacht wird ist in einem dieser zwei Orte: Entweder in der einzelnen System file
+<filename>/etc/pam.conf</filename>, oder dem  <filename>/etc/pam.d/</filename> Ordner
 </para>
 
 <sect2>
-<title>PAM Configuration Syntax</title>
+<title>PAM Konfigurations Syntax</title>
 
 <para>
-In this section we discuss the correct syntax of and generic options respected by entries to these files.
-PAM-specific tokens in the configuration file are case insensitive. The module paths, however, are case
-sensitive since they indicate a file's name and reflect the case
-dependence of typical file systems.
-The case-sensitivity of the arguments to any given module is defined for each module in turn.
+In diesem Kapitel sehen wir uns die richtige Syntax und die verschiedenen Optionen der Einträge in diesen
+Dateien an. Bei PAM spezifische Zeichen ist die Gross- und Kleinschreibung egal. Die Modul Pfade hingegen 
+sind empfindlich gegenüber der Gross- und Kleinschreibung, da sie auf Dateinamen
+verweisen und diese die Schreibweise des Dateisystems wiedergeben. 
+Die Empfindlichkeit der Argument der einzelnen Module gegenüber der Gross- und Kleinschreibung wird für jedes Modul
+eigens festgelegt.
 </para>
 
 <para>
-In addition to the lines described below, there are two special characters provided for the convenience
-of the system administrator: comments are preceded by a <quote>#</quote> and extend to the next end-of-line; also,
-module specification lines may be extended with a <quote>\</quote> escaped newline. 
+Zusätzlich zu den unten beschriebenen Zeilen gibt es noch zwei zusätzliche Zeichen die dem Systemadministrator
+die Arbeit erleichtern: Auszukommentierende Zeilen werden mit einem <quote>#</quote> eingeleitet, welches 
+in der nächsten Zeile die Gültigkeit verliert; Um Zeilen in einer Modulbeschreibung über dem Zeilenumbruch zu verlängern
+kann ein <quote>\</quote> Zeichen verwendet werden.
 </para>
 
 <para>
-If the PAM authentication module (loadable link library file) is located in the
-default location, then it is not necessary to specify the path. In the case of
-Linux, the default location is <filename>/lib/security</filename>. If the module
-is located outside the default, then the path must be specified as:
+Befindet sich das PAM authentifizierungs Modul (ladbare link bibliotheks Datei)
+im Standardpfad so ist es nicht nötig den Pfad nochmal anzugeben. Befindet sich das
+Modul ausserhalb dieses Pfades (unter Linux <filename>/lib/security</filename>) muss der
+dieser wie folgt angegeben werden:
 </para>
 
 <para>
 <programlisting>
-auth  required  /other_path/pam_strange_module.so
+auth  required  /anderer_pfad/pam_fremdes_module.so
 </programlisting>
 </para>
 
 <sect3>
-<title>Anatomy of <filename>/etc/pam.d</filename> Entries</title>
+<title>Eigenschaften der <filename>/etc/pam.d</filename> Einträge</title>
 
 <para>
-The remaining information in this subsection was taken from the documentation of the Linux-PAM
-project. For more information on PAM, see 
-<ulink url="http://ftp.kernel.org/pub/linux/libs/pam/">The Official Linux-PAM home page.</ulink>
+Die restlichen Informationen in diesem Unterkapitel sind aus dem Linux-PAM Dokumentations Projekt
+entnommen. Für mehr Informationen zu PAM, besuchen Sie diesen Link:<ulink url="http://ftp.kernel.org/pub/linux/libs/pam/">The Official Linux-PAM home page.</ulink>
 </para>
 
 <para>
-A general configuration line of the <filename>/etc/pam.conf</filename> file has the following form:
+Eine allgemeine Konfigurationszeile der <filename>/etc/pam.conf</filename> Datei hat folgende Form:
 </para>
 
 <para>
 <programlisting>
-service-name   module-type   control-flag   module-path   args
+Dienstname	Modultyp	Kontroll-flag	Modulpfad	Argumente
 </programlisting>
 </para>
 
 <para>
-Below, we explain the meaning of each of these tokens. The second (and more recently adopted)
-way of configuring Linux-PAM is via the contents of the <filename>/etc/pam.d/</filename> directory.
-Once we have explained the meaning of the above tokens, we will describe this method.
+Hier beschreiben wir die Bedeutung dieser einzelnen Zeichen. Die zweite (und öfters angewendete)
+Methode der Konfiguration von Linux-PAM ist durch den Inhalt des <filename>/etc/pam.d/</filename>
+Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf diese Methode eingehen.
 </para>
 
 <variablelist>
