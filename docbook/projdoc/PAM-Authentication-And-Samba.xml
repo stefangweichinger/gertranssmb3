@@ -697,51 +697,51 @@ unterstützte API welche den Authentifizierungsmechanismen eine generische Schnit
 </para>
 
 <para>
-This module authenticates a local <filename>smbpasswd</filename> user database. If you require
-support for authenticating against a remote SMB server, or if you are
-concerned about the presence of SUID root binaries on your system, it is
-recommended that you use <filename>pam_winbind</filename> instead.
+Dieses Modul authentifiziert eine lokale <filename>smbpasswd</filename> Benutzer Datenbank. Wenn Sie
+die Authentifizierung auf einem entfernten SMB Server benötigen oder wenn Sie über Anwesenheit von SUID 
+root Binärdateien auf Ihrem System besorgt sind, sollten hingegen <filename>pam_winbind</filename> verwenden.
 </para>
 
 <para>
-Options recognized by this module are shown in <link linkend="smbpassoptions"/>.
+Optionen die von diesem Modul angenommen werden finden Sie unter <link linkend="smbpassoptions"/>.
 <table frame="all" id="smbpassoptions">
-	<title>Options recognized by <parameter>pam_smbpass</parameter></title>
+	<title>Gültige Optionen für <parameter>pam_smbpass</parameter></title>
 	<tgroup cols="2" align="left">
 		<colspec align="left"/>
 		<colspec align="justify" colwidth="1*"/>
 	<tbody>
-		<row><entry>debug</entry><entry>log more debugging info.</entry></row>
-		<row><entry>audit</entry><entry>like debug, but also logs unknown usernames.</entry></row>
-		<row><entry>use_first_pass</entry><entry>do not prompt the user for passwords; take them from PAM_ items instead.</entry></row>
-		<row><entry>try_first_pass</entry><entry>try to get the password from a previous PAM module fall back to prompting the user.</entry></row>
+		<row><entry>debug</entry><entry>mehr debug Informationen werden aufgezeichnet.</entry></row>
+		<row><entry>audit</entry><entry>gleich wie debug, es werden aber zusätzlich noch unbekannte Benutzernamen geloggt.</entry></row>
+		<row><entry>use_first_pass</entry><entry>den Benutzer nicht nach dem Passwort fragen sondern aus von PAM_ auslesen.</entry></row>
+		<row><entry>try_first_pass</entry><entry>Versuch das Passwort von einem vorhergehenden PAM Modul zu holen, Benutzer fragen.</entry></row>
 		<row><entry>use_authtok</entry>
-			<entry>like try_first_pass, but *fail* if the new PAM_AUTHTOK has not been previously set (intended for stacking password modules only).</entry></row>
-		<row><entry>not_set_pass</entry><entry>do not make passwords used by this module available to other modules.</entry></row>
-		<row><entry>nodelay</entry><entry>do not insert ~1 second delays on authentication failure.</entry></row>
-		<row><entry>nullok</entry><entry>null passwords are allowed.</entry></row>
-		<row><entry>nonull</entry><entry>null passwords are not allowed. Used to override the Samba configuration.</entry></row>
-		<row><entry>migrate</entry><entry>only meaningful in an <quote>auth</quote> context; used to update smbpasswd file with a password used for successful authentication.</entry></row>
-		<row><entry>smbconf=<replaceable>file</replaceable></entry><entry>specify an alternate path to the &smb.conf; file.</entry></row>
+			<entry>wie try_first_pass, aber *fail* wenn die neue PAM_AUTHTOK nicht vorher gesetzt wurde(nur vorgesehen um Password Module zu stapeln).</entry></row>
+		<row><entry>not_set_pass</entry><entry>Passwörter die dieses Modul verwendet nicht für andere Module verfügbar machen.</entry></row>
+		<row><entry>nodelay</entry><entry>keine Wartezeit von ~1 Sekunde bei Authentifizierungsfehlern.</entry></row>
+		<row><entry>nullok</entry><entry>null Passwörter sind erlaubt.</entry></row>
+		<row><entry>nonull</entry><entry>null Passwörter sind nicht erlaubt. Wird benutzt um die Sambakonfiguration zu übergehen.</entry></row>
+		<row><entry>migrate</entry><entry>nur Sinnvoll in einem <quote>auth</quote> Kontext; wird benutzt um die smbpasswd Datei mit einem Passwort für die erfolgreiche Authentifizierung zu aktualisieren.</entry></row>
+		<row><entry>smbconf=<replaceable>file</replaceable></entry><entry>legt einen alternativen Pfad zur &smb.conf; Datei fest.</entry></row>
 	</tbody>
 </tgroup>
 </table>
 </para>
 
 <para>
-The following are examples of the use of <filename>pam_smbpass.so</filename> in the format of Linux
-<filename>/etc/pam.d/</filename> files structure. Those wishing to implement this
-tool on other platforms will need to adapt this appropriately.
+Folgend ein paar Beispiele für die Anwendung von <filename>pam_smbpass.so</filename> im Format von Linux
+<filename>/etc/pam.d/</filename> Datei Strukturen. Möchte jemand dieses Werkzeug auch auf anderen Plattformen
+verwenden, muss er es passend adaptieren.
 </para>
 
 <sect3>
-<title>Password Synchronization Configuration</title>
+<title>Passwort synchronisations Konfiguration</title>
 
 <para>
-A sample PAM configuration that shows the use of pam_smbpass to make
-sure <filename>private/smbpasswd</filename> is kept in sync when <filename>/etc/passwd (/etc/shadow)</filename>
-is changed. Useful when an expired password might be changed by an
-application (such as <command>ssh</command>).
+Eine Beispiel PAM Konfiguration die die Verwendung von pam_smbpass zeigt
+so dass <filename>private/smbpasswd</filename> mit 
+<filename>/etc/passwd (/etc/shadow)</filename> synchronisiert bleibt wenn diese verändert wird.
+Nützlich wenn z.B. ein verfallenes Passwort möglicherweise von einem Programm geändert wird
+(z.B. <command>ssh</command>).
 </para>
 
 <para>
@@ -761,14 +761,14 @@ session    required     pam_unix.so
 </sect3>
 
 <sect3>
-<title>Password Migration Configuration</title>
+<title>Passwort Migrations Konfiguration</title>
 
 <para>
-A sample PAM configuration that shows the use of <filename>pam_smbpass</filename> to migrate
-from plaintext to encrypted passwords for Samba. Unlike other methods,
-this can be used for users who have never connected to Samba shares:
-password migration takes place when users <command>ftp</command> in, login using <command>ssh</command>, pop
-their mail, and so on.
+Eine Beispiel PAM Konfiguration die die Benützung von <filename>pam_smbpass</filename> zeigt
+um von klartext- zu verschlüsselten Passwörtern zu migrieren. Im Gegensatz zu anderen Methoden
+kann dies auch für Benutzer gemacht werden die sich noch nie mit Samba Freigaben verbunden haben:
+Die Passwort Migration findet statt sobald der Benutzer eine <command>ftp</command> Verbindung aufmacht,
+sich per <command>ssh</command> einloggt, seine mails holt usw...
 </para>
 
 <para><smbfile name="pam-password-migration">
@@ -789,12 +789,12 @@ session    required    pam_unix.so
 </sect3>
 
 <sect3>
-<title>Mature Password Configuration</title>
+<title>Ausgereifte Passwort Konfiguration</title>
 
 <para>
-A sample PAM configuration for a mature <filename>smbpasswd</filename> installation.
-<filename>private/smbpasswd</filename> is fully populated, and we consider it an error if
-the SMB password does not exist or does not match the UNIX password.
+Eine Beispiel Konfiguration für eine ausgereifte <filename>smbpasswd</filename> Installation.
+<filename>private/smbpasswd</filename> ist FULLY POPULATED und wir betrachten es als Fehler
+wenn kein SMB Passwort vorhanden ist oder wenn es nicht mit dem UNIX Passwort übereinstimmt.
 </para>
 
 <para><smbfile name="pam-fallback">
@@ -813,12 +813,12 @@ session    required     pam_unix.so
 </sect3>
 
 <sect3>
-<title>Kerberos Password Integration Configuration</title>
+<title>Kerberos Passwort Integrations Konfiguration</title>
 
 <para>
-A sample PAM configuration that shows <parameter>pam_smbpass</parameter> used together with
-<parameter>pam_krb5</parameter>. This could be useful on a Samba PDC that is also a member of
-a Kerberos realm.
+Eine Beispiel PAM Konfiguration die die Benützung von <parameter>pam_smbpass</parameter> mit
+<parameter>pam_krb5</parameter>zusammen zeigt. Dies kann für einen Samba PDC nützlich sein der zugleich
+Mitglied in einer Kerberos REALM ist.
 </para>
 
 <para><smbfile name="pam-krb">
@@ -843,11 +843,11 @@ session    required    pam_krb5.so
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Häufige Fehler</title>
 
 <para>
-PAM can be fickle and sensitive to configuration glitches. Here we look at a few cases from
-the Samba mailing list.
+PAM kann sehr unbeständig und empfindlich gegenüber Ausrutscher bei der Konfiguration sein.
+Wir schauen uns hier ein paar Fälle aus der Samba Mailing List an.
 </para>
 
 <!-- shouldn't this be in the Winbind chapter - Jelmer -->
@@ -855,7 +855,7 @@ the Samba mailing list.
 	<title>pam_winbind Problem</title>
 
 	<para>
-	A user reported: I have the following PAM configuration:
+	Ein Benutzer berichtet: Ich habe folgende PAM Konfiguration:
 	</para>
 
 <para>
@@ -873,31 +873,34 @@ password required /lib/security/pam_stack.so service=system-auth
 </para>
 
 	<para>
+	Wenn ich mit [ctrl][alt][F1] eine neue Konsole aufmache kann ich nicht mit meinem <quote>pitie</quote> Benutzer 
+	einsteigen. ich habe es auch mit dem Benutzer
 	When I open a new console with [ctrl][alt][F1], I can't log in with my user <quote>pitie</quote>.
 	I have tried with user <quote>scienceu+pitie</quote> also.
 	</para>
 
 	<para>
-	<emphasis>Answer:</emphasis> The problem may lie with your inclusion of <parameter>pam_stack.so
-	service=system-auth</parameter>. That file often contains a lot of stuff that may
-	duplicate what you are already doing. Try commenting out the <parameter>pam_stack</parameter> lines
-	for <parameter>auth</parameter> and <parameter>account</parameter> and see if things work. If they do, look at
-	<filename>/etc/pam.d/system-auth</filename> and copy only what you need from it into your
-	<filename>/etc/pam.d/login</filename> file. Alternately, if you want all services to use
-	Winbind, you can put the Winbind-specific stuff in <filename>/etc/pam.d/system-auth</filename>.
+	<emphasis>Antwort:</emphasis> Das Problem könnte bei der Einbindung von <parameter>pam_stack.so
+	service=system-auth</parameter>liegen. Diese Datei enthält oft eine Menge Zeug
+	die Sachen doppelt machen die man eigentlich schon macht. Versuch die <parameter>pam_stack</parameter>
+	Zeilen für <parameter>auth</parameter> und <parameter>account</parameter> auszukommentieren, und probiers
+	dann nochmal. Falls es so funktioniert, sieh dir die <filename>/etc/pam.d/system-auth</filename> Datei an
+	und kopier nur das was du brauchst in deine <filename>/etc/pam.d/login</filename> Datei. Alternativ könntest du,
+	wenn du für alle Dienste Winbind benutzen möchtest, das Winbind bezogene Material nach <filename>/etc/pam.d/system-auth
+	</filename> verschieben.
 	</para>
 
 	</sect2>
 
 	<sect2>
-	<title>Winbind Is Not Resolving Users and Groups</title>
+	<title>Winbind löst Benutzer und Gruppen nicht auf</title>
 
 	<para>
 	<quote>
-	My &smb.conf; file is correctly configured. I have specified 
+	Meine &smb.conf; ist richtig konfiguriert. Ich habe folgendes festgelegt:
 	<smbconfoption><name>idmap uid</name><value>12000</value></smbconfoption>, 
-	and <smbconfoption><name>idmap gid</name><value>3000-3500</value></smbconfoption>
-	and <command>winbind</command> is running. When I do the following it all works fine.
+	und <smbconfoption><name>idmap gid</name><value>3000-3500</value></smbconfoption>,
+	<command>winbind</command> läuft. Wenn ich folgendes mache funktioniert alles perkeft.
 	</quote>
 	</para>
 
@@ -925,18 +928,19 @@ maryo:x:15000:15003:Mary Orville:/home/MIDEARTH/maryo:/bin/false
 
 	<para>
 	<quote>
-	But this command fails:
+	Aber folgender Befehl schlägt fehl:
 	</quote>
 <screen>
 &rootprompt;<userinput>chown maryo a_file</userinput>
 chown: 'maryo': invalid user
 </screen>
-	<quote>This is driving me nuts! What can be wrong?</quote>
+	<quote>Das macht mich noch verrückt! Was könnte hier falsch sein?</quote>
 	</para>
 
 	<para>
-	<emphasis>Answer:</emphasis> Your system is likely running <command>nscd</command>, the name service
-	caching daemon. Shut it down, do not restart it! You will find your problem resolved.
+	<emphasis>Antwort:</emphasis> Auf deinem System läuft wahrscheinlich <command>nscd</command>,
+	der name service cachin daemon. Schalt in aus, nicht nochmal starten! Dies sollte dein Problem
+	lösen.
 	</para>
 
 	</sect2>
