@@ -267,33 +267,34 @@ weitergeben. Sie wurden gewarnt!
 </sect2>
 
 <sect2>
-<title>Managing Domain Machine Accounts using NT4 Server Manager</title>
+<title>Das Verwalten von Domänen-Maschinen-Konten mittels des Server Managers</title>
 
 <para>
-A working <smbconfoption><name>add machine script</name></smbconfoption> script is essential
-for machine trust accounts to be automatically created. This applies no matter whether
-one uses automatic account creation, or if one wishes to use the NT4 Domain Server Manager.
+Ein funktionierendes <smbconfoption><name>add machine script</name></smbconfoption>-Skript
+ist essentiell notwendig, um Maschinen-Vertrauens-Konten automatisch anlegen zu können. Dies
+gilt unabhängig davon, ob man automatisches Anlegen der Konten verwendet oder dern
+NT4 Domain Server Manager.
 </para>
 
 <para>
 <indexterm><primary>SRVTOOLS.EXE</primary></indexterm>
-If the machine from which you are trying to manage the domain is an 
-<application>MS Windows NT4 workstation or MS Windows 200x/XP Professional</application>,
-the tool of choice is the package called <command>SRVTOOLS.EXE</command>. 
-When executed in the target directory it will unpack <command>SrvMgr.exe</command>
-and <command>UsrMgr.exe</command> (both are domain management tools for MS Windows NT4 workstation).
+Wenn die Maschine, von der aus Sie versuchen, die Domäne zu verwalten, eine 
+<application>MS Windows NT4 Workstation oder MS Windows 200x/XP Professional</application> ist,
+ist das zu wählende Werkzeug das Package namens <command>SRVTOOLS.EXE</command>.
+Wenn es im Zielverzeichnis ausgeführt wird, entpackt es <command>SrvMgr.exe</command> und
+<command>UsrMgr.exe</command>, beides sind Domänen-Management-Werkzeuge für 
+MS Windows NT4 Workstation.
 </para>
 
 <para>
 <indexterm><primary>Nexus.exe</primary></indexterm>
-If your workstation is a <application>Microsoft Windows 9x/Me</application> family product
- you should download the <command>Nexus.exe</command> package from the Microsoft web site.
-When executed from the target directory this will unpack the same tools but for use on 
-this platform.
+Wenn Ihre Workstation ein Produkt der <application>Microsoft Windows 9x/Me</application>-Familie ist,
+sollten Sie das Package <command>Nexus.exe</command> von der Microsoft Website laden.
+Auch dies wird dieselben Tools entpacken, aber eben für die Windows 9x/Me-Plattformen.
 </para>
 
 <para>
-Further information about these tools may be obtained from the following locations:
+Weitere Informationen zu diesen Tools kann von folgenden Stellen bezogen werden:
 </para>
 
 <para>
@@ -304,7 +305,7 @@ Further information about these tools may be obtained from the following locatio
 </para>
 
 <para>
-Launch the <command>srvmgr.exe</command> (Server Manager for Domains) and follow these steps:
+Starten Sie <command>srvmgr.exe</command> (Server Manager für Domänen) und folgen Sie diesen Schritten:
 </para>
 
 <procedure>
