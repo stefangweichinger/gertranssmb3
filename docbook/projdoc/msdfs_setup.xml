@@ -15,35 +15,34 @@
 	<pubdate>12 Jul 2000</pubdate>
 </chapterinfo>
 
-<title>Hosting a Microsoft Distributed File System Tree</title>
+<title>Betreiben eines Microsoft Distributed File System Baumes</title>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Vorteile</title>
 
 	<para>
-	The Distributed File System (DFS) provides a means of separating the logical
-	view of files and directories that users see from the actual physical locations
-	of these resources on the network. It allows for higher availability, smoother
-	storage expansion, load balancing, and so on.
+	Das Distributed File System (DFS) erlaubt es die logische Ansicht der Laufwerke und Ordner die der 
+	Benutzer sieht von der aktuellen physischen Lage dieser Resourcen auf dem Netzwerk zu trennen.
+	Die Vorteile sind höhere Erreichbarkeit, einfachere Speicherplatzerweiterung, Lastausgleich, usw.
 	</para>
 
 	<para>
-	For information about DFS, refer to the 
-<ulink url="http://www.microsoft.com/NTServer/nts/downloads/winfeatures/NTSDistrFile/AdminGuide.asp">Microsoft documentation</ulink>.
-	This document explains how to host a DFS tree on a UNIX machine (for DFS-aware
-	clients to browse) using Samba.
+	Für Informationen zu DFS, wenden sie sich an 
+<ulink url="http://www.microsoft.com/NTServer/nts/downloads/winfeatures/NTSDistrFile/AdminGuide.asp">Microsoft
+	Dokumentation</ulink>.
+	Dieses Dokument erklärt wie man einen DFS Baum auf einer UNIX Maschine (für DFS-fähige Clients TO BROWSE)
+	mit Samba betreibt. 	
 	</para>
 
 	<para>
-	To enable SMB-based DFS for Samba, configure it with the <option>--with-msdfs</option>
-	option. Once built, a Samba server can be made a DFS server by setting the global 
-	Boolean <smbconfoption><name>host msdfs</name></smbconfoption>
-	parameter in the &smb.conf; file. You designate a share as a DFS
-	root using the Share Level Boolean <smbconfoption><name>msdfs root</name></smbconfoption> parameter. A DFS root directory on Samba hosts DFS
-	links in the form of symbolic links that point to other servers. For example, a symbolic link
-	<filename>junction-&gt;msdfs:storage1\share1</filename> in the share directory acts
-	as the DFS junction. When DFS-aware clients attempt to access the junction link,
-	they are redirected to the storage location (in this case, <parameter>\\storage1\share1</parameter>).
+	Um SMB-basiertes DFS für Samba zu erlauben müssen Sie es mit dem<option>--with-msdfs</option>
+	Schalter kompilieren. Einmal kompiliert, muss man in der &smb.conf den globalen Boolean Parameter
+	<smbconfoption><name>host msdfs</name></smbconfoption> setzen. Sie machen eine Freigabe als DFS root in dem
+	sie den Share Level Boolean <smbconfoption><name>msdfs root</name></smbconfoption> Parameter benutzen. 
+	Ein DFS root Verzeichnis auf Samba gibt DFS Verweise in Form von symbolischen Links aus die auf andere Server zeigen.
+	Zum Beispiel ein symbolischen Link <filename>junction-&gt;msdfs:storage1\share1</filename> im Freigabe-Verzeichniss
+	ACTS als die DFS-Verzweigung. Sobald DFS-fähige clients versuchen diesen Link zu öffnen werden sie auf den entsprechenden Speicherort 
+	weitergeleitet (in diesem Fall, <parameter>\\storage1\share1</parameter>).
 	</para>
 
 	<para>
