@@ -469,18 +469,18 @@ Es gibt zwei Wege um ein Username und Passwort Paar auf G&uuml;ltigkeit zu &uuml
 Der eine nutzt die Information der Antwort die als Teil der Authentisierungs Nachricht bereitgestellt wird
 und der andere Weg wertet nur den Fehlercode aus.
 </para>
-<!-- Hendriks Workmark -->
 <para>
-The downside of this mode of configuration is the fact that for security reasons Samba
-will send the password server a bogus username and a bogus password and if the remote
-server fails to reject the username and password pair then an alternative mode of
-identification of validation is used. Where a site uses password lock out after a
-certain number of failed authentication attempts this will result in user lockouts.
+Die Kehrseite dieser Art der Konfiguration ist die Tatsache, dass aufgrund der 
+Sicherheit Samba dem Passwortserver einen Benutzernamen und Passwort sendet und 
+für den Fall dass diese Accountdaten vom Passwortserver abgelehnt werden wechselt 
+Samba zu einem alternativen Modus der Identifikation. Sollte das Netzwerk einen 
+Benutzer nach einer gewissen Anzahl von fehlgeschlagenen Logins sperren wird dies 
+in dieser Konfig der Fall sein können.
 </para>
 
 <para>
-Use of this mode of authentication requires a standard UNIX account for the user.
-This account can be blocked to prevent logons by non-SMB/CIFS clients.
+Diese Art der Authentifizierung benötigt einen standard Unix Account für den User der 
+allerdings für andere System Logons blockiert werden darf.
 </para>
 
 </sect3>
@@ -489,61 +489,63 @@ This account can be blocked to prevent logons by non-SMB/CIFS clients.
 </sect1>
 
 <sect1>
-<title>Password Checking</title>
+<title>Password Prüfung</title>
 
 <para>
-MS Windows clients may use encrypted passwords as part of a challenge/response
-authentication model (a.k.a. NTLMv1 and NTLMv2) or alone, or cleartext strings for simple
-password-based authentication. It should be realized that with the SMB protocol,
-the password is passed over the network either in plain-text or encrypted, but
-not both in the same authentication request.
+MS Windows clients können verschlüsselte Passwörter (bekannt als NTLMv1 und MTLMv2) 
+zur Anmeldung nutzen oder aber auch Klartextpasswörter für einfache Passwortbasierende 
+Authentifizierung nutzen. Man sollte sich deutlich machen, dass das SMB Protokol nicht 
+vorsieht dass sowohl Klartext als auch Verschlüsselte Passwörter innerhalb einer 
+Authentifizierungs Anfrage über ein Netzwerk verschickt werden.
 </para>
 
 <para>
-When encrypted passwords are used, a password that has been entered by the user
-is encrypted in two ways:
+Wenn verschlüsselte Passwörter verwendet werden gibt es zwei verschiedene Arten diese 
+zu verschlüsseln:
 </para>
 
 <itemizedlist>
-        <listitem><para>An MD4 hash of the unicode of the password
-        string. This is known as the NT hash.
+        <listitem><para>
+	Ein MD5 hash des Passwort (Unicode). Besser bekannt als NT hash.
         </para></listitem>
 
-        <listitem><para>The password is converted to upper case,
-        and then padded or truncated to 14 bytes. This string is
-        then appended with 5 bytes of NULL characters and split to
-        form two 56-bit DES keys to encrypt a <quote>magic</quote> 8-byte value.
-        The resulting 16 bytes form the LanMan hash.
+        <listitem><para>
+	Das Passwort wird in Großbuchstaben konvertiert, auf eine länge von 
+	insgesamt 14 byte gekürzt oder verlängert. Anschließend wird dieser 
+	String mit 5 byte des NULL Zeichens am Ende erweitert und zu zwei 
+	passenden 56-bit DES Schlüsseln zur Verschlüsselung eines <quote>magic</quote> 
+	8-byte Wertes verwendet. Das Resulutat hierraus ist der 16 byte LanMan hash.
         </para></listitem>
 </itemizedlist>
 
 <para>
-MS Windows 95 pre-service pack 1, MS Windows NT versions 3.x and version 4.0
-pre-service pack 3 will use either mode of password authentication. All
-versions of MS Windows that follow these versions no longer support plain
-text passwords by default.
+MS Windows 95 vor SP 1, MS Windows NT in den Versionen 3.x und 4.0 vor SP3 
+unterstützen beide Arten der Passwort Authentifizierung. Alle Versionen von 
+MS Windows nach den oben genannten Versionen unterstützen standardmäßig nicht 
+mehr die Verwendung von Klartext-Passwörtern.
 </para>
 
 <para>
-MS Windows clients have a habit of dropping network mappings that have been idle
-for 10 minutes or longer. When the user attempts to use the mapped drive
-connection that has been dropped, the client re-establishes the connection using
-a cached copy of the password.
+MS Windows clients haben die Eigentart Netzwerk Mappings zu verlieren, wenn diese 
+länger als 10 Minuten nicht mehr verwendet wurden. Wenn der User ein Mapping nach 
+dieser Zeit verwenden will baut der Client die Verbindung erneut auf und verwendet 
+dabei eine zwischengespeicherte copy des Passworts.
 </para>
 
 <para>
-When Microsoft changed the default password mode, support was dropped for caching
-of the plain-text password. This means that when the registry parameter is changed
-to re-enable use of plain-text passwords it appears to work, but when a dropped
-service connection mapping attempts to revalidate, this will fail if the remote
-authentication server does not support encrypted passwords. It is definitely not
-a good idea to re-enable plain-text password support in such clients.
+Wenn man bei Windows durch ändern der Registry Einträge die Verwendung von 
+Klartext-Passwörtern wieder einschalten würde entfällt allerdings der oben 
+beschriebene Support zum zwischenspeichern der Passwörter. Dies hat zur Folge, 
+dass es nicht gelingen wird, wenn ein Client eine Verbindung nach dem o.g. 
+Timeout verworfen hat, diese wieder von alleine herstellen zu können. Es 
+ist also definitiv keine gute Idee bei diesen Clients
+Klartext-Passwörter zu verwenden.
 </para>
 
 <para>
-The following parameters can be used to work around the issue of Windows 9x/Me clients
-upper-casing usernames and passwords before transmitting them to the SMB server
-when using cleartext authentication:
+Folgende Parameter können als workaround für Windows 9x/Me Clients verwendet werden, 
+die die Benutzernamen und Passwörter in Großbuchstaben umwandeln, bevor sie zum SMB 
+Server verschickt werden (Nur bei verwendung von Klartext-Passwörtern).
 </para>
 
 <para><smbconfblock>
@@ -552,6 +554,7 @@ when using cleartext authentication:
 </smbconfblock></para>
 
 <para>
+<!-- Hendrik workmark -->
 By default Samba will convert to lower case the username before attempting to lookup the user
 in the database of local system accounts. Because UNIX usernames conventionally
 only contain lower-case characters, the <smbconfoption><name>username level</name></smbconfoption> parameter
