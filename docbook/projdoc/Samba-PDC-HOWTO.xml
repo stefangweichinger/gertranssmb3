@@ -825,8 +825,9 @@ Ein Domänen-Controller muß seine Rolle im Netzwerk bekanntgeben. Dies braucht üb
 <indexterm><primary>signing</primary></indexterm>
 Nach dem erfolgreichen Beitreten zu einer Domäne scheitern Benutzeranmeldungen mit einer von zwei Meldungen: die eine aus dem Grund, daß der DC nicht gefunden werden kann; die andere behauptet, daß das Konto nicht in der Domäne existiert, bzw. daß das Passwort falsch ist. Dies kann durch imkompatible Einstellungen zwischen dem Windows-Client und dem Samba-3-Server verursacht werden: <emphasis>schannel</emphasis> (secure channel) oder <emphasis>smb signing</emphasis>-Einstellungen. Prüfen Sie die Einstellungen <emphasis> client schannel, server schannel, client signing, server signing</emphasis> durch das Ausführen von:
 <screen>
-<command>testparm -v | more</command> und das Prüfen der Werte dieser Parameter.
+<command>testparm -v | more</command>
 </screen>
+ und das Prüfen der Werte dieser Parameter.
 </para>
 
 <para>
