@@ -271,6 +271,7 @@
 	befindet und <replaceable>aservice</replaceable> ist ein belieber Service den dieser Host zur Verfügung
 	stellt. Versuchen Sie es mit ihrem Benutzernamen, wenn Sie eine Sektion <smbconfsection>[homes]</smbconfsection>
 	in der &smb.conf; haben.
+	</para>
 
 	<para>Beispiel: Wenn der UNIX Host <replaceable>bambi</replaceable> heißt und ein gültiger Login Name
 	<replaceable>fred</replaceable> ist könnten Sie folgendes schreiben:
