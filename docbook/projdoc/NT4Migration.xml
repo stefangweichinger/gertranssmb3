@@ -108,32 +108,29 @@ Folgende Faktoren tragen zur Gewährleistung einer erfolgreichen Migration bei:
 <para>
 Samba-3 kann als Domänen-Controller, als Backup-Domänen-Controller (vielleicht am besten als sekundärer
 Controller bezeichnet), als Domänen-Mitglieds-Server, oder als Stand-Alone-Server konfiguriert werden.
-
-
-Samba-3 can be configured as a Domain Controller, a back-up Domain Controller (probably best called
-a secondary controller), a Domain Member, or as a stand-alone Server. The Windows network security
-domain context should be sized and scoped before implementation. Particular attention needs to be
-paid to the location of the primary Domain Controller (PDC) as well as backup controllers (BDCs).
-One way in which Samba-3 differs from Microsoft technology is that if one chooses to use an LDAP
-authentication backend, then the same database can be used by several different domains. In a
-complex organization, there can be a single LDAP database, which itself can be distributed (have
-a master server and multiple slave servers) that can simultaneously serve multiple domains.
+Der Windows-Netzwerk-Domänen-Sicherheits-Kontext sollte dimensioniert und geprüft werden, und das
+vor der Migration. Besondere Aufmerksamkeit sollte auf die Plazierung des PDCs und der BDCs gelegt werden.
+Ein Unterschied zwischen Samba-3 und Microsoft-Technologie ist, daß man, wenn man sich für das
+LDAP-Authentifizierungs-Backend entscheidet, die selbe Datenbank für mehrere verschiedene Domänen
+benutzen kann. In einer komplexen Organisation kann es eine einzelne LDAP-Datenbank geben, welche
+selbst verteilt werden kann (durch Verwendung eines Master- und mehrerer Slave-LDAP-Server), und die
+mehrere Domänen bedienen kann.
 </para>
 
 <para>
->From a design perspective, the number of users per server as well as the number of servers per
-domain should be scaled taking into consideration server capacity and network bandwidth.
+Aus der Perspektive des Designs sollte die Anzahl der Benutzer pro Server, ebenso wie die Anzahl
+der Server pro Domäne, unter Berücksichtigung der Server-Kapazitäten und Netzwerk-Bandbreiten
+festgelegt werden.
 </para>
 
 <para>
-A physical network segment may house several domains. Each may span multiple network segments.
-Where domains span routed network segments, consider and test the performance implications of
-the design and layout of a network. A centrally located Domain Controller that is designed to
-serve multiple routed network segments may result in severe performance problems. Check the
-response time (ping timing) between the remote segment and the PDC. If
-it's long (more than 100 ms),
-locate a backup controller (BDC) on the remote segment to serve as the local authentication and
-access control server.
+Ein physisches Netzwerk-Segment kann mehrere Domänen beinhalten. Jede kann wiederum mehrere 
+Netzwerk-Segmente umfassen. Wo Domänen geroutete Netzwerk-Segmente umfassen, bedenken und testen
+Sie die Auswirkungen auf die Performance, die der Entwurf und das Design des Netzwerks haben können.
+Ein zentral plazierter Domänen-Controller, der mehrere geroutete Netzwerk-Segmente bedienen soll, kann
+ernsthafte Performance-Probleme verursachen. Prüfen Sie die Antwortzeiten (ping-Zeiten) zwischen
+dem entfernten Segment und dem PDC. Sind diese lang (> 100 ms), plazieren Sie einen BDC im entfernten
+Segment, um als lokaler Authentifikations- und Zugriffs-Kontroll-Server zu arbeiten.
 </para>
 </sect3>
 
