@@ -1,4 +1,4 @@
-	<para><link linkend="IntroSMB">Einf&#xFC;rung in Samba</link><itemizedlist><listitem><para>David Lechnyr &lt;<ulink noescape="1" url="mailto:david@lechnyr.com">david@lechnyr.com</ulink>&gt;</para></listitem>
+<para><link linkend="IntroSMB">Einf&#xFC;rung in Samba</link><itemizedlist><listitem><para>David Lechnyr &lt;<ulink noescape="1" url="mailto:david@lechnyr.com">david@lechnyr.com</ulink>&gt;</para></listitem>
 	<listitem><para>Hendrik B&#xE4;cker &lt;<ulink noescape="1" url="mailto:h_baecker@gmx.net">h_baecker@gmx.net</ulink>&gt; (German Translator) </para></listitem>
 	</itemizedlist></para><para><link linkend="install">How to Install and Test SAMBA</link><itemizedlist><listitem><para>Andrew Tridgell &lt;<ulink noescape="1" url="mailto:tridge@samba.org">tridge@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Jelmer R.  Vernooij &lt;<ulink noescape="1" url="mailto:jelmer@samba.org">jelmer@samba.org</ulink>&gt;</para></listitem>
@@ -14,7 +14,7 @@
 	<listitem><para>Gerald (Jerry)  Carter &lt;<ulink noescape="1" url="mailto:jerry@samba.org">jerry@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>David Bannon &lt;<ulink noescape="1" url="mailto:dbannon@samba.org">dbannon@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Guenther Deschner &lt;<ulink noescape="1" url="mailto:gd@suse.de">gd@suse.de</ulink>&gt; (LDAP updates) </para></listitem>
-	<listitem><para>Stefan G.  Weichinger &lt;<ulink noescape="1" url="mailto:monitor@oops.co.at">monitor@oops.co.at</ulink>&gt;</para></listitem>
+	<listitem><para>Stefan G.  Weichinger &lt;<ulink noescape="1" url="mailto:monitor@oops.co.at">monitor@oops.co.at</ulink>&gt; (German Translator) </para></listitem>
 	</itemizedlist></para><para><link linkend="samba-bdc">Backup Domain Control</link><itemizedlist><listitem><para>John H.  Terpstra &lt;<ulink noescape="1" url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Volker Lendecke &lt;<ulink noescape="1" url="mailto:Volker.Lendecke@SerNet.DE">Volker.Lendecke@SerNet.DE</ulink>&gt;</para></listitem>
 	<listitem><para>Guenther Deschner &lt;<ulink noescape="1" url="mailto:gd@suse.de">gd@suse.de</ulink>&gt; (LDAP updates) </para></listitem>
@@ -38,7 +38,7 @@
 	</itemizedlist></para><para><link linkend="groupmapping">Group Mapping  MS Windows and UNIX</link><itemizedlist><listitem><para>John H.  Terpstra &lt;<ulink noescape="1" url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Jean Fran&#xE7;ois Micouleau</para></listitem>
 	<listitem><para>Gerald (Jerry)  Carter &lt;<ulink noescape="1" url="mailto:jerry@samba.org">jerry@samba.org</ulink>&gt;</para></listitem>
-	</itemizedlist></para><para><link linkend="AccessControls">Kapitel 13 Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle</link><itemizedlist><listitem><para>John H.  Terpstra &lt;<ulink noescape="1" url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
+	</itemizedlist></para><para><link linkend="AccessControls">Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle</link><itemizedlist><listitem><para>John H.  Terpstra &lt;<ulink noescape="1" url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Jeremy Allison &lt;<ulink noescape="1" url="mailto:jra@samba.org">jra@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Jelmer R.  Vernooij &lt;<ulink noescape="1" url="mailto:jelmer@samba.org">jelmer@samba.org</ulink>&gt; (drawing) </para></listitem>
 	<listitem><para>Robert robowarp  Ruegner &lt;<ulink noescape="1" url="mailto:robowarp@gmx.de">robowarp@gmx.de</ulink>&gt; (German Translator) </para></listitem>
@@ -113,7 +113,7 @@
 	</itemizedlist></para><para><link linkend="speed">Samba Performance Tuning</link><itemizedlist><listitem><para>Paul Cochrane &lt;<ulink noescape="1" url="mailto:paulc@dth.scot.nhs.uk">paulc@dth.scot.nhs.uk</ulink>&gt;</para></listitem>
 	<listitem><para>Jelmer R.  Vernooij &lt;<ulink noescape="1" url="mailto:jelmer@samba.org">jelmer@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>John H.  Terpstra &lt;<ulink noescape="1" url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
-	<listitem><para>Stefan G.  Weichinger &lt;<ulink noescape="1" url="mailto:monitor@oops.co.at">monitor@oops.co.at</ulink>&gt;</para></listitem>
+	<listitem><para>  (German Translator) </para></listitem>
 	</itemizedlist></para><para><link linkend="DNSDHCP">DNS und DHCP Konfigurationsanleitung</link><itemizedlist><listitem><para>John H.  Terpstra &lt;<ulink noescape="1" url="mailto:jht@samba.org">jht@samba.org</ulink>&gt;</para></listitem>
 	<listitem><para>Jochen Yoshi  Schmidt &lt;<ulink noescape="1" url="mailto:jochen.schmidt@millenux.com">jochen.schmidt@millenux.com</ulink>&gt; (German Translator) </para></listitem>
 	</itemizedlist></para><para><link linkend="Further-Resources">Weitere Hilfsquellen</link><itemizedlist><listitem><para>Jelmer R.  Vernooij &lt;<ulink noescape="1" url="mailto:jelmer@samba.org">jelmer@samba.org</ulink>&gt;</para></listitem>
