@@ -80,54 +80,62 @@ sehen Sie
 	</sect2>
 	
 	<sect2>
-		<title>Configuring Other Versions of OS/2</title>
+		<title>Andere Versionen von OS/2 konfigurieren</title>
 	
-		<para>This sections deals with configuring OS/2 Warp 3 (not Connect), OS/2 1.2, 1.3 or 2.x.</para>
+		<para>Dieser Abschnitt behandelt die Konfiguration von OS/2 Warp 3 (nicht Connect), OS/2 1.2, 1.3 oder 2.x.</para>
 		
-		<para>You can use the free Microsoft LAN Manager 2.2c Client for OS/2 that is
-		available from 
+		<para>Sie können den freien Microsoft LAN Manager 2.2c Client für OS/2 
+		verwenden, der unter
 		<ulink noescape="1" url="ftp://ftp.microsoft.com/BusSys/Clients/LANMAN.OS2/">
-		ftp://ftp.microsoft.com/BusSys/Clients/LANMAN.OS2/</ulink>. In a nutshell, edit
-	the file <filename>\OS2VER</filename> in the root directory of the OS/2 boot partition and add the lines:</para>
-		
+		ftp://ftp.microsoft.com/BusSys/Clients/LANMAN.OS2/</ulink> erhältlich ist.
+		Kurz gesagt, editieren Sie die Datei 
+		<filename>\OS2VER</filename> im root-Verzeichnis der OS/2-Boot-Partition 
+		und fügen Sie folgende Zeilen ein</para>
+	
 		<para><programlisting>
 		20=setup.exe
 		20=netwksta.sys
 		20=netvdd.sys
 		</programlisting></para>
 		
-		<para>before you install the client. Also, do not use the included NE2000 driver because it is buggy.
-		Try the NE2000 or NS2000 driver from <ulink noescape="1" url="ftp://ftp.cdrom.com/pub/os2/network/ndis/">
- 		ftp://ftp.cdrom.com/pub/os2/network/ndis/</ulink> instead.
+		<para>bevor Sie den Client installieren. 
+		Verwenden Sie den inkludierten NE2000-Treiber NICHT, da er fehlerhaft ist.
+		Versuchen Sie anstattdessen den NE2000- oder NS2000-Treiber von
+		<ulink noescape="1" url="ftp://ftp.cdrom.com/pub/os2/network/ndis/">
+ 		ftp://ftp.cdrom.com/pub/os2/network/ndis/</ulink>.
 		</para>
 	</sect2>
 	
 	<sect2>
-		<title>Printer Driver Download for OS/2 Clients</title>
+		<title>Drucker-Treiber-Download für OS/2-Clients</title>
 
-		<para>Create a share called <smbconfsection>[PRINTDRV]</smbconfsection> that is 
-		world-readable. Copy your OS/2 driver files there. The <filename>.EA_</filename>
-		files must still be separate, so you will need to use the original install files
-		and not copy an installed driver from an OS/2 system.</para>
+		<para>Legen Sie eine Freigabe namens <smbconfsection>[PRINTDRV]</smbconfsection> an,
+		die world-readable ist. Kopieren Sie Ihre OS/2-Treiber-Dateien dorthin.
+		Die <filename>.EA_</filename>-Dateien müssen jedoch weiter separat beleiben, also
+		werden Sie die originalen Installations-Dateien benutzen müssen, und nicht einen
+		installierten Treiber von einem OS/2-System kopieren können.
+		</para>
 		
-		<para>Install the NT driver first for that printer. Then, add to your &smb.conf; a parameter,
-		<smbconfoption><name>os2 driver map</name><value><replaceable>filename</replaceable></value></smbconfoption>. 
-		Next, in the file specified by <replaceable>filename</replaceable>, map the 
-		name of the NT driver name to the OS/2 driver name as follows:</para>
-		
+		<para>Installieren Sie zuerst den NT-Treiber für diesen Drucker. Dann fügen Sie den 
+		Parameter 
+		<smbconfoption><name>os2 driver map</name><value><replaceable>filename</replaceable></value></smbconfoption> 
+		zu Ihrer Datei &smb.conf; hinzu.
+
+		Als Nächstes weisen Sie in der Datei, die durch <replaceable>filename</replaceable>
+		bezeichnet wird, den NT-Treibernamen dem OS/2-Treibernamen zu, wie folgt:</para>
+
 		<para><parameter><replaceable>nt driver name</replaceable> = <replaceable>os2 driver name</replaceable>.<replaceable>device name</replaceable></parameter>, e.g.</para>
 
 		<para><parameter>
 		HP LaserJet 5L = LASERJET.HP LaserJet 5L</parameter></para>
 
-		<para>You can have multiple drivers mapped in this file.</para>
+		<para>Sie können in dieser Datei mehrere Treiberzuweisungen vornehmen.</para>
 	
-		<para>If you only specify the OS/2 driver name, and not the 
-		device name, the first attempt to download the driver will 
-		actually download the files, but the OS/2 client will tell 
-		you the driver is not available. On the second attempt, it 
-		will work. This is fixed simply by adding the device name
-  		 to the mapping, after which it will work on the first attempt.
+		<para>Wenn Sie nur den OS/2-Treibernamen angeben, aber nicht den device-Namen,
+		wird der erste Versuch zwar die Dateien laden, aber der OS/2-Client wird melden,
+		daß der Treiber nicht verfügbar ist. Im zweiten Anlauf wird es funktionieren.
+		Dies kann durch einfaches Hinzufügen des device-Namens behoben werden, wonach
+		es schon beim ersten Versuch funktioniert.
 		</para>
 	</sect2>
 </sect1>
@@ -136,60 +144,62 @@ sehen Sie
 <title>Windows for Workgroups</title>
 
 <sect2>
-<title>Latest TCP/IP Stack from Microsoft</title>
+<title>Neuester TCP/IP-Stack von Microsoft</title>
 
-<para>Use the latest TCP/IP stack from Microsoft if you use Windows
-for Workgroups. The early TCP/IP stacks had lots of bugs.</para>
+<para>Verwenden Sie den neuesten TCP/IP-Stack von Microsoft, wenn Sie Windows
+for Workgroups einsetzen. Die frühen TCP/IP-Stacks hatten viele Bugs.</para>
 
 <para> 
-Microsoft has released an incremental upgrade to their TCP/IP 32-bit
-VxD drivers. The latest release can be found on their ftp site at
-ftp.microsoft.com, located in <filename>/peropsys/windows/public/tcpip/wfwt32.exe</filename>.
-There is an update.txt file there that describes the problems that were
-fixed. New files include <filename>WINSOCK.DLL</filename>, 
+Microsoft hat ein inkrementelles Upgrade für seine TCP/IP 32-bit
+VxD-Treiber veröffentlicht. Die letzte Release kann auf deren ftp-site
+ftp.microsoft.com gefunden werden, 
+in <filename>/peropsys/windows/public/tcpip/wfwt32.exe</filename>.
+Es gibt dort auch eine Datei update.txt, die die gelösten Probleme beschreibt.
+Neue Dateien sind
+<filename>WINSOCK.DLL</filename>, 
 <filename>TELNET.EXE</filename>, 
 <filename>WSOCK.386</filename>, 
 <filename>VNBT.386</filename>,
 <filename>WSTCP.386</filename>, 
 <filename>TRACERT.EXE</filename>, 
-<filename>NETSTAT.EXE</filename>, and 
+<filename>NETSTAT.EXE</filename>, und 
 <filename>NBTSTAT.EXE</filename>.
 </para>
 
 </sect2>
 
 <sect2>
-<title>Delete .pwl Files After Password Change</title>
+<title>Das Löschen von .pwl-Dateien nach Passwort-Änderungen</title>
 
 <para>
-Windows for Workgroups does a lousy job with passwords. When you change passwords on either
-the UNIX box or the PC, the safest thing to do is to delete the .pwl files in the Windows
-directory. The PC will complain about not finding the files, but will soon get over it,
-allowing you to enter the new password.
+Windows for Workgroups arbeitet lausig, wenn es um Passwörter geht.
+Wenn Sie Passwörter auf entweder der UNIX-Box oder dem PC ändern, ist es am sichersten, die
+.pwl-Dateien im Windows-Verzeichnis zu löschen. Der PC wird sich darüber beschweren, diese Dateien
+nicht zu finden, sich aber bald damit abfinden, und Ihnen erlauben, das neue Passwort einzugeben.
 </para>
 
 <para> 
-If you do not do this, you may find that Windows for Workgroups remembers and uses the old
-password, even if you told it a new one.
+Wenn Sie dies nicht tun, kann es sein, daß Windows for Workgroups sich an das alte Passwort erinnert,
+und es verwendet, auch wenn Sie ein neues angegeben haben.
 </para>
 
 <para> 
-Often Windows for Workgroups will totally ignore a password you give it in a dialog box.
+Oft wird Windows for Workgroups ein Passwort gänzlich ignorieren, das sie in einer Dialog-Box
+angeben.
 </para>
 
 </sect2>
 
 <sect2>
-<title>Configuring Windows for Workgroups Password Handling</title>
+<title>Das Konfigurieren des Umgangs mit Passwörtern in Windows for Workgroups</title>
 
 <para>
-There is a program call <filename>admincfg.exe</filename>
-on the last disk (disk 8) of the WFW 3.11 disk set. To install it,
-type <userinput>EXPAND A:\ADMINCFG.EX_ C:\WINDOWS\ADMINCFG.EXE</userinput>.
-Then add an icon for it via the <application>Program Manager</application> <guimenu>New</guimenu> Menu. 
-This program allows you to control how WFW handles passwords, i.e.,
-Disable Password Caching and so on.
-for use with <smbconfoption><name>security</name><value>user</value></smbconfoption>.
+Es gibt ein Programm namens <filename>admincfg.exe</filename>
+auf der letzten Diskette (Diskette 8) des WFW-3.11-Diskettensatzes. Um es zu installieren,
+geben Sie ein: <userinput>EXPAND A:\ADMINCFG.EX_ C:\WINDOWS\ADMINCFG.EXE</userinput>.
+Fügen Sie dann ein Icon hinzu, über das Menü <guimenu>New</guimenu> im <application>Program Manager</application>.
+Dieses Programm erlaubt Ihnen die Kontrolle darüber, wie WFW mit Passwörtern umgeht, z.B. das
+Ausschalten von Passwort-Caching und so weiter.
 </para>
 
 </sect2>
