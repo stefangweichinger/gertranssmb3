@@ -901,20 +901,23 @@ Zum Beispiel wollen Sie vielleicht das Maschinen-Konto innerhalb eines Container
 <para>
 <variablelist>
 	<varlistentry><term><errorname>ADS-Support nicht einkompiliert</errorname></term>
-	<listitem><para>Samba must be reconfigured (remove config.cache) and recompiled
-	(make clean all install) after the Kerberos libraries and headers files are installed.
+	<listitem><para>Samba muß rekonfiguriert (entfernen von config.cache) und 
+	danach neu kompiliert werden, nachdem die Kerberos-Libraries und Header-Dateien
+	installiert wurden.
 	</para></listitem></varlistentry>
 
-	<varlistentry><term><errorname>net ads join prompts for user name</errorname></term>
-	<listitem><para>You need to login to the domain using <userinput>kinit
-	<replaceable>USERNAME</replaceable>@<replaceable>REALM</replaceable></userinput>.
-	<replaceable>USERNAME</replaceable> must be a user who has rights to add a machine
-	to the domain. </para></listitem></varlistentry>
+	<varlistentry><term><errorname>net ads join fragt nach dem Benutzernamen</errorname></term>
+	<listitem><para>Sie müssen sich mit 
+	<userinput>kinit
+	<replaceable>BENUTZERNAME</replaceable>@<replaceable>REALM</replaceable></userinput>
+	an der Domäne anmelden.
+	<replaceable>BENUTZERNAME</replaceable> muß ein Benutzer sein, der berechtigt ist,
+	Maschinen zur Domäne hinzuzufügen.</para></listitem></varlistentry>
 
-	<varlistentry><term>Unsupported encryption/or checksum types</term>
+	<varlistentry><term>Nicht unterstützte Verschlüsselungs- oder Prüfsummen-Arten</term>
 	<listitem><para>
-	Make sure that the <filename>/etc/krb5.conf</filename> is correctly configured
-	for the type and version of Kerberos installed on the system.
+	Stellen Sie sicher, daß die Datei <filename>/etc/krb5.conf</filename> korrekt 
+	für Typ und Version des installierten Kerberos konfiguriert ist.
 	</para></listitem></varlistentry>
 </variablelist>
 </para>
@@ -927,20 +930,20 @@ Zum Beispiel wollen Sie vielleicht das Maschinen-Konto innerhalb eines Container
 <title>Testen des Server-Setups</title>
 
 <para>
-If the join was successful, you will see a new computer account with the
-NetBIOS name of your Samba server in Active Directory (in the <quote>Computers</quote>
-folder under Users and Computers.
+Wenn das Anschliessen an die Domäne erfolgreich war, werden Sie ein neues Maschinen-Konto im
+Active Directory sehen, mit dem NetBIOS-Namen Ihres Samba-Servers (im <quote>Computer</quote>
+-Folder unter Benutzer und Computer).
 </para>
 
 <para>
-On a Windows 2000 client, try <userinput>net use * \\server\share</userinput>. You should
-be logged in with Kerberos without needing to know a password. If this fails then run
-<userinput>klist tickets</userinput>. Did you get a ticket for the server? Does it have
-an encryption type of DES-CBC-MD5? 
+Versuchen Sie auf einem Windows 2000 Client <userinput>net use * \\server\share</userinput>.
+Sie sollten mit Kerberos eingeloggt werden, ohne ein Passwort zu brauchen. Wenn dies scheitert,
+führen Sie <userinput>klist tickets</userinput> aus. Haben Sie ein Ticket für den Server bekommen?
+Hat es den Verschlüsselungstyp DES-CBC-MD5?
 </para>
 
 <para><note>
-Samba can use both DES-CBC-MD5 encryption as well as ARCFOUR-HMAC-MD5 encoding.
+Samba kann sowohl DES-CBC-MD5-Verschlüsselung wie auch ARCFOUR-HMAC-MD5-Encoding verwenden.
 </note></para>
 
 </sect2>
@@ -951,150 +954,161 @@ Samba can use both DES-CBC-MD5 encryption as well as ARCFOUR-HMAC-MD5 encoding.
 
 <para>
 <indexterm><primary>smbclient</primary></indexterm>
-On your Samba server try to login to a Win2000 server or your Samba
-server using &smbclient; and Kerberos. Use &smbclient; as usual, but
-specify the <option>-k</option> option to choose Kerberos authentication.
+Versuchen Sie, sich auf Ihrem Samba-Server an einem Win2000-Server oder einem Samba-Server mittels
+&smbclient; und Kerberos anzumelden. Verwenden Sie &smbclient; wie gewohnt, aber geben Sie die Option
+<option>-k</option> an, um Kerberos-Authentifikation zu wählen.
 </para>
 
 </sect2>
 
 <sect2>
-<title>Notes</title>
+<title>Bemerkungen</title>
 
 <para>
-You must change administrator password at least once after DC 
-install, to create the right encryption types.
+Sie müssen das Administrator-Passwort zumindest einmal ändern, nach der DC-Installation, um die
+richtigen Verschlüsselungs-Arten zu installieren.
 </para>
 
 <para>
-Windows 200x does not seem to create the <parameter>_kerberos._udp</parameter> and <parameter>_ldap._tcp</parameter> in
-the default DNS setup. Perhaps this will be fixed later in service packs.
+Windows 200x scheint die Parameter <parameter>_kerberos._udp</parameter> und
+<parameter>_ldap._tcp</parameter> nicht im standardmässigen DNS-Setup zu installieren. Vielleicht
+wird dies in späteren Service-Packs bereinigt werden.
 </para>
 
 </sect2>
 </sect1>
 
 <sect1>
-<title>Sharing User ID Mappings between Samba Domain Members</title>
+<title>Gemeinsames Nutzen von UID-Zuweisungen unter Samba-Domänen-Mitgliedern</title>
 
 <para>
-Samba maps UNIX users and groups (identified by UIDs and GIDs) to Windows users and groups (identified by SIDs).
-These mappings are done by the <parameter>idmap</parameter> subsystem of Samba.
+Samba weist UNIX Benutzer und Gruppen (gekennzeichnet durch UIDs und GIDs) auf Windows-Benutzer
+und Gruppen zu (gekennzeichnet durch SIDs).
+Diese Zuweisungen werden vom <parameter>idmap</parameter> Subsystem von Samba vorgenommen.
 </para>
 
 <para>
-In some cases it is useful to share these mappings between Samba Domain Members,
-so <emphasis>name->id</emphasis> mapping is identical on all machines.
-This may be needed in particular when sharing files over both CIFS and NFS.
+In manchen Fällen ist es hilfreich, diese Zuweisungen unter Samba-Domänen-Mitgliedern zu teilen,
+damit die Zuweisung <emphasis>name->id</emphasis> auf allen Maschinen identisch ist.
+Dies kann im Speziellen benötigt werden, wenn man Dateien sowohl über CIFS als auch über NFS
+bereitstellt.
 </para>
 
-<para>To use the <emphasis>LDAP</emphasis> <parameter>ldap idmap suffix</parameter>, set:</para>
+<para>Um <emphasis>LDAP</emphasis> <parameter>ldap idmap suffix</parameter> zu verwenden, 
+setzen Sie:</para>
 
 <smbconfblock>
 <smbconfoption><name>ldap idmap suffix</name><value>ou=Idmap,dc=quenya,dc=org</value></smbconfoption>
 </smbconfblock>
 
-<para>See the &smb.conf; man page entry for the <smbconfoption><name>ldap idmap suffix</name><value></value></smbconfoption>
-parameter for further information.</para>
+<para>Lesen Sie den &smb.conf; man-page-Eintrag zum Parameter <smbconfoption><name>ldap idmap suffix</name><value></value></smbconfoption>
+für mehr Informationen dazu.</para>
 
 <para>
-Do not forget to specify also the <smbconfoption><name>ldap admin dn</name></smbconfoption>
-and to make certain to set the LDAP administrative password into the <filename>secrets.tdb</filename> using:
+Vergessen Sie auch nicht, die Option <smbconfoption><name>ldap admin dn</name></smbconfoption>
+anzugeben, und sicherzustellen, daß das LDAP-Administrations-Passwort in der Datei 
+<filename>secrets.tdb</filename> gesetzt ist, indem Sie dies ausführen:
 <screen>
-&rootprompt; smbpasswd -w ldap-admin-password
+&rootprompt; smbpasswd -w ldap-admin-passwort
 </screen></para>
 
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Gängige Fehler</title>
 
 <para>
-In the process of adding/deleting/re-adding Domain Member machine accounts, there are
-many traps for the unwary player and many <quote>little</quote> things that can go wrong.
-It is particularly interesting how often subscribers on the Samba mailing list have concluded
-after repeated failed attempts to add a machine account that it is necessary to <quote>re-install</quote>
-MS Windows on the machine. In truth, it is seldom necessary to reinstall because of this type
-of problem. The real solution is often quite simple and with an understanding of how MS Windows
-networking functions, it is easy to overcome.
+In dem Ablauf von Hinzufügen/Löschen/Wiederhinzufügen von Domänen-Maschinen-Konten gibt es
+viele Fallen für den unvorsichtigen Spieler, und viele <quote>kleine</quote> Dinge, die
+schiefgehen können. Es ist besonders interessant, wie oft Teilnehmer der Samba-Mailing-Liste
+nach wiederholten gescheiterten Versuchen, ein Maschinen-Konto hinzuzufügen, den Schluß
+gezogen haben, daß es nötig sei, MS Windows auf der betreffenden Maschine 
+<quote>neu zu installieren</quote>. In Wirklichkeit ist dies bei diesem Problem selten nötig.
+Die eigentliche Lösung ist oft ziemlich einfach, und mit einem Verständnis dafür, wie
+MS Windows Netzwerke funktionieren, leicht zu beheben.
 </para>
 
 <sect2>
-<title>Cannot Add Machine Back to Domain</title>
+<title>Eine Maschine kann nicht noch einmal der Domäne hinzugefügt werden</title>
 
 <para>
-<quote>A Windows workstation was re-installed. The original domain machine
-account was deleted and added immediately. The workstation will not join the domain if I use 
-the same machine name. Attempts to add the machine fail with a message that the machine already
-exists on the network &smbmdash; I know it does not. Why is this failing?</quote>
+<quote>Eine Windows-Workstation wurde neu installiert. Das Original-Maschinen-Konto wurde
+gelöscht und unmittelbar hinzugefügt. Die Workstation schließt sich der Domäne nicht an, wenn
+ich denselben Maschinen-Namen verwende. Meine Versuche, die Maschine hinzuzufügen, scheitern mit
+der Meldung, daß die Maschine bereits im Netzwerk existiert &smbmdash; Ich weiß, daß sie dies nicht
+tut. Warum scheitert dies?</quote>
 </para>
 
 <para>
-The original name is still in the NetBIOS name cache and must expire after machine account
-deletion before adding that same name as a Domain Member again. The best advice is to delete
-the old account and then add the machine with a new name.
+Der Original-Name ist nach wie vor im NetBIOS-Namens-Cache und muß erst ablaufen, nachdem
+das Maschinen-Konto gelöscht wurde, bevor man denselben Namen wieder als Domänen-Mitglied
+hinzufügen kann. Der beste Tip dazu ist, das alte Konto zu löschen, und dann die Maschine mit
+einem neuen Namen wieder hinzuzufügen.
 </para>
 
 </sect2>
 
 <sect2>
-<title>Adding Machine to Domain Fails</title>
+<title>Das Hinzufügen einer Maschine zur Domäne scheitert</title>
 
 <para>
-<quote>Adding a Windows 200x or XP Professional machine to the Samba PDC Domain fails with a
-message that, <errorname>`The machine could not be added at this time, there is a network problem.
-Please try again later.'</errorname> Why?</quote>
+<quote>Das Hinzufügen einer Windows 200x oder XP Professional Maschine zur Domäne scheitert
+mit der Meldung <errorname>ÜBERSETZUNG VON `The machine could not be added at this time, there is a network problem.
+Please try again later.'</errorname> Warum?</quote>
 </para>
 
 <para>
-You should check that there is an <smbconfoption><name>add machine script</name></smbconfoption> in your &smb.conf;
-file. If there is not, please add one that is appropriate for your OS platform. If a script
-has been defined, you will need to debug its operation. Increase the <smbconfoption><name>log level</name><value></value></smbconfoption>
-in the &smb.conf; file to level 10, then try to rejoin the domain. Check the logs to see which
-operation is failing.
+Sie sollten prüfen, daß es die Option <smbconfoption><name>add machine script</name></smbconfoption>
+in Ihrer Datei &smb.conf; gibt. Wenn es sie nicht gibt, fügen Sie bitte eine hinzu, die passend für
+Ihr Betriebssystem ist. Falls ein Skript definiert ist, werden Sie dessen Funktion prüfen müssen.
+Erhöhen Sie das <smbconfoption><name>log level</name><value></value></smbconfoption> in der
+&smb.conf;-Datei auf level 10, dann versuchen Sie nochmals, sich der Domäne anzuschliessen.
+Prüfen Sie die Log-Dateien, um zu sehen, welche Operation scheitert.
 </para>
 
 <para>
-Possible causes include:
+Mögliche Ursachen sind:
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	The script does not actually exist, or could not be located in the path specified.
+	Das Skript existiert nicht, oder kann nicht in dem angegebenen Pfad gefunden werden.
 	</para>
 
 	<para>
-	<emphasis>Corrective action:</emphasis> Fix it. Make sure when run manually
-	that the script will add both the UNIX system account and the Samba SAM account.
+	<emphasis>Korrektur:</emphasis> Fixen Sie es. Stellen Sie sicher, daß das Skript
+	bei händischem Ausführen sowohl das UNIX-Konto, wie auch das Samba-SAM-Konto anlegt.
 	</para></listitem>
 
 	<listitem><para>
-	The machine could not be added to the UNIX system accounts file <filename>/etc/passwd</filename>.
+	Die Maschine konnte nicht zur UNIX-Systemkonten-Datei <filename>/etc/passwd</filename
+	hinzugefügt werden.	
 	</para>
 
 	<para>
-	<emphasis>Corrective action:</emphasis> Check that the machine name is a legal UNIX
-	system account name. If the UNIX utility <command>useradd</command> is called,
-	then make sure that the machine name you are trying to add can be added using this
-	tool. <command>Useradd</command> on some systems will not allow any upper case characters
-	nor will it allow spaces in the name.
+	<emphasis>Korrektur:</emphasis> Überprüfen Sie, daß der Maschinennamen ein gültiger
+	UNIX-Systemkonten-Name ist. Wenn das UNIX-Werkzeug <command>useradd</command>
+	aufgerufen wird, stellen Sie sicher, daß der Maschinen-Name, den Sie hinzufügen wollen,
+	auch mit diesem Werkzeug hinzugefügt werden kann. Auf manchen Systemen erlaubt
+	<command>useradd</command> keine Großbuchstaben oder Leerzeichen in dem Namen.
 	</para></listitem>
 </itemizedlist>
 
 <para>
-The <smbconfoption><name>add machine script</name></smbconfoption> does not create the
-machine account in the Samba backend database, it is there only to create a UNIX system
-account to which the Samba backend database account can be mapped.
+Das <smbconfoption><name>add machine script</name></smbconfoption> legt kein Maschinen-Konto
+in der Samba-Backend-Datenbank an, es ist nur dazu da, ein UNIX-System-Konto anzulegen, auf das
+ein Samba-Backend-Datenbank-Konto zugewiesen werden kann.
 </para>
 
 </sect2>
 
 <sect2>
-	<title>I Can't Join a Windows 2003 PDC</title>
+	<title>Ich kann mich keinem Windows 2003 PDC anschliessen</title>
 
-	<para>Windows 2003 requires SMB signing. Client side SMB signing has been implemented in Samba-3.0.
-	Set <smbconfoption><name>client use spnego</name><value>yes</value></smbconfoption> when communicating 
-	with a Windows 2003 server.</para>
+	<para>Windows 2003 erfordert SMB-signing. Client-seitiges SMB-signing wurde in
+	Samba-3.0 implementiert.
+	Setzen Sie <smbconfoption><name>client use spnego</name><value>yes</value></smbconfoption>, 
+	wenn Sie mit einem Windows 2003 Server kommunizieren.</para>
 </sect2>
 
 </sect1>
