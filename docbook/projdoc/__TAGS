@@ -1,0 +1,71 @@
+
+###########################################################################################################
+
+Verwendung von CVS-tags.
+
+sgw, 15.03.2004
+
+###########################################################################################################
+
+
+Zur Kennzeichnung der einzelnen Stufen, die ein übersetztes xml-file in unserem Projekt durchläuft, sollen
+neben der Verwendung von aussagekräftigen Kommentaren bei cvs-commits auch cvs-tags dienen.
+
+
+---
+
+Momentan sind folgende tags in Verwendung:
+
+first_trans	Kennzeichnung der ersten Rohübersetzung.
+
+
+corr_<n>	Kennzeichnung von korrigierten Fassungen, wobei dies so zu verstehen ist, daß
+		die Korrektur von einem anderem Developer als dem Erstübersetzer (der den tag
+		first_trans gesetzt hat) erfolgt ist.
+
+		<n> ist durch eine aufsteigende Zahl zu ersetzen, also kennzeichnet corr_1 die
+		erste korrigierte Fassung, corr_2 die zweite, und so fort.
+	
+		Zum jetzigen Stand des Projekts ist vorgesehen, daß jedes xml-file zumindest 
+		3 Korrekturstufen durchlaufen soll.
+
+
+Weitere tags werden bei Fortschritt des Projekts hinzugefügt und hier, bzw. in der Mailingliste
+beschrieben.
+
+---
+
+Das Setzen von CVS-tags erfolgt mittels des cvs-Befehls tag.
+
+cvs tag <tagname> <filename>
+
+Beispiel:
+
+cvs tag first_trans Speed.xml
+
+---
+
+Sollte ein tag fälschlicherweise gesetzt worden sein, und entfernt werden, kann der tag mittels
+
+cvs tag -d <tagname> <filename>
+
+wieder entfernt werden.
+
+Beispiel:
+
+cvs tag -d first_trans Speed.xml
+
+---
+
+Üblicherweise erfolgt das Setzen des tags unmittelbar nach dem commit:
+
+cvs commit -m "first translation" Speed.xml
+cvs tag first_trans Speed.xml
+
+Ein neuerliches commit ist nicht notwendig.
+
+---
+
+Bei Problemen mit den tags wird das Setzen der tags gerne auch von den Projekt-Admins übernommen.
+
+---
