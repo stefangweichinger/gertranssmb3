@@ -178,25 +178,26 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbrücken.
 		</screen></para>
 
 		<para>
-		So clearly, in an MS Windows file name space these three files cannot co-exist, but in UNIX
-		they can.
+		Es wird ziemlich klar dass diese Dateien in Windows nicht nebeneinander stehen koennten
+		( im selben Ordner ) unter UNIX jedoch jederzeit
 		</para>
 		<para>
-		So what should Samba do if all three are present? That which is lexically first will be
-		accessible to MS Windows users, the others are invisible and unaccessible &smbmdash; any
-		other solution would be suicidal.
+		Was soll nun Samba tun , wenn er auf diese Dateien trifft. Die Loesung besteht darin dass die erste 
+		Datei fuer Windowsnutzer sichtbar ist die anderen jedoch nicht verfuegbar bzw. unsichtbar sind, eine 
+		andere Loesung ist nicht denkbar.
 		</para>
 			</listitem>
 		</varlistentry>
 
 		<varlistentry>
-			<term>Directory Separators</term>
+			<term>Verzeichnis Trennzeichen</term>
 			<listitem>
 
 		<para>
 				<indexterm><primary>Directory Separators</primary></indexterm>
-		MS Windows and DOS uses the backslash <constant>\</constant> as a directory delimiter, and UNIX uses
-		the forward-slash <constant>/</constant> as its directory delimiter. This is handled transparently by Samba.
+		MS Windows und DOS benutzen den \ ( Backslash) als Verzeichnis Trennzeichen <constant>\</constant>
+		UNIX benuzt ( wie im Internet üblich ) den Slash / als Verzeichnis Trennzeichen.
+		<constant>/</constant>Dies wird von Samba transparent (für den Windowsnutzer unbemerkt ) umgelegt.
 		</para>
 			</listitem>
 		</varlistentry>
@@ -205,7 +206,7 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbrücken.
 			<term>Drive Identification</term>
 			<listitem>
 		<para>
-			<indexterm><primary>Drive Identification</primary></indexterm>
+			<indexterm><primary>Laufwerks Bezeichnung</primary></indexterm>
 		MS Windows products support a notion of drive letters, like <command>C:</command> to represent
 		disk partitions. UNIX has no concept of separate identifiers for file partitions, each
 		such file system is mounted to become part of the overall directory tree.
