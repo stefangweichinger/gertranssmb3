@@ -15,42 +15,42 @@ für alle Benutzer frei zugänglich sein sollen.
 </para>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Vorteile</title>
 
 <para>
-Stand-alone Servers can be as secure or as insecure as needs dictate. They can
-have simple or complex configurations. Above all, despite the hoopla about
-Domain Security they remain a common installation.
+Stand-alone-Server können so sicher oder so unsicher gemacht werden, wie es die
+Anforderungen vorgeben. Sie können simple oder komplexe Konfigurationen haben.
+Generell, trotz all dem Trara um Domänen-Sicherheit, bleiben sie eine sehr gängige
+Installationsform.
 </para>
 
 <para>
-If all that is needed is a server for read-only files, or for
-printers alone, it may not make sense to effect a complex installation.
-For example: A drafting office needs to store old drawings and reference
-standards. Noone can write files to the server as it is legislatively
-important that all documents remain unaltered. A share mode read-only Stand-alone
-Server is an ideal solution.
+Wenn alles, was gebraucht wird, ein Server mit read-only-Dateien ist, oder ein Server
+nur für Drucker, dann macht es keinen Sinn, eine komplexe Installation aufzusetzen.
+Zum Beispiel: Ein Zeichenbüro muß alte Zeichnungen und Referenz-Standard-Dateien speichern.
+Niemand kann Dateien auf den Server schreiben, da es gesetzgebend wichtig ist, daß alle
+Dokumente unverändert bleiben. Ein Stand-alone-Server im read-only Freigaben-Modus ist
+eine ideale Lösung.
 </para>
 
 <para>
-Another situation that warrants simplicity is an office that has many printers
-that are queued off a single central server. Everyone needs to be able to print
-to the printers, there is no need to effect any access controls and no files will
-be served from the print server. Again, a share mode Stand-alone Server makes
-a great solution.
+Eine andere Situation, die Einfachheit garantiert, ist ein Büro, das viele Drucker hat,
+die von einem einzelnen zentralen Server angesteuert werden. Jeder muß auf die Drucker
+drucken können, es gibt keinen Grund, irgendwelche Zugriffskontrolle einzusetzen,
+und keine Dateien werden vom Druckserver bereitgestellt. Wieder ist ein Stand-alone-Server
+im Freigaben-Modus (share) eine großartige Lösung.
 </para>
 </sect1>
 
 <sect1>
-<title>Background</title>
+<title>Hintergrund</title>
 
 <para>
-The term <emphasis>Stand-alone Server</emphasis> means that it
-will provide local authentication and access control for all resources
-that are available from it. In general this means that there will be a
-local user database. In more technical terms, it means resources
-on the machine will be made available in either SHARE mode or in
-USER mode.
+Der Begriff <emphasis>Stand-alone-Server</emphasis> bedeutet, daß er
+lokale Authentifikation und Zugriffs-Kontrolle für alle Ressourcen, die über ihn 
+zugänglich sind, anbietet. Allgemein bedeutet das, daß es eine lokale Benutzer-Datenbank
+geben wird. In mehr technischen Begriffen bedeutet es, daß Ressourcen auf der Maschine
+entweder im SHARE- oder im USER-Modus verfügbar gemacht werden.
 </para>
 
 <para>
