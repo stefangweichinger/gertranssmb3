@@ -199,48 +199,44 @@ auf der letzten Diskette (Diskette 8) des WFW-3.11-Diskettensatzes. Um es zu ins
 geben Sie ein: <userinput>EXPAND A:\ADMINCFG.EX_ C:\WINDOWS\ADMINCFG.EXE</userinput>.
 Fügen Sie dann ein Icon hinzu, über das Menü <guimenu>New</guimenu> im <application>Program Manager</application>.
 Dieses Programm erlaubt Ihnen die Kontrolle darüber, wie WFW mit Passwörtern umgeht, z.B. das
-Ausschalten von Passwort-Caching und so weiter.
-</para>
+Ausschalten von Passwort-Caching und so weiter.</para>
 
 </sect2>
 
 <sect2>
-<title>Password Case Sensitivity</title>
+<title>Groß/Klein-Schreibung in Passwörtern</title>
 
-<para>Windows for Workgroups uppercases the password before sending it to the server.
-UNIX passwords can be case-sensitive though. Check the &smb.conf; information on
-<smbconfoption><name>password level</name></smbconfoption> to specify what characters
-Samba should try to uppercase when checking.</para>
-
-</sect2>
-
-<sect2>
-<title>Use TCP/IP as Default Protocol</title>
-
-<para>To support print queue reporting, you may find
-that you have to use TCP/IP as the default protocol under
-Windows for Workgroups. For some reason, if you leave NetBEUI as the default,
-it may break the print queue reporting on some systems.
-It is presumably a Windows for Workgroups bug.</para>
+<para>Windows for Workgroups setzt das ganze Passwort in Großbuchstaben, vor dem Senden an den Server.
+UNIX-Passwörter können jedoch Groß/Klein-Schreibung unterscheiden.
+Prüfen Sie die Informationen zum Parameter <smbconfoption><name>password level</name></smbconfoption>
+in der &smb.conf;, um angeben zu können, ob Samba bei der Prüfung des Passworts die
+Großschreibung versuchen soll.</para>
 
 </sect2>
 
 <sect2>
-<title>Speed Improvement</title>
+<title>TCP/IP als Standard-Protokoll verwenden</title>
 
-<para>
-	Note that some people have found that setting <parameter>DefaultRcvWindow</parameter> in
-the <smbconfsection>[MSTCP]</smbconfsection> section of the 
-<filename>SYSTEM.INI</filename> file under Windows for Workgroups to 3072 gives a
-big improvement.
+<para>Um Reports über Drucker-Queues zu unterstützen, werden Sie herausfinden, daß Sie
+unter WfW TCP/IP als das Standard-Protokoll verwenden müssen.
+Aus irgendeinem Grund kann das Belassen von NetBEUI als Standard zum Nicht-Funktionieren
+der Queue-Reports auf manchen Systemen führen. Dies ist möglicherweise ein Bug in WfW.</para>
+
+</sect2>
+
+<sect2>
+<title>Geschwindigkeitssteigerung</title>
+
+<para>Beachten Sie, daß einige Anwender herausgefunden haben, daß das Setzen des Parameters
+<parameter>DefaultRcvWindow</parameter> im Abschnitt <smbconfsection>[MSTCP]</smbconfsection> der
+Datei <filename>SYSTEM.INI</filename> unter WfW auf den Wert 3072 eine grosse Beschleunigung verursacht.
 </para>
 
 <para>
-My own experience with DefaultRcvWindow is that I get a much better
-performance with a large value (16384 or larger). Other people have
-reported that anything over 3072 slows things down enormously. One
-person even reported a speed drop of a factor of 30 when he went from
-3072 to 8192.
+Meine eigene Erfahrung mit <parameter>DefaultRcvWindow</parameter> ist, daß ich eine viel bessere
+Performance mit grossen Werten (16384 oder grösser) erziele. Andere berichten, daß alles über
+3072 wieder enorm bremst. Jemand hat sogar einen Geschwindigkeitsabfall auf 1/30 gemessen, als
+er den Wert von 3072 auf 8192 erhöht hat.
 </para>
 </sect2>
 </sect1>
@@ -249,15 +245,14 @@ person even reported a speed drop of a factor of 30 when he went from
 <title>Windows 95/98</title>
 
 <para>
-When using Windows 95 OEM SR2, the following updates are recommended where Samba
-is being used. Please note that the above change will effect you once these
-updates  have been installed.
+Bei der Verwendung von Windows 95 OEM SR2 werden folgende Updates empfohlen,
+wenn Samba eingesetzt wird. Bitte beachten Sie, daß obige Änderung Sie betreffen wird, sobald
+diese Updates installiert worden sind.
 </para>
 
 <para> 
-There are more updates than the ones mentioned here. You are referred to the
-Microsoft Web site for all currently available updates to your specific version
-of Windows 95.
+Es gibt mehr Updates als die hier erwähnten. Wir verweisen Sie auf die
+Microsoft Website für die verfügbaren Updates zu Ihrer spezifischen Version von Windows 95.
 </para>
 
 <simplelist>
@@ -269,20 +264,19 @@ of Windows 95.
 </simplelist>
 
 <para>
-Also, if using <application>MS Outlook,</application> it is desirable to 
-install the <command>OLEUPD.EXE</command> fix. This
-fix may stop your machine from hanging for an extended period when exiting
-Outlook and you may notice a significant speedup when accessing network
-neighborhood services.
+Auch bei Verwendung von <application>MS Outlook</application> ist es wünschenswert, den Fix von
+<command>OLEUPD.EXE</command> zu installieren. Dieser Fix kann das Hängenbleiben beim Beenden
+von Outlook verhindern, und Sie könnten eine deutliche Beschleunigung bemerken, wenn Sie auf die
+Netzwerkumgebung zugreifen.
 </para>
 
 <sect2>
-<title>Speed Improvement</title>
+<title>Geschwindigkeitssteigerung</title>
 
 <para>
-Configure the Windows 95 TCP/IP registry settings to give better
-performance. I use a program called <command>MTUSPEED.exe</command> that I got off the
-Internet. There are various other utilities of this type freely available.
+Konfigurieren Sie die Windows 95 TCP/IP Registrierungseinträge, um bessere Performance zu erreichen.
+Ich verwende ein Programm namens <command>MTUSPEED.exe</command> aus dem Internet. Es gibt verschiedene
+andere Utilities dieser Art, die frei verfügbar sind.
 </para>
 
 </sect2>
@@ -293,29 +287,25 @@ Internet. There are various other utilities of this type freely available.
 <title>Windows 2000 Service Pack 2</title>
 
 <para> 
-There are several annoyances with Windows 2000 SP2. One of which
-only appears when using a Samba server to host user profiles
-to Windows 2000 SP2 clients in a Windows domain. This assumes
-that Samba is a member of the domain, but the problem will
-most likely occur if it is not.
+Es gibt einige lästige Dinge an Windows 2000 SP2. Eines davon tritt nur auf, wenn man einen 
+Samba-Server verwendet, um Benutzer-Profile für Windows 2000 SP2 Clients in einer Windows-Domäne
+bereitzustellen. Dies geht davon aus, daß Samba Domänen-Mitglied ist, aber das Problem wird
+meist dann auftreten, wenn Samba es nicht ist.
 </para>
 
 <para> 
-In order to serve profiles successfully to Windows 2000 SP2 
-clients (when not operating as a PDC), Samba must have 
-<smbconfoption><name>nt acl support</name><value>no</value></smbconfoption>
-added to the file share which houses the roaming profiles.
-If this is not done, then the Windows 2000 SP2 client will
-complain about not being able to access the profile (Access 
-Denied) and create multiple copies of it on disk (DOMAIN.user.001,
-DOMAIN.user.002, and so on). See the &smb.conf; man page
-for more details on this option. Also note that the 
-<smbconfoption><name>nt acl support</name></smbconfoption> parameter was formally a global parameter in
-releases prior to Samba 2.2.2.
+Um Profile erfolgreich für Windows 2000 SP2 Clients anzubieten (ohne PDC zu sein), muß Samba
+den Parameter <smbconfoption><name>nt acl support</name><value>no</value></smbconfoption> für
+die Freigabe gesetzt haben, die die Roaming-Profile beinhaltet. Wenn dies nicht erfolgt, wird sich
+der Windows 2000 SP2 Client darüber beschweren, daß er nicht imstande ist, auf das Profil
+zuzugreifen (Access Denied) und mehrfach Kopien davon auf der Platte anlegen (DOMAIN.user.001,
+DOMAIN.user.002, and so on). Lesen Sie in der manpage zu &smb.conf; mehr über diesen Parameter.
+Beachten Sie auch, daß der Parameter <smbconfoption><name>nt acl support</name></smbconfoption>
+in Releases vor Samba 2.2.2 formal ein globaler Parameter war.
 </para>
 
 <para> 
-<link linkend="minimalprofile"/> provides a minimal profile share.
+<link linkend="minimalprofile"/> zeigt eine minimale Profil-Freigabe.
 </para>
 
 <para><smbconfexample id="minimalprofile">
@@ -329,33 +319,31 @@ releases prior to Samba 2.2.2.
 </smbconfexample></para>
 
 <para>
-The reason for this bug is that the Windows 200x SP2 client copies
-the security descriptor for the profile that contains
-the Samba server's SID, and not the domain SID. The client
-compares the SID for SAMBA\user and realizes it is
-different from the one assigned to DOMAIN\user. Hence, the reason
-for the <errorname>access denied</errorname> message.
+Der Grund für diesen Bug ist, daß der Windows 2000 SP2 Client den Security Descriptor für das
+Profil, das die SID des Samba-Servers enthält, kopiert, und nicht die Domänen-SID. Der Client
+vergleicht die SID für SAMBA\user und stellt fest, daß sie von der SID für DOMAIN\user abweicht.
+Daher die Meldung <errorname>access denied</errorname>.
 </para>
 
 <para>
-By disabling the <smbconfoption><name>nt acl support</name></smbconfoption> parameter, Samba will send
-the Windows 200x client a response to the QuerySecurityDescriptor trans2 call, which causes the client
-to set a default ACL for the profile. This default ACL includes:
+Durch Deaktivieren des Parameters <smbconfoption><name>nt acl support</name></smbconfoption>, sendet
+Samba dem Windows 200x-Client eine Antwort auf den QuerySecurityDescriptor trans2 call, welche den
+Client dazu veranlaßt, eine Standard-ACL für das Profil zu setzen. Diese Standard-ACL enthält:
 </para>
 
 <para><emphasis>DOMAIN\user 	<quote>Full Control</quote></emphasis>></para>
 
-<note><para>This bug does not occur when using Winbind to
-create accounts on the Samba host for Domain users.</para></note>
+<note><para>Dieser Bug tritt nicht auf, wenn man Winbind zum Anlegen von Benutzerkonten für
+Domänen-Benutzer auf dem Samba-Host verwendet.</para></note>
 
 </sect1>
 
 <sect1>
 <title>Windows NT 3.1</title>
 
-<para>If you have problems communicating across routers with Windows 
-NT 3.1 workstations, read <ulink url="http://support.microsoft.com/default.aspx?scid=kb;Q103765">this Microsoft Knowledge Base article.</ulink>
-
+<para>Wenn Sie Probleme mit der Kommunikation über Router mit Windows NT 3.1 Workstations haben,
+lesen Sie <ulink url="http://support.microsoft.com/default.aspx?scid=kb;Q103765">diesen 
+Microsoft Knowledge Base Artikel.</ulink>
 </para>
 
 </sect1>
