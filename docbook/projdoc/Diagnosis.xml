@@ -551,38 +551,22 @@ und die restlichen Einträge &smb.conf; stimmen.
 </para>
 
 <para>
-It's also possible that the server can't work out what user name to connect you as.
-To see if this is the problem, add the line
-<smbconfoption><name>user</name><value>username</value></smbconfoption> to the
-<smbconfsection>[tmp]</smbconfsection> section of 
-&smb.conf; where <parameter>username</parameter> is the
-username corresponding to the password you typed. If you find this
-fixes things, you may need the username mapping option. 
+Es ist auch möglich dass der Server nicht erkennen kann unter welchem
+Namen Sie sich verbinden.
+Um das Problem zu erkennen fügen Sie die Zeile
+<smbconfoption><name>user</name><value>username</value></smbconfoption>
+in die <smbconfsection>[tmp]</smbconfsection> Sektion der &smb.conf;
+hinzu, wobei <parameter>username</parameter> der Benutzername zum
+eingegebenem Passwort sein muss. Wenn dass klappt benötigen Sie die
+username mapping Option. 
 </para>
 
 <para>
-It might also be the case that your client only sends encrypted passwords 
-and you have <smbconfoption><name>encrypt passwords</name><value>no</value></smbconfoption> in &smb.conf;.
-Change this to "yes" to fix this.
-</para>
-
-</step>
-
-<step performance="required">
-
-<para>
-Run the command <command>nmblookup -M <parameter>testgroup</parameter></command> where 
-<parameter>testgroup</parameter> is the name of the workgroup that your Samba server and 
-Windows PCs belong to. You should get back the IP address of the 
-master browser for that workgroup.
-</para>
-
-<para>
-If you do not, then the election process has failed. Wait a minute to
-see if it is just being slow, then try again. If it still fails after
-that, then look at the browsing options you have set in &smb.conf;. Make
-sure you have <smbconfoption><name>preferred master</name><value>yes</value></smbconfoption> to ensure that 
-an election is held at startup.
+Es ist auch möglich das Ihr Client nur verschlüsselte Passwörter
+versendet aber Sie habe den Eintrag <smbconfoption><name>encrypt
+passwords</name><value>no</value></smbconfoption> in der &smb.conf;
+stehen.
+Ändern Sie diesen auf "yes" um das Problem zu beheben.
 </para>
 
 </step>
@@ -590,17 +574,43 @@ an election is held at startup.
 <step performance="required">
 
 <para>
->From file manager, try to browse the server. Your Samba server should
-appear in the browse list of your local workgroup (or the one you
-specified in &smb.conf;). You should be able to double click on the name
-of the server and get a list of shares. If you get the error message <quote>invalid password</quote>,
- you are probably running Windows NT and it
-is refusing to browse a server that has no encrypted password
-capability and is in User Level Security mode. In this case, either set
-<smbconfoption><name>security</name><value>server</value></smbconfoption> and 
-<smbconfoption><name>password server</name><value>Windows_NT_Machine</value></smbconfoption> in your
-&smb.conf; file, or make sure <smbconfoption><name>encrypt passwords</name></smbconfoption> is
-set to <quote>yes</quote>.
+Führen Sie den Befehl <command>nmblookup -M <parameter>testgroup</parameter></command>
+aus, wobei <parameter>testgroup</parameter> der Name der Arbeitsgruppe
+Ihres Sambaservers und Ihrer Windows PC's ist. Sie sollten die IP
+Adresse des Masterbrowsers für diese Arbeitsgruppe erhalten.
+</para>
+
+<para>
+Wenn nicht, dann ist der Auswahlprozess des Masterbrowsers fehlgeschlagen. 
+Warten Sie evtl.  noch ein paar Minuten und versuchen Sie es dann nochmal um zu sehen ob
+es nur etwas langsam ist. Klappt es dann immer noch nicht werfen Sie
+einen Blick zu den browsing Optionen in der &smb.con;.
+Stellen Sie sicher das Sie <smbconfoption><name>preferred master</name><value>yes</value></smbconfoption>
+eingetragen haben um beim starten eine Auswahl des Masterbrowser
+durchgeführt wird.
+</para>
+
+</step>
+
+<step performance="required">
+
+<para>
+Durchsuchen Sie Ihre Netzwerkumgebung mit Ihrem Windows Explorer/Dateimanager.
+Ihr Sambaserver sollte in der Netzwerkumgebung unter Ihrer lokalen Arbeitsgruppe
+(oder welche Sie in der &smb.conf; eingetragen habe) erscheinen.
+Es müsste Ihnen möglich sein durch einen Doppelklick auf den Namen des
+Servers die Liste der Freigaben zu erhalten.
+Erhalten Sie eine Fehlermeldung <quote>invalid password</quote> dann
+verwenden Sie möglicherweiße Windows NT denn dass öffnet keinen Server der
+keine verschlüsselten Passwörter unterstützt und der sich im User Level Security
+Mode befindet.
+In diesem Fall tragen Sie 
+<smbconfoption><name>security</name><value>server</value></smbconfoption>
+und 
+<smbconfoption><name>password server</name><value>Windows_NT_Machine</value></smbconfoption>
+in Ihre &smb.conf; ein oder stellen Sie sicher das 
+<smbconfoption><name>encrypt passwords</name></smbconfoption> auf
+<quote>yes</quote> steht.
 </para>
 
 </step>
