@@ -5,7 +5,7 @@
 	<author>&person.jelmer;<contrib>drawing</contrib></author>
 	<pubdate>May 10, 2003</pubdate>
 </chapterinfo>
-<title>Kapitel 13 Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle</title>
+<title>Kapitel 13 Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle uebersetzt von Robert Ruegner robowarp@gmx.de</title>
 
 <para>
 <indexterm><primary>ACLs</primary></indexterm>
@@ -55,62 +55,54 @@ moegliche Kompatibilitaet zwischen den beiden Systemen schaffen.
 	<title>Samba Zugriffskontrollmoeglichkeiten</title>
 		<listitem><para>
 				<indexterm><primary>permissions</primary><secondary>UNIX file and directory</secondary></indexterm>
-		<emphasis>UNIX File and Directory Permissions</emphasis>
+		<emphasis>Unix Datei und Verzeichnis Berechtigungen</emphasis>
 		</para>
 
 			<para>
-			Samba honors and implements UNIX file system access controls. Users
-			who access a Samba server will do so as a particular MS Windows user.
-			This information is passed to the Samba server as part of the logon or
-			connection setup process. Samba uses this user identity to validate
-			whether or not the user should be given access to file system resources
-			(files and directories). This chapter provides an overview for those
-			to whom the UNIX permissions and controls are a little strange or unknown.
+			Samba arbeitet mit dem UNIX Dateizugriffskontrollen zusammen. Nutzer greifen als Windowsbenutzer 
+			auf Samba zu. Informationen über den Nutzer werden beim einloggen uebergeben. Samba benutzt 
+			diese Login Informationen um zu entscheiden ob einem Nutzer Zugriff auf Systemdaten gewaehrt werden soll oder nicht. Dieses 
+			Kapitel enthaelt eine Uebersicht von UNIX Berechtigungen für Nutzer die diese nicht kennen oder etwas verwirrt über 
+			diese sind.
 			</para>
 		</listitem>
 
 		<listitem><para>
-		<emphasis>Samba Share Definitions</emphasis>
+		<emphasis>Samba Netzlaufwerk Definitionen</emphasis>
 		</para>
 
 			<para>
-			In configuring share settings and controls in the &smb.conf; file,
-			the network administrator can exercise overrides to native file
-			system permissions and behaviors. This can be handy and convenient
-			to effect behavior that is more like what MS Windows NT users expect
-			but it is seldom the <emphasis>best</emphasis> way to achieve this.
-			The basic options and techniques are described herein.
+			Beim Konfigurieren von Netzlaufwerken mit Samba in der Datei smb.conf kann der Administrator 
+			Berechtigungen des darunterliegenden Dateisystems verändern und beeinflussen. Dies ermoeglicht teilweise eine Annaeherung 
+			an das Verhalten dass Windowsnutzer erwarten. Dieser Weg ist aber nur selten die beste Loesung. 
+			Die grundlegenden Moeglichkeiten werden hier beschrieben. 
 			</para>
 		</listitem>
 
 		<listitem><para>
-		<emphasis>Samba Share ACLs</emphasis>
+		<emphasis>Samba Netzlaufwerkskontrolllisten</emphasis>
 		<indexterm><primary>ACLs</primary><secondary>share</secondary></indexterm>
 		</para>
 
 			<para>
-			Just like it is possible in MS Windows NT to set ACLs on shares
-			themselves, so it is possible to do this in Samba.
-			Few people make use of this facility, yet it remains on of the
-			easiest ways to affect access controls (restrictions) and can often
-			do so with minimum invasiveness compared with other methods.
+			Wie in Windows NT ist es auch in Samba moeglich Netzlaufwerkskontrolllisten zu erstellen. Einige 
+			Nutzer machen Gebrauch davon, es ist zur Zeit eine der leichtesten Moeglichkeiten Zugriffskontrolle zu erreichen im 
+			Gegensatz zu komplexeren anderen Methoden.
 			</para>
 		</listitem>
 
 		<listitem><para>
 				<indexterm><primary>ACLs</primary><secondary>POSIX</secondary></indexterm>
 				<indexterm><primary>ACLs</primary><secondary>Windows</secondary></indexterm>
-		<emphasis>MS Windows ACLs through UNIX POSIX ACLs</emphasis>
+		<emphasis>MS Windows Zugriffskontrolllisten und UNIX Zugriffskontrolllisten</emphasis>
 		</para>
 
 			<para>
-			The use of POSIX ACLs on UNIX/Linux is possible only if the underlying
-			operating system supports them. If not, then this option will not be
-			available to you. Current UNIX technology platforms have native support
-			for POSIX ACLs. There are patches for the Linux kernel that also provide
-			this. Sadly, few Linux platforms ship today with native ACLs and
-			Extended Attributes enabled. This chapter has pertinent information
-			for users of platforms that support them.
+			Der Gebrauch von UNIXkontrolllisten ist nur moeglich wenn diese Funktion in dem darunterliegenden 
+			Dateisystem implemtiert sind. In jedem anderem Fall ist deren Nutzung nicht moeglich. Aktuelle UNIXsysteme sollten diese 
+			Unterstuezung haben. Es gibt Patches für die Linux Kernel die diese Moeglichkeit implementieren falls nicht vorhanden. 
+			Viele UNIXsysteme werden mit der Unterstuetzung ausgeliefert , in diesem Kapitel werden wir wir versuchen den Nutzern 
+			deren Gebrauch zu erklaeren
 			</para>
 		</listitem>
 	</itemizedlist>
