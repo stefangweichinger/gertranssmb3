@@ -460,34 +460,40 @@ Domänen-Profil wandeln, wie folgt:</para>
 	<step><para>In der Box <guilabel>Permitted to use</guilabel>, klicken Sie auf
 	<guibutton>Ändern</guibutton>.</para></step>
 
-	<step><para> Click on the <guilabel>Look in</guilabel> area that lists the machine name. When you click here, it will
-	open up a selection box. Click on the domain to which the profile must be accessible. </para>
+	<step><para>Klicken Sie auf den Bereich <guilabel>Look in</guilabel>, der den Maschinen-Namen
+	listet, es wird sich eine Auswahl-Box öffnen. Klicken Sie die Domäne, für die das Profil
+	zugänglich sein muß.</para>
 
-	<note><para>You will need to log on if a logon box opens up. 
-	For example, connect as <replaceable>DOMAIN</replaceable>\root, password:
-	<replaceable>mypassword</replaceable>.</para></note> </step>
+	<note><para>
+	Sie werden sich anmelden müssen, wenn Sich ein Anmelde-Dialog öffnet.
+	Zum Beispiel melden Sie sich an als <replaceable>DOMAIN</replaceable>\root,passwort:
+	<replaceable>meinpasswort</replaceable>.</para></note> </step>
 
-	<step><para> To make the profile capable of being used by anyone, select <quote>Everyone</quote>. </para></step>
+	<step><para>Um einem Profil zu gestatten, von jedem verwendet zu werden, wählen Sie
+	<quote>Everyone</quote>. </para></step>
 
-	<step><para> Click on <guibutton>OK</guibutton> and the Selection box will close. </para></step>
+	<step><para>Klicken Sie auf <guibutton>OK</guibutton> und die Auswahl-Box schließt sich. </para></step>
 
-	<step><para> Now click on <guibutton>OK</guibutton> to create the profile in the path
-	you nominated.	</para></step>
+	<step><para>Nun klicken Sie auf <guibutton>OK</guibutton>, um das Profil im angegebenen
+	Pfad anzulegen.</para></step>
 </procedure>
 
-<para> Done. You now have a profile that can be edited using the Samba <command>profiles</command> tool.
+<para>Erledigt. Sie haben nun ein Profil, das mit dem Samba-Tool <command>profiles</command>
+edititiert werden kann.
 </para>
 
 <note><para>
-Under Windows NT/200x, the use of mandatory profiles forces the use of MS Exchange storage of mail
-data and keeps it out of the desktop profile. That keeps desktop profiles from becoming unusable.
+Unter Windows NT/200x erzwingt die Verwendung von zwingenden Profilen die Verwendung von
+MS-Exchange für die SPeicherung von Mail-Daten und hält diese außerhalb des Desktop-Profils.
+Dies verhindert, daß die Desktop-Profile unbenützbar werden.
 </para> </note>
 
 <sect4>
 <title>Windows XP Service Pack 1</title>
 	<para>
-	There is a security check new to Windows XP (or maybe only Windows XP service pack 1).
-	It can be disabled via a group policy in the Active Directory. The policy is called:
+	Es gibt einen Sicherheits-Check, der neu für Windows XP ist (oder vielleicht nur für
+	Windows XP Service Pack 1). Er kann via einer Gruppen-Richtlinie im Active Directory
+	deaktiviert werden. Die Richtlinie heißt:
 	</para>
 
 	<para>
@@ -496,18 +502,20 @@ data and keeps it out of the desktop profile. That keeps desktop profiles from b
 	</para>
 
 	<para>
-	This should be set to <constant>Enabled</constant>.
+	Dies sollte auf <constant>Aktiviert</constant> gesetzt werden.
 	</para>
 
 	<para>
-	Does the new version of Samba have an Active Directory analogue?  If so, then you may be able to set the policy through this.
-	</para>
+	Hat die neue Version von Samba ein Analogon zum Active Directory? Wenn ja, können Sie die
+	Richtlinie eventuell durch dieses setzen.
+	</para>	
 
-	<para>If you cannot set group policies in Samba, then you may be able to set the policy locally on
-	each machine. If you want to try this, then do the following (N.B. I do not know for sure that this
-	will work in the same way as a domain group policy):
+	<para>
+	Wenn Sie keine Gruppen-Richtlinien in Samba setzen können, dann können Sie sie vielleicht
+	lokal auf jeder Maschine setzen. Wenn Sie dies versuchen wollen, machen Sie folgendes
+	(N.B. Ich weiß nicht mit Sicherheit, daß dies genauso funktioniert wie eine
+	Domänen-Gruppenrichtlinie):
 	</para>
-
 
 <procedure>
 	<step><para>On the XP workstation, log in with an Administrative account.</para></step>
