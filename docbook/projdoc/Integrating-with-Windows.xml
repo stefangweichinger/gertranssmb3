@@ -543,6 +543,20 @@ Whichever machine first replies, it then ends up providing the logon services.
 </para>
 
 <para>
+Die Bezeichnung <quote>Arbeitsgruppe</quote> oder <quote>Domain</quote>
+kann sehr verwirrend sein seit diese eine höhere Bedeutung für die
+Beschreibung der Sicherheitsarchitektur in MS Windows Netzwerken haben.
+Der Ausdruck <quote>Arbeitsgruppe</quote> bezeichnet eine
+Netzwerkumgebung welche primär im Peer-to-Peer Design aufgebaut ist. In
+einer Arbeitsgruppe sind alle Maschinen für ihre eigene Sicherheit
+selbst zuständig und diese Sicherheit ist nur durch ein Passwort
+gewährleistet (auch als Share Level Security bekannt). In den meisten
+Peer-to-Peer Netzwerken in denen die Benutzer Ihre eigenen Computer
+verwalten wird keinerlei Sicherheit genutzt. Es ist in einer
+Arbeitsgruppen Umgebung möglich das User Level Security einzusetzen,
+dazu muss aber ein Benutzername und ein dazugehörendes Passwort
+verwendet werden.
+#
 The name <quote>workgroup</quote> or <quote>domain</quote> really can be confusing since these 
 have the added significance of indicating what is the security 
 architecture of the MS Windows network. The term <quote>workgroup</quote> indicates 
@@ -557,6 +571,18 @@ of a user name and a matching password.
 </para>
 
 <para>
+In MS Windows Netzwerken ist festgelegt für alle lokalen und Remote
+Conmputer Message Verarbeitung Computername zu verwenden. Das verwendete
+Protokoll wird Server Message Block (SMB) genannt und diese
+Implementierung verwendet das NetBIOS Protokoll (Network Basic Input
+Output System). NetBIOS kann im LLC (Logical Link Control) Protokoll
+verpackt sein &smbmdash;, in diesem Fall wird das daraus resultierende
+Protokoll NetBEUI (Network Basic Extended User Interface) genannt.
+NetBIOS kann auch über IPX (Internetworking Packet Exchange), wie es
+Novell Netware benutzt, oder über das TCP/IP Protokoll verwendet werden.
+Im letzten Fall wird das daraus resultierende Protokoll NBT oder NetBT
+genannt, das NetBIOS über TCPIP.
+#
 MS Windows networking is thus predetermined to use machine names 
 for all local and remote machine message passing. The protocol used is 
 called Server Message Block (SMB) and this is implemented using 
@@ -570,6 +596,10 @@ NBT or NetBT, the NetBIOS over TCP/IP.
 </para>
 
 <para>
+MS Windows Computer verwenden eine Reihe von komplexen Mechanismen zur
+Namensauflösung. Da wir es primär mit TCP/IP zu tun haben, werden wir
+uns in dieser Dokumentation nur um diesen Bereich kümmern.
+#
 MS Windows machines use a complex array of name resolution mechanisms. 
 Since we are primarily concerned with TCP/IP, this demonstration is 
 limited to this area.
@@ -579,6 +609,13 @@ limited to this area.
 <title>The NetBIOS Name Cache</title>
 
 <para>
+Alle MS Windows Maschinen besitzen einen Speicherbereich in welchen sie
+die NetBIOS Namen und IP Adressen aller Maschinen speichern mit denen 
+sie in den letzten 10-15 Minuten Kontakt hatten. Es ist am
+effizientesten bei einer Suche einer IP Adresse zu einem Computer diese
+Information aus dem lokalen Cache zu erhalten als durch alle konfigurierten Namens
+Auflösungs Mechanismen durchzugehen.
+#
 All MS Windows machines employ an in-memory buffer in which is 
 stored the NetBIOS names and IP addresses for all external 
 machines that machine has communicated with over the 
@@ -588,6 +625,13 @@ configured name resolution mechanisms.
 </para>
 
 <para>
+Ist eine Maschine deren Name im lokalen Cache liegt beendet bevor der
+Eintrag ungültig und bereinigt wurde, unterliegt jeder Verbindungsversuch 
+einer Time-Out Verzögerung.
+Ist der Name im Cache wird die Namensauflösung korrekt durchgeführt aber
+die Maschine kann nicht antworten. Das kann die Bentutzer frustrieren
+ist aber leider charakteristisch für diese Protokoll.
+#
 If a machine whose name is in the local name cache has been shut 
 down before the name had been expired and flushed from the cache, then 
 an attempt to exchange a message with that machine will be subject 
@@ -599,6 +643,10 @@ frustrating for users but is a characteristic of the protocol.
 <para>
 <indexterm><primary>nbtstat</primary></indexterm>
 <indexterm><primary>nmblookup</primary></indexterm>
+Das MS Windows Utility welches es ermöglicht den NetBIOS Cache zu
+überprüfen wird <quote>nbtstat</quote> genannt.
+Das Samba Gegenstück wird <command>nmblookup</command> genannt.
+#
 The MS Windows utility that allows examination of the NetBIOS 
 name cache is called <quote>nbtstat</quote>. The Samba equivalent of this 
 is called <command>nmblookup</command>.
@@ -611,6 +659,12 @@ is called <command>nmblookup</command>.
 
 <para>
 <indexterm><primary>LMHOSTS</primary></indexterm>
+Diese Datei ist üblicherweise bei MS Windows NT 4.0 oder Windows 200x/XP
+im Verzeichniss <filename>C:\WINNT\SYSTEM32\DRIVERS\ETC</filename> zu
+finden und beinhaltet die Zuordnung der IP Adressen zu Computernamen.
+Die Datei <filename>LMHOSTS</filename> bietet das NetBIOS zu IP Adressen
+Mapping.
+#
 This file is usually located in MS Windows NT 4.0 or Windows 200x/XP in the directory
 <filename>C:\WINNT\SYSTEM32\DRIVERS\ETC</filename> and contains the IP Address
 and the machine name in matched pairs. The <filename>LMHOSTS</filename> file
@@ -618,6 +672,8 @@ performs NetBIOS name to IP address mapping.
 </para>
 
 <para>
+Sie sieht typischerweise in etwa so aus:
+#
 It typically looks like this:
 </para>
 
@@ -707,6 +763,14 @@ It typically looks like this:
 <title>HOSTS File</title>
 
 <para>
+Diese Datei ist üblicherweise bei MS Windows NT 4.0 oder Windows 200x/XP
+im Verzeichniss zu finden und beinhaltet die IP Adressen und IP Namen
+Paare. Sie kann für die Infrastruktur zur Namensauflösung in MS Windows
+verwendet werden, abhängig davon wie die TCP/IP Umgebung konfiguriert
+wurde.
+Diese Datei ist in jeglicher Hinwsicht das Gegenstück zu UNIX/LINUX
+<filename>/etc/hosts</filename> Datei.
+#
 This file is usually located in MS Windows NT 4.0 or Windows 200x/XP in 
 the directory <filename>C:\WINNT\SYSTEM32\DRIVERS\ETC</filename> and contains 
 the IP Address and the IP hostname in matched pairs. It can be 
@@ -723,6 +787,19 @@ every way the equivalent of the UNIX/Linux <filename>/etc/hosts</filename> file.
 
 <para>
 <indexterm><primary>DNS</primary></indexterm>
+Diese Möglichkeit wird im TCP/IP Bereich der Netzwerkeinstellungen
+konfiguriert. Wenn es eingeschaltet wurde, wird eine bestimmte Art der
+Namensauflösung verwendet, je nachdem wie der NetBIOS Node Type
+Parameter gesetzt ist. Ein Node Type 0 bedeutet dass ein NetBIOS
+Broadcast (over UDP broadcast) verwendet wird, wenn die gewünschte
+Information einer Namensauflösung nicht im NetBIOS Name Cache gefunden
+wurde.
+Wenn auch das fehlschlägt werden DNS, HOSTS und LMHOSTS untersucht.
+Wenn der Node Type 8 eingestellt wurde, dann wird eine Namensauflösung über 
+NetBIOS Unicast (over UDP Unicast) zum WINS Server versucht, bevor DNS,
+HOSTS, LMHOSTS oder ein Broadcast verwendet wird.
+#
+#
 This capability is configured in the TCP/IP setup area in the network 
 configuration facility. If enabled, an elaborate name resolution sequence 
 is followed, the precise nature of which is dependant on how the NetBIOS 
