@@ -67,11 +67,11 @@ Die korrekten Parameter sind in hohem Maße vom lokalen Netzwerk abhängig.
 <para>
 Die Socket-Option TCP_NODELAY ist diejenige, die den grössten Leistungs-Unterschied für die meisten Netzwerke auszumachen scheint. Viele Anwender berichten, daß das Hinzufügen von
 <?latex \linebreak ?><smbconfoption><name>socket options</name><value>TCP_NODELAY</value></smbconfoption>
-die Lese-Performance eines Samba-Laufwerks verdoppelt. Die beste Erklärung hiefür scheint, daß der Microsoft TCP/IP stack sehr langsam beim Senden von TCP ACKs ist.
+die Lese-Performance eines Samba-Laufwerks verdoppelt. Die beste Erklärung hiefür scheint, daß der Microsoft TCP/IP-Stack sehr langsam beim Senden von TCP-ACKs ist.
 </para>
 
 <para>
-Es wurde berichtet, daß das Setzen von  <parameter>socket options = SO_RCVBUF=8192</parameter> in smb.conf die Samba-Performance auf dem Loopback-Interface (IP 127.0.0.1) stark verschlechtert. Es wird daher empfohlen, vor dem Setzen jeglicher <parameter>socket options</parameter> die Auswirkungen quantitativ auf dem zu konfigurierenden Server zu messen.
+Es wurde berichtet, daß das Setzen von <parameter>socket options = SO_RCVBUF=8192</parameter> in smb.conf die Samba-Performance auf dem Loopback-Interface (IP 127.0.0.1) stark verschlechtert. Es wird daher empfohlen, vor dem Setzen jeglicher <parameter>socket options</parameter> die Auswirkungen quantitativ auf dem zu konfigurierenden Server zu messen.
 </para>
 
 </sect1>
@@ -187,7 +187,7 @@ Besorge Dir das mii-tool und überprüfe die Duplex-Einstellungen auf Deiner Netzw
 <title>Korrupte tdb-Dateien</title>
 
 <para>
-Unser Samba-PDC-Server verwaltet seit 3 Jahren ohne Probleme 3 TB Daten für unsere mehr als 500 Benutzer [Windows NT/XP]. Heute wurden alle Freigaben plötzlich sehr langsam. Weiters begann der Haupt-smbd-Prozess damit, neue Sub-smbd-Prozesse zu starten, sodaß wir schliesslich über 1600 laufende smbd-Prozesse hatten (normalerweise haben wir durchschnittlich 250). Dies brachte den SUN E3500 cluster zweimal zum Absturz. Nach vielem Suchen habe ich entschieden,  <command>rm /var/locks/*.tdb</command> auszuführen. Endlich wieder glücklich.
+Unser Samba-PDC-Server verwaltet seit 3 Jahren ohne Probleme 3 TB Daten für unsere mehr als 500 Benutzer [Windows NT/XP]. Heute wurden alle Freigaben plötzlich sehr langsam. Weiters begann der Haupt-smbd-Prozess damit, neue Sub-smbd-Prozesse zu starten, sodaß wir schliesslich über 1600 laufende smbd-Prozesse hatten (normalerweise haben wir durchschnittlich 250). Dies brachte den SUN E3500 cluster zweimal zum Absturz. Nach vielem Suchen habe ich entschieden, <command>rm /var/locks/*.tdb</command> auszuführen. Endlich wieder glücklich!
 </para>
 
 <para>
