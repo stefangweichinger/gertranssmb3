@@ -191,78 +191,55 @@ Der <emphasis>Backup Domain Controller</emphasis> oder BDC spielt eine Schlüssel
 </para>
 
 <para>
-With MS Windows NT4, a decision is made at installation to determine what type of machine the server will be.
-It is possible to promote a BDC to a PDC and vice versa. The only way
-to convert a Domain Controller to a Domain Member server or a Stand-alone Server is to
-reinstall it. The install time choices offered are:
+Bei der Installation von NT 4 wird die Entscheidung darüber getroffen, welcher Art von Maschine der Server angehören soll. Es ist möglich, einen BDC zu einem PDC zu ernennen und umgekehrt. Die einzige Möglichkeit, einen DC in einen Domänen-Mitglieds-Server oder einen Stand-Alone-Server umzuwandeln, ist, ihn neu zu installieren.
+
+Die Wahlmöglichkeiten bei der Installation sind:
 </para>
 
 <itemizedlist>
-	<listitem><para><emphasis>Primary Domain Controller</emphasis> &smbmdash; the one that seeds the domain SAM.</para></listitem>
-	<listitem><para><emphasis>Backup Domain Controller</emphasis> &smbmdash; one that obtains a copy of the domain SAM.</para></listitem>
-	<listitem><para><emphasis>Domain Member Server</emphasis> &smbmdash; one that has no copy of the domain SAM, rather it obtains authentication from a Domain Controller for all access controls.</para></listitem>
-	<listitem><para><emphasis>Stand-alone Server</emphasis> &smbmdash; one that plays no part is SAM synchronization, has its own authentication database and plays no role in Domain Security.</para></listitem>
+	<listitem><para><emphasis>Primärer Domänen-Controller / PDC </emphasis> &smbmdash; der Server, der die Domänen-SAM begründet.</para></listitem>
+	<listitem><para><emphasis>Backup Domänen-Controller / BDC </emphasis> &smbmdash; ein Server, der eine Kopieder Domänen-SAM anlegt.</para></listitem>
+	<listitem><para><emphasis>Domänen-Mitglieds-Server</emphasis> &smbmdash;  ein Server, der keine Kopie der Domänen-SAM hält, jedoch seine Authentifizierungsinformationen von einem Domänen-Controller bezieht.</para></listitem>
+	<listitem><para><emphasis>Stand-alone Server</emphasis> &smbmdash;  ein Server, der keine Rolle in der Sysnchronisation der Domänen-SAM spielt, seine eigene Authentifizierungs-Datenbank führt und auch keine Rolle in der Domänen-Sicherheit übernimmt.</para></listitem>
 </itemizedlist>
 
 <para>
-With MS Windows 2000, the configuration of Domain Control is done after the server has been
-installed. Samba-3 is capable of acting fully as a native member of a Windows 200x server
-Active Directory domain.
+Bei der Verwendung von MS Windows 2000 wird die Konfiguration der Domänen-Verwaltung nach der Installation des Servers vorgenommen. Samba-3 kann als vollwertiges Mitglied einer Windows-200x-Server-Active-Directory-Domäne arbeiten.
 </para>
 
 <para>
-<indexterm><primary>replication</primary><secondary>SAM</secondary></indexterm>
-New to Samba-3 is the ability to function fully as an MS Windows NT4-style Domain Controller,
-excluding the SAM replication components. However, please be aware that Samba-3 also supports the
-MS Windows 200x Domain Control protocols.
+<indexterm><primary>Replikation</primary><secondary>SAM</secondary></indexterm>
+Neu in Samba-3 ist die Fähigkeit, als vollwertiger MS-Windows-NT4-Domänen-Controller zu arbeiten, ausgenommen die SAM-Replikations-Komponenten. Bitte beachten Sie, daß Samba-3 auch die MS Windows 200x Domänen-Verwaltungs-Protokolle unterstützt.
 </para>
 
 <para>
-At this time any appearance that Samba-3 is capable of acting as an
-<emphasis>Domain Controller</emphasis> in native ADS mode is limited and experimental in nature.
-This functionality should not be used until the Samba Team offers formal support for it.
-At such a time, the documentation will be revised to duly reflect all configuration and
-management requirements. Samba can act as a NT4-style DC in a Windows 2000/XP
-environment. However, there are certain compromises:
+Zum jetzigen Zeitpunkt ist jegliches Anzeichen dafür, daß Samba-3 als <emphasis>Domänen Controller</emphasis> im nativen ADS-Modus arbeiten kann, begrenzt und völlig experimentell. Diese Funktionalität sollte nicht verwendet werden, bis das Samba-Team formal die Unterstützung dafür anbietet. Sobald dies erfolgt, wird die Dokumentation revidiert werden, um alle Konfigurations- und Verwaltungs-Erfordernisse vollständig widerzuspiegeln. Samba kann als NT4-DC in einem Windows 2000/XP-Umgebung arbeiten. Jedoch gibt es einige Kompromisse:
 
 <itemizedlist>
-	<listitem>No machine policy files.</listitem>
-	<listitem>No Group Policy Objects.</listitem>
-	<listitem>No synchronously executed AD logon scripts.</listitem>
-	<listitem>Can't use Active Directory management tools to manage users and machines.</listitem>
-	<listitem>Registry changes tattoo the main registry, while with AD they do not leave permanent changes in effect.</listitem>
-	<listitem>Without AD you cannot perform the function of exporting specific applications to specific users or groups.</listitem>
+	<listitem>Keine Maschinen-Policy-Dateien.</listitem>
+	<listitem>Keine Gruppen-Policy-Objekte.</listitem>
+	<listitem>Keine synchron ausgeführten AD-logon-Skripts.</listitem>
+	<listitem>Active Directory management tools können nicht zur Benutzer- und Maschinen-Verwaltung verwendet werden.</listitem>
+	<listitem>Registrierungs-Änderungen prägen die Haupt-Registrierung, während mit AD keine bleibenden Veränderungen hinterlassen werden.</listitem>
+	<listitem>Ohne AD kann die Funktion, spezifische Applikationen für spezifische Benutzer/Gruppen zu exportieren, NICHT genutzt werden.</listitem>
 </itemizedlist>
 </para>
 
 </sect2>
 
 <sect2>
-<title>Preparing for Domain Control</title>
+<title>Vorbereitungen für Domänen-Verwaltung</title>
 
 <para>
-There are two ways that MS Windows machines may interact with each other, with other servers
-and with Domain Controllers: either as <emphasis>Stand-alone</emphasis> systems, more commonly
-called <emphasis>Workgroup</emphasis> members, or as full participants in a security system,
-more commonly called <emphasis>Domain</emphasis> members.
+Es gibt zwei Arten, auf die MS Windows-Maschinen miteinander, mit anderen Servern und DCs zusammenarbeiten können: entweder als <emphasis>Stand-alone</emphasis>-Systeme, gebräuchlich bezeichnet als <emphasis>Workgroup</emphasis>-Mitglieder, oder als vollwertige Teilnehmer eines Sicherheits-Systems, gebräuchlich bezeichnet als <emphasis>Domain</emphasis>-Mitglieder.
 </para>
 
 <para>
-It should be noted that <emphasis>Workgroup</emphasis> membership involves no special configuration
-other than the machine being configured so the network configuration has a commonly used name
-for its workgroup entry. It is not uncommon for the name WORKGROUP to be used for this. With this
-mode of configurationi, there are no Machine Trust Accounts and any concept of membership as such
-is limited to the fact that all machines appear in the network neighborhood to be logically
-grouped together. Again, just to be clear: <emphasis>workgroup mode does not involve security machine
-accounts</emphasis>.
+Es sollte beachtet werden, daß <emphasis>Workgroup</emphasis>-Mitgliedschaft keine spezielle Konfiguration erfordert, außer daß die Maschine so konfiguriert wird, daß die Netzwerk-Konfiguration einen gebräuchlichen Namen für den workgroup-Eintrag enthält. oft wird hiefür der Name WORKGROUP verwendet. In dieser Konfigurations-Art gibt es keine Maschinen-Vertrauens-Konten und jegliches Konzept von Mitgliedschaft ist darauf beschränkt, daß alle in der Netzwerkumgebung aufscheinenden Maschinen als logische Gruppe erscheinen. Zur Wiederholung und Klärung: <emphasis>Workgroup Modus beinhaltet keine Maschinen-Sicherheits-Konten</emphasis>.
 </para>
 
 <para>
-Domain Member machines have a machine account in the Domain accounts database. A special procedure
-must be followed on each machine to effect Domain Membership. This procedure, which can be done
-only by the local machine Administrator account, will create the Domain machine account (if it does
-not exist), and then initializes that account. When the client first logs onto the
-Domain it triggers a machine password change.
+Domänen-Mitglieds-Maschinen haben ein Maschinen-Konto in der Domänen-Konten-Datenbank. Eine spezielle Prozedur muß auf jeder Maschine ausgeführt werden, um Domänen-Mitgliedschaft zu erwirken. Diese Prozedur, welche nur vom lokalen Administrator-Konto aus erfolgen kann, legt das Domänen-Maschinen-Konto an (falls es noch nicht existiert), und initialisiert dieses Konto. Wenn der Client sich erstmals in der Domäne anmeldet, wird ein Maschinen-Passwort-Wechsel ausgelöst.
 </para>
 
 <note><para>
