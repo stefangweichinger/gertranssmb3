@@ -9,14 +9,22 @@
                         <address><email>vorlon@netexpress.net</email></address>
                 </affiliation>
         </author>
+	<author>&person.flex;<contrib>Deutsche Übersetzung</contrib></author>
 	<pubdate>April 3, 2003</pubdate>
 </chapterinfo>
 
-<title>Interdomain Trust Relationships</title>
+<title>Interdomain Vertrauensstellung</title>
 
 
 <para>
 <indexterm><primary>Interdomain Trusts</primary></indexterm>
+Samba-3 unterstützt NT4-gleiche Domänen Vertrauensstellungen. Dies ist ein  Bestandteil den
+viele Standorte benutzen möchten wenn sie von einer NT4-gleichen Domäne auf eine Samba-3 Domäne
+migrieren, ohne Active Directory oder ein LDAP-basierendes Backen übernehmen möchten. Dieses Kapitel
+beschreibt einige Hintergrundinformationen bezüglich Vertrauensstellung und wie sie erstellt werden.
+Es ist nun für Samba3 möglich NT4 zu vertrauen (und umgekehrt), genauso wie es möglich ist Samba zu Samba
+Vertrauensstellunge zu erstellen.
+
 Samba-3 supports NT4-style domain trust relationships. This is a feature that many sites
 will want to use if they migrate to Samba-3 from an NT4-style domain and do not want to
 adopt Active Directory or an LDAP-based authentication backend. This section explains
