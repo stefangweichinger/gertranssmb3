@@ -29,7 +29,7 @@ Netzwerk-Betrieb zu erreichen.
 
 <para>
 Dieses Kapitel präsentiert Informationen zu jedem dieser Bereiche. Sie wurden hier, und
-nicht in anderen Kapiteln, plaziert, um das Nachschlagen zu erleichtern.
+nicht in anderen Kapiteln, platziert, um das Nachschlagen zu erleichtern.
 </para>
 
 </sect1>
@@ -44,7 +44,7 @@ nicht in anderen Kapiteln, plaziert, um das Nachschlagen zu erleichtern.
 <indexterm><primary>User Manager</primary></indexterm>
 <indexterm><primary>Server Manager</primary></indexterm>
 <indexterm><primary>Event Viewer</primary></indexterm>
-Da ich ja keinen <application>NT4 Server</application> kaufen muß, wie bekomme ich den
+Da ich ja keinen <application>NT4 Server</application> kaufen muss, wie bekomme ich den
 `User Manager for Domains' und den `Server Manager'?
 </para>
 
@@ -87,7 +87,7 @@ beste Lösung für Ihr Netzwerk ist.
 
 	<para>
 	<indexterm><primary>NoMachine.Com</primary></indexterm>
-	Folgende Informationen wurden auf der Samba mailing list am 3.4.2003, um 23:33:50 GMT
+	Folgende Informationen wurden auf der Samba Mailing list am 3.4.2003, um 23:33:50 GMT
 	gepostet. Sie werden in abgewandelter Form präsentiert (mit fehlenden Autor-Details
 	wegen Datenschutz).
 	Die gesamte Antwort wird (bis auf ein paar Kommentare) gezeigt.
@@ -95,13 +95,13 @@ beste Lösung für Ihr Netzwerk ist.
 
 		<para><quote>
 		Ich habe einen wunderbaren Linux/Samba-Server als PDC laufen. Jetzt würde ich gerne
-		Fernwartungs-Funktionen hinzufügen, sodaß Benutzer sich am System anmelden, und ihren
+		Fernwartungs-Funktionen hinzufügen, sodass Benutzer sich am System anmelden, und ihren
 		Desktop von zuhause aus, oder aus dem Ausland erreichen können.		
 		</quote></para>
 
 		<para><quote>
 		Gibt es eine Möglichkeit, dies zu erreichen? Brauche ich einen Windows Terminal Server?
-		Muß ich so konfigurieren, daß er Domänen-Mitglied ist, oder ein BDC, PDC? Gibt es
+		Muss ich so konfigurieren, dass er Domänen-Mitglied ist, oder ein BDC, PDC? Gibt es
 		irgendwelche hacks für Windows XP, um Fernzugriff zu aktivieren, auch wenn der Rechner
 		in einer Domäne ist?
 		</quote></para>
@@ -120,7 +120,7 @@ beste Lösung für Ihr Netzwerk ist.
 	<para>
 	Remote X ist bei weitem nicht neu, aber was hier erreicht wurde, ist eine neue Art von
 	Kompressions- und Caching-Technologie, die diese Software sogar über langsame 
-	Modem/ISDN-Strecken ausreichend schnell laufen läßt.
+	Modem/ISDN-Strecken ausreichend schnell laufen lässt.
 	</para>
 
 	<para>
@@ -129,7 +129,7 @@ beste Lösung für Ihr Netzwerk ist.
 	unverzüglich auf <quote>mouse-over</quote> ansprang. Von innerhalb dieser (remote X)
 	Sitzung startete ich eine rdesktop-Sitzung auf eine weitere Windows XP Maschine.
 	Um die Performance zu testen, spielte ich Pinball. Ich bin stolz, sagen zu dürfen,
-	daß ich beim ersten Versuch 631750 Punkte erreichte.
+	dass ich beim ersten Versuch 631750 Punkte erreichte.
 	</para>
 
 	<para>
@@ -154,7 +154,7 @@ beste Lösung für Ihr Netzwerk ist.
 	<para>
 	Einfach den kostenlosen Client downloaden (verfügbar für Red Hat, SuSE, Debian
 	und Windows) und innerhalb 5 Minuten geht es los (es müssen allerdings erst
-	die Zugangsdaten gesendet werden, weil Sie einen vollen UNIX-account auf deren
+	die Zugangsdaten gesendet werden, weil Sie einen vollen UNIX-Account auf deren
 	testdrive.nomachine.com-Box erhalten).
 	</para>
 
@@ -164,11 +164,11 @@ beste Lösung für Ihr Netzwerk ist.
 	die transparent laufen (Anwendungen können sogar auf einem anderen NX-Knoten laufen, aber
 	vorgeben, auf demselben Knoten zu sein wie der, an dem sich der Benutzer angemeldet hat,
 	weil es im selben Fenster angezeigt wird. Sie können sie auch full-screen ausführen, und
-	nach kurzer Zeit vergessen Sie überhaupt, daß es eine Remote-Session ist).
+	nach kurzer Zeit vergessen Sie überhaupt, dass es eine Remote-Session ist).
 	</para>
 
 	<para>
-	Nun das Beste am Schluß: All die Kerntechnologien zur Kompression und zum Caching
+	Nun das Beste am Schluss: All die Kerntechnologien zur Kompression und zum Caching
 	werden unter der GPL veröffentlicht, und sind als Sourcecode für jeden verfügbar,
 	der darauf aufbauen will! Diese Technologien funktionieren, wenn auch nur von der
 	Befehlszeile aus (und sehr unpraktisch zu gebrauchen, um eine voll funktionsfähige
@@ -181,7 +181,7 @@ beste Lösung für Ihr Netzwerk ist.
 
 	<itemizedlist>
 		<listitem><para>
-		Sie müssen keinen Terminal-Server installieren; XP hat RDP-Unterstüzunng integriert.	
+		Sie müssen keinen Terminal-Server installieren; XP hat RDP-Unterstüzung integriert.	
 		</para></listitem>
 
 		<listitem><para>
@@ -195,7 +195,7 @@ beste Lösung für Ihr Netzwerk ist.
 
 		<listitem><para>
 		Sie melden sich an der XP-Box transparent aus der Ferne an (und ich glaube, es gibt
-		keinen Anlaß, etwas zu ändern, um eine Verbindung zu bekommen, sogar, wenn die
+		keinen Anlass, etwas zu ändern, um eine Verbindung zu bekommen, sogar, wenn die
 		Authentifikation an einer Domäne erfolgt).
 		</para></listitem>
 
