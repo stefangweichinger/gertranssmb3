@@ -187,12 +187,14 @@
 	konfiguriert wurde das diese printcap Datei erstellt und
 	gewartet wird. Für Details schauen Sie in die man Page
 	<command>man cupsd.conf</command>, in die CUPS relevanten
-	Dokumentationen sowie in die vielen Infos vom CUPS Server
+	Dokumentationen sowie in den vielen Infos vom CUPS Server
 	selbst: <ulink noescape="1" url="http://localhost:631/documentation.html">http://localhost:631/documentation.html</ulink>.
 	</para>
-###
+
 	<sect2>
 		<title>Linking smbd with libcups.so</title>
+		#
+		<title>smbd mit libcups.so linken</title>
 
 		<para>
 		Samba has a special relationship to CUPS. Samba can be compiled with CUPS library support.
@@ -201,6 +203,18 @@
 		if Samba is not linked against <filename>libcups.so</filename> &smbmdash; but
 		there are some differences in required or supported configuration.
 		</para>
+		#
+		<para>
+		Samba hat eine spezielle Beziehung zu CUPS. Samba kann
+		mit der CUPS Library übersetzt werden. Die meisten
+		aktuellen Installationen haben diesen Support bereits
+		per default in smbd und den anderen Samba Binarys
+		integriert. Sie können CUPS auch benutzen wenn Samba
+		nicht gegen die <filename>libcups.so</filename>
+		&smbmdash; gelinkt ist, aber es sind dann einige Unterschiede in
+		den benötigten und unterstützten Konfigurationen.
+		</para>
+
 
 		<para>
 		When Samba is compiled against <filename>libcups</filename>, <smbconfoption><name>printcap</name><value>cups</value></smbconfoption>
@@ -209,6 +223,21 @@
 		system, you can use the <command>ldd</command> utility to find out details (ldd may not be present on
 		other OS platforms, or its function may be embodied by a different command):
 		</para>
+		#
+		<para>
+		Wenn Samba mit <filename>libcups</filename> comiliert
+		wurde, verwendet <smbconfoption><name>printcap</name><value>cups</value></smbconfoption>
+		die CUPS API um Drucker aufzufinden, Jobs zu übergeben,
+		Queues abzufragen usw. 
+		Sonst wird dies auf die System V Druck Kommandos mit der zusätzlichen
+		<command>-oraw</command> Option umgesetzt.
+		Auf einem Linux System können Sie mit dem
+		<command>ldd</command> Utility nähere Details erfahren
+		(ldd muss nicht auf allen Plattformen vorhanden sein,
+		oder dessen Funktion kann durch ein vergleichbares
+		Programm erreicht werden).
+		</para>
+
 
 <para><screen>
 &rootprompt;<userinput>ldd `which smbd`</userinput>
@@ -224,6 +253,16 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 		is set, then <emphasis>any otherwise manually set print command in &smb.conf; is ignored</emphasis>.
 		This is an important point to remember!
 		</para>
+		#
+		<para>
+		Die Zeile <computeroutput>libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)</computeroutput> 
+		bedeutet das der CUPS Support in Samba einkompiliert wurde.
+		In diesem Fall, und bei gesetzten printing = cups, dann
+		<emphasis>werden anderweitige manuell gesetzte print
+		Kommandos in &smb.conf; ignoriert</emphasis>.
+		Bitte merken Sie sich diesen wichtigen Punkt !
+		</para>
+
 
 		<tip><para> Should it be necessary, for any reason, to set your own print commands, you can do this by setting
 		<smbconfoption><name>printing</name><value>sysv</value></smbconfoption>. However, you will loose all the benefits
@@ -236,17 +275,45 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 		<smbconfoption><name>lprm command</name></smbconfoption>,
 		<smbconfoption><name>queuepause command</name></smbconfoption> and
 		<smbconfoption><name>queue resume command</name></smbconfoption>).</para></tip>
-	</sect2>
+		#
+		<tip><para>Sollte es aus irgendeinem Grund nötig sein
+		Ihre eigenen Druck Kommandos zu verwenden, können sie
+		dies erreichen in dem sie die <smbconfoption><name>printing</name><value>sysv</value></smbconfoption>
+		Option verwenden.
+		Aber Sie verlieren die Unterstützung der engen CUPS/Samba Integration. 
+		Wenn Sie das vorhaben, müssen Sie folgende Druckkommandos manuell konfigurieren
+		(am wichtigsten:	
+		<smbconfoption><name>print command</name></smbconfoption>; andere Kommandos sind
+		<smbconfoption><name>lppause command</name></smbconfoption>,
+	        <smbconfoption><name>lpresume command</name></smbconfoption>,
+                <smbconfoption><name>lpq command</name></smbconfoption>,
+	        <smbconfoption><name>lprm command</name></smbconfoption>,
+                <smbconfoption><name>queuepause command</name></smbconfoption> und
+                <smbconfoption><name>queue resume command</name></smbconfoption>).</para></tip>
+        </sect2>
 
 	<sect2>
 		<title>Simple &smb.conf; Settings for CUPS</title>
+		#
+		<title>Einfache &smb.conf; Einstellungen für CUPS</title>
 
 		<para>
 		To summarize, <link linkend="cups-exam-simple">following example</link> shows simplest printing-related setup for &smb.conf; to enable basic CUPS support:
 		</para>
+		#
+		<para>
+		Als Zusammenfassung <link
+		linkend="cups-exam-simple">zeigt das folgende
+		Beispiel</link> ein einfaches, für Drucker relevantes Setup
+		für &smb.conf; um den grundlegenden Support für CUPS zu
+		erhalten:
+		</para>
+
 
 		<para><smbconfexample id="cups-exam-simple">
 		<title>Simplest printing-related smb.conf</title>
+		#
+		<title>einfache Druckerbezogene smb.conf</title>
 		<smbconfsection>[global]</smbconfsection>
 		<smbconfoption><name>load printers</name><value>yes</value></smbconfoption>
 		<smbconfoption><name>printing</name><value>cups</value></smbconfoption>
@@ -280,11 +347,36 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 		sensible only for the target printer. Read on to learn which problem
 		this may cause and how to avoid it.
 		</para>
+		#
+		<para>
+		Das ist alles was Sie an grundlegende Einstellungen
+		zum Drucken mit CUPS benötigen. Es wird alle Grafik,
+		Text, PDF, und Postscript Dateien von Ihren Windows
+		Clients drucken. Aber die meisten Ihrer Windows User
+		wollen nicht wissen wie sie solche Dateien ohne einen
+		Grafischen Druckerdialog übermitteln können. Windows
+		Clients haben meist einen lokalen Druckertreiber
+		installiert, welcher in den Anwendungen durch den Druck
+		Button aktiviert wird. Ihre Benutzer drucken auch selten
+		Dateien aus der Kommandozeile. Im Gegensatz zu Unix
+		Client's tun Sie sich schwer Grafik, Text oder PDF
+		formatierte Dateien direkt zum Spooler zu schicken. Sie
+		drucken eher exklusiv aus Anwendungen heraus über den
+		<quote>Druckertreiber</quote> welcher zwischen der
+		nativen Ausgabe aus dem Programm und dem Druckdatenstrom
+		sitzt. Ist das Ausgabegerät kein PostScript Drucker, so
+		ist der Druckdatenstrom in einem <quote>Binärformat</quote>
+		welches nur der betreffende Drucker versteht.
+		Lesen Sie bitte weiter um zu verstehen welche Probleme
+		dabei entstehen und wie Sie diese vermeiden.	
+		</para>
 	</sect2>
 
 	<sect2>
 	<title>More Complex CUPS &smb.conf; Settings</title>
-
+	#
+	<title>Weitere, komplexere CUPS &smb.conf; Settings</title>
+##
 	<para>
 	<link linkend="overridesettings">Next configuration</link> is a slightly more complex printing-related setup
 	for &smb.conf;. It enables general CUPS printing
