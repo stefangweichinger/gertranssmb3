@@ -228,50 +228,59 @@ Microsoft MS Windows Resource Kit für besondere Informationen.
 
 </sect3> </sect2>
 
-<sect2> <title>Windows Client Profile Configuration Information</title>
+<sect2> <title>Informationen zur Konfiguration von Windows Client Profilen</title>
 
-<sect3> <title>Windows 9x/Me Profile Setup</title>
+<sect3> <title>Windows 9x/Me Profil-Setup</title>
 
 <para>
-When a user first logs in on Windows 9X, the file user.DAT is created, as are folders
-<filename>Start Menu</filename>, <filename>Desktop</filename>, <filename>Programs</filename>, and
-<filename>Nethood</filename>. These directories and their contents will be merged with the local
-versions stored in <filename>c:\windows\profiles\username</filename> on subsequent logins, taking the
-most recent from each.	You will need to use the <smbconfsection>[global]</smbconfsection> options
+Wenn sich ein Benutzer zum ersten Mal in Windows 9x anmeldet, wird die Datei user.DAT erstellt,
+weiters die Verzeicnisse <filename>Startmenü</filename>, <filename>Desktop</filename>, 
+<filename>Programme</filename>, und <filename>Netzwerkumgebung</filename>.
+Diese Verzeichnisse und ihre Inhalte werden mit den lokalen Versionen in
+<filename>c:\windows\profiles\username</filename> vereint, bei jedem folgenden Login,
+wobei immer die jeweils neuesten Versionen verwendet werden. Sie werden folgende
+<smbconfsection>[global]</smbconfsection>-Optionen verwenden müssen:
 <smbconfoption><name>preserve case</name><value>yes</value></smbconfoption>,
-<smbconfoption><name>short preserve case</name><value>yes</value></smbconfoption> and
-<smbconfoption><name>case sensitive</name><value>no</value></smbconfoption>
-in order to maintain capital letters in shortcuts in any of the profile folders.
+<smbconfoption><name>short preserve case</name><value>yes</value></smbconfoption> und
+<smbconfoption><name>case sensitive</name><value>no</value></smbconfoption>,
+um Großbuchstaben in Shortcuts in einem der Profil-Verzeichnisse zu erhalten.
 </para>
 
 <para>
-The <filename>user.DAT</filename> file contains all the user's preferences. If you wish to enforce a set of preferences,
-rename their <filename>user.DAT</filename> file to <filename>user.MAN</filename>, and deny them write access to this file.
+Die Datei <filename>user.DAT</filename> enthält alle Benutzereinstellungen. Wenn Sie einen Satz von
+Einstellungen erzwingen wollen, benennen Sie die Datei <filename>user.DAT</filename> auf
+<filename>user.MAN</filename> um, und verweigern den Schreibzugriff auf diese Datei.
 </para>
 
 <orderedlist>
 	<listitem> <para>
-	On the Windows 9x/Me machine, go to <guimenu>Control Panel</guimenu> ->
-	<guimenuitem>Passwords</guimenuitem> and select the <guilabel>User Profiles</guilabel> tab.
-	Select the required level of roaming preferences. Press <guibutton>OK</guibutton>, but do not
-	allow the computer to reboot.
+	Gehen Sie auf der Windows 9x/Me Maschine auf <guimenu>Systemsteuerung</guimenu> ->
+	<guimenuitem>Passwörter</guimenuitem> und wählen Sie den Tab
+	<guilabel>Benutzer-Profile</guilabel>.
+	Wählen Sie das erforderliche Level von Roaming-Einstellungen.
+	Drücken Sie <guibutton>OK</guibutton>, aber erlauben Sie keinen Reboot.
 	</para> </listitem>
 
 	<listitem> <para>
-	On the Windows 9x/Me machine, go to <guimenu>Control Panel</guimenu> ->
-	<guimenuitem>Network</guimenuitem> -> <guimenuitem>Client for Microsoft Networks</guimenuitem>
-	-> <guilabel>Preferences</guilabel>. Select <guilabel>Log on to NT Domain</guilabel>.	Then,
-	ensure that the Primary Logon is <guilabel>Client for Microsoft Networks</guilabel>. Press
-	<guibutton>OK</guibutton>, and this time allow the computer to reboot.
+	Dann gehen Sie auf <guimenu>Systemsteuerung</guimenu> ->,
+	<guimenuitem>Netzwerk</guimenuitem> -> <guimenuitem>Client for Microsoft Networks</guimenuitem>	
+	<guilabel>Einstellungen</guilabel>. Wählen Sie <guilabel>An NT Domäne anmelden</guilabel>.
+	Dann stellen Sie sicher, daß das Primary Logon <guilabel>Client for Microsoft Networks</guilabel>
+	ist. Drücken Sie <guibutton>OK</guibutton>, und erlauben diesmal den Reboot.
 	</para> </listitem>
 </orderedlist>
 
-<para> Under Windows 9x/ME, profiles are downloaded from the Primary Logon. If you have the Primary Logon
-as <quote>Client for Novell Networks</quote>, then the profiles and logon script will be downloaded from
-your Novell Server. If you have the Primary Logon as <quote>Windows Logon</quote>, then the profiles will
-be loaded from the local machine &smbmdash; a bit against the concept of roaming profiles, it would seem!  </para>
+<para> 
+In Windows 9x/ME werden die Profile vom Primary Logon geladen. Wenn Sie das Primary Logon auf
+<quote>Client for Novell Networks</quote> gesetzt haben, werden die Profile und Logon-Skripts vom
+Novell-Server geladen. Wenn Sie das Primary Logon auf <quote>Windows Logon</quote> haben, werden die
+Profile von der lokalen Maschine geladen &smbmdash; ein wenig gegen das Prinzip der Roaming Profiles,
+wie es scheint!
+</para>
 
 <para>
+Sie werden nun sehen, daß 
+
 You will now find that the Microsoft Networks Login box contains <constant>[user, password, domain]</constant> instead
 of just <constant>[user, password]</constant>. Type in the Samba server's domain name (or any other domain known to exist,
 but bear in mind that the user will be authenticated against this domain and profiles downloaded from it,
