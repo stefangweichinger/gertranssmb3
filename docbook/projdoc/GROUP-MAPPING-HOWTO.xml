@@ -28,7 +28,7 @@
 	<para>
 	<indexterm><primary>domain admin group</primary></indexterm>
 	The <parameter>domain admin group</parameter> parameter has been removed in Samba-3 and should no longer
-	be specified in &smb.conf;. This parameter was used to give the listed users membership in the
+	be specified in &smb.conf;. In Samba-2.2.x, this parameter was used to give the listed users membership in the
 	<constant>Domain Admins</constant> Windows group which gave local admin rights on their workstations
 	(in default configurations).
 	</para>
@@ -70,8 +70,9 @@
 
 	<para>
 	In both cases, when winbindd is not running, only locally resolvable groups can be recognized. Please refer to
-	<link linkend="idmap-sid2gid"></link> and <link linkend="idmap-gid2sid"></link>. The <command>net groupmap</command> is
-	used to establish UNIX group to NT SID mappings as shown in <link linkend="idmap-store-gid2sid"></link>.
+	<link linkend="idmap-sid2gid">IDMAP: group SID to GID resolution</link> and <link linkend="idmap-gid2sid">IDMAP: GID resolution to matching SID</link>. 
+	The <command>net groupmap</command> is
+	used to establish UNIX group to NT SID mappings as shown in <link linkend="idmap-store-gid2sid">IDMAP: storing group mappings</link>.
 	</para>
 
 	<figure id="idmap-store-gid2sid"><title>IDMAP storing group mappings.</title>
@@ -165,7 +166,7 @@
 
 		<para>
 	<screen>
-	&rootprompt;<userinput>net groupmap add ntgroup=<quote>Domain Admins</quote> UNIXgroup=domadm</userinput>
+	&rootprompt;<userinput>net groupmap add ntgroup=<quote>Domain Admins</quote> unixgroup=domadm</userinput>
 	</screen>
 	</para>
 		
@@ -190,7 +191,7 @@
 
 	<para>
 <screen>
-&rootprompt;<userinput>net groupmap add rid=1000 ntgroup="Accounting" UNIXgroup=acct</userinput>
+&rootprompt;<userinput>net groupmap add rid=1000 ntgroup="Accounting" unixgroup=acct</userinput>
 </screen>
 	</para>
 
@@ -203,12 +204,54 @@
 	</para>
 
 	<sect2>
+	<title>Important Administrative Information</title>
+
+	<para>
+	Administrative rights are necessary in two specific forms:
+	</para>
+
+	<orderedlist>
+		<listitem><para>For Samba-3 Domain Controllers and 
+				Domain Member Servers/Clients.</para></listitem>
+		<listitem><para>To manage Domain Member Windows workstations.</para></listitem>
+	</orderedlist>
+
+	<para>
+	Administrative tasks on UNIX/Linux systems, such as adding users or groups, requires <constant>root</constant>
+	level privilege. The addition of a Windows client to a Samba Domain involves the addition of a user account
+	for the Windows client.
+	</para>
+
+	<para>
+	Many UNIX administrators continue to request the Samba Team make it possible to add Windows workstations, or 
+	to ability to add/delete or modify user accounts, without requiring <constant>root</constant> privileges. 
+	Such a request violates every understanding of basic UNIX system security.
+	</para>
+
+	<para>
+	There is no safe way to provide access on a UNIX/Linux system without providing <constant>root</constant>
+	level privilege. Provision of <constant>root</constant> privileges can be done wither by logging onto
+	the Domain as the user <constant>root</constant>, or by permitting particular users to use a UNIX account
+	that is a member of the UNIX group that has a GID=0 as the primary group in the <filename>/etc/passwd</filename>
+	database. Users of such accounts can use tools like the NT4 Domain User Manager, and the NT4 Domain Server 
+	Manager to manage user and group accounts as well as Domain Member server and client accounts. This level
+	of privilege is also needed to manage share level ACLs.
+	</para>
+
+	<para>
+	Administrative tasks on a Windows Domain Member workstation, can be done by anyone who is a member of the
+	<constant>Domain Admins</constant> group. This group can be mapped to any convenient UNIX group.
+	</para>
+
+	</sect2>
+
+	<sect2>
 	<title>Default Users, Groups and Relative Identifiers</title>
 
 	<para>
 <indexterm><primary>Relative Identifier</primary><see>RID</see></indexterm>
 <indexterm><primary>RID</primary></indexterm>
-	When first installed, Microsoft Windows NT4/200x/XP are preconfigured with certain User, Group, and
+	When first installed, Microsoft Windows NT4/200x/XP are pre-configured with certain User, Group, and
 	Alias entities. Each has a well-known Relative Identifier (RID). These must be preserved for continued
 	integrity of operation. Samba must be provisioned with certain essential Domain Groups that require
 	the appropriate RID value. When Samba-3 is configured to use <constant>tdbsam</constant> the essential
@@ -217,13 +260,13 @@
 	</para>
 
 	<para>
-	Each essential Domain Group must be assigned its respective well-kown RID. The default Users, Groups,
-	Aliases, and RIDs are shown in <link linkend="WKURIDS"/>.
+	Each essential Domain Group must be assigned its respective well-known RID. The default Users, Groups,
+	Aliases, and RIDs are shown in <link linkend="WKURIDS">Well-Known User Default RIDs</link> table.
 	</para>
 
 	<para><note>
 	When the <parameter>passdb backend</parameter> uses LDAP (<constant>ldapsam</constant>) it is the
-	admininstrators' responsibility to create the essential Domain Groups, and to assign each its default RID.
+	administrators' responsibility to create the essential Domain Groups, and to assign each its default RID.
 	</note></para>
 
 	<para>
@@ -433,7 +476,7 @@ Domain Guests (S-1-5-21-2547222302-1596225915-2414751004-514) -> domguest
 
 		<para>
 		A script to create complying group names for use by the Samba group interfaces
-		is provided in <link linkend="smbgrpadd.sh"></link>.
+		is provided in <link linkend="smbgrpadd.sh">smbgrpadd.sh</link>.
 		</para>
 
 <indexterm><primary>smbgrpadd.sh</primary></indexterm>
@@ -451,7 +494,7 @@ thegid=`cat /etc/group | grep smbtmpgrp00 | cut -d ":" -f3`
 
 # Now change the name to what we want for the MS Windows networking end
 cp /etc/group /etc/group.bak
-cat /etc/group.bak | sed s/smbtmpgrp00/$1/g > /etc/group
+cat /etc/group.bak | sed "s/smbtmpgrp00/$1/g" > /etc/group
 
 # Now return the GID as would normally happen.
 echo $thegid
@@ -461,12 +504,12 @@ exit 0
 </para>
 
 		<para>
-		The &smb.conf; entry for the above script would be something like that in <link linkend="smbgrpadd"/>.
+		The &smb.conf; entry for the above script would be something like that in <link linkend="smbgrpadd">the following example</link>.
 <smbconfexample id="smbgrpadd">
 <title>Configuration of &smb.conf; for the add group script.</title>
 <smbconfsection>[global]</smbconfsection>
 <member>...</member>
-<smbconfoption><name>add group script</name><value>/path_to_tool/smbgrpadd.sh %g</value></smbconfoption>
+<smbconfoption><name>add group script</name><value>/path_to_tool/smbgrpadd.sh &quot;%g&quot;</value></smbconfoption>
 <member>...</member>
 </smbconfexample>
 		</para>
@@ -480,8 +523,8 @@ exit 0
 		In our example we have created a UNIX/Linux group called <ntgroup>ntadmin</ntgroup>.
 		Our script will create the additional groups <ntgroup>Orks</ntgroup>, <ntgroup>Elves</ntgroup>, and <ntgroup>Gnomes</ntgroup>.
 		It is a good idea to save this shell script for later re-use just in case you ever need to rebuild your mapping database.
-		For the sake of concenience we elect to save this script as a file called <filename>initGroups.sh</filename>.
-		This script is given in <link linkend="set-group-map"></link>.
+		For the sake of convenience we elect to save this script as a file called <filename>initGroups.sh</filename>.
+		This script is given in <link linkend="set-group-map">intGroups.sh</link>.
 	</para>
 
 <para>

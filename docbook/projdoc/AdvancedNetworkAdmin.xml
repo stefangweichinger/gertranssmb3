@@ -103,8 +103,8 @@ is the best tool in your network environment.
 		</quote></para>
 
 		<para>
-		Answer provided: Check out the new offer from NoMachine, <quote>NX</quote> software:
-		<ulink noescape="1" url="http://www.nomachine.com/">http://www.nomachine.com/</ulink>.
+		Answer provided: Check out the new offer of <quote>NX</quote> software from
+		<ulink noescape="1" url="http://www.nomachine.com/">NoMachine</ulink>.
 		</para>
 
 	<para>
@@ -160,7 +160,7 @@ is the best tool in your network environment.
 	and can select applications to run transparently (apps may even run on
 	another NX node, but pretend to be on the same as used for initial login,
 	because it displays in the same window. You also can run it
-	fullscreen, and after a short time you forget that it is a remote session
+	full-screen, and after a short time you forget that it is a remote session
 	at all).
 	</para>
 
@@ -196,13 +196,13 @@ is the best tool in your network environment.
 
 		<listitem><para>
 		The NX core technologies are all Open Source and released under the GPL &smbmdash;
-		you can now use a (very inconvenient) commandline at no cost,
-		but you can buy a comfortable (proprietary) NX GUI frontend for money.
+		you can now use a (very inconvenient) command-line at no cost,
+		but you can buy a comfortable (proprietary) NX GUI front end for money.
 		</para></listitem>
 
 		<listitem><para>
 		NoMachine are encouraging and offering help to OSS/Free Software implementations
-		for such a frontend too, even if it means competition to them (they have written
+		for such a front end too, even if it means competition to them (they have written
 		to this effect even to the LTSP, KDE and GNOME developer mailing lists).
 		</para></listitem>
 	</itemizedlist>
@@ -242,6 +242,7 @@ The following listings are from the genlogon directory.
 <indexterm><primary>genlogon.pl</primary></indexterm>
 This is the <filename>genlogon.pl</filename> file:
 
+<smbfile name="genlogon.pl">
 <programlisting>
 	#!/usr/bin/perl
 	#
@@ -258,7 +259,7 @@ This is the <filename>genlogon.pl</filename> file:
 	#
 	# 1. Log the user connection to /var/log/samba/netlogon.log
 	# 2. Set the PC's time to the Linux server time (which is maintained
-	#    daily to the National Institute of Standard's Atomic clock on the
+	#    daily to the National Institute of Standards Atomic clock on the
 	#    internet.
 	# 3. Connect the user's home drive to H: (H for Home).
 	# 4. Connect common drives that everyone uses.
@@ -316,6 +317,7 @@ This is the <filename>genlogon.pl</filename> file:
 	# All done! Close the output file.
 	close LOGON;
 </programlisting>
+</smbfile>
 </para>
 
 <para>
@@ -323,7 +325,7 @@ Those wishing to use more elaborate or capable logon processing system should ch
 </para>
 
 <itemizedlist>
-	<listitem><ulink noescape="1" url="http://www.craigelachi.e.org/rhacer/ntlogon">http://www.craigelachi.e.org/rhacer/ntlogon</ulink></listitem>
+	<listitem><ulink noescape="1" url="http://www.craigelachie.org/rhacer/ntlogon">http://www.craigelachie.org/rhacer/ntlogon</ulink></listitem>
 	<listitem><ulink noescape="1" url="http://www.kixtart.org">http://www.kixtart.org</ulink></listitem>
 </itemizedlist>
 

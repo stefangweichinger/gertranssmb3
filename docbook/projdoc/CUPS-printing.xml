@@ -19,7 +19,7 @@
 
 	<author>&person.jelmer;<contrib>drawings</contrib></author>
 
-	<pubdate> (3 June 2003) </pubdate>
+	<pubdate> (27 Jan 2004) </pubdate>
 </chapterinfo>
 
 <title>CUPS Printing Support</title>
@@ -151,7 +151,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 		<title>Simple &smb.conf; Settings for CUPS</title>
 
 		<para>
-		To summarize, <link linkend="cups-exam-simple"/> shows simplest printing-related setup for &smb.conf; to enable basic CUPS support:
+		To summarize, <link linkend="cups-exam-simple">following example</link> shows simplest printing-related setup for &smb.conf; to enable basic CUPS support:
 		</para>
 
 		<para><smbconfexample id="cups-exam-simple">
@@ -195,7 +195,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<title>More Complex CUPS &smb.conf; Settings</title>
 
 	<para>
-	<link linkend="overridesettings"/> is a slightly more complex printing-related setup
+	<link linkend="overridesettings">Next configuration</link> is a slightly more complex printing-related setup
 	for &smb.conf;. It enables general CUPS printing
 	support for all printers, but defines one printer share, which is set
 	up differently. 
@@ -222,12 +222,13 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<smbconfoption><name>path</name><value>/var/spool/samba-special</value></smbconfoption>
 	<smbconfoption><name>printing</name><value>sysv</value></smbconfoption>
 	<smbconfoption><name>printcap</name><value>lpstat</value></smbconfoption>
-	<smbconfoption><name>print command</name><value>echo "NEW: `date`: printfile %f" >> /tmp/smbprn.log ; \</value></smbconfoption>
+	<smbconfoption><name>print command</name><value>echo "NEW: `date`: printfile %f" \</value></smbconfoption>
+	<member><parameter> >> /tmp/smbprn.log ; \</parameter></member>
 	<member><parameter>echo "     `date`: p-%p s-%s f-%f" >> /tmp/smbprn.log ; \</parameter></member>
 	<member><parameter>echo "     `date`: j-%j J-%J z-%z c-%c" >> /tmp/smbprn.log : rm %f</parameter></member>
 	<smbconfoption><name>public</name><value>no</value></smbconfoption>
 	<smbconfoption><name>guest ok</name><value>no</value></smbconfoption>
-	<smbconfoption><name>writeable</name><value>no</value></smbconfoption>
+	<smbconfoption><name>writable</name><value>no</value></smbconfoption>
 	<smbconfoption><name>printable</name><value>yes</value></smbconfoption>
 	<smbconfoption><name>printer admin</name><value>kurt</value></smbconfoption>
 	<smbconfoption><name>hosts deny</name><value>0.0.0.0</value></smbconfoption>
@@ -236,7 +237,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 
 	<para>
 	This special share is only there for testing purposes. It does not write the print job to a file. It just logs the job parameters
-	known to Samba into the <filename>/tmp/smbprn.log</filename> file and deletes the jobfile. Moreover, the
+	known to Samba into the <filename>/tmp/smbprn.log</filename> file and deletes the job-file. Moreover, the
 	<smbconfoption><name>printer admin</name></smbconfoption> of this share is <quote>kurt</quote> (not the <quote>@ntadmins</quote> group),
 	guest access is not allowed, the share isn't published to the Network Neighborhood (so you need to know it is there), and it only
 	allows access from only three hosts. To prevent CUPS kicking in and taking over the print jobs for that share, we need to set
@@ -309,7 +310,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	The easiest printing configuration possible is to use raw print-through.
 	This is achieved by installation of the printer as if it was physically
 	attached to the Windows client. You then redirect output to a raw network
-	print queue. The following procedure may be followed to achive this:
+	print queue. The following procedure may be followed to achieve this:
 	</para>
 
 	<procedure>
@@ -346,7 +347,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 
 		<step><para>
 		Edit the configuration under the <guimenu>Detail</guimenu> tab, create a
-		<constant>local port</constant> that points to the raw printwer queue that
+		<constant>local port</constant> that points to the raw printer queue that
 		you have configured above. Example: <constant>\\server\raw_q</constant>.
 		Here, the name <constant>raw_q</constant> is the name you gave the print
 		queue in the CUPS environment.
@@ -529,7 +530,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<indexterm><primary>PostScript</primary><seealso>Ghostscript</seealso></indexterm>
 	We now know
 	how to set up a <quote>dump</quote> printserver, that is, a server which is spooling
-	printjobs <quote>raw</quote>, leaving the print data untouched.
+	print-jobs <quote>raw</quote>, leaving the print data untouched.
 	</para>
 
 	<para>
@@ -741,7 +742,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	Language (PDL, often proprietary). To print to them is much
 	more demanding. Since your UNIX applications mostly produce
 	PostScript, and since these devices do not understand PostScript, you
-	need to convert the printfiles to a format suitable for your printer
+	need to convert the print files to a format suitable for your printer
 	on the host before you can send it away.
 	</para>
 	</sect2>
@@ -783,7 +784,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	Therefore, ESP Ghostscript was developed as an
 	enhancement over GNU Ghostscript, with lots of bug-fixes, additional
 	devices and improvements. It is jointly maintained by developers from
-	CUPS, Gimp-Print, MandrakeSoft, SuSE, RedHat, and Debian. It includes
+	CUPS, Gimp-Print, MandrakeSoft, SuSE, Red Hat, and Debian. It includes
 	the <quote>cups</quote> device (essential to print to non-PS printers from CUPS).
 	</para></tip>
 	</sect2>
@@ -827,7 +828,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<warning><para>
 	<indexterm><primary>PDF</primary></indexterm>
 	A PostScript file that was created to contain device-specific commands
-	for achieving a certain print job output (e.g., duplexed, stapled and
+	for achieving a certain print job output (e.g., duplex-ed, stapled and
 	punched) on a specific target machine, may not print as expected, or
 	may not be printable at all on other models; it also may not be fit
 	for further processing by software (e.g., by a PDF distilling program).
@@ -853,7 +854,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	and upload your PPD. You will see the results displayed
 	immediately. CUPS in all versions after 1.1.19 has a much more strict
 	internal PPD parsing and checking code enabled; in case of printing
-	trouble, this online resource should be one of your first pitstops.
+	trouble, this online resource should be one of your first pit-stops.
 	</para></tip>
 
 	<warning><para>
@@ -942,12 +943,10 @@ Linuxprinting.org for all spoolers.
 <para>
 <indexterm><primary>cupsomatic</primary></indexterm>
 <indexterm><primary>foomatic</primary></indexterm>
-CUPS printers may be setup to use external
-rendering paths. One of the most common is provided by the
-Foomatic/cupsomatic concept from <ulink
-url="http://www.linuxprinting.org/">Linuxprinting.org.</ulink> This
-uses the classical Ghostscript approach, doing everything in one
-step. It does not use the <quote>cups</quote> device, but one of the many
+CUPS printers may be setup to use external rendering paths. One of the most common is provided by the
+Foomatic/cupsomatic concept from <ulink url="http://www.linuxprinting.org/">Linuxprinting.org.</ulink> This
+uses the classical Ghostscript approach, doing everything in one step. 
+It does not use the <quote>cups</quote> device, but one of the many
 others. However, even for Foomatic/cupsomatic usage, best results and
 <indexterm><primary>ESP</primary><secondary>Ghostscript</secondary></indexterm>
 broadest printer model support is provided by ESP Ghostscript (more
@@ -1279,8 +1278,8 @@ In the section about pre-filters, we mentioned the pre-filter
 that generates PostScript from image formats. The <parameter>imagetoraster</parameter>
 filter is used to convert directly from image to raster, without the
 intermediate PostScript stage. It is used more often than the above
-mentioned pre-filters. A summarizing flowchart of image file
-filtering is shown in <link linkend="small8"/>.
+mentioned pre-filters. We summarize flowchart of image file
+filtering on <link linkend="small8">next picture</link>.
 </para>
 
 <para>
@@ -1322,7 +1321,7 @@ closely as possible with CUPS.
 The last part of any CUPS filtering chain is a backend. Backends
 are special programs that send the print-ready file to the final
 device. There is a separate backend program for any transfer
-protocol of sending printjobs over the network, or for every local
+protocol of sending print jobs over the network, or for every local
 interface. Every CUPS print queue needs to have a CUPS <quote>device-URI</quote>
 associated with it. The device URI is the way to encode the backend
 used to send the job to its destination. Network device-URIs are using
@@ -1334,42 +1333,42 @@ may vary much from my examples, if your OS is not Linux:
 <variablelist>
 	<varlistentry><term>usb </term>
 	<listitem><para>
-	This backend sends printfiles to USB-connected printers. An
+	This backend sends print files to USB-connected printers. An
 	example for the CUPS device-URI to use is:
 	<filename>usb:/dev/usb/lp0</filename>.
 	</para></listitem></varlistentry>
 
 	<varlistentry><term>serial </term>
 	<listitem><para>
-	This backend sends printfiles to serially connected printers.
+	This backend sends print files to serially connected printers.
 	An example for the CUPS device-URI to use is:
 	<filename>serial:/dev/ttyS0?baud=11500</filename>.
 	</para></listitem></varlistentry>
 
 	<varlistentry><term>parallel </term>
 	<listitem><para>
-	This backend sends printfiles to printers connected to the
+	This backend sends print files to printers connected to the
 	parallel port. An example for the CUPS device-URI to use is:
 	<filename>parallel:/dev/lp0</filename>.
 	</para></listitem></varlistentry>
 
-	<varlistentry><term>scsi </term>
+	<varlistentry><term>SCSI </term>
 	<listitem><para>
-	This backend sends printfiles to printers attached to the
+	This backend sends print files to printers attached to the
 	SCSI interface. An example for the CUPS device-URI to use is:
 	<filename>scsi:/dev/sr1</filename>.
 	</para></listitem></varlistentry>
 
 	<varlistentry><term>lpd </term>
 	<listitem><para>
-	This backend sends printfiles to LPR/LPD connected network
+	This backend sends print files to LPR/LPD connected network
 	printers. An example for the CUPS device-URI to use is:
 	<filename>lpd://remote_host_name/remote_queue_name</filename>.
 	</para></listitem></varlistentry>
 
 	<varlistentry><term>AppSocket/HP JetDirect </term>
 	<listitem><para>
-	This backend sends printfiles to AppSocket (a.k.a. "HP
+	This backend sends print files to AppSocket (a.k.a. "HP
 	JetDirect") connected network printers. An example for the CUPS
 	device-URI to use is:
 	<filename>socket://10.11.12.13:9100</filename>.
@@ -1377,7 +1376,7 @@ may vary much from my examples, if your OS is not Linux:
 
 	<varlistentry><term>ipp </term>
 	<listitem><para>
-	This backend sends printfiles to IPP connected network
+	This backend sends print files to IPP connected network
 	printers (or to other CUPS servers). Examples for CUPS device-URIs
 	to use are:
 	<filename>ipp:://192.193.194.195/ipp</filename>
@@ -1387,7 +1386,7 @@ may vary much from my examples, if your OS is not Linux:
 
 	<varlistentry><term>http </term>
 	<listitem><para>
-	This backend sends printfiles to HTTP connected printers.
+	This backend sends print files to HTTP connected printers.
 	(The http:// CUPS backend is only a symlink to the ipp:// backend.)
 	Examples for the CUPS device-URIs to use are:
 	<filename>http:://192.193.194.195:631/ipp</filename>
@@ -1397,7 +1396,7 @@ may vary much from my examples, if your OS is not Linux:
 
 	<varlistentry><term>smb </term>
 	<listitem><para>
-	This backend sends printfiles to printers shared by a Windows
+	This backend sends print files to printers shared by a Windows
 	host. An example for CUPS device-URIs that may be used includes:
 	</para>
 
@@ -1423,7 +1422,7 @@ may vary much from my examples, if your OS is not Linux:
 It is easy to write your own backends as shell or Perl scripts, if you
 need any modification or extension to the CUPS print system. One
 reason could be that you want to create <quote>special</quote> printers that send
-the printjobs as email (through a <quote>mailto:/</quote> backend), convert them to
+the print-jobs as email (through a <quote>mailto:/</quote> backend), convert them to
 PDF (through a <quote>pdfgen:/</quote> backend) or dump them to <quote>/dev/null</quote>. (In
 fact I have the system-wide default printer set up to be connected to
 a devnull:/ backend: there are just too many people sending jobs
@@ -1477,7 +1476,7 @@ CUPS Web interface with a <parameter>foomatic</parameter> namepart for
 the driver description. <parameter>cupsomatic</parameter> is a Perl script that runs
 Ghostscript with all the complicated command line options
 auto-constructed from the selected PPD and command line options give to
-the printjob.
+the print-job.
 </para>
 
 <para>
@@ -1670,11 +1669,11 @@ conversion filter(s) may be applied to which MIME types.
 <indexterm><primary>PPD</primary></indexterm>
 Originally PPDs were meant to be used for PostScript printers
 only. Here, they help to send device-specific commands and settings
-to the RIP which processes the jobfile. CUPS has extended this
+to the RIP which processes the job file. CUPS has extended this
 scope for PPDs to cover non-PostScript printers too. This was not
 difficult, because it is a standardized file format. In a way
 it was logical too: CUPS handles PostScript and uses a PostScript
-RIP (Ghostscript) to process the jobfiles. The only difference is:
+RIP (Ghostscript) to process the job files. The only difference is:
 a PostScript printer has the RIP built-in, for other types of
 printers the Ghostscript RIP runs on the host computer.
 </para>
@@ -1704,7 +1703,7 @@ output device.
 CUPS by default ships only a few generic PPDs, but they are good for
 several hundred printer models. You may not be able to control
 different paper trays, or you may get larger margins than your
-specific model supports. See <link linkend="cups-ppds"/> for summary information.
+specific model supports. See <link linkend="cups-ppds">PPDs shipped with CUPS</link> for summary information.
 </para>
 
 <table frame="all" id="cups-ppds">
@@ -1821,7 +1820,7 @@ installation. Therefore the printfile bypasses the <parameter>pstoraster</parame
 (and also bypasses the CUPS-raster-drivers
 <parameter>rastertosomething</parameter>). After Ghostscript finished its rasterization,
 <parameter>cupsomatic</parameter> hands the rendered file directly to the CUPS backend. The
-flowchart in <link linkend="cupsomatic-dia"/> illustrates the difference between native CUPS
+flowchart in <link linkend="cupsomatic-dia">cupsomatic/foomatic processing versus Native CUPS</link> illustrates the difference between native CUPS
 rendering and the <parameter>Foomatic/cupsomatic</parameter> method.
 </para>
 </sect2>
@@ -1844,7 +1843,7 @@ only, and you want to print them <quote>two-up</quote> and <quote>duplex</quote>
 <listitem><para>Your print options (page selection as required, two-up,
 duplex) are passed to CUPS on the command line.</para></listitem>
 
-<listitem><para>The (complete) PDF file is sent to CUPS and autotyped as
+<listitem><para>The (complete) PDF file is sent to CUPS and auto-typed as
 <parameter>application/pdf</parameter>.</para></listitem>
 
 <listitem><para>The file therefore must first pass the
@@ -1865,10 +1864,10 @@ backend, which transfers the job to the printers.</para></listitem>
 </itemizedlist>
 
 <para>
-	The resulting filter chain, therefore, is as drawn in <link linkend="pdftosocket"/>.
+	The resulting filter chain, therefore, is as drawn in <link linkend="pdftosocket">PDF to socket chain</link>.
+	<image id="pdftosocket"><imagefile>pdftosocket</imagefile><imagedescription>PDF to socket chain.</imagedescription></image>
 </para>
 
-<image id="pdftosocket"><imagefile>pdftosocket</imagefile><imagedescription>PDF to socket chain.</imagedescription></image>
 
 <para>
 Assume you want to print the same filter to an USB-connected
@@ -1879,9 +1878,9 @@ are nearly the same:
 
 <itemizedlist>
 <listitem><para>Your print options (page selection as required, two-up,
-duplex) are passed to CUPS on the commandline.</para></listitem>
+duplex) are passed to CUPS on the command-line.</para></listitem>
 
-<listitem><para>The (complete) PDF file is sent to CUPS and autotyped as
+<listitem><para>The (complete) PDF file is sent to CUPS and auto-typed as
 <parameter>application/pdf</parameter>.</para></listitem>
 
 <listitem><para>The file must first pass the
@@ -1890,7 +1889,7 @@ MIME type <parameter>application/postscript</parameter> (a preview here
 would still show all pages of the original PDF).</para></listitem>
 
 <listitem><para>The file then passes the <quote>pstops</quote> filter that applies
-the commandline options: it selects the pages 2-5, 7 and 11-13,
+the command-line options: it selects the pages 2-5, 7 and 11-13,
 creates an imposed layout <quote>two pages on one sheet</quote> and inserts the
 correct <quote>duplex</quote> command... (Oops &smbmdash; this printer and PPD
 do not support duplex printing at all &smbmdash; so this option will
@@ -1906,7 +1905,7 @@ cups-raster</parameter>.</para></listitem>
 
 <listitem><para>Finally, the <parameter>rastertoepson</parameter> filter
 does its work (as indicated in the printer's PPD), creating the
-rinter-specific raster data and embedding any user-selected
+printer-specific raster data and embedding any user-selected
 print-options into the print data stream.</para></listitem>
 
 <listitem><para>The file goes to the <parameter>usb</parameter> backend,
@@ -1914,7 +1913,7 @@ which transfers the job to the printers.</para></listitem>
 </itemizedlist>
 
 <para>
-The resulting filter chain therefore is as drawn in <link linkend="pdftoepsonusb"/>.
+The resulting filter chain therefore is as drawn in <link linkend="pdftoepsonusb">this figure</link>.
 </para>
 
 <image id="pdftoepsonusb"><imagefile>pdftoepsonusb</imagefile><imagedescription>PDF to USB chain.</imagedescription></image>
@@ -1967,12 +1966,9 @@ supports around 150 of HP's own printers and is also providing
 excellent print quality now (currently available only via the Foomatic
 path).</para></listitem>
 
-<listitem><para><ulink
-url="http://www.linuxprinting.org/">Foomatic/cupsomatic
-</ulink> (LPGL, free) from
-Linuxprinting.org are providing PPDs for practically every Ghostscript
-filter known to the world (including Omni, Gimp-Print and
-HPIJS).</para></listitem>
+<listitem><para><ulink url="http://www.linuxprinting.org/">Foomatic/cupsomatic
+</ulink> (LPGL, free) from Linuxprinting.org are providing PPDs for practically every Ghostscript
+filter known to the world (including Omni, Gimp-Print and HPIJS).</para></listitem>
 </itemizedlist>
 
 </sect2>
@@ -2042,7 +2038,8 @@ output.</para></listitem>
 </itemizedlist>
 
 <para>
-Both print paths are shown in the flowcharts in <link linkend="small11"/> and <link linkend="small12"/>.
+Both print paths are shown in the flowcharts <link linkend="small11">Print driver 
+execution on the client</link> and <link linkend="small12">Print driver execution on the server</link>.
 </para>
 </sect2>
 
@@ -2135,7 +2132,7 @@ driver on the CUPS server.
 </para>
 
 <para>
-First, to enable CUPS-based rinting through Samba the
+First, to enable CUPS-based printing through Samba the
 following options should be set in your &smb.conf; file [global]
 section:
 </para>
@@ -2167,7 +2164,7 @@ simply use <smbconfoption><name>printing</name><value>sysv</value></smbconfoptio
 </sect2>
 
 <sect2>
-<title>Samba Receiving Jobfiles and Passing Them to CUPS</title>
+<title>Samba Receiving Job-files and Passing Them to CUPS</title>
 
 <para>
 Samba <emphasis>must</emphasis> use its own spool directory (it is set
@@ -2224,7 +2221,7 @@ noescape="1" url="http://localhost:631/printers/">http://localhost:631/printers/
 and click on one <guibutton>Configure Printer</guibutton> button to see
 it), or a command line interface (see <command>man lpoptions</command>
 or see if you have <command>lphelp</command> on your system). There are also some
-different GUI frontends on Linux/UNIX, which can present PPD options
+different GUI front-ends on Linux/UNIX, which can present PPD options
 to users. PPD options are normally meant to be evaluated by the
 PostScript RIP on the real PostScript printer.
 </para>
@@ -2263,7 +2260,7 @@ proper raster print format.
 <indexterm><primary>PPD</primary></indexterm>
 CUPS-PPDs can also be used on Windows-Clients, on top of a
 <quote>core</quote> PostScript driver (now recommended is the "CUPS PostScript
-Driver for WindowsNT/200x/XP"; you can also use the Adobe one, with
+Driver for Windows NT/200x/XP"; you can also use the Adobe one, with
 limitations). This feature enables CUPS to do a few tricks no other
 spooler can do:
 </para>
@@ -2271,7 +2268,7 @@ spooler can do:
 <itemizedlist>
 
 <listitem><para>Act as a networked PostScript RIP (Raster Image
-Processor), handling printfiles from all client platforms in a uniform
+Processor), handling print files from all client platforms in a uniform
 way.</para></listitem>
 
 <listitem><para>Act as a central accounting and billing server, since
@@ -2312,7 +2309,7 @@ Mode</quote>, introduces a high risk for the stability of the system
 if the driver is not really stable and well-tested. And there are a
 lot of bad drivers out there! Especially notorious is the example
 of the PCL printer driver that had an additional sound module
-running, to notify users via soundcard of their finished jobs. Do I
+running, to notify users via sound-card of their finished jobs. Do I
 need to say that this one was also reliably causing <quote>blue screens
 of death</quote> on a regular basis?
 </para>
@@ -2449,7 +2446,7 @@ if you need to support Windows 95, 98 and ME clients.
 
 <para>
 Prior to running <command>cupsaddsmb</command>, you need the settings in
-&smb.conf; as shown in <link linkend="cupsadd-ex"/>:
+&smb.conf; as shown in <link linkend="cupsadd-ex">the next example</link>:
 </para>
 
 <para><smbconfexample id="cupsadd-ex">
@@ -2655,7 +2652,7 @@ drivers package for this purpose with no problem. Retrieve the driver
 files from the normal download area of the ESP Print Pro software
 at <ulink
 	noescape="1" url="http://www.easysw.com/software.html">http://www.easysw.com/software.html</ulink>.
-You need to locate the link labelled <quote>SAMBA</quote> among the
+You need to locate the link labeled <quote>SAMBA</quote> among the
 <guilabel>Download Printer Drivers for ESP Print Pro 4.x</guilabel>
 area and download the package. Once installed, you can prepare any
 driver by simply highlighting the printer in the Printer Manager GUI
@@ -2739,7 +2736,7 @@ Administrator privileges to do this.
 <indexterm><primary>rpcclient</primary><secondary>setdriver</secondary></indexterm>
 Once you have successfully downloaded the CUPS PostScript driver to a
 client, you can easily switch all printers to this one by proceeding
-as described in <link linkend="printing"/>. Either change
+as described in <link linkend="printing">Classical Printing Support</link>. Either change
 a driver for an existing printer by running the <guilabel>Printer Properties</guilabel>
 dialog, or use <command>rpcclient</command> with the
 <command>setdriver</command> subcommand.
@@ -2782,7 +2779,7 @@ which therefore also leads to the page accounting in
 receiving the exact number of pages; instead the dummy page number
 of <quote>1</quote> is logged in a standard setup).</para></listitem>
 
-<listitem><para>The Adobe driver has more options to misconfigure the
+<listitem><para>The Adobe driver has more options to mis-configure the
 PostScript generated by it (like setting it inadvertently to
 <guilabel>Optimize for Speed</guilabel>, instead of
 <guilabel>Optimize for Portability</guilabel>, which
@@ -3032,6 +3029,17 @@ drivers had problems installing properly. Here a redirection of the
 output will help you analyze the results in retrospective.
 </para>
 
+<para>
+If you get:
+<screen>
+SetPrinter call failed!
+result was WERR_ACCESS_DENIED
+</screen>
+It means that you might have set <smbconfoption><name>use client driver</name><value>yes</value></smbconfoption> for this printer. 
+Set it to <quote>no</quote> will solve the problem. Refer to man samba(5) for explanantion on 
+<parameter>use client driver</parameter>.
+</para>
+
 <note><para>
 It is impossible to see any diagnostic output if you do not run
 <command>cupsaddsmb</command> in verbose mode. Therefore, we strongly recommend to not
@@ -3069,8 +3077,8 @@ variations:
 
 <para>
 <indexterm><primary>cupsaddsmb</primary></indexterm>
-<link linkend="small14"/> shows a chart about the procedures, commandflows and
-dataflows of the <command>cupaddsmb</command> command. Note again: cupsaddsmb is
+<link linkend="small14">cupsaddsmb flowchart</link> shows a chart about the procedures, command-flows and
+data-flows of the <command>cupaddsmb</command> command. Note again: cupsaddsmb is
 not intended to, and does not work with, raw queues!
 </para>
 
@@ -3294,7 +3302,7 @@ The <emphasis>exact</emphasis> format isn't made too clear by the man
 page, since you have to deal with some parameters containing
 spaces. Here is a better description for it. We have line-broken the
 command and indicated the breaks with <quote>\</quote>. Usually you would type the
-command in one line without the linebreaks:
+command in one line without the line-breaks:
 <indexterm><primary>rpcclient</primary><secondary>adddriver</secondary></indexterm>
 </para>
 
@@ -3852,7 +3860,7 @@ It is not good enough that you
 can see the queue in CUPS, using
 the <command>lpstat -p ir85wm</command> command. A
 bug in most recent versions of Samba prevents the proper update of
-the queuelist. The recognition of newly installed CUPS printers
+the queue-list. The recognition of newly installed CUPS printers
 fails unless you restart Samba or send a HUP to all smbd
 processes. To verify if this is the reason why Samba does not
 execute the <command>setdriver</command> command successfully, check if Samba <quote>sees</quote>
@@ -4051,8 +4059,8 @@ The generic <filename>laserjet.ppd,</filename> however, does not support every s
 for every LaserJet-compatible model. It constitutes a sort of <quote>least common
 denominator</quote> of all the models. If for some reason
 you must pay for the commercially available ESP Print Pro drivers, your
-first move should be to consult the database on <ulink
-noescape="1" url="http://www.linuxprinting.org/printer_list.cgi">http://www.linuxprinting.org/printer_list.cgi</ulink>.
+first move should be to consult the database on the
+<ulink noescape="1" url="http://www.linuxprinting.org/printer_list.cgi">Linuxprinting</ulink> web site.
 Linuxprinting.org has excellent recommendations about which driver is
 best used for each printer. Its database is kept current by the
 tireless work of Till Kamppeter from MandrakeSoft, who is also the
@@ -4065,8 +4073,7 @@ The former <command>cupsomatic</command> concept is now being replaced by the ne
 successor, a much
 more powerful <command>foomatic-rip</command>.
 <command>cupsomatic</command> is no longer maintained. Here is the new URL
-to the Foomatic-3.0 database: <ulink
-noescape="1" url="http://www.linuxprinting.org/driver_list.cgi">http://www.linuxprinting.org/driver_list.cgi</ulink>.
+to the <ulink noescape="1" url="http://www.linuxprinting.org/driver_list.cgi">Foomatic-3.0</ulink> database.
 If you upgrade to <command>foomatic-rip</command>, remember to also upgrade to the
 new-style PPDs for your Foomatic-driven printers. foomatic-rip will
 not work with PPDs generated for the old <command>cupsomatic</command>. The new-style
@@ -4114,7 +4121,7 @@ mostly, 96 partially, and 46 are paperweights. Keeping in mind
 that most of these are non-PostScript models (PostScript printers are
 automatically supported by CUPS to perfection, by using
 their own manufacturer-provided Windows-PPD), and that a
-multifunctional device never qualifies as working perfectly if it
+multi-functional device never qualifies as working perfectly if it
 does not also scan and copy and fax under GNU/Linux &smbmdash; then this is a
 truly astonishing achievement! Three years ago the number was not
 more than 500, and Linux or UNIX printing at the time wasn't
@@ -4130,7 +4137,7 @@ A few years ago <ulink url="http://www2.picante.com:81/~gtaylor/">Grant Taylor</
 started it all. The roots of today's Linuxprinting.org are in the
 first <ulink url="http://www.linuxprinting.org/foomatic2.9/howto/">Linux Printing
 HOWTO</ulink> that he authored. As a side-project to this document,
-which served many Linux users and admins to guide their first steps in
+which served many Linux users and Admins to guide their first steps in
 this complicated and delicate setup (to a scientist, printing is
 <quote>applying a structured deposition of distinct patterns of ink or toner
 particles on paper substrates</quote>, he started to
@@ -4216,13 +4223,13 @@ started to put work into the database. Kamppeter had been newly employed by
 <ulink url="http://www.mandrakesoft.com/">MandrakeSoft</ulink> to
 convert its printing system over to CUPS, after they had seen his
 <ulink url="http://www.fltk.org/">FLTK</ulink>-based <ulink
-url="http://cups.sourceforge.net/xpp/">XPP</ulink> (a GUI frontend to
+url="http://cups.sourceforge.net/xpp/">XPP</ulink> (a GUI front-end to
 the CUPS lp-command). He added a huge amount of new information and new
 printers. He also developed the support for other spoolers, like
 <ulink url="http://ppr.sourceforge.net/">PPR</ulink> (via ppromatic),
 <ulink url="http://sourceforge.net/projects/lpr/">GNUlpr</ulink> and
 <ulink url="http://www.lprng.org/">LPRng</ulink> (both via an extended
-lpdomatic) and spoolerless printing (<ulink
+lpdomatic) and spooler-less printing (<ulink
 url="http://www.linuxprinting.org/download.cgi?filename=directomatic&amp;show=0">directomatic</ulink>).
 </para>
 
@@ -4344,11 +4351,11 @@ forums after only a few weeks.
 
 <para>
 Linuxprinting.org and the Foomatic driver wrappers around Ghostscript
-are now a standard toolchain for printing on all the important
+are now a standard tool-chain for printing on all the important
 distros. Most of them also have CUPS underneath. While in recent years
 most printer data had been added by Kamppeter (who works at Mandrake), many
-additional contributions came from engineers with SuSE, RedHat,
-Connectiva, Debian, and others. Vendor-neutrality is an important goal
+additional contributions came from engineers with SuSE, Red Hat,
+Conectiva, Debian, and others. Vendor-neutrality is an important goal
 of the Foomatic project.
 </para>
 
@@ -4366,7 +4373,7 @@ it often, please send him a note showing your appreciation.
 The Foomatic database is an amazing piece of ingenuity in itself. Not
 only does it keep the printer and driver information, but it is
 organized in a way that it can generate PPD files on the fly from
-its internal XML-based datasets. While these PPDs are modelled to the
+its internal XML-based datasets. While these PPDs are modeled to the
 Adobe specification of PostScript Printer Descriptions (PPDs), the
 Linuxprinting.org/Foomatic-PPDs do not normally drive PostScript
 printers. They are used to describe all the bells and whistles you
@@ -4380,7 +4387,7 @@ PPDs are now call foomatic-rip). This filter
 script calls Ghostscript on the host system (the recommended variant
 is ESP Ghostscript) to do the rendering work. foomatic-rip knows which
 filter or internal device setting it should ask from Ghostscript to
-convert the PostScript printjob into a raster format ready for the
+convert the PostScript print job into a raster format ready for the
 target device. This usage of PPDs to describe the options of non-PS
 printers was the invention of the CUPS developers. The rest is easy.
 GUI tools (like KDE's marvelous <ulink
@@ -4436,7 +4443,7 @@ On the driver's page, you'll find important and detailed information
 about how to use that driver within the various available
 spoolers.</para></listitem>
 
-<listitem><para>Another link may lead you to the homepage of the
+<listitem><para>Another link may lead you to the home-page of the
 driver author or the driver.</para></listitem>
 
 <listitem><para>Important links are the ones that provide hints with
@@ -4470,7 +4477,7 @@ program.</para></listitem>
 <listitem><para>If you save the PPD file from the browser view, please
 do not use cut and paste (since it could possibly damage line endings
 and tabs, which makes the PPD likely to fail its duty), but use <guimenuitem>Save
-as...</guimenuitem> in your browser's menu. (It is best to use the <guilabel>Download</guilabel> option
+as...</guimenuitem> in your browsers menu. (It is best to use the <guilabel>Download</guilabel> option
 directly from the Web page).</para></listitem>
 
 <listitem><para>Another interesting part on each driver page is
@@ -4484,7 +4491,7 @@ for that damn printing script, but can't remember the exact
 syntax. </para></listitem>
 
 <listitem><para>Some time during your visit to Linuxprinting.org, save
-the PPD to a suitable place on your harddisk, say
+the PPD to a suitable place on your hard-disk, say
 <filename>/path/to/my-printer.ppd</filename> (if you prefer to install
 your printers with the help of the CUPS Web interface, save the PPD to
 the <filename>/usr/share/cups/model/</filename> path and restart
@@ -4504,9 +4511,9 @@ from Linuxprinting.org, you also need a special CUPS filter named
 foomatic-rip. 
 </para></listitem>
 
-<listitem><para>The foomatic-rip Perlscript itself also makes some
+<listitem><para>The foomatic-rip Perl script itself also makes some
 interesting <ulink url="http://www.linuxprinting.org/foomatic2.9/download.cgi?filename=foomatic-rip&amp;show=1">reading</ulink>
-because it is well documented by Kamppeter's inline comments (even
+because it is well documented by Kamppeter's in-line comments (even
 non-Perl hackers will learn quite a bit about printing by reading
 it).</para></listitem>
 
@@ -4802,7 +4809,7 @@ PrintAnalyzer, pyKota, printbill, LogReport.
 A printer queue with <emphasis>no</emphasis> PPD associated to it is a
 <quote>raw</quote> printer and all files will go directly there as received by the
 spooler. The exceptions are file types <parameter>application/octet-stream</parameter>
-that need passthrough feature enabled. <quote>Raw</quote> queues do not do any
+that need pass-through feature enabled. <quote>Raw</quote> queues do not do any
 filtering at all, they hand the file directly to the CUPS backend.
 This backend is responsible for sending the data to the device
 (as in the <quote>device URI</quote> notation: <filename>lpd://, socket://,
@@ -4816,7 +4823,7 @@ developed at Linuxprinting.org. As such, they are a brilliant hack to
 make all models (driven by Ghostscript drivers/filters in traditional
 spoolers) also work via CUPS, with the same (good or bad!) quality as
 in these other spoolers. <parameter>cupsomatic</parameter> is only a vehicle to execute a
-Ghostscript commandline at that stage in the CUPS filtering chain,
+Ghostscript command-line at that stage in the CUPS filtering chain,
 where normally the native CUPS <parameter>pstoraster</parameter> filter would kick
 in. cupsomatic bypasses pstoraster, kidnaps the printfile from CUPS
 away and redirects it to go through Ghostscript. CUPS accepts this,
@@ -5122,12 +5129,17 @@ Samba.</para>
 		<title><quote>cupsaddsmb</quote> Keeps Asking for Root Password in Never-ending Loop</title>
 
 		<para>Have you <smbconfoption><name>security</name><value>user</value></smbconfoption>? Have
-you used <command>smbpasswd</command> to give root a Samba account?
-You can do two things: open another terminal and execute
-<command>smbpasswd -a root</command> to create the account and
-continue entering the password into the first terminal. Or break
-out of the loop by pressing ENTER twice (without trying to type a
-password).</para>
+		you used <command>smbpasswd</command> to give root a Samba account?
+		You can do two things: open another terminal and execute
+		<command>smbpasswd -a root</command> to create the account and
+		continue entering the password into the first terminal. Or break
+		out of the loop by pressing ENTER twice (without trying to type a
+		password).</para>
+
+		<para>
+		If the error is: <quote>tree connect failed: NT_STATUS_BAD_NETWORK_NAME</quote>, 
+		you may have forgotten to create the <filename>/etc/samba/drivers</filename> directory.
+		</para>
 
 	</sect2>
 
@@ -5135,33 +5147,33 @@ password).</para>
 		<title><quote>cupsaddsmb</quote> Errors</title>
 
 		<para>
-		The use of <quote>cupsaddsmb</quote> gives <quote>No PPD file for printer...</quote> Message While PPD File Is Present.
-		What might the problem be?
+		The use of <quote>cupsaddsmb</quote> gives <quote>No PPD file for printer...</quote> 
+		Message While PPD File Is Present.  What might the problem be?
 		</para>
 
 		<para>Have you enabled printer sharing on CUPS? This means:
-Do you have a <parameter>&lt;Location
-/printers&gt;....&lt;/Location&gt;</parameter> section in CUPS
-server's <filename>cupsd.conf</filename> that does not deny access to
-the host you run <quote>cupsaddsmb</quote> from?  It <emphasis>could</emphasis> be
-an issue if you use cupsaddsmb remotely, or if you use it with a
-<option>-h</option> parameter: <userinput>cupsaddsmb -H
-	sambaserver -h cupsserver -v printername</userinput>.
-</para>
-<para>Is your
-<parameter>TempDir</parameter> directive in
-<filename>cupsd.conf</filename>
-set to a valid value and is it writeable?
-</para>
+		Do you have a <parameter>&lt;Location
+		/printers&gt;....&lt;/Location&gt;</parameter> section in CUPS
+		server's <filename>cupsd.conf</filename> that does not deny access to
+		the host you run <quote>cupsaddsmb</quote> from?  It <emphasis>could</emphasis> be
+		an issue if you use cupsaddsmb remotely, or if you use it with a
+		<option>-h</option> parameter: <userinput>cupsaddsmb -H
+		sambaserver -h cupsserver -v printername</userinput>.
+		</para>
+
+		<para>Is your <parameter>TempDir</parameter> directive in
+		<filename>cupsd.conf</filename> set to a valid value and is it writable?
+		</para>
 
 	</sect2>
 
 	<sect2>
 		<title>Client Can't Connect to Samba Printer</title>
+
 	<para>Use <command>smbstatus</command> to check which user
-you are from Samba's point of view. Do you have the privileges to
-write into the <smbconfsection>[print$]</smbconfsection>
-share?</para>
+	you are from Samba's point of view. Do you have the privileges to
+	write into the <smbconfsection>[print$]</smbconfsection>
+	share?</para>
 
 	</sect2>
 
@@ -5195,7 +5207,7 @@ printer in question and select
 	
 <para>You see per <command>smbstatus</command> that you are
 connected as user nobody; while you want to be root or
-printeradmin. This is probably due to 
+printer admin. This is probably due to 
 <smbconfoption><name>map to guest</name><value>bad user</value></smbconfoption>, which silently connects you under the guest account
 when you gave (maybe by accident) an incorrect username. Remove
 <smbconfoption><name>map to guest</name></smbconfoption>, if you want to prevent
@@ -5205,7 +5217,7 @@ this.</para></sect2>
 <title>Upgrading to CUPS Drivers from Adobe Drivers</title>
 
 <para>
-This information came from a mailinglist posting regarding problems experienced when
+This information came from a mailing list posting regarding problems experienced when
 upgrading from Adobe drivers to CUPS drivers on Microsoft Windows NT/200x/XP Clients.
 </para>
 
@@ -5239,7 +5251,7 @@ all.</para></sect2>
 <para>Windows XP handles SMB printers on a <quote>per-user</quote> basis.
 This means every user needs to install the printer himself. To have a
 printer available for everybody, you might want to use the built-in
-IPP client capabilities of WinXP. Add a printer with the print path of
+IPP client capabilities of Win XP. Add a printer with the print path of
 <parameter>http://cupsserver:631/printers/printername</parameter>.
 We're still looking into this one. Maybe a logon script could
 automatically install printers for all
@@ -5252,9 +5264,9 @@ These need to run the <command>Server</command> service first (renamed to
 XP).</para></sect2>
 
 <sect2>
-<title>WinXP-SP1</title>
+<title>Win XP-SP1</title>
 
-<para>WinXP-SP1 introduced a Point and Print Restriction Policy (this restriction does not apply to
+<para>Win XP-SP1 introduced a Point and Print Restriction Policy (this restriction does not apply to
 <quote>Administrator</quote> or <quote>Power User</quote> groups of users). In Group Policy
 Object Editor, go to <guimenu>User Configuration -> Administrative Templates ->
  Control Panel -> Printers</guimenu>. The policy is automatically set to
@@ -5432,7 +5444,7 @@ files from the Adobe Web site.</para></sect2>
 <sect1>
 <title>Overview of the CUPS Printing Processes</title>
 
-<para>A complete overview of the CUPS printing processes can be found in <link linkend="a_small"/>.</para>
+<para>A complete overview of the CUPS printing processes can be found in <link linkend="a_small">the next flowchart</link>.</para>
 
 <image id="a_small"><imagedescription>CUPS printing overview.</imagedescription>
 	<imagefile>a_small</imagefile>

@@ -59,7 +59,7 @@ remember to use nothing but TCP/IP on all our MS Windows network clients.
 </para>
 
 <para>
-Samba provides the ability to implement a WINS (Windows Internetworking Name Server)
+Samba provides the ability to implement a WINS (Windows Inter-networking Name Server)
 and implements extensions to Microsoft's implementation of WINS. These extensions
 help Samba to effect stable WINS operations beyond the normal scope of MS WINS.
 </para>
@@ -152,17 +152,17 @@ out NetBIOS support.
 Samba implements NetBIOS, as does MS Windows NT/200x/XP, by encapsulating it over TCP/IP.
 MS Windows products can do likewise. NetBIOS-based networking uses broadcast messaging to
 effect browse list management. When running NetBIOS over TCP/IP, this uses UDP-based messaging.
-UDP messages can be broadcast or unicast.
+UDP messages can be broadcast or uni-cast.
 </para>
 
 
 <para>
 <indexterm><primary>UDP</primary></indexterm>
-Normally, only unicast UDP messaging can be forwarded by routers. The
+Normally, only uni-cast UDP messaging can be forwarded by routers. The
 <smbconfoption><name>remote announce</name></smbconfoption> parameter to smb.conf helps to project browse announcements
-to remote network segments via unicast UDP. Similarly, the 
+to remote network segments via uni-cast UDP. Similarly, the 
 <smbconfoption><name>remote browse sync</name></smbconfoption> parameter of &smb.conf;
-implements browse list collation using unicast UDP.
+implements browse list collation using uni-cast UDP.
 </para>
 
 <para>
@@ -294,13 +294,13 @@ Occasionally we hear from UNIX network administrators who want to use a UNIX-bas
 DNS server in place of the Microsoft DNS server. While this might be desirable to some, the
 MS Windows 200x DNS server is auto-configured to work with Active Directory. It is possible
 to use BIND version 8 or 9, but it will almost certainly be necessary to create service records
-so MS Active Directory clients can resolve host names to locate essential network services.
+(SRV records) so MS Active Directory clients can resolve host names to locate essential network services.
 The following are some of the default service records that Active Directory requires:
 </para>
 
 <variablelist>
 <varlistentry>
-	<term>_ldap._tcp.pdc.ms-dcs.<emphasis>Domain</emphasis></term>
+	<term>_ldap._tcp.pdc._msdcs.<emphasis>Domain</emphasis></term>
 	<listitem>
 	<para>
 	This provides the address of the Windows NT PDC for the Domain.
@@ -308,7 +308,7 @@ The following are some of the default service records that Active Directory requ
 	</listitem>
 </varlistentry>
 <varlistentry>
-	<term>_ldap._tcp.pdc.ms-dcs.<emphasis>DomainTree</emphasis></term>
+	<term>_ldap._tcp.pdc._msdcs.<emphasis>DomainTree</emphasis></term>
 	<listitem>
         <para>
 	Resolves the addresses of Global Catalog servers in the domain.
@@ -316,7 +316,7 @@ The following are some of the default service records that Active Directory requ
 	</listitem>
 </varlistentry>
 <varlistentry>
-        <term>_ldap._tcp.<emphasis>site</emphasis>.sites.writable.ms-dcs.<emphasis>Domain</emphasis></term>
+        <term>_ldap._tcp.<emphasis>site</emphasis>.sites.writable._msdcs.<emphasis>Domain</emphasis></term>
 	<listitem>
         <para>
 	Provides list of Domain Controllers based on sites.
@@ -324,15 +324,15 @@ The following are some of the default service records that Active Directory requ
 	</listitem>
 </varlistentry>
 <varlistentry>
-        <term>_ldap._tcp.writable.ms-dcs.<emphasis>Domain</emphasis></term>
+        <term>_ldap._tcp.writable._msdcs.<emphasis>Domain</emphasis></term>
 	<listitem>
         <para>
-	Enumerates list of Domain Controllers that have the writable copies of the Active Directory datastore.
+	Enumerates list of Domain Controllers that have the writable copies of the Active Directory data-store.
         </para>
 	</listitem>
 </varlistentry>
 <varlistentry>
-	<term>_ldap._tcp.<emphasis>GUID</emphasis>.domains.ms-dcs.<emphasis>DomainTree</emphasis></term>
+	<term>_ldap._tcp.<emphasis>GUID</emphasis>.domains._msdcs.<emphasis>DomainTree</emphasis></term>
 	<listitem>
 	<para>
 	Entry used by MS Windows clients to locate machines using the Global Unique Identifier.
@@ -340,7 +340,7 @@ The following are some of the default service records that Active Directory requ
 	</listitem>
 </varlistentry>
 <varlistentry>
-	<term>_ldap._tcp.<emphasis>Site</emphasis>.gc.ms-dcs.<emphasis>DomainTree</emphasis></term>
+	<term>_ldap._tcp.<emphasis>Site</emphasis>.gc._msdcs.<emphasis>DomainTree</emphasis></term>
 	<listitem>
 	<para>
 	Used by MS Windows clients to locate site configuration dependent Global Catalog server.
@@ -348,6 +348,120 @@ The following are some of the default service records that Active Directory requ
 	</listitem>
 </varlistentry>
 </variablelist>
+
+	<para>
+	Specific entries used by Microsoft clients to locate essential services for an example domain
+	called <constant>quenya.org</constant> includes:
+	</para>
+
+	<itemizedlist>
+		<listitem><para>
+		_kerberos._udp.quenya.org &smbmdash; Used to contact the KDC server via UDP.
+		This entry must list port 88 for each KDC.
+		</para></listitem>
+
+		<listitem><para>
+		_kpasswd._udp.quenya.org &smbmdash; Used to locate the <constant>kpasswd</constant> server
+		when a user password change must be processed. This record must list port 464 on the
+		master KDC.
+		</para></listitem>
+
+		<listitem><para>
+		_kerberos._tcp.quenya.org &smbmdash; Used to locate the KDC server via TCP.
+		This entry must list port 88 for each KDC.
+		</para></listitem>
+
+		<listitem><para>
+		_ldap._tcp.quenya.org &smbmdash; Used to locate the LDAP service on the PDC.
+		This record must list port 389 for the PDC.
+		</para></listitem>
+
+		<listitem><para>
+		_kpasswd._tcp.quenya.org &smbmdash; Used to locate the <constant>kpasswd</constant> server
+		to permit user password changes to be processed. This must list port 464.
+		</para></listitem>
+
+		<listitem><para>
+		_gc._tcp.quenya.org &smbmdash; Used to locate the Global Catalog server on the for the
+		top of the domain. This must list port 3268.
+		</para></listitem>
+	</itemizedlist>
+	
+	<para>
+	The following records are also used by the Windows Domain Member client to locate vital
+	services on the Windows ADS domain controllers.
+	</para>
+
+	<itemizedlist>
+		<listitem><para>
+		_ldap._tcp.pdc._msdcs.quenya.org
+		</para></listitem>
+
+		<listitem><para>
+		_ldap.gc._msdcs.quenya.org
+		</para></listitem>
+
+		<listitem><para>
+		_ldap.default-first-site-name._sites.gc._msdcs.quenya.org
+		</para></listitem>
+
+		<listitem><para>
+		_ldap.{SecID}.domains._msdcs.quenya.org
+		</para></listitem>
+
+		<listitem><para>
+		_ldap._tcp.dc._msdcs.quenya.org
+		</para></listitem>
+
+		<listitem><para>
+		_kerberos._tcp.dc._msdcs.quenya.org
+		</para></listitem>
+
+		<listitem><para>
+		_ldap.default-first-site-name._sites.dc._msdcs.quenya.org
+		</para></listitem>
+
+		<listitem><para>
+		_kerberos.default-first-site-name._sites.dc._msdcs.queyna.org
+		</para></listitem>
+
+		<listitem><para>
+		SecID._msdcs.quenya.org
+		</para></listitem>
+	</itemizedlist>
+
+	<para>
+	Presence of the correct DNS entries can be validated by executing:
+<screen>
+&rootprompt; dig @frodo -t any _ldap._tcp.dc._msdcs.quenya.org
+
+; &lt;lt;&gt;&gt; DiG 9.2.2 &lt;lt;&gt;&gt; @frodo -t any _ldap._tcp.dc._msdcs.quenya.org
+;; global options:  printcmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 3072
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 2
+
+
+;; QUESTION SECTION:
+;_ldap._tcp.dc._msdcs.quenya.org. IN        ANY
+
+
+;; ANSWER SECTION:
+_ldap._tcp.dc._msdcs.quenya.org. 600 IN SRV 0 100 389 frodo.quenya.org.
+_ldap._tcp.dc._msdcs.quenya.org. 600 IN SRV 0 100 389 noldor.quenya.org.
+
+
+;; ADDITIONAL SECTION:
+frodo.quenya.org. 3600  IN      A       10.1.1.16
+noldor.quenya.org. 1200  IN      A       10.1.1.17
+
+
+;; Query time: 0 msec
+;; SERVER: frodo#53(10.1.1.16)
+;; WHEN: Wed Oct  7 14:39:31 2004
+;; MSG SIZE  rcvd: 171
+</screen>
+	</para>
 
 </sect2>
 
@@ -377,7 +491,7 @@ list of a remote MS Windows network (using the
 
 <para>
 Where a WINS server is used, the MS Windows client will use UDP 
-unicast to register with the WINS server. Such packets can be routed 
+uni-cast to register with the WINS server. Such packets can be routed 
 and thus WINS allows name resolution to function across routed networks.
 </para>
 
@@ -458,7 +572,7 @@ of the &smb.conf; file:
 The Domain Master Browser should preferably be the local master
 browser for its own subnet. In order to achieve this, set the following
 options in the <smbconfsection>[global]</smbconfsection> section of the &smb.conf;
-file as shown in <link linkend="dmbexample"/>.
+file as shown in <link linkend="dmbexample">the following example</link>:
 </para>
 
 <para>
@@ -483,7 +597,7 @@ be able to do this, as will Windows 9x/Me machines (although these tend to get
 rebooted more often, so it is not such a good idea to use these). To make a Samba
 server a Local Master Browser set the following options in the
 <smbconfsection>[global]</smbconfsection> section of the &smb.conf; file as
-shown in <link linkend="lmbexample"/>:
+shown in <link linkend="lmbexample">following example</link>:
 </para>
 
 <para>
@@ -512,7 +626,7 @@ parameter sets Samba high enough so it should win any browser elections.
 <para>
 If you have an NT machine on the subnet that you wish to be the Local Master Browser, you can disable Samba from
 becoming a Local Master Browser by setting the following options in the <smbconfsection>[global]</smbconfsection> section of the 
-&smb.conf; file as shown in <link linkend="nombexample"/>:
+&smb.conf; file as shown in <link linkend="nombexample">following example</link>:
 </para>
 
 <para>
@@ -541,7 +655,7 @@ with WINS instead of the PDC.
 <para>
 For subnets other than the one containing the Windows NT PDC, you may set up Samba servers as Local Master Browsers as
 described. To make a Samba server a Local Master Browser, set the following options in the <smbconfsection>[global]</smbconfsection> section 
-of the &smb.conf; file as shown in <link linkend="remsmb"/>:
+of the &smb.conf; file as shown in <link linkend="remsmb">following example</link>:
 </para>
 
 <para>
@@ -559,14 +673,14 @@ of the &smb.conf; file as shown in <link linkend="remsmb"/>:
 If you wish to have a Samba server fight the election with machines on the same subnet you
 may set the <smbconfoption><name>os level</name></smbconfoption> parameter to lower levels.
 By doing this you can tune the order of machines that will become Local Master Browsers if
-they are running. For more details on this refer to <link linkend="browse-force-master"/>.
+they are running. For more details on this refer to <link linkend="browse-force-master">Forcing Samba to Be the Master</link> section.
 </para>
 
 <para>
 If you have Windows NT machines that are members of the domain on all subnets and you are
 sure they will always be running, you can disable Samba from taking part in browser elections
 and ever becoming a Local Master Browser by setting the following options in the
-<smbconfsection>[global]</smbconfsection> section of the &smb.conf; file as shown in <link linkend="xremmb"/>:
+<smbconfsection>[global]</smbconfsection> section of the &smb.conf; file as shown in <link linkend="xremmb">next example</link>:
 </para>
 
 <para>
@@ -593,7 +707,7 @@ elections to just about every Windows network server or client.
 
 <para>
 If you want Samba to win elections, set the <smbconfoption><name>os level</name></smbconfoption>
-global option in &smb.conf; to a higher number. It defaults to zero. Using 34 would make it win
+global option in &smb.conf; to a higher number. It defaults to 20. Using 34 would make it win
 all elections every other system (except other samba systems).
 </para>
 
@@ -605,7 +719,7 @@ NT/200x Server. An MS Windows NT/200x Server Domain Controller uses level 32. Th
 <para>
 If you want Samba to force an election on startup, set the
 <smbconfoption><name>preferred master</name></smbconfoption> global option in &smb.conf; to <constant>yes</constant>.
-Samba will then have a slight advantage over other potential master browsers that are not Perferred Master Browsers.
+Samba will then have a slight advantage over other potential master browsers that are not Preferred Master Browsers.
 Use this parameter with care, as if you have two hosts (whether they are Windows 9x/Me or
 NT/200x/XP or Samba) on the same local subnet both set with <smbconfoption><name>preferred master</name></smbconfoption>
 to <constant>yes</constant>, then periodically and continually they will force an election in order
@@ -784,7 +898,7 @@ remote LMB or else is the network broadcast address of the remote segment.
 </sect1>
 
 <sect1>
-<title>WINS &smbmdash; The Windows Internetworking Name Server</title>
+<title>WINS &smbmdash; The Windows Inter-networking Name Server</title>
 
 <para>
 Use of WINS (either Samba WINS or MS Windows NT Server WINS) is highly
@@ -959,7 +1073,8 @@ section of the documentation to provide usage and technical details.
 <para>
 Adding static entries to your Samba WINS server is actually fairly easy.
 All you have to do is add a line to <filename>wins.dat</filename>, typically
-located in <filename class="directory">/usr/local/samba/var/locks</filename>.
+located in <filename class="directory">/usr/local/samba/var/locks</filename> or
+<filename>/var/run/samba</filename>.
 </para>
 
 <para>
@@ -1008,14 +1123,14 @@ for many new network administrators.
 <sect2>
 <title>Windows Networking Protocols</title>
 
-<warning><para>
-Do not use more than one protocol on MS Windows machines.
-</para></warning>
-
 <para>
 A common cause of browsing problems results from installing more than
 one protocol on an MS Windows machine.
 </para>
+
+<warning><para>
+Do not use more than one protocol on MS Windows clients.
+</para></warning>
 
 <para>
 Every NetBIOS machine takes part in a process of electing the LMB (and DMB)
@@ -1256,7 +1371,7 @@ Samba is capable of cross-subnet browsing when configured correctly.
 </para>
 
 <para>
-Consider a network set up as <link linkend="browsing1"/>.
+Consider a network set up as in <link linkend="browsing1">Cross-Subnet Browsing Example</link>.
 </para>
 
 <image id="browsing1" scale="40"><imagedescription>Cross-Subnet Browsing Example.</imagedescription><imagefile>browsing1</imagefile></image>
@@ -1307,7 +1422,7 @@ called <quote>non-authoritative.</quote>
 </para>
 
 <para>
-At this point the browse lists appear as shown in <link linkend="browsubnet"/> (these are 
+At this point the browse lists appear as shown in <link linkend="browsubnet">the next example</link> (these are 
 the machines you would see in your network neighborhood if you looked in it on a particular network right now).
 </para>
 
@@ -1350,7 +1465,7 @@ tells the Domain Master Browser to send it all the server
 names it knows about. Once the Domain Master Browser receives
 the <emphasis>MasterAnnouncement</emphasis> packet, it schedules a synchronization
 request to the sender of that packet. After both synchronizations
-are complete the browse lists look as shown in <link linkend="brsbex"/>:
+are complete the browse lists look as shown in <link linkend="brsbex">following example</link>:
 </para>
 
 <table frame="all" id="brsbex">
@@ -1389,7 +1504,7 @@ for the Local Master Browser on subnet 3 (N3_D). When it
 synchronizes browse lists with the Domain Master Browser (N1_A)
 it gets both the server entries on subnet 1, and those on
 subnet 2. After N3_D has synchronized with N1_C and vica versa,
-the browse lists will appear as shown in <link linkend="brsex2"/>.
+the browse lists will appear as shown in <link linkend="brsex2">following example</link>.
 </para>
 
 <table frame="all" id="brsex2">
@@ -1429,7 +1544,7 @@ Finally, the Local Master Browser for subnet 2 (N2_B) will sync again
 with the Domain Master Browser (N1_C) and will receive the missing
 server entries. Finally, as when a steady state (if no machines
 are removed or shut off) has been achieved, the browse lists will appear
-as shown in <link linkend="brsex3"/>.
+as shown in <link linkend="brsex3">example below</link>.
 </para>
 
 <table frame="all" id="brsex3">
@@ -1567,7 +1682,7 @@ valid.
 <indexterm><primary>slow browsing</primary></indexterm>
 There are only two machines on a test network. One a Samba server, the other a Windows XP machine.
 Authentication and logons work perfectly, but when I try to explore shares on the Samba server, the
-Windows XP client becomes unrespsonsive. Sometimes it does not respond for some minutes. Eventually,
+Windows XP client becomes unresponsive. Sometimes it does not respond for some minutes. Eventually,
 Windows Explorer will respond and displays files and directories without problem.
 display file and directory.</quote>
 </para>
@@ -1599,7 +1714,7 @@ Here are a few possibilities:
 		<term>The Windows XP WebClient</term>
 		<listitem><para>
 		A number of sites have reported similar slow network browsing problems and found that when
-		the WebClient service is turned off, the problem dissapears. This is certainly something
+		the WebClient service is turned off, the problem disappears. This is certainly something
 		that should be explored as it is a simple solution &smbmdash; if it works.
 		</para></listitem>
 	</varlistentry>
@@ -1620,7 +1735,7 @@ Here are a few possibilities:
 		<term>Incorrect DNS Configuration</term>
 		<listitem><para>
 		If use of NetBIOS over TCP/IP is disabled, Active Directory is in use and the DNS server
-		has been incorrectly configured. Refer <link linkend="adsdnstech"/> for more information.
+		has been incorrectly configured. Refer <link linkend="adsdnstech">DNS and Active Directory</link> for more information.
 		</para></listitem>
 	</varlistentry>
 </variablelist>

@@ -20,7 +20,7 @@ also.
 <para>
 When MS Windows NT 3.5 was introduced, the hot new topic was the ability to implement
 Group Policies for users and groups. Then along came MS Windows NT4 and a few sites
-started to adopt this capability. How do we know that? By the number of <quote>booboos</quote>
+started to adopt this capability. How do we know that? By the number of <quote>boo-boos</quote>
 (or mistakes) administrators made and then requested help to resolve.
 </para>
 
@@ -348,9 +348,9 @@ Common restrictions that are frequently used include:
 </para>
 
 <para>
-Samba-3.0.0 doe not yet implement all account controls that are common to MS Windows NT4/200x/XP.
+Samba-3.0.0 does not yet implement all account controls that are common to MS Windows NT4/200x/XP.
 While it is possible to set many controls using the Domain User Manager for MS Windows NT4, only password
-expirey is functional today. Most of the remaining controls at this time have only stub routines
+expiry is functional today. Most of the remaining controls at this time have only stub routines
 that may eventually be completed to provide actual control. Do not be misled by the fact that a
 parameter can be set using the NT4 Domain User Manager or in the <filename>NTConfig.POL</filename>.
 </para>
@@ -366,7 +366,7 @@ environment.
 </para>
 
 	<sect2>
-	<title>Samba Editreg Toolset</title>
+	<title>Samba Editreg Tool-set</title>
 
 	<para>
 <indexterm><primary>editreg</primary></indexterm>

@@ -79,7 +79,7 @@ Control network. Domain Membership has many advantages:
 	Network administrators gain better application and user access management
 	abilities because there is no need to maintain user accounts on any network
 	client or server, other than the central Domain database 
-	(either NT4/Samba SAM style Domain, NT4 Domain that is backended with an
+	(either NT4/Samba SAM style Domain, NT4 Domain that is backend-ed with an
 	LDAP directory, or via an Active Directory infrastructure).
 	</para></listitem>
 </itemizedlist>
@@ -435,7 +435,7 @@ with the version of Windows.
 	<title>Samba Client</title>
 
 	<para>Joining a Samba client to a domain is documented in 
-	<link linkend="domain-member-server"></link>.
+	<link linkend="domain-member-server">Domain Member Server</link>.
 	</para>
 </sect3>
 
@@ -471,7 +471,7 @@ authentication handling in place of what Samba is designed to do.
 </note></para>
 
 <para>
-Please refer to <link linkend="samba-pdc"></link>, for more information regarding
+Please refer to <link linkend="samba-pdc">Domain Control</link>, for more information regarding
 how to create a domain machine account for a Domain Member server as well as for
 information on how to enable the Samba Domain Member machine to join the domain
 and be fully trusted by it.
@@ -480,7 +480,7 @@ and be fully trusted by it.
 <sect2>
 <title>Joining an NT4-type Domain with Samba-3</title>
 
-<para><link linkend="assumptions"/> lists names that have been used in the remainder of this chapter.</para>
+<para><link linkend="assumptions">Next table</link> lists names that have been used in the remainder of this chapter.</para>
 
 <table frame="all" id="assumptions"><title>Assumptions</title>
 	<tgroup cols="2">
@@ -537,7 +537,7 @@ This is the name of the domain we are joining.
 <para>
 You must also have the parameter <smbconfoption><name>encrypt passwords</name></smbconfoption>
 set to <constant>yes</constant> in order for your users to authenticate to the NT PDC.
-This is the defaulty setting if this parameter is not specified. There is no need to specify this
+This is the default setting if this parameter is not specified. There is no need to specify this
 parameter, but if it is specified in the &smb.conf; file, it must be set to <constant>Yes</constant>.
 </para>
 
@@ -665,7 +665,7 @@ NT server in the same way as a Windows 95 or Windows 98 server would.
 </para>
 
 <para>
-Please refer to <link linkend="winbind"></link>, for information on a system
+Please refer to <link linkend="winbind">Winbind: Use of Domain Accounts</link> chapter, for information on a system
 to automatically assign UNIX UIDs and GIDs to Windows NT Domain users and groups.
 </para>
 
@@ -758,12 +758,21 @@ allows you to have local users not in the domain.
 <para>
 <indexterm><primary>/etc/krb5.conf</primary></indexterm>
 <indexterm><primary>Kerberos</primary><secondary>/etc/krb5.conf</secondary></indexterm>
-With both MIT and Heimdal Kerberos, this is unnecessary, and may be detrimental. All ADS
-domains will automatically create SRV records in the DNS zone <?latex \linebreak ?><parameter>_kerberos.REALM.NAME</parameter> for
-each KDC in the realm. MIT's, as well as Heimdal's, KRB5 libraries default to checking
-for these records, so they will automatically find the KDCs. In addition,
-<filename>krb5.conf</filename> only allows specifying a single KDC, even there if there is more
-than one. Using the DNS lookup allows the KRB5 libraries to use whichever KDCs are available.
+With both MIT and Heimdal Kerberos, it is unnecessary to configure the 
+<filename>/etc/krb5.conf</filename>, and it may be detrimental.
+</para>
+
+<para>
+Microsoft Active Directory servers automatically create SRV records in the DNS zone 
+<parameter>_kerberos.REALM.NAME</parameter> for each KDC in the realm. This is part
+of the installation and configuration process used to create an Active Directory Domain.
+</para>
+
+<para>
+MIT's, as well as Heimdal's, recent KRB5 libraries default to checking for SRV records, so they will 
+automatically find the KDCs. In addition, <filename>krb5.conf</filename> only allows specifying 
+a single KDC, even there if there may be more than one. Using the DNS lookup allows the KRB5 
+libraries to use whichever KDCs are available.
 </para>
 
 <para>
@@ -850,8 +859,9 @@ its NetBIOS name. If you do not get this correct then you will get a
 
 <para>
 If all you want is Kerberos support in &smbclient; then you can skip
-directly to <link linkend="ads-test-smbclient"/> now. 
-<link linkend="ads-create-machine-account"/> and <link linkend="ads-test-server"/>
+directly to <link linkend="ads-test-smbclient">Testing with &smbclient;</link> now. 
+<link linkend="ads-create-machine-account">Create the Computer Account</link> and 
+<link linkend="ads-test-server">Testing Server Setup</link>
 are needed only if you want Kerberos support for &smbd; and &winbindd;.
 </para>
 
@@ -894,7 +904,7 @@ under the organizational directory <quote>Computers\BusinessUnit\Department</quo
 <variablelist>
 	<varlistentry><term><errorname>ADS support not compiled in</errorname></term>
 	<listitem><para>Samba must be reconfigured (remove config.cache) and recompiled
-	(make clean all install) after the Kerberos libiraries and headers files are installed.
+	(make clean all install) after the Kerberos libraries and headers files are installed.
 	</para></listitem></varlistentry>
 
 	<varlistentry><term><errorname>net ads join prompts for user name</errorname></term>
