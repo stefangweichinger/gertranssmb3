@@ -62,7 +62,7 @@ sehen Sie
 		im Ordner <quote>System Setup</quote> folder.</para>
 
 		<para>Das Hinzufügen des <quote>NetBIOS über TCP/IP</quote>-Treibers wird nicht
-		im Handbuch beschrieben und auch nur von der Online-Dokumentation gestreift.
+		im Handbuch beschrieben und auch von der Online-Dokumentation nur gestreift.
 		Starten Sie <command>MPTS.EXE</command>, klicken Sie auf <guiicon>OK</guiicon>,
 		dann <guimenu>Configure LAPS</guimenu>, und auf 
 		<guimenu>IBM OS/2 NETBIOS OVER TCP/IP</guimenu> unter <guilabel>Protocols</guilabel>.
@@ -100,7 +100,7 @@ sehen Sie
 		
 		<para>bevor Sie den Client installieren. 
 		Verwenden Sie den inkludierten NE2000-Treiber NICHT, da er fehlerhaft ist.
-		Versuchen Sie anstattdessen den NE2000- oder NS2000-Treiber von
+		Versuchen Sie stattdessen den NE2000- oder NS2000-Treiber von
 		<ulink noescape="1" url="ftp://ftp.cdrom.com/pub/os2/network/ndis/">
  		ftp://ftp.cdrom.com/pub/os2/network/ndis/</ulink>.
 		</para>
@@ -132,7 +132,7 @@ sehen Sie
 		<para>Sie können in dieser Datei mehrere Treiberzuweisungen vornehmen.</para>
 	
 		<para>Wenn Sie nur den OS/2-Treibernamen angeben, aber nicht den device-Namen,
-		wird der erste Versuch zwar die Dateien laden, aber der OS/2-Client wird melden,
+		werden im ersten Versuch zwar die Dateien geladen, aber der OS/2-Client wird melden,
 		daß der Treiber nicht verfügbar ist. Im zweiten Anlauf wird es funktionieren.
 		Dies kann durch einfaches Hinzufügen des device-Namens behoben werden, wonach
 		es schon beim ersten Versuch funktioniert.
@@ -175,7 +175,7 @@ Neue Dateien sind
 Windows for Workgroups arbeitet lausig, wenn es um Passwörter geht.
 Wenn Sie Passwörter auf entweder der UNIX-Box oder dem PC ändern, ist es am sichersten, die
 .pwl-Dateien im Windows-Verzeichnis zu löschen. Der PC wird sich darüber beschweren, diese Dateien
-nicht zu finden, sich aber bald damit abfinden, und Ihnen erlauben, das neue Passwort einzugeben.
+nicht zu finden, sich aber bald damit abfinden und Ihnen erlauben, das neue Passwort einzugeben.
 </para>
 
 <para> 
@@ -246,7 +246,7 @@ er den Wert von 3072 auf 8192 erhöht hat.
 
 <para>
 Bei der Verwendung von Windows 95 OEM SR2 werden folgende Updates empfohlen,
-wenn Samba eingesetzt wird. Bitte beachten Sie, daß obige Änderung Sie betreffen wird, sobald
+wenn Samba eingesetzt wird. Bitte beachten Sie, daß Sie obige Änderung betreffen wird, sobald
 diese Updates installiert worden sind.
 </para>
 
@@ -299,7 +299,7 @@ den Parameter <smbconfoption><name>nt acl support</name><value>no</value></smbco
 die Freigabe gesetzt haben, die die Roaming-Profile beinhaltet. Wenn dies nicht erfolgt, wird sich
 der Windows 2000 SP2 Client darüber beschweren, daß er nicht imstande ist, auf das Profil
 zuzugreifen (Access Denied) und mehrfach Kopien davon auf der Platte anlegen (DOMAIN.user.001,
-DOMAIN.user.002, and so on). Lesen Sie in der manpage zu &smb.conf; mehr über diesen Parameter.
+DOMAIN.user.002, und so weiter). Lesen Sie in der Manpage zu &smb.conf; mehr über diesen Parameter.
 Beachten Sie auch, daß der Parameter <smbconfoption><name>nt acl support</name></smbconfoption>
 in Releases vor Samba 2.2.2 formal ein globaler Parameter war.
 </para>
