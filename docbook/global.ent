@@ -157,7 +157,7 @@
 <!ENTITY person.sgw '
 <firstname>Stefan</firstname><othername>G.</othername><surname>Weichinger</surname><othername></othername>
 <affiliation>
-        <orgname>The German Samba 3.0 Translation Team</orgname>
+        <orgname>German Samba-3-Docs-Translation Team</orgname>
         <address><email>monitor@oops.co.at</email></address>
 </affiliation>'>
 
@@ -166,7 +166,7 @@
 <!ENTITY person.hba '
 <firstname>Hendrik</firstname><othername></othername><surname>B&auml;cker</surname><othername></othername>
 <affiliation>
-        <orgname>The German Samba 3.0 Translation Team</orgname>
+        <orgname>German Samba-3-Docs-Translation Team</orgname>
         <address><email>h_baecker@gmx.net</email></address>
 </affiliation>'>
 
@@ -175,7 +175,7 @@
 <!ENTITY person.yoshi '
 <firstname>Jochen</firstname><othername>Yoshi</othername><surname>Schmidt</surname>
 <affiliation>
-        <orgname>The German Samba 3.0 Translation Team</orgname>
+        <orgname>German Samba-3-Docs-Translation Team</orgname>
         <address><email>jochen.schmidt@millenux.com</email></address>
 </affiliation>'>
 
@@ -184,7 +184,7 @@
 <!ENTITY person.rruegner '
 <firstname>Robert</firstname><othername>robowarp</othername><surname>Ruegner</surname>
 <affiliation>
-        <orgname>The German Samba 3.0 Translation Team</orgname>
+        <orgname>German Samba-3-Docs-Translation Team</orgname>
         <address><email>robowarp@gmx.de</email></address>
 </affiliation>'>
 
