@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
 <chapter id="install">
 <chapterinfo>
 	&author.tridge;
@@ -5,57 +6,62 @@
 	&author.jht;
 	&author.kauer;
 	&author.danshearer;
+	<author>&person.hba;<contrib>German Translator</contrib></author>
 	<!-- Isn't some of this written by others as well? -->
 
 </chapterinfo>
 
-<title>How to Install and Test SAMBA</title>
+<title>Wie man Samba installiert und testet</title>
 
 <sect1>
-	<title>Obtaining and Installing Samba</title>
+	<title>Wie man Samba bekommt und installiert</title>
 
 	<para>
-	Binary packages of Samba are included in almost any Linux or
-	UNIX distribution. There are also some packages available at 
-	<ulink url="http://samba.org/">the Samba homepage</ulink>. Refer to 
-	the manual of your operating system for details on installing packages 
-	for your specific operating system.
+	Binär Pakete von Samba gibt es mittlerweile in fast jeder
+	Linux oder Unix Distribution. Auch gibt es einige Pakete
+	auf <ulink url="http://samba.org/">der Samba Homepage</ulink>.
+	Lesen Sie bitte in der Bedienungsanleitung ihres Betriebsystems
+	nach wie Sie auf ihrem System Samba installieren können.
 	</para>
 
-	<para>If you need to compile Samba from source, check 
-	<link linkend="compiling"></link>.</para>
+	<para>Wenn Sie Samba von den Quelldateien selbst installieren
+	möchten, bekommen Sie <link linkend="compiling">hier</link>
+	weitere Informationen.</para>
 
 </sect1>
 
 <sect1>
-	<title>Configuring Samba (smb.conf)</title>
+	<title>Samba konfigurieren (smb.conf)</title>
 
 	<para>
-	Samba's configuration is stored in the &smb.conf; file, which
-	usually resides in <filename>/etc/samba/smb.conf</filename> 
-	or <filename>/usr/local/samba/lib/smb.conf</filename>. You can either 
-	edit this file yourself or do it using one of the many graphical 
-	tools that are available, such as the Web-based interface SWAT, that 
-	is included with Samba.
+	Die Samba konfiguration wird in der &smb.conf; vorgenommen die
+	Sie üblicherweise in <filename>/etc/samba/smb.conf</filename> oder
+	<filename>/usr/local/samba/lib/smb.conf</filename> finden.
+	Sie können diese Datei selbst editieren oder eines der vielen
+	grafischen Oberflächen wie das Webbasierte SWAT nutzen, welches
+	mit Samba mitgeliefert wird.
 	</para>
 
 	<sect2>
-	<title>Configuration file syntax</title>
+	<title>Die Syntax der Konfiguration</title>
 
-	<para>The &smb.conf; file uses the same syntax as the various old 
-	.ini files in Windows 3.1: Each file consists of various sections, 
-	which are started by putting the section name between brackets ([]) 
-	on a new line. Each contains zero or more key/value-pairs seperated by an 
-	equality sign (=). The file is just a plain-text file, so you can 
-	open and edit it with your favorite editing tool.</para>
+	<para>Die &smb.conf; nutzt nahezu die gleiche Syntax wie die
+	verschiedenen .ini Dateien von Windows 3.1: Jede Datei enthält
+	verschiedene Sektionen wobei jede dieser Sektionen durch Klammern
+	([]) getrennt sind. Jede Sektion besteht aus keinem oder mehreren
+	Schlüssel/Wert paaren die durch das Gleichheitszeichen (=)
+	miteinander verbunden werden. Dies ist eine Klartext ASCII Datei,
+	die Sie mit ihrem Lieblings Editor bearbeiten können.
+	</para>
 
-	<para>Each section in the &smb.conf; file represents a share 
-	on the Samba server. The section <quote>global</quote> is special, since it 
-	contains settings that apply to the whole Samba server and not 
-	to one share in particular.</para>
+	<para>Jede Sektion der &smb.conf; Datei repräsentiert eine Freigabe
+	auf dem Samba Server bis auf die <quote>global</quote>, dies ist
+	eine spezielle Sektion da sie Einstellungen enthält die den gesamten
+	Samba Server beeinflussen und nicht nur einzelne Freigaben.
+	</para>
 
-<para><link linkend="smbconfminimal"/> contains a very minimal &smb.conf;.
-	<indexterm><primary>minimal configuration</primary></indexterm>
+<para><link linkend="smbconfminimal"/> enthält eine sehr kleine &smb.conf;.
+	<indexterm><primary>Minimal Konfiguration</primary></indexterm>
 </para>
 
 	<smbconfexample id="smbconfminimal">
@@ -120,16 +126,16 @@
 	</para>
 
 </sect2>
-	
+
 <sect2>
 	<title>Example Configuration</title>
-	
+
 	<para>
 	There are sample configuration files in the examples subdirectory in the
 	distribution. It is suggested you read them carefully so you can see how the options
-	go together in practice. See the man page for all the options. 
-	It might be worthwhile to start out with the smb.conf.default 
-	configuration file and adapt it to your needs. It contains plenty of 
+	go together in practice. See the man page for all the options.
+	It might be worthwhile to start out with the smb.conf.default
+	configuration file and adapt it to your needs. It contains plenty of
 	comments.
 	</para>
 
@@ -150,21 +156,21 @@
 <smbconfoption><name>read only</name><value>no</value></smbconfoption>
 	</smbconfexample>
 	</para>
-	
+
 	<para>
 	This will allow connections by anyone with an account on the server, using either
 	their login name or <smbconfsection>homes</smbconfsection> as the service name.
 	(Note: The workgroup that Samba should appear in must also be set. The default
 	workgroup name is WORKGROUP.)
 	</para>
-	
+
 	<para>
 	Make sure you put the &smb.conf; file in the correct place.
 	</para>
 
 	<para>
-	For more information about security settings for the 
-	<smbconfsection>[homes]</smbconfsection> share please refer to 
+	For more information about security settings for the
+	<smbconfsection>[homes]</smbconfsection> share please refer to
 	<link linkend="securing-samba"></link>.
 	</para>
 
@@ -174,17 +180,17 @@
 	<para>
 	It's important to validate the contents of the &smb.conf; file using the &testparm; program.
 	If testparm runs correctly, it will list the loaded services. If not, it will give an error message.
-	Make sure it runs correctly and that the services look reasonable before proceeding. Enter the command: 
+	Make sure it runs correctly and that the services look reasonable before proceeding. Enter the command:
 	</para>
 
 	<screen>
 	&rootprompt; testparm /etc/samba/smb.conf
 	</screen>
 
-	<para>Testparm will parse your configuration file and report 
+	<para>Testparm will parse your configuration file and report
 	any unknown parameters or incorrect syntax. </para>
 
-	
+
 
 	<para>
 	Always run testparm again whenever the &smb.conf; file is changed!
@@ -198,9 +204,9 @@
 
 	<para>
 	<indexterm><primary>swat</primary></indexterm>
-	SWAT is a Web-based interface that can be used to facilitate the configuration of Samba. 
-	SWAT might not be available in the Samba package that shipped with your platform, 
-	but in a separate package. Please read the SWAT manpage 
+	SWAT is a Web-based interface that can be used to facilitate the configuration of Samba.
+	SWAT might not be available in the Samba package that shipped with your platform,
+	but in a separate package. Please read the SWAT manpage
 	on compiling, installing and configuring SWAT from source.
 	</para>
 
@@ -213,7 +219,7 @@
 
 	<para>
 	SWAT can be used from a browser on any IP-connected machine, but be aware that connecting from a remote
-	machine leaves your connection open to password sniffing as passwords will be sent over the wire in the clear. 
+	machine leaves your connection open to password sniffing as passwords will be sent over the wire in the clear.
 	</para>
 
 	<para>More information about SWAT can be found in <link linkend="SWAT"/>.</para>
@@ -235,7 +241,7 @@
 </screen></para>
 
 	<para>You should see a list of shares available on your server. If you do not, then
-	something is incorrectly configured. This method can also be used to see what shares 
+	something is incorrectly configured. This method can also be used to see what shares
 	are available on other SMB servers, such as Windows 2000.</para>
 
 	<para>If you choose user-level security you may find that Samba requests a password
@@ -246,13 +252,13 @@
 
 <sect1>
 	<title>Connect with a UNIX Client</title>
-	
+
 	<para>
 	Enter the following command:
 <screen>
 &prompt;<userinput>smbclient <replaceable> //yourhostname/aservice</replaceable></userinput>
 </screen></para>
-	
+
 	<para>Typically <replaceable>yourhostname</replaceable> is the name of the host on which &smbd;
 	has been installed. The <replaceable>aservice</replaceable> is any service that has been defined in the &smb.conf;
 	file. Try your user name if you just have a <smbconfsection>[homes]</smbconfsection> section in the &smb.conf; file.</para>
@@ -268,9 +274,9 @@
 <sect1>
 	<title>Connect from a Remote SMB Client</title>
 
-	<para>Now that Samba is working correctly locally, you can try to 
-	access it from other clients. Within a few minutes, the Samba host 
-	should be listed in the Network Neighborhood on all Windows 
+	<para>Now that Samba is working correctly locally, you can try to
+	access it from other clients. Within a few minutes, the Samba host
+	should be listed in the Network Neighborhood on all Windows
 	clients of its subnet. Try browsing the server from another client
 	or 'mounting' it.</para>
 
@@ -294,7 +300,7 @@
 
 <sect1>
 	<title>What If Things Don't Work?</title>
-	
+
 	<para>You might want to read <link linkend="diagnosis"></link>.
 	If you are still stuck, refer to <link linkend="problems"></link>.
 	Samba has been successfully installed at thousands of sites worldwide.
@@ -360,7 +366,7 @@ run in <emphasis>split mode</emphasis> (in which case there will be two instance
 			<listitem><para>You specified an nonexisting path
 			for the share in &smb.conf;.</para></listitem>
 
-			<listitem><para>The user you are trying to access the share with does not 
+			<listitem><para>The user you are trying to access the share with does not
 			have sufficient permissions to access the path for
 			the share. Both read (r) and access (x) should be possible.</para></listitem>
 
