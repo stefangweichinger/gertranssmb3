@@ -210,7 +210,7 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbruecken.
 			<indexterm><primary>Laufwerks Bezeichnung</primary></indexterm>
 		In MS Windows werden verschiedene Festplatten Partitionen mit Buchstaben belegt.<command>C:</command>
 		Es gibt unter UNIX kein aehnliches Konzept, Festplatten Teile ( Partitionen ) werden eingebunden 
-		( gemounted ) als Teil des Dateisystems. Was unter DOS <constant>C:\</constant> ist wäre unter UNIX einfach 
+		( gemounted ) als Teil des Dateisystems. Was unter DOS <constant>C:\</constant> ist w&auml;re unter UNIX einfach 
 		( root = Wurzel des Dateisystembaumes )<constant>/</constant>.
 		</para>
 			</listitem>
