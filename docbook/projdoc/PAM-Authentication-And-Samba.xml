@@ -16,15 +16,11 @@
 
 <para>
 Dieses Kapitel hilft Ihnen bei der Verwendung von Winbind basierender Authentifikation auf jedem PAM fähigen 
-UNIX/Linux System. Winbind kann verwendet werden um User-Level APPLICATION ACCESS Authentifizierung von jeder
+UNIX/Linux System. Winbind kann verwendet werden um Programm Zugriffs Authentifizierung auf Benutzerniveau von jeder
 MS Windows NT Domäne, MS Windows 200x Active Director-basierden Domäne oder einer Samba-basierten Domänen
 Umgebung zu erlauben.
 
-Winbind can be used to enable User-Level application access authentication
-from any MS Windows NT Domain, MS Windows 200x Active Directory-based
-domain, or any Samba-based domain environment. 
-
-Es sollte ihnen auch helfen PAM-basierte lokale host Zugriffs Kontrollen, die ihrer Samba Konfiguration entsprechen,
+Es sollte ihnen auch helfen PAM-basierte lokale Host Zugriffs Kontrollen, die ihrer Samba Konfiguration entsprechen,
 zu konfigurieren.
 </para>
 
@@ -79,7 +75,7 @@ PAM unterstützte Module sind vorhanden für:
 		<para>
 		Das <filename>pam_krb5.so</filename> Modul erlaubt die Nutzung von jedem Kerberos fähigem Server.
 		Dieses Tool kann mit MIT Kerberos, Heimdal Kerberos, und möglicherweise mit Microsoft Active Directory
-		(fals eingeschaltet) benutzt werden.
+		(falls eingeschaltet) benutzt werden.
 		</para>
 	</listitem></varlistentry>
 
@@ -101,7 +97,7 @@ PAM unterstützte Module sind vorhanden für:
 	<varlistentry><term>SMB Password</term><listitem>
 		<para>
 		Dieses Modul, namentlich <filename>pam_smbpass.so</filename>, erlaubt die Benutzerauthentifizierung
-		mit dem passdb Backend dass in der &smb.conf; file angegeben ist.
+		mit dem passdb Backend, dass in der &smb.conf; file angegeben ist.
 		</para>
 	</listitem></varlistentry>
 
@@ -139,19 +135,19 @@ zur Verfügung.
 Einmal konfiguriert erlauben diese Module eine bemerkenswerte Stufe an Flexibilität und 
 die Benutzung von verteilten Samba Domänen Kontrollern die wiederum eine effiziente 
 Ausnutzung der Bandbreite in grossen Netzwerken mit PAM-fähigen Systemen erlauben.
-Richtig eintesetzt, erlaubt dies eine zentrale Administration einer verteilten 
+Richtig eingesetzt, erlaubt dies eine zentrale Administration einer verteilten 
 Authentifizierung von einer Einzelbenutzer Datenbank aus.  
 </para>
 
 </sect1>
 
 <sect1>
-<title>TECHNICAL DISCUSSION</title>
+<title>Technische Ausarbeitung</title>
 
 <para>
-Pam wurde entworfen um dem Systemverwalter eine grosse Flexibilität in der Konfiguration
-OF THE PRIVILEGE GRANTING APPLICATIONS OF THEIR SYSTEM. Die lokale Konfiguration der Systemsicherheit
-die von PAM überwacht wird ist in einem dieser zwei Orte: Entweder in der einzelnen System file
+Pam wurde entworfen um dem Systemverwalter eine grosse Flexibilität in der Konfiguration von
+Programmzugriffen auf das System zu geben. Die lokale Konfiguration der Systemsicherheit
+die von PAM überwacht wird ist in einem dieser zwei Orte: Entweder in der einzelnen System Datei
 <filename>/etc/pam.conf</filename>, oder dem  <filename>/etc/pam.d/</filename> Ordner
 </para>
 
@@ -163,7 +159,7 @@ In diesem Kapitel sehen wir uns die richtige Syntax und die verschiedenen Option
 Dateien an. Bei PAM spezifische Zeichen ist die Gross- und Kleinschreibung egal. Die Modul Pfade hingegen 
 sind empfindlich gegenüber der Gross- und Kleinschreibung, da sie auf Dateinamen
 verweisen und diese die Schreibweise des Dateisystems wiedergeben. 
-Die Empfindlichkeit der Argument der einzelnen Module gegenüber der Gross- und Kleinschreibung wird für jedes Modul
+Die Empfindlichkeit der Argumente der einzelnen Module gegenüber der Gross- und Kleinschreibung wird für jedes Modul
 eigens festgelegt.
 </para>
 
@@ -222,7 +218,7 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 		<para>
 		Es gibt einen speziellen Dienst Namen der für einen standard authentifizierungs Mechanismus reserviert ist,
 		und zwar mit dem Namen <parameter>OTHER</parameter>, wobei es egal ist ob man ihn gross- oder kleinschreibt.
-		Beachten Sie, dass falls bereits ein ein Modul für einen Dienst namentlich angegeben ist dieser Parameter
+		Beachten Sie, dass, falls bereits ein Modul für einen Dienst namentlich angegeben ist, dieser Parameter
 		ignoriert wird.
 		</para>
 		</listitem>
@@ -237,7 +233,7 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 			<listitem><para>
 			<parameter>auth:</parameter> 
 			Dieser Modul Typ stellt zwei Aspekte der Benutzerauthentifizierung zur Verfügung.
-			Erstens wird festgestellt, dass der Benutzer der ist, der er angibt zu sein indem der Benutzer von 
+			Erstens wird festgestellt, dass der Benutzer der ist der er angibt zu sein, indem er von 
 			der Applikation aufgefordert wird ein Password anzugeben oder sich sonst irgendwie zu authentifizieren.
 			Zweitens kann dieses Modul Gruppenzugehörigkeiten erlauben (unabhängig vom Inhalt von <filename>/etc/groups
 			</filename> welche oben behandelt wurde) oder andere Privilegien durch seine CREDENTIAL GRANTING PROPERTIES:
@@ -247,13 +243,13 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 
 			<listitem><para>
 			<parameter>account:</parameter> Dieses Modul führt nicht-authentifizierungs-basiertes Benutzermanagement aus.
-			Normalerweise wird es benutzt um den Zugang zu Diensten aufgrund der Tageszeit, momentan verfügbaren System
-			ressourcen (maximale gleichzeitige Benutzer) oder vielleicht der Lage des <quote>root</quote> Logins auf der Konsole zu
+			Normalerweise wird es benutzt um den Zugang zu Diensten aufgrund der Tageszeit, momentan verfügbaren Systemressourcen
+			(maximale gleichzeitige Benutzer) oder vielleicht der Lage des <quote>root</quote> Logins auf der Konsole zu
 			erlauben oder verweigern.
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>session:</parameter> Dieses Modul wird vor allem dazu verwendet um festzulegen was ausgeführt
+			<parameter>session:</parameter> Dieses Modul wird vor allem dazu verwendet um festzulegen, was ausgeführt
 			werden sollte bevor ein Benutzer einen Dienst benutzt oder beendet. Dies könnte zum Beispiel das Aufzeichnen
 			von Information bezüglich dem Datenaustausch mit dem Benutzer oder das mounten von Ordnern usw. sein.
 			</para></listitem>
@@ -644,14 +640,11 @@ Passwort Verschlüsselung verwendet wird.
 <title>Entfernte CIFS Authentifizierung mit<filename>winbindd.so</filename></title>
 
 <para>
-??Alle Betriebssysteme hängen von einer Bestimmung des Benutzers zu der jeweiligen Platform ab.??
-UNIX benutzt dazu die übergabe eines "User Identifier" (UID) sowie ein "Group Identifier" (GID).
-Dies sind beides Nummern vom Typ integer die von einem Password BACKEND wie <filename>/etc/passwd</filename>
-erhalten werden.
 All operating systems depend on the provision of users credentials acceptable to the platform.
-UNIX requires the provision of a user identifier (UID) as well as a group identifier (GID).
-These are both simple integer type numbers that are obtained from a password backend such
-as <filename>/etc/passwd</filename>.
+??Alle Betriebssysteme hängen von einer Bestimmung des Benutzers zu der jeweiligen Plattform ab.??
+UNIX benutzt dazu die Übergabe eines "User Identifier" (UID) sowie eines "Group Identifier" (GID).
+Dies sind beides Nummern vom Typ Integer die von einem Password BACKEND wie <filename>/etc/passwd</filename>
+erhalten werden.
 </para>
 
 <para>
@@ -664,7 +657,10 @@ Benutzer und Gruppen IDs. Dies ist eine der Aufgaben die Winbind ausführt.
 <para>
 Sowie Winbind Benutzer und Gruppen von einem Server aufgelöst werden, werden Benutzer
 und Gruppen IDs aus einer bestimmten Gruppe von Zahlen ermittelt. Diese werden auf einer
-"wer zuerst kommt, kriegt zuerst" Basis verteilt.
+"wer zuerst kommt, kriegt zuerst" Basis verteilt, auch wenn alle bestehenden Benutzer und
+Gruppen WILL BE MAPPED sobald ein Client einen Befehl zur Auflistung der Benutzer und 
+Gruppen gibt. Die zugeteilten UNIX IDs werden in einer Datenbank Datei im Samba Lock Verzeichniss
+gespeichert um sie nachher wiederverwenden können.
 
 This is done on a first come, first served basis, although all
 existing users and groups will be mapped as soon as a client performs a user or  group 
@@ -673,31 +669,31 @@ lock directory and will be remembered.
 </para>
 
 <para>
-The astute administrator will realize from this that the combination of <filename>pam_smbpass.so</filename>, 
-<command>winbindd</command> and a distributed <smbconfoption><name>passdb backend</name><value></value></smbconfoption>,
-such as <parameter>ldap</parameter>, will allow the establishment of a centrally managed, distributed user/password
-database that can also be used by all PAM-aware (e.g., Linux) programs and applications. This arrangement can have
-particularly potent advantages compared with the use of Microsoft Active Directory Service (ADS) in so far as
-the reduction of wide area network authentication traffic.
+Aufmerksame Administratoren werden bemerkt haben dass die Kombination von <filename>pam_smbpass.so</filename>, 
+<command>winbindd</command> und einem verteilten <smbconfoption><name>passdb backend</name><value></value></smbconfoption>
+wie  <parameter>ldap</parameter>die Einrichtung einer zentral verwalteten, verteilten Benutzer/Passwort Datenbak 
+erlaubt welche von allen PAM-fähigen (d.h. Linux) Programmen und Anwendungen verwendet werden kann. 
+Dieses System kann grosse Vorteile im Vergleich zu Microsofts Active Directory Service (ADS) haben da es
+den Authentifizierungs Verkehr in grossen Netzwerken reduziert.
 </para>
 
 <warning><para>
-The RID to UNIX ID database is the only location where the user and group  mappings are 
-stored by <command>winbindd</command>. If this file is deleted or corrupted, there is no way for <command>winbindd</command>
-to determine which user and group IDs correspond to Windows NT user and group RIDs.
+Die RID zu UNIX ID Datenbank ist der einzige Ort wo die Benutzer und Gruppen ??Umwandlung?? von 
+<command>winbindd</command> gespeichert wird. Wenn diese Datei gelöscht oder kompromittiert wird gibt
+es keinen Weg für <command>winbindd</command> herauszufinden welche Benutzer und Gruppen ID zu welcher Windows NT
+Benutzer oder Gruppe RID gehört.
 </para></warning>
 
 </sect2>
 
 <sect2>
-<title>Password Synchronization Using <filename>pam_smbpass.so</filename></title>
+<title>Passwort Synchronisation mit <filename>pam_smbpass.so</filename></title>
 
 <para>
-<filename>pam_smbpass</filename> is a PAM module that can be used on conforming systems to
-keep the <filename>smbpasswd</filename> (Samba password) database in sync with the UNIX
-password file. PAM (Pluggable Authentication Modules) is an API supported
-under some UNIX operating systems, such as Solaris, HPUX and Linux, that provides a
-generic interface to authentication mechanisms.
+<filename>pam_smbpass</filename>ist ein PAM Modul das auf entsprechenden Systemen dazu verwendet werden kann
+die <filename>smbpasswd</filename> (Samba Passwort) Datenbank mit der UNIX Passwort Datei laufend zu synchronisieren.
+PAM (Pluggable Athentication Modules) ist eine unter manchen UNIX Betriebssystemen wie Solaris, HPUX und Linux
+unterstützte API welche den Authentifizierungsmechanismen eine generische Schnittstelle zur Verfügung stellt.
 </para>
 
 <para>
