@@ -5,7 +5,7 @@
 	<author>&person.jelmer;<contrib>drawing</contrib></author>
 	<pubdate>May 10, 2003</pubdate>
 </chapterinfo>
-<title>Kapitel 13 Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle uebersetzt von Robert Ruegner robowarp@gmx.de</title>
+<title>Kapitel 13 Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle</title>
 
 <para>
 <indexterm><primary>ACLs</primary></indexterm>
@@ -216,7 +216,7 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbruecken.
 		</varlistentry>
 
 		<varlistentry>
-			<term>File Naming Conventions</term>
+			<term>Datei Namenskonvention</term>
 			<listitem>
 		<para>
 			<indexterm><primary>Datei Namenskonvention</primary></indexterm>
@@ -228,36 +228,35 @@ erst die Unterschiede erklaeren und dann wie Samba hilft dies zu ueberbruecken.
 		</varlistentry>
 
 		<varlistentry>
-			<term>Links and Short-Cuts</term>
+			<term>Verknuepfungen und Verkuerzungen</term>
 			<listitem>
 		<para>
 		<indexterm><primary>Links</primary><secondary>hard</secondary></indexterm>
 		<indexterm><primary>Links</primary><secondary>soft</secondary></indexterm>
 		<indexterm><primary>Short-Cuts</primary></indexterm>
-		MS Windows make use of <quote>links and short-cuts</quote> that are actually special types of files that will
-		redirect an attempt to execute the file to the real location of the file. UNIX knows of file and directory
-		links, but they are entirely different from what MS Windows users are used to.
+		Unter Windows sind Verknuepfungen spezielle Dateitypen die zum verkuerzten Starten von Programmen in deren 
+		realen Ordner dienen. Auch unter UNIX gibt es Verknuepfungen und Verkuerzungen,
+		diese werden jedoch voellig unterschiedlich gehandhabt. 
 		</para>
 		<para>
-		Symbolic links are files in UNIX that contain the actual location of the data (file or directory). An
-		operation (like read or write) will operate directly on the file referenced. Symbolic links are also
-		referred to as <quote>soft links.</quote> A hard link is something that MS Windows is not familiar with. It allows
-		one physical file to be known simultaneously by more than one file name.
+		Symbolische Verknuepfungen unter UNIX halten die aktuellen Informationen von Dateien oder Verzeichnissen. 
+		Schreib und Lesezugriffe auf eine Verknuepfung verhalten sich genauso wie bei der orginalen Datei. 
+		Symbolische Verknuepfungen nennt man auch weiche Verknuepfungen. 
+		Harte Verknuepfungen kennt MS Windows nicht,
+		diese wuerden das Benutzen ein und derselben Datei unter mehreren Namen gleichzeitig ermoeglichen
 		</para>
 			</listitem>
 		</varlistentry>
 	</variablelist>
 
 	<para>
-	There are many other subtle differences that may cause the MS Windows administrator some temporary discomfort
-	in the process of becoming familiar with UNIX/Linux. These are best left for a text that is dedicated to the
-	purpose of UNIX/Linux training and education.
+	Es gibt noch viele Unterschiede die einem Windows Administrator unangenehm im Umgang mit UNIX sein koennten.
 	</para>
 
-	</sect2>
+	</sect2>Verwaltung von Verzeichnissen
 
 	<sect2>
-	<title>Managing Directories</title>
+	<title>naging Directories</title>
 
 	<para>
 	There are three basic operations for managing directories: <command>create, delete, rename</command>.
