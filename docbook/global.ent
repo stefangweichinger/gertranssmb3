@@ -12,6 +12,7 @@
 <!ENTITY email.hba     'h_baecker@gmx.net'>
 <!ENTITY email.yoshi   'jochen.schmidt@millenux.com'>
 <!ENTITY email.rruegner   'robowarp@gmx.de'>
+<!ENTITY email.flex    'erlacher@virgilio.it'>
 <!ENTITY email.gertrans	'gertranssmb3-users@lists.berlios.de'>
 
 <!-- Author entities -->
@@ -190,6 +191,15 @@
 </affiliation>'>
 
 <!ENTITY author.rruegner '<author>&person.rruegner;</author>'>
+
+<!ENTITY person.flex '
+<firstname>Felix</firstname><othername></othername><surname>Erlacher</surname>
+<affiliation>
+        <orgname>German Samba-3-Docs-Translation Team</orgname>
+        <address><email>erlacher@virgilio.it</email></address>
+</affiliation>'>
+
+<!ENTITY author.flex '<author>&person.flex;</author>'>
 
 <!ENTITY person.gertrans '
 <firstname>German</firstname><othername>Translation</othername><surname>Team</surname>
