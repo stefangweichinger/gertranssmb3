@@ -35,6 +35,7 @@ Bitte verwendet den "German Translator"-Eintrag, wir wollen nicht dadurch auffal
 
 ---
 
+------
 - Umlaute, Sonderzeichen
 
 Momentane Empfehlung ist, die deutschen Umlaute durch Verwendung von "ae", "oe" etc. abzubilden, um die Ueber setzung der xml-files in html etc. zu gewaehrleisten.
@@ -46,3 +47,36 @@ Wer files mit Umlauten liefert, muss sich im Klaren sein, dass es dann laenger d
 ---
 
 sgw, 18.11.2003
+
+------
+- !!! Update Sonderzeichen !!! WICHTIG !!!
+
+
+- Durch das Einfügen folgenden headers können Umlaute sowie ß, kurz
+der gesamte ISO-8859-1 Zeichensatz verwendet werden.
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+Dabei ist zu beachten, daß der verwendete Editor dies unterstützt.
+
+Beispiel vi(m):
+
+Check mittels
+
+:set encoding
+
+Setzen mittels
+
+:set encoding=latin1
+
+Wer (wie ich) per putty auf einer Linux-Maschine arbeitet, sollte
+darauf achten, daß auch das Terminal-Programm auf ISO-8859-1 arbeitet.
+
+Die erste derart formatierte Datei Speed.xml, Rev.1.8, hat sauber ins html
+übersetzt und zeigt die Umlaute korrekt an.
+
+(Siehe Testabschnitt vor dem Title ...)
+
+sgw, 18.11.2003
+
+------
