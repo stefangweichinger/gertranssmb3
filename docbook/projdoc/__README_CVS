@@ -1,0 +1,80 @@
+# Hendrik Bäcker 20.11.2003 - 21:41 Uhr
+# CVS Readme for Developer
+
+Um das CVS Repository vom CVS Server bei BerliOS zu bekommen ist zunächst ein sog. checkout des 
+repositorys durchzuführen.
+
+# Login am CVS Server von BerliOS
+ cvs -d:pserver:USERNAME@cvs.berlios.de:/cvsroot/gertranssmb3 login
+ Password: *******
+
+# Dieses Kommando holt das komplette Verzeichnis auf den lokalen Rechner 
+ cvs -d:pserver:hendrikb@cvs.berlios.de:/cvsroot/gertranssmb3 checkout gertranssmb3
+ 
+Nun kann man die Files nach belieben ändern. Nach jeder Änderung und ggf. auch zwischdurch ist es empfehlenswert
+die geänderte Datei wieder ins repository zu laden.
+
+# Hiermit wird überprüft ob nicht in der Zwischenzeit jemand anderes an der gleichen Datei gearbeitet hat:
+
+ cvs -d:pserver:hendrikb@cvs.berlios.de:/cvsroot/gertranssmb3 update PFAD_ZUR_GEÄNDERTEN_DATEI
+ Bsp: 	cvs -d:pserver:hendrikb@cvs.berlios.de:/cvsroot/gertranssmb3 update /
+ 	/data/gertranssmb3/docbook/projdoc/UNIX_INSTALL.xml
+ 
+ Hierbei kann es zu nicht unwichtigen Ausgaben kommen:
+ 
+ U UNIX_INSTALL.xml ==> Ein Update von jmd. anderem kam vom CVS Server in die lokale Kopie
+ M UNIX_INSTALL.xml ==> Die Datei wurde von einem selbst modifiziert und 
+ 			beinhaltet Änderungen die den anderen noch nicht sichtbar sind.
+ 
+ RCS file: /cvsroot/gertranssmb3/gertranssmb3/docbook/projdoc/UNIX_INSTALL.xml,v
+ retrieving revision 1.3
+ retrieving revision 1.4
+ Merging differences between 1.3 and 1.4 into UNIX_INSTALL.xml
+==> 	Hier ist nun das passiert was man als worse case bezeichnen könnte. Du und ein anderer haben 
+	ein und dieselbe Datei bearbeitet und auf den CVS Server gestellt.
+	CVS hat hierbei aber keine Textuellen Unterschiede feststellen können und beide Versionen zusammen gemischt.
+	Es liegt nun an dir zu gucken, ob die Änderungen noch funktionieren.
+ 
+ # Je nach Update Status kann man nun seine Änderungen auf den CVS Server bringen (commiten)
+ # Hier hat man noch die Möglichkeit einen Log-Eintrag zu erzeugen der die Änderung am File erläutert.
+ 
+  cvs -d:pserver:hendrikb@cvs.berlios.de:/cvsroot/gertranssmb3 commit PFAD_ZUR_GEÄNDERTEN_DATEI
+ 
+ Um den Weg einer Datei durch die verschiedenen Versionen zu verfolgen nutzt man folgendes:
+ 
+  cvs -d:pserver:hendrikb@cvs.berlios.de:/cvsroot/gertranssmb3 log PFAD_ZUR_GEÄNDERTEN_DATEI
+  
+ Die Änderungen die gemacht worden sind erfährt man mit:
+ 
+ cvs -d:pserver:hendrikb@cvs.berlios.de:/cvsroot/gertranssmb3 diff -c -r 1.3 -r 1.4 ./docbook/projdoc/UNIX_INSTALL.xml
+#######################################################################################################################
+# Index: ./docbook/projdoc/UNIX_INSTALL.xml
+# ===================================================================
+# RCS file: /cvsroot/gertranssmb3/gertranssmb3/docbook/projdoc/UNIX_INSTALL.xml,v
+# retrieving revision 1.3
+# retrieving revision 1.4
+# diff -c -r1.3 -r1.4
+# *** ./docbook/projdoc/UNIX_INSTALL.xml  2003/11/20 19:35:29     1.3
+# --- ./docbook/projdoc/UNIX_INSTALL.xml  2003/11/20 19:43:03     1.4
+# ***************
+# *** 271,276 ****
+# --- 271,277 ----
+#         befindet und <replaceable>aservice</replaceable> ist ein belieber Service den dieser Host zur Verfügung
+#         stellt. Versuchen Sie es mit ihrem Benutzernamen, wenn Sie eine Sektion 
+# 	  <smbconfsection>[homes]</smbconfsection>
+#         in der &smb.conf; haben.
+# +       </para>
+# 
+#         <para>Beispiel: Wenn der UNIX Host <replaceable>bambi</replaceable> heißt und ein gültiger Login Name
+#         <replaceable>fred</replaceable> ist könnten Sie folgendes schreiben:
+#######################################################################################################################
+
+-c = human readable
+-r 1.3 von Version 1.3
+-r 1.4 zu Version 1.4
+
+Hier kann man, nicht gerade einfach zu sehen aber immerhin, die gemachten Änderungen sehen.
+Mit "***" wird die alte Version gekennzeichnet.
+Am Beispiel kann man auch gut erkennen, dass </para> der neuen Version hinzugefügt wurde.
+
+Ich hoffe ich konnte mit dieser Readme ein wenig helfen.
