@@ -439,24 +439,22 @@ Dieser Passwort Server kann ein anderer Samba Server oder ein Windows NT Server 
 </para>
 
 <note><para>
-<!-- Hendrik workmark -->
-When Samba is running in <emphasis>Server Security Mode</emphasis> it is essential that
-the parameter <emphasis>password server</emphasis> is set to the precise NetBIOS machine
-name of the target authentication server. Samba cannot determine this from NetBIOS name
-lookups because the choice of the target authentication server is arbitrary and cannot
-be determined from a domain name. In essence, a Samba server that is in
-<emphasis>Server Security Mode</emphasis> is operating in what used to be known as
-workgroup mode.
+Falls Sie Samba im <emphasis>Server Sicherheitsmodus</emphasis> betreiben ist es äusserst 
+wichtig, dass Sie den Parameter <emphasis>password server</emphasis> auf den genauen NetBIOS 
+Maschinen Namen des Authentifizierungsservers angeben. Samba ist nicht in der Lage dies über 
+NetBIOS Namensauflösung zu ermitteln, da die Auswahl des Authentifizierungsservers beliebig ist 
+und nicht an einem Domainnamen ermittelt werden kann. Ergebnis hieraus: Ein Samba Server im 
+<emphasis>Server Security Mode</emphasis> arbeitet so wie man es als workgroup mode kennt.
 </para></note>
 
 <sect3>
-<title>Example Configuration</title>
+<title>Beispiel Konfiguration</title>
 <para><emphasis>
-Using MS Windows NT as an Authentication Server
+Benutzung von MS Windows NT als Authentifizierungsserver.
 </emphasis></para>
 
 <para>
-This method involves the additions of the following parameters in the &smb.conf; file:
+Diese Methode betrifft folgende Parameter in der &smb.conf Datei:
 </para>
 
 <para><smbconfblock>
@@ -467,11 +465,11 @@ This method involves the additions of the following parameters in the &smb.conf;
 
 
 <para>
-There are two ways of identifying whether or not a username and password pair is valid.
-One uses the reply information provided as part of the authentication messaging
-process, the other uses just an error code.
+Es gibt zwei Wege um ein Username und Passwort Paar auf G&uuml;ltigkeit zu &uuml;berprüfen.
+Der eine nutzt die Information der Antwort die als Teil der Authentisierungs Nachricht bereitgestellt wird
+und der andere Weg wertet nur den Fehlercode aus.
 </para>
-
+<!-- Hendriks Workmark -->
 <para>
 The downside of this mode of configuration is the fact that for security reasons Samba
 will send the password server a bogus username and a bogus password and if the remote
