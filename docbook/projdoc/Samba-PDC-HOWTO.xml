@@ -6,7 +6,7 @@
 	&author.jerry;
 	&author.dbannon;
 	<author>&person.gd; <contrib>LDAP updates</contrib></author>
-	<author>&author.sgw;<contrib>German Translator</contrib></author>
+	<author>&author.sgw;</author>
 </chapterinfo>
 
 <title>Die Kontrolle über eine Domäne</title>
@@ -538,8 +538,6 @@ Benutzerprofile für MS Windows for Workgroups und MS Windows 9X/ME Clients, die
 im Mittelpunkt dieses Abschnitts stehen.
 </para>
 
----sgw.workmark
-
 <para>
 Wenn ein SMB-Client sich in einer Domäne anmelden will, sendet er Anfragen nach einem
 Anmelde-Server aus. Der erste, der antwortet, bekommt den Job, und überprüft das 
@@ -627,75 +625,74 @@ wie ein Windows 9x/Me-Client eine Anmeldung durchführt:
 </orderedlist>
 
 <para>
-The main difference between a PDC and a Windows 9x/Me logon server configuration is:
+Der Hauptunterschied zwischen einem PDC und einem Windows 9x/Me-Anmelde-Server ist:
 </para>
 
 <itemizedlist>
 <listitem><para>
-	Password encryption is not required for a Windows 9x/Me logon server. But note
-	that beginning with MS Windows 98 the default setting is that plain-text
-	password support is disabled. It can be re-enabled with the registry
-	changes that are documented in <link linkend="PolicyMgmt"/>.
+	Die Verschlüsselung von Passwörtern ist für einen Windows 9x/Me-Anmelde-Server
+	nicht notwendig. Aber bemerken Sie, daß seit MS Windows 98 die Standardeinstellung
+	besagt, daß die Unterstützung von Klartext-Passwörtern deaktiviert ist. Sie kann
+	mit den unter <link linkend="PolicyMgmt"/> beschriebenen Änderungen aktiviert werden.
 	</para></listitem>
 
 	<listitem><para>
-	Windows 9x/Me clients do not require and do not use Machine Trust Accounts.
+	Windows 9x/Me Clients benötigen und benutzen KEINE Maschinen-Vertrauens-Kontos.
 	</para></listitem>
 </itemizedlist>
 
 <para>
-A Samba PDC will act as a Windows 9x/Me logon server; after all, it does provide the
-network logon services that MS Windows 9x/Me expect to find.
+Ein Samba PDC wird sich wie ein Windows 9x/Me-Anmelde-Server verhalten; endlich stellt er
+all die Anmelde-Dienste zur Verfügung, die MS Windows 9x/Me erwartet.
 </para>
 
 <note><para>
-Use of plain-text passwords is strongly discouraged. Where used they are easily detected
-using a sniffer tool to examine network traffic.
+Von der Verwendung von Klartext-Passwörtern wird stärkstens abgeraten. Wo immer sie verwendet werden,
+können sie einfachst durch Verwendung von Netzwerk-Sniffern abgehört werden.
 </para></note>
 
 </sect3>
 </sect2>
 
 <sect2>
-<title>Security Mode and Master Browsers</title>
+<title>Sicherheits-Modus und Master Browser</title>
 
 <para>
-There are a few comments to make in order to tie up some loose ends. There has been
-much debate over the issue of whether it is okay to configure Samba as a Domain
-Controller in security modes other than user. The only security mode that will
-not work due to technical reasons is share-mode security. Domain and server mode
-security are really just a variation on SMB User Level Security.
+Es gibt ein paar Anmerkungen, die zu machen sind, um einige offene Fragen zu klären.
+Es gab viele Diskussionen darüber, ob es okay ist, Samba als Domänen-Controller in anderen
+Sicherheits-Modi als "user" zu konfigurieren. Der einzige Modus, der aus technischen Gründen
+nicht funktionieren wird, ist der Modus der Freigaben-Sicherheit. Domänen- und Server-Modus-Sicherheit
+sind in Wirklichkeit einfach nur Abwandlungen der SMB-Benutzer-Ebenen-Sicherheit.
 </para>
 
 <para>
-Actually, this issue is also closely tied to the debate on whether
-Samba must be the Domain Master Browser for its workgroup
-when operating as a DC. While it may technically be possible
-to configure a server as such (after all, browsing and domain logons
-are two distinctly different functions), it is not a good idea to do
-so. You should remember that the DC must register the DOMAIN&lt;#1b&gt; NetBIOS
-name. This is the name used by Windows clients to locate the DC.
-Windows clients do not distinguish between the DC and the DMB.
-A DMB is a Domain Master Browser &smbmdash; see <link linkend="DMB"></link>.
-For this reason, it is wise to configure the Samba DC as the DMB.
+Tatsächlich hängt dieses Thema auch eng mit der Debatte zusammen, ob Samba der Domänen-Master-Browser
+für seine Domäne sein muß, wenn er als DC arbeitet. Während es technisch möglich sein mag, einen Server so
+zu konfigurieren (schließlich sind Browsing und Domänenanmeldungen zwei völlig verschiedene Funktionen), 
+is es doch keine gute Idee, dies zu tun. Sie sollten sich daran erinnern, daß der DC den 
+DOMAIN&lt;#1b&gt; NetBIOS-Namen registrieren muß. Dies ist der Name, der von den Windows-Clients verwendet
+wird, um den DC ausfindig zu machen. Windows Clients unterscheiden nicht zwischen dem DC und dem DMB
+(Ein DMB ist ein Domänen-Master-Browser &smbmdash; siehe <link linkend="DMB"></link>). Aus diesem Grund
+ist es ratsam, den Samba DC auch als DMB zu konfigurieren.
 </para>
 
 <para>
-Now back to the issue of configuring a Samba DC to use a mode other than
-<smbconfoption><name>security</name><value>user</value></smbconfoption>. If a Samba host is
-configured to use another SMB server or DC in order to validate user connection requests,
-it is a fact that some other machine on the network (the <smbconfoption><name>password server</name></smbconfoption>)
-knows more about the user than the Samba host. About 99% of the time, this other host is
-a Domain Controller. Now to operate in domain mode security, the <smbconfoption><name>workgroup</name></smbconfoption>
-parameter must be set to the name of the Windows NT domain (which already has a Domain Controller).
-If the domain does not already have a Domain Controller, you do not yet have a Domain.
+Nun zurück zum Thema der Konfiguration eines Samba DC zur Verwendung eines Modus abweichend von
+<smbconfoption><name>security</name><value>user</value></smbconfoption>. 
+Wenn ein Samba-Rechner so konfiguriert ist, daß er einen anderen SMB-server oder -DC verwendet, um
+Benutzeranmeldungen zu prüfen, dann ist es ein Faktum, daß irgendeine andere Maschine in diesem Netz
+(der <smbconfoption><name>password server</name></smbconfoption>) mehr über den Benutzer weiß, als der
+Samba-Rechner. In ungefähr 99% der Fälle ist dieser Rechner ein DC. Um nun im Domänen-Sicherheits-Modus zu
+arbeiten, ist es notwendig, den <smbconfoption><name>workgroup</name></smbconfoption>-Parameter auf den
+Namen der Windows NT-Domäne zu setzen (welche bereits einen DC hat). Wenn die Domäne noch keinen DC hat,
+haben Sie noch keine Domäne.
 </para>
 
 <para>
-Configuring a Samba box as a DC for a domain that already by definition has a
-PDC is asking for trouble. Therefore, you should always configure the Samba DC
-to be the DMB for its domain and set <smbconfoption><name>security</name><value>user</value></smbconfoption>.
-This is the only officially supported mode of operation.
+Das Konfigurieren von Samba als DC für eine Domäne, die (per Definition) bereits einen PDC hat, ist reinste
+Problembeschaffung. Deshalb sollten Sie den Samba DC immer als DMB für seine Domäne konfigurieren, und
+<smbconfoption><name>security</name><value>user</value></smbconfoption> setzen. Dies ist der einzige offiziell
+unterstützte Arbeits-Modus.
 </para>
 
 </sect2>
@@ -703,36 +700,40 @@ This is the only officially supported mode of operation.
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Übliche Fehler</title>
 
 <sect2>
-	<title><quote>$</quote> Cannot Be Included in Machine Name</title>
+	<title><quote>$</quote> darf nicht im Maschinen-Namen vorkommen</title>
 <para>
-A machine account, typically stored in <filename>/etc/passwd</filename>, takes the form of the machine
-name with a <quote>$</quote> appended. FreeBSD (and other BSD systems) will not create a user with a
-<quote>$</quote> in the name.
+Ein Maschinenkonto, üblicherweise in <filename>/etc/passwd</filename> gespeichert, hat die Form des
+Maschinennamens, mit einem <quote>$</quote> angehängt. FreeBSD (und andere BSD-Systeme) legen keinen
+Benutzer mit einem <quote>$</quote> im Namen an.
 </para>
 
 <para>
-The problem is only in the program used to make the entry. Once made, it works perfectly.
-Create a user without the <quote>$</quote>. Then use <command>vipw</command> to edit the entry, adding
-the <quote>$</quote>. Or create the whole entry with vipw if you like; make sure you use a unique user login ID.
+Das Problem liegt nur im Programm, das zum Anlegen des Eintrags verwendet wird. Einmal angelegt, funktioniert
+es perfekt. Legen Sie einen Benutzer ohne das <quote>$</quote> an. Benutzen Sie dann den Befehl 
+<command>vipw</command>, um den Eintrag zu editieren, bzw. das <quote>$</quote> hinzuzufügen. Oder legen Sie den
+ganzen Eintrag mit <command>vipw</command> an, wenn Sie wollen; stellen Sie sicher, daß sie eine einmalige
+Benutzer-ID (UID) verwenden.
 </para>
 
-<para><note>The machine account must have the exact name that the workstation has.</note></para>
+<para><note>Das Maschinen-Konto muß exakt den gleichen Namen wie die Workstation haben.</note></para>
 
 <note><para>
-The UNIX tool <command>vipw</command> is a common tool for directly editing the <filename>/etc/passwd</filename> file.
+Das UNIX-tool <command>vipw</command> ist ein übliches Werkzeug für das direkte Editieren der Datei <filename>/etc/passwd</filename>.
 </para></note>
 
 </sect2>
 
 <sect2>
-<title>Joining Domain Fails Because of Existing Machine Account</title>
+<title>Der Anschluß an die Domäne scheitert an einem bereits existierenden Maschinen-Konto</title>
+
+sgw.workmark
 
 <para>
-<quote>I get told, `You already have a connection to the Domain....' or `Cannot join domain, the
-credentials supplied conflict with an existing set...' when creating a Machine Trust Account.</quote>
+<quote>Ich bekomme `You already have a connection to the Domain....' oder `Cannot join domain, the
+credentials supplied conflict with an existing set...' wenn ich einwhen creating a Machine Trust Account.</quote>
 </para>
 
 <para>

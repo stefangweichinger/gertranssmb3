@@ -1,9 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="samba-bdc">
 
 <chapterinfo>
 	&author.jht;
 	&author.vl;
 	<author>&person.gd;<contrib>LDAP updates</contrib></author>
+	<author>&author.sgw;</author>
 </chapterinfo>
 
 <title>Backup Domain Control</title>
