@@ -1,0 +1,1815 @@
+diff -ru samba-docs/docbook/CVS/Entries samba-docs-old/docbook/CVS/Entries
+--- samba-docs/docbook/CVS/Entries	2004-01-24 20:35:03.196015581 +0100
++++ samba-docs-old/docbook/CVS/Entries	2004-01-24 20:34:35.654882797 +0100
+@@ -7,8 +7,8 @@
+ D/scripts////
+ D/smbdotconf////
+ D/xslt////
++/Makefile.in/1.65/Sat Jan 10 17:22:50 2004//
++/configure.in/1.17/Sat Jan 10 17:22:50 2004//
++/docbook.txt/1.11/Sat Jan 10 17:22:50 2004//
+ /global.ent/1.31/Sat Jan 10 17:22:50 2004//
+-/Makefile.in/1.66/Sat Jan 24 19:34:51 2004//
+-/configure.in/1.18/Sat Jan 24 19:34:51 2004//
+-/docbook.txt/1.12/Sat Jan 24 19:34:51 2004//
+-/settings.xsl.in/1.2/Sat Jan 24 19:34:51 2004//
++/settings.xsl.in/1.1/Wed Jan  7 00:22:11 2004//
+diff -ru samba-docs/docbook/Makefile.in samba-docs-old/docbook/Makefile.in
+--- samba-docs/docbook/Makefile.in	2004-01-24 20:34:51.479660851 +0100
++++ samba-docs-old/docbook/Makefile.in	2004-01-24 20:34:35.656882516 +0100
+@@ -15,7 +15,6 @@
+ WGET = @WGET@
+ XSLTPROC = @XSLTPROC@
+ DVIPS = @DVIPS@
+-CVS2CL = @CVS2CL@
+ PNGTOPNM = @PNGTOPNM@
+ PNMTOPS = @PNMTOPS@
+ XMLTO = @XMLTO@
+@@ -58,7 +57,7 @@
+ 
+ PROJDOC_IMAGES_PNG = $(wildcard $(IMAGEPROJDIR)/*.png)
+ PROJDOC_IMAGES_EPS=$(patsubst %.png,%.eps,$(wildcard $(IMAGEPROJDIR)/*.png))
+-PROJDOC_DEPS = $(PROJDOC)/*.xml $(PROJDOC)/attributions.xml $(PROJDOC)/changelog.xml $(MANPROJDOC)/*.xml $(SMBDOTCONFDOC)/smb.conf.5.xml $(SMBDOTCONFDOC)/parameters.all.xml $(SMBDOTCONFDOC)/parameters.global.xml $(SMBDOTCONFDOC)/parameters.service.xml 
++PROJDOC_DEPS = $(PROJDOC)/*.xml $(PROJDOC)/attributions.xml $(MANPROJDOC)/*.xml $(SMBDOTCONFDOC)/smb.conf.5.xml $(SMBDOTCONFDOC)/parameters.all.xml $(SMBDOTCONFDOC)/parameters.global.xml $(SMBDOTCONFDOC)/parameters.service.xml 
+ DEVDOC_DEPS = $(DEVDOC)/*.xml $(DEVDOC)/attributions.xml
+ 
+ all: 
+@@ -124,7 +123,7 @@
+ 	    $(PDFDIR)/*.pdf $(FAQDIR)/*.html $(HTMLDIR)/*html $(HTMLDIR)/samba.css
+ 	rm -f xslt/figures/*pdf
+ 	rm -f $(SMBDOTCONFDOC)/parameters.*.xml $(DVIDIR)/*.dvi
+-	rm -f samba-doc.* dev-doc.* $(PROJDOC)/changelog.xml $(PROJDOC)/attributions.xml $(DEVDOC)/attributions.xml
++	rm -f samba-doc.* dev-doc.* $(PROJDOC)/attributions.xml $(DEVDOC)/attributions.xml
+ 	rm -f Samba-HOWTO-Collection.*
+ 	rm -f Samba-Developers-Guide.*
+ 	rm -f Samba-Guide.*
+@@ -252,6 +251,3 @@
+ 
+ howto: $(PDFDIR)/Samba-HOWTO-Collection.pdf
+ guide: $(PDFDIR)/Samba-Guide.pdf
+-
+-%/changelog.xml: % $(wildcard %/CVS/*)
+-	$(CVS2CL) --stdout --xml $< | $(XSLTPROC) --output $@ xslt/genchangelog.xsl -
+diff -ru samba-docs/docbook/configure.in samba-docs-old/docbook/configure.in
+--- samba-docs/docbook/configure.in	2004-01-24 20:34:51.481660570 +0100
++++ samba-docs-old/docbook/configure.in	2004-01-24 20:34:35.656882516 +0100
+@@ -42,7 +42,6 @@
+ AC_PATH_PROG(PNMTOPS, pnmtops)
+ AC_PATH_PROG(PERL, perl)
+ AC_PATH_PROG(XMLTO, xmlto)
+-AC_PATH_PROG(CVS2CL, cvs2cl)
+ AC_PATH_PROG(PLUCKERBUILD, plucker-build, [echo -e 'No plucker-build utility was found, ignoring following options:\n'])
+ AC_PATH_PROG(EPSTOPDF, epstopdf)
+ 
+diff -ru samba-docs/docbook/devdoc/CVS/Entries samba-docs-old/docbook/devdoc/CVS/Entries
+--- samba-docs/docbook/devdoc/CVS/Entries	2004-01-24 20:34:51.522654814 +0100
++++ samba-docs-old/docbook/devdoc/CVS/Entries	2004-01-24 20:34:35.676879708 +0100
+@@ -4,6 +4,7 @@
+ /Tracing.xml/1.1/Wed Apr 30 21:17:52 2003//
+ /architecture.xml/1.1/Wed Apr 30 21:17:52 2003//
+ /cifsntdomain.xml/1.1/Wed Apr 30 21:17:52 2003//
++/contributing.xml/1.2/Wed Jul 16 05:34:16 2003//
+ /debug.xml/1.1/Wed Apr 30 21:17:52 2003//
+ /dev-doc.xml/1.7/Thu Oct  9 23:04:22 2003//
+ /encryption.xml/1.2/Wed Apr 30 22:36:16 2003//
+@@ -20,5 +21,4 @@
+ /vfs.xml/1.2/Wed Jul 16 05:42:27 2003//
+ /windows-debug.xml/1.2/Wed Jul 16 05:42:28 2003//
+ /wins.xml/1.1/Wed Apr 30 21:17:53 2003//
+-/contributing.xml/1.3/Sat Jan 24 19:34:51 2004//
+ D
+diff -ru samba-docs/docbook/devdoc/contributing.xml samba-docs-old/docbook/devdoc/contributing.xml
+--- samba-docs/docbook/devdoc/contributing.xml	2004-01-24 20:34:51.506657060 +0100
++++ samba-docs-old/docbook/devdoc/contributing.xml	2004-01-24 20:34:35.685878445 +0100
+@@ -54,20 +54,20 @@
+ 	<varlistentry>
+ 		<term>Points of attention when modifying samba source code</term>
+ 		<listitem><para>
+-		<itemizedlist>
+-		<listitem><para>Don't simply copy code from other places and modify it until it
++		<simplelist>
++		<member>Don't simply copy code from other places and modify it until it
+ 		works. Code needs to be clean and logical. Duplicate 
+-		code is to be avoided.</para></listitem>
+-		<listitem><para>Test your patch. It might take a while before one of us looks 
++		code is to be avoided.</member>
++		<member>Test your patch. It might take a while before one of us looks 
+ 		at your patch so it will take longer before your patch when your patch 
+-		needs to go thru the review cycle again.</para></listitem>
+-		<listitem><para>Don't put seperate patches in one large diff file. This makes 
++		needs to go thru the review cycle again.</member>
++		<member>Don't put seperate patches in one large diff file. This makes 
+ 		it harder to read, understand and test the patch. You might 
+ 		also risk not getting a good patch committed because you mixed it 
+-		with one that had issues. </para></listitem>
+-		<listitem><para>Make sure your patch complies to the samba coding style as 
+- 		suggested in the coding-suggestions chapter. </para></listitem>
+-			</itemizedlist>
++		with one that had issues. </member>
++		<member>Make sure your patch complies to the samba coding style as 
++ 		suggested in the coding-suggestions chapter. </member>
++		</simplelist>
+ 		</para>
+ 		</listitem>
+ 	</varlistentry>
+diff -ru samba-docs/docbook/docbook.txt samba-docs-old/docbook/docbook.txt
+--- samba-docs/docbook/docbook.txt	2004-01-24 20:34:51.489659447 +0100
++++ samba-docs-old/docbook/docbook.txt	2004-01-24 20:34:35.657882376 +0100
+@@ -47,7 +47,6 @@
+  * docbook-utils
+  * xsltproc
+  * pngtopnm and pnmtops (from the netpbm utilities)
+- * cvs2cl (for generating the changelog file for the HOWTO)
+ 
+ For generating PDF (thru LaTeX):
+  * db2latex (from http://db2latex.sf.net/). Make sure to get CVS version
+diff -ru samba-docs/docbook/projdoc/AdvancedNetworkAdmin.xml samba-docs-old/docbook/projdoc/AdvancedNetworkAdmin.xml
+--- samba-docs/docbook/projdoc/AdvancedNetworkAdmin.xml	2004-01-24 20:34:51.620641055 +0100
++++ samba-docs-old/docbook/projdoc/AdvancedNetworkAdmin.xml	2004-01-24 20:34:35.948841525 +0100
+@@ -103,8 +103,8 @@
+ 		</quote></para>
+ 
+ 		<para>
+-		Answer provided: Check out the new offer of <quote>NX</quote> software from
+-		<ulink noescape="1" url="http://www.nomachine.com/">NoMachine</ulink>.
++		Answer provided: Check out the new offer from NoMachine, <quote>NX</quote> software:
++		<ulink noescape="1" url="http://www.nomachine.com/">http://www.nomachine.com/</ulink>.
+ 		</para>
+ 
+ 	<para>
+@@ -197,12 +197,12 @@
+ 		<listitem><para>
+ 		The NX core technologies are all Open Source and released under the GPL &smbmdash;
+ 		you can now use a (very inconvenient) command-line at no cost,
+-		but you can buy a comfortable (proprietary) NX GUI front end for money.
++		but you can buy a comfortable (proprietary) NX GUI front-end for money.
+ 		</para></listitem>
+ 
+ 		<listitem><para>
+ 		NoMachine are encouraging and offering help to OSS/Free Software implementations
+-		for such a front end too, even if it means competition to them (they have written
++		for such a front-end too, even if it means competition to them (they have written
+ 		to this effect even to the LTSP, KDE and GNOME developer mailing lists).
+ 		</para></listitem>
+ 	</itemizedlist>
+@@ -222,7 +222,7 @@
+ 	<listitem>No Logon Script.</listitem>
+ 	<listitem>Simple universal Logon Script that applies to all users.</listitem>
+ 	<listitem>Use of a conditional Logon Script that applies per user or per group attributes.</listitem>
+-	<listitem>Use of Samba's preexec and postexec functions on access to the NETLOGON share to create
++	<listitem>Use of Samba's pre-exec and post-exec functions on access to the NETLOGON share to create
+ 	a custom logon script and then execute it.</listitem>
+ 	<listitem>User of a tool such as KixStart.</listitem>
+ </itemizedlist>
+@@ -242,7 +242,6 @@
+ <indexterm><primary>genlogon.pl</primary></indexterm>
+ This is the <filename>genlogon.pl</filename> file:
+ 
+-<smbfile name="genlogon.pl">
+ <programlisting>
+ 	#!/usr/bin/perl
+ 	#
+@@ -259,8 +258,8 @@
+ 	#
+ 	# 1. Log the user connection to /var/log/samba/netlogon.log
+ 	# 2. Set the PC's time to the Linux server time (which is maintained
+-	#    daily to the National Institute of Standards Atomic clock on the
+-	#    internet.
++	#    daily to the National Institute of Standard's Atomic clock on the
++	#    Internet.
+ 	# 3. Connect the user's home drive to H: (H for Home).
+ 	# 4. Connect common drives that everyone uses.
+ 	# 5. Connect group-specific drives for certain user groups.
+@@ -317,7 +316,6 @@
+ 	# All done! Close the output file.
+ 	close LOGON;
+ </programlisting>
+-</smbfile>
+ </para>
+ 
+ <para>
+diff -ru samba-docs/docbook/projdoc/CUPS-printing.xml samba-docs-old/docbook/projdoc/CUPS-printing.xml
+--- samba-docs/docbook/projdoc/CUPS-printing.xml	2004-01-24 20:34:51.730625611 +0100
++++ samba-docs-old/docbook/projdoc/CUPS-printing.xml	2004-01-24 20:34:35.983836612 +0100
+@@ -151,7 +151,7 @@
+ 		<title>Simple &smb.conf; Settings for CUPS</title>
+ 
+ 		<para>
+-		To summarize, <link linkend="cups-exam-simple"/> shows simplest printing-related setup for &smb.conf; to enable basic CUPS support:
++		To summarize, <link linkend="cups-exam-simple">following example</link> shows simplest printing-related setup for &smb.conf; to enable basic CUPS support:
+ 		</para>
+ 
+ 		<para><smbconfexample id="cups-exam-simple">
+@@ -195,7 +195,7 @@
+ 	<title>More Complex CUPS &smb.conf; Settings</title>
+ 
+ 	<para>
+-	<link linkend="overridesettings"/> is a slightly more complex printing-related setup
++	<link linkend="overridesettings">Next configuration</link> is a slightly more complex printing-related setup
+ 	for &smb.conf;. It enables general CUPS printing
+ 	support for all printers, but defines one printer share, which is set
+ 	up differently. 
+@@ -222,13 +222,12 @@
+ 	<smbconfoption><name>path</name><value>/var/spool/samba-special</value></smbconfoption>
+ 	<smbconfoption><name>printing</name><value>sysv</value></smbconfoption>
+ 	<smbconfoption><name>printcap</name><value>lpstat</value></smbconfoption>
+-	<smbconfoption><name>print command</name><value>echo "NEW: `date`: printfile %f" \</value></smbconfoption>
+-	<member><parameter> >> /tmp/smbprn.log ; \</parameter></member>
++	<smbconfoption><name>print command</name><value>echo "NEW: `date`: printfile %f" >> /tmp/smbprn.log ; \</value></smbconfoption>
+ 	<member><parameter>echo "     `date`: p-%p s-%s f-%f" >> /tmp/smbprn.log ; \</parameter></member>
+ 	<member><parameter>echo "     `date`: j-%j J-%J z-%z c-%c" >> /tmp/smbprn.log : rm %f</parameter></member>
+ 	<smbconfoption><name>public</name><value>no</value></smbconfoption>
+ 	<smbconfoption><name>guest ok</name><value>no</value></smbconfoption>
+-	<smbconfoption><name>writable</name><value>no</value></smbconfoption>
++	<smbconfoption><name>writeable</name><value>no</value></smbconfoption>
+ 	<smbconfoption><name>printable</name><value>yes</value></smbconfoption>
+ 	<smbconfoption><name>printer admin</name><value>kurt</value></smbconfoption>
+ 	<smbconfoption><name>hosts deny</name><value>0.0.0.0</value></smbconfoption>
+@@ -237,7 +236,7 @@
+ 
+ 	<para>
+ 	This special share is only there for testing purposes. It does not write the print job to a file. It just logs the job parameters
+-	known to Samba into the <filename>/tmp/smbprn.log</filename> file and deletes the job-file. Moreover, the
++	known to Samba into the <filename>/tmp/smbprn.log</filename> file and deletes the jobfile. Moreover, the
+ 	<smbconfoption><name>printer admin</name></smbconfoption> of this share is <quote>kurt</quote> (not the <quote>@ntadmins</quote> group),
+ 	guest access is not allowed, the share isn't published to the Network Neighborhood (so you need to know it is there), and it only
+ 	allows access from only three hosts. To prevent CUPS kicking in and taking over the print jobs for that share, we need to set
+@@ -529,7 +528,7 @@
+ 	<para>
+ 	<indexterm><primary>PostScript</primary><seealso>Ghostscript</seealso></indexterm>
+ 	We now know
+-	how to set up a <quote>dump</quote> printserver, that is, a server which is spooling
++	how to set up a <quote>dump</quote> print server, that is, a server which is spooling
+ 	print-jobs <quote>raw</quote>, leaving the print data untouched.
+ 	</para>
+ 
+@@ -618,7 +617,7 @@
+ 	relatively easy, because the on-screen graphic primitives, as well as
+ 	the on-paper drawn objects, come from one common source. This source,
+ 	the GDI, often produces a file format called Enhanced
+-	MetaFile (EMF). The EMF is processed by the printer driver and
++	Meta-File (EMF). The EMF is processed by the printer driver and
+ 	converted to the printer-specific file format.
+ 	</para>
+ 
+@@ -817,7 +816,7 @@
+ 	<para>
+ 	Information from these PPDs is meant to be taken into account by the
+ 	printer drivers. Therefore, installed as part of the Windows
+-	PostScript driver for a given printer is the printer's PPD. Where it
++	PostScript driver for a given printer is the printers PPD. Where it
+ 	makes sense, the PPD features are presented in the drivers' UI dialogs
+ 	to display to the user a choice of print options. In the end, the
+ 	user selections are somehow written (in the form of special
+@@ -828,7 +827,7 @@
+ 	<warning><para>
+ 	<indexterm><primary>PDF</primary></indexterm>
+ 	A PostScript file that was created to contain device-specific commands
+-	for achieving a certain print job output (e.g., duplex-ed, stapled and
++	for achieving a certain print job output (e.g., duplexed, stapled and
+ 	punched) on a specific target machine, may not print as expected, or
+ 	may not be printable at all on other models; it also may not be fit
+ 	for further processing by software (e.g., by a PDF distilling program).
+@@ -943,10 +942,12 @@
+ <para>
+ <indexterm><primary>cupsomatic</primary></indexterm>
+ <indexterm><primary>foomatic</primary></indexterm>
+-CUPS printers may be setup to use external rendering paths. One of the most common is provided by the
+-Foomatic/cupsomatic concept from <ulink url="http://www.linuxprinting.org/">Linuxprinting.org.</ulink> This
+-uses the classical Ghostscript approach, doing everything in one step. 
+-It does not use the <quote>cups</quote> device, but one of the many
++CUPS printers may be setup to use external
++rendering paths. One of the most common is provided by the
++Foomatic/cupsomatic concept from <ulink
++url="http://www.linuxprinting.org/">Linuxprinting.org.</ulink> This
++uses the classical Ghostscript approach, doing everything in one
++step. It does not use the <quote>cups</quote> device, but one of the many
+ others. However, even for Foomatic/cupsomatic usage, best results and
+ <indexterm><primary>ESP</primary><secondary>Ghostscript</secondary></indexterm>
+ broadest printer model support is provided by ESP Ghostscript (more
+@@ -1260,7 +1261,7 @@
+ </para>
+ 
+ <para>
+->From version 1.1.15, this has changed. The functions for this have been
++From version 1.1.15, this has changed. The functions for this have been
+ integrated back into Ghostscript (now based on GNU Ghostscript version
+ 7.05). The <parameter>pstoraster</parameter> filter is now a simple shell script calling
+ <command>gs</command> with the <command>-sDEVICE=cups</command>
+@@ -1278,8 +1279,8 @@
+ that generates PostScript from image formats. The <parameter>imagetoraster</parameter>
+ filter is used to convert directly from image to raster, without the
+ intermediate PostScript stage. It is used more often than the above
+-mentioned pre-filters. A summarizing flowchart of image file
+-filtering is shown in <link linkend="small8"/>.
++mentioned pre-filters. We summarize flowchart of image file
++filtering on <link linkend="small8">next picture</link>.
+ </para>
+ 
+ <para>
+@@ -1321,7 +1322,7 @@
+ The last part of any CUPS filtering chain is a backend. Backends
+ are special programs that send the print-ready file to the final
+ device. There is a separate backend program for any transfer
+-protocol of sending print jobs over the network, or for every local
++protocol of sending printjobs over the network, or for every local
+ interface. Every CUPS print queue needs to have a CUPS <quote>device-URI</quote>
+ associated with it. The device URI is the way to encode the backend
+ used to send the job to its destination. Network device-URIs are using
+@@ -1333,42 +1334,42 @@
+ <variablelist>
+ 	<varlistentry><term>usb </term>
+ 	<listitem><para>
+-	This backend sends print files to USB-connected printers. An
++	This backend sends printfiles to USB-connected printers. An
+ 	example for the CUPS device-URI to use is:
+ 	<filename>usb:/dev/usb/lp0</filename>.
+ 	</para></listitem></varlistentry>
+ 
+ 	<varlistentry><term>serial </term>
+ 	<listitem><para>
+-	This backend sends print files to serially connected printers.
++	This backend sends printfiles to serially connected printers.
+ 	An example for the CUPS device-URI to use is:
+ 	<filename>serial:/dev/ttyS0?baud=11500</filename>.
+ 	</para></listitem></varlistentry>
+ 
+ 	<varlistentry><term>parallel </term>
+ 	<listitem><para>
+-	This backend sends print files to printers connected to the
++	This backend sends printfiles to printers connected to the
+ 	parallel port. An example for the CUPS device-URI to use is:
+ 	<filename>parallel:/dev/lp0</filename>.
+ 	</para></listitem></varlistentry>
+ 
+-	<varlistentry><term>SCSI </term>
++	<varlistentry><term>scsi </term>
+ 	<listitem><para>
+-	This backend sends print files to printers attached to the
++	This backend sends printfiles to printers attached to the
+ 	SCSI interface. An example for the CUPS device-URI to use is:
+ 	<filename>scsi:/dev/sr1</filename>.
+ 	</para></listitem></varlistentry>
+ 
+ 	<varlistentry><term>lpd </term>
+ 	<listitem><para>
+-	This backend sends print files to LPR/LPD connected network
++	This backend sends printfiles to LPR/LPD connected network
+ 	printers. An example for the CUPS device-URI to use is:
+ 	<filename>lpd://remote_host_name/remote_queue_name</filename>.
+ 	</para></listitem></varlistentry>
+ 
+ 	<varlistentry><term>AppSocket/HP JetDirect </term>
+ 	<listitem><para>
+-	This backend sends print files to AppSocket (a.k.a. "HP
++	This backend sends printfiles to AppSocket (a.k.a. "HP
+ 	JetDirect") connected network printers. An example for the CUPS
+ 	device-URI to use is:
+ 	<filename>socket://10.11.12.13:9100</filename>.
+@@ -1376,7 +1377,7 @@
+ 
+ 	<varlistentry><term>ipp </term>
+ 	<listitem><para>
+-	This backend sends print files to IPP connected network
++	This backend sends printfiles to IPP connected network
+ 	printers (or to other CUPS servers). Examples for CUPS device-URIs
+ 	to use are:
+ 	<filename>ipp:://192.193.194.195/ipp</filename>
+@@ -1386,7 +1387,7 @@
+ 
+ 	<varlistentry><term>http </term>
+ 	<listitem><para>
+-	This backend sends print files to HTTP connected printers.
++	This backend sends printfiles to HTTP connected printers.
+ 	(The http:// CUPS backend is only a symlink to the ipp:// backend.)
+ 	Examples for the CUPS device-URIs to use are:
+ 	<filename>http:://192.193.194.195:631/ipp</filename>
+@@ -1396,7 +1397,7 @@
+ 
+ 	<varlistentry><term>smb </term>
+ 	<listitem><para>
+-	This backend sends print files to printers shared by a Windows
++	This backend sends printfiles to printers shared by a Windows
+ 	host. An example for CUPS device-URIs that may be used includes:
+ 	</para>
+ 
+@@ -1422,7 +1423,7 @@
+ It is easy to write your own backends as shell or Perl scripts, if you
+ need any modification or extension to the CUPS print system. One
+ reason could be that you want to create <quote>special</quote> printers that send
+-the print-jobs as email (through a <quote>mailto:/</quote> backend), convert them to
++the printjobs as email (through a <quote>mailto:/</quote> backend), convert them to
+ PDF (through a <quote>pdfgen:/</quote> backend) or dump them to <quote>/dev/null</quote>. (In
+ fact I have the system-wide default printer set up to be connected to
+ a devnull:/ backend: there are just too many people sending jobs
+@@ -1476,7 +1477,7 @@
+ the driver description. <parameter>cupsomatic</parameter> is a Perl script that runs
+ Ghostscript with all the complicated command line options
+ auto-constructed from the selected PPD and command line options give to
+-the print-job.
++the printjob.
+ </para>
+ 
+ <para>
+@@ -1669,11 +1670,11 @@
+ <indexterm><primary>PPD</primary></indexterm>
+ Originally PPDs were meant to be used for PostScript printers
+ only. Here, they help to send device-specific commands and settings
+-to the RIP which processes the job file. CUPS has extended this
++to the RIP which processes the jobfile. CUPS has extended this
+ scope for PPDs to cover non-PostScript printers too. This was not
+ difficult, because it is a standardized file format. In a way
+ it was logical too: CUPS handles PostScript and uses a PostScript
+-RIP (Ghostscript) to process the job files. The only difference is:
++RIP (Ghostscript) to process the job-files. The only difference is:
+ a PostScript printer has the RIP built-in, for other types of
+ printers the Ghostscript RIP runs on the host computer.
+ </para>
+@@ -1703,7 +1704,7 @@
+ CUPS by default ships only a few generic PPDs, but they are good for
+ several hundred printer models. You may not be able to control
+ different paper trays, or you may get larger margins than your
+-specific model supports. See <link linkend="cups-ppds"/> for summary information.
++specific model supports. See <link linkend="cups-ppds">PPDs shipped with CUPS</link> for summary information.
+ </para>
+ 
+ <table frame="all" id="cups-ppds">
+@@ -1820,7 +1821,7 @@
+ (and also bypasses the CUPS-raster-drivers
+ <parameter>rastertosomething</parameter>). After Ghostscript finished its rasterization,
+ <parameter>cupsomatic</parameter> hands the rendered file directly to the CUPS backend. The
+-flowchart in <link linkend="cupsomatic-dia"/> illustrates the difference between native CUPS
++flowchart in <link linkend="cupsomatic-dia">cupsomatic/foomatic processing versus Native CUPS</link> illustrates the difference between native CUPS
+ rendering and the <parameter>Foomatic/cupsomatic</parameter> method.
+ </para>
+ </sect2>
+@@ -1843,7 +1844,7 @@
+ <listitem><para>Your print options (page selection as required, two-up,
+ duplex) are passed to CUPS on the command line.</para></listitem>
+ 
+-<listitem><para>The (complete) PDF file is sent to CUPS and auto-typed as
++<listitem><para>The (complete) PDF file is sent to CUPS and autotyped as
+ <parameter>application/pdf</parameter>.</para></listitem>
+ 
+ <listitem><para>The file therefore must first pass the
+@@ -1854,7 +1855,7 @@
+ <listitem><para>The file then passes the <parameter>pstops</parameter>
+ filter that applies the command line options: it selects the pages
+ 2-5, 7 and 11-13, creates an imposed layout <quote>2 pages on 1 sheet</quote> and
+-inserts the correct <quote>duplex</quote> command (as defined in the printer's
++inserts the correct <quote>duplex</quote> command (as defined in the printers
+ PPD) into the new PostScript file; the file is now of PostScript MIME
+ type
+ <parameter>application/vnd.cups-postscript</parameter>.</para></listitem>
+@@ -1864,10 +1865,10 @@
+ </itemizedlist>
+ 
+ <para>
+-	The resulting filter chain, therefore, is as drawn in <link linkend="pdftosocket"/>.
++	The resulting filter chain, therefore, is as drawn in <link linkend="pdftosocket">PDF to socket chain</link>.
++	<image id="pdftosocket"><imagefile>pdftosocket</imagefile><imagedescription>PDF to socket chain.</imagedescription></image>
+ </para>
+ 
+-<image id="pdftosocket"><imagefile>pdftosocket</imagefile><imagedescription>PDF to socket chain.</imagedescription></image>
+ 
+ <para>
+ Assume you want to print the same filter to an USB-connected
+@@ -1880,7 +1881,7 @@
+ <listitem><para>Your print options (page selection as required, two-up,
+ duplex) are passed to CUPS on the command-line.</para></listitem>
+ 
+-<listitem><para>The (complete) PDF file is sent to CUPS and auto-typed as
++<listitem><para>The (complete) PDF file is sent to CUPS and autotyped as
+ <parameter>application/pdf</parameter>.</para></listitem>
+ 
+ <listitem><para>The file must first pass the
+@@ -1904,7 +1905,7 @@
+ cups-raster</parameter>.</para></listitem>
+ 
+ <listitem><para>Finally, the <parameter>rastertoepson</parameter> filter
+-does its work (as indicated in the printer's PPD), creating the
++does its work (as indicated in the printers PPD), creating the
+ printer-specific raster data and embedding any user-selected
+ print-options into the print data stream.</para></listitem>
+ 
+@@ -1913,7 +1914,7 @@
+ </itemizedlist>
+ 
+ <para>
+-The resulting filter chain therefore is as drawn in <link linkend="pdftoepsonusb"/>.
++The resulting filter chain therefore is as drawn in <link linkend="pdftoepsonusb">this figure</link>.
+ </para>
+ 
+ <image id="pdftoepsonusb"><imagefile>pdftoepsonusb</imagefile><imagedescription>PDF to USB chain.</imagedescription></image>
+@@ -1966,9 +1967,12 @@
+ excellent print quality now (currently available only via the Foomatic
+ path).</para></listitem>
+ 
+-<listitem><para><ulink url="http://www.linuxprinting.org/">Foomatic/cupsomatic
+-</ulink> (LPGL, free) from Linuxprinting.org are providing PPDs for practically every Ghostscript
+-filter known to the world (including Omni, Gimp-Print and HPIJS).</para></listitem>
++<listitem><para><ulink
++url="http://www.linuxprinting.org/">Foomatic/cupsomatic
++</ulink> (LPGL, free) from
++Linuxprinting.org are providing PPDs for practically every Ghostscript
++filter known to the world (including Omni, Gimp-Print and
++HPIJS).</para></listitem>
+ </itemizedlist>
+ 
+ </sect2>
+@@ -2038,7 +2042,8 @@
+ </itemizedlist>
+ 
+ <para>
+-Both print paths are shown in the flowcharts in <link linkend="small11"/> and <link linkend="small12"/>.
++Both print paths are shown in the flowcharts <link linkend="small11">Print driver 
++execution on the client</link> and <link linkend="small12">Print driver execution on the server</link>.
+ </para>
+ </sect2>
+ 
+@@ -2163,7 +2168,7 @@
+ </sect2>
+ 
+ <sect2>
+-<title>Samba Receiving Job-files and Passing Them to CUPS</title>
++<title>Samba Receiving Jobfiles and Passing Them to CUPS</title>
+ 
+ <para>
+ Samba <emphasis>must</emphasis> use its own spool directory (it is set
+@@ -2267,7 +2272,7 @@
+ <itemizedlist>
+ 
+ <listitem><para>Act as a networked PostScript RIP (Raster Image
+-Processor), handling print files from all client platforms in a uniform
++Processor), handling printfiles from all client platforms in a uniform
+ way.</para></listitem>
+ 
+ <listitem><para>Act as a central accounting and billing server, since
+@@ -2445,7 +2450,7 @@
+ 
+ <para>
+ Prior to running <command>cupsaddsmb</command>, you need the settings in
+-&smb.conf; as shown in <link linkend="cupsadd-ex"/>:
++&smb.conf; as shown in <link linkend="cupsadd-ex">the next example</link>:
+ </para>
+ 
+ <para><smbconfexample id="cupsadd-ex">
+@@ -2735,7 +2740,7 @@
+ <indexterm><primary>rpcclient</primary><secondary>setdriver</secondary></indexterm>
+ Once you have successfully downloaded the CUPS PostScript driver to a
+ client, you can easily switch all printers to this one by proceeding
+-as described in <link linkend="printing"/>. Either change
++as described in <link linkend="printing">Classical Printing Support</link>. Either change
+ a driver for an existing printer by running the <guilabel>Printer Properties</guilabel>
+ dialog, or use <command>rpcclient</command> with the
+ <command>setdriver</command> subcommand.
+@@ -3065,8 +3070,8 @@
+ 
+ <para>
+ <indexterm><primary>cupsaddsmb</primary></indexterm>
+-<link linkend="small14"/> shows a chart about the procedures, command-flows and
+-data-flows of the <command>cupaddsmb</command> command. Note again: cupsaddsmb is
++<link linkend="small14">cupsaddsmb flowchart</link> shows a chart about the procedures, command-flows and
++data-flows of the <command>cupsaddsmb</command> command. Note again: cupsaddsmb is
+ not intended to, and does not work with, raw queues!
+ </para>
+ 
+@@ -3290,7 +3295,7 @@
+ page, since you have to deal with some parameters containing
+ spaces. Here is a better description for it. We have line-broken the
+ command and indicated the breaks with <quote>\</quote>. Usually you would type the
+-command in one line without the line-breaks:
++command in one line without the linebreaks:
+ <indexterm><primary>rpcclient</primary><secondary>adddriver</secondary></indexterm>
+ </para>
+ 
+@@ -3393,7 +3398,7 @@
+ <title>Requirements for adddriver and setdriver to Succeed</title>
+ 
+ <para>
+->From the man page (and from the quoted output
++From the man page (and from the quoted output
+ of <command>cupsaddsmb</command> above) it becomes clear that you
+ need to have certain conditions in order to make the manual uploading
+ and initializing of the driver files succeed. The two <command>rpcclient</command>
+@@ -3848,7 +3853,7 @@
+ can see the queue in CUPS, using
+ the <command>lpstat -p ir85wm</command> command. A
+ bug in most recent versions of Samba prevents the proper update of
+-the queue-list. The recognition of newly installed CUPS printers
++the queuelist. The recognition of newly installed CUPS printers
+ fails unless you restart Samba or send a HUP to all smbd
+ processes. To verify if this is the reason why Samba does not
+ execute the <command>setdriver</command> command successfully, check if Samba <quote>sees</quote>
+@@ -4047,8 +4052,8 @@
+ for every LaserJet-compatible model. It constitutes a sort of <quote>least common
+ denominator</quote> of all the models. If for some reason
+ you must pay for the commercially available ESP Print Pro drivers, your
+-first move should be to consult the database on the
+-<ulink noescape="1" url="http://www.linuxprinting.org/printer_list.cgi">Linuxprinting</ulink> web site.
++first move should be to consult the database on <ulink
++noescape="1" url="http://www.linuxprinting.org/printer_list.cgi">http://www.linuxprinting.org/printer_list.cgi</ulink>.
+ Linuxprinting.org has excellent recommendations about which driver is
+ best used for each printer. Its database is kept current by the
+ tireless work of Till Kamppeter from MandrakeSoft, who is also the
+@@ -4061,7 +4066,8 @@
+ successor, a much
+ more powerful <command>foomatic-rip</command>.
+ <command>cupsomatic</command> is no longer maintained. Here is the new URL
+-to the <ulink noescape="1" url="http://www.linuxprinting.org/driver_list.cgi">Foomatic-3.0</ulink> database.
++to the Foomatic-3.0 database: <ulink
++noescape="1" url="http://www.linuxprinting.org/driver_list.cgi">http://www.linuxprinting.org/driver_list.cgi</ulink>.
+ If you upgrade to <command>foomatic-rip</command>, remember to also upgrade to the
+ new-style PPDs for your Foomatic-driven printers. foomatic-rip will
+ not work with PPDs generated for the old <command>cupsomatic</command>. The new-style
+@@ -4079,7 +4085,7 @@
+ <indexterm significance="preferred"><primary>foomatic-rip</primary></indexterm>
+ Nowadays, most Linux distributions rely on the utilities of Linuxprinting.org
+ to create their printing-related software (which, by the way, works on all
+-UNIXes and on Mac OS X or Darwin, too). It is not known as well as it
++UNIX's and on Mac OS X or Darwin, too). It is not known as well as it
+ should be, that it also has a very end-user-friendly interface that
+ allows for an easy update of drivers and PPDs for all supported
+ models, all spoolers, all operating systems, and all package formats
+@@ -4211,13 +4217,13 @@
+ <ulink url="http://www.mandrakesoft.com/">MandrakeSoft</ulink> to
+ convert its printing system over to CUPS, after they had seen his
+ <ulink url="http://www.fltk.org/">FLTK</ulink>-based <ulink
+-url="http://cups.sourceforge.net/xpp/">XPP</ulink> (a GUI front-end to
++url="http://cups.sourceforge.net/xpp/">XPP</ulink> (a GUI frontend to
+ the CUPS lp-command). He added a huge amount of new information and new
+ printers. He also developed the support for other spoolers, like
+ <ulink url="http://ppr.sourceforge.net/">PPR</ulink> (via ppromatic),
+ <ulink url="http://sourceforge.net/projects/lpr/">GNUlpr</ulink> and
+ <ulink url="http://www.lprng.org/">LPRng</ulink> (both via an extended
+-lpdomatic) and spooler-less printing (<ulink
++lpdomatic) and spoolerless printing (<ulink
+ url="http://www.linuxprinting.org/download.cgi?filename=directomatic&amp;show=0">directomatic</ulink>).
+ </para>
+ 
+@@ -4329,7 +4335,7 @@
+ url="http://www.linuxprinting.org//kpfeifle/LinuxKongress2002/Tutorial/">tutorials</ulink>
+ or solve printing problems in its popular <ulink
+ url="http://www.linuxprinting.org/newsportal/">forums.</ulink> This forum 
+-it's not just for GNU/Linux users, but admins of <ulink
++it's not just for GNU/Linux users, but Admins of <ulink
+ url="http://www.linuxprinting.org/macosx/">commercial UNIX
+ systems</ulink> are also going there, and the relatively new <ulink
+ url="http://www.linuxprinting.org/newsportal/thread.php3?name=linuxprinting.macosx.general">Mac
+@@ -4375,7 +4381,7 @@
+ script calls Ghostscript on the host system (the recommended variant
+ is ESP Ghostscript) to do the rendering work. foomatic-rip knows which
+ filter or internal device setting it should ask from Ghostscript to
+-convert the PostScript print job into a raster format ready for the
++convert the PostScript printjob into a raster format ready for the
+ target device. This usage of PPDs to describe the options of non-PS
+ printers was the invention of the CUPS developers. The rest is easy.
+ GUI tools (like KDE's marvelous <ulink
+@@ -4465,7 +4471,7 @@
+ <listitem><para>If you save the PPD file from the browser view, please
+ do not use cut and paste (since it could possibly damage line endings
+ and tabs, which makes the PPD likely to fail its duty), but use <guimenuitem>Save
+-as...</guimenuitem> in your browsers menu. (It is best to use the <guilabel>Download</guilabel> option
++as...</guimenuitem> in your browser's menu. (It is best to use the <guilabel>Download</guilabel> option
+ directly from the Web page).</para></listitem>
+ 
+ <listitem><para>Another interesting part on each driver page is
+@@ -4479,7 +4485,7 @@
+ syntax. </para></listitem>
+ 
+ <listitem><para>Some time during your visit to Linuxprinting.org, save
+-the PPD to a suitable place on your hard-disk, say
++the PPD to a suitable place on your hard disk, say
+ <filename>/path/to/my-printer.ppd</filename> (if you prefer to install
+ your printers with the help of the CUPS Web interface, save the PPD to
+ the <filename>/usr/share/cups/model/</filename> path and restart
+@@ -4840,7 +4846,7 @@
+ </filterline>
+ 
+ This would prevent all PostScript files from being filtered (rather,
+-they will through the virtual <emphasis>nullfilter</emphasis>
++they will through the virtual <emphasis>null-filter</emphasis>
+ denoted with <quote>-</quote>). This could only be useful for PS printers. If you
+ want to print PS code on non-PS printers (provided they support ASCII
+ text printing), an entry as follows could be useful:
+@@ -4865,7 +4871,7 @@
+ (which could be a shell script) that parses the PostScript and removes the
+ unwanted PJL. This needs to conform to CUPS filter design
+ (mainly, receive and pass the parameters printername, job-id,
+-username, jobtitle, copies, print options and possibly the
++username, job-title, copies, print options and possibly the
+ filename). It is installed as world executable into
+ <filename>/usr/lib/cups/filters/</filename> and is called by CUPS
+ if it encounters a MIME type <parameter>application/vnd.cups-postscript</parameter>.
+@@ -4987,7 +4993,7 @@
+ <title>Printing from CUPS to Windows Attached Printers</title>
+ 
+ <para>
+->From time to time the question arises, how can you print
++From time to time the question arises, how can you print
+ <emphasis>to</emphasis> a Windows attached printer
+ <emphasis>from</emphasis> Samba? Normally the local connection
+ from Windows host to printer would be done by USB or parallel
+@@ -5146,7 +5152,7 @@
+ <para>Is your
+ <parameter>TempDir</parameter> directive in
+ <filename>cupsd.conf</filename>
+-set to a valid value and is it writable?
++set to a valid value and is it writeable?
+ </para>
+ 
+ 	</sect2>
+@@ -5190,7 +5196,7 @@
+ 	
+ <para>You see per <command>smbstatus</command> that you are
+ connected as user nobody; while you want to be root or
+-printer admin. This is probably due to 
++printeradmin. This is probably due to 
+ <smbconfoption><name>map to guest</name><value>bad user</value></smbconfoption>, which silently connects you under the guest account
+ when you gave (maybe by accident) an incorrect username. Remove
+ <smbconfoption><name>map to guest</name></smbconfoption>, if you want to prevent
+@@ -5200,7 +5206,7 @@
+ <title>Upgrading to CUPS Drivers from Adobe Drivers</title>
+ 
+ <para>
+-This information came from a mailing list posting regarding problems experienced when
++This information came from a mailing-list posting regarding problems experienced when
+ upgrading from Adobe drivers to CUPS drivers on Microsoft Windows NT/200x/XP Clients.
+ </para>
+ 
+@@ -5427,7 +5433,7 @@
+ <sect1>
+ <title>Overview of the CUPS Printing Processes</title>
+ 
+-<para>A complete overview of the CUPS printing processes can be found in <link linkend="a_small"/>.</para>
++<para>A complete overview of the CUPS printing processes can be found in <link linkend="a_small">the next flowchart</link>.</para>
+ 
+ <image id="a_small"><imagedescription>CUPS printing overview.</imagedescription>
+ 	<imagefile>a_small</imagefile>
+diff -ru samba-docs/docbook/projdoc/CVS/Entries samba-docs-old/docbook/projdoc/CVS/Entries
+--- samba-docs/docbook/projdoc/CVS/Entries	2004-01-24 20:34:51.950594723 +0100
++++ samba-docs-old/docbook/projdoc/CVS/Entries	2004-01-24 20:34:35.816860055 +0100
+@@ -7,13 +7,21 @@
+ /WindowsClientConfig.xml/1.2/Wed Jul 16 05:42:28 2003//
+ D/imagefiles////
+ /AccessControls.xml/1.14/Sat Jan 10 17:22:51 2004//
++/AdvancedNetworkAdmin.xml/1.5/Sat Jan 10 17:22:51 2004//
+ /Bugs.xml/1.6/Sat Jan 10 17:22:51 2004//
++/CUPS-printing.xml/1.9/Sat Jan 10 17:22:51 2004//
++/Compiling.xml/1.6/Sat Jan 10 17:22:51 2004//
++/DOMAIN_MEMBER.xml/1.12/Sat Jan 10 17:22:51 2004//
+ /Diagnosis.xml/1.7/Sat Jan 10 17:22:51 2004//
++/GROUP-MAPPING-HOWTO.xml/1.8/Sat Jan 10 17:22:51 2004//
+ /Integrating-with-Windows.xml/1.8/Sat Jan 10 17:22:51 2004//
++/InterdomainTrusts.xml/1.6/Sat Jan 10 17:22:51 2004//
+ /IntroSMB.xml/1.4/Sat Jan 10 17:22:51 2004//
+ /NT4Migration.xml/1.7/Sat Jan 10 17:22:51 2004//
++/NetworkBrowsing.xml/1.10/Sat Jan 10 17:22:51 2004//
+ /Other-Clients.xml/1.6/Sat Jan 10 17:22:51 2004//
+ /PAM-Authentication-And-Samba.xml/1.8/Sat Jan 10 17:22:51 2004//
++/PolicyMgmt.xml/1.5/Sat Jan 10 17:22:51 2004//
+ /Portability.xml/1.5/Sat Jan 10 17:22:51 2004//
+ /Problems.xml/1.6/Sat Jan 10 17:22:51 2004//
+ /ProfileMgmt.xml/1.9/Sat Jan 10 17:22:51 2004//
+@@ -28,17 +36,9 @@
+ /locking.xml/1.9/Sat Jan 10 17:22:51 2004//
+ /msdfs_setup.xml/1.7/Sat Jan 10 17:22:51 2004//
+ /passdb.xml/1.20/Sat Jan 10 17:22:51 2004//
++/printer_driver2.xml/1.7/Sat Jan 10 17:22:51 2004//
++/samba-doc.xml/1.13/Sat Jan 10 17:22:51 2004//
+ /securing-samba.xml/1.7/Sat Jan 10 17:22:51 2004//
+ /unicode.xml/1.10/Sat Jan 10 17:22:51 2004//
+ /upgrading-to-3.0.xml/1.9/Sat Jan 10 17:22:51 2004//
+ /winbind.xml/1.8/Sat Jan 10 17:22:51 2004//
+-/AdvancedNetworkAdmin.xml/1.6/Sat Jan 24 19:34:51 2004//
+-/CUPS-printing.xml/1.10/Sat Jan 24 19:34:51 2004//
+-/Compiling.xml/1.7/Sat Jan 24 19:34:51 2004//
+-/DOMAIN_MEMBER.xml/1.13/Sat Jan 24 19:34:51 2004//
+-/GROUP-MAPPING-HOWTO.xml/1.11/Sat Jan 24 19:34:51 2004//
+-/InterdomainTrusts.xml/1.8/Sat Jan 24 19:34:51 2004//
+-/NetworkBrowsing.xml/1.12/Sat Jan 24 19:34:51 2004//
+-/PolicyMgmt.xml/1.6/Sat Jan 24 19:34:51 2004//
+-/printer_driver2.xml/1.8/Sat Jan 24 19:34:51 2004//
+-/samba-doc.xml/1.15/Sat Jan 24 19:34:51 2004//
+diff -ru samba-docs/docbook/projdoc/Compiling.xml samba-docs-old/docbook/projdoc/Compiling.xml
+--- samba-docs/docbook/projdoc/Compiling.xml	2004-01-24 20:34:51.735624909 +0100
++++ samba-docs-old/docbook/projdoc/Compiling.xml	2004-01-24 20:34:35.985836331 +0100
+@@ -12,7 +12,7 @@
+ 
+ <para>
+ You can obtain the Samba source from the
+-<ulink url="http://samba.org/">Samba Website.</ulink> To obtain a development version, 
++<ulink url="http://samba.org/">Samba Web site.</ulink> To obtain a development version, 
+ you can download Samba from CVS or using <command>rsync</command>.
+ </para>
+ 
+@@ -26,15 +26,15 @@
+ <para>
+ <indexterm><primary>CVS</primary></indexterm>
+ Samba is developed in an open environment. Developers use
+-Concurrent Versioning System (CVS) to <quote>checkin</quote> (also known as 
++Concurrent Versioning System (CVS) to <quote>check-in</quote> (also known as 
+ <quote>commit</quote>) new source code. Samba's various CVS branches can
+ be accessed via anonymous CVS using the instructions
+ detailed in this chapter.
+ </para>
+ 
+ <para>
+-This chapter is a modified version of the instructions found at the
+-<ulink noescape="1" url="http://samba.org/samba/cvs.html">Samba</ulink> web site.
++This chapter is a modified version of the instructions found at
++<ulink noescape="1" url="http://samba.org/samba/cvs.html">http://samba.org/samba/cvs.html</ulink>
+ </para>
+ 
+ </sect2>
+@@ -176,10 +176,8 @@
+ 	<indexterm><primary>rsync</primary></indexterm>
+ 	<indexterm><primary>ftp</primary></indexterm>
+ 	<parameter>pserver.samba.org</parameter> also exports unpacked copies of most parts of the CVS
+-	tree at the Samba <ulink noescape="1" url="ftp://pserver.samba.org/pub/unpacked">pserver</ulink> 
+-	location and also via anonymous rsync at the Samba
+-	<ulink noescape="1" url="rsync://pserver.samba.org/ftp/unpacked/">rsync</ulink> server location. 
+-	I recommend using rsync rather than ftp.
++	tree at <ulink noescape="1" url="ftp://pserver.samba.org/pub/unpacked">ftp://pserver.samba.org/pub/unpacked</ulink> and also via anonymous rsync at 
++	<ulink noescape="1" url="rsync://pserver.samba.org/ftp/unpacked/">rsync://pserver.samba.org/ftp/unpacked/</ulink>. I recommend using rsync rather than ftp.
+ 	See <ulink noescape="1" url="http://rsync.samba.org/">the rsync home-page</ulink> for more info on rsync.                      
+ 	</para>
+ 
+@@ -430,7 +428,7 @@
+ 		</programlisting></para>
+ 
+ 		<para>The exact syntax of <filename>/etc/inetd.conf</filename> 
+-		varies between UNIXes. Look at the other entries in inetd.conf 
++		varies between UNIX's. Look at the other entries in inetd.conf 
+ 		for a guide. </para>
+ 
+ 	<para>
+@@ -438,7 +436,7 @@
+ 		Some distributions use xinetd instead of inetd. Consult the 
+ 		xinetd manual for configuration information.</para>
+ 
+-		<note><para>Some UNIXes already have entries like netbios_ns 
++		<note><para>Some UNIX's already have entries like netbios_ns 
+ 		(note the underscore) in <filename>/etc/services</filename>. 
+ 		You must edit <filename>/etc/services</filename> or
+ 		<filename>/etc/inetd.conf</filename> to make them consistent.
+@@ -452,10 +450,10 @@
+ 		<application>ifconfig</application> 
+ 		as root if you do not know what the broadcast is for your
+ 		net. &nmbd; tries to determine it at run 
+-		time, but fails on some UNIXes. 
++		time, but fails on some UNIX's. 
+ 		</para></note>
+ 
+-		<warning><para>Many UNIXes only accept around five 
++		<warning><para>Many UNIX's only accept around five 
+ 		parameters on the command line in <filename>inetd.conf</filename>. 
+ 		This means you shouldn't use spaces between the options and 
+ 		arguments, or you should use a script and start the script 
+@@ -480,13 +478,11 @@
+ 		a script something like this one, perhaps calling 
+ 		it <filename>startsmb</filename>.</para>
+ 
+-	<smbfile name="startsmb.sh">
+ 		<para><programlisting>
+ 		#!/bin/sh
+ 		/usr/local/samba/bin/smbd -D 
+ 		/usr/local/samba/bin/nmbd -D 
+ 		</programlisting></para>
+-	</smbfile>
+ 
+ 		<para>Make it executable with <command>chmod 
+ 		+x startsmb</command></para>
+diff -ru samba-docs/docbook/projdoc/DOMAIN_MEMBER.xml samba-docs-old/docbook/projdoc/DOMAIN_MEMBER.xml
+--- samba-docs/docbook/projdoc/DOMAIN_MEMBER.xml	2004-01-24 20:34:51.770619995 +0100
++++ samba-docs-old/docbook/projdoc/DOMAIN_MEMBER.xml	2004-01-24 20:34:35.996834787 +0100
+@@ -758,21 +758,12 @@
+ <para>
+ <indexterm><primary>/etc/krb5.conf</primary></indexterm>
+ <indexterm><primary>Kerberos</primary><secondary>/etc/krb5.conf</secondary></indexterm>
+-With both MIT and Heimdal Kerberos, it is iunnecessary to configure the 
+-<filename>/etc/krb5.conf</filename>, and it may be detrimental.
+-</para>
+-
+-<para>
+-Microsoft Active Directory servers automatically create SRV records in the DNS zone 
+-<parameter>_kerberos.REALM.NAME</parameter> for each KDC in the realm. This is part
+-of the installation and configuration process used to create an Active Directory Domain.
+-</para>
+-
+-<para>
+-MIT's, as well as Heimdal's, recent KRB5 libraries default to checking for SRV records, so they will 
+-automatically find the KDCs. In addition, <filename>krb5.conf</filename> only allows specifying 
+-a single KDC, even there if there may be more than one. Using the DNS lookup allows the KRB5 
+-libraries to use whichever KDCs are available.
++With both MIT and Heimdal Kerberos, this is unnecessary, and may be detrimental. All ADS
++domains will automatically create SRV records in the DNS zone <?latex \linebreak ?><parameter>_kerberos.REALM.NAME</parameter> for
++each KDC in the realm. MIT's, as well as Heimdal's, KRB5 libraries default to checking
++for these records, so they will automatically find the KDCs. In addition,
++<filename>krb5.conf</filename> only allows specifying a single KDC, even there if there is more
++than one. Using the DNS lookup allows the KRB5 libraries to use whichever KDCs are available.
+ </para>
+ 
+ <para>
+diff -ru samba-docs/docbook/projdoc/GROUP-MAPPING-HOWTO.xml samba-docs-old/docbook/projdoc/GROUP-MAPPING-HOWTO.xml
+--- samba-docs/docbook/projdoc/GROUP-MAPPING-HOWTO.xml	2004-01-24 20:34:51.803615362 +0100
++++ samba-docs-old/docbook/projdoc/GROUP-MAPPING-HOWTO.xml	2004-01-24 20:34:36.016831979 +0100
+@@ -28,7 +28,7 @@
+ 	<para>
+ 	<indexterm><primary>domain admin group</primary></indexterm>
+ 	The <parameter>domain admin group</parameter> parameter has been removed in Samba-3 and should no longer
+-	be specified in &smb.conf;. In Samba-2.2.x, this parameter was used to give the listed users membership in the
++	be specified in &smb.conf;. This parameter was used to give the listed users membership in the
+ 	<constant>Domain Admins</constant> Windows group which gave local admin rights on their workstations
+ 	(in default configurations).
+ 	</para>
+@@ -166,7 +166,7 @@
+ 
+ 		<para>
+ 	<screen>
+-	&rootprompt;<userinput>net groupmap add ntgroup=<quote>Domain Admins</quote> unixgroup=domadm</userinput>
++	&rootprompt;<userinput>net groupmap add ntgroup=<quote>Domain Admins</quote> UNIXgroup=domadm</userinput>
+ 	</screen>
+ 	</para>
+ 		
+@@ -191,7 +191,7 @@
+ 
+ 	<para>
+ <screen>
+-&rootprompt;<userinput>net groupmap add rid=1000 ntgroup="Accounting" unixgroup=acct</userinput>
++&rootprompt;<userinput>net groupmap add rid=1000 ntgroup="Accounting" UNIXgroup=acct</userinput>
+ </screen>
+ 	</para>
+ 
+@@ -204,48 +204,6 @@
+ 	</para>
+ 
+ 	<sect2>
+-	<title>Important Administrative Information</title>
+-
+-	<para>
+-	Administrative rights are necessary in two specific forms:
+-	</para>
+-
+-	<orderedlist>
+-		<listitem><para>For Samba-3 Domain Controllers and 
+-				Domain Member Servers/Clients.</para></listitem>
+-		<listitem><para>To manage Domain Member Windows workstations.</para></listitem>
+-	</orderedlist>
+-
+-	<para>
+-	Administrative tasks on UNIX/Linux systems, such as adding users or groups, requires <constant>root</constant>
+-	level privilege. The addition of a Windows client to a Samba Domain involves the addition of a user account
+-	for the Windows client.
+-	</para>
+-
+-	<para>
+-	Many UNIX administrators continue to request the Samba Team make it possible to add Windows workstations, or 
+-	to ability to add/delete or modify user accounts, without requiring <constant>root</constant> privileges. 
+-	Such a request violates every understanding of basic UNIX system security.
+-	</para>
+-
+-	<para>
+-	There is no safe way to provide access on a UNIX/Linux system without providing <constant>root</constant>
+-	level privilege. Provision of <constant>root</constant> privileges can be done wither by logging onto
+-	the Domain as the user <constant>root</constant>, or by permitting particular users to use a UNIX account
+-	that is a member of the UNIX group that has a GID=0 as the primary group in the <filename>/etc/passwd</filename>
+-	database. Users of such accounts can use tools like the NT4 Domain User Manager, and the NT4 Domain Server 
+-	Manager to manage user and group accounts as well as Domain Member server and client accounts. This level
+-	of privilege is also needed to manage share level ACLs.
+-	</para>
+-
+-	<para>
+-	Administrative tasks on a Windows Domain Member workstation, can be done by anyone who is a member of the
+-	<constant>Domain Admins</constant> group. This group can be mapped to any convenient UNIX group.
+-	</para>
+-
+-	</sect2>
+-
+-	<sect2>
+ 	<title>Default Users, Groups and Relative Identifiers</title>
+ 
+ 	<para>
+diff -ru samba-docs/docbook/projdoc/InterdomainTrusts.xml samba-docs-old/docbook/projdoc/InterdomainTrusts.xml
+--- samba-docs/docbook/projdoc/InterdomainTrusts.xml	2004-01-24 20:34:51.820612975 +0100
++++ samba-docs-old/docbook/projdoc/InterdomainTrusts.xml	2004-01-24 20:34:36.040828610 +0100
+@@ -278,7 +278,7 @@
+ the account. You can use any password you want, but be aware that Windows NT will
+ not change this password until seven days following account creation.
+ After the command returns successfully, you can look at the entry for the new account
+-(in the standard way as appropriate for your configuration) and see that accounts name is
++(in the standard way as appropriate for your configuration) and see that account's name is
+ really RUMBA$ and it has the <quote>I</quote> flag set in the flags field. Now you are ready to confirm
+ the trust by establishing it from Windows NT Server.
+ </para>
+@@ -409,7 +409,7 @@
+ </para>
+ 
+ <para><emphasis>Answer: </emphasis> If there is a computer account in the Windows
+-200x Domain for the machine in question, and it is disabled, this problem can
++200x Domain for the machine in question, and it is disabled, this problem rears can
+ occur.  If there is no computer account (removed or never existed), or if that 
+ account is still intact (i.e.: you just joined it to another domain) everything 
+ seems to be fine. By default, when you un-join a domain (the Windows 200x 
+@@ -420,52 +420,6 @@
+ 
+ </sect2>
+ 
+-<sect2>
+-<title>Problems With LDAP ldapsam And The smbldap-tools</title>
+-
+-<para>
+-If you use the <command>smbldap-useradd.pl</command> script to create a trust
+-account to set up Interdomain trusts the process of setting up the trust will
+-fail. The account that was created in the LDAP database will have an account
+-flags field that has <constant>[W          ]</constant>, when it must have
+-<constant>[I          ]</constant> for Interdomain trusts to work.
+-</para>
+-
+-<para><emphasis>Answer: </emphasis>Here is a simple solution.
+-Create a machine account as follows:
+-<screen>
+-&rootprompt; smbldap-useradd.pl -w domain_name
+-</screen>
+-Then set the desired trust account password as shown here:
+-<screen>
+-&rootprompt; smbldap-passwd.pl domain_name\$
+-</screen>
+-Using a text editor, create the following file:
+-<screen>
+-dn: uid=domain_name$,ou=People,dc={your-domain},dc={your-top-level-domain}
+-changetype: modify
+-sambaAcctFlags: [I         ]
+-</screen>
+-Then apply the text file to the LDAP database as follows:
+-<screen>
+-&rootprompt; ldapmodify -x -h localhost \
+- -D "cn=Manager,dc={your-domain},dc={your-top-level-domain}" \
+- -W -f /path-to/foobar
+-</screen>
+-Create a single-sided trust under the NT4 Domain User Manager, then execute:
+-<screen>
+-&rootprompt; net rpc trustdom establish domain_name
+-</screen>
+-</para>
+-
+-<para>
+-It works with Samba-3  and NT4 Domains, and also with Samba-3 and Windows 200x ADS in mixed mode.
+-Both DC's, samba and NT, must have the same WINS server otherwise
+-the trust will never work. 
+-</para>
+-
+-</sect2>
+-
+ </sect1>
+ 
+ </chapter>
+diff -ru samba-docs/docbook/projdoc/NetworkBrowsing.xml samba-docs-old/docbook/projdoc/NetworkBrowsing.xml
+--- samba-docs/docbook/projdoc/NetworkBrowsing.xml	2004-01-24 20:34:51.899601883 +0100
++++ samba-docs-old/docbook/projdoc/NetworkBrowsing.xml	2004-01-24 20:34:36.050827206 +0100
+@@ -152,17 +152,17 @@
+ Samba implements NetBIOS, as does MS Windows NT/200x/XP, by encapsulating it over TCP/IP.
+ MS Windows products can do likewise. NetBIOS-based networking uses broadcast messaging to
+ effect browse list management. When running NetBIOS over TCP/IP, this uses UDP-based messaging.
+-UDP messages can be broadcast or uni-cast.
++UDP messages can be broadcast or unicast.
+ </para>
+ 
+ 
+ <para>
+ <indexterm><primary>UDP</primary></indexterm>
+-Normally, only uni-cast UDP messaging can be forwarded by routers. The
++Normally, only unicast UDP messaging can be forwarded by routers. The
+ <smbconfoption><name>remote announce</name></smbconfoption> parameter to smb.conf helps to project browse announcements
+-to remote network segments via uni-cast UDP. Similarly, the 
++to remote network segments via unicast UDP. Similarly, the 
+ <smbconfoption><name>remote browse sync</name></smbconfoption> parameter of &smb.conf;
+-implements browse list collation using uni-cast UDP.
++implements browse list collation using unicast UDP.
+ </para>
+ 
+ <para>
+@@ -294,13 +294,13 @@
+ DNS server in place of the Microsoft DNS server. While this might be desirable to some, the
+ MS Windows 200x DNS server is auto-configured to work with Active Directory. It is possible
+ to use BIND version 8 or 9, but it will almost certainly be necessary to create service records
+-(SRV records) so MS Active Directory clients can resolve host names to locate essential network services.
++so MS Active Directory clients can resolve host names to locate essential network services.
+ The following are some of the default service records that Active Directory requires:
+ </para>
+ 
+ <variablelist>
+ <varlistentry>
+-	<term>_ldap._tcp.pdc._msdcs.<emphasis>Domain</emphasis></term>
++	<term>_ldap._tcp.pdc.ms-dcs.<emphasis>Domain</emphasis></term>
+ 	<listitem>
+ 	<para>
+ 	This provides the address of the Windows NT PDC for the Domain.
+@@ -308,7 +308,7 @@
+ 	</listitem>
+ </varlistentry>
+ <varlistentry>
+-	<term>_ldap._tcp.pdc._msdcs.<emphasis>DomainTree</emphasis></term>
++	<term>_ldap._tcp.pdc.ms-dcs.<emphasis>DomainTree</emphasis></term>
+ 	<listitem>
+         <para>
+ 	Resolves the addresses of Global Catalog servers in the domain.
+@@ -324,7 +324,7 @@
+ 	</listitem>
+ </varlistentry>
+ <varlistentry>
+-        <term>_ldap._tcp.writable._msdcs.<emphasis>Domain</emphasis></term>
++        <term>_ldap._tcp.writable.ms-dcs.<emphasis>Domain</emphasis></term>
+ 	<listitem>
+         <para>
+ 	Enumerates list of Domain Controllers that have the writable copies of the Active Directory data-store.
+@@ -332,7 +332,7 @@
+ 	</listitem>
+ </varlistentry>
+ <varlistentry>
+-	<term>_ldap._tcp.<emphasis>GUID</emphasis>.domains._msdcs.<emphasis>DomainTree</emphasis></term>
++	<term>_ldap._tcp.<emphasis>GUID</emphasis>.domains.ms-dcs.<emphasis>DomainTree</emphasis></term>
+ 	<listitem>
+ 	<para>
+ 	Entry used by MS Windows clients to locate machines using the Global Unique Identifier.
+@@ -340,7 +340,7 @@
+ 	</listitem>
+ </varlistentry>
+ <varlistentry>
+-	<term>_ldap._tcp.<emphasis>Site</emphasis>.gc._msdcs.<emphasis>DomainTree</emphasis></term>
++	<term>_ldap._tcp.<emphasis>Site</emphasis>.gc.ms-dcs.<emphasis>DomainTree</emphasis></term>
+ 	<listitem>
+ 	<para>
+ 	Used by MS Windows clients to locate site configuration dependent Global Catalog server.
+@@ -349,120 +349,6 @@
+ </varlistentry>
+ </variablelist>
+ 
+-	<para>
+-	Specific entries used by Microsoft clients to locate essential services for an example domain
+-	called <constant>quenya.org</constant> includes:
+-	</para>
+-
+-	<itemizedlist>
+-		<listitem><para>
+-		_kerberos._udp.quenya.org &smbmdash; Used to contact the KDC server via UDP.
+-		This entry must list port 88 for each KDC.
+-		</para></listitem>
+-
+-		<listitem><para>
+-		_kpasswd._udp.quenya.org &smbmdash; Used to locate the <constant>kpasswd</constant> server
+-		when a user password change must be processed. This record must list port 464 on the
+-		master KDC.
+-		</para></listitem>
+-
+-		<listitem><para>
+-		_kerberos._tcp.quenya.org &smbmdash; Used to locate the KDC server via TCP.
+-		This entry must list port 88 for each KDC.
+-		</para></listitem>
+-
+-		<listitem><para>
+-		_ldap._tcp.quenya.org &smbmdash; Used to locate the LDAP service on the PDC.
+-		This record must list port 389 for the PDC.
+-		</para></listitem>
+-
+-		<listitem><para>
+-		_kpasswd._tcp.quenya.org &smbmdash; Used to locate the <constant>kpasswd</constant> server
+-		to permit user password changes to be processed. This must list port 464.
+-		</para></listitem>
+-
+-		<listitem><para>
+-		_gc._tcp.quenya.org &smbmdash; Used to locate the Global Catalog server on the for the
+-		top of the domain. This must list port 3268.
+-		</para></listitem>
+-	</itemizedlist>
+-	
+-	<para>
+-	The following records are also used by the Windows Domain Member client to locate vital
+-	services on the Windows ADS domain controllers.
+-	</para>
+-
+-	<itemizedlist>
+-		<listitem><para>
+-		_ldap._tcp.pdc._msdcs.quenya.org
+-		</para></listitem>
+-
+-		<listitem><para>
+-		_ldap.gc._msdcs.quenya.org
+-		</para></listitem>
+-
+-		<listitem><para>
+-		_ldap.default-first-site-name._sites.gc._msdcs.quenya.org
+-		</para></listitem>
+-
+-		<listitem><para>
+-		_ldap.{SecID}.domains._msdcs.quenya.org
+-		</para></listitem>
+-
+-		<listitem><para>
+-		_ldap._tcp.dc._msdcs.quenya.org
+-		</para></listitem>
+-
+-		<listitem><para>
+-		_kerberos._tcp.dc._msdcs.quenya.org
+-		</para></listitem>
+-
+-		<listitem><para>
+-		_ldap.default-first-site-name._sites.dc._msdcs.quenya.org
+-		</para></listitem>
+-
+-		<listitem><para>
+-		_kerberos.default-first-site-name._sites.dc._msdcs.queyna.org
+-		</para></listitem>
+-
+-		<listitem><para>
+-		SecID._msdcs.quenya.org
+-		</para></listitem>
+-	</itemizedlist>
+-
+-	<para>
+-	Presence of the correct DNS entries can be validated by executing:
+-<screen>
+-&rootprompt; dig @frodo -t any _ldap._tcp.dc._msdcs.quenya.org
+-
+-; &lt;lt;&gt;&gt; DiG 9.2.2 &lt;lt;&gt;&gt; @frodo -t any _ldap._tcp.dc._msdcs.quenya.org
+-;; global options:  printcmd
+-;; Got answer:
+-;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 3072
+-;; flags: qr aa rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 2
+-
+-
+-;; QUESTION SECTION:
+-;_ldap._tcp.dc._msdcs.quenya.org. IN        ANY
+-
+-
+-;; ANSWER SECTION:
+-_ldap._tcp.dc._msdcs.quenya.org. 600 IN SRV 0 100 389 frodo.quenya.org.
+-_ldap._tcp.dc._msdcs.quenya.org. 600 IN SRV 0 100 389 noldor.quenya.org.
+-
+-
+-;; ADDITIONAL SECTION:
+-frodo.quenya.org. 3600  IN      A       10.1.1.16
+-noldor.quenya.org. 1200  IN      A       10.1.1.17
+-
+-
+-;; Query time: 0 msec
+-;; SERVER: frodo#53(10.1.1.16)
+-;; WHEN: Wed Oct  7 14:39:31 2004
+-;; MSG SIZE  rcvd: 171
+-</screen>
+-	</para>
+-
+ </sect2>
+ 
+ </sect1>
+@@ -491,7 +377,7 @@
+ 
+ <para>
+ Where a WINS server is used, the MS Windows client will use UDP 
+-uni-cast to register with the WINS server. Such packets can be routed 
++unicast to register with the WINS server. Such packets can be routed 
+ and thus WINS allows name resolution to function across routed networks.
+ </para>
+ 
+@@ -572,7 +458,7 @@
+ The Domain Master Browser should preferably be the local master
+ browser for its own subnet. In order to achieve this, set the following
+ options in the <smbconfsection>[global]</smbconfsection> section of the &smb.conf;
+-file as shown in <link linkend="dmbexample"/>.
++file as shown in <link linkend="dmbexample">the following example</link>:
+ </para>
+ 
+ <para>
+@@ -597,7 +483,7 @@
+ rebooted more often, so it is not such a good idea to use these). To make a Samba
+ server a Local Master Browser set the following options in the
+ <smbconfsection>[global]</smbconfsection> section of the &smb.conf; file as
+-shown in <link linkend="lmbexample"/>:
++shown in <link linkend="lmbexample">following example</link>:
+ </para>
+ 
+ <para>
+@@ -626,7 +512,7 @@
+ <para>
+ If you have an NT machine on the subnet that you wish to be the Local Master Browser, you can disable Samba from
+ becoming a Local Master Browser by setting the following options in the <smbconfsection>[global]</smbconfsection> section of the 
+-&smb.conf; file as shown in <link linkend="nombexample"/>:
++&smb.conf; file as shown in <link linkend="nombexample">following example</link>:
+ </para>
+ 
+ <para>
+@@ -655,7 +541,7 @@
+ <para>
+ For subnets other than the one containing the Windows NT PDC, you may set up Samba servers as Local Master Browsers as
+ described. To make a Samba server a Local Master Browser, set the following options in the <smbconfsection>[global]</smbconfsection> section 
+-of the &smb.conf; file as shown in <link linkend="remsmb"/>:
++of the &smb.conf; file as shown in <link linkend="remsmb">following example</link>:
+ </para>
+ 
+ <para>
+@@ -673,14 +559,14 @@
+ If you wish to have a Samba server fight the election with machines on the same subnet you
+ may set the <smbconfoption><name>os level</name></smbconfoption> parameter to lower levels.
+ By doing this you can tune the order of machines that will become Local Master Browsers if
+-they are running. For more details on this refer to <link linkend="browse-force-master"/>.
++they are running. For more details on this refer to <link linkend="browse-force-master">Forcing Samba to Be the Master</link> section.
+ </para>
+ 
+ <para>
+ If you have Windows NT machines that are members of the domain on all subnets and you are
+ sure they will always be running, you can disable Samba from taking part in browser elections
+ and ever becoming a Local Master Browser by setting the following options in the
+-<smbconfsection>[global]</smbconfsection> section of the &smb.conf; file as shown in <link linkend="xremmb"/>:
++<smbconfsection>[global]</smbconfsection> section of the &smb.conf; file as shown in <link linkend="xremmb">next example</link>:
+ </para>
+ 
+ <para>
+@@ -1073,7 +959,7 @@
+ <para>
+ Adding static entries to your Samba WINS server is actually fairly easy.
+ All you have to do is add a line to <filename>wins.dat</filename>, typically
+-located in <filename class="directory">/usr/local/samba/var/locks</filename> or
++located in <filename class="directory">/usr/local/samba/var/locks</filename> or 
+ <filename>/var/run/samba</filename>.
+ </para>
+ 
+@@ -1123,15 +1009,15 @@
+ <sect2>
+ <title>Windows Networking Protocols</title>
+ 
++<warning><para>
++Do not use more than one protocol on MS Windows machines.
++</para></warning>
++
+ <para>
+ A common cause of browsing problems results from installing more than
+ one protocol on an MS Windows machine.
+ </para>
+ 
+-<warning><para>
+-Do not use more than one protocol on MS Windows clients.
+-</para></warning>
+-
+ <para>
+ Every NetBIOS machine takes part in a process of electing the LMB (and DMB)
+ every 15 minutes. A set of election criteria is used to determine the order
+@@ -1371,7 +1257,7 @@
+ </para>
+ 
+ <para>
+-Consider a network set up as <link linkend="browsing1"/>.
++Consider a network set up as in <link linkend="browsing1">Cross-Subnet Browsing Example</link>.
+ </para>
+ 
+ <image id="browsing1" scale="40"><imagedescription>Cross-Subnet Browsing Example.</imagedescription><imagefile>browsing1</imagefile></image>
+@@ -1422,7 +1308,7 @@
+ </para>
+ 
+ <para>
+-At this point the browse lists appear as shown in <link linkend="browsubnet"/> (these are 
++At this point the browse lists appear as shown in <link linkend="browsubnet">the next example</link> (these are 
+ the machines you would see in your network neighborhood if you looked in it on a particular network right now).
+ </para>
+ 
+@@ -1465,7 +1351,7 @@
+ names it knows about. Once the Domain Master Browser receives
+ the <emphasis>MasterAnnouncement</emphasis> packet, it schedules a synchronization
+ request to the sender of that packet. After both synchronizations
+-are complete the browse lists look as shown in <link linkend="brsbex"/>:
++are complete the browse lists look as shown in <link linkend="brsbex">following example</link>:
+ </para>
+ 
+ <table frame="all" id="brsbex">
+@@ -1503,8 +1389,8 @@
+ for the Local Master Browser on subnet 3 (N3_D). When it
+ synchronizes browse lists with the Domain Master Browser (N1_A)
+ it gets both the server entries on subnet 1, and those on
+-subnet 2. After N3_D has synchronized with N1_C and vicar versa,
+-the browse lists will appear as shown in <link linkend="brsex2"/>.
++subnet 2. After N3_D has synchronized with N1_C and vica versa,
++the browse lists will appear as shown in <link linkend="brsex2">following example</link>.
+ </para>
+ 
+ <table frame="all" id="brsex2">
+@@ -1544,7 +1430,7 @@
+ with the Domain Master Browser (N1_C) and will receive the missing
+ server entries. Finally, as when a steady state (if no machines
+ are removed or shut off) has been achieved, the browse lists will appear
+-as shown in <link linkend="brsex3"/>.
++as shown in <link linkend="brsex3">example below</link>.
+ </para>
+ 
+ <table frame="all" id="brsex3">
+@@ -1682,7 +1568,7 @@
+ <indexterm><primary>slow browsing</primary></indexterm>
+ There are only two machines on a test network. One a Samba server, the other a Windows XP machine.
+ Authentication and logons work perfectly, but when I try to explore shares on the Samba server, the
+-Windows XP client becomes unresponsive. Sometimes it does not respond for some minutes. Eventually,
++Windows XP client becomes unrespsonsive. Sometimes it does not respond for some minutes. Eventually,
+ Windows Explorer will respond and displays files and directories without problem.
+ display file and directory.</quote>
+ </para>
+@@ -1714,7 +1600,7 @@
+ 		<term>The Windows XP WebClient</term>
+ 		<listitem><para>
+ 		A number of sites have reported similar slow network browsing problems and found that when
+-		the WebClient service is turned off, the problem disappears. This is certainly something
++		the WebClient service is turned off, the problem dis-appears. This is certainly something
+ 		that should be explored as it is a simple solution &smbmdash; if it works.
+ 		</para></listitem>
+ 	</varlistentry>
+@@ -1735,7 +1621,7 @@
+ 		<term>Incorrect DNS Configuration</term>
+ 		<listitem><para>
+ 		If use of NetBIOS over TCP/IP is disabled, Active Directory is in use and the DNS server
+-		has been incorrectly configured. Refer <link linkend="adsdnstech"/> for more information.
++		has been incorrectly configured. Refer <link linkend="adsdnstech">DNS and Active Directory</link> for more information.
+ 		</para></listitem>
+ 	</varlistentry>
+ </variablelist>
+diff -ru samba-docs/docbook/projdoc/PolicyMgmt.xml samba-docs-old/docbook/projdoc/PolicyMgmt.xml
+--- samba-docs/docbook/projdoc/PolicyMgmt.xml	2004-01-24 20:34:51.903601322 +0100
++++ samba-docs-old/docbook/projdoc/PolicyMgmt.xml	2004-01-24 20:34:36.056826364 +0100
+@@ -348,7 +348,7 @@
+ </para>
+ 
+ <para>
+-Samba-3.0.0 does not yet implement all account controls that are common to MS Windows NT4/200x/XP.
++Samba-3.0.0 doe not yet implement all account controls that are common to MS Windows NT4/200x/XP.
+ While it is possible to set many controls using the Domain User Manager for MS Windows NT4, only password
+ expiry is functional today. Most of the remaining controls at this time have only stub routines
+ that may eventually be completed to provide actual control. Do not be misled by the fact that a
+diff -ru samba-docs/docbook/projdoc/printer_driver2.xml samba-docs-old/docbook/projdoc/printer_driver2.xml
+--- samba-docs/docbook/projdoc/printer_driver2.xml	2004-01-24 20:34:51.946595285 +0100
++++ samba-docs-old/docbook/projdoc/printer_driver2.xml	2004-01-24 20:34:36.126816537 +0100
+@@ -52,7 +52,7 @@
+ If you use CUPS, you may be tempted
+ to jump to the next chapter but you will certainly miss a few things if
+ you do. It is recommended that you read this chapter as well as <link
+-linkend="CUPS-printing"/>.
++linkend="CUPS-printing">CUPS Printing Support</link>.
+ </para>
+ 
+ <note>
+@@ -175,7 +175,7 @@
+ <title>Simple Print Configuration</title>
+ 
+ <para>
+-<link linkend="simpleprc"/> shows a simple printing configuration.
++<link linkend="simpleprc">Following example</link> shows a simple printing configuration.
+ If you compare this with your own, you may find 
+ additional parameters that have been pre-configured by your OS
+ vendor. Below is a discussion and explanation of the
+@@ -231,7 +231,7 @@
+ overview of the running <command>smbd</command> print configuration. This
+ command does not show individually created printer shares or the spooling
+ paths they may use. Here is the output of my Samba setup, with settings
+-shown in <link linkend="simpleprc"/>:
++shown in <link linkend="simpleprc">the example above</link>:
+ </para>
+ 
+ <para><screen>
+@@ -434,12 +434,12 @@
+ <title>Extended Printing Configuration</title>
+ 
+ <para>
+-In <link linkend="extbsdpr"/> we show a more verbose example configuration
++<link linkend="extbsdpr">Next configuration</link> shows a more verbose example configuration
+ for print-related settings in a BSD-style printing environment. What follows
+ is a discussion and explanation of the various parameters. We chose to
+ use BSD-style printing here because it is still the most commonly used
+ system on legacy UNIX/Linux installations. New installations predominantly
+-use CUPS, which is discussed in a separate chapter. <link linkend="extbsdpr"/> explicitly
++use CUPS, which is discussed in a separate chapter. The example explicitly
+ names many parameters that do not need to be specified because they are set
+ by default. You could use a much leaner &smb.conf; file. Alternately, you can use
+ <command>testparm</command> or <command>SWAT</command> to optimize the &smb.conf;
+@@ -746,13 +746,13 @@
+ 
+ 	<varlistentry><term><smbconfoption><name>printable</name><value>yes </value></smbconfoption></term>
+ 		<listitem><para>
+-		See <link linkend="ptrsect"/>.
++		See <link linkend="ptrsect">The [printers] Section</link>.
+ 		</para></listitem>
+ 	</varlistentry>
+ 
+ 	<varlistentry><term><smbconfoption><name>writable</name><value>no </value></smbconfoption></term>
+ 		<listitem><para>
+-		See <link linkend="ptrsect"/>.
++		See <link linkend="ptrsect">The [printers] Section</link>.
+ 		</para></listitem>
+ 	</varlistentry>
+ 
+@@ -808,8 +808,8 @@
+ on the <smbconfoption><name>printing</name></smbconfoption> parameter setting. In the commands listed
+ below, you will notice some parameters of the form <emphasis>%X</emphasis> where <emphasis>X</emphasis> is
+ <emphasis>p, s, J</emphasis>, and so on. These letters stand for printer name, spool-file and job ID, respectively.
+-They are explained in more detail further below. <link linkend="printOptions"/> presents an overview of key
+-printing options but excludes the special case of CUPS that is discussed in <link linkend="CUPS-printing"/>.
++They are explained in more detail further below. <link linkend="printOptions">Next table</link> presents an overview of key
++printing options but excludes the special case of CUPS that is discussed in <link linkend="CUPS-printing">CUPS Printing Support</link>.
+ </para>
+ 
+ <table frame='all' id="printOptions">
+@@ -963,8 +963,7 @@
+ </para>
+ 
+ <para><smbconfblock>
+-<smbconfoption><name>print command</name><value>echo Printing %s &gt;&gt; \</value></smbconfoption>
+-<member><parameter>/tmp/print.log; lpr -P %p %s; rm %s</parameter></member>
++<smbconfoption><name>print command</name><value>echo Printing %s &gt;&gt; /tmp/print.log; lpr -P %p %s; rm %s</value></smbconfoption>
+ </smbconfblock></para>
+ 
+ <para>
+@@ -1075,11 +1074,11 @@
+ 	</para></listitem>
+ 
+ 	<listitem><para>
+-	Using the <emphasis>Imprints</emphasis> tool-set.
++	Using the <emphasis>Imprints</emphasis> tool set.
+ 	</para></listitem>
+ 
+ 	<listitem><para>
+-	Using the <emphasis>smbclient</emphasis> and <emphasis>rpcclient</emphasis> command-line tools.
++	Using the <emphasis>smbclient</emphasis> and <emphasis>rpcclient</emphasis> commandline tools.
+ 	</para></listitem>
+ 
+ 	<listitem><para>
+@@ -1115,7 +1114,7 @@
+ 	<para>
+ 	These parameters, including the <parameter>printer driver file</parameter> parameter,
+ 	are now removed and cannot be used in installations of Samba-3. The share name
+-	<smbconfsection>[print$]</smbconfsection> is now used for the location of download-able printer
++	<smbconfsection>[print$]</smbconfsection> is now used for the location of down-loadable printer
+ 	drivers. It is taken from the <smbconfsection>[print$]</smbconfsection> service created
+ 	by Windows NT PCs when a printer is shared by them. Windows NT print servers always have a
+ 	<smbconfsection>[print$]</smbconfsection> service that provides read-write access (in the context
+@@ -1139,7 +1138,7 @@
+ You should modify the server's file to add the global parameters and create the
+ <smbconfsection>[print$]</smbconfsection> file share (of course, some of the parameter values, such
+ as <smbconfoption><name>path</name></smbconfoption> are arbitrary and should be replaced with appropriate values for your
+-site). See <link linkend="prtdollar"/>.
++site). See <link linkend="prtdollar">next example</link>.
+ </para>
+ 
+ <para>
+@@ -1323,7 +1322,7 @@
+ 
+ <itemizedlist>
+ 	<listitem><para>
+-	Using the Samba command-line utility <command>rpcclient</command> with its various subcommands (here:
++	Using the Samba commandline utility <command>rpcclient</command> with its various subcommands (here:
+ 	<command>adddriver</command> and <command>setdriver</command>) from any UNIX workstation.
+ 	</para></listitem>
+ 
+@@ -1391,7 +1390,7 @@
+ Assuming you have connected with an administrative (or root) account (as named by the
+ <smbconfoption><name>printer admin</name></smbconfoption> parameter), you will also be able to modify
+ other printer properties such as ACLs and default device settings using this dialog. For the default
+-device settings, please consider the advice given further in <link linkend="inst-rpc"/>.
++device settings, please consider the advice given further in <link linkend="inst-rpc">Installing Print Drivers Using <command>rpcclient</command></link>.
+ </para>
+ </sect2>
+ 
+@@ -1535,7 +1534,7 @@
+ from? Well, why not retrieve them from the very PC and the same <smbconfsection>[print$]</smbconfsection>
+ share that we investigated in our last step to identify the files? We can use <command>smbclient</command>
+ to do this. We will use the paths and names that were leaked to us by <command>getdriver</command>. The
+-listing is edited to include line breaks for readability:
++listing is edited to include line-breaks for readability:
+ </para>
+ 
+ <para><screen>
+@@ -2236,7 +2235,7 @@
+ 
+ <para>
+ The last sentence might be viewed with mixed feelings by some users and
+-Admins. They have struggled for hours and could not arrive at a point
++admins. They have struggled for hours and could not arrive at a point
+ where their settings seemed to be saved. It is not their fault. The confusing
+ thing is that in the multi-tabbed dialog that pops up when you right-click
+ on the printer name and select <guimenuitem>Properties</guimenuitem>, you
+@@ -2757,8 +2756,8 @@
+ 
+ <para>
+ The Imprints tool set provides a UNIX equivalent of the Windows NT Add Printer
+-Wizard. For complete information, please refer to the 
+-<ulink url="http://imprints.sourceforge.net/">Imprints</ulink> Web site as well as the documentation
++Wizard. For complete information, please refer to the Imprints Web site at <ulink noescape="1"
++url="http://imprints.sourceforge.net/">http://imprints.sourceforge.net/</ulink> as well as the documentation
+ included with the imprints source distribution. This section only provides a brief introduction to
+ the features of Imprints.
+ </para>
+@@ -2894,7 +2893,7 @@
+ clients: <emphasis>How to Add Printers with No User Interaction in Windows 2000,</emphasis> (<ulink
+ url="http://support.microsoft.com/default.aspx?scid=kb;en-us;189105">http://support.microsoft.com/default.aspx?scid=kb;en-us;189105</ulink>).
+ It also applies to Windows XP Professional clients.
+-The ideas sketched out in this section are inspired by this article, which describes a command-line method that can be
++The ideas sketched out in this section are inspired by this article, which describes a commandline method that can be
+ applied to install network and local printers and their drivers. This is most useful if integrated in Logon
+ Scripts. You can see what options are available by typing in the command prompt (<command>DOS box</command>):
+ </para>
+@@ -2902,7 +2901,7 @@
+ <para><userinput>rundll32 printui.dll,PrintUIEntry /?</userinput></para>
+ 
+ <para>
+-A window pops up that shows you all of the command-line switches available. An extensive list of examples
++A window pops up that shows you all of the commandline switches available. An extensive list of examples
+ is also provided. This is only for Win 200x/XP, it does not work on
+ Windows NT. Windows NT probably has
+ some other tools in the respective Resource Kit. Here is a suggestion about what a client logon script
+@@ -2917,7 +2916,7 @@
+ </screen></para>
+ 
+ <para>
+-Here is a list of the used command-line parameters: 
++Here is a list of the used commandline parameters: 
+ </para>
+ 
+ <variablelist>
+@@ -2975,7 +2974,7 @@
+ 
+ <para>
+ Since there no easy way to test for the existence of an installed network printer from the logon script,
+-do not bother checking, just allow the de-installation/re-installation to occur every time a user logs in;
++do not bother checking, just allow the deinstallation/re-installation to occur every time a user logs in;
+ it's really quick anyway (1 to 2 seconds).
+ </para>
+ 
+diff -ru samba-docs/docbook/projdoc/samba-doc.xml samba-docs-old/docbook/projdoc/samba-doc.xml
+--- samba-docs/docbook/projdoc/samba-doc.xml	2004-01-24 20:34:51.949594863 +0100
++++ samba-docs-old/docbook/projdoc/samba-doc.xml	2004-01-24 20:34:36.126816537 +0100
+@@ -13,7 +13,7 @@
+ 	<editor>&person.jht;</editor>
+ 	<editor>&person.jerry;</editor>
+ 	</authorgroup>
+-	<xi:include href="changelog.xml" parse="xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
++	<pubdate>January 6, 2004</pubdate>
+ 
+ <abstract>
+ <para>
+diff -ru samba-docs/docbook/settings.xsl.in samba-docs-old/docbook/settings.xsl.in
+--- samba-docs/docbook/settings.xsl.in	2004-01-24 20:34:51.490659306 +0100
++++ samba-docs-old/docbook/settings.xsl.in	2004-01-24 20:34:36.950700863 +0100
+@@ -8,5 +8,4 @@
+ <xsl:param name="docrop"><xsl:text>@DOCROP@</xsl:text></xsl:param>
+ <xsl:param name="duplicate_ulinks"><xsl:text>@DUPLICATE_ULINKS@</xsl:text></xsl:param>
+ <xsl:param name="fontsize"><xsl:text>@FONTSIZE@</xsl:text></xsl:param>
+-<xsl:param name="numclentries">3</xsl:param>
+ </xsl:stylesheet>
+diff -ru samba-docs/docbook/smbdotconf/filename/CVS/Entries samba-docs-old/docbook/smbdotconf/filename/CVS/Entries
+--- samba-docs/docbook/smbdotconf/filename/CVS/Entries	2004-01-24 20:34:51.958593600 +0100
++++ samba-docs-old/docbook/smbdotconf/filename/CVS/Entries	2004-01-24 20:34:36.264797164 +0100
+@@ -9,6 +9,7 @@
+ /manglecase.xml/1.3/Sat Jan 10 17:22:52 2004//
+ /mangledmap.xml/1.3/Sat Jan 10 17:22:52 2004//
+ /manglednames.xml/1.3/Sat Jan 10 17:22:52 2004//
++/mangledstack.xml/1.4/Sat Jan 10 17:22:52 2004//
+ /mangleprefix.xml/1.5/Sat Jan 10 17:22:52 2004//
+ /manglingchar.xml/1.4/Sat Jan 10 17:22:52 2004//
+ /manglingmethod.xml/1.3/Sat Jan 10 17:22:52 2004//
+Only in samba-docs-old/docbook/smbdotconf/filename: mangledstack.xml
+diff -ru samba-docs/docbook/smbdotconf/protocol/CVS/Entries samba-docs-old/docbook/smbdotconf/protocol/CVS/Entries
+--- samba-docs/docbook/smbdotconf/protocol/CVS/Entries	2004-01-24 20:34:51.968592196 +0100
++++ samba-docs-old/docbook/smbdotconf/protocol/CVS/Entries	2004-01-24 20:34:36.431773721 +0100
+@@ -11,6 +11,7 @@
+ /maxxmit.xml/1.3/Sat Jan 10 17:22:53 2004//
+ /minprotocol.xml/1.3/Sat Jan 10 17:22:53 2004//
+ /minwinsttl.xml/1.3/Sat Jan 10 17:22:53 2004//
++/nameresolveorder.xml/1.5/Sat Jan 10 17:22:53 2004//
+ /ntaclsupport.xml/1.3/Sat Jan 10 17:22:53 2004//
+ /ntpipesupport.xml/1.3/Sat Jan 10 17:22:53 2004//
+ /ntstatussupport.xml/1.3/Sat Jan 10 17:22:53 2004//
+@@ -23,5 +24,4 @@
+ /unixextensions.xml/1.4/Sat Jan 10 17:22:53 2004//
+ /usespnego.xml/1.4/Sat Jan 10 17:22:53 2004//
+ /writeraw.xml/1.3/Sat Jan 10 17:22:53 2004//
+-/nameresolveorder.xml/1.6/Sat Jan 24 19:34:51 2004//
+ D
+diff -ru samba-docs/docbook/smbdotconf/protocol/nameresolveorder.xml samba-docs-old/docbook/smbdotconf/protocol/nameresolveorder.xml
+--- samba-docs/docbook/smbdotconf/protocol/nameresolveorder.xml	2004-01-24 20:34:51.967592336 +0100
++++ samba-docs-old/docbook/smbdotconf/protocol/nameresolveorder.xml	2004-01-24 20:34:36.441772317 +0100
+@@ -58,11 +58,10 @@
+     <para>When Samba is functioning in ADS security mode (<command moreinfo="none">security = ads</command>)
+     it is advised to use following settings for <parameter moreinfo="none">name resolve order</parameter>:</para>
+ 
+-    <para><command moreinfo="none">name resolve order = hosts wins bcast</command></para>
++    <para><command moreinfo="none">name resolve order = wins bcast</command></para>
+ 
+-    <para>If the <link linkend="DISABLENETBIOS"><parameter moreinfo="none">disable netbios</parameter></link>
+-    is enabled,  the <constant>wins</constant>, <constant>bcast</constant>, and <constant>lmhosts</constant>
+-    methods are disabled internally.</para>
++    <para>DC lookups will still be done via DNS, but fallbacks to netbios names will
++		not inundate your DNS servers with needless querys for DOMAIN&lt;0x1c&gt; lookups.</para>
+  
+ </description>
+ 
+diff -ru samba-docs/docbook/smbdotconf/tuning/CVS/Entries samba-docs-old/docbook/smbdotconf/tuning/CVS/Entries
+--- samba-docs/docbook/smbdotconf/tuning/CVS/Entries	2004-01-24 20:34:51.982590230 +0100
++++ samba-docs-old/docbook/smbdotconf/tuning/CVS/Entries	2004-01-24 20:34:36.515761929 +0100
+@@ -17,6 +17,6 @@
+ /strictsync.xml/1.4/Sat Jan 10 17:22:54 2004//
+ /syncalways.xml/1.3/Sat Jan 10 17:22:54 2004//
+ /usemmap.xml/1.3/Sat Jan 10 17:22:54 2004//
++/usesendfile.xml/1.3/Sat Jan 10 17:22:54 2004//
+ /writecachesize.xml/1.3/Sat Jan 10 17:22:54 2004//
+-/usesendfile.xml/1.4/Sat Jan 24 19:34:51 2004//
+ D
+diff -ru samba-docs/docbook/smbdotconf/tuning/usesendfile.xml samba-docs-old/docbook/smbdotconf/tuning/usesendfile.xml
+--- samba-docs/docbook/smbdotconf/tuning/usesendfile.xml	2004-01-24 20:34:51.981590371 +0100
++++ samba-docs-old/docbook/smbdotconf/tuning/usesendfile.xml	2004-01-24 20:34:36.533759402 +0100
+@@ -9,8 +9,7 @@
+     and ReadRaw) will use the more efficient sendfile system call for files that
+     are exclusively oplocked. This may make more efficient use of the system CPU's
+     and cause Samba to be faster. This is off by default as it's effects are unknown
+-    as yet. In particular, it appears that Windows 9X clients fail to work against
+-    Samba with this parameter enabled in config.</para>
++	as yet.</para>
+ </description>
+ 
+ <value type="default">no</value>
+diff -ru samba-docs/docbook/smbdotconf/wins/CVS/Entries samba-docs-old/docbook/smbdotconf/wins/CVS/Entries
+--- samba-docs/docbook/smbdotconf/wins/CVS/Entries	2004-01-24 20:34:51.985589809 +0100
++++ samba-docs-old/docbook/smbdotconf/wins/CVS/Entries	2004-01-24 20:34:36.562755331 +0100
+@@ -1,5 +1,6 @@
+ /dnsproxy.xml/1.3/Sat Jan 10 17:22:55 2004//
+ /winshook.xml/1.3/Sat Jan 10 17:22:55 2004//
++/winspartners.xml/1.4/Sat Jan 10 17:22:55 2004//
+ /winsproxy.xml/1.3/Sat Jan 10 17:22:55 2004//
+ /winsserver.xml/1.6/Sat Jan 10 17:22:55 2004//
+ /winssupport.xml/1.3/Sat Jan 10 17:22:55 2004//
+Only in samba-docs-old/docbook/smbdotconf/wins: winspartners.xml
+diff -ru samba-docs/docbook/xslt/CVS/Entries samba-docs-old/docbook/xslt/CVS/Entries
+--- samba-docs/docbook/xslt/CVS/Entries	2004-01-24 20:35:03.163020215 +0100
++++ samba-docs-old/docbook/xslt/CVS/Entries	2004-01-24 20:34:36.613748171 +0100
+@@ -5,14 +5,13 @@
+ D/html////
+ D/latex////
+ /docbook.xsl/1.2/Tue Dec  9 17:24:25 2003//
++/expand-sambadoc.xsl/1.14/Sat Jan 10 17:22:56 2004//
++/extract-examples.xsl/1.1/Fri Dec 19 02:35:02 2003//
++/generate-attributions.xsl/1.4/Sat Jan 10 17:22:56 2004//
+ /html-chunk.xsl/1.3/Sat Jan 10 17:22:56 2004//
+ /html.xsl/1.3/Sat Jan 10 17:22:56 2004//
++/latex.xsl/1.15/Sat Jan 10 17:22:56 2004//
+ /man.xsl/1.3/Sat Jan 10 17:22:56 2004//
+ /normalize-scape.mod.xsl/1.1/Fri Dec  5 06:53:48 2003//
+ /unicode.mapping.dtd/1.1/Fri Dec  5 06:53:48 2003//
+ /unicode.mapping.xml/1.1/Fri Dec  5 06:53:48 2003//
+-/expand-sambadoc.xsl/1.15/Sat Jan 24 19:34:52 2004//
+-/extract-examples.xsl/1.2/Sat Jan 24 19:34:52 2004//
+-/genchangelog.xsl/1.2/Mon Jan 12 19:46:45 2004//
+-/generate-attributions.xsl/1.5/Sat Jan 24 19:34:52 2004//
+-/latex.xsl/1.16/Sat Jan 24 19:34:52 2004//
+diff -ru samba-docs/docbook/xslt/expand-sambadoc.xsl samba-docs-old/docbook/xslt/expand-sambadoc.xsl
+--- samba-docs/docbook/xslt/expand-sambadoc.xsl	2004-01-24 20:34:52.000587703 +0100
++++ samba-docs-old/docbook/xslt/expand-sambadoc.xsl	2004-01-24 20:34:36.619747329 +0100
+@@ -1,11 +1,4 @@
+ <?xml version='1.0'?>
+-<!-- 
+-	Samba-documentation specific stylesheets
+-	Published under the GNU GPL
+-
+-	(C) Jelmer Vernooij 					2002-2004
+-	(C) Alexander Bokovoy 					2002-2004
+--->
+ <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+ 	xmlns:exsl="http://exslt.org/common"
+ 	xmlns:samba="http://samba.org/common"
+diff -ru samba-docs/docbook/xslt/extract-examples.xsl samba-docs-old/docbook/xslt/extract-examples.xsl
+--- samba-docs/docbook/xslt/extract-examples.xsl	2004-01-24 20:34:52.002587422 +0100
++++ samba-docs-old/docbook/xslt/extract-examples.xsl	2004-01-24 20:34:36.732731466 +0100
+@@ -1,8 +1,5 @@
+ <?xml version='1.0'?>
+-<!--
+-	Extract examples out of XML file
+-	(C) Jelmer Vernooij	2003
+--->
++<!-- vim:set sts=2 shiftwidth=2 syntax=xml: -->
+ <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                 xmlns:exsl="http://exslt.org/common"
+                 xmlns:samba="http://samba.org/common"
+Only in samba-docs/docbook/xslt: genchangelog.xsl
+diff -ru samba-docs/docbook/xslt/generate-attributions.xsl samba-docs-old/docbook/xslt/generate-attributions.xsl
+--- samba-docs/docbook/xslt/generate-attributions.xsl	2004-01-24 20:34:52.016585457 +0100
++++ samba-docs-old/docbook/xslt/generate-attributions.xsl	2004-01-24 20:34:36.619747329 +0100
+@@ -1,8 +1,4 @@
+ <?xml version='1.0'?>
+-<!--
+-	Generate Docbook/XML file with attributions based on chapter/author tags
+-	(C) Jelmer Vernooij 2003
+--->
+ <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                 xmlns:exsl="http://exslt.org/common"
+                 xmlns:samba="http://samba.org/common"
+diff -ru samba-docs/docbook/xslt/latex.xsl samba-docs-old/docbook/xslt/latex.xsl
+--- samba-docs/docbook/xslt/latex.xsl	2004-01-24 20:34:52.032583210 +0100
++++ samba-docs-old/docbook/xslt/latex.xsl	2004-01-24 20:34:36.622746908 +0100
+@@ -16,7 +16,6 @@
+ <xsl:variable name="latex.use.tabularx">1</xsl:variable>
+ <xsl:variable name="latex.fancyhdr.lh"></xsl:variable>
+ <xsl:variable name="latex.use.fancyhdr"></xsl:variable>
+-<xsl:variable name="latex.output.revhistory">1</xsl:variable>
+ <xsl:variable name="latex.use.parskip">1</xsl:variable>
+ <!--<xsl:variable name="latex.use.ltxtable">1</xsl:variable>-->
+ <xsl:variable name="latex.hyphenation.tttricks">1</xsl:variable>
