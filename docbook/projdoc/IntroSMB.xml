@@ -31,7 +31,7 @@ und wurde offiziell als DCE/RPC bekannt. Microsoft kam daher und entschied mehr 
 Arbeitsplatz Lizens haben zu wollen und es als eigenes MSRPC verkaufen zu wollen. Von diesem Punkt
 an wurde das Konzept in Form von SMB (Server Message Block, als "was") unter Benutzung von
 NetBIOS (Network Basic Input/Output System, als "wie") als Komatibilitäts-Schicht weiter geführt.
-
+TEST
 
 Once long ago, there was a buzzword referred to as DCE/RPC. This stood for Distributed
 Computing Environment/Remote Procedure Calls and conceptually was a good idea. It was
