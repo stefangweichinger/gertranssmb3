@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 18. Classical Printing Support</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="msdfs.html" title="Chapter 17. Betreiben eines Microsoft Distributed File System Baumes"><link rel="next" href="CUPS-printing.html" title="Chapter 19. CUPS Printing Support"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 18. Classical Printing Support</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="msdfs.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="CUPS-printing.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="printing"></a>Chapter 18. Classical Printing Support</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Kurt</span> <span class="surname">Pfeifle</span></h3><div class="affiliation"><span class="orgname"> Danka Deutschland GmbH <br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:kpfeifle@danka.de">kpfeifle@danka.de</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Gerald</span> <span class="othername">(Jerry)</span> <span class="surname">Carter</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jerry@samba.org">jerry@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">May 31, 2003</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="printing.html#id2927484">Features and Benefits</a></dt><dt><a href="printing.html#id2927574">Technical Introduction</a></dt><dd><dl><dt><a href="printing.html#id2927640">Client to Samba Print Job Processing</a></dt><dt><a href="printing.html#id2927712">Printing Related Configuration Parameters</a></dt></dl></dd><dt><a href="printing.html#id2927807">Simple Print Configuration</a></dt><dd><dl><dt><a href="printing.html#id2928022">Verifying Configuration with testparm</a></dt><dt><a href="printing.html#id2928156">Rapid Configuration Validation</a></dt></dl></dd><dt><a href="printing.html#id2928496">Extended Printing Configuration</a></dt><dd><dl><dt><a href="printing.html#id2928844">Detailed Explanation Settings</a></dt></dl></dd><dt><a href="printing.html#id2931252">Printing Developments Since Samba-2.2</a></dt><dd><dl><dt><a href="printing.html#id2931404">Point'n'Print Client Drivers on Samba Servers</a></dt><dt><a href="printing.html#id2931548">The Obsoleted [printer$] Section</a></dt><dt><a href="printing.html#id2931648">Creating the [print$] Share</a></dt><dt><a href="printing.html#id2931861">[print$] Section Parameters</a></dt><dt><a href="printing.html#id2932195">The [print$] Share Directory</a></dt></dl></dd><dt><a href="printing.html#id2932365">Installing Drivers into [print$]</a></dt><dd><dl><dt><a href="printing.html#id2932474">Add Printer Wizard Driver Installation</a></dt><dt><a href="printing.html#inst-rpc">Installing Print Drivers Using rpcclient</a></dt></dl></dd><dt><a href="printing.html#id2934381">Client Driver Installation Procedure</a></dt><dd><dl><dt><a href="printing.html#id2934400">First Client Driver Installation</a></dt><dt><a href="printing.html#id2934638">Setting Device Modes on New Printers</a></dt><dt><a href="printing.html#id2934972">Additional Client Driver Installation</a></dt><dt><a href="printing.html#id2935080">Always Make First Client Connection as root or printer admin</a></dt></dl></dd><dt><a href="printing.html#id2935264">Other Gotchas</a></dt><dd><dl><dt><a href="printing.html#id2935289">Setting Default Print Options for Client Drivers</a></dt><dt><a href="printing.html#id2935713">Supporting Large Numbers of Printers</a></dt><dt><a href="printing.html#id2936011">Adding New Printers with the Windows NT APW</a></dt><dt><a href="printing.html#id2936317">Error Message: Cannot connect under a different Name</a></dt><dt><a href="printing.html#id2936445">Take Care When Assembling Driver Files</a></dt><dt><a href="printing.html#id2936749">Samba and Printer Ports</a></dt><dt><a href="printing.html#id2936834">Avoiding Common Client Driver Mis-configuration</a></dt></dl></dd><dt><a href="printing.html#id2936858">The Imprints Tool-set</a></dt><dd><dl><dt><a href="printing.html#id2936898">What is Imprints?</a></dt><dt><a href="printing.html#id2936939">Creating Printer Driver Packages</a></dt><dt><a href="printing.html#id2936958">The Imprints Server</a></dt><dt><a href="printing.html#id2936978">The Installation Client</a></dt></dl></dd><dt><a href="printing.html#id2937140">Adding Network Printers without User Interaction</a></dt><dt><a href="printing.html#id2937465">The addprinter Command</a></dt><dt><a href="printing.html#id2937511">Migration of Classical Printing to Samba</a></dt><dt><a href="printing.html#id2937687">Publishing Printer Information in Active Directory or LDAP</a></dt><dt><a href="printing.html#id2937710">Common Errors</a></dt><dd><dl><dt><a href="printing.html#id2937717">I Give My Root Password but I Do Not Get Access</a></dt><dt><a href="printing.html#id2937768">My Print Jobs Get Spooled into the Spooling Directory, but Then Get Lost</a></dt></dl></dd></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2927484"></a>Features and Benefits</h2></div></div><div></div></div><p>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 18. Classical Printing Support</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="msdfs.html" title="Chapter 17. Betreiben eines Microsoft Distributed File System Baumes"><link rel="next" href="CUPS-printing.html" title="Chapter 19. CUPS Printing Support"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 18. Classical Printing Support</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="msdfs.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="CUPS-printing.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="printing"></a>Chapter 18. Classical Printing Support</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Kurt</span> <span class="surname">Pfeifle</span></h3><div class="affiliation"><span class="orgname"> Danka Deutschland GmbH <br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:kpfeifle@danka.de">kpfeifle@danka.de</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Gerald</span> <span class="othername">(Jerry)</span> <span class="surname">Carter</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jerry@samba.org">jerry@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">May 31, 2003</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="printing.html#id2927575">Features and Benefits</a></dt><dt><a href="printing.html#id2927665">Technical Introduction</a></dt><dd><dl><dt><a href="printing.html#id2927731">Client to Samba Print Job Processing</a></dt><dt><a href="printing.html#id2927802">Printing Related Configuration Parameters</a></dt></dl></dd><dt><a href="printing.html#id2927898">Simple Print Configuration</a></dt><dd><dl><dt><a href="printing.html#id2928113">Verifying Configuration with testparm</a></dt><dt><a href="printing.html#id2928230">Rapid Configuration Validation</a></dt></dl></dd><dt><a href="printing.html#id2928570">Extended Printing Configuration</a></dt><dd><dl><dt><a href="printing.html#id2928918">Detailed Explanation Settings</a></dt></dl></dd><dt><a href="printing.html#id2931332">Printing Developments Since Samba-2.2</a></dt><dd><dl><dt><a href="printing.html#id2931484">Point'n'Print Client Drivers on Samba Servers</a></dt><dt><a href="printing.html#id2931628">The Obsoleted [printer$] Section</a></dt><dt><a href="printing.html#id2931728">Creating the [print$] Share</a></dt><dt><a href="printing.html#id2931941">[print$] Section Parameters</a></dt><dt><a href="printing.html#id2932275">The [print$] Share Directory</a></dt></dl></dd><dt><a href="printing.html#id2932445">Installing Drivers into [print$]</a></dt><dd><dl><dt><a href="printing.html#id2932554">Add Printer Wizard Driver Installation</a></dt><dt><a href="printing.html#inst-rpc">Installing Print Drivers Using rpcclient</a></dt></dl></dd><dt><a href="printing.html#id2934458">Client Driver Installation Procedure</a></dt><dd><dl><dt><a href="printing.html#id2934476">First Client Driver Installation</a></dt><dt><a href="printing.html#id2934714">Setting Device Modes on New Printers</a></dt><dt><a href="printing.html#id2935048">Additional Client Driver Installation</a></dt><dt><a href="printing.html#id2935156">Always Make First Client Connection as root or printer admin</a></dt></dl></dd><dt><a href="printing.html#id2935340">Other Gotchas</a></dt><dd><dl><dt><a href="printing.html#id2935366">Setting Default Print Options for Client Drivers</a></dt><dt><a href="printing.html#id2935789">Supporting Large Numbers of Printers</a></dt><dt><a href="printing.html#id2936087">Adding New Printers with the Windows NT APW</a></dt><dt><a href="printing.html#id2936393">Error Message: Cannot connect under a different Name</a></dt><dt><a href="printing.html#id2936522">Take Care When Assembling Driver Files</a></dt><dt><a href="printing.html#id2936825">Samba and Printer Ports</a></dt><dt><a href="printing.html#id2936910">Avoiding Common Client Driver Mis-configuration</a></dt></dl></dd><dt><a href="printing.html#id2936935">The Imprints Tool-set</a></dt><dd><dl><dt><a href="printing.html#id2936974">What is Imprints?</a></dt><dt><a href="printing.html#id2937015">Creating Printer Driver Packages</a></dt><dt><a href="printing.html#id2937034">The Imprints Server</a></dt><dt><a href="printing.html#id2937054">The Installation Client</a></dt></dl></dd><dt><a href="printing.html#id2937216">Adding Network Printers without User Interaction</a></dt><dt><a href="printing.html#id2937541">The addprinter Command</a></dt><dt><a href="printing.html#id2937587">Migration of Classical Printing to Samba</a></dt><dt><a href="printing.html#id2937763">Publishing Printer Information in Active Directory or LDAP</a></dt><dt><a href="printing.html#id2937786">Common Errors</a></dt><dd><dl><dt><a href="printing.html#id2937794">I Give My Root Password but I Do Not Get Access</a></dt><dt><a href="printing.html#id2937844">My Print Jobs Get Spooled into the Spooling Directory, but Then Get Lost</a></dt></dl></dd></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2927575"></a>Features and Benefits</h2></div></div><div></div></div><p>
 Printing is often a mission-critical service for the users. Samba can
 provide this service reliably and seamlessly for a client network
 consisting of Windows workstations.
@@ -34,7 +34,7 @@ Professional clients. Where this document describes the responses to
 commands given, bear in mind that Windows 200x/XP clients are quite
 similar, but may differ in minor details. Windows NT is somewhat different
 again.
-</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2927574"></a>Technical Introduction</h2></div></div><div></div></div><p>
+</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2927665"></a>Technical Introduction</h2></div></div><div></div></div><p>
 Samba's printing support always relies on the installed print subsystem
 of the UNIX OS it runs on. Samba is a &#8220;<span class="quote">middleman.</span>&#8221; It takes
 print files from Windows (or other SMB) clients and passes them to the real
@@ -61,14 +61,14 @@ local spool area. When the entire print job has been received, Samba invokes
 a local UNIX/Linux print command and passes the spooled file to it. It is
 up to the local system printing subsystems to correctly process the print
 job and to submit it to the printer.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2927640"></a>Client to Samba Print Job Processing</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2927731"></a>Client to Samba Print Job Processing</h3></div></div><div></div></div><p>
 Successful printing from a Windows client via a Samba print server to a UNIX
 printer involves six (potentially seven) stages:
 </p><div class="orderedlist"><ol type="1"><li><p>Windows opens a connection to the printer share.</p></li><li><p>Samba must authenticate the user.</p></li><li><p>Windows sends a copy of the print file over the network
 into Samba's spooling area.</p></li><li><p>Windows closes the connection.</p></li><li><p>Samba invokes the print command to hand the file over
 to the UNIX print subsystem's spooling area.</p></li><li><p>The UNIX print subsystem processes the print job.</p></li><li><p>The print file may need to be explicitly deleted
 from the Samba spooling area. This item depends on your print spooler
-configuration settings.</p></li></ol></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2927712"></a>Printing Related Configuration Parameters</h3></div></div><div></div></div><p>
+configuration settings.</p></li></ol></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2927802"></a>Printing Related Configuration Parameters</h3></div></div><div></div></div><p>
 There are a number of configuration parameters to control Samba's
 printing behavior. Please refer to the man page for <tt class="filename">smb.conf</tt> for an
 overview of these. As with other parameters, there are Global Level
@@ -84,7 +84,7 @@ overview of these. As with other parameters, there are Global Level
 		or service level shares (provided they do not have a different
 		setting defined for the same parameter, thus overriding the
 		global default).
-		</p></dd></dl></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2927807"></a>Simple Print Configuration</h2></div></div><div></div></div><p>
+		</p></dd></dl></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2927898"></a>Simple Print Configuration</h2></div></div><div></div></div><p>
 <a href="printing.html#simpleprc" title="Example 18.1. Simple configuration with BSD printing">Following example</a> shows a simple printing configuration.
 If you compare this with your own, you may find 
 additional parameters that have been pre-configured by your OS
@@ -106,12 +106,12 @@ so you may want to pipe it through a pager program.
 The syntax for the configuration file is easy to grasp. You should
 know that  is not very picky about its syntax. As has been explained
 elsewhere in this document, Samba tolerates some spelling errors (such
-as <a class="indexterm" name="id2927977"></a><i class="parameter"><tt>browseable</tt></i> instead of
-<a class="indexterm" name="id2927991"></a><i class="parameter"><tt>browseable</tt></i>), and spelling is
+as <a class="indexterm" name="id2928068"></a><i class="parameter"><tt>browseable</tt></i> instead of
+<a class="indexterm" name="id2928082"></a><i class="parameter"><tt>browseable</tt></i>), and spelling is
 case-insensitive. It is permissible to use <i class="parameter"><tt>Yes/No</tt></i>
 or <i class="parameter"><tt>True/False</tt></i> for Boolean settings. Lists of names
 may be separated by commas, spaces or tabs.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2928022"></a>Verifying Configuration with <b class="command">testparm</b></h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2928113"></a>Verifying Configuration with <b class="command">testparm</b></h3></div></div><div></div></div><p>
 To see all (or at least most) printing-related settings in Samba, including
 the implicitly used ones, try the command outlined below. This command greps
 for all occurrences of <tt class="constant">lp, print, spool, driver, ports</tt>
@@ -164,11 +164,11 @@ be important in your future dealings with Samba.</em></span>
 </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p> testparm in Samba-3 behaves differently from that in 2.2.x: used
 without the &#8220;<span class="quote">-v</span>&#8221; switch it only shows you the settings actually
 written into! To see the complete
-configuration used, add the &#8220;<span class="quote">-v</span>&#8221; parameter to testparm.</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2928156"></a>Rapid Configuration Validation</h3></div></div><div></div></div><p>
+configuration used, add the &#8220;<span class="quote">-v</span>&#8221; parameter to testparm.</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2928230"></a>Rapid Configuration Validation</h3></div></div><div></div></div><p>
 Should you need to troubleshoot at any stage, please always come back
 to this point first and verify if <b class="command">testparm</b> shows the parameters you
 expect. To give you a warning from personal experience,
-try to just comment out the <a class="indexterm" name="id2928179"></a><i class="parameter"><tt>load printers</tt></i>
+try to just comment out the <a class="indexterm" name="id2928252"></a><i class="parameter"><tt>load printers</tt></i>
 parameter. If your 2.2.x system behaves like mine, you'll see this:
 </p><pre class="screen">
 <tt class="prompt">root# </tt>grep "load printers" /etc/samba/smb.conf
@@ -193,7 +193,7 @@ the reason. But I am no longer fooled ... at least not by this.
 
 </pre><p>
 Only when the parameter is explicitly set to
-<a class="indexterm" name="id2928270"></a><i class="parameter"><tt>load printers</tt></i> = No
+<a class="indexterm" name="id2928344"></a><i class="parameter"><tt>load printers</tt></i> = No
 would Samba conform with my intentions. So, my strong advice is:
 </p><div class="itemizedlist"><ul type="disc"><li><p>Never rely on commented out parameters.</p></li><li><p>Always set parameters explicitly as you intend them to
 behave.</p></li><li><p>Use <b class="command">testparm</b> to uncover hidden
@@ -262,7 +262,7 @@ will regard the whole of the string after the
 define. This is an invalid value that will be ignored and a default
 value will be
 used in its place.
-</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2928496"></a>Extended Printing Configuration</h2></div></div><div></div></div><p>
+</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2928570"></a>Extended Printing Configuration</h2></div></div><div></div></div><p>
 <a href="printing.html#extbsdpr" title="Example 18.2. Extended BSD Printing Configuration">Next configuration</a> shows a more verbose example configuration
 for print-related settings in a BSD-style printing environment. What follows
 is a discussion and explanation of the various parameters. We chose to
@@ -279,9 +279,9 @@ the configuration file that was provided by the OS vendor. Samba configuration
 parameters, if not explicitly set default to a sensible value.
 To see all settings, as <tt class="constant">root</tt> use the <b class="command">testparm</b>
 utility. <b class="command">testparm</b> gives warnings for mis-configured settings.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2928844"></a>Detailed Explanation Settings</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2928918"></a>Detailed Explanation Settings</h3></div></div><div></div></div><p>
 The following is a discussion of the settings from above shown example.
-</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2928857"></a>The [global] Section</h4></div></div><div></div></div><p>
+</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2928931"></a>The [global] Section</h4></div></div><div></div></div><p>
 The <i class="parameter"><tt>[global]</tt></i> section is one of four special
 sections (along with [<i class="parameter"><tt>[homes]</tt></i>,
 <i class="parameter"><tt>[printers]</tt></i>
@@ -293,17 +293,17 @@ default settings for all other sections and shares. This way you can simplify
 the configuration and avoid setting the same value repeatedly. (Within each
 individual section or share you may, however, override these globally set
 share settings and specify other values).
-</p><div class="variablelist"><dl><dt><span class="term"><a class="indexterm" name="id2928918"></a><i class="parameter"><tt>printing</tt></i> = bsd </span></dt><dd><p>Causes Samba to use default print commands
+</p><div class="variablelist"><dl><dt><span class="term"><a class="indexterm" name="id2928992"></a><i class="parameter"><tt>printing</tt></i> = bsd </span></dt><dd><p>Causes Samba to use default print commands
 		applicable for the BSD (also known as RFC 1179 style or LPR/LPD) printing
 		system. In general, the <i class="parameter"><tt>printing</tt></i> parameter informs Samba about the
 		print subsystem it should expect. Samba supports CUPS, LPD, LPRNG,
 		SYSV, HPUX, AIX, QNX, and PLP. Each of these systems defaults to a
-		different <a class="indexterm" name="id2928952"></a><i class="parameter"><tt>print command</tt></i> (and other queue control
-		commands).</p><div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Caution</h3><p>The <a class="indexterm" name="id2928971"></a><i class="parameter"><tt>printing</tt></i> parameter is
+		different <a class="indexterm" name="id2929026"></a><i class="parameter"><tt>print command</tt></i> (and other queue control
+		commands).</p><div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Caution</h3><p>The <a class="indexterm" name="id2929045"></a><i class="parameter"><tt>printing</tt></i> parameter is
 		normally a service level parameter. Since it is included here in the
 		<i class="parameter"><tt>[global]</tt></i> section, it will take effect for all
 		printer shares that are not defined differently. Samba-3 no longer
-		supports the SOFTQ printing system.</p></div></dd><dt><span class="term"><a class="indexterm" name="id2929001"></a><i class="parameter"><tt>load printers</tt></i> = yes </span></dt><dd><p>Tells Samba to create automatically all
+		supports the SOFTQ printing system.</p></div></dd><dt><span class="term"><a class="indexterm" name="id2929074"></a><i class="parameter"><tt>load printers</tt></i> = yes </span></dt><dd><p>Tells Samba to create automatically all
 		available printer shares. Available printer shares are discovered by
 		scanning the printcap file. All created printer shares are also loaded
 		for browsing. If you use this parameter, you do not need to specify
@@ -312,7 +312,7 @@ share settings and specify other values).
 		<i class="parameter"><tt>[printers]</tt></i> section. (The <i class="parameter"><tt>load printers
 		= no</tt></i> setting will allow you to specify each UNIX printer
 		you want to share separately, leaving out some you do not want to be
-		publicly visible and available).</p></dd><dt><span class="term"><a class="indexterm" name="id2929058"></a><i class="parameter"><tt>show add printer wizard</tt></i> = yes </span></dt><dd><p>Setting is normally enabled by default (even if the parameter is not specified in <tt class="filename">smb.conf</tt>).
+		publicly visible and available).</p></dd><dt><span class="term"><a class="indexterm" name="id2929125"></a><i class="parameter"><tt>show add printer wizard</tt></i> = yes </span></dt><dd><p>Setting is normally enabled by default (even if the parameter is not specified in <tt class="filename">smb.conf</tt>).
 		It causes the <span class="guiicon">Add Printer Wizard</span> icon to appear
 		in the <span class="guiicon">Printers</span> folder of the Samba host's
 		share listing (as shown in <span class="guiicon">Network Neighborhood</span> or
@@ -322,28 +322,28 @@ share settings and specify other values).
 		drivers to the <i class="parameter"><tt>[print$]</tt></i> share and associate it
 		with a printer (if the respective queue exists before the
 		action), or exchange a printer's driver against any other previously
-		uploaded driver.</p></dd><dt><span class="term"><a class="indexterm" name="id2929144"></a><i class="parameter"><tt>total print jobs</tt></i> = 100 </span></dt><dd><p>Sets the upper limit to 100 print jobs
+		uploaded driver.</p></dd><dt><span class="term"><a class="indexterm" name="id2929210"></a><i class="parameter"><tt>total print jobs</tt></i> = 100 </span></dt><dd><p>Sets the upper limit to 100 print jobs
 		being active on the Samba server at any one time. Should a client
 		submit a job that exceeds this number, a &#8220;<span class="quote">no more space
 		available on server</span>&#8221; type of error message will be returned by
 		Samba to the client. A setting of zero (the default) means there is
 		<span class="emphasis"><em>no</em></span> limit at all.
-	</p></dd><dt><span class="term"><a class="indexterm" name="id2929182"></a><i class="parameter"><tt>printcap name</tt></i> = /etc/printcap </span></dt><dd><p>Tells Samba where to look for a list of
+	</p></dd><dt><span class="term"><a class="indexterm" name="id2929249"></a><i class="parameter"><tt>printcap name</tt></i> = /etc/printcap </span></dt><dd><p>Tells Samba where to look for a list of
 		available printer names. Where CUPS is used, make sure that a printcap
 		file is written. This is controlled by the <tt class="constant">Printcap</tt> directive in the 
 		<tt class="filename">cupsd.conf</tt> file.
-	</p></dd><dt><span class="term"><a class="indexterm" name="id2929220"></a><i class="parameter"><tt>printer admin</tt></i> = @ntadmin </span></dt><dd><p>Members of the ntadmin group should be able to add
+	</p></dd><dt><span class="term"><a class="indexterm" name="id2929287"></a><i class="parameter"><tt>printer admin</tt></i> = @ntadmin </span></dt><dd><p>Members of the ntadmin group should be able to add
 		drivers and set printer properties (<tt class="constant">ntadmin</tt> is only an example name,
 		it needs to be a valid UNIX group name); root is implicitly always a
-		<a class="indexterm" name="id2929248"></a><i class="parameter"><tt>printer admin</tt></i>. The @ sign precedes group names in the
+		<a class="indexterm" name="id2929314"></a><i class="parameter"><tt>printer admin</tt></i>. The @ sign precedes group names in the
 		<tt class="filename">/etc/group</tt>. A printer admin can do anything to
 		printers via the remote administration interfaces offered by MS-RPC
-		(see below). In larger installations, the <a class="indexterm" name="id2929272"></a><i class="parameter"><tt>printer admin</tt></i>
+		(see below). In larger installations, the <a class="indexterm" name="id2929339"></a><i class="parameter"><tt>printer admin</tt></i>
 		parameter is normally a per-share parameter. This permits different groups to administer each printer share.
-	</p></dd><dt><span class="term"><a class="indexterm" name="id2929292"></a><i class="parameter"><tt>lpq cache time</tt></i> = 20 </span></dt><dd><p>Controls the cache time for the results of the
+	</p></dd><dt><span class="term"><a class="indexterm" name="id2929359"></a><i class="parameter"><tt>lpq cache time</tt></i> = 20 </span></dt><dd><p>Controls the cache time for the results of the
 		lpq command. It prevents the lpq command being called too often and
 		reduces the load on a heavily used print server.
-	</p></dd><dt><span class="term"><a class="indexterm" name="id2929319"></a><i class="parameter"><tt>use client driver</tt></i> = no </span></dt><dd><p>If set to <tt class="constant">yes</tt>, only 
+	</p></dd><dt><span class="term"><a class="indexterm" name="id2929385"></a><i class="parameter"><tt>use client driver</tt></i> = no </span></dt><dd><p>If set to <tt class="constant">yes</tt>, only 
 		takes effect for Windows NT/200x/XP clients (and not for Win 95/98/ME). Its
 		default value is <tt class="constant">No</tt> (or <tt class="constant">False</tt>).
 		It must <span class="emphasis"><em>not</em></span> be enabled on print shares 
@@ -359,32 +359,32 @@ this section as a general convenience shortcut to share all printers with
 minimal configuration. It is also a container for settings that should
 apply as default to all printers. (For more details see the <tt class="filename">smb.conf</tt>
 man page.) Settings inside this container must be Share Level parameters.
-</p><div class="variablelist"><dl><dt><span class="term"><a class="indexterm" name="id2929424"></a><i class="parameter"><tt>comment</tt></i> = All printers </span></dt><dd><p>
-		The <a class="indexterm" name="id2929444"></a><i class="parameter"><tt>comment</tt></i> is shown next to the share if
+</p><div class="variablelist"><dl><dt><span class="term"><a class="indexterm" name="id2929490"></a><i class="parameter"><tt>comment</tt></i> = All printers </span></dt><dd><p>
+		The <a class="indexterm" name="id2929510"></a><i class="parameter"><tt>comment</tt></i> is shown next to the share if
 		a client queries the server, either via <span class="guiicon">Network Neighborhood</span> or with
 		the <b class="command">net view</b> command to list available shares.
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2929478"></a><i class="parameter"><tt>printable</tt></i> = yes </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2929544"></a><i class="parameter"><tt>printable</tt></i> = yes </span></dt><dd><p>
 		The <i class="parameter"><tt>[printers]</tt></i> service <span class="emphasis"><em>must</em></span>
 		be declared as printable. If you specify otherwise, smbd will refuse to load  at
 		startup. This parameter allows connected clients to open, write to and submit spool files
-		into the directory specified with the <a class="indexterm" name="id2929512"></a><i class="parameter"><tt>path</tt></i>
+		into the directory specified with the <a class="indexterm" name="id2929578"></a><i class="parameter"><tt>path</tt></i>
 		parameter for this service. It is used by Samba to differentiate printer shares from
 		file shares. 
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2929534"></a><i class="parameter"><tt>path</tt></i> = /var/spool/samba </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2929600"></a><i class="parameter"><tt>path</tt></i> = /var/spool/samba </span></dt><dd><p>
 		Must point to a directory used by Samba to spool incoming print files. <span class="emphasis"><em>It
 		must not be the same as the spool directory specified in the configuration of your UNIX
 		print subsystem!</em></span> The path typically points to a directory that is world
 		writable, with the &#8220;<span class="quote">sticky</span>&#8221; bit set to it.
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2929572"></a><i class="parameter"><tt>browseable</tt></i> = no </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2929639"></a><i class="parameter"><tt>browseable</tt></i> = no </span></dt><dd><p>
 		Is always set to <tt class="constant">no</tt> if
-		<a class="indexterm" name="id2929596"></a><i class="parameter"><tt>printable</tt></i> = yes. It makes
+		<a class="indexterm" name="id2929663"></a><i class="parameter"><tt>printable</tt></i> = yes. It makes
 		the <i class="parameter"><tt>[printer]</tt></i> share itself invisible in the list of
 		available shares in a <b class="command">net view</b> command or in the Explorer browse
 		list. (You will of course see the individual printers).
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2929632"></a><i class="parameter"><tt>guest ok</tt></i> = yes </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2929698"></a><i class="parameter"><tt>guest ok</tt></i> = yes </span></dt><dd><p>
 		If this parameter is set to <tt class="constant">yes</tt>, no password is required to
 		connect to the printer's service. Access will be granted with the privileges of the
-		<a class="indexterm" name="id2929658"></a><i class="parameter"><tt>guest account</tt></i>. On many systems the guest
+		<a class="indexterm" name="id2929725"></a><i class="parameter"><tt>guest account</tt></i>. On many systems the guest
 		account will map to a user named &#8220;<span class="quote">nobody</span>&#8221;. This user will usually be found
 		in the UNIX passwd file with an empty password, but with no valid UNIX login. (On some
 		systems the guest account might not have the privilege to be able to print. Test this
@@ -392,61 +392,61 @@ man page.) Settings inside this container must be Share Level parameters.
 		print command like:
 		</p><p>
 		<b class="userinput"><tt>lpr -P printername /etc/motd</tt></b>
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2929706"></a><i class="parameter"><tt>public</tt></i> = yes </span></dt><dd><p>
-		Is a synonym for <a class="indexterm" name="id2929726"></a><i class="parameter"><tt>guest ok</tt></i> = yes.
-		Since we have <a class="indexterm" name="id2929741"></a><i class="parameter"><tt>guest ok</tt></i> = yes, it
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2929773"></a><i class="parameter"><tt>public</tt></i> = yes </span></dt><dd><p>
+		Is a synonym for <a class="indexterm" name="id2929793"></a><i class="parameter"><tt>guest ok</tt></i> = yes.
+		Since we have <a class="indexterm" name="id2929807"></a><i class="parameter"><tt>guest ok</tt></i> = yes, it
 		really does not need to be here. (This leads to the interesting question: &#8220;<span class="quote">What if I
 		by accident have two contradictory settings for the same share?</span>&#8221; The answer is the
 		last one encountered by Samba wins. Testparm does not complain about different settings
 		of the same parameter for the same share. You can test this by setting up multiple
 		lines for the <i class="parameter"><tt>guest account</tt></i> parameter with different usernames,
 		and then run testparm to see which one is actually used by Samba.)
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2929779"></a><i class="parameter"><tt>read only</tt></i> = yes </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2929845"></a><i class="parameter"><tt>read only</tt></i> = yes </span></dt><dd><p>
 		Normally (for other types of shares) prevents users from creating or modifying files
 		in the service's directory. However, in a &#8220;<span class="quote">printable</span>&#8221; service, it is
 		<span class="emphasis"><em>always</em></span> allowed to write to the directory (if user privileges allow the
 		connection), but only via print spooling operations. Normal write operations are not permitted.
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2929818"></a><i class="parameter"><tt>writable</tt></i> = no </span></dt><dd><p>
-		Is a synonym for <a class="indexterm" name="id2929838"></a><i class="parameter"><tt>read only</tt></i> = yes.
-		</p></dd></dl></div></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2929856"></a>Any [my_printer_name] Section</h4></div></div><div></div></div><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2929884"></a><i class="parameter"><tt>writable</tt></i> = no </span></dt><dd><p>
+		Is a synonym for <a class="indexterm" name="id2929904"></a><i class="parameter"><tt>read only</tt></i> = yes.
+		</p></dd></dl></div></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2929922"></a>Any [my_printer_name] Section</h4></div></div><div></div></div><p>
 If a section appears in the <tt class="filename">smb.conf</tt> file, which when given the parameter
-<a class="indexterm" name="id2929874"></a><i class="parameter"><tt>printable</tt></i> = yes causes Samba to configure it
+<a class="indexterm" name="id2929940"></a><i class="parameter"><tt>printable</tt></i> = yes causes Samba to configure it
 as a printer share. Windows 9x/Me clients may have problems with connecting or loading printer drivers
 if the share name has more than eight characters. Do not name a printer share with a name that may conflict
 with an existing user or file share name. On Client connection requests, Samba always tries to find file
 shares with that name first. If it finds one, it will connect to this and will not connect
 to a printer with the same name!
-</p><div class="variablelist"><dl><dt><span class="term"><a class="indexterm" name="id2929905"></a><i class="parameter"><tt>comment</tt></i> = Printer with Restricted Access </span></dt><dd><p>
+</p><div class="variablelist"><dl><dt><span class="term"><a class="indexterm" name="id2929971"></a><i class="parameter"><tt>comment</tt></i> = Printer with Restricted Access </span></dt><dd><p>
 		The comment says it all.
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2929931"></a><i class="parameter"><tt>path</tt></i> = /var/spool/samba_my_printer </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2929997"></a><i class="parameter"><tt>path</tt></i> = /var/spool/samba_my_printer </span></dt><dd><p>
 		Sets the spooling area for this printer to a directory other than the default. It is not
 		necessary to set it differently, but the option is available.
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2929959"></a><i class="parameter"><tt>printer admin</tt></i> = kurt </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2930025"></a><i class="parameter"><tt>printer admin</tt></i> = kurt </span></dt><dd><p>
 		The printer admin definition is different for this explicitly defined printer share from the general
 		<i class="parameter"><tt>[printers]</tt></i> share. It is not a requirement; we
 		did it to show that it is possible.
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2929993"></a><i class="parameter"><tt>browseable</tt></i> = yes </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2930060"></a><i class="parameter"><tt>browseable</tt></i> = yes </span></dt><dd><p>
 		This makes the printer browseable so the clients may conveniently find it when browsing the
 		<span class="guiicon">Network Neighborhood</span>.
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2930028"></a><i class="parameter"><tt>printable</tt></i> = yes </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2930094"></a><i class="parameter"><tt>printable</tt></i> = yes </span></dt><dd><p>
 		See <a href="printing.html#ptrsect" title="The [printers] Section">The [printers] Section</a>.
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2930062"></a><i class="parameter"><tt>writable</tt></i> = no </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2930128"></a><i class="parameter"><tt>writable</tt></i> = no </span></dt><dd><p>
 		See <a href="printing.html#ptrsect" title="The [printers] Section">The [printers] Section</a>.
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2930095"></a><i class="parameter"><tt>hosts allow</tt></i> = 10.160.50.,10.160.51. </span></dt><dd><p>
-		Here we exercise a certain degree of access control by using the <a class="indexterm" name="id2930116"></a><i class="parameter"><tt>hosts allow</tt></i> and <a class="indexterm" name="id2930130"></a><i class="parameter"><tt>hosts deny</tt></i>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2930161"></a><i class="parameter"><tt>hosts allow</tt></i> = 10.160.50.,10.160.51. </span></dt><dd><p>
+		Here we exercise a certain degree of access control by using the <a class="indexterm" name="id2930182"></a><i class="parameter"><tt>hosts allow</tt></i> and <a class="indexterm" name="id2930196"></a><i class="parameter"><tt>hosts deny</tt></i>
 		parameters. This is not by any means a safe bet. It is not a way to secure your
 		printers. This line accepts all clients from a certain subnet in a first evaluation of
 		access control.
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2930152"></a><i class="parameter"><tt>hosts deny</tt></i> = turbo_xp,10.160.50.23,10.160.51.60 </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2930219"></a><i class="parameter"><tt>hosts deny</tt></i> = turbo_xp,10.160.50.23,10.160.51.60 </span></dt><dd><p>
 		All listed hosts are not allowed here (even if they belong to the allowed subnets). As
 		you can see, you could name IP addresses as well as NetBIOS hostnames here.
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2930180"></a><i class="parameter"><tt>guest ok</tt></i> = no </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2930246"></a><i class="parameter"><tt>guest ok</tt></i> = no </span></dt><dd><p>
 		This printer is not open for the guest account.
-		</p></dd></dl></div></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2930206"></a>Print Commands</h4></div></div><div></div></div><p>
+		</p></dd></dl></div></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2930272"></a>Print Commands</h4></div></div><div></div></div><p>
 In each section defining a printer (or in the <i class="parameter"><tt>[printers]</tt></i> section),
 a <i class="parameter"><tt>print command</tt></i> parameter may be defined. It sets a command to process the files
 that have been placed into the Samba print spool directory for that printer. (That spool directory was,
-if you remember, set up with the <a class="indexterm" name="id2930234"></a><i class="parameter"><tt>path</tt></i> parameter). Typically,
+if you remember, set up with the <a class="indexterm" name="id2930301"></a><i class="parameter"><tt>path</tt></i> parameter). Typically,
 this command will submit the spool file to the Samba host's print subsystem, using the suitable system
 print command. But there is no requirement that this needs to be the case. For debugging or
 some other reason, you may want to do something completely different than print the file. An example is a
@@ -454,25 +454,25 @@ command that just copies the print file to a temporary location for further inve
 to debug printing. If you craft your own print commands (or even develop print command shell scripts),
 make sure you pay attention to the need to remove the files from the Samba spool directory. Otherwise,
 your hard disk may soon suffer from shortage of free space.
-</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2930263"></a>Default UNIX System Printing Commands</h4></div></div><div></div></div><p>
+</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2930343"></a>Default UNIX System Printing Commands</h4></div></div><div></div></div><p>
 You learned earlier on that Samba, in most cases, uses its built-in settings for many parameters
 if it cannot find an explicitly stated one in its configuration file. The same is true for the
-<a class="indexterm" name="id2930276"></a><i class="parameter"><tt>print command</tt></i>. The default print command varies depending
-on the <a class="indexterm" name="id2930293"></a><i class="parameter"><tt>printing</tt></i> parameter setting. In the commands listed
+<a class="indexterm" name="id2930356"></a><i class="parameter"><tt>print command</tt></i>. The default print command varies depending
+on the <a class="indexterm" name="id2930373"></a><i class="parameter"><tt>printing</tt></i> parameter setting. In the commands listed
 below, you will notice some parameters of the form <span class="emphasis"><em>%X</em></span> where <span class="emphasis"><em>X</em></span> is
 <span class="emphasis"><em>p, s, J</em></span>, and so on. These letters stand for printer name, spool-file and job ID, respectively.
 They are explained in more detail further below. <a href="printing.html#printOptions" title="Table 18.1. Default Printing Settings">Next table</a> presents an overview of key
 printing options but excludes the special case of CUPS that is discussed in <a href="CUPS-printing.html" title="Chapter 19. CUPS Printing Support">CUPS Printing Support</a>.
-</p><div class="table"><a name="printOptions"></a><p class="title"><b>Table 18.1. Default Printing Settings</b></p><table summary="Default Printing Settings" border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Setting</th><th align="left">Default Printing Commands</th></tr></thead><tbody><tr><td align="left"><a class="indexterm" name="id2930408"></a><i class="parameter"><tt>printing</tt></i> = bsd|aix|lprng|plp</td><td align="left">print command is <b class="command">lpr -r -P%p %s</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930437"></a><i class="parameter"><tt>printing</tt></i> = sysv|hpux</td><td align="left">print command is <b class="command">lp -c -P%p %s; rm %s</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930470"></a><i class="parameter"><tt>printing</tt></i> = qnx</td><td align="left">print command is <b class="command">lp -r -P%p -s %s</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930500"></a><i class="parameter"><tt>printing</tt></i> = bsd|aix|lprng|plp</td><td align="left">lpq command is <b class="command">lpq -P%p</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930531"></a><i class="parameter"><tt>printing</tt></i> = sysv|hpux</td><td align="left">lpq command is <b class="command">lpstat -o%p</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930561"></a><i class="parameter"><tt>printing</tt></i> = qnx</td><td align="left">lpq command is <b class="command">lpq -P%p</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930591"></a><i class="parameter"><tt>printing</tt></i> = bsd|aix|lprng|plp</td><td align="left">lprm command is <b class="command">lprm -P%p %j</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930622"></a><i class="parameter"><tt>printing</tt></i> = sysv|hpux</td><td align="left">lprm command is <b class="command">cancel %p-%j</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930653"></a><i class="parameter"><tt>printing</tt></i> = qnx</td><td align="left">lprm command is <b class="command">cancel %p-%j</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930683"></a><i class="parameter"><tt>printing</tt></i> = bsd|aix|lprng|plp</td><td align="left">lppause command is <b class="command">lp -i %p-%j -H hold</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930714"></a><i class="parameter"><tt>printing</tt></i> = sysv|hpux</td><td align="left">lppause command   (...is empty)</td></tr><tr><td align="left"><a class="indexterm" name="id2930739"></a><i class="parameter"><tt>printing</tt></i> = qnx</td><td align="left">lppause command   (...is empty)</td></tr><tr><td align="left"><a class="indexterm" name="id2930765"></a><i class="parameter"><tt>printing</tt></i> = bsd|aix|lprng|plp</td><td align="left">lpresume command is <b class="command">lp -i %p-%j -H resume</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930796"></a><i class="parameter"><tt>printing</tt></i> = sysv|hpux</td><td align="left">lpresume command   (...is empty)</td></tr><tr><td align="left"><a class="indexterm" name="id2930821"></a><i class="parameter"><tt>printing</tt></i> = qnx</td><td align="left">lpresume command   (...is empty)</td></tr></tbody></table></div><p>
+</p><div class="table"><a name="printOptions"></a><p class="title"><b>Table 18.1. Default Printing Settings</b></p><table summary="Default Printing Settings" border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Setting</th><th align="left">Default Printing Commands</th></tr></thead><tbody><tr><td align="left"><a class="indexterm" name="id2930487"></a><i class="parameter"><tt>printing</tt></i> = bsd|aix|lprng|plp</td><td align="left">print command is <b class="command">lpr -r -P%p %s</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930517"></a><i class="parameter"><tt>printing</tt></i> = sysv|hpux</td><td align="left">print command is <b class="command">lp -c -P%p %s; rm %s</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930550"></a><i class="parameter"><tt>printing</tt></i> = qnx</td><td align="left">print command is <b class="command">lp -r -P%p -s %s</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930580"></a><i class="parameter"><tt>printing</tt></i> = bsd|aix|lprng|plp</td><td align="left">lpq command is <b class="command">lpq -P%p</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930611"></a><i class="parameter"><tt>printing</tt></i> = sysv|hpux</td><td align="left">lpq command is <b class="command">lpstat -o%p</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930641"></a><i class="parameter"><tt>printing</tt></i> = qnx</td><td align="left">lpq command is <b class="command">lpq -P%p</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930671"></a><i class="parameter"><tt>printing</tt></i> = bsd|aix|lprng|plp</td><td align="left">lprm command is <b class="command">lprm -P%p %j</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930702"></a><i class="parameter"><tt>printing</tt></i> = sysv|hpux</td><td align="left">lprm command is <b class="command">cancel %p-%j</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930733"></a><i class="parameter"><tt>printing</tt></i> = qnx</td><td align="left">lprm command is <b class="command">cancel %p-%j</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930763"></a><i class="parameter"><tt>printing</tt></i> = bsd|aix|lprng|plp</td><td align="left">lppause command is <b class="command">lp -i %p-%j -H hold</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930794"></a><i class="parameter"><tt>printing</tt></i> = sysv|hpux</td><td align="left">lppause command   (...is empty)</td></tr><tr><td align="left"><a class="indexterm" name="id2930819"></a><i class="parameter"><tt>printing</tt></i> = qnx</td><td align="left">lppause command   (...is empty)</td></tr><tr><td align="left"><a class="indexterm" name="id2930845"></a><i class="parameter"><tt>printing</tt></i> = bsd|aix|lprng|plp</td><td align="left">lpresume command is <b class="command">lp -i %p-%j -H resume</b></td></tr><tr><td align="left"><a class="indexterm" name="id2930876"></a><i class="parameter"><tt>printing</tt></i> = sysv|hpux</td><td align="left">lpresume command   (...is empty)</td></tr><tr><td align="left"><a class="indexterm" name="id2930901"></a><i class="parameter"><tt>printing</tt></i> = qnx</td><td align="left">lpresume command   (...is empty)</td></tr></tbody></table></div><p>
 We excluded the special case of CUPS here, because it is discussed in the next chapter. For
 <i class="parameter"><tt>printing = CUPS</tt></i>, if Samba is compiled against libcups, it uses the CUPS API to submit
-jobs. (It is a good idea also to set <a class="indexterm" name="id2930859"></a><i class="parameter"><tt>printcap</tt></i> = cups
+jobs. (It is a good idea also to set <a class="indexterm" name="id2930939"></a><i class="parameter"><tt>printcap</tt></i> = cups
 in case your <tt class="filename">cupsd.conf</tt> is set to write its auto-generated printcap file to an
 unusual place). Otherwise, Samba maps to the System V printing commands with the -oraw option for printing,
 i.e., it uses <b class="command">lp -c -d%p -oraw; rm %s</b>. With <i class="parameter"><tt>printing = cups</tt></i>,
 and if Samba is compiled against libcups, any manually set print command will be ignored!
-</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2930901"></a>Custom Print Commands</h4></div></div><div></div></div><p>
-After a print job has finished spooling to a service, the <a class="indexterm" name="id2930912"></a><i class="parameter"><tt>print command</tt></i>
+</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2930981"></a>Custom Print Commands</h4></div></div><div></div></div><p>
+After a print job has finished spooling to a service, the <a class="indexterm" name="id2930992"></a><i class="parameter"><tt>print command</tt></i>
  will be used by Samba via a <span class="emphasis"><em>system()</em></span> call to process the
 spool file. Usually the command specified will submit the spool file to the host's printing subsystem. But
 there is no requirement at all that this must be the case. The print subsystem may not remove the spool
@@ -507,15 +507,15 @@ You can form quite complex print commands. You need to realize that print comman
 passed to a UNIX shell. The shell is able to expand the included environment variables as
 usual. (The syntax to include a UNIX environment variable <i class="parameter"><tt>$variable</tt></i>
 in the Samba print command is <i class="parameter"><tt>%$variable</tt></i>.) To give you a working
-<a class="indexterm" name="id2931142"></a><i class="parameter"><tt>print command</tt></i> example, the following will log a print job
+<a class="indexterm" name="id2931222"></a><i class="parameter"><tt>print command</tt></i> example, the following will log a print job
 to <tt class="filename">/tmp/print.log</tt>, print the file, then remove it. The semicolon (&#8220;<span class="quote">;</span>&#8221;
 is the usual separator for commands in shell scripts:
 </p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>print command = echo Printing %s &gt;&gt; \</tt></i></td></tr><tr><td><i class="parameter"><tt>/tmp/print.log; lpr -P %p %s; rm %s</tt></i></td></tr></table><p>
 You may have to vary your own command considerably from this example depending on how you normally print
-files on your system. The default for the <a class="indexterm" name="id2931202"></a><i class="parameter"><tt>print command</tt></i>
-parameter varies depending on the setting of the <a class="indexterm" name="id2931218"></a><i class="parameter"><tt>printing</tt></i>
+files on your system. The default for the <a class="indexterm" name="id2931282"></a><i class="parameter"><tt>print command</tt></i>
+parameter varies depending on the setting of the <a class="indexterm" name="id2931298"></a><i class="parameter"><tt>printing</tt></i>
 parameter. Another example is:
-</p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>print command = /usr/local/samba/bin/myprintscript %p %s</tt></i></td></tr></table></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2931252"></a>Printing Developments Since Samba-2.2</h2></div></div><div></div></div><p>
+</p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>print command = /usr/local/samba/bin/myprintscript %p %s</tt></i></td></tr></table></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2931332"></a>Printing Developments Since Samba-2.2</h2></div></div><div></div></div><p>
 Prior to Samba-2.2.x, print server support for Windows clients was limited to <span class="emphasis"><em>LanMan</em></span>
 printing calls. This is the same protocol level as Windows 9x/Me PCs offer when they share printers.
 Beginning with the 2.2.0 release, Samba started to support the native Windows NT printing mechanisms. These
@@ -553,7 +553,7 @@ the client has the necessary privileges on the remote host that serves the print
 default permissions assigned by Windows NT to a printer gives the Print permissions to the well-known
 <span class="emphasis"><em>Everyone</em></span> group. (The older clients of type Windows 9x/Me can only print to shared
 printers).
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2931404"></a>Point'n'Print Client Drivers on Samba Servers</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2931484"></a>Point'n'Print Client Drivers on Samba Servers</h3></div></div><div></div></div><p>
 There is much confusion about what all this means. The question is often asked, &#8220;<span class="quote">Is it or is
 it not necessary for printer drivers to be installed on a Samba host in order to support printing from
 Windows clients?</span>&#8221; The answer to this is no, it is not necessary.
@@ -584,7 +584,7 @@ entirely by the clients who download and install them via the &#8220;<span class
 supported by Samba. The clients use these drivers to generate print files in the format the printer
 (or the UNIX print system) requires. Print files received by Samba are handed over to the UNIX printing
 system, which is responsible for all further processing, as needed.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2931548"></a>The Obsoleted [printer$] Section</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2931628"></a>The Obsoleted [printer$] Section</h3></div></div><div></div></div><p>
 	Versions of Samba prior to 2.2 made it possible to use a share named
 	<i class="parameter"><tt>[printer$]</tt></i>. This name was taken from the same named service created by
 	Windows 9x/Me clients when a printer was shared by them. Windows 9x/Me printer servers always
@@ -604,7 +604,7 @@ system, which is responsible for all further processing, as needed.
 	of its ACLs) to support printer driver downloads and uploads. This does not mean Windows
 	9x/Me clients are now thrown aside. They can use Samba's <i class="parameter"><tt>[print$]</tt></i>
 	share support just fine.
-	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2931648"></a>Creating the [print$] Share</h3></div></div><div></div></div><p>
+	</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2931728"></a>Creating the [print$] Share</h3></div></div><div></div></div><p>
 In order to support the uploading and downloading of printer driver files, you must first configure a
 file share named <i class="parameter"><tt>[print$]</tt></i>. The public name of this share is hard coded
 in the MS Windows clients. It cannot be renamed since Windows clients are programmed to search for a
@@ -612,29 +612,29 @@ service of exactly this name if they want to retrieve printer driver files.
 </p><p>
 You should modify the server's file to add the global parameters and create the
 <i class="parameter"><tt>[print$]</tt></i> file share (of course, some of the parameter values, such
-as <a class="indexterm" name="id2931685"></a><i class="parameter"><tt>path</tt></i> are arbitrary and should be replaced with appropriate values for your
+as <a class="indexterm" name="id2931765"></a><i class="parameter"><tt>path</tt></i> are arbitrary and should be replaced with appropriate values for your
 site). See <a href="printing.html#prtdollar" title="Example 18.3. [print\$] example">next example</a>.
 </p><p>
 </p><div class="example"><a name="prtdollar"></a><p class="title"><b>Example 18.3. [print\$] example</b></p><table class="simplelist" border="0" summary="Simple list"><tr><td> </td></tr><tr><td><i class="parameter"><tt>[global]</tt></i></td></tr><tr><td># members of the ntadmin group should be able to add drivers and set</td></tr><tr><td># printer properties. root is implicitly always a 'printer admin'.</td></tr><tr><td><i class="parameter"><tt>printer admin = @ntadmin</tt></i></td></tr><tr><td>...</td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[printers]</tt></i></td></tr><tr><td>...</td></tr><tr><td> </td></tr><tr><td><i class="parameter"><tt>[print$]</tt></i></td></tr><tr><td><i class="parameter"><tt>comment = Printer Driver Download Area</tt></i></td></tr><tr><td><i class="parameter"><tt>path = /etc/samba/drivers</tt></i></td></tr><tr><td><i class="parameter"><tt>browseable = yes</tt></i></td></tr><tr><td><i class="parameter"><tt>guest ok = yes</tt></i></td></tr><tr><td><i class="parameter"><tt>read only = yes</tt></i></td></tr><tr><td><i class="parameter"><tt>write list = @ntadmin, root</tt></i></td></tr></table></div><p>
 </p><p>
 Of course, you also need to ensure that the directory named by the
-<a class="indexterm" name="id2931844"></a><i class="parameter"><tt>path</tt></i> parameter exists on the UNIX file system.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2931861"></a>[print$] Section Parameters</h3></div></div><div></div></div><p>
+<a class="indexterm" name="id2931924"></a><i class="parameter"><tt>path</tt></i> parameter exists on the UNIX file system.
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2931941"></a>[print$] Section Parameters</h3></div></div><div></div></div><p>
 The <i class="parameter"><tt>[print$]</tt></i> is a special section in <tt class="filename">smb.conf</tt>. It contains settings relevant to
 potential printer driver download and is used by windows clients for local print driver installation.
 The following parameters are frequently needed in this share section:
-</p><div class="variablelist"><dl><dt><span class="term"><a class="indexterm" name="id2931898"></a><i class="parameter"><tt>comment</tt></i> = Printer Driver Download Area </span></dt><dd><p>
+</p><div class="variablelist"><dl><dt><span class="term"><a class="indexterm" name="id2931978"></a><i class="parameter"><tt>comment</tt></i> = Printer Driver Download Area </span></dt><dd><p>
 		The comment appears next to the share name if it is listed in a share list (usually Windows
 		clients will not see it, but it will also appear up in a <b class="command">smbclient -L sambaserver
 		</b> output).
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2931934"></a><i class="parameter"><tt>path</tt></i> = /etc/samba/printers </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2932014"></a><i class="parameter"><tt>path</tt></i> = /etc/samba/printers </span></dt><dd><p>
 		Is the path to the location of the Windows driver file deposit from the UNIX point of view.
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2931961"></a><i class="parameter"><tt>browseable</tt></i> = no </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2932041"></a><i class="parameter"><tt>browseable</tt></i> = no </span></dt><dd><p>
 		Makes the <i class="parameter"><tt>[print$]</tt></i> share invisible to clients from the
 		<span class="guimenu">Network Neighborhood</span>. However, you can still mount it from any client
 		using the <b class="command">net use g:\\sambaserver\print$</b> command in a DOS-box or the
 		<span class="guimenu">Connect network drive menu&gt;</span> from Windows Explorer.
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2932017"></a><i class="parameter"><tt>guest ok</tt></i> = yes </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2932097"></a><i class="parameter"><tt>guest ok</tt></i> = yes </span></dt><dd><p>
 		Gives read-only access to this share for all guest users. Access may be granted to
 		download and install printer drivers on clients. The requirement for <i class="parameter"><tt>guest ok
 		= yes</tt></i> depends on how your site is configured. If users will be guaranteed
@@ -645,13 +645,13 @@ The following parameters are frequently needed in this share section:
 		validated by the Domain Controller in order to logon to the Windows NT session), then guest
 		access is not necessary. Of course, in a workgroup environment where you just want
 		to print without worrying about silly accounts and security, then configure the share for
-		guest access. You should consider adding <a class="indexterm" name="id2932064"></a><i class="parameter"><tt>map to guest</tt></i> = Bad
+		guest access. You should consider adding <a class="indexterm" name="id2932144"></a><i class="parameter"><tt>map to guest</tt></i> = Bad
 		User in the <i class="parameter"><tt>[global]</tt></i> section
 		as well. Make sure you understand what this parameter does before using it.
-		</p></div></dd><dt><span class="term"><a class="indexterm" name="id2932092"></a><i class="parameter"><tt>read only</tt></i> = yes </span></dt><dd><p>
+		</p></div></dd><dt><span class="term"><a class="indexterm" name="id2932172"></a><i class="parameter"><tt>read only</tt></i> = yes </span></dt><dd><p>
 		Because we do not want everybody to upload driver files (or even change driver settings),
 		we tagged this share as not writable.
-		</p></dd><dt><span class="term"><a class="indexterm" name="id2932120"></a><i class="parameter"><tt>write list</tt></i> = @ntadmin, root </span></dt><dd><p>
+		</p></dd><dt><span class="term"><a class="indexterm" name="id2932200"></a><i class="parameter"><tt>write list</tt></i> = @ntadmin, root </span></dt><dd><p>
 		The <i class="parameter"><tt>[print$]</tt></i> was made read-only by the previous
 		setting so we should create a <i class="parameter"><tt>write list</tt></i> entry also. UNIX
 		groups (denoted with a leading &#8220;<span class="quote">@</span>&#8221; character). Users listed here are allowed
@@ -659,12 +659,12 @@ The following parameters are frequently needed in this share section:
 		update files on the share. Normally, you will want to only name administrative-level user
 		account in this setting. Check the file system permissions to make sure these accounts
 		can copy files to the share. If this is a non-root account, then the account should also
-		be mentioned in the global <a class="indexterm" name="id2932168"></a><i class="parameter"><tt>printer admin</tt></i>
+		be mentioned in the global <a class="indexterm" name="id2932248"></a><i class="parameter"><tt>printer admin</tt></i>
 		parameter. See the <tt class="filename">smb.conf</tt> man page for more information on configuring file shares.
-		</p></dd></dl></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2932195"></a>The [print$] Share Directory</h3></div></div><div></div></div><p>
+		</p></dd></dl></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2932275"></a>The [print$] Share Directory</h3></div></div><div></div></div><p>
 In order for a Windows NT print server to support the downloading of driver files by multiple client
 architectures, you must create several subdirectories within the <i class="parameter"><tt>[print$]</tt></i>
-service (i.e., the UNIX directory named by the <a class="indexterm" name="id2932215"></a><i class="parameter"><tt>path</tt></i>
+service (i.e., the UNIX directory named by the <a class="indexterm" name="id2932295"></a><i class="parameter"><tt>path</tt></i>
 parameter). These correspond to each of the supported client architectures. Samba follows this model as
 well. Just like the name of the <i class="parameter"><tt>[print$]</tt></i> share itself, the subdirectories
 must be exactly the names listed below (you may leave out the subdirectories of architectures you do
@@ -696,7 +696,7 @@ associated subdirectories, go to a Windows NT 4.0/200x/XP client workstation. Op
 Neighborhood</span> or <span class="guiicon">My Network Places</span> and browse for the Samba host. Once you
 have located the server, navigate to its <span class="guiicon">Printers and Faxes</span> folder. You should see
 an initial listing of printers that matches the printer shares defined on your Samba host.
-</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2932365"></a>Installing Drivers into [print$]</h2></div></div><div></div></div><p>
+</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2932445"></a>Installing Drivers into [print$]</h2></div></div><div></div></div><p>
 Have you successfully created the <i class="parameter"><tt>[print$]</tt></i> share in <tt class="filename">smb.conf</tt>, and have your forced Samba
 to re-read its <tt class="filename">smb.conf</tt> file? Good. But you are not yet ready to use the new facility. The client driver
 files need to be installed into this share. So far it is still an empty share. Unfortunately, it is
@@ -713,7 +713,7 @@ now discuss two alternative ways to install the drivers into <i class="parameter
 	from any Windows NT/200x/XP client workstation.
 	</p></li></ul></div><p>
 The latter option is probably the easier one (even if the process may seem a little bit weird at first).
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2932474"></a>Add Printer Wizard Driver Installation</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2932554"></a>Add Printer Wizard Driver Installation</h3></div></div><div></div></div><p>
 The initial listing of printers in the Samba host's <span class="guiicon">Printers</span> folder accessed from a
 client's Explorer will have no real printer driver assigned to them. By default this driver name is set
 to a null string. This must be changed now. The local <span class="guiicon">Add Printer Wizard</span> (APW), run from
@@ -740,13 +740,13 @@ to a printer is open to us. You now have the choice of:
 	</p></li></ul></div><p>
 Once the APW is started, the procedure is exactly the same as the one you are familiar with in Windows (we
 assume here that you are familiar with the printer driver installations procedure on Windows NT). Make sure
-your connection is, in fact, setup as a user with <a class="indexterm" name="id2932605"></a><i class="parameter"><tt>printer admin</tt></i>
+your connection is, in fact, setup as a user with <a class="indexterm" name="id2932685"></a><i class="parameter"><tt>printer admin</tt></i>
 privileges (if in doubt, use <b class="command">smbstatus</b> to check for this). If you wish to install
 printer drivers for client operating systems other than <span class="application">Windows NT x86</span>,
 you will need to use the <span class="guilabel">Sharing</span> tab of the printer properties dialog.
 </p><p>
 Assuming you have connected with an administrative (or root) account (as named by the
-<a class="indexterm" name="id2932647"></a><i class="parameter"><tt>printer admin</tt></i> parameter), you will also be able to modify
+<a class="indexterm" name="id2932727"></a><i class="parameter"><tt>printer admin</tt></i> parameter), you will also be able to modify
 other printer properties such as ACLs and default device settings using this dialog. For the default
 device settings, please consider the advice given further in <a href="printing.html#inst-rpc" title="Installing Print Drivers Using rpcclient">Installing Print Drivers Using <b class="command">rpcclient</b></a>.
 </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="inst-rpc"></a>Installing Print Drivers Using <b class="command">rpcclient</b></h3></div></div><div></div></div><p>
@@ -764,7 +764,7 @@ up in a valid way is to do it from the UNIX command line. This involves four dis
 	Run <b class="command">rpcclient</b> a second time with the <b class="command">setdriver</b> subcommand.
 	</p></li></ol></div><p>
 We provide detailed hints for each of these steps in the paragraphs that follow.
-</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2932795"></a>Identifying Driver Files</h4></div></div><div></div></div><p>
+</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2932875"></a>Identifying Driver Files</h4></div></div><div></div></div><p>
 To find out about the driver files, you have two options. You could check the contents of the driver
 CDROM that came with your printer. Study the <tt class="filename">*.inf</tt> files lcoated on the CDROM. This
 may not be possible, since the <tt class="filename">*.inf</tt> file might be missing. Unfortunately, vendors have now started
@@ -844,7 +844,7 @@ instead of the &#8220;<span class="quote">2</span>&#8221;. The version 2 of driv
 Mode. Windows 2000 changed this. While it still can use the Kernel Mode drivers (if this is enabled by
 the Admin), its native mode for printer drivers is User Mode execution. This requires drivers designed
 for this. These types of drivers install into the &#8220;<span class="quote">3</span>&#8221; subdirectory.
-</p></div></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2933172"></a>Obtaining Driver Files from Windows Client [print$] Shares</h4></div></div><div></div></div><p>
+</p></div></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2933228"></a>Obtaining Driver Files from Windows Client [print$] Shares</h4></div></div><div></div></div><p>
 Now we need to collect all the driver files we identified in our previous step. Where do we get them
 from? Well, why not retrieve them from the very PC and the same <i class="parameter"><tt>[print$]</tt></i>
 share that we investigated in our last step to identify the files? We can use <b class="command">smbclient</b>
@@ -874,7 +874,7 @@ you need to support Windows 9x/Me/XP clients. Remember too, the files for these 
 <tt class="filename">WIN40/0/</tt> subdirectory. Once this is complete, we can run <b class="command">smbclient ...
 put</b> to store the collected files on the Samba server's <i class="parameter"><tt>[print$]</tt></i>
 share.
-</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2933329"></a>Installing Driver Files into [print$]</h4></div></div><div></div></div><p>
+</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2933384"></a>Installing Driver Files into [print$]</h4></div></div><div></div></div><p>
 We are now going to locate the driver files into the <i class="parameter"><tt>[print$]</tt></i>
 share. Remember, the UNIX path to this share has been defined
 previously in your words missing here. You
@@ -931,7 +931,7 @@ subdirectory of the <tt class="filename">W32X86</tt> directory from the Windows 
 (for now) in this same subdirectory of the Samba box. This relocation will automatically be done by the
 <b class="command">adddriver</b> command, which we will run shortly (and do not forget to also put the files
 for the Windows 9x/Me architecture into the <tt class="filename">WIN40/</tt> subdirectory should you need them).
-</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2933538"></a><b class="command">smbclient</b> to Confirm Driver Installation</h4></div></div><div></div></div><p>
+</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2933614"></a><b class="command">smbclient</b> to Confirm Driver Installation</h4></div></div><div></div></div><p>
 For now we verify that our files are there. This can be done with <b class="command">smbclient</b>, too
 (but, of course, you can log in via SSH also and do this through a standard UNIX shell access):
 </p><pre class="screen">
@@ -980,7 +980,7 @@ Explorer. But that wouldn't install them per Point'n'Print. The reason
 is: Samba does not yet know that
 these files are something special, namely <span class="emphasis"><em>printer driver files</em></span> and it does not know
 to which print queue(s) these driver files belong.
-</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2933659"></a>Running <b class="command">rpcclient</b> with <b class="command">adddriver</b></h4></div></div><div></div></div><p>
+</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2933736"></a>Running <b class="command">rpcclient</b> with <b class="command">adddriver</b></h4></div></div><div></div></div><p>
 Next, you must tell Samba about the special category of the files you just uploaded into the
 <i class="parameter"><tt>[print$]</tt></i> share. This is done by the <b class="command">adddriver</b>
 command. It will prompt Samba to register the driver files into its internal TDB database files. The
@@ -1010,7 +1010,7 @@ an <tt class="computeroutput">NT_STATUS_UNSUCCESSFUL</tt> error message. These b
 changes might install the driver files successfully, but render the driver unworkable. So take care!
 Hints about the syntax of the adddriver command are in the man page. The CUPS printing chapter 
 provides a more detailed description, should you need it.
-</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2933758"></a>Checking <b class="command">adddriver</b> Completion</h4></div></div><div></div></div><p>
+</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2933835"></a>Checking <b class="command">adddriver</b> Completion</h4></div></div><div></div></div><p>
 One indication for Samba's recognition of the files as driver files is the <tt class="computeroutput">successfully
 installed</tt> message. Another one is the fact that our files have been moved by the
 <b class="command">adddriver</b> command into the <tt class="filename">2</tt> subdirectory. You can check this
@@ -1055,7 +1055,7 @@ again with <b class="command">smbclient</b>:
 </pre><p>
 Another verification is that the timestamp of the printing TDB files is now updated
 (and possibly their file size has increased).
-</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2933926"></a>Check Samba for Driver Recognition</h4></div></div><div></div></div><p>
+</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2934003"></a>Check Samba for Driver Recognition</h4></div></div><div></div></div><p>
 Now the driver should be registered with Samba. We can easily verify this, and will do so in a
 moment. However, this driver is not yet associated with a particular printer. We may check the driver
 status of the files by at least three methods:
@@ -1093,7 +1093,7 @@ status of the files by at least three methods:
 	for <span class="application">Windows NT 4.0 or 2000</span>. To have it present for <span class="application">Windows
 	95, 98 and ME</span>, you'll have to repeat the whole procedure with the WIN40 architecture
 	and subdirectory.
-	</p></li></ul></div></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2934125"></a>Specific Driver Name Flexibility</h4></div></div><div></div></div><p>
+	</p></li></ul></div></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2934202"></a>Specific Driver Name Flexibility</h4></div></div><div></div></div><p>
 You can name the driver as you like. If you repeat the <b class="command">adddriver</b> step with the same
 files as before but with a different driver name, it will work the same:
 </p><pre class="screen">
@@ -1122,7 +1122,7 @@ you associate drivers to queues that make sense with respect to target printers)
 files you had put into the <i class="parameter"><tt>[print$]</tt></i> share by moving them into the
 respective subdirectories. So you must execute an <b class="command">smbclient ... put</b> command before
 each <b class="command">rpcclient ... adddriver</b> command.
-</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2934229"></a>Running <b class="command">rpcclient</b> with the <b class="command">setdriver</b></h4></div></div><div></div></div><p>
+</p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2934305"></a>Running <b class="command">rpcclient</b> with the <b class="command">setdriver</b></h4></div></div><div></div></div><p>
 Samba needs to know which printer owns which driver. Create a mapping of the driver to a printer, and
 store this info in Samba's memory, the TDB files. The <b class="command">rpcclient setdriver</b> command
 achieves exactly this:
@@ -1150,18 +1150,18 @@ printer is already known to Samba. A
 bug in 2.2.x prevented Samba from recognizing freshly installed printers. You had to restart Samba,
 or at least send an HUP signal to all running smbd processes to work around this: <b class="userinput"><tt>kill -HUP
 `pidof smbd`</tt></b>.
-</p></div></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2934381"></a>Client Driver Installation Procedure</h2></div></div><div></div></div><p>
+</p></div></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2934458"></a>Client Driver Installation Procedure</h2></div></div><div></div></div><p>
 As Don Quixote said: &#8220;<span class="quote">The proof of the pudding is in the eating.</span>&#8221; The proof
 for our setup lies in the printing. So let's install the printer driver onto the client PCs. This is
 not as straightforward as it may seem. Read on.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2934400"></a>First Client Driver Installation</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2934476"></a>First Client Driver Installation</h3></div></div><div></div></div><p>
 Especially important is the installation onto the first client PC (for each architectural platform
 separately). Once this is done correctly, all further clients are easy to setup and shouldn't need further
 attention. What follows is a description for the recommended first procedure. You work now from a client
 workstation. You should guarantee that your connection is not unwittingly mapped to <span class="emphasis"><em>bad
 user</em></span> nobody. In a DOS box type:
 </p><p><b class="userinput"><tt>net use \\<i class="replaceable"><tt>SAMBA-SERVER</tt></i>\print$ /user:root</tt></b></p><p>
-Replace root, if needed, by another valid <a class="indexterm" name="id2934440"></a><i class="parameter"><tt>printer admin</tt></i> user as given in
+Replace root, if needed, by another valid <a class="indexterm" name="id2934516"></a><i class="parameter"><tt>printer admin</tt></i> user as given in
 the definition. Should you already be connected as a different user, you will get an error message. There
 is no easy way to get rid of that connection, because Windows does not seem to know a concept of logging
 off from a share connection (do not confuse this with logging off from the local workstation; that is a different 
@@ -1196,7 +1196,7 @@ Driver Data</span>&#8221; set is still incomplete.
 </p><p>
 You must make sure that a valid <i class="parameter"><tt>Device Mode</tt></i> is set for the
 driver. We now explain what that means.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2934638"></a>Setting Device Modes on New Printers</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2934714"></a>Setting Device Modes on New Printers</h3></div></div><div></div></div><p>
 For a printer to be truly usable by a Windows NT/200x/XP client, it must possess:
 </p><div class="itemizedlist"><ul type="disc"><li><p>
 	A valid <span class="emphasis"><em>Device Mode</em></span> generated by the driver for the printer (defining things
@@ -1218,7 +1218,7 @@ This can be achieved by accessing the drivers remotely from an NT (or 200x/XP) c
 in the following paragraphs.
 </p><p>
 Be aware that a valid Device Mode can only be initiated by a
-<a class="indexterm" name="id2934733"></a><i class="parameter"><tt>printer admin</tt></i>, or root
+<a class="indexterm" name="id2934809"></a><i class="parameter"><tt>printer admin</tt></i>, or root
 (the reason should be obvious). Device Modes can only be correctly
 set by executing the printer driver program itself. Since Samba cannot execute this Win32 platform driver
 code, it sets this field initially to NULL (which is not a valid setting for clients to use). Fortunately,
@@ -1264,7 +1264,7 @@ Samba includes a service level parameter name <i class="parameter"><tt>default d
 Device Mode for a printer. Some drivers will function well with Samba's default set of properties. Others
 may crash the client's spooler service. So use this parameter with caution. It is always better to have
 the client generate a valid device mode for the printer and store it on the server for you.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2934972"></a>Additional Client Driver Installation</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2935048"></a>Additional Client Driver Installation</h3></div></div><div></div></div><p>
 Every additional driver may be installed, along the lines described
 above. Browse network, open the
 <span class="guiicon">Printers</span> folder on Samba server, right-click on <span class="guiicon">Printer</span> and choose
@@ -1281,10 +1281,10 @@ rundll32 shell32.dll,Control_RunDLL MAIN.CPL @2
 </tt></b></p><p>
 You can enter the commands either inside a <span class="guilabel">DOS box</span> window or in the <span class="guimenuitem">Run
 command...</span> field from the <span class="guimenu">Start</span> menu.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2935080"></a>Always Make First Client Connection as root or &#8220;<span class="quote">printer admin</span>&#8221;</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2935156"></a>Always Make First Client Connection as root or &#8220;<span class="quote">printer admin</span>&#8221;</h3></div></div><div></div></div><p>
 After you installed the driver on the Samba server (in its <i class="parameter"><tt>[print$]</tt></i>
 share, you should always make sure that your first client installation completes correctly. Make it a
-habit for yourself to build the very first connection from a client as <a class="indexterm" name="id2935104"></a><i class="parameter"><tt>printer admin</tt></i>. This is to make sure that:
+habit for yourself to build the very first connection from a client as <a class="indexterm" name="id2935180"></a><i class="parameter"><tt>printer admin</tt></i>. This is to make sure that:
 </p><div class="itemizedlist"><ul type="disc"><li><p>
 	A first valid <span class="emphasis"><em>Device Mode</em></span> is really initialized (see above for more
 	explanation details).
@@ -1305,12 +1305,12 @@ To connect as root to a Samba printer, try this command from a Windows 200x/XP D
 You will be prompted for root's Samba-password; type it, wait a few
 seconds, click on <span class="guibutton">Printing
 Defaults</span>, and proceed to set the job options that should be used as defaults by all
-clients. Alternately, instead of root you can name one other member of the <a class="indexterm" name="id2935231"></a><i class="parameter"><tt>printer admin</tt></i> from the setting.
+clients. Alternately, instead of root you can name one other member of the <a class="indexterm" name="id2935308"></a><i class="parameter"><tt>printer admin</tt></i> from the setting.
 </p><p>
 	Now all the other users downloading and installing the driver the same way (called
 &#8220;<span class="quote">Point'n'Print</span>&#8221;) will have the same defaults set for them. If you miss this step
 you'll get a lot of Help Desk calls from your users, but maybe you like to talk to people.
-</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2935264"></a>Other Gotchas</h2></div></div><div></div></div><p>
+</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2935340"></a>Other Gotchas</h2></div></div><div></div></div><p>
 Your driver is installed. It is now ready for Point'n'Print
 installation by the clients. You may have tried to download and use it
 onto your first client machine, but
@@ -1318,7 +1318,7 @@ wait. Let's make sure you are acquainted first with a few tips and tricks you ma
 suppose you did not set the defaults on the printer, as advised in the preceding
 paragraphs. Your users complain about various issues (such as, &#8220;<span class="quote">We need to set the paper size
 for each job from Letter to A4 and it will not store it.</span>&#8221;)
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2935289"></a>Setting Default Print Options for Client Drivers</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2935366"></a>Setting Default Print Options for Client Drivers</h3></div></div><div></div></div><p>
 The last sentence might be viewed with mixed feelings by some users and
 Admins. They have struggled for hours and could not arrive at a point
 where their settings seemed to be saved. It is not their fault. The confusing
@@ -1360,7 +1360,7 @@ The following list needs periods after the letters and numbers:::::::::
 Do you see any difference in the two settings dialogs? I do not either. However, only the last one, which
 you arrived at with steps C.1 through 6 will permanently save any settings which will then become the defaults
 for new users. If you want all clients to have the same defaults, you need to conduct these steps as
-administrator (<a class="indexterm" name="id2935576"></a><i class="parameter"><tt>printer admin</tt></i> in ) before
+administrator (<a class="indexterm" name="id2935651"></a><i class="parameter"><tt>printer admin</tt></i> in ) before
 a client downloads the driver (the clients can later set their own per-user defaults
 by following procedures A or B above). Windows 200x/XP allow per-user default settings and the ones the
 administrator gives them, before they set up their own. The parents of the identically-looking dialogs have a slight difference in their window names; one is called <tt class="computeroutput">Default Print
@@ -1381,7 +1381,7 @@ rundll32 printui.dll,PrintUIEntry /p /t0 /n\\<i class="replaceable"><tt>SAMBA-SE
 To see the tab with the <span class="guilabel">Printing Preferences</span>
 button (the one which does not set system-wide defaults), you can
 start the commands from inside a DOS box" or from <span class="guimenu">Start</span> -&gt; <span class="guimenuitem">Run</span>.
-</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2935713"></a>Supporting Large Numbers of Printers</h3></div></div><div></div></div><p>
+</p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2935789"></a>Supporting Large Numbers of Printers</h3></div></div><div></div></div><p>
 One issue that has arisen during the recent development phase of Samba is the need to support driver
 downloads for hundreds of printers. Using Windows NT APW here is somewhat awkward (to say the least). If
 you do not want to acquire RSS pains from the printer installation clicking orgy alone, you need
@@ -1464,19 +1464,19 @@ It may not be easy to recognize that the first call to <b class="command">enumpr
 &#8220;<span class="quote">dm9110</span>&#8221; printer with an empty string where the driver should have been listed (between
 the 2 commas in the description field). After the <b class="command">setdriver</b> command
 succeeded, all is well.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936011"></a>Adding New Printers with the Windows NT APW</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936087"></a>Adding New Printers with the Windows NT APW</h3></div></div><div></div></div><p>
 By default, Samba exhibits all printer shares defined in <tt class="filename">smb.conf</tt> in the <span class="guiicon">Printers</span>
 folder. Also located in this folder is the Windows NT Add Printer Wizard icon. The APW will be shown only if:
 </p><div class="itemizedlist"><ul type="disc"><li><p>
 	The connected user is able to successfully execute an <b class="command">OpenPrinterEx(\\server)</b> with
-	administrative privileges (i.e., root or <a class="indexterm" name="id2936056"></a><i class="parameter"><tt>printer admin</tt></i>).
+	administrative privileges (i.e., root or <a class="indexterm" name="id2936132"></a><i class="parameter"><tt>printer admin</tt></i>).
 	</p><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Tip</h3><p> Try this from a Windows 200x/XP DOS box command prompt:
 	</p><p><b class="userinput"><tt>
 	runas /netonly /user:root rundll32 printui.dll,PrintUIEntry /p /t0 /n \\<i class="replaceable"><tt>SAMBA-SERVER</tt></i>\<i class="replaceable"><tt>printersharename</tt></i>
 	</tt></b></p><p>
 	Click on <span class="guibutton">Printing Preferences</span>.
 	</p></div></li><li><p>... contains the setting
-	<a class="indexterm" name="id2936111"></a><i class="parameter"><tt>show add printer wizard</tt></i> = yes (the
+	<a class="indexterm" name="id2936187"></a><i class="parameter"><tt>show add printer wizard</tt></i> = yes (the
 	default).</p></li></ul></div><p>
 The APW can do various things:
 </p><div class="itemizedlist"><ul type="disc"><li><p>
@@ -1487,22 +1487,22 @@ The APW can do various things:
 	Exchange the currently used driver for an existing print queue with one that has been uploaded before.
 	</p></li><li><p>
 	Add an entirely new printer to the Samba host (only in conjunction with a working
-	<a class="indexterm" name="id2936168"></a><i class="parameter"><tt>add printer command</tt></i>. A corresponding
-	<a class="indexterm" name="id2936184"></a><i class="parameter"><tt>delete printer command</tt></i> for removing entries from the
+	<a class="indexterm" name="id2936244"></a><i class="parameter"><tt>add printer command</tt></i>. A corresponding
+	<a class="indexterm" name="id2936260"></a><i class="parameter"><tt>delete printer command</tt></i> for removing entries from the
 	<span class="guiicon">Printers</span> folder may also be provided).
 	</p></li></ul></div><p>
 The last one (add a new printer) requires more effort than the previous ones. To use
-the APW to successfully add a printer to a Samba server, the <a class="indexterm" name="id2936213"></a><i class="parameter"><tt>add printer command</tt></i> must have a defined value. The program hook must successfully
+the APW to successfully add a printer to a Samba server, the <a class="indexterm" name="id2936289"></a><i class="parameter"><tt>add printer command</tt></i> must have a defined value. The program hook must successfully
 add the printer to the UNIX print system (i.e., to <tt class="filename">/etc/printcap</tt>,
 <tt class="filename">/etc/cups/printers.conf</tt> or other appropriate files) and to <tt class="filename">smb.conf</tt> if necessary.
 </p><p>
 When using the APW from a client, if the named printer share does not exist, smbd will execute the
-<a class="indexterm" name="id2936256"></a><i class="parameter"><tt>add printer command</tt></i> and re-parse to the to attempt to locate the new printer
+<a class="indexterm" name="id2936332"></a><i class="parameter"><tt>add printer command</tt></i> and re-parse to the to attempt to locate the new printer
 share. If the share is still not defined, an error of <span class="errorname">Access Denied</span> is returned to
-the client. The <a class="indexterm" name="id2936277"></a><i class="parameter"><tt>add printer command</tt></i> is executed
-under the context of the connected user, not necessarily a root account. A <a class="indexterm" name="id2936293"></a><i class="parameter"><tt>map to guest</tt></i> = bad user may have connected you unwittingly under the wrong
+the client. The <a class="indexterm" name="id2936353"></a><i class="parameter"><tt>add printer command</tt></i> is executed
+under the context of the connected user, not necessarily a root account. A <a class="indexterm" name="id2936369"></a><i class="parameter"><tt>map to guest</tt></i> = bad user may have connected you unwittingly under the wrong
 privilege. You should check it by using the <b class="command">smbstatus</b> command.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936317"></a>Error Message: &#8220;<span class="quote"><span class="errorname">Cannot connect under a different Name</span></span>&#8221;</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936393"></a>Error Message: &#8220;<span class="quote"><span class="errorname">Cannot connect under a different Name</span></span>&#8221;</h3></div></div><div></div></div><p>
 Once you are connected with the wrong credentials, there is no means to reverse the situation other than
 to close all Explorer Windows, and perhaps reboot.
 </p><div class="itemizedlist"><ul type="disc"><li><p>
@@ -1531,7 +1531,7 @@ The easiest way to forcefully terminate all connections from your client to a se
 <tt class="prompt">C:\&gt; </tt> net use * /delete
 </pre><p>
 This will disconnect all mapped drives also and will allow you create fresh connection as required.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936445"></a>Take Care When Assembling Driver Files</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936522"></a>Take Care When Assembling Driver Files</h3></div></div><div></div></div><p>
 You need to be extremely careful when you take notes about the files and belonging to a particular
 driver. Don't confuse the files for driver version &#8220;<span class="quote">0</span>&#8221; (for Windows 9x/Me, going into
 <tt class="filename">[print$]/WIN/0/</tt>), driver version <tt class="filename">2</tt> (Kernel Mode driver for Windows NT,
@@ -1663,7 +1663,7 @@ In my example were even more differences than shown here. Conclusion: you must b
 the correct driver files for each driver version. Don't rely on the
 names alone and don't interchange files
 belonging to different driver versions.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936749"></a>Samba and Printer Ports</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936825"></a>Samba and Printer Ports</h3></div></div><div></div></div><p>
 Windows NT/2000 print servers associate a port with each printer. These normally take the form of
 <tt class="filename">LPT1:</tt>, <tt class="filename">COM1:</tt>,
 <tt class="filename">FILE:</tt>, and so on. Samba must also
@@ -1677,14 +1677,14 @@ Samba does not support the concept of <tt class="constant">Printer Pooling</tt> 
 Pooling assigns a logical printer to multiple ports as a form of load balancing or fail over.
 </p><p>
 If you require multiple ports be defined for some reason or another (my users and my boss should not know
-that they are working with Samba), configure <a class="indexterm" name="id2936814"></a><i class="parameter"><tt>enumports command</tt></i>
+that they are working with Samba), configure <a class="indexterm" name="id2936890"></a><i class="parameter"><tt>enumports command</tt></i>
 which can be used to define an external program that generates a listing of ports on a system.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936834"></a>Avoiding Common Client Driver Mis-configuration</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936910"></a>Avoiding Common Client Driver Mis-configuration</h3></div></div><div></div></div><p>
 So now the printing works, but there are still problems. Most jobs print well, some do not print at
 all. Some jobs have problems with fonts, which do not look good. Some jobs print fast and some
 are dead-slow. We cannot cover it all, but we want to encourage you to read the brief paragraph about
 &#8220;<span class="quote">Avoiding the Wrong PostScript Driver Settings</span>&#8221; in the CUPS Printing part of this document.
-</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2936858"></a>The Imprints Tool-set</h2></div></div><div></div></div><p>
+</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2936935"></a>The Imprints Tool-set</h2></div></div><div></div></div><p>
 The Imprints tool set provides a UNIX equivalent of the Windows NT Add Printer
 Wizard. For complete information, please refer to the 
 <a href="http://imprints.sourceforge.net/" target="_top">Imprints</a> Web site as well as the documentation
@@ -1698,7 +1698,7 @@ your efforts on the Samba technical
 mailing list. The tool-set is still in usable form, but only for a series of older printer models where
 there are prepared packages to use. Packages for more up-to-date print devices are needed if Imprints
 should have a future.
-</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936898"></a>What is Imprints?</h3></div></div><div></div></div><p>
+</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936974"></a>What is Imprints?</h3></div></div><div></div></div><p>
 Imprints is a collection of tools for supporting these goals:
 </p><div class="itemizedlist"><ul type="disc"><li><p>
 	Providing a central repository of information regarding Windows NT and 95/98 printer driver packages.
@@ -1707,19 +1707,19 @@ Imprints is a collection of tools for supporting these goals:
 	</p></li><li><p>
 	Providing an installation client that will obtain printer drivers from a central Internet (or intranet) Imprints Server
 	repository and install them on remote Samba and Windows NT4 print servers.
-	</p></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936939"></a>Creating Printer Driver Packages</h3></div></div><div></div></div><p>
+	</p></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2937015"></a>Creating Printer Driver Packages</h3></div></div><div></div></div><p>
 The process of creating printer driver packages is beyond the scope of this document (refer to Imprints.txt
 also included with the Samba distribution for more information). In short, an Imprints driver package
 is a gzipped tarball containing the driver files, related INF files, and a control file needed by the
 installation client.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936958"></a>The Imprints Server</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2937034"></a>The Imprints Server</h3></div></div><div></div></div><p>
 The Imprints server is really a database server that may be queried via standard HTTP mechanisms. Each
 printer entry in the database has an associated URL for the actual downloading of the package. Each
 package is digitally signed via GnuPG which can be used to verify that
 the package downloaded is actually
 the one referred in the Imprints database. It is strongly recommended that this security check
 not be disabled.
-</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2936978"></a>The Installation Client</h3></div></div><div></div></div><p>
+</p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2937054"></a>The Installation Client</h3></div></div><div></div></div><p>
 More information regarding the Imprints installation client is available from the the documentation file
 <tt class="filename">Imprints-Client-HOWTO.ps</tt> that is included with the Imprints source package. The Imprints
 installation client comes in two forms:
@@ -1749,7 +1749,7 @@ requirement internally, therefore, &#8220;<span class="quote">How can you use th
 </p><p>
 The way of sidestepping this limitation is to require that all Imprints printer driver packages include both the Intel Windows NT and
 95/98 printer drivers and that the NT driver is installed first.
-</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2937140"></a>Adding Network Printers without User Interaction</h2></div></div><div></div></div><p>
+</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2937216"></a>Adding Network Printers without User Interaction</h2></div></div><div></div></div><p>
 The following MS Knowledge Base article may be of some help if you need to handle Windows 2000
 clients: <span class="emphasis"><em>How to Add Printers with No User Interaction in Windows 2000,</em></span> (<a href="http://support.microsoft.com/default.aspx?scid=kb;en-us;189105" target="_top">http://support.microsoft.com/default.aspx?scid=kb;en-us;189105</a>).
 It also applies to Windows XP Professional clients.
@@ -1809,7 +1809,7 @@ Since network printers are installed per user, this much simplifies the process 
 up-to-date. The few extra seconds at logon time will not really be noticeable. Printers can be centrally
 added, changed and deleted at will on the server with no user intervention required from the clients
 (you just need to keep the logon scripts up-to-date).
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2937465"></a>The <b class="command">addprinter</b> Command</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2937541"></a>The <b class="command">addprinter</b> Command</h2></div></div><div></div></div><p>
 The <b class="command">addprinter</b> command can be configured to be a shell script or program executed by
 Samba. It is triggered by running the APW from a client against the Samba print server. The APW asks
 the user to fill in several fields (such as printer name, driver to be used, comment, port monitor,
@@ -1817,7 +1817,7 @@ and so on). These parameters are passed on to Samba by the APW. If the addprinte
 way that it can create a new printer (through writing correct printcap entries on legacy systems, or
 execute the <b class="command">lpadmin</b> command on more modern systems) and create the associated share
 in, then the APW will in effect really create a new printer on Samba and the UNIX print subsystem!
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2937511"></a>Migration of Classical Printing to Samba</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2937587"></a>Migration of Classical Printing to Samba</h2></div></div><div></div></div><p>
 The basic NT-style printer driver management has not changed considerably in 3.0 over the 2.2.x releases
 (apart from many small improvements). Here migration should be quite easy, especially if you followed
 previous advice to stop using deprecated parameters in your setup. For migrations from an existing 2.0.x
@@ -1852,10 +1852,10 @@ follow several paths. Here are possible scenarios for migration:
 		<a href="http://imprints.sourceforge.net/" target="_top">http://imprints.sourceforge.net/</a>
 	</p><p>
 	for an example. See also the discussion of rpcclient usage in the
-	&#8220;<span class="quote">CUPS Printing</span>&#8221; section.</p></li></ul></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2937687"></a>Publishing Printer Information in Active Directory or LDAP</h2></div></div><div></div></div><p>
+	&#8220;<span class="quote">CUPS Printing</span>&#8221; section.</p></li></ul></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2937763"></a>Publishing Printer Information in Active Directory or LDAP</h2></div></div><div></div></div><p>
 This will be addressed in a later update of this document. If you wish to volunteer your services to help
 document this, please contact <a href="mail://jht@samba.org" target="_top">John H Terpstra.</a>
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2937710"></a>Common Errors</h2></div></div><div></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2937717"></a>I Give My Root Password but I Do Not Get Access</h3></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2937786"></a>Common Errors</h2></div></div><div></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2937794"></a>I Give My Root Password but I Do Not Get Access</h3></div></div><div></div></div><p>
 Do not confuse the root password which is valid for the UNIX system (and in most cases stored in the
 form of a one-way hash in a file named <tt class="filename">/etc/shadow</tt>), with the password used to
 authenticate against Samba. Samba does not know the UNIX password. Root access to Samba resources
@@ -1865,7 +1865,7 @@ command as follows:
 <tt class="prompt">root# </tt> smbpasswd -a root
 New SMB password: secret
 Retype new SMB password: secret
-</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2937768"></a>My Print Jobs Get Spooled into the Spooling Directory, but Then Get Lost</h3></div></div><div></div></div><p>
+</pre></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2937844"></a>My Print Jobs Get Spooled into the Spooling Directory, but Then Get Lost</h3></div></div><div></div></div><p>
 Do not use the existing UNIX print system spool directory for the Samba spool directory. It may seem
 convenient and a savings of space, but it only leads to problems. The two must be separate.
 </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="msdfs.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="optional.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="CUPS-printing.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 17. Betreiben eines Microsoft Distributed File System Baumes </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 19. CUPS Printing Support</td></tr></table></div></body></html>
