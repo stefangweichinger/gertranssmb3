@@ -93,39 +93,39 @@ PAM support modules are available for:
 
 	<varlistentry><term>NetWare Bindery</term><listitem>
 		<para>
-		The <filename>pam_ncp_auth.so</filename> module allows authentication off any bindery-enabled
-		NetWare Core Protocol-based server.
+		Das <filename>pam_ncp_auth.so</filename> Modul erlaubt die Authentifizierung auf jedem bindery
+		fähigem NetWare Core Protokoll basiertem Server.
 		</para>
 	</listitem></varlistentry>
 
 	<varlistentry><term>SMB Password</term><listitem>
 		<para>
-		This module, called <filename>pam_smbpass.so</filename>, will allow user authentication off
-		the passdb backend that is configured in the Samba &smb.conf; file.
+		Dieses Modul, namentlich <filename>pam_smbpass.so</filename>, erlaubt die Benutzerauthentifizierung
+		mit dem passdb Backend dass in der &smb.conf; file angegeben ist.
 		</para>
 	</listitem></varlistentry>
 
 	<varlistentry><term>SMB Server</term><listitem>
 		<para>
-		The <filename>pam_smb_auth.so</filename> module is the original MS Windows networking authentication
-		tool. This module has been somewhat outdated by the Winbind module.
+		Das <filename>pam_smb_auth.so</filename> Modul ist das original MS Windows Netzwerk authentifizierungs
+		Werkzeug. Dieses Modul ist eigentlich überholt seit es das Winbind Modul gibt.
 		</para>
 	</listitem></varlistentry>
 
 	<varlistentry><term>Winbind</term><listitem>
 		<para>
-		The <filename>pam_winbind.so</filename> module allows Samba to obtain authentication from any
-		MS Windows Domain Controller. It can just as easily be used to authenticate
-		users for access to any PAM-enabled application.
+		Das <filename>pam_winbind.so</filename> Modul erlaubt Samba sich mit jedem MS Windows Domain
+		Controller zu authentifizieren. Es kann genauso benutzt werden um Benutzern den Zugang zu irgendeiner
+		PAM-fähigen Applikation zu erlauben.
 		</para>
 	</listitem></varlistentry>
 
 	<varlistentry><term>RADIUS</term><listitem>
 		<para>
-		There is a PAM RADIUS (Remote Access Dial-In User Service) authentication
-		module. In most cases, administrators will need to locate the source code
-		for this tool and compile and install it themselves. RADIUS protocols are
-		used by many routers and terminal servers.
+		Es gibt auch ein PAM RADIUS (Remote Access Dial-In User Service) authentifizierungs
+		Modul. In den meisten Fällen muss der Administrator den Quellcode suchen und dieses Modul selbst
+		kompilieren und installieren. RADIUS Protokolle werden von vielen Routern und Terminal Servern
+		benutzt.
 		</para>
 	</listitem></varlistentry>
 </variablelist>
