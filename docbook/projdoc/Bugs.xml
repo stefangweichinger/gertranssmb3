@@ -27,8 +27,8 @@ indem Sie ihren Bug so <quote>Entwickler-freundlich</quote> wie nur eben möglich
 </para>
 
 <para>
-Bitte gehen Sie nicht davon aus, daß wenn Sie einen Bug in der Newsgroup comp.protocols.smb posten, 
-daß wir dies lesen. Wenn Sie vermuten, dass es weniger ein Bug als ein Konfigurationsproblem ist, 
+Bitte gehen Sie nicht davon aus, dass wenn Sie einen Bug in der Newsgroup comp.protocols.smb posten, 
+dass wir dies lesen. Wenn Sie vermuten, dass es weniger ein Bug als ein Konfigurationsproblem ist, 
 wenden Sie sich bitte an die Samba-Mailing-Liste, da dort tausende von anderen Benutzern evtl. in der 
 Lage sind, Ihnen zu helfen.
 </para>
@@ -56,7 +56,7 @@ Haben Sie in <link linkend="diagnosis"/> nachgeschaut? Dies ist von bedeutender 
 
 <para>
 Wenn Sie Teile ihrer Log-Dateien mit dem Report senden, stellen Sie sicher, dass 
-Sie es entsprechend ihrer Tätigkeit am Client kommentieren und bekanntgeben, wie 
+Sie es entsprechend ihrer Tätigkeit am Client kommentieren und bekannt geben, wie 
 das Resultat sich darstellt.
 </para>
 
@@ -98,12 +98,12 @@ mit verschiedenes Sicherheitsoptionen zu experimentieren.
 <para>
 Der &smb.conf;-Eintrag <smbconfoption><name>log level</name></smbconfoption> ist ein Synonym für 
 <smbconfoption><name>debuglevel</name></smbconfoption> welches in älteren Versionen von Samba verwendet wurde 
-und zur Abwärtskompatibilität zu älteren &smb.conf;-Dateien dient.
+und zur Abwärts Kompatibilität zu älteren &smb.conf;-Dateien dient.
 </para>
 
 <para>
 Sobald der Wert für das <smbconfoption><name>log level</name></smbconfoption> erhöht und Samba neu 
-gestartet worden ist, werden Sie ein signifikant höheres Level an Debuginformationen erhalten. Für 
+gestartet worden ist, werden Sie ein signifikant höheres Level an Debug Informationen erhalten. Für 
 gewöhnlich werden Sie kein Level höher als <constant>3</constant> benötigen. Nahezu jeder Bug kann mit einem 
 Log Level von <constant>10</constant> festgestellt werden, aber machen Sie sich auf ein großes 
 Datenvolumen an Log-Dateien gefasst.
@@ -134,7 +134,7 @@ Wenn möglich sollten Sie so detailliert wie möglich erklären können, wie das Pro
 
 <para>
 <indexterm><primary>core-Dateien</primary></indexterm>
-Sie werden ebenfalls ein sogenanntes core-file in einem <filename>corefiles</filename> 
+Sie werden ebenfalls ein so genanntes core-file in einem <filename>corefiles</filename> 
 -Unterverzeichnis in Ihrem Log-Verzeichnis entdecken. 
 Dies Datei ist das nützlichste Tool, um einen Bug zu verfolgen. Um es zu verwenden, machen Sie folgendes:
 <indexterm><primary>gdb</primary></indexterm>
@@ -164,10 +164,10 @@ Assembler-Programmierung haben, fügen Sie diese Information dem Report zu, dies 
 </sect1>
 
 <sect1>
-<title>Sich an einen laufenden Prozess anschliessen</title>
+<title>Sich an einen laufenden Prozess anschließen</title>
 
 <para>
-Leider lassen es einige UNICes (zum Teil auch einige Linux-Kernel) nicht zu, 
+Leider lassen es einige UNIXes (zum Teil auch einige Linux-Kernel) nicht zu, 
 einen Coredump zu erstellen, wenn der Prozess die UID ändert (was smbd oft tut).
 Um dies dennoch zu debuggen, könnten Sie versuchen, sich in den laufenden Prozess 
 einzuklinken, indem Sie <userinput>gdb smbd <replaceable>PID</replaceable></userinput>
@@ -187,7 +187,7 @@ mitteilen, wo er auftrat.
 <para>
 <indexterm><primary>diff</primary></indexterm>
 <indexterm><primary>patch</primary></indexterm>
-Die beste Art von Bug-Reports sind die, die bereits einen Fix beinhalten! Wenn Sie uns patches 
+Die beste Art von Bug-Reports sind die, die bereits einen Fix beinhalten! Wenn Sie uns Patches 
 schicken, verwenden Sie bitte das <userinput>diff -u</userinput>-Format, wenn ihre Version von diff 
 dies bereitstellt, ansonsten verwenden Sie bitte <userinput>diff -c4</userinput>.
 Stellen Sie sicher, dass Sie ihr diff gegen eine saubere Version des Source-Codes machen 
