@@ -1081,7 +1081,7 @@ Mögliche Ursachen sind:
 	</para></listitem>
 
 	<listitem><para>
-	Die Maschine konnte nicht zur UNIX-Systemkonten-Datei <filename>/etc/passwd</filename
+	Die Maschine konnte nicht zur UNIX-Systemkonten-Datei <filename>/etc/passwd</filename>
 	hinzugefügt werden.	
 	</para>
 
