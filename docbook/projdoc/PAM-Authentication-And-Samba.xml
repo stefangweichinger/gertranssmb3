@@ -7,31 +7,38 @@
 			<address><email>vorlon@netexpress.net</email></address>
 		</affiliation>
 	</author>
+	<author>&person.flex;<contrib>Deutsche Übersetzung</contrib></author>
     <pubdate>May 31, 2003</pubdate>
 </chapterinfo>
  
-<title>PAM-Based Distributed Authentication</title>
+<title>PAM-basierte verteilte Authentifizierung</title>
 
 <para>
-This chapter should help you to deploy Winbind-based authentication on any PAM-enabled
-UNIX/Linux system. Winbind can be used to enable User-Level application access authentication
+Dieses Kapitel hilft Ihnen bei der Verwendung von Winbind basierender Authentifikation auf jedem PAM fähigen 
+UNIX/Linux System. Winbind kann verwendet werden um User-Level APPLICATION ACCESS Authentifizierung von jeder
+MS Windows NT Domäne, MS Windows 200x Active Director-basierden Domäne oder einer Samba-basierten Domänen
+Umgebung zu erlauben.
+
+Winbind can be used to enable User-Level application access authentication
 from any MS Windows NT Domain, MS Windows 200x Active Directory-based
-domain, or any Samba-based domain environment. It will also help you to configure PAM-based local host access
-controls that are appropriate to your Samba configuration.
+domain, or any Samba-based domain environment. 
+
+Es sollte ihnen auch helfen PAM-basierte lokale host Zugriffs Kontrollen, die ihrer Samba Konfiguration entsprechen,
+zu konfigurieren.
 </para>
 
 <para>
-In addition to knowing how to configure Winbind into PAM, you will learn generic PAM management
-possibilities and in particular how to deploy tools like <filename>pam_smbpass.so</filename> to your advantage.
+Zusätzlich zur Konfiguration von Winbind in PAM, werden Sie die PAM Management Möglichkeiten kennenlernen wie z.B.
+die Verwendung von Werkzeugen wie <filename>pam_smbpass.so</filename> zu Ihrem Vorteil.
 </para>
 
 <note><para>
-The use of Winbind requires more than PAM configuration alone.
-Please refer to <link linkend="winbind"/>, for further information regarding Winbind.
+Die Verwendung von Winbind erfordert mehr als nur die PAM Konfiguration alleine.
+Für mehr Informationen zu Winbind schauen Sie sich bitte <link linkend="winbind"/> an.
 </para></note>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Vorteile</title>
 
 <para>
 A number of UNIX systems (e.g., Sun Solaris), as well as the xxxxBSD family and Linux,
