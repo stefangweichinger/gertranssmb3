@@ -10,31 +10,24 @@
         &author.sgw;<contrib>German Translator</contrib>
 </chapterinfo>
 
-<title>Domain Control</title>
+<title>Die Kontrolle über eine Domäne</title>
 
 <para>
-There are many who approach MS Windows networking with incredible misconceptions.
-That's okay, because it gives the rest of us plenty of opportunity to be of assistance.
-Those who really want help would be well advised to become familiar with information
-that is already available.
+Viele nähern sich der Thematik der MS-Windows-Netzwerke mit falschen Vorstellungen.
+Das ist ok so, weil es uns anderen viele Möglichkeiten dazu gibt, Hilfe zu geben.
+Diejenigen, die wirklich helfen wollen, sind gut beraten, sich mit der bereits vorhandenen Information und Dokumentation vertraut zu machen. 
 </para>
 
 <para>
-The reader is advised not to tackle this section without having first understood
-and mastered some basics. MS Windows networking is not particularly forgiving of
-misconfiguration. Users of MS Windows networking are likely to complain 
-of persistent niggles that may be caused by a broken network configuration.
-To a great many people, however, MS Windows networking starts with a Domain Controller
-that in some magical way is expected to solve all network operational ills.
+Der Leser ist gut beraten, diesen Abschnitt der Samba-Dokumentation gar nicht erst anzugehen, solange er nicht einige Grundlagen beherrscht. MS-Windows-Netzwerke sind nicht gerade tolerant gegenüber Fehl-Konfigurationen. Anwender von MS-Windows-Netzwerken beschweren sich oft über dauernde Unannehmlichkeiten infolge "kaputter" Netzwerk-Konfigurationen.
+Für viele jedoch beginnt die Arbeit mit MS-Windows-Netzwerken mit einem Domänen-Controller, von dem erwartet wird, daß er auf irgendeine magische Art alle Netzwerk-Probleme lösen wird.
 </para>
 
 <para>
-The diagram in <link linkend="domain-example"/> shows a typical MS Windows Domain Security
-network environment. Workstations A, B and C are representative of many physical MS Windows
-network clients.
+Das Diagramm in <link linkend="domain-example"/> zeigt eine klassische Umgebung unter Verwendung einer MS-Windows-Sicherheits-Domäne (MS Windows Domain Security network environment). Die Workstations A, B und C repräsentieren eine Vielzahl physischer MS-Windows-Netzwerk-Clients.
 </para>
 
-<figure id="domain-example"><title>An Example Domain.</title>
+<figure id="domain-example"><title>Eine Beispiel-Domäne.</title>
 <mediaobject>
 <imageobject role="latex"><imagedata fileref="projdoc/imagefiles/domain" width="4in" height="3in" scalefit="1"/></imageobject>
 <imageobject><imagedata fileref="projdoc/imagefiles/domain.png" scale="50" scalefit="1"/></imageobject>
@@ -45,76 +38,60 @@ network clients.
 <?latex \newpage ?>
 
 <para>
-From the Samba mailing list one can readily identify many common networking issues.
-If you are not clear on the following subjects, then it will do much good to read the 
-sections of this HOWTO that deal with it. These are the most common causes of MS Windows
-networking problems:
+In der Samba mailing list kann man leicht viele weit verbreitete Netzwerk-Themen erkennen.
+Wenn Sie mit den folgenden Themen nicht vertraut sind, wird es helfen, die entsprechenden Abschnitte dieses HOWTOs zu lesen. Dies sind die häufigsten Ursachen für Probleme mit MS-Windows-Netzwerken:
 </para>
 
 <itemizedlist>
-	<listitem><para>Basic TCP/IP configuration.</para></listitem>
-	<listitem><para>NetBIOS name resolution.</para></listitem>
-	<listitem><para>Authentication configuration.</para></listitem>
-	<listitem><para>User and group configuration.</para></listitem>
-	<listitem><para>Basic file and directory permission control in UNIX/Linux.</para></listitem>
-	<listitem><para>Understanding how MS Windows clients interoperate in a network
-		environment.</para></listitem>
+	<listitem><para>Grundlegende TCP/IP-Konfiguration.</para></listitem>
+	<listitem><para>NetBIOS Namens-Auflösung.</para></listitem>
+	<listitem><para>Authentifizierungs-Konfiguration.</para></listitem>
+	<listitem><para>Benutzer- und Gruppen-Konfiguration.</para></listitem>
+	<listitem><para>Grundlegende Datei- und Verzeichnis-Rechte in UNIX/Linux.</para></listitem>
+	<listitem><para>Verstehen wie MS-Windows-Clients in einer Netzwerkumgebung zusammenarbeiten.</para></listitem>
 </itemizedlist>
 
 <para>
-Do not be put off; on the surface of it MS Windows networking seems so simple that anyone 
-can do it. In fact, it is not a good idea to set up an MS Windows network with
-inadequate training and preparation. But let's get our first indelible principle out of the
-way: <emphasis>It is perfectly okay to make mistakes!</emphasis> In the right place and at
-the right time, mistakes are the essence of learning. It is very much not okay to make
-mistakes that cause loss of productivity and impose an avoidable financial burden on an
-organization.
+Lassen Sie sich nicht abschrecken; an der Oberfläche erscheint ein MS-Windows-Netzwerk so simpel, daß es jeder schafft. Tatsächlich ist es aber keine gute Idee, ein MS-Windows-Netzwerk ohne entsprechende Übung und Vorbereitung aufzusetzen. Aber lassen Sie uns unser erstes unauslöschliches Prinzip aus dem Weg räumen: 
+<emphasis>Es ist in Ordnung, Fehler zu machen!</emphasis>
+Am richtigen Ort, zur richtigen Zeit, sind Fehler die Essenz des Lernens. Es ist jedoch ganz und gar nicht in Ordnung, Fehler zu machen, die Produktivitäts-Einbussen verursachen und einer Organisation einen vermeidbaren finanziellen Verlust zufügen.
 </para>
 
 <para>
-Where is the right place to make mistakes? Only out of harm's way. If you are going to
-make mistakes, then please do it on a test network, away from users and in such a way as
-to not inflict pain on others. Do your learning on a test network.
+Wo ist der rechte Ort für Fehler? Nur dort, wo kein Schaden entstehen kann. Wenn Sie Fehler machen wollen, dann machen Sie diese bitte in einer Test-Umgebung, abseits von anderen Benutzern, auf eine Art, die anderen keine Probleme macht.
+Lernen Sie in einem Test-Netzwerk.
 </para>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Nutzen</title>
 
 <para>
-<indexterm><primary>domain security</primary></indexterm>
-<emphasis>What is the key benefit of Microsoft Domain Security?</emphasis>
+<indexterm><primary>Domänen-Sicherheit</primary></indexterm>
+<emphasis>Was ist der Hauptnutzen von Microsoft-Domänen-Sicherheit ?</emphasis>
 </para>
 
 <para>
-In a word, <emphasis>Single Sign On</emphasis>, or SSO for short. To many, this is the Holy
-Grail of MS Windows NT and beyond networking. SSO allows users in a well-designed network
-to log onto any workstation that is a member of the domain that their user account is in
-(or in a domain that has an appropriate trust relationship with the domain they are visiting)
-and they will be able to log onto the network and access resources (shares, files and printers)
-as if they are sitting at their home (personal) workstation. This is a feature of the Domain
-Security protocols.
+In einem Wort, <emphasis>Single Sign On</emphasis>, oder noch kürzer SSO.
+Für viele ist dies der "Heilige Gral" des Windows-NT-Netzwerks und darüber hinaus. SSO erlaubt Benutzern eines gut angelegten Netzwerks, sich auf jeder Workstation anzumelden, die Mitglied jener Domäne ist, zu der ihr Benutzer-Konto gehört (bzw. auf einer Workstation, die Mitglied einer Domäne ist, die ein geeignetes Vertrauensverhältnis zur eigenen Domäne hat). Dadurch können sie sich am Netzwerk anmelden und auf dessen Resourcen zugreifen (Freigaben, Dateien und Drucker) als ob sie an ihrem Stamm-Rechner sitzen würden. Dies ist ein Merkmal des Domänen-Sicherheits-Protokolls.
 </para>
 
 <para>
 <indexterm><primary>SID</primary></indexterm>
-The benefits of Domain Security are available to those sites that deploy a Samba PDC.
-A Domain provides a unique network security identifier (SID). Domain user and group security
-identifiers are comprised of the network SID plus a relative identifier (RID) that is unique to
-the account. User and Group SIDs (the network SID plus the RID) can be used to create Access Control
-Lists (ACLs) attached to network resources to provide organizational access control. UNIX systems
-recognize only local security identifiers.
+Die Vorzüge von Domänen-Sicherheit eröffnen sich jenen, die einen Samba-PDC verwenden.
+Eine Domäne stellt einen eindeutigen Netzwerk-Sicherheits-Identifizierungs-Schlüssel (network security identifier), kurz SID, zur Verfügung. Domänen-Benutzer- und -Gruppen-Sicherheits-Identifizierungs-Schlüssel umfassen den SID plus einem relativen Identifizierungs-Schlüssel (RID), der sich eindeutig auf das jeweilige Konto bezieht.
+Benutzer- und Gruppen-SIDs (Netzwerk-SID plus RID) können dazu verwendet werden, sogenannte Zugriffs-Kontroll-Listen, besser bekannt als ACLs (Access Control Lists) zu erstellen, die, bezogen auf einzelne Netzwerk-Resourcen, organisationsweite Zugriffs-Kontrolle ermöglichen. UNIX-Systeme erkennen nur lokale SIDs.
 </para>
 
 <note><para>
-Network clients of an MS Windows Domain Security Environment must be Domain Members to be
-able to gain access to the advanced features provided. Domain Membership involves more than just
-setting the workgroup name to the Domain name. It requires the creation of a Domain trust account
-for the workstation (called a machine account). Refer to <link linkend="domain-member"></link>
-for more information.
+Netzwerk-Clients einer MS-Windows-Sicherheits-Domänen-Umgebung müssen Domänen-Mitglieder sein, um Zugriff auf die erweiterten Funktionalitäten zu erlangen. Domänen-Mitgliedschaft beinhaltet mehr als das Setzen des Arbeitsgruppen-Namens auf den Domänen-Namen. Sie erfordert das Anlegen eines Domänen-Kontos für die Workstation (genannt Maschinen-Konto). Sehen Sie <link linkend="domain-member"></link> für mehr Informationen dazu.
 </para></note>
 
 <para>
-The following functionalities are new to the Samba-3 release:
+Die folgenden Funktionalitäten sind in der Release Samba 3 neu:
+</para>
+
+<para>
+#### bookmark weichinger.
 </para>
 
 <itemizedlist>
