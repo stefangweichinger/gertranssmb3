@@ -178,33 +178,33 @@ den Package-Namen.
 	<para>
 	<indexterm><primary>rsync</primary></indexterm>
 	<indexterm><primary>ftp</primary></indexterm>
-	<parameter>pserver.samba.org</parameter> also exports unpacked copies of most parts of the CVS
-	tree at <ulink noescape="1" url="ftp://pserver.samba.org/pub/unpacked">ftp://pserver.samba.org/pub/unpacked</ulink> and also via anonymous rsync at 
-	<ulink noescape="1" url="rsync://pserver.samba.org/ftp/unpacked/">rsync://pserver.samba.org/ftp/unpacked/</ulink>. I recommend using rsync rather than ftp.
-	See <ulink noescape="1" url="http://rsync.samba.org/">the rsync homepage</ulink> for more info on rsync.                      
+	<parameter>pserver.samba.org</parameter> exportiert auch ungepackte Kopien der meisten Teile des CVS-Baums
+	unter <ulink noescape="1" url="ftp://pserver.samba.org/pub/unpacked">ftp://pserver.samba.org/pub/unpacked</ulink> und auch via anonymem rsync unter 
+	<ulink noescape="1" url="rsync://pserver.samba.org/ftp/unpacked/">rsync://pserver.samba.org/ftp/unpacked/</ulink>. Wir empfehlen, rsync anstatt ftp zu verwenden.
+	Sehen Sie <ulink noescape="1" url="http://rsync.samba.org/">the rsync homepage</ulink> für mehr Informationen zu rsync.
 	</para>
 
 	<para>
-	The disadvantage of the unpacked trees is that they do not support automatic
-	merging of local changes like CVS does. <command>rsync</command> access is most convenient 
-	for an initial install.                      
+	Der Nachteil der ungepackten Bäume ist, daß sie kein automatisches "Merge" von lokalen
+	Änderungen zulassen, wie es CVS tut. <command>rsync</command>-Zugriff ist das praktischste
+	Verfahren bei einer frischen Installation.
 	</para>
 </sect1>
 
 <sect1>
-<title>Verifying Samba's PGP Signature</title>
+<title>Überprüfen der PGP-Signatur von Samba</title>
 
 <para>
 <indexterm><primary>GPG</primary></indexterm>
-It is strongly recommended that you verify the PGP signature for any source file before
-installing it. Even if you're not downloading from a mirror site, verifying PGP signatures
-should be a standard reflex. Many people today use the GNU GPG toolset in place of PGP.
-GPG can substitute for PGP.
+Es wird wärmstens empfohlen, daß Sie die PGP-Signatur jeder Quelltext-Datei vor der Installation
+überprüfen. Sogar wenn Sie die Datei nicht von einem Mirror-Server laden, sollte das Prüfen der
+PGP-Signatur zum Reflex werden. Viele nutzen heute das GNU-GPG-Package anstatt von PGP.
+GPG kann anstatt PGP eingesetzt werden.
 </para>
 
 
 <para>
-With that said, go ahead and download the following files:
+Nachdem dies gesagt wurde, laden Sie bitte folgende Dateien aus dem Netz:
 </para>
 
 <para><screen>
@@ -215,8 +215,8 @@ With that said, go ahead and download the following files:
 
 <para>
 <indexterm><primary>PGP</primary></indexterm>
-The first file is the PGP signature for the Samba source file; the other is the Samba public
-PGP key itself. Import the public PGP key with:
+Die erste Datei ist die PGP-Signatur für die Samba-Quelltext-Datei; die andere ist der öffentliche
+Samba-PGP-Schlüssel selbst. Importieren Sie den öffentlichen PGP-Schlüssel mittels:
 </para>
 
 <screen>
@@ -224,7 +224,7 @@ PGP key itself. Import the public PGP key with:
 </screen>
 
 <para>
-and verify the Samba source code integrity with:
+und überprüfen Sie die Integrität des Samba-Quelltexts mittels:
 </para>
 
 <screen>
@@ -233,9 +233,9 @@ and verify the Samba source code integrity with:
 </screen>
 
 <para>
-If you receive a message like, <quote>Good signature from Samba Distribution Verification Key...</quote>
-then all is well. The warnings about trust relationships can be ignored. An
-example of what you would not want to see would be:
+Wenn Sie eine Meldung wie <quote>Good signature from Samba Distribution Verification Key...</quote>
+erhalten, ist alles OK. Die Warnungen bezüglich <quote>trust relationships</quote> können ignoriert
+werden. Ein Beispiel für etwas, das Sie nicht sehen wollen:
 </para>
 
 <para><screen>
@@ -245,91 +245,92 @@ example of what you would not want to see would be:
 </sect1>
 
 <sect1>
-	<title>Building the Binaries</title>
+	<title>Kompilieren der Binärdateien</title>
 	
 
 	<para>
 <indexterm><primary>configure</primary></indexterm>
-		To build the binaries, first run the program <userinput>./configure
-	</userinput> in the source directory. This should automatically 
-	configure Samba for your operating system. If you have unusual 
-	needs, then you may wish to run</para>
+Um die Binärdateien mittels "build" zu erhalten, führen Sie zuerst das Programm 
+<userinput>./configure</userinput> im Quellverzeichnis aus. Dies sollte Samba automatisch für Ihr
+Betriebssystem konfigurieren. Sollten Sie darüber hinausgehende Wünsche haben, dann können Sie
+folgendes tun:</para>
 	
 <para><screen>&rootprompt;<userinput>./configure --help
 </userinput></screen></para>
 	
-<para>first to see what special options you can enable. Now execute <userinput>./configure</userinput> with any arguments it might need:</para>
+<para>So sehen Sie, welche speziellen Optionen aktiviert werden können.
+Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agrumenten ausführen:</para>
 
 <para><screen>&rootprompt;<userinput>./configure <replaceable>[... arguments ...]</replaceable></userinput></screen></para>
 	
-	<para>Executing</para>
+	<para>Das Ausführen von</para>
 
 	
 	<para>
 <indexterm><primary>make</primary></indexterm>
 		<screen>&rootprompt;<userinput>make</userinput></screen></para>
 	
-	<para>will create the binaries. Once it is successfully 
-	compiled you can use</para>
+	<para>wird die Binärdateien erstellen. Sobald diese erfolgreich kompiliert wurden,
+	können Sie</para>
 	
 <para><screen>&rootprompt;<userinput>make install</userinput></screen></para>
 	
-	<para>to install the binaries and manual pages. You can 
-	separately install the binaries and/or man pages using</para>
+	<para>verwenden, um die Binärdateien (=Programme) und Man-pages zu installieren.
+	Sie können Programme und Man-pages separat installieren:</para>
 	
 <para><screen>&rootprompt;<userinput>make installbin
 </userinput></screen></para>
 	
-	<para>and</para>
+	<para>und</para>
 	
 	<para><screen>&rootprompt;<userinput>make installman
 	</userinput></screen></para>
 
-	<para>Note that if you are upgrading from a previous version 
-	of Samba you might like to know that the old versions of 
-	the binaries will be renamed with an <quote>.old</quote> extension. You 
-	can go back to the previous version with</para>
+	<para>Bitte beachten Sie, daß Sie beim Upgrade von einer vorigen Version
+	möglicherweise wissen wollen, daß dabei die alten Programme umbenannt werden,
+	und zwar durch das Anhängen von <quote>.old</quote>. Sie können dann zur
+	alten Version zurückkehren,</para>
 	
 <para><screen>&rootprompt;<userinput>make revert
 </userinput></screen></para>
 	
-	<para>if you find this version a disaster!</para>
+	<para>wenn Sie die neue Version als Desaster empfinden!</para>
 
 	<sect2>
-	<title>Compiling Samba with Active Directory Support</title>
+	<title>Das Kompilieren von Samba mit Active Directory Support</title>
 	
-	<para>In order to compile Samba with ADS support, you need to have installed
-	on your system:</para>
+	<para>Um Samba mit ADS-Support zu kompilieren, müssen Sie folgendes
+	auf Ihrem System installiert haben:</para>
+	
 	<itemizedlist>
 	
-	    <listitem><para>The MIT or Heimdal kerberos development libraries
-	    (either install from the sources or use a package).</para></listitem>
+	    <listitem><para>Die MIT- oder Heimdal-Kerberos development libraries
+	    (entweder selbst kompiliert oder aus einem Package).</para></listitem>
 	
-	    <listitem><para>The OpenLDAP development libraries.</para></listitem>
+	    <listitem><para>Die OpenLDAP development libraries.</para></listitem>
 	    
 	</itemizedlist>
 
-	<para>If your kerberos libraries are in a non-standard location, then
-		remember to add the configure option 
-		<option>--with-krb5=<replaceable>DIR</replaceable></option>.</para>
+	<para>Wenn Ihre Kerberos libraries an einem vom Standard-Verzeichnis abweichenden Ort liegen,
+		fügen Sie die configure option 
+		<option>--with-krb5=<replaceable>DIR</replaceable></option> hinzu.</para>
 
-	<para>After you run configure, make sure that 
-		<filename>include/config.h</filename> it generates contain lines like 
-		this:</para>
+	<para>Nachdem Sie configure ausgeführt haben, prüfen Sie, ob die entstandene Datei
+		<filename>include/config.h</filename> Zeilen wie diese enthält: </para>
 
 <para><programlisting>
 #define HAVE_KRB5 1
 #define HAVE_LDAP 1
 </programlisting></para>
 
-	<para>If it does not, configure did not find your KRB5 libraries or
-	your LDAP libraries. Look in <filename>config.log</filename> to figure
-	out why and fix it.</para>
+	<para>Falls dem nicht so ist, hat configure Ihre KRB5 libraries oder LDAP libraries
+	nicht gefunden. Konsultieren Sie <filename>config.log</filename>, um den Grund dafür
+	zu finden und zu beheben.</para>
 
 	<sect3>
-	<title>Installing the Required Packages for Debian</title>
+	<title>Die Installation der erforderlichen Packages für Debian</title>
 
-	<para>On Debian, you need to install the following packages:</para>
+	<para>Unter Debian müssen Sie folgende Packages installieren:</para>
 	<para>
 		<itemizedlist>
 			<listitem>libkrb5-dev</listitem>
@@ -339,38 +340,39 @@ example of what you would not want to see would be:
 	</sect3>
 
 	<sect3>
-	<title>Installing the Required Packages for Red Hat Linux</title>
+	<title>>Die Installation der erforderlichen Packages für Red Hat Linux</title>
 
-	<para>On Red Hat Linux, this means you should have at least: </para>
+	<para>Auf Red Hat Linux bedeutet das, daß Sie zumindest das brauchen: </para>
 	<para>
 		<itemizedlist>
-			<listitem>krb5-workstation (for kinit)</listitem>
-			<listitem>krb5-libs (for linking with)</listitem>
-			<listitem>krb5-devel (because you are compiling from source)</listitem>
+			<listitem>krb5-workstation (für kinit)</listitem>
+			<listitem>krb5-libs (für das Linken)</listitem>
+			<listitem>krb5-devel (weil Sie aus den Quellen kompilieren)</listitem>
 		</itemizedlist>
 	</para>
 
-	<para>in addition to the standard development environment.</para>
+	<para>(dies zusätzlich zur Standard-Entwicklungs-Umgebung.)</para>
 
-	<para>If these files are not installed on your system, you should check the installation
-	CDs to find which has them and install the files using your tool of choice. If in doubt
-	about what tool to use, refer to the Red Hat Linux documentation.</para>
+	<para>Wenn diese Dateien nicht auf Ihrem System installiert sind, sollten Sie die
+	Installations-CDs überprüfen, um herauszufinden, wo diese Packages zu finden sind,
+	und sie mit einem Werkzeug Ihrer Wahl installieren. Wenn Sie unsicher sind, welches
+	Werkzeug zu verwenden ist, konsultieren Sie bitte die Red Hat Linux Dokumentation.</para>
 
 	</sect3>
 
 	<sect3>
-	<title>SuSE Linux Package Requirements</title>
+	<title>SuSE Linux Package Erfordernisse</title>
 
-	<para>SuSE Linux installs Heimdal packages that may be required to allow you to build
-	binary packages. You should verify that the development libraries have been installed on
-	your system.
+	<para>SuSE Linux installiert Heimdal-Packages, die erforderlich sein könnten, um 
+	Binary-packages erstellen zu können. Sie sollten überprüfen, ob diese development-libraries
+	auf Ihrem System installiert wurden.
 	</para>
 
-	<para>SuSE Linux Samba RPMs support Kerberos. Please refer to the documentation for
-	your SuSE Linux system for information regading SuSE Linux specific configuration.
-	Additionally, SuSE are very active in the maintenance of Samba packages that provide
-	the maximum capabilities that are available. You should consider using SuSE provided
-	packages where they are available.
+	<para>SuSE Linux Samba RPMs unterstützen Kerberos. Bitte beziehen Sie sich auf die Dokumentation
+	Ihres SuSE Linux Systems für Informationen zur SuSE-spezifischen Konfiguration.
+	Weiters ist SuSE sehr aktiv in der Pflege von Samba-Packages, die alle verfügbaren Fähigkeiten 
+	von Samba bereitstellen. Sie sollten die Verwendung von SuSE-Samba-Packages in Erwägung
+	ziehen, wo dies möglich ist.
 	</para>
 
 	</sect3>
@@ -380,90 +382,85 @@ example of what you would not want to see would be:
 </sect1>
 
 <sect1>
-	<title>Starting the &smbd; and &nmbd;</title>
+	<title>Starten von &smbd; und &nmbd;</title>
 
 
 	<para>
 	<indexterm><primary>inetd</primary></indexterm>
-		You must choose to start &smbd; and &nmbd; either
-	as daemons or from <application>inetd</application>. Don't try
-	to do both!  Either you can put them in <filename>
-	inetd.conf</filename> and have them started on demand
-	by <application>inetd</application> or <application>xinetd</application>, 
-	or you can start them as
-	daemons either from the command line or in <filename>
-	/etc/rc.local</filename>. See the man pages for details
-	on the command line options. Take particular care to read
-	the bit about what user you need to have to start
-	Samba. In many cases, you must be root.</para>
+	Sie müssen sich entscheiden, &smbd; und &nmbd; entweder als "daemons" oder
+	mittels <application>inetd</application> zu starten. Versuchen Sie nicht, beides zu tun!
+	Sie können sie entweder in <filename>inetd.conf</filename> eintragen und bei Bedarf
+	von <application>inetd</application> oder <application>xinetd</application> starten lassen,
+	oder sie als daemons entweder von der Befehlszeile oder in <filename>/etc/rc.local</filename>
+	starten. Lesen Sie die Man-pages für Details zu den Befehls-Optionen.
+	Lesen Sie im Besonderen den Abschnitt über den Benutzer, den Sie brauchen, um Samba zu starten.
+	In vielen Fällen müssen Sie dazu root sein.</para>
 
-	<para>The main advantage of starting &smbd;
-	and &nmbd; using the recommended daemon method
-	is that they will respond slightly more quickly to an initial connection
-	request.</para>
+
+	<para>Der hauptsächliche Vorteil des Startens von &smbd; und &nmbd; mittels der empfohlenen
+	daemon-Methode ist, daß sie dann etwas schneller auf die erste Verbindungs-Anfrage reagieren
+	werden.</para>
 
 	<sect2>
-		<title>Starting from inetd.conf</title>
+		<title>Starten aus der inetd.conf</title>
 
 		<indexterm><primary>inetd</primary></indexterm>
 		
 		<note>
-		<para>The following will be different if 
-		you use NIS, NIS+ or LDAP to distribute services maps.</para>
+		<para>Das Folgende ist unterschiedlich, je nachdem, ob Sie
+		NIS, NIS+ oder LDAP zur Verteilung Ihrer Dienst-Listen verwenden.</para>
 		</note>
 		
-		<para>Look at your <filename>/etc/services</filename>. 
-		What is defined at port 139/tcp? If nothing is defined, 
-		then add a line like this:</para>
+		<para>Sehen Sie sich <filename>/etc/services</filename> an. 
+		Was ist für port 139/tcp definiert? Wenn nichts definiert ist,
+		fügen Sie eine Zeile wie diese hinzu:</para>
 
 		<para><programlisting>netbios-ssn     139/tcp</programlisting></para>
 
-		<para>Similarly for 137/udp, you should have an entry like:</para>
+		<para>Ähnlich für 137/udp, Sie sollten einen Eintrag haben wie:</para>
 
 		<para><programlisting>netbios-ns	137/udp</programlisting></para>
 
-		<para>Next, edit your <filename>/etc/inetd.conf</filename> 
-		and add two lines like this:</para>
+		<para>Als nächstes editieren Sie Ihre <filename>/etc/inetd.conf</filename> 
+		und fügen zwei Zeilen wie diese hinzu:</para>
 
 		<para><programlisting>
 		netbios-ssn stream tcp nowait root /usr/local/samba/bin/smbd smbd 
 		netbios-ns dgram udp wait root /usr/local/samba/bin/nmbd nmbd 
 		</programlisting></para>
 
-		<para>The exact syntax of <filename>/etc/inetd.conf</filename> 
-		varies between UNIXes. Look at the other entries in inetd.conf 
-		for a guide. </para>
+		<para>Die exakte Syntax von <filename>/etc/inetd.conf</filename> 
+		variiert zwischen UNIXes. Nehmen Sie sich andere Einträge in inetd.conf 
+		zur Vorlage. </para>
 
 	<para>
 		<indexterm><primary>xinetd</primary></indexterm>
-		Some distributions use xinetd instead of inetd. Consult the 
-		xinetd manual for configuration information.</para>
+		Manche Distributionen verwenden xinetd anstatt von inetd.
+		Konsultieren Sie das xinetd-Manual für Informationen zur Konfiguration.</para>
 
-		<note><para>Some UNIXes already have entries like netbios_ns 
-		(note the underscore) in <filename>/etc/services</filename>. 
-		You must edit <filename>/etc/services</filename> or
-		<filename>/etc/inetd.conf</filename> to make them consistent.
-		</para></note>
+		<note><para>Manche UNIXes haben bereits Einträge wie netbios_ns (beachten Sie
+		den Unterstrich) in <filename>/etc/services</filename>. Sie müssen
+		<filename>/etc/services</filename> oder <filename>/etc/inetd.conf</filename>
+		editieren, um beide konsistent zu erhalten.</para></note>
 
 		<note><para>
 		<indexterm><primary>ifconfig</primary></indexterm>
-				On many systems you may need to use the 
-		<smbconfoption><name>interfaces</name></smbconfoption> option in &smb.conf; to specify the IP
-		address and netmask of your interfaces. Run 
-		<application>ifconfig</application> 
-		as root if you do not know what the broadcast is for your
-		net. &nmbd; tries to determine it at run 
-		time, but fails on some UNIXes. 
-		</para></note>
+		Auf vielen Systemen müssen Sie eventuell die Option
+		<smbconfoption><name>interfaces</name></smbconfoption> in &smb.conf; verwenden,
+		um die IP-Adresse und Netzmaske Ihrer Netz-Interfaces anzugeben.
+		Führen Sie <application>ifconfig</application> als root aus, wenn Sie die
+		Broadcast-Adresse Ihres Netzes nicht kennen. &nmbd; versucht diese bei seiner
+		Ausführung zu bestimmen, scheitert aber auf manchen UNIXes.
+                </para></note>
 
-		<warning><para>Many UNIXes only accept around five 
-		parameters on the command line in <filename>inetd.conf</filename>. 
-		This means you shouldn't use spaces between the options and 
-		arguments, or you should use a script and start the script 
-		from <command>inetd</command>.</para></warning>
+		<warning><para>Viele UNIXes akzeptieren nur ungefähr fünf Parameter
+		auf der Befehlszeile in <filename>inetd.conf</filename>. Das bedeutet, daß
+		Sie keine Leerzeichen zwischen Optionen und Argumenten verwenden sollten, bzw.
+		daß Sie ein Skript verwenden und dies mittels <command>inetd</command> starten
+		sollten.</para></warning>
 
-		<para>Restart <application>inetd</application>, perhaps just send 
-			it a HUP. </para>
+		<para>Starten Sie <application>inetd</application> neu, bzw. senden Sie
+		das Signal HUP.</para>
 
 		<screen>
 			&rootprompt;<userinput>killall -HUP inetd</userinput>
@@ -472,14 +469,13 @@ example of what you would not want to see would be:
 	</sect2>
 	
 	<sect2>
-		<title>Alternative: Starting &smbd; as a Daemon</title>
+		<title>Alternative: &smbd; als Daemon starten</title>
 
 		
 		<para>
 		<indexterm><primary>daemon</primary></indexterm>
-			To start the server as a daemon, you should create 
-		a script something like this one, perhaps calling 
-		it <filename>startsmb</filename>.</para>
+		Um den Server als daemon zu starten, sollten Sie ein Skript wie das Folgende
+		anlegen, zum Beispiel mit dem Namen <filename>startsmb</filename>.</para>
 
 		<para><programlisting>
 		#!/bin/sh
@@ -487,19 +483,18 @@ example of what you would not want to see would be:
 		/usr/local/samba/bin/nmbd -D 
 		</programlisting></para>
 
-		<para>Make it executable with <command>chmod 
-		+x startsmb</command></para>
+		<para>Machen sie es ausführbar mittels <command>chmod +x startsmb</command></para>
 
-		<para>You can then run <command>startsmb</command> by 
-		hand or execute it from <filename>/etc/rc.local</filename>.
-		</para>
+		<para>Dann können <command>startsmb</command> von Hand starten oder in der Datei
+		<filename>/etc/rc.local</filename>.
+                </para>
 
-		<para>To kill it, send a kill signal to the processes 
-			&nmbd; and &smbd;.</para>
+		<para>Um die Daemonen zu beenden, senden Sie ein KILL-Signal and die Prozesse
+		&nmbd; and &smbd;.</para>
 
-		<note><para>If you use the SVR4 style init system, 
-		you may like to look at the <filename>examples/svr4-startup</filename>
-		script to make Samba fit into that system.</para></note>
+		<note><para>Wenn Sie das init-System in der Art von SVR4 verwenden, wollen Sie
+		vielleicht das Beispiel-Skript <filename>examples/svr4-startup</filename> lesen,
+		um Samba an Ihr System anzupassen.</para></note>
 	</sect2>
 </sect1>
 
