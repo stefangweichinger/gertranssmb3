@@ -424,32 +424,31 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 		</para>
 
 		<para>
-		Just to get a feel for the power of this new syntax, here is a taste of what you can do with it. With Linux-PAM-0.63,
-		the notion of client plug-in agents was introduced. This is something that makes it possible for PAM to support
-		machine-machine authentication using the transport protocol inherent to the client/server application. With the
-		<parameter>[ ... value=action ... ]</parameter> control syntax, it is possible for an application to be configured
-		to support binary prompts with compliant clients, but to gracefully fall over into an alternative authentication
-		mode for older, legacy applications.
+		Um die Möglichkeiten im Umgang mit der neuen Syntax zu zeigen hier ein paar Beispiele. Mit Linux-PAM-0.63, wurde der
+		Begriff "Client Plug-in Agents" eingeführt. Dies macht es möglich das PAM eine Rechner zu Rechner Authentifizierung erlaubt
+		die das Transport Protokoll der Client/Server Applikation benützt. Mit der <parameter>[ ... value=action ... ]</parameter>
+		Kontroll Syntax, ist es für eine Applikation möglich so konfiguriert zu werden dass sie binäre Aufforderungen entsprechender
+		Clients unterstützt, jedoch ohne Probleme ältere Applikationen mit einer alternativen Methode authentifizieren kann.
 		</para>
 		</listitem>
 	</varlistentry>
 
 	<varlistentry><term>module-path</term><listitem>
 		<para>
-		The path-name of the dynamically loadable object file; the pluggable module itself. If the first character of the
-		module path is <quote>/</quote>, it is assumed to be a complete path. If this is not the case, the given module path is appended
-		to the default module path: <filename>/lib/security</filename> (but see the notes above).
+		Der Pfadname der dynamisch ladbareen Objekt Datei; das Plug-in Modul selbst. Ist das erste Zeichen des Modulpfades ein
+		<quote>/</quote>, wird davon ausgegangen dass es ein absoluter Pfad ist. Ist dies nicht der Fall, wird der angegebene Pfad
+		an den standart Modul Pfad angehängt: <filename>/lib/security</filename> (siehe oben).
 		</para>
 
 		<para>
-		The arguments are a list of tokens that are passed to the module when it is invoked, much like arguments to a typical
-		Linux shell command. Generally, valid arguments are optional and are specific to any given module. Invalid arguments
-		are ignored by a module, however, when encountering an invalid argument, the module is required to write an error
-		to syslog(3). For a list of generic options, see the next section.
+		Die Argumente sind eine Liste von Zeichen die an das Modul weitergegeben werden wenn es aufgerufen wird, sehr ähnlich
+		zu den Argumenten eines normalen Linux Shell Befehls. Normalerweise sind gültige Argumente optional und sind spezifisch
+		für das angegeben Modul. Ungültige Argumente werden vom Modul ignoriert, es wird jedoch ein Fehler in die Syslog(3) 
+		geschrieben. Für eine Liste der verschiedenen Optionen sehen Sie die nächste Sektion an.
 		</para>
 
 		<para>
-		If you wish to include spaces in an argument, you should surround that argument with square brackets. For example:
+		Wenn sie Leerzeichen in ein Argument einfügen möchten sollten Sie es mit echigen Klammern umschliessen. Z.B.:
 		</para>
 
 <para><programlisting>
@@ -459,8 +458,9 @@ user_name=<quote>%u</quote> and password=PASSWORD(<quote>%p</quote>) and service
 </programlisting></para>
 
 		<para>
-		When using this convention, you can include <quote>[</quote> characters inside the string, and if you wish to have a <quote>]</quote>
-		character inside the string that will survive the argument parsing, you should use <quote>\[</quote>. In other words:
+		Wird dies so angewendet, kann man <quote>[</quote> Zeichen in der Zeichenkette verwenden, möchte man ein  <quote>]</quote>
+		Zeichen in der Zeichenkette haben welches die Argumentübergabe überlebt, sollten Sie <quote>\[</quote> verwenden. Mit anderen
+		Worten:
 		</para>
 
 <para><programlisting>
@@ -468,9 +468,9 @@ user_name=<quote>%u</quote> and password=PASSWORD(<quote>%p</quote>) and service
 </programlisting></para>
 
 		<para>
-		Any line in one of the configuration files that is not formatted correctly will generally tend (erring on the
-		side of caution) to make the authentication process fail. A corresponding error is written to the system log files
-		with a call to syslog(3). 
+		Jede Zeile in einer der Konfigurations Dateien die nicht richtig formatiert ist, wird sehr wahrscheinlich dazu führen
+		dass der Authentifizierungsprozess fehlschlägt. Ein dementsprechender Fehler wird in den System Log Dateien geschrieben
+		mit einem Aufruf in der Syslog(3).
 		</para>
 		</listitem>
 	</varlistentry>
@@ -481,18 +481,17 @@ user_name=<quote>%u</quote> and password=PASSWORD(<quote>%p</quote>) and service
 </sect2>
 
 <sect2>
-<title>Example System Configurations</title>
+<title>Beispiel System Konfigurationen</title>
 
 <para>
-The following is an example <filename>/etc/pam.d/login</filename> configuration file. 
-This example had all options uncommented and is probably not usable 
-because it stacks many conditions before allowing successful completion 
-of the login process. Essentially all conditions can be disabled 
-by commenting them out, except the calls to <filename>pam_pwdb.so</filename>.
+Folgend eine Beispiel <filename>/etc/pam.d/login</filename> Konfigurationsdatei.
+Dieses Beispiel hat alle Optionen eingeschaltet und ist möglicherweise nicht brauchbar
+weil zu viele Bedingungen gestapelt werden bevor es einen erfolgreichen Abschluss erlaubt. Im
+Wesentlichen kann man alle Bedingungen auskommentieren ausser den Aufruf <filename>pam_pwdb.so</filename>.
 </para>
 
 <sect3>
-<title>PAM: Original Login Config</title>
+<title>PAM: Original Login Konfiguration</title>
 
 <para>
 	<smbfile name="pam-login-default">
@@ -517,10 +516,10 @@ password     required    pam_pwdb.so shadow md5
 </sect3>
 
 <sect3>
-<title>PAM: Login Using <filename>pam_smbpass</filename></title>
+<title>PAM: Login mit<filename>pam_smbpass</filename>Verwendug</title>
 
 <para>
-PAM allows use of replaceable modules. Those available on a sample system include:
+PAM erlaubt die Benützung von austauschbaren Modulen. Auf einem Beispiel System sollten folgende verfügbar sein:
 </para>
 
 <para><prompt>$</prompt><userinput>/bin/ls /lib/security</userinput>
@@ -540,24 +539,19 @@ pam_userdb.so    pam_warn.so         pam_unix_session.so
 </programlisting></para>
 
 <para>
-The following example for the login program replaces the use of 
-the <filename>pam_pwdb.so</filename> module that uses the system 
-password database (<filename>/etc/passwd</filename>,
-<filename>/etc/shadow</filename>, <filename>/etc/group</filename>) with 
-the module <filename>pam_smbpass.so</filename>, which uses the Samba 
-database which contains the Microsoft MD4 encrypted password 
-hashes. This database is stored in either 
-<filename>/usr/local/samba/private/smbpasswd</filename>, 
-<filename>/etc/samba/smbpasswd</filename>, or in 
-<filename>/etc/samba.d/smbpasswd</filename>, depending on the 
-Samba implementation for your UNIX/Linux system. The 
-<filename>pam_smbpass.so</filename> module is provided by 
-Samba version 2.2.1 or later. It can be compiled by specifying the 
-<option>--with-pam_smbpass</option> options when running Samba's
-<command>configure</command> script. For more information
-on the <filename>pam_smbpass</filename> module, see the documentation
-in the <filename>source/pam_smbpass</filename> directory of the Samba 
-source distribution.
+Das folgende Beispiel für das login Programm ersetzt die Benützung
+des <filename>pam_pwdb.so</filename> Moduls welches die System Password
+Datenbank benützt, (<filename>/etc/passwd</filename>,<filename>/etc/shadow</filename>, 
+<filename>/etc/group</filename>) mit dem Modul <filename>pam_smbpass.so</filename>,
+das die Samba Datenbank benutzt welche die Microsoft MD4 verschlüsselten Passwort 
+Hashes enthält. Diese Datenbank wird entweder in <filename>/usr/local/samba/private/smbpasswd</filename>, 
+<filename>/etc/samba/smbpasswd</filename>, oder in <filename>/etc/samba.d/smbpasswd</filename>
+aufbewahrt, abhängig von der Samba Implementation ihres UNIX/Linux Systems. Das
+<filename>pam_smbpass.so</filename> Modul wird ab Samba Version 2.2.1 oder später mitgeliefert.
+Es kann mitkompiliert werden indem man die <option>--with-pam_smbpass</option> einschaltet wenn
+man Samba's <command>configure</command> Skript aufruft. Für mehr Informationen zum
+<filename>pam_smbpass</filename> Modul kann mann in der Dokumentation im 
+<filename>source/pam_smbpass</filename> Ordner der Samba Quelldistribution nachschauen.
 </para>
 
 <para>
@@ -573,8 +567,8 @@ password    required    pam_smbpass.so nodelay
 </programlisting></smbfile></para>
 
 <para>
-The following is the PAM configuration file for a particular 
-Linux system. The default condition uses <filename>pam_pwdb.so</filename>.
+Folgende ist eine PAM Konfiguration für ein bestimmtes Linux System. Unter Normalbedingungen
+wird <filename>pam_pwdb.so</filename> verwedet
 </para>
 
 <para>
@@ -590,11 +584,11 @@ password   required     pam_pwdb.so shadow md5
 </programlisting></smbfile></para>
 
 <para>
-In the following example, the decision has been made to use the 
-<command>smbpasswd</command> database even for basic Samba authentication. Such a 
-decision could also be made for the <command>passwd</command> program and would 
-thus allow the <command>smbpasswd</command> passwords to be changed using the
-<command>passwd</command> program:
+Im folgende Beispiel wurde die Entscheidung getroffen die <command>smbpasswd</command>
+Datenbank zu verwenden, auch für standart Samba Authentifizierungen. So eine 
+Eintscheidung könnte auch für das <command>passwd</command> Programm getroffen werden 
+und würde so erlauben dass <command>smbpasswd</command> Passwörter mit dem <command>passwd</command>
+Programm geändert werden können.
 </para>
 
 <para><smbfile name="pam-samba-smbpass">
@@ -609,15 +603,15 @@ password   required     pam_smbpass.so nodelay smbconf=/etc/samba.d/smb.conf
 </programlisting>
 </smbfile></para>
 
-<note><para>PAM allows stacking of authentication mechanisms. It is 
-also possible to pass information obtained within one PAM module through 
-to the next module in the PAM stack. Please refer to the documentation for 
-your particular system implementation for details regarding the specific 
-capabilities of PAM in this environment. Some Linux implementations also 
-provide the <filename>pam_stack.so</filename> module that allows all 
-authentication to be configured in a single central file. The 
-<filename>pam_stack.so</filename> method has some devoted followers 
-on the basis that it allows for easier administration. As with all issues in 
+<note><para>PAM erlaubt das Stapeln von Authentifizierungs Mechanismen. Es
+ist auch möglich Informationen die man in einem PAM Modul erhalten hat an
+das nächste Modul im PAM Stapel weiterzugeben. Für Details zu den Fähigkeiten von
+PAM in ihrem Umfeld, greifen Sie bitte auf die Dokumentation für ihre spezifische 
+System Implementation zurück. Manche Linux Implementationen enthalten ein <filename>pam_stack.so</filename>
+Modul welches erlaubt dass jede Authentifizierung in einer einzigen zentralen Datei konfiguriert wird.
+Die <filename>pam_stack.so</filename> Methode hat einige Anhänger in der Basis
+so dass eine einfachere Administration möglich ist.
+As with all issues in 
 life though, every decision makes trade-offs, so you may want to examine the 
 PAM documentation for further helpful information.
 </para></note>
