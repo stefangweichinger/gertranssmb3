@@ -495,76 +495,77 @@ aufgeteilt. Details dazu in den jeweiligen manpages.
 		</para>
 
 		<para>
-		The old sambaAccount schema may still be used by specifying the
-		<parameter>ldapsam_compat</parameter> passdb backend. However, the sambaAccount and
-		associated attributes have been moved to the historical section of
-		the schema file and must be uncommented before use if needed.
-		The Samba-2.2 object class declaration for a sambaAccount has not changed
-		in the Samba-3 samba.schema file.
+		Das alte sambaAccount-Schema kann weiterhin verwendet werden, indem man
+		das Passdb-Backend <parameter>ldapsam_compat</parameter> spezifiziert.
+		Wie auch immer, sambaAccount und zugehörige Attribute wurden in den
+		"historical"-Abschnitt der Schema-Datei verschoben und müssen
+		erst auskommentiert werden, um sie verwenden zu können.
+		Die Samba-2.2 Objektklassen-Deklaration für einen sambaAccount hat sich
+		in der Samba-3 samba.schema-Datei nicht verändert.
 		</para>
 
 		<para>
-		Other new object classes and their uses include:
+		Andere neue Objektklassen und deren Anwendungen beinhalten:		
 		</para>
 
 		<itemizedlist>
 			<listitem><para>
-			sambaDomain &smbmdash; domain information used to allocate RIDs
-			for users and groups as necessary. The attributes are added
-			in <quote>ldap suffix</quote> directory entry automatically if
-			an idmap UID/GID range has been set and the <quote>ldapsam</quote>
-			passdb backend has been selected.
+			sambaDomain &smbmdash; Domänen-Information zur Zuordnung
+			von RIDs für Benutzer und Gruppen. Die Attribute werden im
+			<quote>ldap suffix</quote>-Verzeichnis-Eintrag automatisch hinzugefügt,
+			wenn ein UID/GID-Bereich für die idmap gesetzt wurde und das
+			<quote>ldapsam</quote>-Passdb-Backend ausgewählt wurde.
 			</para></listitem>
 
 			<listitem><para>
-			sambaGroupMapping &smbmdash; an object representing the
-			relationship between a posixGroup and a Windows
-			group/SID. These entries are stored in the <quote>ldap
-			group suffix</quote> and managed by the <quote>net groupmap</quote> command.
+			sambaGroupMapping &smbmdash; Ein Objekt, das die Beziehung zwischen einer
+			posixGroup und einer Windows Gruppe/SID repräsentiert. Diese Einträge
+			werden im <quote>ldap group suffix</quote> gespeichert und mittels des
+			Befehls <quote>net groupmap</quote> verwaltet.
 			</para></listitem>
 
 			<listitem><para>
-			sambaUNIXIdPool &smbmdash; created in the <quote>ldap idmap suffix</quote> entry
-			automatically and contains the next available <quote>idmap UID</quote> and
+			sambaUNIXIdPool &smbmdash; Wird automatisch im <quote>ldap idmap suffix</quote>
+			angelegt, und enthält die nächste verfügbare <quote>idmap UID</quote> und
 			<quote>idmap GID</quote>.
 			</para></listitem>
 
 			<listitem><para>
-			sambaIdmapEntry &smbmdash; object storing a mapping between a
-			SID and a UNIX UID/GID. These objects are created by the
-			idmap_ldap module as needed.
+			sambaIdmapEntry &smbmdash; Objekt, das eine Zuordnung zwischen
+			SID und einer UNIX UID/GID speichert. Diese Objekte werden vom
+			idmap_ldap-Modul je nach Bedarf angelegt.
 			</para></listitem>
 		</itemizedlist>
 
 		</sect3>
 
 		<sect3>
-		<title>New Suffix for Searching</title>
+		<title>Neuer Suffix für die Suche</title>
 
 		<para>
-		The following new smb.conf parameters have been added to aid in directing
-		certain LDAP queries when <parameter>passdb backend = ldapsam://...</parameter> has been
-		specified.
+		Die folgenden neuen smb.conf-Parameter wurden hinzugefügt, um bestimmte
+		LDAP-Abfragen zu unterstützen, wenn <parameter>passdb backend = ldapsam://...</parameter>
+		spezifiziert wurde.
 		</para>
 
 		<itemizedlist>
-			<listitem><para>ldap suffix         &smbmdash; used to search for user and computer accounts.</para></listitem>
-			<listitem><para>ldap user suffix    &smbmdash; used to store user accounts.</para></listitem>
-			<listitem><para>ldap machine suffix &smbmdash; used to store Machine Trust Accounts.</para></listitem>
-			<listitem><para>ldap group suffix   &smbmdash; location of posixGroup/sambaGroupMapping entries.</para></listitem>
-			<listitem><para>ldap idmap suffix   &smbmdash; location of sambaIdmapEntry objects.</para></listitem>
+			<listitem><para>ldap suffix         &smbmdash; für die Suche nach Benutzer- und Maschinen-Konten.</para></listitem>
+			<listitem><para>ldap user suffix    &smbmdash; für das Speichern von Benutzer-Konten.</para></listitem>
+			<listitem><para>ldap machine suffix &smbmdash; für das Speichern von Maschinen-Vertrauens-Konten.</para></listitem>
+			<listitem><para>ldap group suffix   &smbmdash; posixGroup/sambaGroupMapping-Einträge.</para></listitem>
+			<listitem><para>ldap idmap suffix   &smbmdash; sambaIdmapEntry-Objekte.</para></listitem>
 		</itemizedlist>
 
 		<para>
-		If an <parameter>ldap suffix</parameter> is defined, it will be appended to all of the
-		remaining sub-suffix parameters. In this case, the order of the suffix
-		listings in smb.conf is important. Always place the <parameter>ldap suffix</parameter> first
-		in the list.
+		Wenn ein <parameter>ldap suffix</parameter> definiert ist, wird er an alle verbleibenden
+		sub-suffix-Parameter angehängt. In diesem Fall ist die Reihenfolge der Suffixes in
+		smb.conf wichtig. Plazieren Sie <parameter>ldap suffix</parameter> immer als ersten
+		Eintrag in der Liste.
 		</para>
 
 		<para>
-		Due to a limitation in Samba's &smb.conf; parsing, you should not surround
-		the DNs with quotation marks.
+		Wegen einer Beschränkung in Samba's Parsing von &smb.conf; sollten Sie die DNs nicht
+		mit Anführungszeichen umschliessen.
 		</para>
 
 		</sect3>
@@ -573,9 +574,10 @@ aufgeteilt. Details dazu in den jeweiligen manpages.
 		<title>IdMap LDAP Support</title>
 
 		<para>
-		Samba-3 supports an ldap backend for the idmap subsystem. The
-		following options inform Samba that the idmap table should be
-		stored on the directory server onterose in the "ou=idmap,dc=quenya,dc=org" partition.
+		Samba-3 unterstützt ein LDAP-Backend für das idmap-Subsystem. Die
+		folgenden Optionen informieren Samba, daß die idmap-Tabelle auf
+		dem Verzeichnis-Server "onterose" gespeichert werden soll, in der
+		Partition "ou=idmap,dc=quenya,dc=org".
 		</para>
 
 		<smbconfblock>
@@ -588,9 +590,9 @@ aufgeteilt. Details dazu in den jeweiligen manpages.
 		</smbconfblock>
 
 		<para>
-		This configuration allows Winbind installations on multiple servers to
-		share a UID/GID number space, thus avoiding the interoperability problems
-		with NFS that were present in Samba-2.2.
+		Diese Konfiguration erlaubt es Winbind-Installationen auf mehreren Servern, sich
+		einen UID/GID-Zahlenbereich zu teilen, und damit die Probleme in der Zusammenarbeit
+		mit NFS zu vermeiden, die es in Samba-2.2 gab.
 		</para>
 
 		</sect3>
