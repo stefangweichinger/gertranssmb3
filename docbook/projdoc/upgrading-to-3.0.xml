@@ -39,56 +39,48 @@ beim Upgrade beibehalten werden.
 Wenn das Samba-2.2.x-System ein LDAP-Backend verwendet hat, und keine Zeit vorhanden ist, um die
 LDAP-Datenbank upzudaten, stellen Sie sicher, daß
 <smbconfoption><name>passdb backend</name><value>ldapsam_compat</value></smbconfoption>
-in der Datei &smb.conf; gesetzt ist. 
-
-
----sgw
-
-
-is specified in the &smb.conf; file. For the rest, behavior should remain more or less the same.
-At a later date, when there is time to implement a new Samba-3 compatible LDAP backend, it is possible
-to migrate the old LDAP database to the new one through use of the <command>pdbedit</command>.
-See <link linkend="pdbeditthing"/>.
+in der Datei &smb.conf; gesetzt ist. Das restliche Verhalten sollte mehr oder minder das gleiche bleiben.
+Zu einem späteren Zeitpunkt, wenn Zeit vorhanden ist, um ein neues zu Samba-3 kompatibles LDAP-Backend
+zu implementieren, ist es möglich, die alte LDAP-Datenbank unter Verwendung des Befehls
+<command>pdbedit</command> zu migrieren. Siehe <link linkend="pdbeditthing"/>.
 </para>
 
 </sect1>
 
 <sect1>
-<title>New Features in Samba-3</title>
+<title>Neue Features in Samba-3</title>
 
 <para>
-The major new features are:
+Die wichtigsten neuen Features sind:
 </para>
 
 <orderedlist numberation="arabic">
 	<listitem><para>
-	Active Directory support. This release is able to join an ADS realm
-	as a member server and authenticate users using LDAP/kerberos.
+	Active Directory Support. Dieses Release kann sich einer ADS realm als
+	Mitglieds-Server anschliessen und Benutzer mittels LDAP/kerberos authentifizieren.
 	</para></listitem>
 
 	<listitem><para>
-	Unicode support. Samba will now negotiate unicode on the wire and
-	internally there is a much better infrastructure for multi-byte
-	and unicode character sets.
+	Unicode Support. Samba kann nun Unicode on-the-fly verhandeln und es gibt intern eine viel
+	bessere Infrastruktur für multi-byte- und Unicode-Zeichensätze.
 	</para></listitem>
 
 	<listitem><para>
-	New authentication system. The internal authentication system has
-	been almost completely rewritten. Most of the changes are internal,
-	but the new authoring system is also very configurable.
+	Neues Authentifizierungs-System. Das interne Authentifizierungs-System wurde fast
+	komplett neu geschrieben. Die meisten Veränderungen sind intern, aber auch das
+	neue Authoring-System ist sehr vielfältig konfigurierbar.
 	</para></listitem>
 
 	<listitem><para>
-	New filename mangling system. The filename mangling system has been
+	---sgw. Wie übersetzt man: New filename mangling system. The filename mangling system has been
 	completely rewritten. An internal database now stores mangling maps
 	persistently.
 	</para></listitem>
 
 	<listitem><para>
-	New <quote>net</quote> command. A new <quote>net</quote> command has been added. It is
-	somewhat similar to the <quote>net</quote> command in Windows. Eventually, we
-	plan to replace a bunch of other utilities (such as smbpasswd)
-	with subcommands in <quote>net</quote>.
+	Neuer Befehl <quote>net</quote>. Der neue Befehl <quote>net</quote> wurde hinzugefügt.
+	Er ist ähnlich dem Windows-Befehl <quote>net</quote>. Eventuell werden einige andere
+	Werkzeuge (wie smbpasswd) durch Sub-Befehle in <quote>net</quote> ersetzt.
 	</para></listitem>
 
 	<listitem><para>
