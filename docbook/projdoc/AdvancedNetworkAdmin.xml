@@ -160,59 +160,56 @@ beste Lösung für Ihr Netzwerk ist.
 
 	<para>
 	Nomachine plant die Ausbaustufe, wo Sie NX-Applikations-Server als Cluster betreiben können,
-	und die Benutzer starten einfach eine lokale NX-Session	und können
-
-
-
-They plan to get to the point were you can have NX application servers
-	running as a cluster of nodes, and users simply start an NX session locally,
-	and can select applications to run transparently (apps may even run on
-	another NX node, but pretend to be on the same as used for initial login,
-	because it displays in the same window. You also can run it
-	full-screen, and after a short time you forget that it is a remote session
-	at all).
+	und die Benutzer starten einfach eine lokale NX-Session	und können Applikationen auswählen,
+	die transparent laufen (Anwendungen können sogar auf einem anderen NX-Knoten laufen, aber
+	vorgeben, auf demselben Knoten zu sein wie der, an dem sich der Benutzer angemeldet hat,
+	weil es im selben Fenster angezeigt wird. Sie können sie auch full-screen ausführen, und
+	nach kurzer Zeit vergessen Sie überhaupt, daß es eine Remote-Session ist).
 	</para>
 
 	<para>
-	Now the best thing for last: All the core compression and caching
-	technologies are released under the GPL and available as source code
-	to anybody who wants to build on it! These technologies are working,
-	albeit started from the command line only (and very inconvenient to
-	use in order to get a fully running remote X session up and running.)
+	Nun das Beste am Schluß: All die Kerntechnologien zur Kompression und zum Caching
+	werden unter der GPL veröffentlicht, und sind als Sourcecode für jeden verfügbar,
+	der darauf aufbauen will! Diese Technologien funktionieren, wenn auch nur von der
+	Befehlszeile aus (und sehr unpraktisch zu gebrauchen, um eine voll funktionsfähige
+	remote-X-session zum Laufen zu bringen.)
 	</para>
 
 	<para>
-	To answer your questions:
+	Um Ihre Fragen zu beantworten:	
 	</para>
 
 	<itemizedlist>
 		<listitem><para>
-		You do not need to install a terminal server; XP has RDP support built in.
+		Sie müssen keinen Terminal-Server installieren; XP hat RDP-Unterstüzunng integriert.	
 		</para></listitem>
 
 		<listitem><para>
-		NX is much cheaper than Citrix &smbmdash; and comparable in performance, probably faster.
+		NX ist viel billiger als Citrix &smbmdash; und vergleichbar in der Performance, wenn
+		nicht schneller.
 		</para></listitem>
 
 		<listitem><para>
-		You do not need to hack XP &smbmdash; it just works.
+		Sie müssen XP nicht hacken &smbmdash; es funktioniert einfach.
 		</para></listitem>
 
 		<listitem><para>
-		You log into the XP box from remote transparently (and I think there is no
-		need to change anything to get a connection, even if authentication is against a domain).
+		Sie melden sich an der XP-Box transparent aus der Ferne an (und ich glaube, es gibt
+		keinen Anlaß, etwas zu ändern, um eine Verbindung zu bekommen, sogar, wenn die
+		Authentifikation an einer Domäne erfolgt).
 		</para></listitem>
 
 		<listitem><para>
-		The NX core technologies are all Open Source and released under the GPL &smbmdash;
-		you can now use a (very inconvenient) command-line at no cost,
-		but you can buy a comfortable (proprietary) NX GUI front end for money.
+		Die NX-Kern-Technologien sind alle Open Source und unter der GPL &smbmdash;
+		veröffentlicht. Sie können jetzt eine (sehr unbequeme) Befehlszeile ohne
+		Kosten nutzen, aber Sie können ein komfortables (proprietäres) NX-GUI-Frontend
+		kaufen.
 		</para></listitem>
 
 		<listitem><para>
-		NoMachine are encouraging and offering help to OSS/Free Software implementations
-		for such a front end too, even if it means competition to them (they have written
-		to this effect even to the LTSP, KDE and GNOME developer mailing lists).
+		NoMachine ermutigt und unterstützt OSS/Free Software-Implementierungen auch
+		für ein solches Frontend, sogar wenn es für sie Konkurrenz bedeutet (sie haben
+		dies sogar in den Entwickler-Listen für LTSP, KDE und GNOME geschrieben).		
 		</para></listitem>
 	</itemizedlist>
 
@@ -221,10 +218,10 @@ They plan to get to the point were you can have NX application servers
 </sect1>
 
 <sect1>
-<title>Network Logon Script Magic</title>
+<title>"Magie" von Netzwerk-Anmelde-Skripten</title>
 
 <para>
-There are several opportunities for creating a custom network startup configuration environment.
+Es gibt mehrere Möglichkeiten, um eine angepasste Konfiguration der Netzwerk-Start-Umgebung zu schaffen.
 </para>
 
 <itemizedlist>
