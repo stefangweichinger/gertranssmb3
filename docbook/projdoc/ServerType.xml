@@ -361,19 +361,16 @@ Controllern auf NT4 Basis.
 
 <para>
 Wenn Sie ADS benutzen und mit Samba 3 starten können Sie der ADS als normales
-Active Directory Mitglied beitreten.
-<!-- Mach hier weiter -->
-If you are using Active Directory, starting with Samba-3 you can
-join as a native AD member. Why would you want to do that?
-Your security policy might prohibit the use of NT-compatible
-authentication protocols. All your machines are running Windows 2000
-and above and all use Kerberos. In this case Samba as an NT4-style
-domain would still require NT-compatible authentication data. Samba in
-AD-member mode can accept Kerberos tickets.
+Active Directory Mitglied beitreten. Warum Sie das tun sollten? Ihre
+Sicherheitsrichtlinien könnten die NT kompatibilen Authentifizierungsprotokolle
+schlichtweg verweigern. Wenn alle Server in ihrem Netzwerk Windows 2000 und höher
+nutzen würde Samba als NT4-artiges Domänen Mitglied NT-kompatibele
+Authentifizierungsdaten benötigen. Samba im AD-Mitglieds modus allerdings kann auch
+Kerberos Tickets auswerten.
 </para>
 
 <sect3>
-<title>Example Configuration</title>
+<title>Beispiel Konfiguration</title>
 
 <para><smbconfblock>
 <smbconfoption><name>realm</name><value>your.kerberos.REALM</value></smbconfoption>
@@ -381,7 +378,7 @@ AD-member mode can accept Kerberos tickets.
 </smbconfblock></para>
 
 <para>
-The following parameter may be required:
+Folgende Parameter würden benötigt:
 </para>
 
 <para><smbconfblock>
@@ -389,8 +386,9 @@ The following parameter may be required:
 </smbconfblock></para>
 
 <para>
-Please refer to <link linkend="domain-member"></link> and <link linkend="ads-member"></link>
-for more information regarding this configuration option.
+Für weitere Informationen zu dieser Konfigurationsoption lesen Sie bitte unter
+<link linkend="domain-member">Domänen-Mitglied</link> und <link linkend="ads-member">ADS-Mitglied</link>
+weiter.
 </para>
 
 </sect3>
@@ -400,47 +398,48 @@ for more information regarding this configuration option.
 <title>Server Security (User Level Security)</title>
 
 <para>
-Server Security Mode is left over from the time when Samba was not capable of acting
-as a Domain Member server. It is highly recommended not to use this feature. Server
-security mode has many drawbacks that include:
+Der Server Security Modus ist noch aus den Zeiten in denen Samba nicht als Domänen-Mitglied
+betrieben werden konnte übrig geblieben. Sie sollten diesen Modus nicht verwenden da er
+viele Nachteile mit sich bringt. Zum Beispiel:
 </para>
 
 <itemizedlist>
-	<listitem><para>Potential Account Lockout on MS Windows NT4/200x password servers.</para></listitem>
-	<listitem><para>Lack of assurance that the password server is the one specified.</para></listitem>
-	<listitem><para>Does not work with Winbind, which is particularly needed when storing profiles remotely.</para></listitem>
-	<listitem><para>This mode may open connections to the password server, and keep them open for extended periods.</para></listitem>
-	<listitem><para>Security on the Samba server breaks badly when the remote password server suddenly shuts down.</para></listitem>
-	<listitem><para>With this mode there is NO security account in the domain that the password server belongs to for the Samba server.</para></listitem>
+	<listitem><para>Potentielle Account sperren auf MS Windows NT4/200x Passwort Servern.</para></listitem>
+	<listitem><para>Sicherheitslücke das der Passwortserver der Konfiguriert ist nicht der ist den man wirklich nutzen möchte.</para></listitem>
+	<listitem><para>Funktioniert nicht mit Winbind, was nötig ist um Profile auf entfernten Systemem zu speichern.</para></listitem>
+	<listitem><para>Dieser Modus öffnet Verbindungen zum Passwortserver und hält diese offen.</para></listitem>
+	<listitem><para>Die Sicherheit des Samba Servers bricht auf's schlimmste zusammen, wenn der Passwort Server mittendrin abgeschaltet werden sollte.</para></listitem>
+	<listitem><para>In diesem Modus gibt es KEINEN Sicherheits Account in der Domäne um sicherzustellen, dass der Passwortserver der von Samba befragt wird auch zur Domäne gehört.</para></listitem>
 </itemizedlist>
 
 <para>
-In Server Security Mode the Samba server reports to the client that it is in User Level
-security. The client then does a session setup as described earlier.
-The Samba server takes the username/password that the client sends and attempts to login to the
-<smbconfoption><name>password server</name></smbconfoption> by sending exactly the same username/password that
-it got from the client. If that server is in User Level Security and accepts the password,
-then Samba accepts the client's connection. This allows the Samba server to use another SMB
-server as the <smbconfoption><name>password server</name></smbconfoption>.
+Im Server Sicherheits Modus gibt der Samba Server dem Client vor im User Level Sicherheitsmodus
+zu aggieren und der Client schickt daraufhin ein session setup wie zuvor beschrieben.
+Der Samba Server nimmt nun den Benutzernamen und das Passwort des Clients und schickt diese Daten
+exakt so wie er sie bekommen hat weiter zum <smbconfoption><name>password server</name></smbconfoption>.
+Wenn dieser Passwort Server mit den Account Daten einverstanden ist und als User Level Sicherheit
+betrieben wird akkzeptiert der Samba Server die Client Verbindung. Dies erlaubt dem Samba Server
+einen anderen SMB Server als <smbconfoption><name>password server</name></smbconfoption> zu nutzen.
 </para>
 
 <para>
-You should also note that at the start of all this where the server tells the client
-what security level it is in, it also tells the client if it supports encryption. If it
-does, it supplies the client with a random cryptkey. The client will then send all
-passwords in encrypted form. Samba supports this type of encryption by default.
+Sie sollten wissen, dass am Anfang all dessen der Server dem Client auch mitteilt ob
+eine Verschlüsselung der Daten stattfinden soll, wenn dies auf dem Samba Server konfiguriert ist
+sende der Server dem Client einen Kryptischen Schlüssel mit dem dann die Daten vom Client
+verschlüsselt werden. Samba unterstützt diese Verschlüsselung als Standard.
 </para>
 
 <para>
-The parameter <smbconfoption><name>security</name><value>server</value></smbconfoption> means that Samba reports to clients that
-it is running in <emphasis>user mode</emphasis> but actually passes off all authentication
-requests to another <emphasis>user mode</emphasis> server. This requires an additional
-parameter <smbconfoption><name>password server</name></smbconfoption> that points to the real authentication server.
-The real authentication server can be another Samba server, or it can be a Windows NT server,
-the latter being natively capable of encrypted password support.
+Der Parameter <smbconfoption><name>security</name><value>server</value></smbconfoption>
+bedeutet, dass der Samba Server den Clients mitteilt das er im <emphasis>user modus</emphasis> betrieben
+wird aber alle Passwort anfragen an einen anderen <emphasis>user modus</emphasis> Server
+weiterleitet. Hierzu benötigt man einen weiteren Parameter <smbconfoption><name>password
+server</name></smbconfoption> der auf den echten Authentifizierungs Server verweist.
+Dieser Passwort Server kann ein anderer Samba Server oder ein Windows NT Server sein.
 </para>
 
 <note><para>
+<!-- Hendrik workmark -->
 When Samba is running in <emphasis>Server Security Mode</emphasis> it is essential that
 the parameter <emphasis>password server</emphasis> is set to the precise NetBIOS machine
 name of the target authentication server. Samba cannot determine this from NetBIOS name
