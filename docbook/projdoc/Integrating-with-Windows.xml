@@ -17,45 +17,45 @@ Wenn Ihre MS Windows Client's kein NetBIOS über TCP/IP verwenden ist
 dieses Kaptitel für Sie nicht relevant. Sollte Ihre Installation aber
 mit NetBIOS über TCP/IP arbeiten, kann Ihnen dieses Kapitel bei Netzwerkproblemen
 weiterhelfen.
-#
-This section deals with NetBIOS over TCP/IP name to IP address resolution. If
-your MS Windows clients are not configured to use NetBIOS over TCP/IP, then this
-section does not apply to your installation. If your installation
-involves the use of
-NetBIOS over TCP/IP then this section may help you to resolve networking problems.
 </para>
 
 <note>
 <para>
-NetBIOS over TCP/IP has nothing to do with NetBEUI. NetBEUI is NetBIOS
-over Logical Link Control (LLC). On modern networks it is highly advised
-to not run NetBEUI at all. Note also there is no such thing as
-NetBEUI over TCP/IP &smbmdash; the existence of such a protocol is a complete
-and utter misapprehension.
+NetBIOS über TCP/IP hat nichts zu tun mit NetBEUI. NetBEUI ist NetBIOS
+über Logical Link Control (LLC). 
+Bei aktuellen Netzwerkwerken ist es dringend angeraten auf keinen Fall NetBEUI zu
+verwenden. Es ist auch anzumerken dass es nicht's in der Art von
+NetBEUI über TCP/IP &smbmdash; gibt. Wenn von so etwas gesprochen wird
+handelt es sich um ein komplettes Missverständniss.
 </para>
 </note>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Fähigkeiten und Möglichkeiten</title>
 
 <para>
-Many MS Windows network administrators have never been exposed to basic TCP/IP
-networking as it is implemented in a UNIX/Linux operating system. Likewise, many UNIX and
-Linux administrators have not been exposed to the intricacies of MS Windows TCP/IP-based
-networking (and may have no desire to be either).
+Viele MS Windows Netzwerkadministratoren hatten bisher keine Ahnung von
+grundlegenden TCP/IP Netzwerken wie es in UNIX/Linux Betriebssystemen
+verwendet wird. Andererseits haben viele Unix und Linux Administratoren
+keine Ahnung von den Komplikationen eines Windows TCP/IP basierenden
+Netzwerkes (und haben keine Lust auf beides).
 </para>
 
 <para>
-This chapter gives a short introduction to the basics of how a name can be resolved to 
-its IP address for each operating system environment.
+Dieses Kapitel gibt für jede Betriebssystemumgebung eine kurze Einweisung 
+in die Grundlagen wie ein Name in seine IP Adresse aufgelöst wird.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Background Information</title>
+<title>Hintergrund Information</title>
 
 <para>
+Seit der Einführung von MS Windows 2000 ist es möglich ein MS Windows
+Netzwerk ohne NetBIOS über TCP/IP zu verwenden.
+
+#
 Since the introduction of MS Windows 2000, it is possible to run MS Windows networking
 without the use of NetBIOS over TCP/IP. NetBIOS over TCP/IP uses UDP port 137 for NetBIOS
 name resolution and uses TCP port 139 for NetBIOS session services. When NetBIOS over
