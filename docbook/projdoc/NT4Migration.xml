@@ -320,7 +320,7 @@ wollen, fallen generell in drei grundlegende Kategorien. <link linkend="majtypes
 	<row><entry>&lt; 50</entry><entry><para>Wollen eine einfache Umstellung ohne Probleme.</para></entry></row>
 	<row><entry>50 - 250</entry><entry><para>Wollen neue Funktionen, wollen manche interne Komplexität besser managen.</para></entry></row>
 	<row><entry>&gt; 250</entry><entry><para>Lösung/Implementation muß gut skalieren, komplexe Anforderungen.
-Abteilungs-übergreifender Entscheidungs-Prozeß. Lokale Experisen in den meisten Bereichen.</para></entry></row>
+Abteilungs-übergreifender Entscheidungs-Prozeß. Lokale Expertisen in den meisten Bereichen.</para></entry></row>
 	</tbody>
 </tgroup>
 </table>
@@ -392,23 +392,23 @@ Minimieren Sie nachfolgende Probleme durch:
 	<entry><para>Authentifikations-Regime (Datenbank-Plazierung und -Zugriff)</para></entry>
 	</row>
 	<row>
-	<entry><para>Make least number of operational changes</para></entry>
-	<entry><para>Make progressive improvements</para></entry>
-	<entry><para>Desktop management methods</para></entry>
+	<entry><para>Nur die notwendigsten operationalen Änderungen</para></entry>
+	<entry><para>Progressive Verbesserungen</para></entry>
+	<entry><para>Desktop Management Methoden</para></entry>
 	</row>
 	<row>
-	<entry><para>Take least amount of time to migrate</para></entry>
-	<entry><para>Minimize user impact</para></entry>
-	<entry><para>Better control of Desktops/Users</para></entry>
+	<entry><para>Kürzeste Migrations-Zeit</para></entry>
+	<entry><para>Auswirkungen auf Benutzer minimieren</para></entry>
+	<entry><para>Bessere Kontrolle über Desktops/Benutzer</para></entry>
 	</row>
 	<row>
-	<entry><para>Live versus isolated conversion</para></entry>
-	<entry><para>Maximize functionality</para></entry>
-	<entry><para>Identify Needs for: <emphasis>Manageability, Scalability, Security, Availability</emphasis></para></entry>
+	<entry><para>Live- versus isolierter Konvertierung</para></entry>
+	<entry><para>Maximieren der Funktionalität</para></entry>
+	<entry><para>Bestimmen Sie Bedarf an: <emphasis>Manageability, Skalierbarkeit, Sicherheit, Verfügbarkeit</emphasis></para></entry>
 	</row>
 	<row>
-	<entry><para>Integrate Samba-3 then migrate while users are active, then change of control (swap out)</para></entry>
-	<entry><para>Take advantage of lower maintenance opportunity</para></entry>
+	<entry><para>Integration von Samba-3, dann migrieren, während Benutzer aktiv sind, dann Änderung der Verwaltung (swap out)</para></entry>
+	<entry><para>Nutzen des Vorteils des geringeren Wartungsaufwands</para></entry>
 	<entry><para></para></entry>
 	</row>
 	</tbody>
@@ -417,110 +417,114 @@ Minimieren Sie nachfolgende Probleme durch:
 </sect2>
 
 <sect2>
-<title>Samba-3 Implementation Choices</title>
+<title>Samba-3 Implementations-Wahlmöglichkeiten</title>
 
 <variablelist>
-	<varlistentry><term>Authentication Database/Backend</term><listitem>
+	<varlistentry><term>Authentifikations-Datenbank/Backend</term><listitem>
 		<para>
-		Samba-3 can use an external authentication backend:
+		Samba-3 kann ein externes Authentifikations-Backend verwenden:
 		</para>
 
 		<para>
 		<itemizedlist>
-			<listitem><para>Winbind (external Samba or NT4/200x server).</para></listitem>
-			<listitem><para>External server could use Active Directory or NT4 Domain.</para></listitem>
-			<listitem><para>Can use pam_mkhomedir.so to auto-create home dirs.</para></listitem>
+			<listitem><para>Winbind (externer Samba oder NT4/200x-Server).</para></listitem>
+			<listitem><para>Externer Server, der Active Directory oder NT4 Domäne nutzt.</para></listitem>
+			<listitem><para>Kann pam_mkhomedir.so verwenden, um automatisch home-Verzeichnisse anzulegen.</para></listitem>
 			<listitem><para>
-					Samba-3 can use a local authentication backend: <parameter>smbpasswd, tdbsam, ldapsam, mysqlsam</parameter></para></listitem>
+					Samba-3 kann ein lokales Authentifikations-Backend verwenden: <parameter>smbpasswd, tdbsam, ldapsam, mysqlsam</parameter></para></listitem>
 	</itemizedlist>
 		</para>
 	</listitem></varlistentry>
 
         <varlistentry><term>Access Control Points</term><listitem>
 		<para>
-		Samba permits Access Control Points to be set:
+		Samba erlaubt es, Access Control Points zu setzen:
 		</para>
 		<itemizedlist>
-                        <listitem><para>On the share itself &smbmdash; using Share ACLs.</para></listitem>
-                        <listitem><para>On the file system &smbmdash; using UNIX permissions on files and directories.</para>
-				<para>Note: Can enable Posix ACLs in file system also.</para></listitem>
-                        <listitem><para>Through Samba share parameters &smbmdash; not recommended except as last resort.</para></listitem>
+                        <listitem><para>Auf der Freigabe selbst &smbmdash; mittels Share ACLs.</para></listitem>
+                        <listitem><para>Auf dem Dateisystem &smbmdash; mittels UNIX permissions auf Dateien und Verzeichnissen.</para>
+				<para>Bemerkung: Kann auch Posix ACLs im Dateisystem aktivieren.</para></listitem>
+                        <listitem><para>Durch Samba-Freigaben-Parameter &smbmdash;. Nicht empfohlen, außer als letzte Möglichkeit.</para></listitem>
 		</itemizedlist>
                 </listitem>
         </varlistentry>
 
-        <varlistentry><term>Policies (migrate or create new ones)</term><listitem>
+        <varlistentry><term>Richtlinien (migrieren Sie sie oder legen Sie neue an)</term><listitem>
 		<para>
-		Exercise great caution when affecting registry changes, use the right tool and be aware
-		that changes made through NT4-style <filename>NTConfig.POL</filename> files can leave
-		permanent changes.
+		Üben Sie grosse Vorsicht, wenn Sie Änderungen an der Registry vornehmen, verwenden 
+		Sie das richtige Werkzeug und seien Sie sich dessen bewußt, daß Änderungen unter
+		Verwendung von Dateien im NT4-style <filename>NTConfig.POL</filename> dauerhafte
+		Änderungen verursachen können.
 		</para>
                 <itemizedlist>
-                        <listitem><para>Using Group Policy Editor (NT4).</para></listitem>
-                        <listitem><para>Watch out for Tattoo effect.</para></listitem>
+                        <listitem><para>Verwendung des Group Policy Editor (NT4).</para></listitem>
+                        <listitem><para>Achten Sie auf den "Tattoo-Effekt".</para></listitem>
 		</itemizedlist>
                 </listitem>
         </varlistentry>
 
-        <varlistentry><term>User and Group Profiles</term><listitem>
+        <varlistentry><term>Benutzer- und Gruppen-Profile</term><listitem>
                 <para>
-		Platform-specific so use platform tool to change from a Local to a Roaming profile.
-		Can use new profiles tool to change SIDs (<filename>NTUser.DAT</filename>).
+		Plattform-spezifisch, also benützen Sie ein Werkzeug dieser Plattform, um von einem lokalen
+		auf ein Roaming-Profil zu wechseln.
+		Man kann das neue Profil-Tool verwenden, um SIDs zu ändern. (<filename>NTUser.DAT</filename>).
 		</para>
                 </listitem>
         </varlistentry>
 
-        <varlistentry><term>Logon Scripts</term><listitem>
+        <varlistentry><term>Anmelde-Skripts</term><listitem>
                 <para>
-		Know how they work.
+		Verständnis der Arbeitsweise.
 		</para>
                 </listitem>
         </varlistentry>
 
 
-        <varlistentry><term>User and Group Mapping to UNIX/Linux</term><listitem>
+        <varlistentry><term>Mapping von Benutzern und Gruppen auf UNIX/Linux</term><listitem>
 		<para>
 <indexterm><primary>pdbedit</primary></indexterm>
-		User and Group mapping code is new. Many problems have been experienced as network administrators
-		who are familiar with Samba-2.2.x migrate to Samba-3. Carefully study the chapters that document
-		the new password backend behavior and the new group mapping functionality.
+		Der Code zum Mapping von Benutzern und Gruppen ist neu. Viele Probleme sind aufgetaucht,
+		als Netzwerk-Administratoren, die mit Samba-2.2.x vertraut sind, auf Samba-3 migriert haben.
+		Lesen Sie sorgfältig die Kapitel, die das neue Verhalten des Passwort-Backends 
+		und die neue Gruppen-Mapping-Funktionalität dokumentiert.
 		</para>
                 <itemizedlist>
-                        <listitem><para>The <parameter>username map</parameter> facility may be needed.</para></listitem>
-                        <listitem><para>Use <command>net groupmap</command> to connect NT4 groups to UNIX groups.</para></listitem>
-                        <listitem><para>Use <command>pdbedit</command> to set/change user configuration.</para>
+                        <listitem><para>Die <parameter>username map</parameter>-Einrichtung könnte benötigt werden.</para></listitem>
+                        <listitem><para>Verwendung von <command>net groupmap</command>, um NT4-Gruppen mit UNIX-Gruppen zu verbinden.</para></listitem>
+                        <listitem><para>Verwendung von <command>pdbedit</command>, um Benutzer-Konfigurationen zu setzen und zu ändern.</para>
 
 				<para>
-				When migrating to LDAP backend, it may be easier to dump the initial
-				LDAP database to LDIF, edit, then reload into LDAP.
+				Beim Migrieren auf LDAP kann es einfacher sein, die anfängliche LDAP-Datenbank
+				als LDIF-Datei auszugeben, zu editieren, und wieder in LDAP einzulesen.	
 				</para>
 			</listitem>
 		</itemizedlist>
                 </listitem>
         </varlistentry>
 
-        <varlistentry><term>OS Specific Scripts/Programs may be Needed</term><listitem>
+        <varlistentry><term>OS-spezifische Skripten/Programme könnten benötigt werden</term><listitem>
 		<para>
-		Every operating system has its peculiarities. These are the result of engineering decisions
-		that were based on the experience of the designer, and may have side-effects that were not
-		anticipated. Limitations that may bite the Windows network administrator include:
+		Jedes Betriebssystem hat seine Besonderheiten. Diese sind das Ergebnis von Entscheidungen,
+		die auf den Erfahrungen des Designers beruhen, und die Nebeneffekte haben können, die nicht
+		beabsichtigt waren. Einschränkungen, die den Windows-Netzwerk-Administrator treffen können,
+		beinhalten:
 		</para>
                 <itemizedlist>
-                        <listitem><para>Add/Delete Users: Note OS limits on size of name
-				(Linux 8 chars) NT4 up to 254 chars.</para></listitem>
-                        <listitem><para>Add/Delete Machines: Applied only to Domain Members
-				(Note: machine names may be limited to 16 characters).</para></listitem>
-                        <listitem><para>Use <command>net groupmap</command> to connect NT4 groups to UNIX groups.</para></listitem>
-                        <listitem><para>Add/Delete Groups: Note OS limits on size and nature.
-				Linux limit is 16 char, no spaces and no upper case chars (<command>groupadd</command>).</para></listitem>
+                        <listitem><para>Hinzufügen/Löschen von Benutzern: Beachten Sie die Limits des Betriebssystems in Hinblick auf Länge des Benutzernamens.
+				(Linux 8 Zeichen, NT4 bis zu 254 Zeichen).</para></listitem>
+                        <listitem><para>Hinzufügen/Löschen von Maschinen: Betrifft nur Domänen-Mitglieder
+				(Bemerkung: Maschinen-Namen können auf 16 Zeichen beschränkt sein).</para></listitem>
+                        <listitem><para>Verwendung von <command>net groupmap</command>, um NT4-Gruppen mit UNIX-Gruppen zu verbinden.</para></listitem>
+                        <listitem><para>Hinzufügen/Löschen von Gruppen: Beachten Sie OS-limits bei Länge und Format.
+Das Limit in Linux ist 16 Zeichen, ohne Leerzeichen und Grossbuchstaben (<command>groupadd</command>).</para></listitem>
 		</itemizedlist>
                 </listitem>
         </varlistentry>
 
-        <varlistentry><term>Migration Tools</term><listitem>
+        <varlistentry><term>Migrations-Werkzeuge</term><listitem>
                 <para>
 <indexterm><primary>pdbedit</primary></indexterm>
-		Domain Control (NT4 Style) Profiles, Policies, Access Controls, Security
+		Domänenverwaltung (NT4 Style) Profile, Richtlinien, ACLs, Sicherheit
 		<itemizedlist>
                         <listitem><para>Samba: <command>net, rpcclient, smbpasswd, pdbedit, profiles.</command></para></listitem>
                         <listitem><para>Windows: <command>NT4 Domain User Manager, Server Manager (NEXUS)</command></para></listitem>
