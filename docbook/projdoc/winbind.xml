@@ -23,67 +23,75 @@
 			<orgname>SNAP</orgname>
 		</affiliation>
 	</author>
+	<author>
+		<firstname>Jochen</firstname><surname>Schmidt</surname>
+		<affiliation>
+			<orgname>Millenux</orgname>
+			<address><email>jochen.schmidt@millenux.com</email></address>
+		</affiliation>
+		<contrib>German Translation</contrib>
+	</author>
 
 	&author.jelmer;
 	&author.jht;
 	<pubdate>27 June 2002</pubdate>
 </chapterinfo>
 
-<title>Winbind: Use of Domain Accounts</title>
+<title>Winbind: Benutzung von Dom&auml;nenkonten</title>
 
 <sect1>
-	<title>Features and Benefits</title>
+	<title>Eigenschaften und Nutzen</title>
 
 	<para>
-	Integration of UNIX and Microsoft Windows NT through a unified logon has
-	been considered a <quote>holy grail</quote> in heterogeneous computing environments for
-	a long time.
+	Die Integration von UNIX und Microsoft Windows NT durch eine einheitliche Anmeldung galt
+	lange Zeit als <quote>heiliger Gral</quote> in heterogenen EDV-Umgebungen.
 	</para>
 
 	<para>
-	There is one other facility without which UNIX and Microsoft Windows network
-	interoperability would suffer greatly. It is imperative that there be a
-	mechanism for sharing files across UNIX systems and to be able to assign
-	domain user and group ownerships with integrity.
+	Es gibt eine weitere Sache, ohne welche die UNIX und Microsoft Windows Netwerk
+	Interoperabilität leiden würde. Es ist zwingend notwendig, daß es einen Mechanismus
+	gibt, mit dem es möglich ist Dateien über UNIX Systeme hinweg bereitzustellen und 
+	gleichzeitig die Integrität der Domänen-Benutzer- und und Gruppenrechte zu wahren. 
 	</para>
 
 	<para>
-	<emphasis>winbind</emphasis> is a component of the Samba suite of programs that
-	solves the unified logon problem. Winbind uses a UNIX implementation of Microsoft
-	RPC calls, Pluggable Authentication Modules, and the Name Service Switch to
-	allow Windows NT domain users to appear and operate as UNIX users on a UNIX
-	machine. This chapter describes the Winbind system, explaining the functionality
-	it provides, how it is configured, and how it works internally.
+	<emphasis>winbind</emphasis> ist ein Bestandteil der Samba Programmsammlung der das 
+	Problem der einheitlichen Anmeldung löst. Winbind benutzt eine UNIX Implementierung der 
+	Microsoft RPC Aufrufe, Steckbare Authentisierung Module (PAM) und den Name Service Switch
+	um Windows NT Domänenbenutzer auf UNIX Systeme als UNIX Benutzer erscheinen und arbeiten 
+	zu lassen. Dieses Kapitel beschreibt das System von winbind, erklärt die Funktionsweise,
+	wie es konfiguriert wird und wie es intern arbeitet.
 	</para>
 
 	<para>
-	Winbind provides three separate functions:
+	Winbind stellt drei unterschiedliche Funktionen zur Verfügung:
 	</para>
 
 	<itemizedlist>
 		<listitem><para>
-		Authentication of user credentials (via PAM).
+		Die Authentifizierung der Benutzerbeglaubigung (mittels PAM)
 		</para></listitem>
 
 		<listitem><para>
-		Identity resolution (via NSS).
+		Die Auflösung der Indentität (mittels NSS)
 		</para></listitem>
 
 		<listitem><para>
-		Winbind maintains a database called winbind_idmap.tdb in which it stores
-		mappings between UNIX UIDs / GIDs and NT SIDs. This mapping is used only
-		for users and groups that do not have a local UID/GID. It stored the UID/GID
-		allocated from the idmap uid/gid range that it has mapped to the NT SID.
-		If <parameter>idmap backend</parameter> has been specified as ldapsam:url
-		then instead of using a local mapping Winbind will obtain this information
-		from the LDAP database.
+		Winbind hält eine Datenbank namens winbind_idmap.tdb, in welcher die 
+		Zuordnungen zwischen den UNIX UIDs / GIDs und den NT SIDs vermerkt sind.
+		Diese Zuordnungen sind nur für Benutzer und Gruppen, welche nicht über eine
+		lokale UID/GID verfügen. Winbind sichert die Zusammengehörigkeit zwischen der
+		UID/GID, zugeteilt aus dem idmap uid/gid Bereich, und der NT SID.
+		Wenn <parameter>idmap backend</parameter> auf den Wert ldapsam:url anstatt
+		der Nutzung einer lokalen Datei gesetzt ist, dann holt Winbind diese
+		Informationen aus der LDAP Datenbank.
 		</para></listitem>
 	</itemizedlist>
 
 	<note><para>
-	If <command>winbindd</command> is not running, smbd (which calls <command>winbindd</command>) will fall back to
-	using purely local information from <filename>/etc/passwd</filename> and <filename>/etc/group</filename> and no dynamic
-	mapping will be used.
+	Wenn <command>winbindd</command> nicht läuft, dann wird der smbd (welcher <command>winbindd</command> aufruft)
+	auf die nur lokal vorhandenen Informationen der <filename>/etc/passwd</filename> und <filename>/etc/group</filename> 
+	ohne eine dynamische Zuordnung zurückgreifen.
 	</para></note>
 
 
@@ -98,7 +106,7 @@
 
 
 <sect1>
-	<title>Introduction</title>
+	<title>Einführung</title>
 	
 	<para>It is well known that UNIX and Microsoft Windows NT have 
 	different models for representing user and group information and 
