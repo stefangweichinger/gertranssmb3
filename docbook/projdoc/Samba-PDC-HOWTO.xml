@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 
 <chapter id="samba-pdc">
 
@@ -15,7 +15,7 @@
 <para>
 Viele nähern sich der Thematik der MS-Windows-Netzwerke mit falschen Vorstellungen.
 Das ist ok so, weil es uns anderen viele Möglichkeiten dazu gibt, Hilfe zu geben.
-Diejenigen, die wirklich helfen wollen, sind gut beraten, sich mit der bereits vorhandenen Information und Dokumentation vertraut zu machen. 
+Diejenigen, die wirklich helfen wollen, sind gut beraten, sich mit der bereits vorhandenen Information und Dokumentation vertraut zu machen.
 </para>
 
 <para>
@@ -52,7 +52,7 @@ Wenn Sie mit den folgenden Themen nicht vertraut sind, wird es helfen, die entsp
 </itemizedlist>
 
 <para>
-Lassen Sie sich nicht abschrecken; an der Oberfläche erscheint ein MS-Windows-Netzwerk so simpel, daß es jeder schafft. Tatsächlich ist es aber keine gute Idee, ein MS-Windows-Netzwerk ohne entsprechende Übung und Vorbereitung aufzusetzen. Aber lassen Sie uns unser erstes unauslöschliches Prinzip aus dem Weg räumen: 
+Lassen Sie sich nicht abschrecken; an der Oberfläche erscheint ein MS-Windows-Netzwerk so simpel, daß es jeder schafft. Tatsächlich ist es aber keine gute Idee, ein MS-Windows-Netzwerk ohne entsprechende Übung und Vorbereitung aufzusetzen. Aber lassen Sie uns unser erstes unauslöschliches Prinzip aus dem Weg räumen:
 <emphasis>Es ist in Ordnung, Fehler zu machen!</emphasis>
 Am richtigen Ort, zur richtigen Zeit, sind Fehler die Essenz des Lernens. Es ist jedoch ganz und gar nicht in Ordnung, Fehler zu machen, die Produktivitäts-Einbussen verursachen und einer Organisation einen vermeidbaren finanziellen Verlust zufügen.
 </para>
@@ -94,7 +94,7 @@ Die folgenden Funktionalitäten sind in der Release Samba 3 neu:
 	<listitem><para>
 	Windows NT4 Vertrauens-Domänen.
 	</para></listitem>
-	
+
 	<listitem><para>
 	<indexterm><primary>Nexus.exe</primary></indexterm>
 	Das Hinzufügen von Benutzern via "User Manager for Domains". Dies kann von jedem MS-Windows-Client mittels dem <filename>Nexus.exe</filename> toolkit für Windows 9x/Me, oder mittels dem SRVTOOLS.EXE-Paket für MS Windows NT4/200x/XP-Plattformen durchgeführt werden. Diese Pakete sind auf der Microsoft-Website verfügbar.
@@ -119,14 +119,14 @@ Die folgenden Funktionalitäten werden von Samba-3 NICHT zur Verfügung gestellt:
 <indexterm><primary>SAM</primary></indexterm>
 <indexterm><primary>Replikation</primary></indexterm>
 	SAM-Replikation mit MS-Windows-NT4-Domänen-Controllern
-	(z.B., ein Samba PDC und ein Windows NT BDC oder vice versa). 
+	(z.B., ein Samba PDC und ein Windows NT BDC oder vice versa).
 
 	Dies bedeutet, daß Samba NICHT als BDC arbeiten kann, wenn der PDC Microsoft-basiert ist.
 	Weiters bedeutet es, daß Samba Kontodaten NICHT auf MS-BDCs replizieren.
 	</para></listitem>
-	
+
 	<listitem><para>
-	Das Arbeiten als Windows 2000 Domain Controller 
+	Das Arbeiten als Windows 2000 Domain Controller
 	(z.B., Kerberos und Active Directory).
 
 	Tatsächlich hat Samba-3 einige AD-Domänen-Kontroll-Fähigkeiten, die zum jetzigen Zeitpunkt rein experimenteller Natur sind. Diese werden sicherlich zu voll unterstützten Features ausgebaut, sei es während der Existenz von Samba-3 oder zu einem späteren Zeitpunkt. Wie dem auch sei, Active Directory ist mehr als nur SMB &smbmdash;, es ist weiters LDAP, Kerberos, DHCP, und andere Protokolle (selbstverständlich mit proprietären Erweiterungen).
@@ -172,7 +172,7 @@ there are three basic types of Domain Controllers.
 </itemizedlist>
 
 <para>
-The <emphasis>Primary Domain Controller</emphasis> or PDC plays an important role in MS 
+The <emphasis>Primary Domain Controller</emphasis> or PDC plays an important role in MS
 Windows NT4. In Windows 200x Domain Control architecture, this role is held by Domain Controllers.
 Folklore dictates that because of its role in the MS Windows
 network, the Domain Controller should be the most powerful and most capable machine in the network.
@@ -186,7 +186,7 @@ the entire infrastructure needs to be balanced. It is advisable to invest more i
 In the case of MS Windows NT4-style domains, it is the PDC that initiates a new Domain Control database.
 This forms a part of the Windows registry called the Security Account Manager (SAM). It plays a key
 part in NT4-type domain user authentication and in synchronization of the domain authentication
-database with Backup Domain Controllers. 
+database with Backup Domain Controllers.
 </para>
 
 <para>
@@ -244,7 +244,7 @@ At this time any appearance that Samba-3 is capable of acting as an
 <emphasis>Domain Controller</emphasis> in native ADS mode is limited and experimental in nature.
 This functionality should not be used until the Samba Team offers formal support for it.
 At such a time, the documentation will be revised to duly reflect all configuration and
-management requirements. Samba can act as a NT4-style DC in a Windows 2000/XP 
+management requirements. Samba can act as a NT4-style DC in a Windows 2000/XP
 environment. However, there are certain compromises:
 
 <itemizedlist>
@@ -275,7 +275,7 @@ other than the machine being configured so the network configuration has a commo
 for its workgroup entry. It is not uncommon for the name WORKGROUP to be used for this. With this
 mode of configurationi, there are no Machine Trust Accounts and any concept of membership as such
 is limited to the fact that all machines appear in the network neighborhood to be logically
-grouped together. Again, just to be clear: <emphasis>workgroup mode does not involve security machine 
+grouped together. Again, just to be clear: <emphasis>workgroup mode does not involve security machine
 accounts</emphasis>.
 </para>
 
@@ -303,7 +303,7 @@ NT4/200x/XP clients:
 <itemizedlist>
 	<listitem><para>Configuration of basic TCP/IP and MS Windows networking.</para></listitem>
 	<listitem><para>Correct designation of the Server Role (<smbconfoption><name>security</name><value>user</value></smbconfoption>).</para></listitem>
-	<listitem><para>Consistent configuration of Name Resolution<footnote><para>See <link linkend="NetworkBrowsing"></link>, and 
+	<listitem><para>Consistent configuration of Name Resolution<footnote><para>See <link linkend="NetworkBrowsing"></link>, and
 		<link linkend="integrate-ms-networks"></link>.</para></footnote>.</para></listitem>
 	<listitem><para>Domain logons for Windows NT4/200x/XP Professional clients.</para></listitem>
 	<listitem><para>Configuration of Roaming Profiles or explicit configuration to force local profile usage.</para></listitem>
@@ -332,7 +332,7 @@ The following provisions are required to serve MS Windows 9x/Me clients:
 
 <note><para>
 Roaming Profiles and System/Network policies are advanced network administration topics
-that are covered in the <link linkend="ProfileMgmt"></link> and 
+that are covered in the <link linkend="ProfileMgmt"></link> and
 <link linkend="PolicyMgmt"></link> chapters of this document. However, these are not
 necessarily specific to a Samba PDC as much as they are related to Windows NT networking concepts.
 </para></note>
@@ -379,7 +379,7 @@ instead of just the list for their broadcast-isolated subnet.
 
 <para>
 The first step in creating a working Samba PDC is to understand the parameters necessary
-in &smb.conf;. An example &smb.conf; for acting as a PDC can be found in <link linkend="pdc-example"/>. 
+in &smb.conf;. An example &smb.conf; for acting as a PDC can be found in <link linkend="pdc-example"/>.
 </para>
 
 <para>
@@ -432,7 +432,7 @@ The basic options shown in <link linkend="pdc-example"/> are explained as follow
 	</varlistentry>
 	<varlistentry><term>Domain Control Parameters </term>
 		<listitem><para>
-		The parameters <emphasis>os level, preferred master, domain master, security, 
+		The parameters <emphasis>os level, preferred master, domain master, security,
 		encrypt passwords, and domain logons</emphasis> play a central role in assuring domain
 		control and network logon support.</para>
 
@@ -440,7 +440,7 @@ The basic options shown in <link linkend="pdc-example"/> are explained as follow
 		The <emphasis>os level</emphasis> must be set at or above a value of 32. A Domain Controller
 		must be the Domain Master Browser, must be set in <emphasis>user</emphasis> mode security,
 		must support Microsoft-compatible encrypted passwords, and must provide the network logon
-		service (domain logons). Encrypted passwords must be enabled. For more details on how 
+		service (domain logons). Encrypted passwords must be enabled. For more details on how
 		to do this, refer to <link linkend="passdb"></link>.
 		</para></listitem>
 	</varlistentry>
@@ -627,7 +627,7 @@ the use of domain logons.
 </emphasis></para>
 
 <para>
-Before launching into the configuration instructions, it is 
+Before launching into the configuration instructions, it is
 worthwhile to look at how a Windows 9x/Me client performs a logon:
 </para>
 
@@ -637,7 +637,7 @@ worthwhile to look at how a Windows 9x/Me client performs a logon:
 	The client broadcasts (to the IP broadcast address of the subnet it is in)
 	a NetLogon request. This is sent to the NetBIOS name DOMAIN&lt;#1c&gt; at the
 	NetBIOS layer. The client chooses the first response it receives, which
-	contains the NetBIOS name of the logon server to use in the format of 
+	contains the NetBIOS name of the logon server to use in the format of
 	<filename>\\SERVER</filename>.
 	</para>
 </listitem>
@@ -652,13 +652,13 @@ worthwhile to look at how a Windows 9x/Me client performs a logon:
 <listitem>
 	<para>
 	The client does a NetWkstaUserLogon request, which retrieves the name
-	of the user's logon script. 
+	of the user's logon script.
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	The client then connects to the NetLogon share and searches for said script.	
+	The client then connects to the NetLogon share and searches for said script.
 	If it is found and can be read, it is retrieved and executed by the client.
 	After this, the client disconnects from the NetLogon share.
 	</para>
@@ -668,7 +668,7 @@ worthwhile to look at how a Windows 9x/Me client performs a logon:
 	<para>
 	The client sends a NetUserGetInfo request to the server to retrieve
 	the user's home share, which is used to search for profiles. Since the
-	response to the NetUserGetInfo request does not contain much more than	
+	response to the NetUserGetInfo request does not contain much more than
 	the user's home share, profiles for Windows 9x clients must reside in the user
 	home directory.
 	</para>
@@ -676,7 +676,7 @@ worthwhile to look at how a Windows 9x/Me client performs a logon:
 
 <listitem>
 	<para>
-	The client connects to the user's home share and searches for the 
+	The client connects to the user's home share and searches for the
 	user's profile. As it turns out, you can specify the user's home share as
 	a sharename and path. For example, <filename>\\server\fred\.winprofile</filename>.
 	If the profiles are found, they are implemented.
@@ -734,12 +734,12 @@ security are really just a variation on SMB User Level Security.
 </para>
 
 <para>
-Actually, this issue is also closely tied to the debate on whether 
+Actually, this issue is also closely tied to the debate on whether
 Samba must be the Domain Master Browser for its workgroup
 when operating as a DC. While it may technically be possible
 to configure a server as such (after all, browsing and domain logons
 are two distinctly different functions), it is not a good idea to do
-so. You should remember that the DC must register the DOMAIN&lt;#1b&gt; NetBIOS 
+so. You should remember that the DC must register the DOMAIN&lt;#1b&gt; NetBIOS
 name. This is the name used by Windows clients to locate the DC.
 Windows clients do not distinguish between the DC and the DMB.
 A DMB is a Domain Master Browser &smbmdash; see <link linkend="DMB"></link>.
@@ -795,7 +795,7 @@ The UNIX tool <command>vipw</command> is a common tool for directly editing the 
 
 <sect2>
 <title>Joining Domain Fails Because of Existing Machine Account</title>
-		
+
 <para>
 <quote>I get told, `You already have a connection to the Domain....' or `Cannot join domain, the
 credentials supplied conflict with an existing set...' when creating a Machine Trust Account.</quote>
@@ -811,9 +811,9 @@ will remove all network drive connections:
 </para>
 
 <para>
-Further, if the machine is already a <quote>member of a workgroup</quote> that 
-is the same name as the domain you are joining (bad idea) you will 
-get this message. Change the workgroup name to something else, it 
+Further, if the machine is already a <quote>member of a workgroup</quote> that
+is the same name as the domain you are joining (bad idea) you will
+get this message. Change the workgroup name to something else, it
 does not matter what, reboot, and try again.
 </para>
 </sect2>
@@ -821,9 +821,9 @@ does not matter what, reboot, and try again.
 <sect2>
 <title>The System Cannot Log You On (C000019B)</title>
 
-<para><quote>I joined the domain successfully but after upgrading 
-to a newer version of the Samba code I get the message, <errorname>`The system 
-cannot log you on (C000019B), Please try again or consult your 
+<para><quote>I joined the domain successfully but after upgrading
+to a newer version of the Samba code I get the message, <errorname>`The system
+cannot log you on (C000019B), Please try again or consult your
 system administrator</errorname> when attempting to logon.'</quote>
 </para>
 
@@ -832,7 +832,7 @@ system administrator</errorname> when attempting to logon.'</quote>
 This occurs when the domain SID stored in the secrets.tdb database
 is changed. The most common cause of a change in domain SID is when
 the domain name and/or the server name (NetBIOS name) is changed.
-The only way to correct the problem is to restore the original domain 
+The only way to correct the problem is to restore the original domain
 SID or remove the domain client from the domain and rejoin. The domain
 SID may be reset using either the net or rpcclient utilities.
 </para>
@@ -859,30 +859,30 @@ it to the domain.
 <title>The Machine Trust Account Is Not Accessible</title>
 
 <para>
-<quote>When I try to join the domain I get the message, <errorname>`The machine account 
-for this computer either does not exist or is not accessible'</errorname>. What's 
+<quote>When I try to join the domain I get the message, <errorname>`The machine account
+for this computer either does not exist or is not accessible'</errorname>. What's
 wrong?</quote>
 </para>
 
 <para>
-This problem is caused by the PDC not having a suitable Machine Trust Account. 
-If you are using the <smbconfoption><name>add machine script</name></smbconfoption> method to create 
-accounts then this would indicate that it has not worked. Ensure the domain 
+This problem is caused by the PDC not having a suitable Machine Trust Account.
+If you are using the <smbconfoption><name>add machine script</name></smbconfoption> method to create
+accounts then this would indicate that it has not worked. Ensure the domain
 admin user system is working.
 </para>
 
 <para>
-Alternately, if you are creating account entries manually then they 
-have not been created correctly. Make sure that you have the entry 
-correct for the Machine Trust Account in <filename>smbpasswd</filename> file on the Samba PDC. 
-If you added the account using an editor rather than using the smbpasswd 
-utility, make sure that the account name is the machine NetBIOS name 
-with a <quote>$</quote> appended to it (i.e., computer_name$). There must be an entry 
+Alternately, if you are creating account entries manually then they
+have not been created correctly. Make sure that you have the entry
+correct for the Machine Trust Account in <filename>smbpasswd</filename> file on the Samba PDC.
+If you added the account using an editor rather than using the smbpasswd
+utility, make sure that the account name is the machine NetBIOS name
+with a <quote>$</quote> appended to it (i.e., computer_name$). There must be an entry
 in both /etc/passwd and the smbpasswd file.
 </para>
 
 <para>
-Some people have also reported that inconsistent subnet masks between the Samba server and the NT 
+Some people have also reported that inconsistent subnet masks between the Samba server and the NT
 client can cause this problem.  Make sure that these are consistent for both client and server.
 </para>
 </sect2>
@@ -902,7 +902,7 @@ Enable the user accounts with <userinput>smbpasswd -e <replaceable>username</rep
 
 <sect2>
 <title>Domain Controller Unavailable</title>
-		
+
 <para><quote>Until a few minutes after Samba has started, clients get the error `Domain Controller Unavailable'</quote></para>
 
 <para>
