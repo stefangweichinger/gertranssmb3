@@ -56,7 +56,7 @@ called <tt class="filename">nmbd</tt>. The configuration parameters involved in 
 </p><p>Browsing options: <a class="indexterm" name="id2903636"></a><i class="parameter"><tt>os level</tt></i>(*),
 	<a class="indexterm" name="id2903650"></a><i class="parameter"><tt>lm announce</tt></i>,
 	<a class="indexterm" name="id2903664"></a><i class="parameter"><tt>lm interval</tt></i>,
-	<a class="indexterm" name="id2903677"></a><i class="parameter"><tt>preferred master</tt></i>(*),
+	<a class="indexterm" name="id2903678"></a><i class="parameter"><tt>preferred master</tt></i>(*),
 	<a class="indexterm" name="id2903692"></a><i class="parameter"><tt>local master</tt></i>(*),
 	<a class="indexterm" name="id2903706"></a><i class="parameter"><tt>domain master</tt></i>(*),
 	<a class="indexterm" name="id2903720"></a><i class="parameter"><tt>browse list</tt></i>,
@@ -88,7 +88,7 @@ UDP messages can be broadcast or unicast.
 Normally, only unicast UDP messaging can be forwarded by routers. The
 <a class="indexterm" name="id2903914"></a><i class="parameter"><tt>remote announce</tt></i> parameter to smb.conf helps to project browse announcements
 to remote network segments via unicast UDP. Similarly, the 
-<a class="indexterm" name="id2903930"></a><i class="parameter"><tt>remote browse sync</tt></i> parameter of <tt class="filename">smb.conf</tt>
+<a class="indexterm" name="id2903931"></a><i class="parameter"><tt>remote browse sync</tt></i> parameter of <tt class="filename">smb.conf</tt>
 implements browse list collation using unicast UDP.
 </p><p>
 Secondly, in those networks where Samba is the only SMB server technology,
@@ -98,13 +98,13 @@ segment is configured with its own Samba WINS server, then the only way to
 get cross-segment browsing to work is by using the 
 <a class="indexterm" name="id2903970"></a>
 <a class="indexterm" name="id2903981"></a>
-<a class="indexterm" name="id2903990"></a><i class="parameter"><tt>remote announce</tt></i> and the <a class="indexterm" name="id2904003"></a><i class="parameter"><tt>remote browse sync</tt></i>
+<a class="indexterm" name="id2903990"></a><i class="parameter"><tt>remote announce</tt></i> and the <a class="indexterm" name="id2904004"></a><i class="parameter"><tt>remote browse sync</tt></i>
 parameters to your <tt class="filename">smb.conf</tt> file.
 </p><p>
 <a class="indexterm" name="id2904029"></a>
 If only one WINS server is used for an entire multi-segment network, then
 the use of the <a class="indexterm" name="id2904039"></a><i class="parameter"><tt>remote announce</tt></i> and the 
-<a class="indexterm" name="id2904052"></a><i class="parameter"><tt>remote browse sync</tt></i> parameters should not be necessary.
+<a class="indexterm" name="id2904053"></a><i class="parameter"><tt>remote browse sync</tt></i> parameters should not be necessary.
 </p><p>
 <a class="indexterm" name="id2904072"></a>
 As of Samba-3 WINS replication is being worked on. The bulk of the code has
@@ -306,7 +306,7 @@ of the <tt class="filename">smb.conf</tt> file as shown in <a href="NetworkBrows
 </p><div class="example"><a name="remsmb"></a><p class="title"><b>Example 10.4. Local Master Browser smb.conf</b></p><table class="simplelist" border="0" summary="Simple list"><tr><td> </td></tr><tr><td><i class="parameter"><tt>[global]</tt></i></td></tr><tr><td><i class="parameter"><tt>domain master = no</tt></i></td></tr><tr><td><i class="parameter"><tt>local master = yes</tt></i></td></tr><tr><td><i class="parameter"><tt>preferred master = yes</tt></i></td></tr><tr><td><i class="parameter"><tt>os level = 65</tt></i></td></tr></table></div><p>
 </p><p>
 If you wish to have a Samba server fight the election with machines on the same subnet you
-may set the <a class="indexterm" name="id2905194"></a><i class="parameter"><tt>os level</tt></i> parameter to lower levels.
+may set the <a class="indexterm" name="id2905195"></a><i class="parameter"><tt>os level</tt></i> parameter to lower levels.
 By doing this you can tune the order of machines that will become Local Master Browsers if
 they are running. For more details on this refer to <a href="NetworkBrowsing.html#browse-force-master" title="Forcing Samba to Be the Master">???</a>.
 </p><p>
@@ -488,7 +488,7 @@ Machines configured with <a class="indexterm" name="id2906200"></a><i class="par
 all NetBIOS names registered with them, acting as a DNS for NetBIOS names.
 </p><p>
 It is strongly recommended to set up only one WINS server. Do not set the
-<a class="indexterm" name="id2906222"></a><i class="parameter"><tt>wins support</tt></i> = yes option on more than one Samba 
+<a class="indexterm" name="id2906223"></a><i class="parameter"><tt>wins support</tt></i> = yes option on more than one Samba 
 server.
 </p><p>
 <a class="indexterm" name="id2906242"></a>
@@ -501,7 +501,7 @@ participate in these replications. It is possible in the future that
 a Samba-to-Samba WINS replication protocol may be defined, in which
 case more than one Samba machine could be set up as a WINS server.
 Currently only one Samba server should have the 
-<a class="indexterm" name="id2906264"></a><i class="parameter"><tt>wins support</tt></i> = yes parameter set.
+<a class="indexterm" name="id2906265"></a><i class="parameter"><tt>wins support</tt></i> = yes parameter set.
 </p><p>
 After the WINS server has been configured, you must ensure that all
 machines participating on the network are configured with the address
@@ -671,7 +671,7 @@ example. See <a class="indexterm" name="id2906952"></a><i class="parameter"><tt>
 <tt class="filename">smb.conf</tt> man page. 
 </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2906975"></a>Problem Resolution</h3></div></div><div></div></div><p>
 If something does not work, the <tt class="filename">log.nmbd</tt> file will help
-to track down the problem. Try a <a class="indexterm" name="id2906993"></a><i class="parameter"><tt>log level</tt></i> of 2 or 3 for finding
+to track down the problem. Try a <a class="indexterm" name="id2906994"></a><i class="parameter"><tt>log level</tt></i> of 2 or 3 for finding
 problems. Also note that the current browse list usually gets stored
 in text form in a file called <tt class="filename">browse.dat</tt>.
 </p><p>

@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 23. System and Account Policies</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="AdvancedNetworkManagement.html" title="Chapter 22. Advanced Network Management"><link rel="next" href="ProfileMgmt.html" title="Chapter 24. Desktop Profile Management"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 23. System and Account Policies</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="AdvancedNetworkManagement.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="ProfileMgmt.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="PolicyMgmt"></a>Chapter 23. System and Account Policies</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">April 3 2003</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="PolicyMgmt.html#id2955877">Features and Benefits</a></dt><dt><a href="PolicyMgmt.html#id2955970">Creating and Managing System Policies</a></dt><dd><dl><dt><a href="PolicyMgmt.html#id2956104">Windows 9x/ME Policies</a></dt><dt><a href="PolicyMgmt.html#id2956216">Windows NT4-Style Policy Files</a></dt><dt><a href="PolicyMgmt.html#id2956358">MS Windows 200x/XP Professional Policies</a></dt></dl></dd><dt><a href="PolicyMgmt.html#id2956647">Managing Account/User Policies</a></dt><dt><a href="PolicyMgmt.html#id2956815">Management Tools</a></dt><dd><dl><dt><a href="PolicyMgmt.html#id2956831">Samba Editreg Toolset</a></dt><dt><a href="PolicyMgmt.html#id2956927">Windows NT4/200x</a></dt><dt><a href="PolicyMgmt.html#id2956951">Samba PDC</a></dt></dl></dd><dt><a href="PolicyMgmt.html#id2956995">System Startup and Logon Processing Overview</a></dt><dt><a href="PolicyMgmt.html#id2957141">Common Errors</a></dt><dd><dl><dt><a href="PolicyMgmt.html#id2957155">Policy Does Not Work</a></dt></dl></dd></dl></div><p>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 23. System and Account Policies</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="AdvancedNetworkManagement.html" title="Chapter 22. Advanced Network Management"><link rel="next" href="ProfileMgmt.html" title="Chapter 24. Desktop Profile Management"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 23. System and Account Policies</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="AdvancedNetworkManagement.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="ProfileMgmt.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="PolicyMgmt"></a>Chapter 23. System and Account Policies</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">April 3 2003</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="PolicyMgmt.html#id2955877">Features and Benefits</a></dt><dt><a href="PolicyMgmt.html#id2955970">Creating and Managing System Policies</a></dt><dd><dl><dt><a href="PolicyMgmt.html#id2956104">Windows 9x/ME Policies</a></dt><dt><a href="PolicyMgmt.html#id2956216">Windows NT4-Style Policy Files</a></dt><dt><a href="PolicyMgmt.html#id2956358">MS Windows 200x/XP Professional Policies</a></dt></dl></dd><dt><a href="PolicyMgmt.html#id2956647">Managing Account/User Policies</a></dt><dt><a href="PolicyMgmt.html#id2956816">Management Tools</a></dt><dd><dl><dt><a href="PolicyMgmt.html#id2956831">Samba Editreg Toolset</a></dt><dt><a href="PolicyMgmt.html#id2956927">Windows NT4/200x</a></dt><dt><a href="PolicyMgmt.html#id2956951">Samba PDC</a></dt></dl></dd><dt><a href="PolicyMgmt.html#id2956996">System Startup and Logon Processing Overview</a></dt><dt><a href="PolicyMgmt.html#id2957141">Common Errors</a></dt><dd><dl><dt><a href="PolicyMgmt.html#id2957155">Policy Does Not Work</a></dt></dl></dd></dl></div><p>
 This chapter summarizes the current state of knowledge derived from personal
 practice and knowledge from Samba mailing list subscribers. Before reproduction
 of posted information, every effort has been made to validate the information given.
@@ -12,7 +12,7 @@ started to adopt this capability. How do we know that? By the number of &#8220;<
 </p><p>
 <a class="indexterm" name="id2955903"></a>
 <a class="indexterm" name="id2955911"></a>
-<a class="indexterm" name="id2955919"></a>
+<a class="indexterm" name="id2955920"></a>
 By the time that MS Windows 2000 and Active Directory was released, administrators
 got the message: Group Policies are a good thing! They can help reduce administrative
 costs and actually make happier users. But adoption of the true
@@ -45,7 +45,7 @@ disappeared again with the introduction of MS Windows Me (Millennium Edition). F
 comments of MS Windows network administrators, it would appear that this tool became
 a part of the MS Windows Me Resource Kit.
 </p><p>
-<a class="indexterm" name="id2956027"></a>
+<a class="indexterm" name="id2956028"></a>
 MS Windows NT4 Server products include the <span class="emphasis"><em>System Policy Editor</em></span>
 under <span class="guimenu">Start -&gt; Programs -&gt; Administrative Tools</span>.
 For MS Windows NT4 and later clients, this file must be called <tt class="filename">NTConfig.POL</tt>.
@@ -114,7 +114,7 @@ here is incomplete  you are warned.
 	be extracted as well. It is also possible to downloaded the policy template
 	files for Office97 and get a copy of the Policy Editor. Another possible
 	location is with the Zero Administration Kit available for download from Microsoft.
-	</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2956327"></a>Registry Spoiling</h4></div></div><div></div></div><p>
+	</p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2956328"></a>Registry Spoiling</h4></div></div><div></div></div><p>
 			With NT4-style registry-based policy changes, a large number of settings are not
 			automatically reversed as the user logs off. The settings that were in the
 			<tt class="filename">NTConfig.POL</tt> file were applied to the client machine registry and apply to the
@@ -224,7 +224,7 @@ While it is possible to set many controls using the Domain User Manager for MS W
 expirey is functional today. Most of the remaining controls at this time have only stub routines
 that may eventually be completed to provide actual control. Do not be misled by the fact that a
 parameter can be set using the NT4 Domain User Manager or in the <tt class="filename">NTConfig.POL</tt>.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2956815"></a>Management Tools</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2956816"></a>Management Tools</h2></div></div><div></div></div><p>
 Anyone who wishes to create or manage Group Policies will need to be familiar with a number of tools.
 The following sections describe a few key tools that will help you to create a low maintenance user
 environment.
@@ -249,7 +249,7 @@ environment.
 	With a Samba Domain Controller, the new tools for managing user account and policy information include:
 	<b class="command">smbpasswd</b>, <b class="command">pdbedit</b>, <b class="command">net</b>, <b class="command">rpcclient</b>. 
 	The administrator should read the man pages for these tools and become familiar with their use.
-	</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2956995"></a>System Startup and Logon Processing Overview</h2></div></div><div></div></div><p>
+	</p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2956996"></a>System Startup and Logon Processing Overview</h2></div></div><div></div></div><p>
 The following attempts to document the order of processing the system and user policies following a system
 reboot and as part of the user logon:
 </p><div class="orderedlist"><ol type="1"><li><p>

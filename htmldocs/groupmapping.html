@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 12. Group Mapping  MS Windows and UNIX</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="passdb.html" title="Chapter 11. Account Information Databases"><link rel="next" href="AccessControls.html" title="Chapter 13. Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 12. Group Mapping  MS Windows and UNIX</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="passdb.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="AccessControls.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="groupmapping"></a>Chapter 12. Group Mapping  MS Windows and UNIX</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Jean François</span> <span class="surname">Micouleau</span></h3></div></div><div><div class="author"><h3 class="author"><span class="firstname">Gerald</span> <span class="othername">(Jerry)</span> <span class="surname">Carter</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jerry@samba.org">jerry@samba.org</a>&gt;</tt></p></div></div></div></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="groupmapping.html#id2914072">Features and Benefits</a></dt><dt><a href="groupmapping.html#id2914443">Discussion</a></dt><dd><dl><dt><a href="groupmapping.html#id2914745">Default Users, Groups and Relative Identifiers</a></dt><dt><a href="groupmapping.html#id2915381">Example Configuration</a></dt></dl></dd><dt><a href="groupmapping.html#id2915459">Configuration Scripts</a></dt><dd><dl><dt><a href="groupmapping.html#id2915473">Sample smb.conf Add Group Script</a></dt><dt><a href="groupmapping.html#id2915608">Script to Configure Group Mapping</a></dt></dl></dd><dt><a href="groupmapping.html#id2915724">Common Errors</a></dt><dd><dl><dt><a href="groupmapping.html#id2915739">Adding Groups Fails</a></dt><dt><a href="groupmapping.html#id2915807">Adding MS Windows Groups to MS Windows Groups Fails</a></dt><dt><a href="groupmapping.html#id2915833">Adding Domain Users to the Power Users Group</a></dt></dl></dd></dl></div><p>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 12. Group Mapping  MS Windows and UNIX</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="optional.html" title="Part III. Erweiterte Konfiguration"><link rel="previous" href="passdb.html" title="Chapter 11. Account Information Databases"><link rel="next" href="AccessControls.html" title="Chapter 13. Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 12. Group Mapping  MS Windows and UNIX</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="passdb.html">Prev</a> </td><th width="60%" align="center">Part III. Erweiterte Konfiguration</th><td width="20%" align="right"> <a accesskey="n" href="AccessControls.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="groupmapping"></a>Chapter 12. Group Mapping  MS Windows and UNIX</h2></div><div><div class="author"><h3 class="author"><span class="firstname">John</span> <span class="othername">H.</span> <span class="surname">Terpstra</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jht@samba.org">jht@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Jean François</span> <span class="surname">Micouleau</span></h3></div></div><div><div class="author"><h3 class="author"><span class="firstname">Gerald</span> <span class="othername">(Jerry)</span> <span class="surname">Carter</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jerry@samba.org">jerry@samba.org</a>&gt;</tt></p></div></div></div></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="groupmapping.html#id2914073">Features and Benefits</a></dt><dt><a href="groupmapping.html#id2914443">Discussion</a></dt><dd><dl><dt><a href="groupmapping.html#id2914745">Default Users, Groups and Relative Identifiers</a></dt><dt><a href="groupmapping.html#id2915381">Example Configuration</a></dt></dl></dd><dt><a href="groupmapping.html#id2915459">Configuration Scripts</a></dt><dd><dl><dt><a href="groupmapping.html#id2915473">Sample smb.conf Add Group Script</a></dt><dt><a href="groupmapping.html#id2915608">Script to Configure Group Mapping</a></dt></dl></dd><dt><a href="groupmapping.html#id2915724">Common Errors</a></dt><dd><dl><dt><a href="groupmapping.html#id2915739">Adding Groups Fails</a></dt><dt><a href="groupmapping.html#id2915807">Adding MS Windows Groups to MS Windows Groups Fails</a></dt><dt><a href="groupmapping.html#id2915833">Adding Domain Users to the Power Users Group</a></dt></dl></dd></dl></div><p>
 <a class="indexterm" name="id2913990"></a>
 	Starting with Samba-3, new group mapping functionality is available to create associations
 	between Windows group SIDs and UNIX groups. The <b class="command">groupmap</b> subcommand
@@ -14,7 +14,7 @@
 	be specified in <tt class="filename">smb.conf</tt>. This parameter was used to give the listed users membership in the
 	<tt class="constant">Domain Admins</tt> Windows group which gave local admin rights on their workstations
 	(in default configurations).
-	</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2914072"></a>Features and Benefits</h2></div></div><div></div></div><p>
+	</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2914073"></a>Features and Benefits</h2></div></div><div></div></div><p>
 	Samba allows the administrator to create MS Windows NT4/200x group accounts and to
 	arbitrarily associate them with UNIX/Linux group accounts.
 	</p><p>
@@ -42,7 +42,7 @@
 	<span class="emphasis"><em>Engineering Managers</em></span> will attempt to create an identically named
 	UNIX/Linux group, an attempt that will of course fail.
 	</p><p>
-	<a class="indexterm" name="id2914404"></a>
+	<a class="indexterm" name="id2914405"></a>
 	<a class="indexterm" name="id2914413"></a>
 	There are several possible work-arounds for the operating system tools limitation. One
 	method is to use a script that generates a name for the UNIX/Linux system group that
@@ -87,7 +87,7 @@
 	<tt class="prompt">root# </tt><b class="userinput"><tt>net groupmap add ntgroup=&#8220;<span class="quote">Domain Admins</span>&#8221; UNIXgroup=domadm</tt></b>
 	</pre><p>
 	</p><p>
-		<a class="indexterm" name="id2914657"></a>
+		<a class="indexterm" name="id2914658"></a>
 		The quotes around &#8220;<span class="quote">Domain Admins</span>&#8221; are necessary due to the space in the group name.
 		Also make sure to leave no white-space surrounding the equal character (=).
 		</p></li></ol></div><p>
@@ -109,7 +109,7 @@
 	you are using. Future versions of the tools may perform the verification automatically,
 	but for now the burden is on you.
 	</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2914745"></a>Default Users, Groups and Relative Identifiers</h3></div></div><div></div></div><p>
-<a class="indexterm" name="id2914756"></a>
+<a class="indexterm" name="id2914757"></a>
 <a class="indexterm" name="id2914767"></a>
 	When first installed, Microsoft Windows NT4/200x/XP are preconfigured with certain User, Group, and
 	Alias entities. Each has a well-known Relative Identifier (RID). These must be preserved for continued
@@ -204,7 +204,7 @@ it is imperative that every step of automated control scripts must be carefully 
 manually before putting them into active service.
 </p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2915739"></a>Adding Groups Fails</h3></div></div><div></div></div><p>
 		This is a common problem when the <b class="command">groupadd</b> is called directly
-		by the Samba interface script for the <a class="indexterm" name="id2915758"></a><i class="parameter"><tt>add group script</tt></i> in
+		by the Samba interface script for the <a class="indexterm" name="id2915759"></a><i class="parameter"><tt>add group script</tt></i> in
 		the <tt class="filename">smb.conf</tt> file.
 		</p><p>
 		The most common cause of failure is an attempt to add an MS Windows group account
