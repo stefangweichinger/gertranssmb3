@@ -56,19 +56,19 @@ korrupte Daten-Transfers mit Samba auftreten.
 </para>
 
 <para>
-The patch you need is UOD385 Connection Drivers SLS. It is available from
-SCO (<ulink noescape="1" url="ftp://ftp.sco.com/">ftp.sco.com</ulink>, directory SLS,
-files uod385a.Z and uod385a.ltr.Z).
+Der Patch, den Sie brauchen, ist "UOD385 Connection Drivers SLS". Er ist verfügbar bei
+SCO (<ulink noescape="1" url="ftp://ftp.sco.com/">ftp.sco.com</ulink>, Verzeichnis SLS,
+Dateien uod385a.Z und uod385a.ltr.Z).
 </para>
 
 <para>
-The information provided here refers to an old version of SCO UNIX. If you require
-binaries for more recent SCO UNIX products, please contact SCO to obtain packages that are
-ready to install. You should also verify with SCO that your platform is up-to-date for the
-binary packages you will install. This is important if you wish to avoid data corruption
-problems with your installation. To build Samba for SCO UNIX products  may
-require significant patching of Samba source code. It is much easier to obtain binary
-packages directly from SCO.
+Die hier gegebene Information bezieht sich auf eine alte Version von SCO UNIX.
+Wenn Sie binaries für neuere SCO UNIX-Produkte brauchen, kontaktieren Sie bitte SCO, um
+installationsfähige Pakete zu beziehen. Sie sollten weiters mit SCO prüfen, ob Ihre
+Plattform up-to-date für die Pakete ist, die Sie installieren wollen. Dies ist wichtig,
+um Beschädigung von Daten durch die Installation zu vermeiden. Um Samba für 
+SCO UNIX-Produkte zu kompilieren, kann es notwendig sein, Samba maßgeblich zu patchen.
+Es ist deutlich einfacher, fertige binary-Pakete direkt von SCO zu beziehen.
 </para>
 
 </sect1>
@@ -77,21 +77,21 @@ packages directly from SCO.
 <title>DNIX</title>
 
 <para>
-DNIX has a problem with seteuid() and setegid(). These routines are
-needed for Samba to work correctly, but they were left out of the DNIX
-C library for some reason.
+DNIX hat ein Problem mit seteuid() und setegid(). Diese Routinen werden für korrekten
+Betrieb von Samba gebraucht, wurden aber in der DNIX-C-Library aus irgendeinem Grund
+weggelassen.
 </para>
 
 <para>
-For this reason Samba by default defines the macro NO_EID in the DNIX
-section of includes.h. This works around the problem in a limited way,
-but it is far from ideal, and some things still will not work right.
+Aus diesem Grund definiert Samba per default das Macro NO_EID im DNIX-Abschnitt von
+includes.h. Dies umgeht das Problem in eingeschränkter Weise, ist aber bei weitem nicht
+ideal, und einige Dinge werden nach wie vor nicht richtig arbeiten.
 </para>
 
 <para> 
-To fix the problem properly, you need to assemble the following two
-functions and then either add them to your C library or link them into
-Samba. Put the following in the file <filename>setegid.s</filename>:
+Um das Problem sauber zu lösen, müssen Sie die folgenden zwei Funktionen zusammenbauen,
+und sie dann entweder Ihrer C-Library hinzufügen, oder sie in Samba linken.
+Schreiben Sie folgendes in die Datei <filename>setegid.s</filename>:
 </para>
 
 <para><programlisting>
@@ -110,7 +110,7 @@ _setegid:
 </programlisting></para>
 
 <para>
-Put this in the file <filename>seteuid.s</filename>:
+Schreiben Sie folgendes in die Datei <filename>seteuid.s</filename>:
 </para>
 
 <para><programlisting>
@@ -129,7 +129,7 @@ _seteuid:
 </programlisting></para>
 
 <para>
-After creating the above files, you then assemble them using
+Nach dem Anlegen obiger Dateien, bauen Sie sie mittels
 </para>
 
 <screen>
@@ -138,13 +138,13 @@ After creating the above files, you then assemble them using
 </screen>
 
 <para>
-that should produce the files <filename>seteuid.o</filename> and 
-<filename>setegid.o</filename>
+zusammen, was die Dateien <filename>seteuid.o</filename> und 
+<filename>setegid.o</filename> anlegt.
 </para>
 
 <para>
-Then you need to add these to the LIBSM line in the DNIX section of
-the Samba Makefile. Your LIBSM line will then look something like this:
+Dann müssen Sie diese zur LIBSM-Zeile im DNIX-Abschnitt des Samba-Makefiles
+hinzufügen. Ihre LIBSM-Zeile wird dann ungefähr so aussehen:
 </para>
 
 <para><programlisting>
@@ -152,14 +152,14 @@ LIBSM = setegid.o seteuid.o -ln
 </programlisting></para>
 
 <para> 
-You should then remove the line:
+Sie sollten dann diese Zeile 
 </para>
 
 <para><programlisting>
 #define NO_EID
 </programlisting></para>
 
-<para>from the DNIX section of <filename>includes.h</filename>.</para>
+<para>aus dem DNIX-Abschnitt von <filename>includes.h</filename> entfernen.</para>
 
 </sect1>
 
@@ -167,34 +167,34 @@ You should then remove the line:
 <title>Red Hat Linux</title>
 
 <para>
-By default during installation, some versions of Red Hat Linux add an
-entry to <filename>/etc/hosts</filename> as follows:
+Per Standard fügen manche Versionen von Red Hat Linux bei der Installation einen
+Eintrag zu <filename>/etc/hosts</filename> hinzu, wie folgt:
 <programlisting>
 	127.0.0.1 loopback "hostname"."domainname"
 </programlisting>
 </para>
 	
 <para>
-This causes Samba to loop back onto the loopback interface.
-The result is that Samba fails to communicate correctly with
-the world and therefore may fail to correctly negotiate who
-is the master browse list holder and who is the master browser.
+Dies veranlaßt Samba, auf das loopback-Interface zurück zu "loopen".
+Das Ergebnis ist, daß Samba nicht mehr korrekt kommuniziert, und dadurch daran
+scheitern kann, den Master Browser und den Verwalter der Master Browse List zu
+bestimmen.
 </para>
 
 <para>
-Corrective Action: Delete the entry after the word "loopback"
-in the line starting 127.0.0.1.
+Korrektur-Maßnahme: Löschen Sie den Eintrag nach dem Wort "loopback" in der Zeile,
+die mit 127.0.0.1 beginnt.
 </para>
 </sect1>
 
 <sect1>
 <title>AIX</title>
 <sect2>
-<title>Sequential Read Ahead</title>
+<title>Sequenzieller Read Ahead</title>
 <!-- From an email by William Jojo <jojowil@hvcc.edu> -->
 <para>
-Disabling Sequential Read Ahead using <userinput>vmtune -r 0</userinput> improves 
-Samba performance significantly.
+Das Deaktivieren von "Sequential Read Ahead" mit <userinput>vmtune -r 0</userinput>
+steigert die Performance von Samba deutlich.
 </para>
 </sect2>
 </sect1>
@@ -203,42 +203,44 @@ Samba performance significantly.
 <title>Solaris</title>
 
 <sect2>
-<title>Locking Improvements</title>
+<title>Verbesserungen beim Locking</title>
 
-<para>Some people have been experiencing problems with F_SETLKW64/fcntl 
-when running Samba on Solaris. The built-in file locking mechanism was
-not scalable. Performance would degrade to the point where processes would
-get into loops of trying to lock a file. It would try a lock, then fail,
-then try again. The lock attempt was failing before the grant was
-occurring. So the visible manifestation of this would be a handful of
-processes stealing all of the CPU, and when they were trussed they would
-be stuck if F_SETLKW64 loops.
+<para>
+Manche haben Probleme mit F_SETLKW64/fcntl erlebt, wenn sie Samba unter Solaris
+betrieben haben. Der eingebaute Datei-Sperr-Mechanismus war nicht skalierbar.
+Die Performance ging runter bis zum dem Punkt, an dem Prozesse beim Versuch,
+eine Datei zu sperren, in Loops gerieten. Der Prozess versuchte zu sperren,
+scheiterte, versuchte es wieder. Der Sperr-Versuch scheiterte, bevor die Sperre
+erlaubt wurde. Die sichtbare Manifestation dessen waren ein paar Prozesse, die
+die CPU in Beschlag nahmen, und wenn diese gebunden wurden, blieben sie stecken,
+wenn F_SETLKW64 loopte.
 </para>
 
 <para>
-Sun released patches for Solaris 2.6, 8, and 9. The patch for Solaris 7
-has not been released yet.
+Sun hat Patches für Solaris 2.6, 8, und 9 veröffentlicht. Der Patch für Solaris 7
+wurde noch nicht veröffentlicht.
 </para>
 
 <para>
-The patch revision for 2.6 is 105181-34, for 8 is 108528-19 and for 9 is 112233-04.
+Die Patch-Revision für 2.6 ist 105181-34, für 8 ist sie 108528-19 und für 9 ist sie
+112233-04.
 </para>
 
 <para>
-After the install of these patches, it is recommended to reconfigure
-and rebuild Samba.
+Nach der Installation dieser Patches ist es zu empfehlen, Samba zu rekonfigurieren und
+zu rekompilieren.
 </para>
 
-<para>Thanks to Joe Meslovich for reporting this.</para>
+<para>Dank an Joe Meslovich für den Hinweis auf diese Patches.</para>
 
 </sect2>
 
 <sect2 id="winbind-solaris9">
-<title>Winbind on Solaris 9</title>
+<title>Winbind auf Solaris 9</title>
 <para>
-Nsswitch on Solaris 9 refuses to use the Winbind NSS module. This behavior
-is fixed by Sun in patch 113476-05, which as of March 2003, is not in any
-roll-up packages.
+Nsswitch in Solaris 9 verweigert die Benutzung des Winbind-NSS-Moduls. Dieses
+Verhalten wurde von Sun im Patch 113476-05 bereinigt, welcher, da er vom März 2003
+stammt, in keinen Roll-up-Paketen enthalten ist.
 </para>
 </sect2>
 </sect1>
