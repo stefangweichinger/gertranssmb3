@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 33. Die Samba Checkliste</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="troubleshooting.html" title="Part V. Troubleshooting"><link rel="previous" href="troubleshooting.html" title="Part V. Troubleshooting"><link rel="next" href="problems.html" title="Chapter 34. Analyse und Lösung von Problemen mit Samba"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 33. Die Samba Checkliste</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="troubleshooting.html">Prev</a> </td><th width="60%" align="center">Part V. Troubleshooting</th><td width="20%" align="right"> <a accesskey="n" href="problems.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="diagnosis"></a>Chapter 33. Die Samba Checkliste</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Andrew</span> <span class="surname">Tridgell</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:tridge@samba.org">tridge@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Jelmer</span> <span class="othername">R.</span> <span class="surname">Vernooij</span></h3><div class="affiliation"><span class="orgname">The Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jelmer@samba.org">jelmer@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Dan</span> <span class="surname">Shearer</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:dan@samba.org">dan@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Thomas</span> <span class="othername"></span> <span class="surname">Reiss</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:thomas@mypoint.franken.de">thomas@mypoint.franken.de</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">Wed Jan 15</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="diagnosis.html#id2977232">Einleitung</a></dt><dt><a href="diagnosis.html#id2977285">Vorwort</a></dt><dt><a href="diagnosis.html#id2977536">Die Tests</a></dt></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2977232"></a>Einleitung</h2></div></div><div></div></div><p>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 33. Die Samba Checkliste</title><link rel="stylesheet" href="samba.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.61.3"><link rel="home" href="index.html" title="Samba HOWTO Collection"><link rel="up" href="troubleshooting.html" title="Part V. Troubleshooting"><link rel="previous" href="troubleshooting.html" title="Part V. Troubleshooting"><link rel="next" href="problems.html" title="Chapter 34. Analyse und Lösung von Problemen mit Samba"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 33. Die Samba Checkliste</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="troubleshooting.html">Prev</a> </td><th width="60%" align="center">Part V. Troubleshooting</th><td width="20%" align="right"> <a accesskey="n" href="problems.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="diagnosis"></a>Chapter 33. Die Samba Checkliste</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Andrew</span> <span class="surname">Tridgell</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:tridge@samba.org">tridge@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Jelmer</span> <span class="othername">R.</span> <span class="surname">Vernooij</span></h3><div class="affiliation"><span class="orgname">The Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:jelmer@samba.org">jelmer@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Dan</span> <span class="surname">Shearer</span></h3><div class="affiliation"><span class="orgname">Samba Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:dan@samba.org">dan@samba.org</a>&gt;</tt></p></div></div></div></div><div><div class="author"><h3 class="author"><span class="firstname">Thomas</span> <span class="othername"></span> <span class="surname">Reiss</span></h3><span class="contrib">Deutsche Übersetzung</span><div class="affiliation"><span class="orgname">German Samba-3-Docs-Translation Team<br></span><div class="address"><p><tt class="email">&lt;<a href="mailto:thomas@mypoint.franken.de">thomas@mypoint.franken.de</a>&gt;</tt></p></div></div></div></div><div><p class="pubdate">Wed Jan 15</p></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="diagnosis.html#id2979844">Einleitung</a></dt><dt><a href="diagnosis.html#id2979898">Vorwort</a></dt><dt><a href="diagnosis.html#id2980150">Die Tests</a></dt></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2979844"></a>Einleitung</h2></div></div><div></div></div><p>
 Dieses Dokument beschreibt eine Reihe von Tests zur Überprüfung Ihres
 Samba-Servers. Wenn bei den Tests Probleme festgestellt werden, bietet
 es ferner Informationen über die möglichen Fehlerursachen.
@@ -16,7 +16,7 @@ Wenn Sie eine E-Mail an eine der Samba-Mailing-Listen mit dem Inhalt
 &#8220;<span class="quote">Es funktioniert nicht</span>&#8221; schicken, ohne diese Tests
 durchgeführt zu haben, so wundern Sie sich bitte nicht, wenn Ihre E-Mail
 ingoriert wird.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2977285"></a>Vorwort</h2></div></div><div></div></div><p>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2979898"></a>Vorwort</h2></div></div><div></div></div><p>
 In allen Tests wird davon ausgegangen, dass Sie einen Samba-Server
 BIGSERVER und einen PC ACLIENT haben, welche sich in der Arbeitsgruppe
 TESTGROUP befinden.
@@ -45,7 +45,7 @@ Sollten Sie keinen DNS-Server einsetzen, überprüfen Sie, ob ihre
 <tt class="filename">smb.conf</tt> die Zeile <b class="command">dns proxy = no</b> enthält.
 Der beste Weg, das zu überprüfen, ist der Befehl <b class="command">testparm smb.conf</b>.
 </p><p>
-<a class="indexterm" name="id2977453"></a>
+<a class="indexterm" name="id2980067"></a>
 Es ist hilfreich, während der Tests die Log-Dateien in einem separatem
 Konsolenfenster (mittels ctrl-alt-F1 bis F6 oder mehrere Fenster in X)
 mittels <b class="command">tail -F log_file_name</b> zu überwachen.
@@ -57,8 +57,8 @@ oder evtl. auch in <tt class="filename">/var/log/samba</tt>, je nachdem wie Sie 
 </p><p>
 Sollten Sie während der Tests Änderungen an der <tt class="filename">smb.conf</tt> durchführen,
 vergessen Sie bitte nicht, <span class="application">smbd</span> und <span class="application">nmbd</span> neu zu starten.
-</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2977536"></a>Die Tests</h2></div></div><div></div></div><div class="procedure"><p class="title"><b>Procedure 33.1. Diagnose Ihres Samba-Servers</b></p><ol type="1"><li><p>
-<a class="indexterm" name="id2977560"></a>
+</p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2980150"></a>Die Tests</h2></div></div><div></div></div><div class="procedure"><p class="title"><b>Procedure 33.1. Diagnose Ihres Samba-Servers</b></p><ol type="1"><li><p>
+<a class="indexterm" name="id2980174"></a>
 Rufen Sie im Verzeichnis Ihrer <tt class="filename">smb.conf</tt> 
 den Befehl <b class="command">testparm smb.conf</b> auf. Werden Fehler
 angezeigt, ist Ihre <tt class="filename">smb.conf</tt> nicht in Ordnung.
@@ -146,8 +146,8 @@ Haben Sie diesen als Dämon installiert, überprüfen Sie mit
 <b class="command">netstat -a</b> ob dieser gestartet ist und das 
 der netbios-ssn Port den Status LISTEN hat.
 </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
-<a class="indexterm" name="id2977922"></a>
-<a class="indexterm" name="id2977931"></a>
+<a class="indexterm" name="id2980536"></a>
+<a class="indexterm" name="id2980544"></a>
 Einige UNIX/Linux System verwenden <b class="command">xinetd</b> anstelle
 von <b class="command">inetd</b>. Lesen Sie in Ihrer System-Dokumentation
 die Infos über die entsprechende Implementation Ihres Netzwerk-Super-Dämons nach.
@@ -175,9 +175,9 @@ Um das Problem zu lösen, ändern Sie die folgenden Zeilen in <a href="diagnosis.h
 </p><p>
 </p><div class="example"><a name="modif2"></a><p class="title"><b>Example 33.3. Konfiguration für erlaubte Verbindungen eines bestimmten Subnetzes und vom localhost</b></p><table class="simplelist" border="0" summary="Simple list"><tr><td> </td></tr><tr><td><i class="parameter"><tt>[globals]</tt></i></td></tr><tr><td>...</td></tr><tr><td><i class="parameter"><tt>hosts deny = ALL</tt></i></td></tr><tr><td><i class="parameter"><tt>hosts allow = xxx.xxx.xxx.xxx/yy 127.</tt></i></td></tr><tr><td><i class="parameter"><tt>interfaces = eth0 lo</tt></i></td></tr><tr><td>...</td></tr></table></div><p>
 </p><p>
-<a class="indexterm" name="id2978202"></a>
+<a class="indexterm" name="id2980816"></a>
 Eine weitere oft vorkommende Ursache dieser 2 Fehlermeldungen ist ein
-bereits laufender <a class="indexterm" name="id2978212"></a> an
+bereits laufender <a class="indexterm" name="id2980826"></a> an
 port <tt class="constant">139</tt>, etwa ein durch <span class="application">inetd</span> 
 gestarteter Samba-Dämon <span class="application">smbd</span> oder etwas vergleichbares wie 
 Digital's Pathworks. Überprüfen Sie daher vor dem Start von <span class="application">smbd</span> als
@@ -224,7 +224,7 @@ erscheinen, dann erkennt nmblookup über seinen Automatismus nicht die
 korrekte Broadcast-Adresse.
 In diesem Fall sollten Sie mit manuellen Eingriffen für die IP-Adresse,
 Broadcast und Netzwerkmaske in <tt class="filename">smb.conf</tt> bei der
-<a class="indexterm" name="id2978432"></a><i class="parameter"><tt>interfaces</tt></i>-Option experimentieren.
+<a class="indexterm" name="id2981045"></a><i class="parameter"><tt>interfaces</tt></i>-Option experimentieren.
 </p><p>
 Sind Ihr PC und Server in verschiedenen Subnetzen, benötigen Sie die
 <tt class="option">-B</tt>-Option, um die Broadcast-Adresse des PC-Netzwerkes zu
@@ -233,7 +233,7 @@ benutzen.
 Dieser Test kann möglicherweise fehlschlagen, wenn Ihre Subnetz-Maske
 und Broadcast-Adresse nicht korrekt sind. (Siehe vorherige Anmerkungen zu TEST 3).
 </p></li><li><p>
-<a class="indexterm" name="id2978480"></a>
+<a class="indexterm" name="id2981093"></a>
 Führen Sie folgenden Befehl aus:  <b class="command">smbclient //BIGSERVER/TMP</b>.
 Sie sollten nach einem Password gefragt werden. Verwenden Sie das Password
 Ihres aktuellen Accounts auf der Unix-Box. Möchten Sie den Test mit
@@ -257,14 +257,14 @@ könnte dies folgende Ursachen haben:
 	System), haben aber keinen Support dafür in <span class="application">smbd</span>
 	einkompiliert.
 	</p></li><li><p>
-	Ihr <a class="indexterm" name="id2978611"></a><i class="parameter"><tt>valid users</tt></i>
+	Ihr <a class="indexterm" name="id2981224"></a><i class="parameter"><tt>valid users</tt></i>
 	Eintrag ist nicht korrekt.
 	</p></li><li><p>
 	Sie verwenden Groß/Kleinschreibung im Passwort und haben die
-	<a class="indexterm" name="id2978636"></a><i class="parameter"><tt>password level</tt></i>-
+	<a class="indexterm" name="id2981250"></a><i class="parameter"><tt>password level</tt></i>-
 	Option nicht dementsprechend angepasst.
 	</p></li><li><p>
-	Der <a class="indexterm" name="id2978660"></a><i class="parameter"><tt>path</tt></i>-Eintrag in
+	Der <a class="indexterm" name="id2981273"></a><i class="parameter"><tt>path</tt></i>-Eintrag in
 	<tt class="filename">smb.conf</tt> ist falsch. Überprüfen Sie dies mittels <span class="application">testparm</span>.
 	</p></li><li><p>
 	Sie haben die Passwortverschlüsselung aktiviert, aber keine Unix-Benutzer
@@ -327,14 +327,14 @@ und die restlichen Einträge in <tt class="filename">smb.conf</tt> stimmen.
 Es ist auch möglich dass der Server nicht erkennen kann, unter welchem
 Namen Sie sich verbinden.
 Um das Problem zu erkennen, fügen Sie die Zeile
-<a class="indexterm" name="id2978996"></a><i class="parameter"><tt>user</tt></i> = username
+<a class="indexterm" name="id2981609"></a><i class="parameter"><tt>user</tt></i> = username
 in die <i class="parameter"><tt>[tmp]</tt></i> Sektion der <tt class="filename">smb.conf</tt>
 hinzu, wobei <i class="parameter"><tt>username</tt></i> der Benutzername zum
 eingegebenem Passwort sein muss. Wenn dass klappt, benötigen Sie die
 username mapping Option. 
 </p><p>
 Es ist auch möglich, dass Ihr Client nur verschlüsselte Passwörter
-versendet, aber Sie haben den Eintrag <a class="indexterm" name="id2979039"></a><i class="parameter"><tt>encrypt
+versendet, aber Sie haben den Eintrag <a class="indexterm" name="id2981653"></a><i class="parameter"><tt>encrypt
 passwords</tt></i> = no in der <tt class="filename">smb.conf</tt>
 stehen.
 Ändern Sie diesen auf "yes", um das Problem zu beheben.
@@ -348,7 +348,7 @@ Wenn nicht, dann ist der Auswahlprozess des Masterbrowsers fehlgeschlagen.
 Warten Sie evtl. noch ein paar Minuten und versuchen Sie es dann nochmal, um zu sehen, ob
 es nur etwas langsam ist. Klappt es dann immer noch nicht, werfen Sie
 einen Blick auf die browsing-Optionen in der <tt class="filename">smb.conf</tt>.
-Stellen Sie sicher, dass Sie <a class="indexterm" name="id2979116"></a><i class="parameter"><tt>preferred master</tt></i> = yes
+Stellen Sie sicher, dass Sie <a class="indexterm" name="id2981729"></a><i class="parameter"><tt>preferred master</tt></i> = yes
 eingetragen haben, damit beim Starten eine Wahl des Masterbrowsers
 durchgeführt wird.
 </p></li><li><p>
@@ -362,10 +362,10 @@ verwenden Sie möglicherweiße Windows NT, denn das öffnet keinen Server, der
 keine verschlüsselten Passwörter unterstützt und sich im User Level Security
 Mode befindet.
 In diesem Fall tragen Sie 
-<a class="indexterm" name="id2979174"></a><i class="parameter"><tt>security</tt></i> = server
+<a class="indexterm" name="id2981788"></a><i class="parameter"><tt>security</tt></i> = server
 und 
-<a class="indexterm" name="id2979188"></a><i class="parameter"><tt>password server</tt></i> = Windows_NT_Machine
+<a class="indexterm" name="id2981802"></a><i class="parameter"><tt>password server</tt></i> = Windows_NT_Machine
 in Ihre <tt class="filename">smb.conf</tt> ein oder stellen Sie sicher, dass
-<a class="indexterm" name="id2979210"></a><i class="parameter"><tt>encrypt passwords</tt></i> auf
+<a class="indexterm" name="id2981824"></a><i class="parameter"><tt>encrypt passwords</tt></i> auf
 &#8220;<span class="quote">yes</span>&#8221; steht.
 </p></li></ol></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="troubleshooting.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="troubleshooting.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="problems.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Part V. Troubleshooting </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 34. Analyse und Lösung von Problemen mit Samba</td></tr></table></div></body></html>
