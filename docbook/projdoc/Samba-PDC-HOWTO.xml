@@ -6,7 +6,7 @@
 	&author.jerry;
 	&author.dbannon;
 	<author>&person.gd; <contrib>LDAP updates</contrib></author>
-	<author>&author.sgw;</author>
+	<author>&person.sgw;<contrib>German Translation</contrib></author>
 </chapterinfo>
 
 <title>Die Kontrolle über eine Domäne</title>
@@ -14,12 +14,13 @@
 <para>
 Viele nähern sich der Thematik der MS-Windows-Netzwerke mit falschen Vorstellungen.
 Das ist ok so, weil es uns anderen viele Möglichkeiten dazu gibt, Hilfe zu geben.
-Diejenigen, die wirklich helfen wollen, sind gut beraten, sich mit der bereits vorhandenen Information und Dokumentation vertraut zu machen.
+Diejenigen, die wirklich helfen wollen, sind gut beraten, sich mit der bereits 
+vorhandenen Information und Dokumentation vertraut zu machen.
 </para>
 
 <para>
 Der Leser ist gut beraten, diesen Abschnitt der Samba-Dokumentation gar nicht erst anzugehen, solange er nicht einige Grundlagen beherrscht. MS-Windows-Netzwerke sind nicht gerade tolerant gegenüber Fehl-Konfigurationen. Anwender von MS-Windows-Netzwerken beschweren sich oft über dauernde Unannehmlichkeiten infolge "kaputter" Netzwerk-Konfigurationen.
-Für viele jedoch beginnt die Arbeit mit MS-Windows-Netzwerken mit einem Domänen-Controller, von dem erwartet wird, daß er auf irgendeine magische Art alle Netzwerk-Probleme lösen wird.
+Für viele jedoch beginnt die Arbeit mit MS-Windows-Netzwerken mit einem Domänen-Controller, von dem erwartet wird, daß er auf irgendeine magische Art alle Netzwerk-Probleme lösen kann.
 </para>
 
 <para>
@@ -37,7 +38,7 @@ Das Diagramm in <link linkend="domain-example"/> zeigt eine klassische Umgebung 
 <?latex \newpage ?>
 
 <para>
-In der Samba mailing list kann man leicht viele weit verbreitete Netzwerk-Themen erkennen.
+In der Samba-mailing-list kann man leicht viele weit verbreitete Netzwerk-Themen erkennen.
 Wenn Sie mit den folgenden Themen nicht vertraut sind, wird es helfen, die entsprechenden Abschnitte dieses HOWTOs zu lesen. Dies sind die häufigsten Ursachen für Probleme mit MS-Windows-Netzwerken:
 </para>
 
@@ -47,7 +48,7 @@ Wenn Sie mit den folgenden Themen nicht vertraut sind, wird es helfen, die entsp
 	<listitem><para>Authentifizierungs-Konfiguration.</para></listitem>
 	<listitem><para>Benutzer- und Gruppen-Konfiguration.</para></listitem>
 	<listitem><para>Grundlegende Datei- und Verzeichnis-Rechte in UNIX/Linux.</para></listitem>
-	<listitem><para>Verstehen wie MS-Windows-Clients in einer Netzwerkumgebung zusammenarbeiten.</para></listitem>
+	<listitem><para>Verstehen, wie MS-Windows-Clients in einer Netzwerkumgebung zusammenarbeiten.</para></listitem>
 </itemizedlist>
 
 <para>
@@ -66,12 +67,12 @@ Lernen Sie in einem Test-Netzwerk.
 
 <para>
 <indexterm><primary>Domänen-Sicherheit</primary></indexterm>
-<emphasis>Was ist der Hauptnutzen von Microsoft-Domänen-Sicherheit ?</emphasis>
+<emphasis>Was ist der Hauptnutzen von Microsoft-Domänen-Sicherheit?</emphasis>
 </para>
 
 <para>
-In einem Wort, <emphasis>Single Sign On</emphasis>, oder noch kürzer SSO.
-Für viele ist dies der "Heilige Gral" des Windows-NT-Netzwerks und darüber hinaus. SSO erlaubt Benutzern eines gut angelegten Netzwerks, sich auf jeder Workstation anzumelden, die Mitglied jener Domäne ist, zu der ihr Benutzer-Konto gehört (bzw. auf einer Workstation, die Mitglied einer Domäne ist, die ein geeignetes Vertrauensverhältnis zur eigenen Domäne hat). Dadurch können sie sich am Netzwerk anmelden und auf dessen Resourcen zugreifen (Freigaben, Dateien und Drucker) als ob sie an ihrem Stamm-Rechner sitzen würden. Dies ist ein Merkmal des Domänen-Sicherheits-Protokolls.
+In einem Wort, <emphasis>Single Sign On</emphasis>, oder noch kürzer, SSO.
+Für viele ist dies der "Heilige Gral" des Windows-NT-Netzwerks und darüber hinaus. SSO erlaubt Benutzern eines gut konzipierten Netzwerks, sich auf jeder Workstation anzumelden, die Mitglied jener Domäne ist, zu der ihr Benutzer-Konto gehört (bzw. auf einer Workstation, die Mitglied einer Domäne ist, die ein geeignetes Vertrauensverhältnis zur eigenen Domäne hat). Dadurch können sie sich am Netzwerk anmelden und auf dessen Resourcen zugreifen (Freigaben, Dateien und Drucker) als ob sie an ihrem Stamm-Rechner sitzen würden. Dies ist ein Merkmal des Domänen-Sicherheits-Protokolls.
 </para>
 
 <para>
