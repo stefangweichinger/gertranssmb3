@@ -1396,19 +1396,16 @@ Controllern auf NT4 Basis.
 
 <para>
 Wenn Sie ADS benutzen und mit Samba 3 starten k&#xF6;nnen Sie der ADS als normales
-Active Directory Mitglied beitreten.
-
-If you are using Active Directory, starting with Samba-3 you can
-join as a native AD member. Why would you want to do that?
-Your security policy might prohibit the use of NT-compatible
-authentication protocols. All your machines are running Windows 2000
-and above and all use Kerberos. In this case Samba as an NT4-style
-domain would still require NT-compatible authentication data. Samba in
-AD-member mode can accept Kerberos tickets.
+Active Directory Mitglied beitreten. Warum Sie das tun sollten? Ihre
+Sicherheitsrichtlinien k&#xF6;nnten die NT kompatibilen Authentifizierungsprotokolle
+schlichtweg verweigern. Wenn alle Server in ihrem Netzwerk Windows 2000 und h&#xF6;her
+nutzen w&#xFC;rde Samba als NT4-artiges Dom&#xE4;nen Mitglied NT-kompatibele
+Authentifizierungsdaten ben&#xF6;tigen. Samba im AD-Mitglieds modus allerdings kann auch
+Kerberos Tickets auswerten.
 </para>
 
 <sect3>
-<title>Example Configuration</title>
+<title>Beispiel Konfiguration</title>
 
 <para><simplelist>
 <member><parameter>realm = your.kerberos.REALM</parameter></member>
@@ -1416,7 +1413,7 @@ AD-member mode can accept Kerberos tickets.
 </simplelist></para>
 
 <para>
-The following parameter may be required:
+Folgende Parameter w&#xFC;rden ben&#xF6;tigt:
 </para>
 
 <para><simplelist>
@@ -1424,8 +1421,9 @@ The following parameter may be required:
 </simplelist></para>
 
 <para>
-Please refer to <link linkend="domain-member"/> and <link linkend="ads-member"/>
-for more information regarding this configuration option.
+F&#xFC;r weitere Informationen zu dieser Konfigurationsoption lesen Sie bitte unter
+<link linkend="domain-member">Dom&#xE4;nen-Mitglied</link> und <link linkend="ads-member">ADS-Mitglied</link>
+weiter.
 </para>
 
 </sect3>
@@ -1435,47 +1433,49 @@ for more information regarding this configuration option.
 <title>Server Security (User Level Security)</title>
 
 <para>
-Server Security Mode is left over from the time when Samba was not capable of acting
-as a Domain Member server. It is highly recommended not to use this feature. Server
-security mode has many drawbacks that include:
+Der Server Security Modus ist noch aus den Zeiten in denen Samba nicht als Dom&#xE4;nen-Mitglied
+betrieben werden konnte &#xFC;brig geblieben. Sie sollten diesen Modus nicht verwenden da er
+viele Nachteile mit sich bringt. Zum Beispiel:
 </para>
 
 <itemizedlist>
-	<listitem><para>Potential Account Lockout on MS Windows NT4/200x password servers.</para></listitem>
-	<listitem><para>Lack of assurance that the password server is the one specified.</para></listitem>
-	<listitem><para>Does not work with Winbind, which is particularly needed when storing profiles remotely.</para></listitem>
-	<listitem><para>This mode may open connections to the password server, and keep them open for extended periods.</para></listitem>
-	<listitem><para>Security on the Samba server breaks badly when the remote password server suddenly shuts down.</para></listitem>
-	<listitem><para>With this mode there is NO security account in the domain that the password server belongs to for the Samba server.</para></listitem>
+	<listitem><para>Potentielle Account sperren auf MS Windows NT4/200x Passwort Servern.</para></listitem>
+	<listitem><para>Sicherheitsl&#xFC;cke das der Passwortserver der Konfiguriert ist nicht der ist den man wirklich nutzen m&#xF6;chte.</para></listitem>
+	<listitem><para>Funktioniert nicht mit Winbind, was n&#xF6;tig ist um Profile auf entfernten Systemem zu speichern.</para></listitem>
+	<listitem><para>Dieser Modus &#xF6;ffnet Verbindungen zum Passwortserver und h&#xE4;lt diese offen.</para></listitem>
+	<listitem><para>Die Sicherheit des Samba Servers bricht auf's schlimmste zusammen, wenn der Passwort Server mittendrin abgeschaltet werden sollte.</para></listitem>
+	<listitem><para>In diesem Modus gibt es KEINEN Sicherheits Account in der Dom&#xE4;ne um sicherzustellen, dass der Passwortserver der von Samba befragt wird auch zur Dom&#xE4;ne geh&#xF6;rt.</para></listitem>
 </itemizedlist>
 
 <para>
-In Server Security Mode the Samba server reports to the client that it is in User Level
-security. The client then does a session setup as described earlier.
-The Samba server takes the username/password that the client sends and attempts to login to the
-<indexterm><primary>password server</primary></indexterm><parameter moreinfo="none">password server</parameter> by sending exactly the same username/password that
-it got from the client. If that server is in User Level Security and accepts the password,
-then Samba accepts the client's connection. This allows the Samba server to use another SMB
-server as the <indexterm><primary>password server</primary></indexterm><parameter moreinfo="none">password server</parameter>.
+Im Server Sicherheits Modus gibt der Samba Server dem Client vor im User Level Sicherheitsmodus
+zu aggieren und der Client schickt daraufhin ein session setup wie zuvor beschrieben.
+Der Samba Server nimmt nun den Benutzernamen und das Passwort des Clients und schickt diese Daten
+exakt so wie er sie bekommen hat weiter zum <indexterm><primary>password server</primary></indexterm><parameter moreinfo="none">password server</parameter>.
+Wenn dieser Passwort Server mit den Account Daten einverstanden ist und als User Level Sicherheit
+betrieben wird akkzeptiert der Samba Server die Client Verbindung. Dies erlaubt dem Samba Server
+einen anderen SMB Server als <indexterm><primary>password server</primary></indexterm><parameter moreinfo="none">password server</parameter> zu nutzen.
 </para>
 
 <para>
-You should also note that at the start of all this where the server tells the client
-what security level it is in, it also tells the client if it supports encryption. If it
-does, it supplies the client with a random cryptkey. The client will then send all
-passwords in encrypted form. Samba supports this type of encryption by default.
+Sie sollten wissen, dass am Anfang all dessen der Server dem Client auch mitteilt ob
+eine Verschl&#xFC;sselung der Daten stattfinden soll, wenn dies auf dem Samba Server konfiguriert ist
+sende der Server dem Client einen Kryptischen Schl&#xFC;ssel mit dem dann die Daten vom Client
+verschl&#xFC;sselt werden. Samba unterst&#xFC;tzt diese Verschl&#xFC;sselung als Standard.
 </para>
 
 <para>
-The parameter <indexterm><primary>security</primary></indexterm><parameter moreinfo="none">security</parameter> = server means that Samba reports to clients that
-it is running in <emphasis>user mode</emphasis> but actually passes off all authentication
-requests to another <emphasis>user mode</emphasis> server. This requires an additional
-parameter <indexterm><primary>password server</primary></indexterm><parameter moreinfo="none">password server</parameter> that points to the real authentication server.
-The real authentication server can be another Samba server, or it can be a Windows NT server,
-the latter being natively capable of encrypted password support.
+Der Parameter <indexterm><primary>security</primary></indexterm><parameter moreinfo="none">security</parameter> = server
+bedeutet, dass der Samba Server den Clients mitteilt das er im <emphasis>user modus</emphasis> betrieben
+wird aber alle Passwort anfragen an einen anderen <emphasis>user modus</emphasis> Server
+weiterleitet. Hierzu ben&#xF6;tigt man einen weiteren Parameter <indexterm><primary>password
+server</primary></indexterm><parameter moreinfo="none">password
+server</parameter> der auf den echten Authentifizierungs Server verweist.
+Dieser Passwort Server kann ein anderer Samba Server oder ein Windows NT Server sein.
 </para>
 
 <note><para>
+
 When Samba is running in <emphasis>Server Security Mode</emphasis> it is essential that
 the parameter <emphasis>password server</emphasis> is set to the precise NetBIOS machine
 name of the target authentication server. Samba cannot determine this from NetBIOS name
@@ -2171,30 +2171,27 @@ Kurz gesagt, Samba-3 ist nicht NT4, Samba-3 ist nicht Windows Server 200x, Samba
 Wir hoffen, da&#xDF; dies kurz und einfach genug ist, um f&#xFC;r alle verst&#xE4;ndlich zu sein.
 </para>
 
-sgw---workmark
-
 </sect1>
 
 <sect1>
-<title>Domain and Network Logon Configuration</title>
+<title>Konfiguration von Dom&#xE4;nen- und Netzwerk-Anmeldung</title>
 
 <para>
-The subject of Network or Domain Logons is discussed here because it forms
-an integral part of the essential functionality that is provided by a Domain Controller.
+Das Thema der Dom&#xE4;nen- oder Netzwerk-Anmeldungen wird hier diskutiert, weil es einen integralen Teil
+der essentiellen Funktionen eines Dom&#xE4;nen-Controllers darstellt.
 </para>
 
 <sect2>
-<title>Domain Network Logon Service</title>
+<title>Dom&#xE4;nen-Netzwerks-Anmelde-Dienst</title>
 
 <para>
-All Domain Controllers must run the netlogon service (<emphasis>domain logons</emphasis>
-in Samba). One Domain Controller must be configured with <indexterm><primary>domain master</primary></indexterm><parameter moreinfo="none">domain master</parameter> = Yes
-(the Primary Domain Controller); on all Backup Domain Controllers <indexterm><primary>domain master</primary></indexterm><parameter moreinfo="none">domain master</parameter> = No
-must be set.
+Alle Dom&#xE4;nen-Controller m&#xFC;ssen den netlogon-Dienst ausf&#xFC;hren (<emphasis>domain logons</emphasis> in Samba).
+Ein Dom&#xE4;nen-Controller mu&#xDF; mit <indexterm><primary>domain master</primary></indexterm><parameter moreinfo="none">domain master</parameter> = Yes
+konfiguriert werden (der PDC); auf allen BDCs mu&#xDF; <indexterm><primary>domain master</primary></indexterm><parameter moreinfo="none">domain master</parameter> = No gesetzt werden.
 </para>
 
 <sect3>
-<title>Example Configuration</title>
+<title>Beispiel einer Konfiguration</title>
 
 <example id="PDC-config"><title>smb.conf for being a PDC</title><simplelist>
 
@@ -2211,141 +2208,142 @@ must be set.
 
 </sect3>
 <sect3>
-<title>The Special Case of MS Windows XP Home Edition</title>
+<title>Der spezielle Fall von MS Windows XP Home Edition</title>
 
 <para>
-To be completely clear: If you want MS Windows XP Home Edition to integrate with your
-MS Windows NT4 or Active Directory Domain Security, understand it cannot be done.
-The only option is to purchase the upgrade from MS Windows XP Home Edition to
-MS Windows XP Professional.
+Um es unmi&#xDF;verst&#xE4;ndlich auszudr&#xFC;cken:
+Wenn Sie MS Windows XP Home Edition in ihre MS Windows NT4- oder ADS-Dom&#xE4;ne integrieren wollen,
+m&#xFC;ssen Sie verstehen, da&#xDF; dies NICHT M&#xD6;GLICH ist. Die einzige M&#xF6;glichkeit ist der Erwerb eines
+Upgrades von MS Windows XP Home Edition auf MS Windows XP Professional.
 </para>
 
 <note><para>
-MS Windows XP Home Edition does not have the ability to join any type of Domain
-Security facility. Unlike MS Windows 9x/Me, MS Windows XP Home Edition also completely
-lacks the ability to log onto a network.
+MS Windows XP Home Edition hat keine F&#xE4;higkeiten, sich jeglicher Art von Dom&#xE4;ne anzuschliessen.
+Im Unterschied zu MS Windows 9x/Me fehlt MS Windows XP Home Edition auch v&#xF6;llig die F&#xE4;higkeit,
+sich an einem Netz anzumelden.
 </para></note>
 
 <para>
-Now that this has been said, please do not ask the mailing list or email any of the
-Samba Team members with your questions asking how to make this work. It can't be done.
-If it can be done, then to do so would violate your software license agreement with
-Microsoft, and we recommend that you do not do that.
+Nun, da dies ausgesprochen wurde, fragen Sie bitte NICHT auf der Samba-Mailing-Liste oder
+mailen Sie auch NICHT an die Mitglieder des Samba-Teams, um zu erfragen, wie dies machbar w&#xE4;re.
+Es ist NICHT M&#xD6;GLICH. Wenn es m&#xF6;glich ist, dann w&#xFC;rde es Ihr Software-Lizenz-Abkommen mit Microsoft
+verletzen, und wir empfehlen, dies NICHT zu tun.
 </para>
 
 </sect3>
 
 <sect3>
-<title>The Special Case of Windows 9x/Me</title>
+<title>Der spezielle Fall von Windows 9x/Me</title>
 
 <para>
-A domain and a workgroup are exactly the same in terms of network
-browsing. The difference is that a distributable authentication
-database is associated with a domain, for secure login access to a
-network. Also, different access rights can be granted to users if they
-successfully authenticate against a domain logon server. Samba-3 does this
-now in the same way as MS Windows NT/200x.
+Eine Dom&#xE4;ne und eine Arbeitsgruppe sind in den Begriffen des Netzwerk-Suchdienstes
+exakt dasselbe. Der Unterschied ist, da&#xDF; mit einer Dom&#xE4;ne eine verteilbare
+Anmelde-Datenbank verkn&#xFC;pft ist, f&#xFC;r sichere Anmeldungen an einem Netzwerk.
+Weiters k&#xF6;nnen andere Zugriffs-Berechtigungen an Benutzer vergeben werden, wenn
+sie sich erfolgreich an einem Dom&#xE4;nen-Anmeldungs-Server anmelden.
+Samba-3 tut dies nun in derselben Weise wie MS Windows NT/200x.
 </para>
 
 <para>
-The SMB client logging on to a domain has an expectation that every other
-server in the domain should accept the same authentication information.
-Network browsing functionality of domains and workgroups is identical and
-is explained in this documentation under the browsing discussions.
-It should be noted that browsing is totally orthogonal to logon support.
+Der SMB-Client, der sich an einer Dom&#xE4;ne anmeldet, hat die Erwartung, da&#xDF; jeder
+beliebige Server in der Dom&#xE4;ne dieselbe Anmelde-Information akzeptieren sollte.
+Die Netzwerk-Such-Funktionalit&#xE4;t von Dom&#xE4;nen und Arbeitsgruppen ist identisch und
+wird in dieser Dokumentation unter den Diskussionen zum Browsing erkl&#xE4;rt.
+Es sollte bemerkt werden, da&#xDF; Browsing sich v&#xF6;llig orthogonal zur Unterst&#xFC;tzung
+von Anmeldungen verh&#xE4;lt.
 </para>
 
 <para>
-Issues related to the single-logon network model are discussed in this
-section. Samba supports domain logons, network logon scripts and user
-profiles for MS Windows for workgroups and MS Windows 9X/ME clients,
-which are the focus of this section.
+Themen in Bezug auf das Single-Logon-Netzwerk-Modell werden in diesem Abschnitt
+behandelt. Samba unterst&#xFC;tzt Dom&#xE4;nen-Anmeldungen, Netzwerk-Anmelde-Skripts und
+Benutzerprofile f&#xFC;r MS Windows for Workgroups und MS Windows 9X/ME Clients, die
+im Mittelpunkt dieses Abschnitts stehen.
+</para>
+
+---sgw.workmark
+
+<para>
+Wenn ein SMB-Client sich in einer Dom&#xE4;ne anmelden will, sendet er Anfragen nach einem
+Anmelde-Server aus. Der erste, der antwortet, bekommt den Job, und &#xFC;berpr&#xFC;ft das 
+Passwort unter Verwendung jenes Mechanismus, den der Samba-Administrator installiert hat.
+Es ist m&#xF6;glich (aber nicht empfohlen), eine Dom&#xE4;ne anzulegen, in der die Benutzerdatenbank
+nicht von den Servern geteilt wird, d.h., sie sind effektiv Arbeitsgruppen-Server, die sich
+als Teilnehmer an einer Dom&#xE4;ne bewerben. Dies demonstriert, wie Authentifikation einerseits
+sehr unterschiedlich von Dom&#xE4;nen ist, andererseits aber eng mit ihnen verkn&#xFC;pft ist.
 </para>
 
 <para>
-When an SMB client in a domain wishes to logon, it broadcasts requests for a
-logon server. The first one to reply gets the job, and validates its
-password using whatever mechanism the Samba administrator has installed.
-It is possible (but ill advised ) to create a domain where the user
-database is not shared between servers, i.e., they are effectively workgroup
-servers advertising themselves as participating in a domain. This
-demonstrates how authentication is quite different from but closely
-involved with domains.
-</para>
-
-<para>
-Using these features you can make your clients verify their logon via
-the Samba server; make clients run a batch file when they logon to
-the network and download their preferences, desktop and start menu.
+Unter Verwendung dieser Eigenschaften k&#xF6;nnen Sie Ihre Clients ihre Anmeldung via
+Samba-Server &#xFC;berpr&#xFC;fen lassen, sie dazu veranlassen, bei der Netzwerkanmeldung
+ein Skript auszuf&#xFC;hren und ihre Einstellungen, Desktops und Startmen&#xFC;s herunterzuladen.
 </para>
 
 <para><emphasis>
-MS Windows XP Home edition is not able to join a domain and does not permit
-the use of domain logons.
+MS Windows XP Home edition ist nicht f&#xE4;hig, sich einer Dom&#xE4;ne anzuschliessen, und
+erlaubt keine Verwendung von Dom&#xE4;nenanmeldungen.
 </emphasis></para>
 
 <para>
-Before launching into the configuration instructions, it is
-worthwhile to look at how a Windows 9x/Me client performs a logon:
+Bevor wir mit den Konfigurations-Anleitungen beginnen, lohnt es sich, sich anzusehen,
+wie ein Windows 9x/Me-Client eine Anmeldung durchf&#xFC;hrt:
 </para>
 
 <orderedlist continuation="restarts" inheritnum="ignore">
 <listitem>
 	<para>
-	The client broadcasts (to the IP broadcast address of the subnet it is in)
-	a NetLogon request. This is sent to the NetBIOS name DOMAIN&lt;#1c&gt; at the
-	NetBIOS layer. The client chooses the first response it receives, which
-	contains the NetBIOS name of the logon server to use in the format of
-	<filename moreinfo="none">\\SERVER</filename>.
+	Der Client versendet mittels Broadcasts (an die IP-broadcast-Adresse des
+	Subnetzes, in dem er sich befindet) eine NetLogon-Anfrage. Diese wird an den 
+	NetBIOS-Namen DOM&#xC4;NE&lt;#1c&gt; auf dem NetBIOS-Layer gesandt. Der Client
+	w&#xE4;hlt die erste Antwort, die er erh&#xE4;lt, welche den NetBIOS-Namen des 
+	zu verwendenden Anmeldeservers im Format <filename moreinfo="none">\\SERVER</filename> enth&#xE4;lt.
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	The client connects to that server, logs on (does an SMBsessetupX) and
-	then connects to the IPC$ share (using an SMBtconX).
+	Der Client verbindet sich mit diesem Server, meldet sich an (f&#xFC;hrt ein SMBsessetupX aus)
+	und verbindet sich dann mit der IPC$-Freigabe (unter Verwendung eines SMBtconX).
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	The client does a NetWkstaUserLogon request, which retrieves the name
-	of the user's logon script.
+	Der Client f&#xFC;hrt eine Anfrage vom Typ NetWkstaUserLogon aus, welche den Namen des
+	Anmeldeskripts des Benutzers zur&#xFC;ckgibt.	
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	The client then connects to the NetLogon share and searches for said script.
-	If it is found and can be read, it is retrieved and executed by the client.
-	After this, the client disconnects from the NetLogon share.
+	Der Client verbindet sich dann mit der Netlogon-Freigabe und sucht nach dem angegebenen
+	Skript. Wenn es gefunden wird und gelesen werden kann, wird es geladen und vom Client
+	ausgef&#xFC;hrt. Danach trennt der Client die Verbindung mit der Netlogon-Freigabe.
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	The client sends a NetUserGetInfo request to the server to retrieve
-	the user's home share, which is used to search for profiles. Since the
-	response to the NetUserGetInfo request does not contain much more than
-	the user's home share, profiles for Windows 9x clients must reside in the user
-	home directory.
+	Der Client sendet eine Anfrage vom Typ NetUserGetInfo an den Server, um die Home-Freigabe
+	des Benutzers zu erhalten, welche dazu benutzt wird, um nach Profilen zu suchen. Da die
+	Antwort auf die NetUserGetInfo-Anfrage nicht viel mehr enth&#xE4;lt als die Home-Freigabe des
+	Benutzers, m&#xFC;ssen Profile f&#xFC;r Windows 9x clients im Home-Verzeichnis des Benutzers liegen.
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	The client connects to the user's home share and searches for the
-	user's profile. As it turns out, you can specify the user's home share as
-	a sharename and path. For example, <filename moreinfo="none">\\server\fred\.winprofile</filename>.
-	If the profiles are found, they are implemented.
+	Der Client verbindet sich mit der Home-Freigabe des Benutzers und sucht nach dem Benutzerprofil.
+	Wie sich herausstellt, k&#xF6;nnen Sie die Home-Freigabe als Freigabe und Pfas angeben.
+	Zum Beispiel, <filename moreinfo="none">\\server\fred\.winprofile</filename>.
+	Wenn die Profile gefunden werden, werden sie eingebunden.
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	The client then disconnects from the user's home share and reconnects to
-	the NetLogon share and looks for <filename moreinfo="none">CONFIG.POL</filename>, the policies file. If this is
-	found, it is read and implemented.
+	Der Client trennt die Verbindung mit der Home-Freigabe des Benutzers und verbindet sich wieder
+	mit der Netlogon-Freigabe und sucht nach <filename moreinfo="none">CONFIG.POL</filename>, der Policies-Datei.
+	Wenn diese gefunden wird, wird sie gelesen und eingebunden.	
 	</para>
 </listitem>
 </orderedlist>
@@ -30552,11 +30550,11 @@ Die korrekten Parameter sind in hohem Ma&#xDF;e vom lokalen Netzwerk abh&#xE4;ng
 <para>
 Die Socket-Option TCP_NODELAY ist diejenige, die den gr&#xF6;ssten Leistungs-Unterschied f&#xFC;r die meisten Netzwerke auszumachen scheint. Viele Anwender berichten, da&#xDF; das Hinzuf&#xFC;gen von
 <indexterm><primary>socket options</primary></indexterm><parameter moreinfo="none">socket options</parameter> = TCP_NODELAY
-die Lese-Performance eines Samba-Laufwerks verdoppelt. Die beste Erkl&#xE4;rung hief&#xFC;r scheint, da&#xDF; der Microsoft TCP/IP stack sehr langsam beim Senden von TCP ACKs ist.
+die Lese-Performance eines Samba-Laufwerks verdoppelt. Die beste Erkl&#xE4;rung hief&#xFC;r scheint, da&#xDF; der Microsoft TCP/IP-Stack sehr langsam beim Senden von TCP-ACKs ist.
 </para>
 
 <para>
-Es wurde berichtet, da&#xDF; das Setzen von  <parameter moreinfo="none">socket options = SO_RCVBUF=8192</parameter> in smb.conf die Samba-Performance auf dem Loopback-Interface (IP 127.0.0.1) stark verschlechtert. Es wird daher empfohlen, vor dem Setzen jeglicher <parameter moreinfo="none">socket options</parameter> die Auswirkungen quantitativ auf dem zu konfigurierenden Server zu messen.
+Es wurde berichtet, da&#xDF; das Setzen von <parameter moreinfo="none">socket options = SO_RCVBUF=8192</parameter> in smb.conf die Samba-Performance auf dem Loopback-Interface (IP 127.0.0.1) stark verschlechtert. Es wird daher empfohlen, vor dem Setzen jeglicher <parameter moreinfo="none">socket options</parameter> die Auswirkungen quantitativ auf dem zu konfigurierenden Server zu messen.
 </para>
 
 </sect1>
@@ -30672,7 +30670,7 @@ Besorge Dir das mii-tool und &#xFC;berpr&#xFC;fe die Duplex-Einstellungen auf De
 <title>Korrupte tdb-Dateien</title>
 
 <para>
-Unser Samba-PDC-Server verwaltet seit 3 Jahren ohne Probleme 3 TB Daten f&#xFC;r unsere mehr als 500 Benutzer [Windows NT/XP]. Heute wurden alle Freigaben pl&#xF6;tzlich sehr langsam. Weiters begann der Haupt-smbd-Prozess damit, neue Sub-smbd-Prozesse zu starten, soda&#xDF; wir schliesslich &#xFC;ber 1600 laufende smbd-Prozesse hatten (normalerweise haben wir durchschnittlich 250). Dies brachte den SUN E3500 cluster zweimal zum Absturz. Nach vielem Suchen habe ich entschieden,  <command moreinfo="none">rm /var/locks/*.tdb</command> auszuf&#xFC;hren. Endlich wieder gl&#xFC;cklich.
+Unser Samba-PDC-Server verwaltet seit 3 Jahren ohne Probleme 3 TB Daten f&#xFC;r unsere mehr als 500 Benutzer [Windows NT/XP]. Heute wurden alle Freigaben pl&#xF6;tzlich sehr langsam. Weiters begann der Haupt-smbd-Prozess damit, neue Sub-smbd-Prozesse zu starten, soda&#xDF; wir schliesslich &#xFC;ber 1600 laufende smbd-Prozesse hatten (normalerweise haben wir durchschnittlich 250). Dies brachte den SUN E3500 cluster zweimal zum Absturz. Nach vielem Suchen habe ich entschieden, <command moreinfo="none">rm /var/locks/*.tdb</command> auszuf&#xFC;hren. Endlich wieder gl&#xFC;cklich!
 </para>
 
 <para>
