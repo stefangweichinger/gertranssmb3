@@ -11,7 +11,7 @@
 <para>
 Dieser Abschnitt dokumentiert Randthemen, die sehr wichtig für Netzwerkadministratoren sind,
 die die Zugriffskontrolle auf Netzwerk-Ressourcen verbessern wollen, die Benutzerumgebung
-automatisieren, und ihr Leben ein wenig erleichtern wollen.
+automatisieren, und ihr Leben ein wenig erleichtern möchten.
 </para>
 
 <sect1>
@@ -19,11 +19,11 @@ automatisieren, und ihr Leben ein wenig erleichtern wollen.
 
 <para>
 Oft kann der Unterschied zwischen einer funktionierenden Netzwerkumgebung und einer als
-gut wahr- und angenommenen am Besten durch die <emphasis>Kleinigkeiten</emphasis>
+gut wahr- und angenommenen am besten durch die <emphasis>Kleinigkeiten</emphasis>
 gemessen werden, die alles noch harmonischer arbeiten lassen. Eine Schlüsselrolle jeder
 Netzwerklösung ist die Fähigkeit, per Fernzugriff MS Windows Workstations zu warten,
 über das Netz auf den Samba-Server zugreifen zu können, angepasste Anmelde-Skripts zur
-Verfügung zu stellen, genauso wie andere "Hausarbeiten", die helfen, verlässlicheren
+Verfügung zu stellen, genauso wie andere "Hausarbeiten", die helfen, einen verlässlicheren
 Netzwerk-Betrieb zu erreichen.
 </para>
 
@@ -38,7 +38,7 @@ nicht in anderen Kapiteln, platziert, um das Nachschlagen zu erleichtern.
 <title>Server-Fernwartung</title>
 
 
-<para><quote>Wie bekomme ich `User Manager' und `Server Manager'?</quote></para>
+<para><quote>Wie bekomme ich einen `User Manager' und `Server Manager'?</quote></para>
 
 <para>
 <indexterm><primary>User Manager</primary></indexterm>
@@ -61,7 +61,7 @@ Installation auf <application>Windows 9x/Me</application>-Systemen. Dieses Set e
 </itemizedlist>
 
 <para>
-Laden Sie die Archivdatei von <ulink noescape="1" url="ftp://ftp.microsoft.com/Softlib/MSLFILES/NEXUS.EXE">ftp://ftp.microsoft.com/Softlib/MSLFILES/NEXUS.EXE.</ulink>
+Laden Sie die Archivdatei von <ulink noescape="1" url="ftp://ftp.microsoft.com/Softlib/MSLFILES/NEXUS.EXE">ftp://ftp.microsoft.com/Softlib/MSLFILES/NEXUS.EXE</ulink>runter.
 </para>
 
 <para>
@@ -96,13 +96,13 @@ beste Lösung für Ihr Netzwerk ist.
 		<para><quote>
 		Ich habe einen wunderbaren Linux/Samba-Server als PDC laufen. Jetzt würde ich gerne
 		Fernwartungs-Funktionen hinzufügen, sodass Benutzer sich am System anmelden, und ihren
-		Desktop von zuhause aus, oder aus dem Ausland erreichen können.		
+		Desktop von Zuhause aus, oder aus dem Ausland erreichen können.		
 		</quote></para>
 
 		<para><quote>
 		Gibt es eine Möglichkeit, dies zu erreichen? Brauche ich einen Windows Terminal Server?
-		Muss ich so konfigurieren, dass er Domänen-Mitglied ist, oder ein BDC, PDC? Gibt es
-		irgendwelche hacks für Windows XP, um Fernzugriff zu aktivieren, auch wenn der Rechner
+		Muss ich ihn so konfigurieren, dass er Domänen-Mitglied ist, oder ein BDC, PDC? Gibt es
+		irgendwelche Hacks für Windows XP, um Fernzugriff zu aktivieren, auch wenn der Rechner
 		in einer Domäne ist?
 		</quote></para>
 
@@ -114,7 +114,7 @@ beste Lösung für Ihr Netzwerk ist.
 	<para>
 	Es implementiert ein leicht zu verwendendes Interface zum Remote-X-Protokoll genauso
 	wie es VNC/RFB und rdesktop/RDP einschließt, dies jedoch mit einer Geschwindigkeit, wie
-	sie sie wahrscheinlich noch nicht gesehen haben.
+	Sie sie wahrscheinlich noch nicht gesehen haben.
 	</para>
 
 	<para>
@@ -159,8 +159,8 @@ beste Lösung für Ihr Netzwerk ist.
 	</para>
 
 	<para>
-	Nomachine plant die Ausbaustufe, wo Sie NX-Applikations-Server als Cluster betreiben können,
-	und die Benutzer starten einfach eine lokale NX-Session	und können Applikationen auswählen,
+	Nomachine plant die Ausbaustufe, wobei Sie einen NX-Applikations-Server als Cluster betreiben können.
+	Die Benutzer starten einfach eine lokale NX-Session und können Applikationen auswählen,
 	die transparent laufen (Anwendungen können sogar auf einem anderen NX-Knoten laufen, aber
 	vorgeben, auf demselben Knoten zu sein wie der, an dem sich der Benutzer angemeldet hat,
 	weil es im selben Fenster angezeigt wird. Sie können sie auch full-screen ausführen, und
@@ -202,7 +202,7 @@ beste Lösung für Ihr Netzwerk ist.
 		<listitem><para>
 		Die NX-Kern-Technologien sind alle Open Source und unter der GPL &smbmdash;
 		veröffentlicht. Sie können jetzt eine (sehr unbequeme) Befehlszeile ohne
-		Kosten nutzen, aber Sie können ein komfortables (proprietäres) NX-GUI-Frontend
+		Kosten nutzen, oder Sie können ein komfortables (proprietäres) NX-GUI-Frontend
 		kaufen.
 		</para></listitem>
 
@@ -234,13 +234,13 @@ Es gibt mehrere Möglichkeiten, um eine angepasste Konfiguration der Netzwerk-Sta
 </itemizedlist>
 
 <para>
-Der Quelltext-Tree von Samba inkludiert zwei Werkzeuge zum Generieren und Ausführen von Anmelde-Skripts.
+Der Quelltext-Tree von Samba enthält zwei Werkzeuge zum Generieren und Ausführen von Anmelde-Skripts.
 Siehe im Verzeichnis <filename>examples</filename> die Sub-Verzeichnisse <filename>genlogon</filename>
 und <filename>ntlogon</filename>. 
 </para>
 
 <para>
-Die folgenden listings stammen aus dem Verzeichnis <filename>genlogon</filename>.
+Die folgenden Listings stammen aus dem Verzeichnis <filename>genlogon</filename>.
 </para>
 
 
@@ -327,7 +327,7 @@ Dies ist die Datei <filename>genlogon.pl</filename>:
 </para>
 
 <para>
-Diejenigen, die sich ein weiter ausgeführtes oder mächtigeres Anmeldungs-System wünschen, mögen
+Diejenigen, die sich ein weiter ausgeführtes oder mächtigeres Anmelde-System wünschen, mögen
 folgende Seiten aufsuchen:
 </para>
 
@@ -348,7 +348,7 @@ Drucker können automatisch während des Anmeldevorgangs hinzugefügt werden, durch
 &dosprompt;<userinput>rundll32 printui.dll,PrintUIEntry /?</userinput>
 </screen>
 
-Siehe die Dokumentation in <ulink url="http://support.microsoft.com/default.asp?scid=kb;en-us;189105">Microsoft knowledgebase article 189105.</ulink>
+Siehe die Dokumentation in <ulink url="http://support.microsoft.com/default.asp?scid=kb;en-us;189105">Microsoft Knowledgebase Artikel 189105.</ulink>
 </para>
 </sect2>
 
