@@ -14,7 +14,7 @@
 	<editor>&person.jerry;</editor>
 	</authorgroup>
 	<pubdate>November 15, 2003</pubdate>
-<author>&person.hba;<contrib>German Translator</contrib></author>
+<!-- <author>&person.hba;<contrib>German Translator</contrib></author> -->
 <abstract>
 <para>
 Dieses Buch ist eine Sammlung von HOWTOs welche über die Jahre hinweg der Samba Dokumentation
