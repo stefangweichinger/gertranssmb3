@@ -6,7 +6,7 @@
 	<pubdate>April 14, 2003</pubdate>
 </chapterinfo>
 
-<title>Einfürung in Samba</title>
+<title>Einführung in Samba</title>
 
 <para><quote>
 "Wenn du verstehst was du tust, wirst du nichts lernen"
@@ -14,10 +14,10 @@
 </quote></para>
 
 <para>
-Samba ist ein Datei- und Druckserver für auf Windows basierende Clients die TCP/IP als Transport Protokol nutzen.
+Samba ist ein Datei- und Druckserver für auf Windows basierende Clients, die TCP/IP als Transport-Protokoll nutzen.
 Tatsächlich kann es jeden SMB/CIFS-aktiven Client unterstützen. Eine von Samba's großen Stärken ist, dass Sie in der
-Lage sind ihre Windows und Linux Maschinen zusammen zu mixen ohne einen separaten Windows NT/2000/2003 Server zu benötigen.
-Samba wird derzeit von einem 30 köpfigen Team von Programmierern entwickelt und wurde ursprünglich von Andrew Tridgell entwickelt.
+Lage sind, Ihre Windows- und Linux-Maschinen zusammen zu mixen, ohne einen separaten Windows NT/2000/2003 Server zu benötigen.
+Samba wird derzeit von einem 30-köpfigen Team von Programmierern entwickelt und wurde ursprünglich von Andrew Tridgell entwickelt.
 </para>
 
 <sect1>
@@ -27,20 +27,18 @@ Samba wird derzeit von einem 30 köpfigen Team von Programmierern entwickelt und 
 Vor langer Zeit gab es ein Schlüsselwort welches auf DCE/RPC referenzierte. Dies stand für
 Computing Environment/Remote Procedure Calls und war vom Konzept her eine gute Idee. Ursprünglich
 wurde es von Apollo/HP als NCA1.0 (Network Computing Architecture) entwickelt und konnte nur über
-UDP benutzt werden. Als es nötig wurde das ganze über TCP zu betreiben um die Kompatibilität zu
+UDP benutzt werden. Als es nötig wurde, das ganze über TCP zu betreiben, um die Kompatibilität zu
 DECnet3.0 gewährleisten zu können, wurde es neu entworfen, zur Organisation "The Open Group" gesandt
-und offiziell als DCE/RPC bekannt. Microsoft kam allerdings daher und entschied mehr als $20 für eine
-Arbeitsplatz Lizens haben zu wollen und es als eigenes MSRPC verkaufen zu wollen. Von diesem Punkt
+und offiziell als DCE/RPC bekannt. Microsoft kam allerdings daher und entschied, mehr als $20 für eine
+Arbeitsplatz-Lizenz haben zu wollen, und es als eigenes MSRPC verkaufen zu wollen. Von diesem Punkt
 an wurde das Konzept in Form von SMB (Server Message Block, das "was") unter Benutzung von
 NetBIOS (Network Basic Input/Output System, das "wie") als Komatibilitäts-Schicht weiter geführt.
 Sie können SMB über viele verschiedene Protokolle nutzen, sprich transportieren; viele verschiedene
 Implementationen führen zu einem Ergebnis, einschließlich NBIPX (NetBIOS über IPX, NwLnkNb, oder NWNBLink)
 und NBT (NetBIOS über TCP/IP, oder NetBT). Über die Jahre hinweg wurde NBT zur meist genutzten Form der
 Implementationen bis zum Fortschritt des "Direct-Hosted TCP" -- der Microsoft Marketing Formulierung zur
-vollständigen Eleminierung von NetBIOS und der Möglichkeit SMB direkt an den TCP port 445 zu binden.
-
-<!-- Also zu diesem Satz weiß ich keine Übersetzung zu finden.-->
-As of yet, direct-hosted TCP has yet to catch on.
+vollständigen Eliminierung von NetBIOS und der Möglichkeit SMB direkt an den TCP port 445 zu binden.
+Wie es zum jetzigen Zeitpunkt aussieht, muß "Direct-Hosted TCP" jedoch noch aufschliessen.
 </para>
 
 <para>
@@ -49,9 +47,9 @@ Der wohl beste Artikel über den Ursprung von SMB erschien 1997 in einem Artikel 
 </para>
 
 <para><emphasis>
-Mehrere Megabytes aus NT-Security Archiven, ziellosen Whitepapern, RFCs, der CIFS Spezifikation,
-das Samba Zeug, ein paar MS Knowledge Base Artikeln, Zeichenketten aus Binärdateien und Packet-Abbildungen
-haben pflichtbewußt den Weg durch die Phasen der Informationssammlung dieses Projektes durchschritten und es
+Mehrere Megabytes aus NT-Security Archiven, verschiedensten Whitepapers, RFCs, der CIFS Spezifikation,
+das Samba Zeug, ein paar MS Knowledge Base Artikel, Zeichenketten aus Binärdateien und Packet-Abbildungen
+wurden pflichtbewußt in den Phasen der Informationssammlung dieses Projektes durchschritten und es
 fehlen immer noch einige Stücke... Oftmals müßig wurde der Weg erschwert durch "Hand vor die Stirn schlagen"
 und murmeln "Mein Gott, was haben die sich dabei gedacht?"
 </emphasis></para>
@@ -83,52 +81,52 @@ thinking?
 	</para></listitem>
 
 	<listitem><para>
-	Direct-Hosted: Eine Methode Datei/Drucker Freigabedienste über port 445/tcp zur Verfügung zu stellen,
-	Hierbei wurde nur DNS statt WINS zur Auflösung der Namen in IP-Adressen benutzt
+	Direct-Hosted: Eine Methode, Datei/Drucker-Freigabedienste über Port 445/tcp zur Verfügung zu stellen.
+	Hierbei wurde nur DNS statt WINS zur Auflösung der Namen in IP-Adressen benutzt.
 	</para></listitem>
 
 	<listitem><para>
-	IPC: Akronym für "Inter-Process Communication". Eine Methode spezielle Informationen zwischen Programmen
+	IPC: Akronym für "Inter-Process Communication". Eine Methode, spezielle Informationen unter Programmen
 	zu verbreiten.
 	</para></listitem>
 
 	<listitem><para>
-	Marshalling: - Eine Methode zur seqüntiellen Sortierung von variablen Daten,
-	passend zur übertragung über eine Netzwerkverbindung bzw. Speicherung in eine Datei.
-	Die Quelldateien können mittels eines ähnlichen Prozesses namens unmarschalling
+	Marshalling: - Eine Methode zur sequentiellen Sortierung von variablen Daten,
+	passend zur Übertragung über eine Netzwerkverbindung bzw. Speicherung in eine Datei.
+	Die Quelldateien können mittels eines ähnlichen Prozesses namens unmarshalling
 	wiederhergestellt werden.
 	</para></listitem>
 
 	<listitem><para>
-	NetBIOS: Akronym für "Network Basic Input/Output System". Dies ist kein Protokol;
-	es ist eine Möglichkeit der Kommunikations über ein anderes Protokol.
-	Dies ist ein Standard welcher ursprünglich 1983 von IBM entwickelt wurde.
-	Um die Analogie ein wenig zu übertreiben könnte man NetBIOS mit dem BIOS ihres Rechners vergleichen,
-	ihr BIOS kontrolliert die Ein-/Ausgabe der Hardware ihres Rechners und NetBIOS kontrolliert die Ein-/Ausgaben
-	über das Netzwerk.
-	Nochmals, dies ist eine kleine übertreibung sollte aber helfen dieses Paradigma verständlich zu machen.
-	Was wichtig ist, ist die Tatsache das NetBIOS kein Protokol sondern ein übermittlungsstandard ist.
-	Leider tendieren auch technisch Versierte Leute dazu ohne viel darüber nachzudenken NetBIOS mit NetBEUI zu
-	verwechseln;
+	NetBIOS: Akronym für "Network Basic Input/Output System". Dies ist kein Protokoll;
+	es ist eine Möglichkeit der Kommunikation über ein anderes Protokoll.
+	Dies ist ein Standard, welcher ursprünglich 1983 von IBM entwickelt wurde.
+	Um die Analogie ein wenig zu übertreiben, könnte man NetBIOS mit dem BIOS ihres Rechners vergleichen,
+	ihr BIOS kontrolliert die Ein-/Ausgabe der Hardware ihres Rechners und NetBIOS 
+	kontrolliert die Ein-/Ausgaben über das Netzwerk.
+	Nochmals, dies ist eine kleine Übertreibung, sollte aber helfen, dieses Paradigma verständlich zu machen.
+	Was wichtig ist, ist die Tatsache, daß NetBIOS kein Protokoll, sondern ein Übermittlungsstandard ist.
+	Leider tendieren auch technisch versierte Leute dazu, ohne viel darüber nachzudenken,
+	NetBIOS mit NetBEUI zu verwechseln.
 	</para></listitem>
 
 	<listitem><para>
 	NetBEUI: Akronym für das "NetBIOS Extended User Interface". Nicht vergleichbar mit NetBIOS ist NetBEUI
-	ein Protokol, kein Standard. Es ist auch kein Routingfähiges Protokol, was wiederum heißt, dass es nicht
-	von einer Seite eines Routers auf die andere gelangt. Es ist nicht notwendig NetBEUI zu verstehen um SMB
-	zu entziffern; es hilft zu verstehen, es hilft zu verstehen dass NetBEUI nicht das gleiche wie NetBIOS ist
+	ein Protokoll, kein Standard. Es ist auch kein routingfähiges Protokoll, was wiederum heißt, dass es nicht
+	von einer Seite eines Routers auf die andere gelangt. Es ist nicht notwendig, NetBEUI zu verstehen um SMB
+	zu entziffern; es hilft zu verstehen dass NetBEUI nicht das gleiche wie NetBIOS ist,
 	um ihren Schnitt auf Parties zu erhöhen. NetBEUI wurde ursprünglich von Microsoft als "NBF" oder "Dem
-	Windows NT NetBEUI Frame Protokol Treiber" verwiesen. Heutzutage hört man da nicht viel von.
+	Windows NT NetBEUI Frame Protokol Treiber" verwiesen. Heutzutage hört man nicht viel davon.
 	</para></listitem>
 
 	<listitem><para>
-	NBT: Akronym für "NetBIOS über TCP" auch bekannt als "NetBT". Erlaubt die Benutzung von NetBIOS Verkehrs
-	im TCP/IP. Im Endeffekt werden NetBIOS Namen zu IP Adressen gewandelt und NetBIOS Namenstypen sind im
-	grunde genommen mit TCP/IP Ports vergleichbar. So werden in Windows 95/98/ME die Datei- und Druckerfreigaben
+	NBT: Akronym für "NetBIOS über TCP" auch bekannt als "NetBT". Erlaubt die Benutzung von NetBIOS-Verkehr
+	im TCP/IP. Im Endeffekt werden NetBIOS-Namen zu IP-Adressen gewandelt und NetBIOS Namenstypen sind im
+	Grunde genommen mit TCP/IP Ports vergleichbar. So werden in Windows 95/98/ME die Datei- und Druckerfreigaben
 	verwirklicht. Traditionell sind sie an drei Ports gebunden: NetBIOS Name Service (nbname) über UDP Port 137,
 	NetBIOS Datagramm Service (nbdatagram) über UDP Port 138 und der NetBIOS Session Service (nbsession) über
-	TCP Port 139. Jegliche Namensauflösung wird über WINS erledigt, NetBIOS broadcasts (Anm. des Übersetzers:
-	broadcasts sind Netzwerkausrufe an alle anderen Stationen im Umkreis) und DNS. NetBIOS über TCP wird im RFC 1001
+	TCP Port 139. Jegliche Namensauflösung wird über WINS erledigt, NetBIOS Broadcasts (Anm. des Übersetzers:
+	Broadcasts sind Netzwerkausrufe an alle anderen Stationen im Umkreis) und DNS. NetBIOS über TCP wird im RFC 1001
 	(Konzepte und Methoden) und RFC 1002 (Detailierte Spezifikationen) beschrieben.
 	</para></listitem>
 
@@ -142,7 +140,7 @@ thinking?
 
 </itemizedlist>
 
-<para>Wenn Sie hilfe benötigen, wenden Sie sich bitte an die Samba Mailing Liste (Erreichbar über
+<para>Wenn Sie Hilfe benötigen, wenden Sie sich bitte an die Samba Mailing Liste (Erreichbar über
 <ulink url="http://www.samba.org/">http://www.samba.org</ulink>).
 </para>
 
@@ -152,38 +150,38 @@ thinking?
 <title>Verwandte Projekte</title>
 
 <para>
-Derzeit gibt es zwei weitere Netzwerk Dateisystem Client Projekte für Linux die direkt mit Samba in Verbindung stehen:
-SMBFS und CIFS VFS. Sie sind beide im Linux Kernel verfügbar.
+Derzeit gibt es zwei weitere Netzwerk-Dateisystem-Client-Projekte für Linux, die direkt mit Samba in Verbindung stehen:
+SMBFS und CIFS VFS. Sie sind beide im Linux-Kernel verfügbar.
 </para>
 
 <itemizedlist>
 
 	<listitem><para>
-	SMBFS (Server Message Block File System) erlaubt es SMB Freigaben unter Linux zu mounten (binden); Das Protokol
+	SMBFS (Server Message Block File System) erlaubt es, SMB-Freigaben unter Linux zu mounten (binden); Das Protokoll,
 	welches Microsoft Windows und OS/2 Lan Manager zur Freigabe von Dateien und Druckern über lokale Netzwerke
-	verwenden lässt sich hier nutzen um entfernte Shares ähnlich wie andere Unix Verzeichnisse zu binden.
-	Dies ist nützlich wenn Sie nur solche Dateisysteme mounten wollen ohne gleich selbst ein SMBFS Server zu sein.
+	verwenden, lässt sich hier nutzen, um entfernte Shares ähnlich wie andere Unix-Verzeichnisse zu binden.
+	Dies ist nützlich, wenn Sie nur solche Dateisysteme mounten wollen, ohne gleich selbst ein SMBFS-Server zu sein.
 	</para></listitem>
 
 	<listitem><para>
 	CIFS VFS (Common Internet File System Virtual File System) ist der Nachfolger von SMBFS und wird derzeit aktiv
-	für die neue Version des Linux Kernels entwickelt. Die Absicht dieses Moduls ist es erweiterte Netzwerkdateisysteme
+	für die neue Version des Linux-Kernels entwickelt. Die Absicht dieses Moduls ist es, erweiterte Netzwerkdateisysteme
 	Funktionen wie Unterstützung von dfs (hierarischer Namensplatz / hierarchical name space), sichere "Pro-User"
-	Sessions, sicheres verteiltes zwischenspeichern (oplock), optionales signieren von Paketen, den Unicode Zeichensatz
-	und weitere Internationalisierte Verbesserungen zu unterstützen und die optionale Einbindung von Winbind (nsswitch).
+	Sessions, sicheres verteiltes Zwischenspeichern (oplock), optionales Signieren von Paketen, den Unicode-Zeichensatz,
+	weitere internationalisierte Verbesserungen und die optionale Einbindung von Winbind (nsswitch) zu unterstützen.
     </para></listitem>
 
 </itemizedlist>
 
 <para>
-Hinweis: es ist wichtig zu erkennen das dies nur implementationen für Client Dateisysteme sind und nichts
-damit zu tun haben selbst als Datei- und Druckserver zu aggieren.
+Hinweis: es ist wichtig zu erkennen, daß dies nur Implementationen für Client-Dateisysteme sind und nichts
+damit zu tun haben, selbst als Datei- und Druckserver zu agieren.
 </para>
 
 <para>
-Es gibt noch weitere Open Source CIFS client Tools wie zum Beispiel dem
+Es gibt noch weitere OpenSource-CIFS-Client-Tools, wie zum Beispiel das
 <ulink url="http://jcifs.samba.org/">jCIFS Projekt</ulink>
-welches ein SMB Client Toolkit in Java geschrieben zur Verfügung stellt.
+welches ein in Java geschriebenes SMB-Client-Toolkit zur Verfügung stellt.
 </para>
 
 
@@ -194,17 +192,17 @@ welches ein SMB Client Toolkit in Java geschrieben zur Verfügung stellt.
 <title>SMB Methodologie</title>
 
 <para>
-Traditionell nutzt SMB den UDP Port 137 (NetBIOS name service oder nerbios-ns), den UDP Port
+Traditionell nutzt SMB den UDP Port 137 (NetBIOS name service oder netbios-ns), den UDP Port
 138 (NetBIOS datagramm service oder netbios-dgm) und den TCP Port 139 (NetBIOS
-session service oder netbios-ssn). Jeder der mit einem guten Netzwerk Packet Analyse Programm
-sein Netzwerk beobachtet wird amüsiert sein über die Menge an Verkehr welcher ausgelöst wird
-nur wenn man eine einzige Datei öffnet. Grundlegend werden SMB Sitzungen/Sessions in folgender
+session service oder netbios-ssn). Jeder, der mit einem guten Netzwerk Packet Analyse Programm
+sein Netzwerk beobachtet, wird amüsiert sein über die Menge an Verkehr, welcher ausgelöst wird,
+nur wenn man eine einzige Datei öffnet. Grundlegend werden SMB-Sitzungen/Sessions in folgender
 Reihenfolge aufgebaut:
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	"TCP Verbindung" - aufbau des 3-Wege Handschlags (Verbindung) zu Port 139/tcp
+	"TCP Verbindung" - Aufbau des 3-Wege Handschlags (Verbindung) zu Port 139/tcp
     oder 445/tcp.
 	</para></listitem>
 
