@@ -13,34 +13,45 @@
 <title>Analyse und Lösung von Problemen mit Samba</title>
 
 <para>
-There are many sources of information available in the form 
-of mailing lists, RFCs and documentation. The documentation that comes
-with the Samba distribution contains good explanations of 
-general SMB topics such as browsing.</para> 
+Es gibt viele Informationsquellen in Form von Mailing-Listen, RFCs und Dokumentation.
+Die Dokumentation, die mit der Samba-Distribution geliefert wird, enthält gute
+Erklärungen zu allgemeinen Samba-Themen wie Browsing.</para>
 	
 <sect1>
-<title>Diagnostics Tools</title>
-
-<para>With SMB networking, it is often not immediately clear what 
-the cause is of a certain problem. Samba itself provides rather 
-useful information, but in some cases you might have to fall back 
-to using a <emphasis>sniffer</emphasis>. A sniffer is a program that 
-listens on your LAN, analyzes the data sent on it and displays it 
-on the screen.</para>
-
-<sect2>
-<title>Debugging with Samba Itself</title>
+<title>Diagnose-Tools</title>
 
 <para>
-One of the best diagnostic tools for debugging problems is Samba itself. 
-You can use the <option>-d option</option> for both &smbd; and &nmbd; to specify the 
-<smbconfoption><name>debug level</name></smbconfoption> at which to run. 
-See the man pages for <command>smbd, nmbd</command>  and 
-&smb.conf; for more information regarding debugging options. The debug 
-level can range from 1 (the default) to 10 (100 for debugging passwords).
+Beim Netzwerken mit Samba ist es oft nicht sofort klar, was der Grund für ein bestimmtes
+Problem ist. Samba selbst bietet ziemlich hilfreiche Informationen an, aber in manchen
+Fällen werden Sie möglicherweise auf einen <emphasis>Sniffer</emphasis> zurückgreifen
+müssen. Ein Sniffer ist ein Programm, das in Ihrem LAN lauscht, die empfangenen Daten
+analysiert, und sie am Schirm anzeigt.
+</para>
+
+<sect2>
+<title>Das Debuggen mit Samba selbst</title>
+
+<para>
+Eines der besten Diagnose-Tools, um Probleme zu debuggen, ist Samba selbst.
+Sie können die Option <option>-d</option> für &smbd; und &nmbd; verwenden, um
+den <smbconfoption><name>debug level</name></smbconfoption> festzulegen, auf dem sie
+ausgeführt werden sollen. Siehe auch die manpages für <command>smbd, nmbd</command>
+und &smb.conf; für mehr Information zu den debugging-Optionen. Der debug level
+reicht von 1 (Standard) bis zu 10 (100 zum Debuggen von Passwörtern).
 </para>
 	
 <para>
+Eine weitere hilfreiche Methode des Debugging ist es, Samba mit dem Flag
+<command>gcc -g </command> zu kompilieren. Dies wird Debug-Information in den Binaries
+einschliessen, und erlaubt es, gdb an die laufenden <command>smbd/nmbd</command>-Prozesse
+anzudocken. Um dies auf einer NT-Workstation zu tun, lassen Sie zuerst die Workstation
+die Verbindung herstellen. 
+
+
+
+
+
+
 Another helpful method of debugging is to compile Samba using the 
 <command>gcc -g </command> flag. This will include debug information in the binaries and
 allow you to attach gdb to the running <command>smbd/nmbd</command> process. 
