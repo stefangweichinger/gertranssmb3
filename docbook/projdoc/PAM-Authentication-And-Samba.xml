@@ -63,8 +63,7 @@ Das BACKEND kann auf dem lokalen System vorhanden sein oder, zentralisiert, auf 
 </para>
 
 <para>
-PAM unterstützungs Module sind vorhanden für:
-PAM support modules are available for:
+PAM unterstützte Module sind vorhanden für:
 </para>
 
 <variablelist>
@@ -80,7 +79,7 @@ PAM support modules are available for:
 		<para>
 		Das <filename>pam_krb5.so</filename> Modul erlaubt die Nutzung von jedem Kerberos fähigem Server.
 		Dieses Tool kann mit MIT Kerberos, Heimdal Kerberos, und möglicherweise mit Microsoft Active Directory
-		(fals ENABLED ) benutzt werden.
+		(fals eingeschaltet) benutzt werden.
 		</para>
 	</listitem></varlistentry>
 
@@ -140,7 +139,7 @@ zur Verfügung.
 Einmal konfiguriert erlauben diese Module eine bemerkenswerte Stufe an Flexibilität und 
 die Benutzung von verteilten Samba Domänen Kontrollern die wiederum eine effiziente 
 Ausnutzung der Bandbreite in grossen Netzwerken mit PAM-fähigen Systemen erlauben.
-IN EFFECT, erlaubt dies eine zentrale Administration einer verteilten 
+Richtig eintesetzt, erlaubt dies eine zentrale Administration einer verteilten 
 Authentifizierung von einer Einzelbenutzer Datenbank aus.  
 </para>
 
@@ -202,65 +201,67 @@ Eine allgemeine Konfigurationszeile der <filename>/etc/pam.conf</filename> Datei
 
 <para>
 <programlisting>
-Dienstname	Modultyp	Kontroll-flag	Modulpfad	Argumente
+Service-name	Modul-type	control-flag	Modul-path	Args.
 </programlisting>
 </para>
 
 <para>
 Hier beschreiben wir die Bedeutung dieser einzelnen Zeichen. Die zweite (und öfters angewendete)
-Methode der Konfiguration von Linux-PAM ist durch den Inhalt des <filename>/etc/pam.d/</filename>
+Methode der Konfiguration von Linux-PAM ist durch Änderung des Inhalts des <filename>/etc/pam.d/</filename>
 Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf diese Methode eingehen.
 </para>
 
 <variablelist>
-	<varlistentry><term>service-name</term><listitem>
+	<varlistentry><term>Service-name</term><listitem>
 		<para>
-		The name of the service associated with this entry. Frequently, the service name is the conventional
-		name of the given application. For example, <command>ftpd</command>, <command>rlogind</command> and
-		<command>su</command>, and so on.
+		Der Name des Dienstes der mit diesem Eintrag verbunden ist. Meistens ist dies der herkömmliche Name
+		der Anwendung. Zum Beispiel <command>ftpd</command>, <command>rlogind</command>, <command>su</command>
+		usw.
 		</para>
 
 		<para>
-		There is a special service-name reserved for defining a default authentication mechanism. It has
-		the name <parameter>OTHER</parameter> and may be specified in either lower- or upper-case characters.
-		Note, when there is a module specified for a named service, the <parameter>OTHER</parameter>
-		entries are ignored.
+		Es gibt einen speziellen Dienst Namen der für einen standard authentifizierungs Mechanismus reserviert ist,
+		und zwar mit dem Namen <parameter>OTHER</parameter>, wobei es egal ist ob man ihn gross- oder kleinschreibt.
+		Beachten Sie, dass falls bereits ein ein Modul für einen Dienst namentlich angegeben ist dieser Parameter
+		ignoriert wird.
 		</para>
 		</listitem>
 	</varlistentry>
 
 	<varlistentry><term>module-type</term><listitem>
                 <para>
-		One of (currently) four types of module. The four types are as follows:
+		Einer von (momentan) vier Typen von Modulen, die da wären:
 		</para>
 
 		<itemizedlist>
 			<listitem><para>
-			<parameter>auth:</parameter> This module type provides two aspects of authenticating the user.
-			It establishes that the user is who he claims to be by instructing the application
-			to prompt the user for a password or other means of identification. Secondly, the module can
-			grant group membership (independently of the <filename>/etc/groups</filename> file discussed
+			<parameter>auth:</parameter> 
+			Dieser Modul Typ stellt zwei Aspekte der Benutzerauthentifizierung zur Verfügung.
+			Erstens wird festgestellt, dass der Benutzer der ist, der er angibt zu sein indem der Benutzer von 
+			der Applikation aufgefordert wird ein Password anzugeben oder sich sonst irgendwie zu authentifizieren.
+			Zweitens kann dieses Modul Gruppenzugehörigkeiten erlauben (unabhängig vom Inhalt von <filename>/etc/groups
+			</filename> welche oben behandelt wurde) oder andere Privilegien durch seine CREDENTIAL GRANTING PROPERTIES:
+
 			above) or other privileges through its credential granting properties.
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>account:</parameter> This module performs non-authentication-based account management.
-			It is typically used to restrict/permit access to a service based on the time of day, currently
-		 	available system resources (maximum number of users) or perhaps the location of the applicant
-			user <quote>root</quote> login only on the console.
+			<parameter>account:</parameter> Dieses Modul führt nicht-authentifizierungs-basiertes Benutzermanagement aus.
+			Normalerweise wird es benutzt um den Zugang zu Diensten aufgrund der Tageszeit, momentan verfügbaren System
+			ressourcen (maximale gleichzeitige Benutzer) oder vielleicht der Lage des <quote>root</quote> Logins auf der Konsole zu
+			erlauben oder verweigern.
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>session:</parameter> Primarily, this module is associated with doing things that need
-			to be done for the user before and after they can be given service. Such things include the logging
-			of information concerning the opening and closing of some data exchange with a user, mounting
-			directories, and so on.
+			<parameter>session:</parameter> Dieses Modul wird vor allem dazu verwendet um festzulegen was ausgeführt
+			werden sollte bevor ein Benutzer einen Dienst benutzt oder beendet. Dies könnte zum Beispiel das Aufzeichnen
+			von Information bezüglich dem Datenaustausch mit dem Benutzer oder das mounten von Ordnern usw. sein.
 			</para></listitem>
 
 			<listitem><para>
-			<parameter>password:</parameter> This last module type is required for updating the authentication
-			token associated with the user. Typically, there is one module for each <quote>challenge/response</quote>
-			-based authentication <parameter>(auth)</parameter> module type.
+			<parameter>password:</parameter> Dieser letzte Modultyp wird gebraucht FOR UPDATING THE AUTHENTICATION
+			TOKEN ASSOCIATED WITH THE USER. Normalerweise ist immer ein Modul für einen <quote>challenge/response</quote>
+			-basierten authentifizierungs <parameter>(auth)</parameter> Modul Typen.
 			</para></listitem>
 		</itemizedlist>
 		</listitem>
@@ -268,31 +269,33 @@ Ordners. Nachdem wir die obigen Zeicher erklärt haben, werden wir näher auf dies
 
 	<varlistentry><term>control-flag</term><listitem>
                 <para>
-		The control-flag is used to indicate how the PAM library will react to the success or failure of the
-		module it is associated with. Since modules can be stacked (modules of the same type execute in series,
-		one after another), the control-flags determine the relative importance of each module. The application
-		is not made aware of the individual success or failure of modules listed in the
-		<filename>/etc/pam.conf</filename> file. Instead, it receives a summary success or fail response from
-		the Linux-PAM library. The order of execution of these modules is that of the entries in the
-		<filename>/etc/pam.conf</filename> file; earlier entries are executed before later ones.
-		As of Linux-PAM v0.60, this control-flag can be defined with one of two syntaxes.
+		Die control-flag wird bentutzt um festzulegen wie die PAM Bibliothek auf einen Erfolg oder Misserfolg
+		des mit ihr verbundenen Moduls reagiert. Seit Module gestockt werden können (Module des gleichen Typs 
+		nacheinander geschaltet so, dass eins nach dem anderen ausgeführt wird), legen die control-flags auch die
+		relative Wichtigkeit dieser fest. Der Applikation wird nicht der Erfolg oder Misserfolg jedes Moduls in der 
+		<filename>/etc/pam.conf</filename> Datei mitgeteilt, sondern sie erhält eine Zusammenfassung des Erfolgs
+		oder Misserfolgs von der Linux-PAM Bibliothek. Die Reihenfolge in der diese Module ausgeführt werden ist
+		die der Einträge in der <filename>/etc/pam.conf</filename>; Der Erste Eintrag wird als erstes ausgeführt und
+		der Letzte zum Schluss. Ab Linux-PAM v0.60, kann diese control-flag mit einer von zwei Syntaxes angegeben
+		werden.
+		</para>
+		
+
+		<para>
+		Die einfachere (und historische) Syntax für die Control-flag ist ein einzelnes Schlüsselwort welches
+		die Wichtigkeit des Erfolgs oder Misserfolgs des Moduls festlegt. Es gibt vier solcher Schlüsselworte:
+		<parameter>required, requisite, sufficient und optional</parameter>.
 		</para>
 
 		<para>
-		The simpler (and historical) syntax for the control-flag is a single keyword defined to indicate the
-		severity of concern associated with the success or failure of a specific module. There are four such
-		keywords: <parameter>required, requisite, sufficient and optional</parameter>.
-		</para>
-
-		<para>
-		The Linux-PAM library interprets these keywords in the following manner:
+		Die Linux-PAM Bibliothek interpretiert diese Schlüsselwörter wie folgt:
 		</para>
 
 		<itemizedlist>
 			<listitem><para>
-			<parameter>required:</parameter> This indicates that the success of the module is required for the
-			module-type facility to succeed. Failure of this module will not be apparent to the user until all
-			of the remaining modules (of the same module-type) have been executed.
+			<parameter>required:</parameter> Dies gibt an dass der Efolg dieses Moduls essentiell für den Erfolg
+			des mit diesem Modul verbunden Dienstes ist. Ein Misserfolg dieses Moduls wird dem Benutzer nicht
+			mitgeteilt bevor nicht alle anderen Module (des selben Modul-typen) ausgeführt wurden.
 			</para></listitem>
 
 			<listitem><para>
