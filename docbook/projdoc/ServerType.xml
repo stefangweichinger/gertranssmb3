@@ -326,37 +326,43 @@ holt.
 </para></note>
 
 <para>
-Use of this mode of authentication does require there to be a standard UNIX account
-for each user in order to assign a UID once the account has been authenticated by
-the remote Windows DC. This account can be blocked to prevent logons by clients other than
-MS Windows through means such as setting an invalid shell in the
-<filename>/etc/passwd</filename> entry.
+Diese Art der Authentisierung zu nutzen benötigt einen Standard Unix Account, damit für jeden
+User eine gültige UNIX UserID existiert die vom entfernten Windows Domänen Controller authentisiert
+werden kann. Es spricht allerdings nichts dagegen, dass es diesem UNIX Account verboten wird sich ein
+zu loggen was bei MS Windows nicht möglich ist. Das blocken eines solchen UNIX Accounts kann durch
+setzen einer nicht Login fähigen Shell in der <filename>/etc/passwd</filename> geschehen (z.B.
+/bin/false als Shell).
 </para>
 
 <para>
-An alternative to assigning UIDs to Windows users on a Samba member server is
-presented in <link linkend="winbind"></link>.
+Eine Alternative zum assoziieren von UIDs zu Windows User mit einem Samba Mitgliedsserver wird
+im Kapitel <link linkend="winbind">Winbind</link> beschrieben.
 </para>
 
 <para>
-For more information regarding Domain Membership, see <link linkend="domain-member"></link>.
+Für weitere Informationen Domänen Mitgliedschaft betreffend lesen Sie bitte
+<link linkend="domain-member">hier</link>.
 </para>
 
 </sect3>
 </sect2>
 
 <sect2>
-<title>ADS Security Mode (User Level Security)</title>
+<title>ADS Sicherheits Modus (User Level Security)</title>
 
 <para>
-Both Samba-2.2, and Samba-3 can join an Active Directory domain. This is
-possible if the domain is run in native mode. Active Directory in
-native mode perfectly allows NT4-style Domain Members. This is contrary to
-popular belief. Active Directory in native mode prohibits only the use of
-Backup Domain Controllers running MS Windows NT4.
+Sowohl Samba 2.2 als auch Samba 3 können einer ADS Domäne beitreten. Dies ist
+allerdings nur dann möglich, wenn die ADS im Ursprungs Modus betrieben wird.
+Active Directory im ursprünglichen Modus erlaubt gänzlich die Mitgliedschaft
+von NT4 artigen Mitgliedern. Dies ist wiedersprüchlich im verbreiteten Glauben.
+Active Directory in diesem Zustand verhindert nur den Einsatz von Backup Domänen
+Controllern auf NT4 Basis.
 </para>
 
 <para>
+Wenn Sie ADS benutzen und mit Samba 3 starten können Sie der ADS als normales
+Active Directory Mitglied beitreten.
+<!-- Mach hier weiter -->
 If you are using Active Directory, starting with Samba-3 you can
 join as a native AD member. Why would you want to do that?
 Your security policy might prohibit the use of NT-compatible
