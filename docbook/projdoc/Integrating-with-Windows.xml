@@ -304,8 +304,11 @@ This file tells the name resolution libraries:
 
 <para>
 <indexterm><primary>/etc/host.conf</primary></indexterm>
-<filename>/etc/host.conf</filename>
-#
+Einträge in der <filename>/etc/host.conf</filename> sind primär dazu gedacht 
+wie sich die Einträge in <filename>/etc/resolv.conf</filename> auswirken sollen.
+Es ist eine kritische Konfigurationsdatei, da hier die Reihenfolge der
+Namensauflösung eingestellt wird.
+Die typische Struktur sieht so aus:
 #
 <filename>/etc/host.conf</filename> is the primary means by 
 which the setting in <filename>/etc/resolv.conf</filename> may be effected. It is a 
@@ -319,6 +322,10 @@ multi on
 </programlisting></para>
 
 <para>
+Damit sollten beide Adressierungsarten verwendet werden. Für
+weitergehende Informationen werfen Sie bitte einen Blick in die Man Page
+für <filename>host.conf</filename>.
+#
 then both addresses should be returned. Please refer to the 
 man page for <filename>host.conf</filename> for further details.
 </para>
@@ -333,6 +340,11 @@ man page for <filename>host.conf</filename> for further details.
 
 
 <para>
+<indexterm><primary>/etc/nsswitch.conf</primary></indexterm>
+Diese Datei kontrolliert die möglichen Ziele für eine Namensauflösung.
+Die Datei hat typischerweise folgende Spezifikationen für die Resolver
+Objekte: 
+#
 <indexterm><primary>/etc/nsswitch.conf</primary></indexterm>
 This file controls the actual name resolution targets. The 
 file typically has resolver object specifications as follows:
@@ -363,11 +375,20 @@ services:	nis files
 </programlisting></para>
 
 <para>
+Selbstverständlich muss sichergestellt sein, dass jedem dieser
+Mechanismen seine zugehörigen Dienste und Einrichtungen korrekt
+konfiguriert wurden.
+#
 Of course, each of these mechanisms requires that the appropriate 
 facilities and/or services are correctly configured.
 </para>
 
 <para>
+Es sollte noch darauf hingewiesen werden, solange keine
+Netzwerkanforderung/Nachricht verschickt werden muss verhalten sich
+TCP/IP Netzwerke still. Bei allen TCP/IP Verbindungen wird prinzipiell angenommen
+dass sie sich nur bei Bedarf melden.
+#
 It should be noted that unless a network request/message must be 
 sent, TCP/IP networks are silent. All TCP/IP communications assume a 
 principal of speaking only when necessary.
@@ -376,6 +397,20 @@ principal of speaking only when necessary.
 
 <para>
 <indexterm><primary>libnss_wins.so</primary></indexterm>
+Seit Version 2.2.0 hat Samba Linux Support für Erweiterungen der
+Name Service Switch Infrastruktur. Darüber haben Linux Clients die
+Möglichkeit der Auflösung von MS Windows NetBIOS Namen zu IP Adressen.
+Um diese Möglichkeit zu erhalten muss Samba mit den passenden Parameter
+für das make Kommando übersetzt werden (i.e., <userinput>make
+nsswitch/libnss_wins.so</userinput>). Die daraus entstehende Bibliothek
+sollte ins Verzeichniss <filename>/lib</filename> installiert werden und
+der <parameter>wins</parameter> Parameter muss zur Zeile
+<quote>hosts:</quote> in der Datei
+<filename>/etc/nsswitch.conf</filename> hinzugefügt werden.
+Erst dann ist es möglich jede MS Windows Maschine über ihren NetBIOS
+Computernamen anzupingen, aber nur solange sich diese Maschinen in der selben
+Arbeitsgruppe befinden.
+#
 Starting with version 2.2.0, Samba has Linux support for extensions to 
 the name service switch infrastructure so Linux clients will 
 be able to obtain resolution of MS Windows NetBIOS names to IP 
@@ -395,9 +430,29 @@ which both the Samba machine and the MS Windows machine belong.
 
 
 <sect1>
+<title>Die Namensauflösung wie sie in einem MS Windows Netzwerk verwendet wird</title>
+#
 <title>Name Resolution as Used within MS Windows Networking</title>
 
 <para>
+MS Windows Netzwerke basieren auf den Namen welche jeder Computer
+erhält.
+Dieser Name wird auch oft (und nicht immer gleich) als der
+<quote>Computer Name,</quote> <quote>Maschinen Name,</quote>
+<quote>Netzwerk Name ,</quote> <quote>NetBIOS Name,</quote> oder auch 
+<quote>SMB Name</quote> bezeichnet.
+Alle Begriffe meinen das selbe mit der Ausnahme vom <quote>NetBIOS
+Name</quote>, denn dieser kann auch für den Namen der Arbeitsgruppe oder
+der Domäne verwendet werden. Die Begriffe <quote>Arbeitsgruppe</quote>
+und <quote>Domäne</quote> sind wirklich nur einfache Bezeichnungen für
+die Zugehörigkeit des Computers. Alle NetBIOS Namen sind exakt 16
+Zeichen lang. Das 16<superscript>te</superscript> Zeichen ist
+reserviert.
+Es wird benutzt um einen 1-byte langen Wert aufzunehmen der für den
+registrierten NetBIOS Namen dessen Service Level Informationen darstellt.
+Ein NetBIOS Maschinen Name ist daher für jeden angebotenen Service Typ
+eines Client/Servers registriert.
+#
 MS Windows networking is predicated about the name each machine 
 is given. This name is known variously (and inconsistently) as 
 the <quote>computer name,</quote> <quote>machine name,</quote> <quote>networking name,</quote> <quote>netbios name,</quote> 
@@ -413,6 +468,9 @@ the client/server.
 </para>
 
 <para>
+<link linkend="uniqnetbiosnames"/> und <link linkend="netbiosnamesgrp"/>
+zeigen typische NetBIOS Namen/Service Typen Registrierungen.
+#
 <link linkend="uniqnetbiosnames"/> and <link linkend="netbiosnamesgrp"/> list typical NetBIOS name/service type registrations.
 </para>
 
@@ -446,6 +504,12 @@ the client/server.
 
 <para>
 <indexterm><primary>NetBIOS</primary></indexterm>
+Es sei angemerkt dass alle NetBIOS Maschinen ihre eigene Namen wie oben
+gezeigt registrieren. Das steht im krassen Kontrast zu TCP/IP
+Installationen in denen tratitionell der Systemadministrator in der
+<filename>/etc/hosts</filename> oder in der DNS Datenbank festlegt
+welche Namen mit welcher IP Adressen verknüpft werden.
+#
 It should be noted that all NetBIOS machines register their own 
 names as per the above. This is in vast contrast to TCP/IP 
 installations where traditionally the system administrator will 
@@ -455,6 +519,17 @@ are associated with each IP address.
 
 <para>
 <indexterm><primary>NetBIOS</primary></indexterm>
+Ein weitere Punkt sollte klargestellt werden.
+Die Datei <filename>/etc/hosts</filename> und die DNS Einträge bieten
+keine NetBIOS Name Typ Informationen welche MS Windows Clients benötigen um den
+Typ des Services zu finden. 
+Als Beispiel sei genannt was passiert wenn ein MS Windows Client einen Domain Logon
+Server suchen möchte. Er findet diesen Service und die IP Adresse des
+Servers der dies bietet über einen NetBIOS Broadcast und geht alle
+Maschinen durch deren Name Typ *&lt;1c&gt; ist. Anschließend wird ein Logon Request 
+an alle gefunden IP Adressen verschickt. Je nachdem welche Maschine
+zuerst antwortet führt diese dann den Logon Prozess zu Ende.
+#
 One further point of clarification should be noted. The <filename>/etc/hosts</filename> 
 file and the DNS records do not provide the NetBIOS name type information 
 that MS Windows clients depend on to locate the type of service that may 
