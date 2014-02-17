@@ -1,0 +1,15 @@
+/blockinglocks.xml/1.1.1.1/Mon Nov 17 07:31:26 2003//
+/cscpolicy.xml/1.1.1.1/Mon Nov 17 07:31:26 2003//
+/fakeoplocks.xml/1.1.1.1/Mon Nov 17 07:31:26 2003//
+/kerneloplocks.xml/1.1.1.1/Mon Nov 17 07:31:26 2003//
+/level2oplocks.xml/1.1.1.1/Mon Nov 17 07:31:26 2003//
+/locking.xml/1.1.1.1/Mon Nov 17 07:31:26 2003//
+/lockspincount.xml/1.1.1.1/Mon Nov 17 07:31:26 2003//
+/lockspintime.xml/1.1.1.1/Mon Nov 17 07:31:26 2003//
+/oplockbreakwaittime.xml/1.1.1.1/Mon Nov 17 07:31:26 2003//
+/oplockcontentionlimit.xml/1.1.1.1/Mon Nov 17 07:31:26 2003//
+/oplocks.xml/1.1.1.1/Mon Nov 17 07:31:26 2003//
+/posixlocking.xml/1.1.1.1/Mon Nov 17 07:31:26 2003//
+/sharemodes.xml/1.1.1.1/Mon Nov 17 07:31:26 2003//
+/strictlocking.xml/1.1.1.1/Mon Nov 17 07:31:26 2003//
+D
